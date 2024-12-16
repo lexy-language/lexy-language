@@ -1,0 +1,27 @@
+# take from https://taxsummaries.pwc.com/switzerland/individual/sample-personal-income-tax-calculation
+
+scenario: Single
+  params:
+    GrossSalary = 200000
+    Married = false
+    Children = 0
+  result:
+    NetIncome = 180734
+    NetTaxableIncomeCanton = 173834
+    NetTaxableIncomeFederal = 174934
+    TaxesCantonalCommunal = 29994
+    TaxesFederal = 9942
+    TaxesTotal = 39936
+
+scenario: Married +1 child
+  params:
+    GrossSalary = 200000
+    Married = true
+    Children = 1
+  result:
+    NetIncome = 180734
+    NetTaxableIncomeCanton = 160334
+    NetTaxableIncomeFederal = 162934
+    TaxesCantonalCommunal = 21620
+    TaxesFederal = 6998
+    TaxesTotal = 28608

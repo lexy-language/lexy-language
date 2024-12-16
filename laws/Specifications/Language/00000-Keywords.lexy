@@ -1,0 +1,110 @@
+Function: ValidateFunctionKeywords
+# Validate function keywords
+  Parameters
+  Result
+  Code
+
+Scenario: ValidateScenarioKeywords
+# Validate Scenario keywords
+  Function ValidateFunctionKeywords
+  Parameters
+  Result
+
+Scenario: ValidateScenarioWithTableKeywords
+# Validate Scenario with table keywords
+  Function ValidateFunctionKeywords
+  Table
+
+Enum: ValidateEnumKeyword
+  First = 0
+  Second = 1
+
+Function: ValidateEnumKeyword
+# Validate enum keywords
+  Parameters
+    ValidateEnumKeyword Value
+  Result
+    ValidateEnumKeyword Result
+  Code
+    Result = Value
+
+Scenario: ValidateEnumKeywords
+# Validate enum keywords
+  Function ValidateEnumKeyword
+  Parameters
+    Value = ValidateEnumKeyword.Second
+  Result
+    Result = ValidateEnumKeyword.Second
+
+
+Function: ValidateIntVariable
+# Validate int variable type
+  Parameters
+    int InInt
+  Result
+    int OutInt
+  Code
+    OutInt = InInt
+
+Scenario: ValidateIntVariable
+  Function ValidateIntVariable
+  Parameters
+    InInt = 777
+  Result
+    OutInt = 777
+
+Function: ValidateNumberVariable
+# Validate number variable type
+  Parameters
+    number InNumber
+  Result
+    number OutNumber
+  Code
+    OutNumber = InNumber
+
+Scenario: ValidateNumberVariable
+  Function ValidateNumberVariable
+  Parameters
+    InNumber = 999
+  Result
+    OutNumber = 999
+
+Function: ValidateBooleanVariable
+# Validate boolean variable type
+  Parameters
+    boolean InBoolean
+  Result
+    boolean OutBoolean
+  Code
+    OutBoolean = InBoolean
+
+Scenario: ValidateBooleanVariable
+  Function ValidateBooleanVariable
+  Parameters
+    InBoolean = true
+  Result
+    OutBoolean = true
+
+Function: ValidateDateTimeVariable
+# Validate datetime variable type
+  Parameters
+    datetime InDateTime
+  Result
+    datetime OutDateTime
+  Code
+    OutDateTime = InDateTime
+
+Scenario: ValidateDateTimeVariable
+  Function ValidateDateTimeVariable
+  Parameters
+    InDateTime = 2022/12/16 13:26:55
+  Result
+    OutDateTime = 2022/12/16 13:26:55
+
+Function: UnknownFunctionKeyword
+# Validate function keywords
+  Paraeters
+
+Scenario: UnknownFunctionKeyword
+  Function UnknownFunctionKeyword
+  ExpectError Invalid token 'Paraeters'.

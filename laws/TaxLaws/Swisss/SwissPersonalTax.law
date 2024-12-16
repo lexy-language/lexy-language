@@ -1,0 +1,16 @@
+function: Calculate swiss personal tax (basic example)
+
+params:
+  number GrossSalary
+  bool Married = false
+  int Children = 0
+
+result:
+  number NetIncome
+  number NetTaxableIncomeCanton
+  number NetTaxableIncomeFederal
+  number TaxesCantonalCommunal
+  number TaxesFederal
+  number TaxesTotal
+
+TaxesTotal = TaxesCantonalCommunal + TaxesFederal

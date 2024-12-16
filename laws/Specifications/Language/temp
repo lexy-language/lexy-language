@@ -1,0 +1,25 @@
+
+
+Table: ValidateTableKeyword
+# Validate table keywords
+  | int Value | int Result |
+  | 0 | 0 |
+  | 1 | 1 |
+
+Function: ValidateTableKeyword
+# Validate table keywords
+  Include
+    table ValidateTableKeyword
+  Parameters
+  Result
+    ValidateEnumKeyword Result
+  Code
+    Result = ValidateTableKeyword.Count
+
+Function: UnknownFunctionKeyword
+# Validate function keywords
+  Paraeters
+
+Scenario: UnknownFunctionKeyword
+  Function UnknownFunctionKeyword
+  ExpectError "Invalid Keyword 'Paraeters' at line 3, 2"
