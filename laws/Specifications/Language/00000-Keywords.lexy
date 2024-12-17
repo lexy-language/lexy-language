@@ -1,14 +1,14 @@
 Function: ValidateFunctionKeywords
 # Validate function keywords
   Parameters
-  Result
+  Results
   Code
 
 Scenario: ValidateScenarioKeywords
 # Validate Scenario keywords
   Function ValidateFunctionKeywords
   Parameters
-  Result
+  Results
 
 Scenario: ValidateScenarioWithTableKeywords
 # Validate Scenario with table keywords
@@ -23,7 +23,7 @@ Function: ValidateEnumKeyword
 # Validate enum keywords
   Parameters
     ValidateEnumKeyword Value
-  Result
+  Results
     ValidateEnumKeyword Result
   Code
     Result = Value
@@ -33,7 +33,7 @@ Scenario: ValidateEnumKeywords
   Function ValidateEnumKeyword
   Parameters
     Value = ValidateEnumKeyword.Second
-  Result
+  Results
     Result = ValidateEnumKeyword.Second
 
 
@@ -41,7 +41,7 @@ Function: ValidateIntVariable
 # Validate int variable type
   Parameters
     int InInt
-  Result
+  Results
     int OutInt
   Code
     OutInt = InInt
@@ -50,14 +50,14 @@ Scenario: ValidateIntVariable
   Function ValidateIntVariable
   Parameters
     InInt = 777
-  Result
+  Results
     OutInt = 777
 
 Function: ValidateNumberVariable
 # Validate number variable type
   Parameters
     number InNumber
-  Result
+  Results
     number OutNumber
   Code
     OutNumber = InNumber
@@ -66,14 +66,14 @@ Scenario: ValidateNumberVariable
   Function ValidateNumberVariable
   Parameters
     InNumber = 999
-  Result
+  Results
     OutNumber = 999
 
 Function: ValidateBooleanVariable
 # Validate boolean variable type
   Parameters
     boolean InBoolean
-  Result
+  Results
     boolean OutBoolean
   Code
     OutBoolean = InBoolean
@@ -82,14 +82,14 @@ Scenario: ValidateBooleanVariable
   Function ValidateBooleanVariable
   Parameters
     InBoolean = true
-  Result
+  Results
     OutBoolean = true
 
 Function: ValidateDateTimeVariable
 # Validate datetime variable type
   Parameters
     datetime InDateTime
-  Result
+  Results
     datetime OutDateTime
   Code
     OutDateTime = InDateTime
@@ -98,7 +98,7 @@ Scenario: ValidateDateTimeVariable
   Function ValidateDateTimeVariable
   Parameters
     InDateTime = 2022/12/16 13:26:55
-  Result
+  Results
     OutDateTime = 2022/12/16 13:26:55
 
 Function: UnknownFunctionKeyword
