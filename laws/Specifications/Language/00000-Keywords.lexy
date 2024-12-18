@@ -97,9 +97,9 @@ Function: ValidateDateTimeVariable
 Scenario: ValidateDateTimeVariable
   Function ValidateDateTimeVariable
   Parameters
-    InDateTime = 2022/12/16 13:26:55
+    InDateTime = d"2022/12/16 13:26:55"
   Results
-    OutDateTime = 2022/12/16 13:26:55
+    OutDateTime = d"2022/12/16 13:26:55"
 
 Function: UnknownFunctionKeyword
 # Validate function keywords
@@ -107,4 +107,4 @@ Function: UnknownFunctionKeyword
 
 Scenario: UnknownFunctionKeyword
   Function UnknownFunctionKeyword
-  ExpectError Invalid token 'Paraeters'.
+  ExpectError "Invalid token 'Paraeters'"
