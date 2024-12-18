@@ -108,3 +108,25 @@ Function: UnknownFunctionKeyword
 Scenario: UnknownFunctionKeyword
   Function UnknownFunctionKeyword
   ExpectError "Invalid token 'Paraeters'"
+
+
+Table: ValidateTableKeyword
+# Validate table keywords
+  | int Value | int Result |
+  | 0 | 0 |
+  | 1 | 1 |
+
+Function: ValidateTableKeyword
+# Validate table keywords
+  Include
+    table ValidateTableKeyword
+  Parameters
+  Results
+    int Result
+  Code
+    Result = ValidateTableKeyword.Count
+
+Scenario: ValidateTableKeyword
+  Function ValidateTableKeyword
+  Results
+    Result = 2

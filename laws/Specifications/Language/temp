@@ -16,20 +16,19 @@ Function: ValidateTableKeyword
   Code
     Result = ValidateTableKeyword.Count
 
-Function: UnknownFunctionKeyword
-# Validate function keywords
-  Paraeters
 
-Scenario: UnknownFunctionKeyword
-  Function UnknownFunctionKeyword
-  ExpectError "Invalid Keyword 'Paraeters' at line 3, 2"
-
-
-
-
-
-  TODO!
+TODO
   - Validate Component Name is not empty and unique
+  - Validate types and string literals
+  - Validate table size and value type
   - Check value component order
   - Function includes
+  - Add Language documentation
+  - Add implementation doc
+  - Add built in functions
+  - Statements
+    - If
+    - Switch
+    - Function call
+    - Inline function call (single result)
   
