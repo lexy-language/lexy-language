@@ -1,0 +1,17 @@
+Function: DuplicateFunctionName
+# Validate table keywords
+  Results
+    number Result
+  Code
+    Result = 1
+
+Function: DuplicateFunctionName
+# Validate table keywords
+  Results
+    number Result
+  Code
+    Result = 1
+
+Scenario: DuplicateFunctionNameScenario
+  Function DuplicateFunctionName
+  ExpectError root "Duplicated component name: 'DuplicateFunctionName'"

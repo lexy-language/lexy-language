@@ -13,7 +13,7 @@ Scenario: ValidateScenarioKeywords
 
 Scenario: ValidateInlineFunctionKeywords
 # Validate Scenario keywords
-  Function: ValidateFunctionKeywords
+  Function: ValidateFunctionKeywordsInline
   # Validate function keywords
     Parameters
     Results
@@ -31,7 +31,7 @@ Enum: ValidateEnumKeyword
   First = 0
   Second = 1
 
-Function: ValidateEnumKeyword
+Function: ValidateEnumKeywordFunction
 # Validate enum keywords
   Parameters
     ValidateEnumKeyword Value
@@ -42,14 +42,14 @@ Function: ValidateEnumKeyword
 
 Scenario: ValidateEnumKeywords
 # Validate enum keywords
-  Function ValidateEnumKeyword
+  Function ValidateEnumKeywordFunction
   Parameters
     Value = ValidateEnumKeyword.Second
   Results
     Result = ValidateEnumKeyword.Second
 
 
-Function: ValidateIntVariable
+Function: ValidateIntVariableFunction
 # Validate number variable type with int
   Parameters
     number InInt
@@ -59,13 +59,13 @@ Function: ValidateIntVariable
     OutInt = InInt
 
 Scenario: ValidateIntVariable
-  Function ValidateIntVariable
+  Function ValidateIntVariableFunction
   Parameters
     InInt = 777
   Results
     OutInt = 777
 
-Function: ValidateNumberVariable
+Function: ValidateNumberVariableFunction
 # Validate number variable type with decimal
   Parameters
     number InNumber
@@ -75,13 +75,13 @@ Function: ValidateNumberVariable
     OutNumber = InNumber
 
 Scenario: ValidateNumberVariable
-  Function ValidateNumberVariable
+  Function ValidateNumberVariableFunction
   Parameters
     InNumber = 999
   Results
     OutNumber = 999
 
-Function: ValidateBooleanVariable
+Function: ValidateBooleanVariableFunction
 # Validate boolean variable type
   Parameters
     boolean InBoolean
@@ -91,13 +91,13 @@ Function: ValidateBooleanVariable
     OutBoolean = InBoolean
 
 Scenario: ValidateBooleanVariable
-  Function ValidateBooleanVariable
+  Function ValidateBooleanVariableFunction
   Parameters
     InBoolean = true
   Results
     OutBoolean = true
 
-Function: ValidateDateTimeVariable
+Function: ValidateDateTimeVariableFunction
 # Validate datetime variable type
   Parameters
     datetime InDateTime
@@ -107,7 +107,7 @@ Function: ValidateDateTimeVariable
     OutDateTime = InDateTime
 
 Scenario: ValidateDateTimeVariable
-  Function ValidateDateTimeVariable
+  Function ValidateDateTimeVariableFunction
   Parameters
     InDateTime = d"2022/12/16 13:26:55"
   Results
@@ -128,7 +128,7 @@ Table: ValidateTableKeyword
   | 0 | 0 |
   | 1 | 1 |
 
-Function: ValidateTableKeyword
+Function: ValidateTableKeywordFunction
 # Validate table keywords
   Include
     table ValidateTableKeyword
@@ -138,7 +138,7 @@ Function: ValidateTableKeyword
   Code
     Result = ValidateTableKeyword.Count
 
-Scenario: ValidateTableKeyword
-  Function ValidateTableKeyword
+Scenario: ValidateTableKeywordScenario
+  Function ValidateTableKeywordFunction
   Results
     Result = 2
