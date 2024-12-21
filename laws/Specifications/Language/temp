@@ -5,6 +5,7 @@ TODO
   - Validate types and string literals
   - Validate table size and value type
   - Validate value component keyword order in root components
+  - Validate keyword order and duplication
   - Add indention specifications
   - File level includes
   - Add Language documentation

@@ -1,62 +1,48 @@
-Function: ValidNumberIntAsParameterFunction
-  Parameters
-    number Value = 123
-  Results
-    number Result
-  Code
-    Result = Value
-
 Scenario: ValidNumberIntAsParameter
-  Function ValidNumberIntAsParameterFunction
+  Function: ValidNumberIntAsParameterFunction
+    Parameters
+      number Value = 123
+    Results
+      number Result
+    Code
+      Result = Value
   Results
     Result = 123
-
-
-Function: ValidNumberDecimalAsParameterFunction
-  Parameters
-    number Value = 123.45
-  Results
-    number Result
-  Code
-    Result = Value
 
 Scenario: ValidNumberDecimalAsParameter
-  Function ValidNumberDecimalAsParameterFunction
+  Function: ValidNumberDecimalAsParameterFunction
+    Parameters
+      number Value = 123.45
+    Results
+      number Result
+    Code
+      Result = Value
   Results
     Result = 123.45
-
-
-Function: ValidNumberIntInCodeFunction
-  Results
-    number Result
-  Code
-    Result = 123
 
 Scenario: ValidNumberIntInCode
-  Function ValidNumberIntInCodeFunction
+  Function: ValidNumberIntInCodeFunction
+    Results
+      number Result
+    Code
+      Result = 123
   Results
     Result = 123
 
-
-Function: ValidNumberDecimalInCodeFunction
-  Results
-    number Result
-  Code
-    Result = 123.45
-
 Scenario: ValidNumberDecimalInCode
-  Function ValidNumberDecimalInCodeFunction
+  Function: ValidNumberDecimalInCodeFunction
+    Results
+      number Result
+    Code
+      Result = 123.45
   Results
     Result = 123.45
-
-
-Function: InvalidNumberEndsWithLetterFunction
-  Results
-    number Result
-  Code
-    Result = 123A
 
 Scenario: InvalidNumberEndsWithLetter
-  Function InvalidNumberEndsWithLetterFunction
-  ExpectError "Invalid token at 16: Invalid number token character: A"
+  Function: InvalidNumberEndsWithLetterFunction
+    Results
+      number Result
+    Code
+      Result = 123A
+  ExpectError "Invalid token at 18: Invalid number token character: A"
 

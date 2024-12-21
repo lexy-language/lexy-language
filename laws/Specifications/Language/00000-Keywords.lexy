@@ -10,6 +10,18 @@ Scenario: ValidateScenarioKeywords
   Parameters
   Results
 
+
+Scenario: ValidateInlineFunctionKeywords
+# Validate Scenario keywords
+  Function: ValidateFunctionKeywords
+  # Validate function keywords
+    Parameters
+    Results
+    Code
+  Parameters
+  Results
+
+
 Scenario: ValidateScenarioWithTableKeywords
 # Validate Scenario with table keywords
   Function ValidateFunctionKeywords
