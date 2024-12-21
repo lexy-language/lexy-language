@@ -101,12 +101,12 @@ Scenario: ValidateDateTimeVariable
   Results
     OutDateTime = d"2022/12/16 13:26:55"
 
-Function: UnknownFunctionKeyword
+Function: UnknownFunctionKeywordFunction
 # Validate function keywords
   Paraeters
 
 Scenario: UnknownFunctionKeyword
-  Function UnknownFunctionKeyword
+  Function UnknownFunctionKeywordFunction
   ExpectError "Invalid token 'Paraeters'"
 
 

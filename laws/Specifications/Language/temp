@@ -1,28 +1,12 @@
 
 
-Table: ValidateTableKeyword
-# Validate table keywords
-  | int Value | int Result |
-  | 0 | 0 |
-  | 1 | 1 |
-
-Function: ValidateTableKeyword
-# Validate table keywords
-  Include
-    table ValidateTableKeyword
-  Parameters
-  Result
-    ValidateEnumKeyword Result
-  Code
-    Result = ValidateTableKeyword.Count
-
-
 TODO
   - Validate Component Name is not empty and unique
   - Validate types and string literals
   - Validate table size and value type
-  - Check value component order
-  - Function includes
+  - Validate value component keyword order in root components
+  - Add indention specifications
+  - File level includes
   - Add Language documentation
   - Add implementation doc
   - Add built in functions
@@ -31,4 +15,8 @@ TODO
     - Switch
     - Function call
     - Inline function call (single result)
-  
+  - Create dependency injection configuration nuget package
+  - Split projects
+    - Lexy.RuntTime
+    - Lexy.Compiler
+    - Lexy.SpecificationsRunner
