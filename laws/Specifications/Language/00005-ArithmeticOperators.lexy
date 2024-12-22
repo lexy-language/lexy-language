@@ -1,0 +1,109 @@
+Scenario: SimpleAddition
+  Function:
+    Results
+      number Result
+    Code
+      Result = 1 + 1
+  Results
+    Result = 2
+
+Scenario: SimpleSubtraction
+  Function:
+    Results
+      number Result
+    Code
+      Result = 5 - 1
+  Results
+    Result = 4
+
+Scenario: SimpleDivision
+  Function:
+    Results
+      number Result
+    Code
+      Result = 5 / 2
+  Results
+    Result = 2.5
+
+Scenario: SimpleModulo
+  Function:
+    Results
+      number Result
+    Code
+      Result = 10 % 3
+  Results
+    Result = 1
+
+Scenario: SimpleParenthesis
+  Function:
+    Results
+      number Result
+    Code
+      Result = 2 * (3 + 4)
+  Results
+    Result = 14
+
+Scenario: SimpleAdditionParameters
+  Function:
+    Parameters
+      number Value
+    Results
+      number Result
+    Code
+      Result = Value + Value
+  Parameters
+    Value = 2
+  Results
+    Result = 4
+
+Scenario: SimpleSubtractionParameters
+  Function:
+    Parameters
+      number Value
+    Results
+      number Result
+    Code
+      Result = 10 - Value
+  Parameters
+    Value = 2
+  Results
+    Result = 8
+
+Scenario: SimpleDivisionParameters
+  Function:
+    Parameters
+      number Value
+    Results
+      number Result
+    Code
+      Result = 10 / Value
+  Parameters
+    Value = 2
+  Results
+    Result = 5
+
+Scenario: SimpleModuloParameters
+  Function:
+    Parameters
+      number Value
+    Results
+      number Result
+    Code
+      Result = 8 % Value
+  Parameters
+    Value = 3
+  Results
+    Result = 2
+
+Scenario: SimpleParenthesisParameters
+  Function:
+    Parameters
+      number Value
+    Results
+      number Result
+    Code
+      Result = 2 * (Value + 4)
+  Parameters
+    Value = 7
+  Results
+    Result = 22
