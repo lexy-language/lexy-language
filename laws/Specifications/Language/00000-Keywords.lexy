@@ -25,7 +25,7 @@ Scenario: ValidateInlineFunctionKeywords
 Scenario: ValidateScenarioWithTableKeywords
 # Validate Scenario with table keywords
   Function ValidateFunctionKeywords
-  Table
+  ValidationTable
 
 Enum: ValidateEnumKeyword
   First = 0

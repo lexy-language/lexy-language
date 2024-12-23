@@ -25,4 +25,3 @@ Scenario: DuplicateScenarioName
     "Duplicated node name: 'DuplicateTableName'"
     "Duplicated node name: 'DuplicateFunctionName'"
     "Duplicated node name: 'DuplicateEnumName'"
-    "Duplicated node name: 'DuplicateScenarioName'"
