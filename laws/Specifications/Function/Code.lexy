@@ -1,0 +1,19 @@
+Scenario: InvalidVariableName
+  Function:
+    Results
+      number Result
+    Code
+      number temp
+      temp = Value
+      Result = temp
+  ExpectError "Unknown variable name: 'Value'"
+
+Scenario: DuplicatedVariableName
+  Function:
+    Results
+      number Result
+    Code
+      number temp
+      number temp
+      Result = temp
+  ExpectError "Duplicated variable name: 'temp'"

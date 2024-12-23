@@ -1,5 +1,5 @@
-Scenario: NumberStringAsParameterDefault
-  Function: ValidNumberStringAsParameterDefaultFunction
+Scenario: StringAsParameterDefault
+  Function:
     Parameters
       string Value = "abc"
     Results
@@ -9,8 +9,8 @@ Scenario: NumberStringAsParameterDefault
   Results
     Result = "abc"
 
-Scenario: NumberStringAsParameter
-  Function: ValidNumberStringAsParameterFunction
+Scenario: StringAsParameter
+  Function:
     Parameters
       string Value = "abc"
     Results
@@ -22,8 +22,8 @@ Scenario: NumberStringAsParameter
   Results
     Result = "xyz"
 
-Scenario: NumberStringInCode
-  Function: ValidNumberStringInCodeFunction
+Scenario: StringInCode
+  Function:
     Results
       string Result
     Code
@@ -31,8 +31,23 @@ Scenario: NumberStringInCode
   Results
     Result = "abc"
 
-Scenario: StringVariableDeclarationInCode
-  Function: ValidNumberDecimalInCodeFunction
+Scenario: VariableDeclarationInCode
+  Function:
+    Parameters
+      string Value
+    Results
+      string Result
+    Code
+      string temp
+      temp = Value
+      Result = temp
+  Parameters
+    Value = "abs"
+  Results
+    Result = "abs"
+
+Scenario: VariableDeclarationInCodeWithDefault
+  Function:
     Results
       string Result
     Code
@@ -42,7 +57,7 @@ Scenario: StringVariableDeclarationInCode
     Result = "abs"
 
 Scenario: InvalidNumberEndsWithLetter
-  Function: InvalidNumberEndsWithLetterFunction
+  Function:
     Results
       string Result
     Code
@@ -50,7 +65,7 @@ Scenario: InvalidNumberEndsWithLetter
   ExpectError "Invalid token at end of line. Closing quote expected."
 
 Scenario: ConcatenateStringInCode
-  Function: ValidNumberStringInCodeFunction
+  Function:
     Results
       string Result
     Code

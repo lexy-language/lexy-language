@@ -1,5 +1,5 @@
 Scenario: NumberStringAsParameterDefault
-  Function: ValidNumberStringAsParameterDefaultFunction
+  Function:
     Parameters
       datetime Value = d"2024/12/23 16:03:00"
     Results
@@ -10,7 +10,7 @@ Scenario: NumberStringAsParameterDefault
     Result = d"2024/12/23 16:03:00"
 
 Scenario: NumberStringAsParameter
-  Function: ValidNumberStringAsParameterFunction
+  Function:
     Parameters
       datetime Value = d"2000/01/01 12:34:56"
     Results
@@ -23,7 +23,7 @@ Scenario: NumberStringAsParameter
     Result = d"2024/12/23 16:03:00"
 
 Scenario: DateTimeStringInCode
-  Function: ValidNumberStringInCodeFunction
+  Function:
     Results
       datetime Result
     Code
@@ -32,7 +32,22 @@ Scenario: DateTimeStringInCode
     Result = d"2024/12/23 16:03:00"
 
 Scenario: DateTimeVariableDeclarationInCode
-  Function: ValidNumberDecimalInCodeFunction
+  Function:
+    Results
+      datetime Result
+    Parameters
+      datetime Value
+    Code
+      datetime temp
+      temp = Value
+      Result = temp
+  Parameters
+    Value =      d"2024/12/23 16:03:00"
+  Results
+    Result = d"2024/12/23 16:03:00"
+
+Scenario: DateTimeVariableDeclarationInCodeWithDefault
+  Function:
     Results
       datetime Result
     Code
@@ -42,7 +57,7 @@ Scenario: DateTimeVariableDeclarationInCode
     Result = d"2024/12/23 16:03:00"
 
 Scenario: InvalidNumberEndsWithLetter
-  Function: InvalidNumberEndsWithLetterFunction
+  Function:
     Results
       datetime Result
     Code
@@ -69,7 +84,7 @@ Scenario: InvalidDateTimeInitializeNumber
       Result = Value
   ExpectError "Invalid default value '5'. (type: 'datetime')"
 
-Scenario: InvalidDateTimeInitializeBoolean
+Scenario:
   Function:
     Parameters
       datetime Value = true

@@ -1,12 +1,12 @@
 Scenario: BooleanDefault
-  Function: ValidNumberBooleanDefaultFunction
+  Function:
     Results
       boolean Result
   Results
     Result = false
 
 Scenario: BooleanAsParameterDefault
-  Function: ValidNumberBooleanAsParameterDefaultFunction
+  Function:
     Parameters
       boolean Value = true
     Results
@@ -17,7 +17,7 @@ Scenario: BooleanAsParameterDefault
     Result = true
 
 Scenario: BooleanAsParameter
-  Function: ValidNumberBooleanAsParameterFunction
+  Function:
     Parameters
       boolean Value = true
     Results
@@ -30,7 +30,7 @@ Scenario: BooleanAsParameter
     Result = false
 
 Scenario: BooleanInCode
-  Function: ValidNumberBooleanInCodeFunction
+  Function:
     Results
       boolean Result
     Code
@@ -39,7 +39,22 @@ Scenario: BooleanInCode
     Result = true
 
 Scenario: BooleanVariableDeclarationInCode
-  Function: ValidNumberDecimalInCodeFunction
+  Function:
+    Results
+      boolean Result
+    Parameters
+      boolean Value
+    Code
+      boolean temp
+      temp = Value
+      Result = temp
+  Parameters
+    Value = true
+  Results
+    Result = true
+
+Scenario: BooleanVariableDeclarationInCodeWithDefault
+  Function:
     Results
       boolean Result
     Code
