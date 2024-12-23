@@ -1,0 +1,5 @@
+Scenario: IndentError
+  Function:
+      Results
+      number Result
+  ExpectError "3: ERROR - Invalid indent: 3"
