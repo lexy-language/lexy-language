@@ -1,0 +1,7 @@
+Function: UnknownFunction
+  Code
+    unknown()
+
+Scenario: Unknown
+  Function UnknownFunction
+  ExpectError "Invalid function name: 'unknown'"

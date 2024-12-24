@@ -1,0 +1,44 @@
+Table: SimpleTable
+  | number Value | number Result |
+  | 2 | 222 |
+  | 3 | 333 |
+  | 4 | 444 |
+  | 5 | 555 |
+
+Function: SimpleLookUpFunction
+  Include
+    table SimpleTable
+  Parameters
+    number Value
+  Results
+    number Result
+  Code
+    Result = LOOKUP(SimpleTable, Value, "Result")
+
+Scenario: SimpleLookUp
+  Function SimpleLookUpFunction
+  Parameters
+    Value = 3
+  Results
+    Result = 333
+
+Scenario: SimpleLookUpWithDecimal
+  Function SimpleLookUpFunction
+  Parameters
+    Value = 4.5
+  Results
+    Result = 444
+
+Scenario: SimpleLookUpBeforeRange
+  Function SimpleLookUpFunction
+  Parameters
+    Value = 1
+  Results
+    Result = 0
+
+Scenario: SimpleLookUpAfterRange
+  Function SimpleLookUpFunction
+  Parameters
+    Value = 100
+  Results
+    Result = 555

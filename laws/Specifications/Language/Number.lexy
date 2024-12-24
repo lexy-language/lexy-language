@@ -82,7 +82,7 @@ Scenario: InvalidNumberEndsWithLetter
       number Result
     Code
       Result = 123A
-  ExpectError "Invalid token at 18: Invalid number token character: A"
+  ExpectError "Invalid number token character: 'A'"
 
 Scenario: InvalidNumberInitializeString
   Function:

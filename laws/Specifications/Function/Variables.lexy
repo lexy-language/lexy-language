@@ -31,7 +31,7 @@ Scenario: RootDeclaration
     DatetimeResult = d"2024/12/24 13:49:00"
     EnumResult = SimpleEnum.Next
 
-Function: IfScopedVariablesFunction
+Function: ScopedVariablesFunction
   Parameters
     boolean Evil
   Results
@@ -54,8 +54,8 @@ Function: IfScopedVariablesFunction
       DatetimeResult = datetimeValue
       EnumResult = enumValue
 
-Scenario: IfScopedVariables
-  Function IfScopedVariablesFunction
+Scenario: ScopedVariables
+  Function ScopedVariablesFunction
   Parameters
     Evil = true
   Results
@@ -64,3 +64,19 @@ Scenario: IfScopedVariables
     BooleanResult = true
     DatetimeResult = d"2024/12/24 13:49:00"
     EnumResult = SimpleEnum.Next
+
+
+Function: ScopedVariablesOutOfScopeFunction
+  Parameters
+    boolean Evil
+  Results
+    number NumberResult
+  Code
+    if Evil
+      number numberValue = 123
+
+    NumberResult = numberValue
+
+Scenario: ScopedVariablesOutOfScope
+  Function ScopedVariablesOutOfScopeFunction
+  ExpectError "Unknown variable name: 'numberValue'"
