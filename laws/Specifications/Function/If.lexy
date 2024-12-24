@@ -195,7 +195,7 @@ Scenario: IfWithNumberCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'number'."
+  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 Scenario: IfWithNumberCalculationCondition
   Function:
@@ -209,7 +209,7 @@ Scenario: IfWithNumberCalculationCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'number'."
+  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 Scenario: IfWithStringCondition
   Function:
@@ -223,7 +223,7 @@ Scenario: IfWithStringCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'string'."
+  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 Function: IfWithStringCalculationConditionFunction
   Parameters
@@ -239,7 +239,7 @@ Function: IfWithStringCalculationConditionFunction
 
 Scenario: IfWithStringCalculationCondition
   Function IfWithStringCalculationConditionFunction
-  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'string'."
+  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 Scenario: IfWithDateTimeCondition
   Function:
@@ -253,7 +253,7 @@ Scenario: IfWithDateTimeCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'datetime'"
+  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'datetime'"
 
 
 Function: IfWithUnassignedLocalVariableFunction
