@@ -1,0 +1,329 @@
+Function: If
+  Parameters
+    boolean Evil
+  Results
+    number Number
+  Code
+    number temp = 777
+    if Evil
+      temp = 666
+    Number = temp
+
+Scenario: IfTrue
+  Function If
+  Parameters
+    Evil = true
+  Results
+    Number = 666
+
+Scenario: IfFalse
+  Function If
+  Parameters
+    Evil = false
+  Results
+    Number = 777
+
+
+Function: IfElse
+  Parameters
+    boolean Evil
+  Results
+    number Number
+  Code
+    number temp
+    if Evil
+      temp = 666
+    else
+      temp = 777
+    Number = temp
+
+Scenario: IfElseTrue
+  Function IfElse
+  Parameters
+    Evil = true
+  Results
+    Number = 666
+
+Scenario: IfElseFalse
+  Function IfElse
+  Parameters
+    Evil = false
+  Results
+    Number = 777
+
+
+
+Function: IfElseEmptyIf
+  Parameters
+    boolean Evil
+  Results
+    number Number
+  Code
+    number temp
+    if Evil
+    else
+      temp = 777
+    Number = temp
+
+Scenario: IfElseEmptyIfTrue
+  Function IfElseEmptyIf
+  Parameters
+    Evil = true
+  Results
+    Number = 0
+
+Scenario: IfElseEmptyIfFalse
+  Function IfElseEmptyIf
+  Parameters
+    Evil = false
+  Results
+    Number = 777
+
+
+
+Function: IfElseEmptyElse
+  Parameters
+    boolean Evil
+  Results
+    number Number
+  Code
+    number temp
+    if Evil
+      temp = 666
+    else
+    Number = temp
+
+Scenario: IfElseEmptyElseTrue
+  Function IfElseEmptyElse
+  Parameters
+    Evil = true
+  Results
+    Number = 666
+
+Scenario: IfElseEmptyElseFalse
+  Function IfElseEmptyElse
+  Parameters
+    Evil = false
+  Results
+    Number = 0
+
+
+
+Function: IfWithAndExpression
+  Parameters
+    boolean Evil
+    boolean FalseProphet = true
+  Results
+    number Number
+  Code
+    number temp
+    if Evil && FalseProphet
+      temp = 666
+    else
+      temp = 777
+    Number = temp
+
+Scenario: IfWithAndExpressionTrue
+  Function IfWithAndExpression
+  Parameters
+    Evil = true
+  Results
+    Number = 666
+
+Scenario: IfWithAndExpressionFalse
+  Function IfWithAndExpression
+  Parameters
+    Evil = false
+  Results
+    Number = 777
+
+
+Function: IfWithOrExpression
+  Parameters
+    boolean Evil
+    boolean FalseProphet = true
+  Results
+    number Number
+  Code
+    number temp
+    if Evil || FalseProphet
+      temp = 666
+    else
+      temp = 777
+    Number = temp
+
+Scenario: IfWithOrExpressionTrue
+  Function IfWithOrExpression
+  Parameters
+    Evil = true
+  Results
+    Number = 666
+
+Scenario: IfWithOrExpressionFalse
+  Function IfWithOrExpression
+  Parameters
+    Evil = false
+    FalseProphet = false
+  Results
+    Number = 777
+
+
+Scenario: ElseWithoutIf
+  Function:
+    Parameters
+    Results
+      number Number
+    Code
+      number temp
+      else
+        temp = 777
+      Number = temp
+  Parameters
+  ExpectError "Else should be following an If statement. No if statement found."
+
+
+
+Scenario: IfWithNumberCondition
+  Function:
+    Parameters
+    Results
+      number Number
+    Code
+      number temp
+      if Number
+      else
+        temp = 777
+      Number = temp
+  Parameters
+  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'number'."
+
+Scenario: IfWithNumberCalculationCondition
+  Function:
+    Parameters
+    Results
+      number Number
+    Code
+      number temp
+      if 5 + Number
+      else
+        temp = 777
+      Number = temp
+  Parameters
+  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'number'."
+
+Scenario: IfWithStringCondition
+  Function:
+    Parameters
+    Results
+      number Number
+    Code
+      number temp
+      if "aaa"
+      else
+        temp = 777
+      Number = temp
+  Parameters
+  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'string'."
+
+Function: IfWithStringCalculationConditionFunction
+  Parameters
+    string Input
+  Results
+    Number Number
+  Code
+    number temp
+    if "aaa" + Input
+    else
+      temp = 777
+    Number = temp
+
+Scenario: IfWithStringCalculationCondition
+  Function IfWithStringCalculationConditionFunction
+  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'string'."
+
+Scenario: IfWithDateTimeCondition
+  Function:
+    Parameters
+    Results
+      number Number
+    Code
+      number temp
+      if d"2024/12/24 09:05:10"
+      else
+        temp = 777
+      Number = temp
+  Parameters
+  ExpectError "'If' condition expression should be 'boolean', is of wrong type 'datetime'"
+
+
+Function: IfWithUnassignedLocalVariableFunction
+  Parameters
+  Results
+    number Number
+  Code
+    number temp
+    if true
+      Number = 666
+    else
+      temp = 777
+    Number = temp
+
+Scenario: IfWithUnassignedLocalVariable
+  Function IfWithUnassignedLocalVariableFunction
+  Results
+    Number = 0
+
+
+
+
+Function: NestedIf
+  Parameters
+    boolean Evil
+    boolean FalseProphet = true
+  Results
+    number Number
+  Code
+    number temp
+    if Evil
+      if FalseProphet
+        temp = 666
+      else
+        temp = 777
+    else
+      if FalseProphet
+        temp = 888
+      else
+        temp = 999
+    Number = temp
+
+Scenario: NestedIfTrueFalse
+  Function NestedIf
+  Parameters
+    Evil = true
+    FalseProphet = false
+  Results
+    Number = 777
+
+Scenario: NestedIfTrueTrue
+  Function NestedIf
+  Parameters
+    Evil = true
+    FalseProphet = true
+  Results
+    Number = 666
+
+Scenario: NestedIfFalseFalse
+  Function NestedIf
+  Parameters
+    Evil = false
+    FalseProphet = false
+  Results
+    Number = 999
+
+Scenario: NestedIfFalseTrue
+  Function NestedIf
+  Parameters
+    Evil = false
+    FalseProphet = true
+  Results
+    Number = 888

@@ -1,0 +1,15 @@
+Scenario: UnknownType
+  Function:
+    Parameters
+      int Value
+    Results
+    Code
+  ExpectError "Unknown enum type: 'int'"
+
+Scenario: InvalidVariableDefaultValue
+  Function:
+    Parameters
+      int Value = 5 + 33
+    Results
+    Code
+  ExpectError "Invalid variable declaration. Expected literal token."

@@ -10,7 +10,7 @@ Scenario: InvalidParameterType
       ValidateEnumKeyword Result
     Code
       Result = Value
-  ExpectError "Unknown type: 'InvalidValidateEnumKeyword'"
+  ExpectError "Unknown enum type: 'InvalidValidateEnumKeyword'"
 
 Scenario: DuplicatedParameterName
   Function:

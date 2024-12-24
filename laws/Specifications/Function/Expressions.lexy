@@ -1,0 +1,8 @@
+Scenario: Addition
+  Function:
+    Results
+      number Result
+    Code
+      Result = 1 + 1
+  Results
+    Result = 2

@@ -1,0 +1,29 @@
+Table: SimpleTable
+  | number Value | number Result |
+  | 0 | 0 |
+  | 1 | 1 |
+
+Function: IncludeSimpleTableFunction
+  Include
+    table SimpleTable
+  Parameters
+  Results
+    number Result
+  Code
+
+Scenario: IncludeSimpleTable
+  Function IncludeSimpleTableFunction
+
+Function: GetCountSimpleTableFunction
+  Include
+    table SimpleTable
+  Parameters
+  Results
+    number Result
+  Code
+    Result = SimpleTable.Count
+
+Scenario: GetCountSimpleTable
+  Function GetCountSimpleTableFunction
+  Results
+    Result = 2
