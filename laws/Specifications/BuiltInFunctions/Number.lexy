@@ -1,0 +1,95 @@
+Scenario: Abs
+  Function:
+    Results
+      number Result
+    Code
+      Result = ABS(2)
+  Results
+    Result = 2
+
+Scenario: AbsNegative
+  Function:
+    Results
+      number Result
+    Code
+      Result = ABS(-2)
+  Results
+    Result = 2
+
+Scenario: Int
+  Function:
+    Results
+      number Result
+    Code
+      Result = INT(8.9)
+  Results
+    Result = 8
+
+Scenario: IntNegative
+  Function:
+    Results
+      number Result
+    Code
+      Result = INT(-8.9)
+  Results
+    Result = -9
+
+Scenario: Power
+  Function:
+    Results
+      number Result
+    Code
+      Result = POWER(5,2)
+  Results
+    Result = 25
+
+Scenario: PowerDecimal
+  Function:
+    Results
+      number Result
+    Code
+      Result = ROUND(POWER(98.6,3.2), 3)
+  Results
+    Result = 2401077.222
+
+Scenario: PowerDivision
+  Function:
+    Results
+      number Result
+    Code
+      Result = ROUND(POWER(4,5/4), 9)
+  Results
+    Result = 5.656854249
+
+Function: RoundFunction
+  Parameters
+    number Value
+    number Digits
+  Results
+    number Result
+  Code
+    Result = ROUND(Value, Digits)
+
+Scenario: RoundFraction1
+  Function RoundFunction
+  Parameters
+    Value = 2.15
+    Digits = 1
+  Results
+    Result = 2.2
+
+Scenario: RoundFraction2
+  Function RoundFunction
+  Parameters
+    Value = 2.149
+    Digits = 1
+  Results
+    Result = 2.1
+
+Scenario: RoundFraction3
+  Function RoundFunction
+  Parameters
+    Value = -1.475
+    Digits = 2
+  Results
+    Result = -1.48

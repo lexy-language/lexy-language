@@ -1,0 +1,163 @@
+Scenario: Year
+  Function:
+    Parameters
+      date Value = d"2024/12/25 16:57:45"
+    Results
+      number Result
+    Code
+      Result = YEAR(Value)
+  Results
+    Result = 2024
+
+Scenario: Day
+  Function:
+    Parameters
+      date Value = d"2024/12/25 16:57:45"
+    Results
+      number Result
+    Code
+      Result = DAY(Value)
+  Results
+    Result = 25
+
+Scenario: Month
+  Function:
+    Parameters
+      date Value = d"2024/12/25 16:57:45"
+    Results
+      number Result
+    Code
+      Result = MONTH(Value)
+  Results
+    Result = 12
+
+Scenario: Hour
+  Function:
+    Parameters
+      date Value = d"2024/12/25 16:57:45"
+    Results
+      number Result
+    Code
+      Result = HOUR(Value)
+  Results
+    Result = 16
+
+Scenario: Minute
+  Function:
+    Parameters
+      date Value = d"2024/12/25 16:57:45"
+    Results
+      number Result
+    Code
+      Result = MINUTE(Value)
+  Results
+    Result = 57
+
+Scenario: Second
+  Function:
+    Parameters
+      date Value = d"2024/12/25 16:57:45"
+    Results
+      number Result
+    Code
+      Result = SECOND(Value)
+  Results
+    Result = 45
+
+
+
+Scenario: Years
+  Function:
+    Parameters
+      date ValueEnd = d"2029/12/25 16:57:45"
+      date ValueStart = d"2024/12/20 16:57:45"
+    Results
+      number Result
+    Code
+      Result = YEARS(ValueEnd, ValueStart)
+  Results
+    Result = 5
+
+Scenario: Months
+  Function:
+    Parameters
+      date ValueEnd = d"2024/12/25 16:57:45"
+      date ValueStart = d"2024/08/20 16:57:45"
+    Results
+      number Result
+    Code
+      Result = MONTHS(ValueEnd, ValueStart)
+  Results
+    Result = 4
+
+Scenario: Days
+  Function:
+    Parameters
+      date ValueEnd = d"2024/12/25 16:57:45"
+      date ValueStart = d"2024/12/20 16:57:45"
+    Results
+      number Result
+    Code
+      Result = DAYS(ValueEnd, ValueStart)
+  Results
+    Result = 5
+
+Scenario: Hours
+  Function:
+    Parameters
+      date ValueEnd = d"2024/12/25 16:57:45"
+      date ValueStart = d"2024/12/25 18:57:45"
+    Results
+      number Result
+    Code
+      Result = HOURS(ValueEnd, ValueStart)
+  Results
+    Result = 2
+
+Scenario: Minutes
+  Function:
+    Parameters
+      date ValueEnd = d"2024/12/25 16:57:45"
+      date ValueStart = d"2024/12/20 16:27:45"
+    Results
+      number Result
+    Code
+      Result = MINUTES(ValueEnd, ValueStart)
+  Results
+    Result = 30
+
+Scenario: Seconds
+  Function:
+    Parameters
+      date ValueEnd = d"2024/12/25 16:57:45"
+      date ValueStart = d"2024/12/20 16:57:10"
+    Results
+      number Result
+    Code
+      Result = SECONDS(ValueEnd, ValueStart)
+  Results
+    Result = 35
+
+
+
+Scenario: Today
+  Function:
+    Results
+      number Diff
+    Code
+      date first = TODAY()
+      date second = TODAY()
+      Diff = SECONDS(first, second)
+  Results
+    Diff = 0
+
+Scenario: NowAndDiff
+  Function:
+    Results
+      number Diff
+    Code
+      date first = NOW()
+      date second = NOW()
+      Diff = INT(SECONDS(first, second))
+  Results
+    Diff = 0
