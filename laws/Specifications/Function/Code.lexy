@@ -7,6 +7,16 @@ Scenario: Valid
   Results
     Result = 5
 
+Scenario: VarVariableDeclarationNumber
+  Function:
+    Results
+      number Result
+    Code
+      var numberTemp = 777
+      Result = numberTemp
+  Results
+    Result = 777
+
 Scenario: InvalidVariableName
   Function:
     Results
@@ -26,3 +36,4 @@ Scenario: DuplicatedVariableName
       number temp
       Result = temp
   ExpectError "Duplicated variable name: 'temp'"
+

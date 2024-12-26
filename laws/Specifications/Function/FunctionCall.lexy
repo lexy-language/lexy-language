@@ -1,0 +1,35 @@
+Function: SimpleFunction
+  Parameters
+    number Value
+  Results
+    number Result
+  Code
+    Result = Value
+
+Scenario: CallSimpleFunctionExplicitParameters
+  Function:
+    Parameters
+      Value
+    Results
+      Result
+    Code
+      var parameters = FILLPARAMETERS(SimpleFunction)
+      var results = SimpleFunction(parameters)
+      EXTRACTRESULTS(results)
+  Parameters
+    Value = 3
+  Results
+    Result = 3
+
+Scenario: CallSimpleFunctionImplicitParameters
+  Function:
+    Parameters
+      Value
+    Results
+      Result
+    Code
+      SimpleFunction()
+  Parameters
+    Value = 3
+  Results
+    Result = 3
