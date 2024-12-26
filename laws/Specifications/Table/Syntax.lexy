@@ -4,8 +4,6 @@ Table: SimpleTable
   | 1 | 1 |
 
 Function: IncludeSimpleTableFunction
-  Include
-    table SimpleTable
   Parameters
   Results
     number Result
@@ -15,8 +13,6 @@ Scenario: IncludeSimpleTable
   Function IncludeSimpleTableFunction
 
 Function: GetCountSimpleTableFunction
-  Include
-    table SimpleTable
   Parameters
   Results
     number Result

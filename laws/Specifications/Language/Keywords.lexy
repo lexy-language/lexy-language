@@ -126,8 +126,6 @@ Table: ValidateTableKeyword
 
 Function: TableKeywordFunction
 # Validate table keywords
-  Include
-    table ValidateTableKeyword
   Parameters
   Results
     number Result
