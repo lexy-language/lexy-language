@@ -216,3 +216,35 @@ Scenario: ScopedVariablesManyScopes
   Function ScopedVariablesManyScopesFunction
   Results
     NumberResult = 777
+
+
+
+Scenario: ResultsShouldNotHaveADefaultValue
+  Function:
+    Results
+      date Value = d"2024/12/25 16:57:45"
+    Code
+      Result = DAY(Value)
+  ExpectError "Result variable 'Value' should not have a default value."
+
+
+
+Scenario: UnknownVariable
+  Function:
+    Parameters
+      date Value
+    Code
+      Result = DAY(Value)
+  ExpectError "Unknown variable name: 'Result'"
+
+
+
+Scenario: InvalidAssignmentType
+  Function:
+    Parameters
+      date Value
+    Results
+      date Result
+    Code
+      Result = DAY(Value)
+  ExpectError "Variable 'Result' of type 'date' is not assignable from expression of type 'number'."
