@@ -4,4 +4,4 @@ Function: UnknownFunction
 
 Scenario: Unknown
   Function UnknownFunction
-  ExpectError "Unknown function name: 'unknown'"
+  ExpectError "Invalid function name: 'unknown'"

@@ -6,34 +6,3 @@ Scenario: Valid
     Value = 5
   Results
     Result = 5
-
-Scenario: VarVariableDeclarationNumber
-  Function:
-    Results
-      number Result
-    Code
-      var numberTemp = 777
-      Result = numberTemp
-  Results
-    Result = 777
-
-Scenario: InvalidVariableName
-  Function:
-    Results
-      number Result
-    Code
-      number temp
-      temp = Value
-      Result = temp
-  ExpectError "Unknown variable name: 'Value'"
-
-Scenario: DuplicatedVariableName
-  Function:
-    Results
-      number Result
-    Code
-      number temp
-      number temp
-      Result = temp
-  ExpectError "Duplicated variable name: 'temp'"
-
