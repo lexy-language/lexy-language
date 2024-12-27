@@ -65,9 +65,9 @@ Scenario: ExtractMultipleParameters
     Results
       number NumberResult
       string StringResult
-      boolean BooleanResultOther          #not mapped
+      boolean BooleanResultOther    #not mapped
       date DateResultOther          #not mapped
-      SimpleEnum EnumResultOther          #not mapped
+      SimpleEnum EnumResultOther    #not mapped
     Code
       var parameters = new(SimpleTarget.Results)
       parameters.NumberResult = NumberValue
@@ -85,9 +85,32 @@ Scenario: ExtractMultipleParameters
   Results
     NumberResult = 5
     StringResult = "abc"
-    BooleanResultOther = false                    #not mapped
+    BooleanResultOther = false                #not mapped
     DateResultOther = d"0001/01/01 00:00:00"  #not mapped
-    EnumResultOther = SimpleEnum.First            #not mapped
+    EnumResultOther = SimpleEnum.First        #not mapped
+
+
+
+
+Scenario: ExtractInIfScopeParameters
+  Function:
+    Parameters
+      boolean Evil
+      number NumberValue
+    Results
+      number NumberResultParent
+    Code
+      if Evil
+        number NumberResult
+        var parameters = new(SimpleTarget.Results)
+        parameters.NumberResult = NumberValue
+        extract(parameters)
+        NumberResultParent = NumberResult
+  Parameters
+    NumberValue = 5
+    Evil = true
+  Results
+    NumberResultParent = 5
 
 
 

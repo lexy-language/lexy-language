@@ -229,7 +229,7 @@ Function: IfWithStringCalculationConditionFunction
   Parameters
     string Input
   Results
-    Number Number
+    number Number
   Code
     number temp
     if "aaa" + Input

@@ -1,0 +1,14 @@
+Scenario: UnknownVariableInIfScope
+  Function:
+    Parameters
+      boolean Evil
+      date Value
+    Code
+      if Evil
+        number Result
+        Result = DAY(Value)
+  Parameters
+    Evil = true
+    Value = d"2024/12/27 16:51:54"
+  Results
+#    Result = 27

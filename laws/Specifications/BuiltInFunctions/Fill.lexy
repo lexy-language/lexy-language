@@ -77,3 +77,22 @@ Scenario: FillMultipleParameters
     BooleanResult = false                    #not mapped
     DateResult = d"0001/01/01 00:00:00"  #not mapped
     EnumResult = SimpleEnum.First            #not mapped
+
+
+Scenario: FillInIfScopeParameters
+  Function:
+    Parameters
+      boolean Evil
+      number NumberValueParent
+    Results
+      number NumberResult
+    Code
+      if Evil
+        number NumberValue = NumberValueParent
+        var parameters = fill(SimpleTarget.Parameters)
+        NumberResult = parameters.NumberValue
+  Parameters
+    NumberValueParent = 5
+    Evil = true
+  Results
+    NumberResult = 5
