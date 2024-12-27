@@ -1,0 +1,88 @@
+Table: NumberTable
+  | number SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
+  | 2                  | 222                 | "222"               | false                 | d"2024/12/24 23:22:22"   |
+  | 3                  | 333                 | "333"               | true                  | d"2024/12/24 23:33:33"   |
+  | 4                  | 444                 | "444"               | false                 | d"2024/12/24 23:44:44"   |
+  | 5                  | 555                 | "555"               | true                  | d"2024/12/24 23:55:55"   |
+
+Function: SimpleLookUpNumberFunction
+  Parameters
+    number Value
+  Results
+    number Result
+  Code
+    Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultNumber)
+
+Scenario: LookUpNumber
+  Function SimpleLookUpNumberFunction
+  Parameters
+    Value = 3
+  Results
+    Result = 333
+
+Scenario: LookUpNumberWithDecimal
+  Function SimpleLookUpNumberFunction
+  Parameters
+    Value = 4.5
+  Results
+    Result = 444
+
+Scenario: LookUpNumberAfterRange
+  Function SimpleLookUpNumberFunction
+  Parameters
+    Value = 100
+  Results
+    Result = 555
+
+
+
+Function: SimpleLookUpStringFunction
+  Parameters
+    number Value
+  Results
+    string Result
+  Code
+    Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultString)
+
+Scenario: LookUpString
+  Function SimpleLookUpStringFunction
+  Parameters
+    Value = 3
+  Results
+    Result = "333"
+
+
+
+Function: SimpleLookUpBooleanFunction
+  Parameters
+    number Value
+  Results
+    boolean Result
+  Code
+    Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultBoolean)
+
+Scenario: LookUpBoolean
+  Function SimpleLookUpBooleanFunction
+  Parameters
+    Value = 3
+  Results
+    Result = true
+
+
+
+
+Function: SimpleLookUpDateFunction
+  Parameters
+    number Value
+  Results
+    date Result
+  Code
+    Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultDate)
+
+Scenario: LookUpDate
+  Function SimpleLookUpDateFunction
+  Parameters
+    Value = 3
+  Results
+    Result = d"2024/12/24 23:33:33"
+

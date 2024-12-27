@@ -1,4 +1,4 @@
-Table: DecimalTable
+Table: NumberTable
   | number SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
   | 2                  | 222                 | "222"               | false                 | d"2024/12/24 23:22:22"   |
   | 3                  | 333                 | "333"               | true                  | d"2024/12/24 23:33:33"   |
@@ -11,23 +11,24 @@ Function: SimpleLookUpNumberFunction
   Results
     number Result
   Code
-    Result = LOOKUP(DecimalTable, Value, DecimalTable.SearchValue, DecimalTable.ResultNumber)
+    var row = LOOKUPROW(NumberTable, Value, NumberTable.SearchValue)
+    Result = row.ResultNumber
 
-Scenario: SimpleLookUpNumber
+Scenario: LookUpNumber
   Function SimpleLookUpNumberFunction
   Parameters
     Value = 3
   Results
     Result = 333
 
-Scenario: SimpleLookUpNumberWithDecimal
+Scenario: LookUpNumberWithDecimal
   Function SimpleLookUpNumberFunction
   Parameters
     Value = 4.5
   Results
     Result = 444
 
-Scenario: SimpleLookUpNumberAfterRange
+Scenario: LookUpNumberAfterRange
   Function SimpleLookUpNumberFunction
   Parameters
     Value = 100
@@ -42,9 +43,11 @@ Function: SimpleLookUpStringFunction
   Results
     string Result
   Code
-    Result = LOOKUP(DecimalTable, Value, DecimalTable.SearchValue, DecimalTable.ResultString)
+    var row = LOOKUPROW(NumberTable, Value, NumberTable.SearchValue)
+    Result = row.ResultString
 
-Scenario: SimpleLookUpString
+
+Scenario: LookUpString
   Function SimpleLookUpStringFunction
   Parameters
     Value = 3
@@ -59,9 +62,10 @@ Function: SimpleLookUpBooleanFunction
   Results
     boolean Result
   Code
-    Result = LOOKUP(DecimalTable, Value, DecimalTable.SearchValue, DecimalTable.ResultBoolean)
+    var row = LOOKUPROW(NumberTable, Value, NumberTable.SearchValue)
+    Result = row.ResultBoolean
 
-Scenario: SimpleLookUpBoolean
+Scenario: LookUpBoolean
   Function SimpleLookUpBooleanFunction
   Parameters
     Value = 3
@@ -77,9 +81,10 @@ Function: SimpleLookUpDateFunction
   Results
     date Result
   Code
-    Result = LOOKUP(DecimalTable, Value, DecimalTable.SearchValue, DecimalTable.ResultDate)
+    var row = LOOKUPROW(NumberTable, Value, NumberTable.SearchValue)
+    Result = row.ResultDate
 
-Scenario: SimpleLookUpDate
+Scenario: LookUpDate
   Function SimpleLookUpDateFunction
   Parameters
     Value = 3

@@ -1,13 +1,21 @@
+Enum: TableEnum
+  A
+  B
+  C
+  CA
+  D
+  E
+
 Table: StringTable
-  | string SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
-  | "a"                | 222                 | "222"               | false                 | d"2024/12/24 23:22:22"   |
-  | "b"                | 333                 | "333"               | true                  | d"2024/12/24 23:33:33"   |
-  | "c"                | 444                 | "444"               | false                 | d"2024/12/24 23:44:44"   |
-  | "d"                | 555                 | "555"               | true                  | d"2024/12/24 23:55:55"   |
+  | TableEnum SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
+  | TableEnum.A           | 222                 | "222"               | false                 | d"2024/12/24 23:22:22"   |
+  | TableEnum.B           | 333                 | "333"               | true                  | d"2024/12/24 23:33:33"   |
+  | TableEnum.C           | 444                 | "444"               | false                 | d"2024/12/24 23:44:44"   |
+  | TableEnum.D           | 555                 | "555"               | true                  | d"2024/12/24 23:55:55"   |
 
 Function: SimpleLookUpNumberFunction
   Parameters
-    string Value
+    TableEnum Value
   Results
     number Result
   Code
@@ -16,38 +24,38 @@ Function: SimpleLookUpNumberFunction
 Scenario: LookUpNumber
   Function SimpleLookUpNumberFunction
   Parameters
-    Value = "b"
+    Value = TableEnum.B
   Results
     Result = 333
 
 Scenario: LookUpNumberWithDecimal
   Function SimpleLookUpNumberFunction
   Parameters
-    Value = "ca"
+    Value = TableEnum.CA
   Results
     Result = 444
 
-Scenario: LookUpNumberAfterRange
+Scenario: LookUpEnumAfterRange
   Function SimpleLookUpNumberFunction
   Parameters
-    Value = "e"
+    Value = TableEnum.E
   Results
     Result = 555
 
 
 
-Function: SimpleLookUpStringFunction
+Function: SimpleLookUpEnumFunction
   Parameters
-    string Value
+    TableEnum Value
   Results
     string Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
 
 Scenario: LookUpString
-  Function SimpleLookUpStringFunction
+  Function SimpleLookUpEnumFunction
   Parameters
-    Value = "b"
+    Value = TableEnum.B
   Results
     Result = "333"
 
@@ -55,7 +63,7 @@ Scenario: LookUpString
 
 Function: SimpleLookUpBooleanFunction
   Parameters
-    string Value
+    TableEnum Value
   Results
     boolean Result
   Code
@@ -64,7 +72,7 @@ Function: SimpleLookUpBooleanFunction
 Scenario: LookUpBoolean
   Function SimpleLookUpBooleanFunction
   Parameters
-    Value = "b"
+    Value = TableEnum.B
   Results
     Result = true
 
@@ -73,7 +81,7 @@ Scenario: LookUpBoolean
 
 Function: SimpleLookUpDateFunction
   Parameters
-    string Value
+    TableEnum Value
   Results
     date Result
   Code
@@ -82,7 +90,7 @@ Function: SimpleLookUpDateFunction
 Scenario: LookUpDate
   Function SimpleLookUpDateFunction
   Parameters
-    Value = "b"
+    Value = TableEnum.B
   Results
     Result = d"2024/12/24 23:33:33"
 

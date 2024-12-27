@@ -19,6 +19,7 @@ Enum: DuplicateEnumName
   First = 1
 
 Enum: DuplicateEnumName
+  First = 1
 
 Scenario: DuplicateScenarioName
   ExpectRootErrors

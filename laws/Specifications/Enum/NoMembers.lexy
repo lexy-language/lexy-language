@@ -1,0 +1,5 @@
+Enum: NoMembers
+
+Scenario: EnumDefault
+  ExpectRootErrors
+    "No"
