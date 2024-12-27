@@ -1,0 +1,79 @@
+Enum: SimpleEnum
+  First
+  Next
+
+Function: SimpleTarget
+  Parameters
+    number NumberValue
+    string StringValue
+    boolean BooleanValue
+    date DateValue
+    SimpleEnum EnumValue
+  Results
+    number NumberResult
+    string StringResult
+    boolean BooleanResult
+    date DateResult
+    SimpleEnum EnumResult
+  Code
+    NumberResult = NumberValue
+    StringResult = StringValue
+    BooleanResult = BooleanValue
+    EnumResult = EnumValue
+
+Scenario: FillNoParameters
+  Function:
+    Parameters
+    Results
+    Code
+      var parameters = fill(SimpleTarget.Parameters)
+  ExpectError "Invalid parameter mapping. No parameter could be mapped from variables."
+
+Scenario: FillSingleParameters
+  Function:
+    Parameters
+      number NumberValue
+    Results
+      number NumberResult
+    Code
+      var parameters = fill(SimpleTarget.Parameters)
+      NumberResult = parameters.NumberValue
+  Parameters
+    NumberValue = 5
+  Results
+    NumberResult = 5
+
+Scenario: FillMultipleParameters
+# only corresponding parameters should be mapped
+  Function:
+    Parameters
+      number NumberValue
+      string StringValue
+      boolean BooleanValueOther          #not mapped
+      date DateValueOther            #not mapped
+      SimpleEnum EnumValueOther          #not mapped
+    Results
+      number NumberResult
+      string StringResult
+      boolean BooleanResult
+      date DateResult
+      SimpleEnum EnumResult
+    Code
+      var parameters = fill(SimpleTarget.Parameters)
+      NumberResult = parameters.NumberValue
+      StringResult = parameters.StringValue
+      BooleanResult = parameters.BooleanValue
+      DateResult = parameters.DateValue
+      EnumResult = parameters.EnumValue
+  Parameters
+    NumberValue = 5
+    StringValue = "abc"
+    BooleanValueOther = true
+    DateValueOther = d"2024/12/27 14:39:45"
+    EnumValueOther = SimpleEnum.Next
+  Results
+    NumberResult = 5
+    StringResult = "abc"
+    BooleanResult = false                    #not mapped
+    DateResult = d"0001/01/01 00:00:00"  #not mapped
+    EnumResult = SimpleEnum.First            #not mapped

@@ -1,0 +1,19 @@
+Function: Function1
+  Parameters
+    number Value
+  Results
+    number Result
+  Code
+    Function2()
+
+Function: Function2
+  Parameters
+    number Value
+  Results
+    number Result
+  Code
+    Function1()
+
+Scenario: CallCircularFunction
+  Function Function1
+  ExpectError "Circular reference detected in: 'Function1'"

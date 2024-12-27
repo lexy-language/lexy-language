@@ -1,0 +1,66 @@
+Table: StringTable
+  | string SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
+  | "a"                | 222                 | "222"               | false                 | d"2024/12/24 23:22:22"   |
+  | "b"                | 333                 | "333"               | true                  | d"2024/12/24 23:33:33"   |
+  | "c"                | 444                 | "444"               | false                 | d"2024/12/24 23:44:44"   |
+  | "d"                | 555                 | "555"               | true                  | d"2024/12/24 23:55:55"   |
+
+Scenario: NewTableRow
+  Function:
+    Results
+      string StringResult
+    Code
+      var row = new(StringTable.Row)
+      StringResult = row.SearchValue
+  Results
+    StringResult = ""
+
+
+
+Function: SimpleTarget
+  Parameters
+    string StringValue = "333"
+  Results
+    number NumberResult
+    string StringResult
+  Code
+    NumberResult = 666
+    StringResult = StringValue
+
+Scenario: NewFunctionParameters
+  Function:
+    Results
+      string StringResult
+    Code
+      var row = new(SimpleTarget.Parameters)
+      StringResult = row.StringValue
+  Results
+    StringResult = "333"
+
+Scenario: NewFunctionParametersInvalidMember
+  Function:
+    Results
+      string StringResult
+    Code
+      var row = new(SimpleTarget.Parameters)
+      StringResult = row.ResultNumber
+  ExpectError "Invalid member access. Member 'ResultNumber' not found on 'row'."
+
+Scenario: NewFunctionResults
+  Function:
+    Results
+      number NumberResult
+    Code
+      var row = new(SimpleTarget.Results)
+      NumberResult = row.NumberResult
+  Results
+    NumberResult = 0
+
+Scenario: NewFunctionResultsInvalidMember
+  Function:
+    Results
+      number NumberResult
+    Code
+      var row = new(SimpleTarget.Results)
+      NumberResult = row.ResultNumber
+  ExpectError "Invalid member access. Member 'ResultNumber' not found on 'row'."
