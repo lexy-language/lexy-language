@@ -5,8 +5,8 @@ export class IntFunction extends SingleArgumentFunction {
 
    protected override string FunctionHelp => $`{Name} expects 1 argument (Value)`;
 
-   protected override VariableType ArgumentType => PrimitiveType.Number;
-   protected override VariableType ResultType => PrimitiveType.Number;
+   protected override VariableType ArgumentType => PrimitiveType.number;
+   protected override VariableType ResultType => PrimitiveType.number;
 
    constructor(valueExpression: Expression, reference: SourceReference)
      : base(valueExpression, reference) {

@@ -3,15 +3,16 @@
 export class FunctionResults extends ParsableNode {
    public Array<VariableDefinition> Variables = list<VariableDefinition>(): new;
 
-   public FunctionResults(SourceReference reference) : base(reference) {
+   public FunctionResults(SourceReference reference) {
+     super(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let variableDefinition = VariableDefinition.Parse(VariableSource.Results, context);
+     let variableDefinition = VariableDefinition.parse(VariableSource.results, context);
      if (variableDefinition == null) return this;
 
      if (variableDefinition.DefaultExpression != null) {
-       context.Logger.Fail(Reference,
+       context.logger.fail(this.reference,
          $`Result variable '{variableDefinition.Name}' should not have a default value.`);
        return this;
      }

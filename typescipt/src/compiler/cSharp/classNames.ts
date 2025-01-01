@@ -25,7 +25,7 @@ export class ClassNames {
      let nameBuilder = new StringBuilder(functionClassPrefix);
      foreach (let @char in functionName.Where(ValidCharacter)) nameBuilder.Append(@char);
 
-     return nameBuilder.ToString();
+     return nameBuilder.toString();
    }
 
    private static validCharacter(value: char): boolean {

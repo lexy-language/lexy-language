@@ -13,7 +13,8 @@ export class ExtractResultsFunction extends ExpressionFunction {
    public Array<Mapping> Mapping => mapping;
 
    constructor(valueExpression: Expression, reference: SourceReference)
-     : base(reference) {
+     {
+     super(reference);
      ValueExpression = valueExpression;
      FunctionResultVariable = (valueExpression as IdentifierExpression)?.Identifier;
    }
@@ -24,23 +25,23 @@ export class ExtractResultsFunction extends ExpressionFunction {
 
    protected override validate(context: IValidationContext): void {
      if (FunctionResultVariable == null) {
-       context.Logger.Fail(Reference, $`Invalid variable argument. {FunctionHelp}`);
+       context.logger.fail(this.reference, $`Invalid variable argument. {FunctionHelp}`);
        return;
      }
 
-     let variableType = context.VariableContext.GetVariableType(FunctionResultVariable);
+     let variableType = context.variableContext.getVariableType(FunctionResultVariable);
      if (variableType == null) {
-       context.Logger.Fail(Reference, $`Unknown variable: '{FunctionResultVariable}'. {FunctionHelp}`);
+       context.logger.fail(this.reference, $`Unknown variable: '{FunctionResultVariable}'. {FunctionHelp}`);
        return;
      }
 
      if (!(variableType is ComplexType))
-       context.Logger.Fail(Reference,
+       context.logger.fail(this.reference,
          $`Invalid variable type: '{FunctionResultVariable}'. ` +
          `Should be Function Results. ` +
-         $`Use new(Function.Results) or fill(Function.Results) to create new function results. {FunctionHelp}`);
+         $`Use new(Function.results) or fill(Function.results) to create new function results. {FunctionHelp}`);
 
-     GetMapping(Reference, context, variableType as ComplexType, mapping);
+     GetMapping(this.reference, context, variableType as ComplexType, mapping);
    }
 
    internal static void GetMapping(SourceReference reference, IValidationContext context, ComplexType complexType,
@@ -52,18 +53,18 @@ export class ExtractResultsFunction extends ExpressionFunction {
      if (complexType == null) return;
 
      foreach (let member in complexType.Members) {
-       let variable = context.VariableContext.GetVariable(member.Name);
+       let variable = context.variableContext.getVariable(member.Name);
        if (variable == null || variable.VariableSource == VariableSource.Parameters) continue;
 
-       if (!variable.VariableType.Equals(member.Type))
-         context.Logger.Fail(reference,
+       if (!variable.VariableType.equals(member.Type))
+         context.logger.fail(reference,
            $`Invalid parameter mapping. Variable '{member.Name}' of type '{variable.VariableType}' can't be mapped to parameter '{member.Name}' of type '{member.Type}'.`);
        else
          mapping.Add(new Mapping(member.Name, variable.VariableType, variable.VariableSource));
      }
 
      if (mapping.Count == 0)
-       context.Logger.Fail(reference,
+       context.logger.fail(reference,
          `Invalid parameter mapping. No parameter could be mapped from variables.`);
    }
 

@@ -1,4 +1,5 @@
 import {SourceReference} from "./sourceReference";
+import {IRootNode} from "../language/iRootNode";
 
 export interface IParserLogger {
 
@@ -32,7 +33,8 @@ export interface IParserLogger {
     string[] ErrorNodeMessages(IRootNode node);
 
     void AssertNoErrors();
+*/
 
-    void SetCurrentNode(IRootNode node);
-    void Reset();*/
+    setCurrentNode(node: IRootNode): void;
+    reset(): void;
 }

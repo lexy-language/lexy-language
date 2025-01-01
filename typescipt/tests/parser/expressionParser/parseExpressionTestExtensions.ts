@@ -8,13 +8,13 @@ export class ParseExpressionTestExtensions {
      let line = new Line(0, expression, sourceFile);
 
      let tokens = line.Tokenize(tokenizer);
-     if (!tokens.IsSuccess) {
-       throw new Error(`Tokenizing failed: ` + context.Logger.ErrorMessages().Format(2));
+     if (!tokens.state != 'success') {
+       throw new Error(`Tokenizing failed: ` + context.logger.errorMessages().Format(2));
      }
 
-     let result = ExpressionFactory.Parse(line.Tokens, line);
-     result.IsSuccess.ShouldBeTrue(result.ErrorMessage);
-     return result.Result;
+     let result = ExpressionFactory.parse(line.tokens, line);
+     result.IsSuccess.ShouldBeTrue(result.errorMessage);
+     return result.result;
    }
 
    public static void ParseExpressionExpectException(this ScopedServicesTestFixture fixture,
@@ -26,12 +26,12 @@ export class ParseExpressionTestExtensions {
      let line = new Line(0, expression, sourceFile);
 
      let tokens = line.Tokenize(tokenizer);
-     if (!tokens.IsSuccess) {
-       throw new Error(`Tokenizing failed: ` + context.Logger.ErrorMessages().Format(2));
+     if (!tokens.state != 'success') {
+       throw new Error(`Tokenizing failed: ` + context.logger.errorMessages().Format(2));
      }
 
-     let result = ExpressionFactory.Parse(line.Tokens, line);
+     let result = ExpressionFactory.parse(line.tokens, line);
      result.IsSuccess.ShouldBeFalse();
-     result.ErrorMessage.ShouldBe(errorMessage);
+     result.errorMessage.ShouldBe(errorMessage);
    }
 }

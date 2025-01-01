@@ -14,7 +14,7 @@ export class Comments extends ParsableNode {
 
      if (!valid) return null;
 
-     let comment = context.Line.Tokens.Token<CommentToken>(0);
+     let comment = context.line.tokens.Token<CommentToken>(0);
      lines.Add(comment.Value);
      return this;
    }

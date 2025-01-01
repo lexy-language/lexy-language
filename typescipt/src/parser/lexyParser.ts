@@ -57,7 +57,7 @@ export class LexyParser extends ILexyParser {
 
        let indent = indentResult.Value;
        if (indent > currentIndent) {
-         context.Logger.Fail(line.LineStartReference(), $`Invalid indent: {indent}`);
+         context.logger.fail(line.lineStartReference(), $`Invalid indent: {indent}`);
          continue;
        }
 
@@ -76,18 +76,18 @@ export class LexyParser extends ILexyParser {
 
    private processLine(): boolean {
      let line = context.SourceCode.NextLine();
-     logger.Log(line.LineStartReference(), $`'{line.Content}'`);
+     logger.Log(line.lineStartReference(), $`'{line.Content}'`);
 
      let tokens = line.Tokenize(tokenizer);
-     if (!tokens.IsSuccess) {
-       logger.Fail(tokens.Reference, tokens.ErrorMessage);
+     if (!tokens.state != 'success') {
+       logger.fail(tokens.reference, tokens.errorMessage);
        return false;
      }
 
-     let tokenNames = string.Join(` `, context.CurrentLine.Tokens.Select(token =>
+     let tokenNames = string.Join(` `, context.CurrentLine.tokens.Select(token =>
        $`{token.GetType().Name}({token.Value})`).ToArray());
 
-     logger.Log(line.LineStartReference(), ` Tokens: ` + tokenNames);
+     logger.Log(line.lineStartReference(), ` Tokens: ` + tokenNames);
 
      return tokens.IsSuccess;
    }
@@ -122,8 +122,8 @@ export class LexyParser extends ILexyParser {
      if (!dependencies.HasCircularReferences) return;
 
      foreach (let circularReference in dependencies.CircularReferences) {
-       context.Logger.SetCurrentNode(circularReference);
-       context.Logger.Fail(circularReference.Reference,
+       context.logger.SetCurrentNode(circularReference);
+       context.logger.fail(circularReference.reference,
          $`Circular reference detected in: '{circularReference.NodeName}'`);
      }
    }
@@ -134,14 +134,14 @@ export class LexyParser extends ILexyParser {
    }
 
    private parseLine(currentNode: IParsableNode): IParsableNode {
-     let parseLineContext = new ParseLineContext(context.CurrentLine, context.Logger);
-     let node = currentNode.Parse(parseLineContext);
+     let parseLineContext = new ParseLineContext(context.CurrentLine, context.logger);
+     let node = currentNode.parse(parseLineContext);
      if (node == null) {
        throw new Error($`({currentNode}) Parse should return child node or itself.`);
      }
 
      if (node is IRootNode rootNode) {
-       context.Logger.SetCurrentNode(rootNode);
+       context.logger.SetCurrentNode(rootNode);
      }
 
      return node;

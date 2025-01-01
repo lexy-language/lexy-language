@@ -3,11 +3,12 @@
 export class FunctionParameters extends ParsableNode {
    public Array<VariableDefinition> Variables = list<VariableDefinition>(): new;
 
-   public FunctionParameters(SourceReference reference) : base(reference) {
+   public FunctionParameters(SourceReference reference) {
+     super(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let variableDefinition = VariableDefinition.Parse(VariableSource.Parameters, context);
+     let variableDefinition = VariableDefinition.parse(VariableSource.Parameters, context);
      if (variableDefinition != null) Variables.Add(variableDefinition);
      return this;
    }

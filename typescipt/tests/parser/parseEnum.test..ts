@@ -3,7 +3,7 @@
 export class ParseEnumTests extends ScopedServicesTestFixture {
   it('XXXX', async () => {
    public simpleEnum(): void {
-     let code = @`Enum: Enum1
+     let code = `Enum: Enum1
   First
   Second`;
 
@@ -22,7 +22,7 @@ export class ParseEnumTests extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public enumWithValues(): void {
-     let code = @`Enum: Enum2
+     let code = `Enum: Enum2
   First = 5
   Second = 6`;
 

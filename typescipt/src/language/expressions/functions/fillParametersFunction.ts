@@ -16,7 +16,8 @@ export class FillParametersFunction extends ExpressionFunction, IHasNodeDependen
    public Array<Mapping> Mapping => mapping;
 
    constructor(valueExpression: Expression, reference: SourceReference)
-     : base(reference) {
+     {
+     super(reference);
      ValueExpression = valueExpression ?? throw new Error(nameof(valueExpression));
      TypeLiteral = (valueExpression as MemberAccessExpression)?.MemberAccessLiteral;
    }
@@ -34,9 +35,9 @@ export class FillParametersFunction extends ExpressionFunction, IHasNodeDependen
    }
 
    protected override validate(context: IValidationContext): void {
-     let valueType = ValueExpression.DeriveType(context);
+     let valueType = ValueExpression.deriveType(context);
      if (!(valueType is ComplexTypeReference complexTypeReference)) {
-       context.Logger.Fail(Reference,
+       context.logger.fail(this.reference,
          $`Invalid argument 1 'Value' should be of type 'ComplexTypeReference' but is '{valueType}'. {FunctionHelp}`);
        return;
      }
@@ -47,7 +48,7 @@ export class FillParametersFunction extends ExpressionFunction, IHasNodeDependen
 
      if (complexType == null) return;
 
-     GetMapping(Reference, context, complexType, mapping);
+     GetMapping(this.reference, context, complexType, mapping);
    }
 
    internal static void GetMapping(SourceReference reference, IValidationContext context, ComplexType complexType,
@@ -59,18 +60,18 @@ export class FillParametersFunction extends ExpressionFunction, IHasNodeDependen
      if (complexType == null) return;
 
      foreach (let member in complexType.Members) {
-       let variable = context.VariableContext.GetVariable(member.Name);
+       let variable = context.variableContext.getVariable(member.Name);
        if (variable == null) continue;
 
-       if (!variable.VariableType.Equals(member.Type))
-         context.Logger.Fail(reference,
+       if (!variable.VariableType.equals(member.Type))
+         context.logger.fail(reference,
            $`Invalid parameter mapping. Variable '{member.Name}' of type '{variable.VariableType}' can't be mapped to parameter '{member.Name}' of type '{member.Type}'.`);
        else
          mapping.Add(new Mapping(member.Name, variable.VariableType, variable.VariableSource));
      }
 
      if (mapping.Count == 0)
-       context.Logger.Fail(reference,
+       context.logger.fail(reference,
          `Invalid parameter mapping. No parameter could be mapped from variables.`);
    }
 
@@ -80,7 +81,7 @@ export class FillParametersFunction extends ExpressionFunction, IHasNodeDependen
 
      return TypeLiteral.Member switch {
        Function.ParameterName => function.GetParametersType(context),
-       Function.ResultsName => function.GetResultsType(context),
+       Function.resultsName => function.GetResultsType(context),
        _ => null
      };
    }

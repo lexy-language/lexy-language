@@ -4,16 +4,17 @@ export class ScenarioTable extends ParsableNode {
    public TableHeader Header { get; private set; }
    public Array<TableRow> Rows = list<TableRow>(): new;
 
-   public ScenarioTable(SourceReference reference) : base(reference) {
+   public ScenarioTable(SourceReference reference) {
+     super(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
      if (Header == null) {
-       Header = TableHeader.Parse(context);
+       Header = TableHeader.parse(context);
        return this;
      }
 
-     let row = TableRow.Parse(context);
+     let row = TableRow.parse(context);
      if (row != null) Rows.Add(row);
 
      return this;

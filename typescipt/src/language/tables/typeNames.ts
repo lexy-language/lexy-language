@@ -14,6 +14,6 @@ export class TypeNames {
    };
 
    public static contains(parameterType: string): boolean {
-     return existing.Contains(parameterType);
+     return existing.contains(parameterType);
    }
 }

@@ -36,7 +36,7 @@ export class VariableDeclaration extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public stringWithDefaultValue(): void {
-     let expression = this.ParseExpression(@`string temp = ``abc```);
+     let expression = this.ParseExpression(`string temp = "abc"`);
      expression.ValidateOfType<VariableDeclarationExpression>(assignmentExpression => {
        assignmentExpression.Type.ValidateOfType<PrimitiveVariableDeclarationType>(type =>
          type.Type.ShouldBe(`string`));
@@ -59,7 +59,7 @@ export class VariableDeclaration extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public booleanWithDefaultValue(): void {
-     let expression = this.ParseExpression(@`boolean temp = true`);
+     let expression = this.ParseExpression(`boolean temp = true`);
      expression.ValidateOfType<VariableDeclarationExpression>(assignmentExpression => {
        assignmentExpression.Type.ValidateOfType<PrimitiveVariableDeclarationType>(type =>
          type.Type.ShouldBe(`boolean`));
@@ -81,7 +81,7 @@ export class VariableDeclaration extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public dateTimeWithDefaultValue(): void {
-     let expression = this.ParseExpression(@`date temp = d``2024-12-16T16:51:12```);
+     let expression = this.ParseExpression(`date temp = d"2024-12-16T16:51:12");
      expression.ValidateOfType<VariableDeclarationExpression>(assignmentExpression => {
        assignmentExpression.Type.ValidateOfType<PrimitiveVariableDeclarationType>(type =>
          type.Type.ShouldBe(`date`));

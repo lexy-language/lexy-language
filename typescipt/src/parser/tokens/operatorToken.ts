@@ -51,7 +51,7 @@ export class OperatorToken extends ParsableToken {
     new OperatorCombinations(TokenValues.ArgumentSeparator, null, OperatorType.ArgumentSeparator),
     new OperatorCombinations(TokenValues.GreaterThan, TokenValues.Assignment, OperatorType.GreaterThanOrEqual),
     new OperatorCombinations(TokenValues.LessThan, TokenValues.Assignment, OperatorType.LessThanOrEqual),
-    new OperatorCombinations(TokenValues.Assignment, TokenValues.Assignment, OperatorType.Equals),
+    new OperatorCombinations(TokenValues.Assignment, TokenValues.Assignment, OperatorType.equals),
     new OperatorCombinations(TokenValues.NotEqualStart, TokenValues.Assignment, OperatorType.NotEqual),
     new OperatorCombinations(TokenValues.And, TokenValues.And, OperatorType.And),
     new OperatorCombinations(TokenValues.Or, TokenValues.Or, OperatorType.Or)
@@ -66,7 +66,7 @@ export class OperatorToken extends ParsableToken {
     });
   }
 
-  private terminatorValuesContains(value: number) {
+  private terminatorValuescontains(value: number) {
     return OperatorToken.terminatorValues.findIndex(terminator => terminator == value) >= 0;
   }
 
@@ -85,7 +85,7 @@ export class OperatorToken extends ParsableToken {
       }
     }
 
-    if (isDigitOrLetter(value) || this.terminatorValuesContains(value)) {
+    if (isDigitOrLetter(value) || this.terminatorValuescontains(value)) {
       if (this.value.length == 1 && this.value.charCodeAt(0) == TokenValues.TableSeparator) {
         return {state: 'finished', charProcessed: false, newToken: new TableSeparatorToken(this.firstCharacter)};
       }

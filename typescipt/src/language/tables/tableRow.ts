@@ -3,7 +3,8 @@
 export class TableRow extends Node {
    public Array<Expression> Values
 
-   private TableRow(Expression[] values, SourceReference reference) : base(reference) {
+   private TableRow(Expression[] values, SourceReference reference) {
+     super(reference);
      Values = values ?? throw new Error(nameof(values));
    }
 
@@ -14,8 +15,8 @@ export class TableRow extends Node {
      if (!validator.Type<TableSeparatorToken>(index).IsValid) return null;
 
      let tokens = new Array<Expression>();
-     let currentLineTokens = context.Line.Tokens;
-     while (++index < currentLineTokens.Length) {
+     let currentLineTokens = context.line.tokens;
+     while (++index < currentLineTokens.length) {
        let valid = !validator
          .IsLiteralToken(index)
          .Type<TableSeparatorToken>(index + 1)
@@ -23,15 +24,15 @@ export class TableRow extends Node {
 
        if (valid) return null;
 
-       let reference = context.Line.TokenReference(index);
+       let reference = context.line.TokenReference(index);
        let token = currentLineTokens.Token<Token>(index++);
-       let expression = ExpressionFactory.Parse(new TokenList(new[] { token }), context.Line);
-       if (context.Failed(expression, reference)) return null;
+       let expression = ExpressionFactory.parse(new TokenList(new[] { token }), context.line);
+       if (context.failed(expression, reference)) return null;
 
-       tokens.Add(expression.Result);
+       tokens.Add(expression.result);
      }
 
-     return new TableRow(tokens.ToArray(), context.Line.LineStartReference());
+     return new TableRow(tokens.ToArray(), context.line.lineStartReference());
    }
 
    public override getChildren(): Array<INode> {

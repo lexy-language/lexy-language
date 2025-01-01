@@ -1,5 +1,5 @@
 import {tokenize} from "./tokenize";
-import {MemberAccessLiteral} from "../../src/parser/tokens/tokens";
+import {MemberAccessLiteral} from "../../src/parser/tokens/memberAccessLiteral";
 
 describe('MemberAccessTests', () => {
     it('TestTableHeader', async () => {

@@ -3,12 +3,13 @@
 export class ScenarioFunctionName extends Node {
    public string Value { get; private set; }
 
-   public ScenarioFunctionName(SourceReference reference) : base(reference) {
+   public ScenarioFunctionName(SourceReference reference) {
+     super(reference);
    }
 
    public parse(context: IParseLineContext): void {
-     let line = context.Line;
-     Value = line.Tokens.TokenValue(1);
+     let line = context.line;
+     Value = line.tokens.tokenValue(1);
    }
 
    public override toString(): string {

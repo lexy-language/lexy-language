@@ -3,10 +3,11 @@
 export class TodayFunction extends NoArgumentFunction {
    public const string Name = `TODAY`;
 
-   protected override VariableType ResultType => PrimitiveType.Date;
+   protected override VariableType ResultType => PrimitiveType.date;
 
    constructor(reference: SourceReference)
-     : base(reference) {
+     {
+     super(reference);
    }
 
    public static create(reference: SourceReference): ExpressionFunction {

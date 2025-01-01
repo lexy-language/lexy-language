@@ -1,7 +1,11 @@
-
+import {Expression} from "./Expression";
 
 export class IdentifierExpression extends Expression {
-   public VariableSource VariableSource { get; private set; }
+
+
+  public nodeType: "IdentifierExpression"
+
+  public VariableSource VariableSource { get; private set; }
 
    public string Identifier
 
@@ -11,20 +15,20 @@ export class IdentifierExpression extends Expression {
    }
 
    public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.Tokens;
-     if (!IsValid(tokens)) return ParseExpressionResult.Invalid<IdentifierExpression>(`Invalid expression`);
+     let tokens = source.tokens;
+     if (!IsValid(tokens)) return newParseExpressionFailed(IdentifierExpression>(`Invalid expression`);
 
-     let variableName = tokens.TokenValue(0);
-     let reference = source.CreateReference();
+     let variableName = tokens.tokenValue(0);
+     let reference = source.createReference();
 
      let expression = new IdentifierExpression(variableName, source, reference);
 
-     return ParseExpressionResult.Success(expression);
+     return newParseExpressionSuccess(expression);
    }
 
    public static isValid(tokens: TokenList): boolean {
-     return tokens.Length == 1
-        && tokens.IsTokenType<StringLiteralToken>(0);
+     return tokens.length == 1
+        && tokens.isTokenType<StringLiteralToken>(0);
    }
 
    public override getChildren(): Array<INode> {
@@ -32,11 +36,11 @@ export class IdentifierExpression extends Expression {
    }
 
    protected override validate(context: IValidationContext): void {
-     if (!context.VariableContext.EnsureVariableExists(Reference, Identifier)) return;
+     if (!context.variableContext.ensureVariableExists(this.reference, Identifier)) return;
 
-     let variableSource = context.VariableContext.GetVariableSource(Identifier);
+     let variableSource = context.variableContext.getVariableSource(Identifier);
      if (variableSource == null) {
-       context.Logger.Fail(Reference, `Can't define source of variable: ` + Identifier);
+       context.logger.fail(this.reference, `Can't define source of variable: ` + Identifier);
        return;
      }
 
@@ -44,6 +48,6 @@ export class IdentifierExpression extends Expression {
    }
 
    public override deriveType(context: IValidationContext): VariableType {
-     return context.VariableContext.GetVariableType(Identifier);
+     return context.variableContext.getVariableType(Identifier);
    }
 }

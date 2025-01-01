@@ -1,68 +1,82 @@
-
+import {Expression} from "./expression";
+import {ExpressionSource} from "./expressionSource";
+import {SourceReference} from "../../parser/sourceReference";
+import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
+import {ExpressionFactory} from "./expressionFactory";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
+import {OperatorType} from "../../parser/tokens/operatorType";
+import {OperatorToken} from "../../parser/tokens/operatorToken";
+import {INode} from "../node";
+import {IValidationContext} from "../../parser/validationContext";
+import {VariableType} from "../types/variableType";
 
 export class BracketedExpression extends Expression {
-   public string FunctionName
-   public Expression Expression
 
-   private BracketedExpression(string functionName, Expression expression,
-     ExpressionSource source, SourceReference reference) : base(source, reference) {
-     FunctionName = functionName;
-     Expression = expression;
-   }
+  public nodeType: "BracketedExpression"
+  public functionName: string
+  public expression: Expression
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.Tokens;
-     if (!IsValid(tokens)) return ParseExpressionResult.Invalid<BracketedExpression>(`Not valid.`);
+  constructor(functionName: string, expression: Expression,
+              source: ExpressionSource, reference: SourceReference) {
+    super(source, reference)
+    this.functionName = functionName;
+    this.expression = expression;
+  }
 
-     let matchingClosingParenthesis = FindMatchingClosingBracket(tokens);
-     if (matchingClosingParenthesis == -1)
-       return ParseExpressionResult.Invalid<BracketedExpression>(`No closing bracket found.`);
+  public static parse(source: ExpressionSource): ParseExpressionResult {
+    let tokens = source.tokens;
+    if (!BracketedExpression.isValid(tokens)) return newParseExpressionFailed(BracketedExpression, `Not valid.`);
 
-     let functionName = tokens.TokenValue(0);
-     let innerExpressionTokens = tokens.TokensRange(2, matchingClosingParenthesis - 1);
-     let innerExpression = ExpressionFactory.Parse(innerExpressionTokens, source.Line);
-     if (!innerExpression.IsSuccess) return innerExpression;
+    let matchingClosingParenthesis = this.findMatchingClosingBracket(tokens);
+    if (matchingClosingParenthesis == -1)
+      return newParseExpressionFailed(BracketedExpression, `No closing bracket found.`);
 
-     let reference = source.CreateReference();
+    let functionName = tokens.tokenValue(0);
+    if (functionName == null) return newParseExpressionFailed(BracketedExpression, `Invalid function name.`);
 
-     let expression = new BracketedExpression(functionName, innerExpression.Result, source, reference);
-     return ParseExpressionResult.Success(expression);
-   }
+    let innerExpressionTokens = tokens.tokensRange(2, matchingClosingParenthesis - 1);
+    let innerExpression = ExpressionFactory.parse(innerExpressionTokens, source.line);
+    if (innerExpression.state != 'success') return innerExpression;
 
-   public static isValid(tokens: TokenList): boolean {
-     return tokens.Length > 1
-        && tokens.IsTokenType<StringLiteralToken>(0)
-        && tokens.OperatorToken(1, OperatorType.OpenBrackets);
-   }
+    let reference = source.createReference();
 
-   private static findMatchingClosingBracket(tokens: TokenList): number {
-     if (tokens == null) throw new Error(nameof(tokens));
+    let expression = new BracketedExpression(functionName, innerExpression.result, source, reference);
+    return newParseExpressionSuccess(expression);
+  }
 
-     let count = 0;
-     for (let index = 0; index < tokens.Length; index++) {
-       let token = tokens[index];
-       if (!(token is OperatorToken operatorToken)) continue;
+  public static isValid(tokens: TokenList): boolean {
+    return tokens.length > 1
+      && tokens.isTokenType<StringLiteralToken>(0, StringLiteralToken)
+      && tokens.isOperatorToken(1, OperatorType.OpenBrackets);
+  }
 
-       if (operatorToken.Type == OperatorType.OpenBrackets) {
-         count++;
-       }
-       else if (operatorToken.Type == OperatorType.CloseBrackets) {
-         count--;
-         if (count == 0) return index;
-       }
-     }
+  private static findMatchingClosingBracket(tokens: TokenList): number {
+    let count = 0;
+    for (let index = 0; index < tokens.length; index++) {
+      let token = tokens[index];
+      if (token.nodeType != "OperatorToken") continue;
 
-     return -1;
-   }
+      const operatorToken = token as OperatorToken;
+      if (operatorToken.type == OperatorType.OpenBrackets) {
+        count++;
+      } else if (operatorToken.type == OperatorType.CloseBrackets) {
+        count--;
+        if (count == 0) return index;
+      }
+    }
 
-   public override getChildren(): Array<INode> {
-     yield return Expression;
-   }
+    return -1;
+  }
 
-   protected override validate(context: IValidationContext): void {
-   }
+  public override getChildren(): Array<INode> {
+    return [Expression];
+  }
 
-   public override deriveType(context: IValidationContext): VariableType {
-     return Expression.DeriveType(context);
-   }
+  protected override validate(context: IValidationContext): void {
+  }
+
+  public override deriveType(context: IValidationContext): VariableType | null {
+    return this.expression.deriveType(context);
+  }
 }

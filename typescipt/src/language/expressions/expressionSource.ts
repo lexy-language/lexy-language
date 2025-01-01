@@ -1,22 +1,25 @@
-
+import {SourceFile} from "../../parser/sourceFile";
+import {Line} from "../../parser/line";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {SourceReference} from "../../parser/sourceReference";
 
 export class ExpressionSource {
-   public SourceFile File
-   public Line Line
-   public TokenList Tokens
+   public file: SourceFile;
+   public line: Line;
+   public tokens: TokenList;
 
    constructor(line: Line, tokens: TokenList) {
-     Line = line ?? throw new Error(nameof(line));
-     File = line.File ?? throw new Error($`{nameof(line.File)} should not be null.`);
-     Tokens = tokens ?? throw new Error(nameof(tokens));
+     this.line = line;
+     this.file = line.file;
+     this.tokens = tokens;
    }
 
-   public createReference(tokenIndex: number =: number 0: number): SourceReference {
-     let token = Tokens[tokenIndex];
+   public createReference(tokenIndex: number = 0): SourceReference {
+     let token = this.tokens[tokenIndex];
 
      return new SourceReference(
-       File,
-       Line.Index + 1,
-       token.FirstCharacter.Position + 1);
+       this.file,
+       this.line.index + 1,
+       token.firstCharacter.position + 1);
    }
 }

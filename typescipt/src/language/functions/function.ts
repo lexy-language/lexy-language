@@ -14,7 +14,8 @@ export class Function extends RootNode, IHasNodeDependencies {
 
    public override string NodeName => Name.Value;
 
-   private Function(string name, SourceReference reference) : base(reference) {
+   private Function(string name, SourceReference reference) {
+     super(reference);
      Name = new FunctionName(reference);
      Parameters = new FunctionParameters(reference);
      Results = new FunctionResults(reference);
@@ -35,20 +36,20 @@ export class Function extends RootNode, IHasNodeDependencies {
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let line = context.Line;
-     let name = line.Tokens.TokenValue(0);
-     if (!line.Tokens.IsTokenType<KeywordToken>(0)) return InvalidToken(name, context);
+     let line = context.line;
+     let name = line.tokens.tokenValue(0);
+     if (!line.tokens.isTokenType<KeywordToken>(0)) return InvalidToken(name, context);
 
      return name switch {
        Keywords.Parameters => Parameters,
-       Keywords.Results => Results,
+       Keywords.results => Results,
        Keywords.Code => Code,
        _ => InvalidToken(name, context)
      };
    }
 
    private invalidToken(name: string, parserContext: IParseLineContext): IParsableNode {
-     parserContext.Logger.Fail(Reference, $`Invalid token '{name}'.`);
+     parserContext.logger.fail(this.reference, $`Invalid token '{name}'.`);
      return this;
    }
 
@@ -78,7 +79,7 @@ export class Function extends RootNode, IHasNodeDependencies {
 
      let dependencies = hasDependencies.GetDependencies(rootNodeList);
      foreach (let dependency in dependencies)
-       if (!result.Contains(dependency))
+       if (!result.contains(dependency))
          result.Add(dependency);
    }
 
@@ -112,7 +113,7 @@ export class Function extends RootNode, IHasNodeDependencies {
 
    public getParametersType(context: IValidationContext): ComplexType {
      let members = Parameters.Variables
-       .Select(parameter => new ComplexTypeMember(parameter.Name, parameter.Type.CreateVariableType(context)))
+       .Select(parameter => new ComplexTypeMember(parameter.Name, parameter.Type.createVariableType(context)))
        .ToList();
 
      return new ComplexType(Name.Value, ComplexTypeSource.FunctionParameters, members);
@@ -120,7 +121,7 @@ export class Function extends RootNode, IHasNodeDependencies {
 
    public getResultsType(context: IValidationContext): ComplexType {
      let members = Results.Variables
-       .Select(parameter => new ComplexTypeMember(parameter.Name, parameter.Type.CreateVariableType(context)))
+       .Select(parameter => new ComplexTypeMember(parameter.Name, parameter.Type.createVariableType(context)))
        .ToList();
 
      return new ComplexType(Name.Value, ComplexTypeSource.FunctionResults, members);

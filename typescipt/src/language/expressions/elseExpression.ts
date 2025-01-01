@@ -1,17 +1,18 @@
-
+import {Expression} from "./Expression";
 
 export class ElseExpression extends Expression, IParsableNode, IDependantExpression {
    private readonly ExpressionList falseExpressions;
 
-   public Array<Expression> FalseExpressions => falseExpressions;
+  public nodeType: "ElseExpression"
+  public Array<Expression> FalseExpressions => falseExpressions;
 
-   private ElseExpression(ExpressionSource source, SourceReference reference) : base(source, reference) {
+   private ElseExpression(ExpressionSource source, SourceReference reference) : {super(source, reference) {
      falseExpressions = new ExpressionList(reference);
    }
 
    public linkPreviousExpression(expression: Expression, context: IParseLineContext): void {
      if (expression is not IfExpression ifExpression) {
-       context.Logger.Fail(Reference, `Else should be following an If statement. No if statement found.`);
+       context.logger.fail(this.reference, `Else should be following an If statement. No if statement found.`);
        return;
      }
 
@@ -23,25 +24,25 @@ export class ElseExpression extends Expression, IParsableNode, IDependantExpress
    }
 
    public parse(context: IParseLineContext): IParsableNode {
-     let expression = falseExpressions.Parse(context);
-     return expression.Result is IParsableNode node ? node : this;
+     let expression = falseExpressions.parse(context);
+     return expression.result is IParsableNode node ? node : this;
    }
 
    public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.Tokens;
-     if (!IsValid(tokens)) return ParseExpressionResult.Invalid<ElseExpression>(`Not valid.`);
+     let tokens = source.tokens;
+     if (!IsValid(tokens)) return newParseExpressionFailed(ElseExpression>(`Not valid.`);
 
-     if (tokens.Length > 1) return ParseExpressionResult.Invalid<ElseExpression>(`No tokens expected.`);
+     if (tokens.length > 1) return newParseExpressionFailed(ElseExpression>(`No tokens expected.`);
 
-     let reference = source.CreateReference();
+     let reference = source.createReference();
 
      let expression = new ElseExpression(source, reference);
 
-     return ParseExpressionResult.Success(expression);
+     return newParseExpressionSuccess(expression);
    }
 
    public static isValid(tokens: TokenList): boolean {
-     return tokens.IsKeyword(0, Keywords.Else);
+     return tokens.isKeyword(0, Keywords.Else);
    }
 
    protected override validate(context: IValidationContext): void {

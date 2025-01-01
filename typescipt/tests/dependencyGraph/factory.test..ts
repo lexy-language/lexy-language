@@ -1,19 +1,19 @@
 
 
 export class FactoryTests extends ScopedServicesTestFixture {
-   private const string enumDefinition = @`Enum: SimpleEnum
+   private const string enumDefinition = `Enum: SimpleEnum
   First
   Second
 `;
 
-   private const string table = @`Table: SimpleTable
+   private const string table = `Table: SimpleTable
   | number Search | string Value |
-  | 0 | ``0`` |
-  | 1 | ``1`` |
-  | 2 | ``2`` |
+  | 0 | "0" |
+  | 1 | "1" |
+  | 2 | "2" |
 `;
 
-   private const string function = @`Function: SimpleFunction
+   private const string function = `Function: SimpleFunction
   Parameters
    number Value
   Results
@@ -51,7 +51,7 @@ export class FactoryTests extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public functionNewFunctionParameters(): void {
-     let dependencies = ServiceProvider.BuildGraph(function + @`
+     let dependencies = ServiceProvider.BuildGraph(function + `
 Function: Caller
   Code
    let parameters = new(SimpleFunction.Parameters)
@@ -70,10 +70,10 @@ Function: Caller
 
   it('XXXX', async () => {
    public functionNewFunctionResults(): void {
-     let dependencies = ServiceProvider.BuildGraph(function + @`
+     let dependencies = ServiceProvider.BuildGraph(function + `
 Function: Caller
   Code
-   let parameters = new(SimpleFunction.Results)
+   let parameters = new(SimpleFunction.results)
 `);
 
      dependencies.Nodes.Count.ShouldBe(2);
@@ -89,7 +89,7 @@ Function: Caller
 
   it('XXXX', async () => {
    public functionFillFunctionParameters(): void {
-     let dependencies = ServiceProvider.BuildGraph(function + @`
+     let dependencies = ServiceProvider.BuildGraph(function + `
 Function: Caller
   Parameters
    number Value
@@ -110,12 +110,12 @@ Function: Caller
 
   it('XXXX', async () => {
    public functionFillFunctionResults(): void {
-     let dependencies = ServiceProvider.BuildGraph(function + @`
+     let dependencies = ServiceProvider.BuildGraph(function + `
 Function: Caller
   Parameters
    number Result
   Code
-   let parameters = fill(SimpleFunction.Results)
+   let parameters = fill(SimpleFunction.results)
 `);
 
      dependencies.Nodes.Count.ShouldBe(2);
@@ -131,7 +131,7 @@ Function: Caller
 
   it('XXXX', async () => {
    public tableLookup(): void {
-     let dependencies = ServiceProvider.BuildGraph(table + @`
+     let dependencies = ServiceProvider.BuildGraph(table + `
 Function: Caller
   Code
    let result = LOOKUP(SimpleTable, 2, SimpleTable.Search, SimpleTable.Value)
@@ -150,7 +150,7 @@ Function: Caller
 
   it('XXXX', async () => {
    public simpleScenario(): void {
-     let dependencies = ServiceProvider.BuildGraph(function + @`
+     let dependencies = ServiceProvider.BuildGraph(function + `
 
 Scenario: Simple
   Function SimpleFunction
@@ -170,7 +170,7 @@ Scenario: Simple
 
   it('XXXX', async () => {
    public simpleType(): void {
-     let dependencies = ServiceProvider.BuildGraph(@`
+     let dependencies = ServiceProvider.BuildGraph(`
 Type: Simple
   number Value1
   string Value2
@@ -183,7 +183,7 @@ Type: Simple
 
   it('XXXX', async () => {
    public complexType(): void {
-     let dependencies = ServiceProvider.BuildGraph(@`
+     let dependencies = ServiceProvider.BuildGraph(`
 Type: Inner
   number Value1
   string Value2
@@ -204,7 +204,7 @@ Type: Parent
 
   it('XXXX', async () => {
    public circularType(): void {
-     let dependencies = ServiceProvider.BuildGraph(@`
+     let dependencies = ServiceProvider.BuildGraph(`
 Type: Inner
   number Value1
   string Value2
@@ -229,7 +229,7 @@ Type: Parent
 
   it('XXXX', async () => {
    public circularFunctionCall(): void {
-     let dependencies = ServiceProvider.BuildGraph(@`
+     let dependencies = ServiceProvider.BuildGraph(`
 Function: Inner
   Code
    Parent()

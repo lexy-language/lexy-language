@@ -9,7 +9,8 @@ export class PowerFunction extends ExpressionFunction {
    public Expression PowerExpression
 
    constructor(numberExpression: Expression, powerExpression: Expression, reference: SourceReference)
-     : base(reference) {
+     {
+     super(reference);
      NumberExpression = numberExpression;
      PowerExpression = powerExpression;
    }
@@ -21,12 +22,12 @@ export class PowerFunction extends ExpressionFunction {
 
    protected override validate(context: IValidationContext): void {
      context
-       .ValidateType(NumberExpression, 1, `Number`, PrimitiveType.Number, Reference, FunctionHelp)
-       .ValidateType(PowerExpression, 2, `Power`, PrimitiveType.Number, Reference, FunctionHelp);
+       .ValidateType(NumberExpression, 1, `Number`, PrimitiveType.number, reference, FunctionHelp)
+       .ValidateType(PowerExpression, 2, `Power`, PrimitiveType.number, reference, FunctionHelp);
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {
-     return PrimitiveType.Number;
+     return PrimitiveType.number;
    }
 
    public static ExpressionFunction Create(SourceReference reference, Expression numberExpression,

@@ -3,11 +3,12 @@
 export class ScenarioParameters extends ParsableNode {
    public Array<AssignmentDefinition> Assignments = list<AssignmentDefinition>(): new;
 
-   public ScenarioParameters(SourceReference reference) : base(reference) {
+   public ScenarioParameters(SourceReference reference) {
+     super(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let assignment = AssignmentDefinition.Parse(context);
+     let assignment = AssignmentDefinition.parse(context);
      if (assignment != null) Assignments.Add(assignment);
      return this;
    }

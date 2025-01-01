@@ -6,7 +6,8 @@ export class TypeDefinition extends RootNode {
 
    public Array<VariableDefinition> Variables = list<VariableDefinition>(): new;
 
-   private TypeDefinition(string name, SourceReference reference) : base(reference) {
+   private TypeDefinition(string name, SourceReference reference) {
+     super(reference);
      Name.ParseName(name);
    }
 
@@ -15,7 +16,7 @@ export class TypeDefinition extends RootNode {
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let variableDefinition = VariableDefinition.Parse(VariableSource.Parameters, context);
+     let variableDefinition = VariableDefinition.parse(VariableSource.Parameters, context);
      if (variableDefinition != null) Variables.Add(variableDefinition);
      return this;
    }

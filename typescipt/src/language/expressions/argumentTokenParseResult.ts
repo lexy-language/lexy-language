@@ -1,17 +1,27 @@
+import {TokenList} from "../../parser/tokens/tokenList";
 
-
-public sealed class ArgumentTokenParseResult : ParseResult<Array<TokenList>> {
-   private ArgumentTokenParseResult(Array<TokenList> result) : base(result) {
-   }
-
-   private ArgumentTokenParseResult(boolean success, string errorMessage) : base(success, errorMessage) {
-   }
-
-   public static success(result: Array<TokenList> =: Array<TokenList> null: Array<TokenList>): ArgumentTokenParseResult {
-     return new ArgumentTokenParseResult(result ?? new TokenList[] { });
-   }
-
-   public static failed(errorMessage: string): ArgumentTokenParseResult {
-     return new ArgumentTokenParseResult(false, errorMessage);
-   }
+type ArgumentTokenParseFailed = {
+  state: "failed";
+  errorMessage: string;
 }
+
+export function newArgumentTokenParseFailed(errorMessage: string): ArgumentTokenParseFailed {
+  return {
+    state: "failed",
+    errorMessage: errorMessage,
+  } as const;
+}
+
+type ArgumentTokenParseSuccess = {
+  state: "success";
+  result: Array<TokenList>;
+}
+
+export function newArgumentTokenParseSuccess(result: Array<TokenList>) {
+  return {
+    state: "success",
+    result: result
+  } as const;
+}
+
+export type ArgumentTokenParseResult = ArgumentTokenParseFailed | ArgumentTokenParseSuccess;

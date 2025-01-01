@@ -20,16 +20,16 @@ export class EnumMember extends Node {
 
      if (!valid) return null;
 
-     let line = context.Line;
-     let tokens = line.Tokens;
-     let name = tokens.TokenValue(0);
-     let reference = line.LineStartReference();
+     let line = context.line;
+     let tokens = line.tokens;
+     let name = tokens.tokenValue(0);
+     let reference = line.lineStartReference();
 
-     if (tokens.Length == 1) return new EnumMember(name, reference, null, lastIndex + 1);
+     if (tokens.length == 1) return new EnumMember(name, reference, null, lastIndex + 1);
 
-     if (tokens.Length != 3) {
-       context.Logger.Fail(line.LineEndReference(),
-         $`Invalid number of tokens: {tokens.Length}. Should be 1 or 3`);
+     if (tokens.length != 3) {
+       context.logger.fail(line.lineEndReference(),
+         $`Invalid number of tokens: {tokens.length}. Should be 1 or 3`);
        return null;
      }
 
@@ -55,18 +55,18 @@ export class EnumMember extends Node {
 
    private validateMemberName(context: IValidationContext): void {
      if (string.IsNullOrEmpty(Name))
-       context.Logger.Fail(Reference, `Enum member name should not be null or empty.`);
+       context.logger.fail(this.reference, `Enum member name should not be null or empty.`);
      else if (!SyntaxFacts.IsValidIdentifier(Name))
-       context.Logger.Fail(Reference, $`Invalid enum member name: {Name}.`);
+       context.logger.fail(this.reference, $`Invalid enum member name: {Name}.`);
    }
 
    private validateMemberValues(context: IValidationContext): void {
      if (ValueLiteral == null) return;
 
      if (ValueLiteral.NumberValue < 0)
-       context.Logger.Fail(Reference, $`Enum member value should not be < 0: {ValueLiteral}`);
+       context.logger.fail(this.reference, $`Enum member value should not be < 0: {ValueLiteral}`);
 
      if (ValueLiteral.IsDecimal())
-       context.Logger.Fail(Reference, $`Enum member value should not be decimal: {ValueLiteral}`);
+       context.logger.fail(this.reference, $`Enum member value should not be decimal: {ValueLiteral}`);
    }
 }

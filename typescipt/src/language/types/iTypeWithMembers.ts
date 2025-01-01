@@ -1,5 +1,7 @@
-
+import {IValidationContext} from "../../parser/ValidationContext";
+import {VariableType} from "./variableType";
 
 export interface ITypeWithMembers {
-   VariableType MemberType(string name, IValidationContext context);
+   isWithMembers: true;
+   memberType(name: string , context: IValidationContext): VariableType;
 }

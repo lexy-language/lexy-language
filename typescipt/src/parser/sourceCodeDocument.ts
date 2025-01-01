@@ -14,11 +14,11 @@ export class SourceCodeDocument extends ISourceCodeDocument {
    }
 
    public hasMoreLines(): boolean {
-     return index < code.Length - 1;
+     return index < code.length - 1;
    }
 
    public nextLine(): Line {
-     if (index >= code.Length) throw new Error(`No more lines`);
+     if (index >= code.length) throw new Error(`No more lines`);
 
      CurrentLine = code[++index];
      return CurrentLine;

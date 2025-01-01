@@ -11,7 +11,7 @@ export class ConstantValue {
      return expression switch {
        LiteralExpression literalExpression => Parse(literalExpression),
        MemberAccessExpression literalExpression => Parse(literalExpression),
-       _ => ConstantValueParseResult.Failed(`Invalid expression variable. Expected: 'Variable = ConstantValue'`)
+       _ => ConstantValueParseResult.failed(`Invalid expression variable. Expected: 'Variable = ConstantValue'`)
      };
    }
 

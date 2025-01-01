@@ -9,8 +9,8 @@ export class TokensListTests {
        TokenFactory.String(`789`)
      });
 
-     let result = list.TokensFrom(1);
-     result.Length.ShouldBe(2);
+     let result = list.tokensFrom(1);
+     result.length.ShouldBe(2);
      result[0].ValidateStringLiteralToken(`456`);
      result[1].ValidateStringLiteralToken(`789`);
    }
@@ -23,8 +23,8 @@ export class TokensListTests {
        TokenFactory.String(`789`)
      });
 
-     let result = list.TokensFromStart(2);
-     result.Length.ShouldBe(2);
+     let result = list.tokensFromStart(2);
+     result.length.ShouldBe(2);
      result[0].ValidateStringLiteralToken(`123`);
      result[1].ValidateStringLiteralToken(`456`);
    }
@@ -39,8 +39,8 @@ export class TokensListTests {
        TokenFactory.String(`5555`)
      });
 
-     let result = list.TokensRange(1, 3);
-     result.Length.ShouldBe(3);
+     let result = list.tokensRange(1, 3);
+     result.length.ShouldBe(3);
      result[0].ValidateStringLiteralToken(`2222`);
      result[1].ValidateStringLiteralToken(`3333`);
      result[2].ValidateStringLiteralToken(`4444`);

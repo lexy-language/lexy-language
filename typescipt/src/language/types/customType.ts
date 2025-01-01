@@ -30,6 +30,6 @@ export class CustomType extends TypeWithMembers {
 
    public override memberType(name: string, context: IValidationContext): VariableType {
      let definition = TypeDefinition.Variables.FirstOrDefault(variable => variable.Name == name);
-     return definition?.Type.CreateVariableType(context);
+     return definition?.Type.createVariableType(context);
    }
 }

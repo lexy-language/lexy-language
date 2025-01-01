@@ -12,7 +12,7 @@ export class VariableReferenceParser {
        LiteralExpression literalExpression => Parse(literalExpression),
        IdentifierExpression literalExpression => VariableReferenceParseResult.Success(
          new VariableReference(literalExpression.Identifier)),
-       _ => VariableReferenceParseResult.Failed(`Invalid constant value. Expected: 'Variable = ConstantValue'`)
+       _ => VariableReferenceParseResult.failed(`Invalid constant value. Expected: 'Variable = ConstantValue'`)
      };
    }
 
@@ -20,14 +20,14 @@ export class VariableReferenceParser {
      return literalExpression.Literal switch {
        StringLiteralToken stringLiteral => VariableReferenceParseResult.Success(
          new VariableReference(stringLiteral.Value)),
-       _ => VariableReferenceParseResult.Failed(`Invalid expression literal. Expected: 'Variable = ConstantValue'`)
+       _ => VariableReferenceParseResult.failed(`Invalid expression literal. Expected: 'Variable = ConstantValue'`)
      };
    }
 
    private static parse(memberAccessExpression: MemberAccessExpression): VariableReferenceParseResult {
-     if (memberAccessExpression.MemberAccessLiteral.Parts.Length == 0)
-       return VariableReferenceParseResult.Failed(`Invalid number of variable reference parts: `
-                            + memberAccessExpression.MemberAccessLiteral.Parts.Length);
+     if (memberAccessExpression.MemberAccessLiteral.Parts.length == 0)
+       return VariableReferenceParseResult.failed(`Invalid number of variable reference parts: `
+                            + memberAccessExpression.MemberAccessLiteral.Parts.length);
 
      let variableReference = new VariableReference(memberAccessExpression.MemberAccessLiteral.Parts);
      return VariableReferenceParseResult.Success(variableReference);

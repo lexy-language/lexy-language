@@ -8,7 +8,8 @@ export class VariableDefinition extends Node, IHasNodeDependencies {
    public string Name
 
    private VariableDefinition(string name, VariableDeclarationType type,
-     VariableSource Source, SourceReference reference, Expression defaultExpression = null) : base(reference) {
+     VariableSource Source, SourceReference reference, Expression defaultExpression = null) {
+     super(reference);
      Type = type ?? throw new Error(nameof(type));
      Name = name ?? throw new Error(nameof(name));
 
@@ -28,7 +29,7 @@ export class VariableDefinition extends Node, IHasNodeDependencies {
    }
 
    public static parse(source: VariableSource, context: IParseLineContext): VariableDefinition {
-     let line = context.Line;
+     let line = context.line;
      let result = context.ValidateTokens<VariableDefinition>()
        .CountMinimum(2)
        .StringLiteral(0)
@@ -37,30 +38,30 @@ export class VariableDefinition extends Node, IHasNodeDependencies {
 
      if (!result) return null;
 
-     let tokens = line.Tokens;
-     let name = tokens.TokenValue(1);
-     let type = tokens.TokenValue(0);
+     let tokens = line.tokens;
+     let name = tokens.tokenValue(1);
+     let type = tokens.tokenValue(0);
 
-     let variableType = VariableDeclarationType.Parse(type, line.TokenReference(0));
+     let variableType = VariableDeclarationType.parse(type, line.TokenReference(0));
      if (variableType == null) return null;
 
-     if (tokens.Length == 2) return new VariableDefinition(name, variableType, source, line.LineStartReference());
+     if (tokens.length == 2) return new VariableDefinition(name, variableType, source, line.lineStartReference());
 
      if (tokens.Token<OperatorToken>(2).Type != OperatorType.Assignment) {
-       context.Logger.Fail(line.TokenReference(2), `Invalid variable declaration token. Expected '='.`);
+       context.logger.fail(line.TokenReference(2), `Invalid variable declaration token. Expected '='.`);
        return null;
      }
 
-     if (tokens.Length != 4) {
-       context.Logger.Fail(line.LineEndReference(),
+     if (tokens.length != 4) {
+       context.logger.fail(line.lineEndReference(),
          `Invalid variable declaration. Expected literal token.`);
        return null;
      }
 
-     let defaultValue = ExpressionFactory.Parse(tokens.TokensFrom(3), line);
-     if (context.Failed(defaultValue, line.TokenReference(3))) return null;
+     let defaultValue = ExpressionFactory.parse(tokens.tokensFrom(3), line);
+     if (context.failed(defaultValue, line.TokenReference(3))) return null;
 
-     return new VariableDefinition(name, variableType, source, line.LineStartReference(), defaultValue.Result);
+     return new VariableDefinition(name, variableType, source, line.lineStartReference(), defaultValue.result);
    }
 
    public override getChildren(): Array<INode> {
@@ -69,10 +70,10 @@ export class VariableDefinition extends Node, IHasNodeDependencies {
    }
 
    protected override validate(context: IValidationContext): void {
-     VariableType = Type.CreateVariableType(context);
+     VariableType = Type.createVariableType(context);
 
-     context.VariableContext.RegisterVariableAndVerifyUnique(Reference, Name, VariableType, Source);
+     context.variableContext.registerVariableAndVerifyUnique(this.reference, Name, VariableType, Source);
 
-     context.ValidateTypeAndDefault(Reference, Type, DefaultExpression);
+     context.ValidateTypeAndDefault(this.reference, Type, DefaultExpression);
    }
 }

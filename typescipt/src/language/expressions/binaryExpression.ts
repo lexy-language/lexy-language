@@ -1,159 +1,183 @@
+import {Expression} from "./Expression";
+import {OperatorType} from "../../parser/tokens/operatorType";
+import {ExpressionOperator} from "./expressionOperator";
+import {SourceReference} from "../../parser/sourceReference";
+import {ExpressionSource} from "./expressionSource";
+import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
+import {ExpressionFactory} from "./expressionFactory";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {OperatorToken} from "../../parser/tokens/operatorToken";
+import {INode} from "../node";
+import {IValidationContext} from "../../parser/validationContext";
+import {VariableType} from "../types/variableType";
 
+class OperatorEntry {
+  public operatorType: OperatorType;
+  public expressionOperator: ExpressionOperator;
+
+  constructor(operatorType: OperatorType, expressionOperator: ExpressionOperator) {
+    this.operatorType = operatorType;
+    this.expressionOperator = expressionOperator;
+  }
+}
+
+class TokenIndex {
+  public index: number;
+  public operatorType: OperatorType;
+  public expressionOperator: ExpressionOperator;
+
+  constructor(index: number, operatorType: OperatorType, expressionOperator: ExpressionOperator) {
+    this.index = index;
+    this.operatorType = operatorType;
+    this.expressionOperator = expressionOperator;
+  }
+}
 
 export class BinaryExpression extends Expression {
-   private static readonly Array<OperatorEntry> SupportedOperatorsByPriority = new Array<OperatorEntry> {
-     new(OperatorType.Multiplication, ExpressionOperator.Multiplication),
-     new(OperatorType.Division, ExpressionOperator.Division),
-     new(OperatorType.Modulus, ExpressionOperator.Modulus),
+  private static readonly SupportedOperatorsByPriority: Array<OperatorEntry> = [
+    new OperatorEntry(OperatorType.Multiplication, ExpressionOperator.Multiplication),
+    new OperatorEntry(OperatorType.Division, ExpressionOperator.Division),
+    new OperatorEntry(OperatorType.Modulus, ExpressionOperator.Modulus),
 
-     new(OperatorType.Addition, ExpressionOperator.Addition),
-     new(OperatorType.Subtraction, ExpressionOperator.Subtraction),
+    new OperatorEntry(OperatorType.Addition, ExpressionOperator.Addition),
+    new OperatorEntry(OperatorType.Subtraction, ExpressionOperator.Subtraction),
 
-     new(OperatorType.GreaterThan, ExpressionOperator.GreaterThan),
-     new(OperatorType.GreaterThanOrEqual, ExpressionOperator.GreaterThanOrEqual),
-     new(OperatorType.LessThan, ExpressionOperator.LessThan),
-     new(OperatorType.LessThanOrEqual, ExpressionOperator.LessThanOrEqual),
+    new OperatorEntry(OperatorType.GreaterThan, ExpressionOperator.GreaterThan),
+    new OperatorEntry(OperatorType.GreaterThanOrEqual, ExpressionOperator.GreaterThanOrEqual),
+    new OperatorEntry(OperatorType.LessThan, ExpressionOperator.LessThan),
+    new OperatorEntry(OperatorType.LessThanOrEqual, ExpressionOperator.LessThanOrEqual),
 
-     new(OperatorType.Equals, ExpressionOperator.Equals),
-     new(OperatorType.NotEqual, ExpressionOperator.NotEqual),
+    new OperatorEntry(OperatorType.Equals, ExpressionOperator.Equals),
+    new OperatorEntry(OperatorType.NotEqual, ExpressionOperator.NotEqual),
 
-     new(OperatorType.And, ExpressionOperator.And),
-     new(OperatorType.Or, ExpressionOperator.Or)
-   };
+    new OperatorEntry(OperatorType.And, ExpressionOperator.And),
+    new OperatorEntry(OperatorType.Or, ExpressionOperator.Or)
+  ];
 
-   public Expression Left
-   public Expression Right
-   public ExpressionOperator Operator
+  public nodeType: "BinaryExpression";
+  public left: Expression;
+  public right: Expression;
+  public operator: ExpressionOperator;
 
-   private BinaryExpression(Expression left, Expression right, ExpressionOperator operatorValue,
-     ExpressionSource source, SourceReference reference) : base(source, reference) {
-     Left = left;
-     Right = right;
-     Operator = operatorValue;
-   }
+  constructor(left: Expression, right: Expression, operatorValue: ExpressionOperator,
+              source: ExpressionSource, reference: SourceReference) {
+    super(source, reference);
+    this.left = left;
+    this.right = right;
+    this.operator = operatorValue;
+  }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.Tokens;
-     let supportedTokens = GetCurrentLevelSupportedTokens(tokens);
-     let lowestPriorityOperation = GetLowestPriorityOperation(supportedTokens);
-     if (lowestPriorityOperation == null)
-       return ParseExpressionResult.Invalid<BinaryExpression>(`No valid Operator token found.`);
+  public static parse(source: ExpressionSource): ParseExpressionResult {
+    let tokens = source.tokens;
+    let supportedTokens = this.getCurrentLevelSupportedTokens(tokens);
+    let lowestPriorityOperation = this.getLowestPriorityOperation(supportedTokens);
+    if (lowestPriorityOperation == null)
+      return newParseExpressionFailed(BinaryExpression, `No valid Operator token found.`);
 
-     let leftTokens = tokens.TokensRange(0, lowestPriorityOperation.Index - 1);
-     if (leftTokens.Length == 0)
-       return ParseExpressionResult.Invalid<BinaryExpression>(
-         $`No tokens left from: {lowestPriorityOperation.Index} ({tokens})`);
-     let rightTokens = tokens.TokensFrom(lowestPriorityOperation.Index + 1);
-     if (rightTokens.Length == 0)
-       return ParseExpressionResult.Invalid<BinaryExpression>(
-         $`No tokens right from: {lowestPriorityOperation.Index} ({tokens})`);
+    let leftTokens = tokens.tokensRange(0, lowestPriorityOperation.index - 1);
+    if (leftTokens.length == 0)
+      return newParseExpressionFailed(BinaryExpression,
+        `No tokens left from: ${lowestPriorityOperation.index} (${tokens})`);
+    let rightTokens = tokens.tokensFrom(lowestPriorityOperation.index + 1);
+    if (rightTokens.length == 0)
+      return newParseExpressionFailed(BinaryExpression,
+        `No tokens right from: ${lowestPriorityOperation.index} (${tokens})`);
 
-     let left = ExpressionFactory.Parse(leftTokens, source.Line);
-     if (!left.IsSuccess) return left;
+    let left = ExpressionFactory.parse(leftTokens, source.line);
+    if (left.state != 'success') return left;
 
-     let right = ExpressionFactory.Parse(rightTokens, source.Line);
-     if (!right.IsSuccess) return left;
+    let right = ExpressionFactory.parse(rightTokens, source.line);
+    if (right.state != 'success') return left;
 
-     let operatorValue = lowestPriorityOperation.ExpressionOperator;
-     let reference = source.CreateReference(lowestPriorityOperation.Index);
+    let operatorValue = lowestPriorityOperation.expressionOperator;
+    let reference = source.createReference(lowestPriorityOperation.index);
 
-     let binaryExpression = new BinaryExpression(left.Result, right.Result, operatorValue, source, reference);
-     return ParseExpressionResult.Success(binaryExpression);
-   }
+    let binaryExpression = new BinaryExpression(left.result, right.result, operatorValue, source, reference);
+    return newParseExpressionSuccess(binaryExpression);
+  }
 
-   private static getLowestPriorityOperation(supportedTokens: Array<TokenIndex>): TokenIndex {
-     foreach (let supportedOperator in SupportedOperatorsByPriority.Reverse())
-     foreach (let supportedToken in supportedTokens)
-       if (supportedOperator.OperatorType == supportedToken.OperatorType)
-         return supportedToken;
+  private static getLowestPriorityOperation(supportedTokens: Array<TokenIndex>): TokenIndex | null {
+    for (let index = BinaryExpression.SupportedOperatorsByPriority.length - 1; index >= 0; index--) {
+      const supportedOperator = BinaryExpression.SupportedOperatorsByPriority[index];
+      for (let indexValues = 0; indexValues <= supportedTokens.length - 1; indexValues--) {
+        const supportedToken = supportedTokens[indexValues];
+        if (supportedOperator.operatorType == supportedToken.operatorType)
+          return supportedToken;
+      }
+    }
 
-     return null;
-   }
+    return null;
+  }
 
-   public static isValid(tokens: TokenList): boolean {
-     let supportedTokens = GetCurrentLevelSupportedTokens(tokens);
-     return supportedTokens.Count > 0;
-   }
+  public static isValid(tokens: TokenList): boolean {
+    let supportedTokens = this.getCurrentLevelSupportedTokens(tokens);
+    return supportedTokens.length > 0;
+  }
 
-   private static getCurrentLevelSupportedTokens(tokens: TokenList): Array<TokenIndex> {
-     if (tokens == null) throw new Error(nameof(tokens));
+  private static getCurrentLevelSupportedTokens(tokens: TokenList): Array<TokenIndex> {
+    let result = new Array<TokenIndex>();
+    let countParentheses = 0;
+    let countBrackets = 0;
+    for (let index = 0; index < tokens.length; index++) {
+      let token = tokens[index];
+      if (token.tokenType != "OperatorToken") continue;
+      const operatorToken = token as OperatorToken;
+      switch (operatorToken.type) {
+        case OperatorType.OpenParentheses:
+          countParentheses++;
+          break;
+        case OperatorType.CloseParentheses:
+          countParentheses--;
+          break;
+        case OperatorType.OpenBrackets:
+          countBrackets++;
+          break;
+        case OperatorType.CloseBrackets:
+          countBrackets--;
+          break;
+      }
 
-     let result = new Array<TokenIndex>();
-     let countParentheses = 0;
-     let countBrackets = 0;
-     for (let index = 0; index < tokens.Length; index++) {
-       let token = tokens[index];
-       if (!(token is OperatorToken operatorToken)) continue;
+      if (countBrackets != 0 || countParentheses != 0) continue;
 
-       switch (operatorToken.Type) {
-         case OperatorType.OpenParentheses:
-           countParentheses++;
-           break;
-         case OperatorType.CloseParentheses:
-           countParentheses--;
-           break;
-         case OperatorType.OpenBrackets:
-           countBrackets++;
-           break;
-         case OperatorType.CloseBrackets:
-           countBrackets--;
-           break;
-       }
+      let supported = this.isSupported(operatorToken.type);
+      if (supported != null) {
+        result.push(new TokenIndex(index, operatorToken.type, supported.expressionOperator));
+      }
+    }
 
-       if (countBrackets != 0 || countParentheses != 0) continue;
+    return result;
+  }
 
-       let supported = IsSupported(operatorToken.Type);
-       if (supported != null) result.Add(new TokenIndex(index, operatorToken.Type, supported.ExpressionOperator));
-     }
+  private static isSupported(operatorTokenType: OperatorType): OperatorEntry | null {
+    for (let index = BinaryExpression.SupportedOperatorsByPriority.length - 1; index >= 0; index--) {
+      const supportedOperator = BinaryExpression.SupportedOperatorsByPriority[index];
+      if (supportedOperator.operatorType == operatorTokenType) {
+        return supportedOperator;
+      }
+    }
+    return null;
+  }
 
-     return result;
-   }
+  public override getChildren(): Array<INode> {
+    return [
+      this.left,
+      this.right
+    ];
+  }
 
-   private static isSupported(operatorTokenType: OperatorType): OperatorEntry {
-     return SupportedOperatorsByPriority.FirstOrDefault(entry => entry.OperatorType == operatorTokenType);
-   }
+  protected override validate(context: IValidationContext): void {
+    let left = this.left.deriveType(context);
+    let right = this.right.deriveType(context);
 
+    if (!left?.equals(right))
+      context.logger.fail(this.reference,
+        `Invalid expression type. Left expression: '${left}'. Right expression '${right}.`);
+  }
 
-   public override getChildren(): Array<INode> {
-     yield return Left;
-     yield return Right;
-   }
+  public override deriveType(context: IValidationContext): VariableType | null {
+    let left = this.left.deriveType(context);
+    let right = this.right.deriveType(context);
 
-   protected override validate(context: IValidationContext): void {
-     let left = Left.DeriveType(context);
-     let right = Right.DeriveType(context);
-
-     if (!left.Equals(right))
-       context.Logger.Fail(Reference,
-         $`Invalid expression type. Left expression: '{left}'. Right expression '{right}.`);
-   }
-
-   public override deriveType(context: IValidationContext): VariableType {
-     let left = Left.DeriveType(context);
-     let right = Right.DeriveType(context);
-
-     return left.Equals(right) ? left : null;
-   }
-
-   private class OperatorEntry {
-     public OperatorType OperatorType
-     public ExpressionOperator ExpressionOperator
-
-     operatorEntry(operatorType: OperatorType, expressionOperator: ExpressionOperator): public {
-       OperatorType = operatorType;
-       ExpressionOperator = expressionOperator;
-     }
-   }
-
-   private class TokenIndex {
-     public number Index
-     public OperatorType OperatorType
-     public ExpressionOperator ExpressionOperator
-
-     tokenIndex(index: number, operatorType: OperatorType, expressionOperator: ExpressionOperator): public {
-       Index = index;
-       OperatorType = operatorType;
-       ExpressionOperator = expressionOperator;
-     }
-   }
+    return left?.equals(right) ? left : null;
+  }
 }

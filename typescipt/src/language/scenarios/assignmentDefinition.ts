@@ -11,7 +11,8 @@ export class AssignmentDefinition extends Node {
 
    private AssignmentDefinition(VariableReference variable, ConstantValue constantValue, Expression variableExpression,
      Expression valueExpression, SourceReference reference)
-     : base(reference) {
+     {
+     super(reference);
      Variable = variable;
      ConstantValue = constantValue;
 
@@ -20,32 +21,32 @@ export class AssignmentDefinition extends Node {
    }
 
    public static parse(context: IParseLineContext): AssignmentDefinition {
-     let line = context.Line;
-     let tokens = line.Tokens;
-     let reference = line.LineStartReference();
+     let line = context.line;
+     let tokens = line.tokens;
+     let reference = line.lineStartReference();
 
      let assignmentIndex = tokens.Find<OperatorToken>(token => token.Type == OperatorType.Assignment);
-     if (assignmentIndex <= 0 || assignmentIndex == tokens.Length - 1) {
-       context.Logger.Fail(reference, `Invalid assignment. Expected: 'Variable = Value'`);
+     if (assignmentIndex <= 0 || assignmentIndex == tokens.length - 1) {
+       context.logger.fail(reference, `Invalid assignment. Expected: 'Variable = Value'`);
        return null;
      }
 
      let targetExpression =
-       ExpressionFactory.Parse(tokens.TokensFromStart(assignmentIndex), line);
-     if (context.Failed(targetExpression, reference)) return null;
+       ExpressionFactory.parse(tokens.tokensFromStart(assignmentIndex), line);
+     if (context.failed(targetExpression, reference)) return null;
 
      let valueExpression =
-       ExpressionFactory.Parse(tokens.TokensFrom(assignmentIndex + 1), line);
-     if (context.Failed(valueExpression, reference)) return null;
+       ExpressionFactory.parse(tokens.tokensFrom(assignmentIndex + 1), line);
+     if (context.failed(valueExpression, reference)) return null;
 
-     let variableReference = VariableReferenceParser.Parse(targetExpression.Result);
-     if (context.Failed(variableReference, reference)) return null;
+     let variableReference = VariableReferenceParser.parse(targetExpression.result);
+     if (context.failed(variableReference, reference)) return null;
 
-     let constantValue = ConstantValue.Parse(valueExpression.Result);
-     if (context.Failed(constantValue, reference)) return null;
+     let constantValue = ConstantValue.parse(valueExpression.result);
+     if (context.failed(constantValue, reference)) return null;
 
-     return new AssignmentDefinition(variableReference.Result, constantValue.Result, targetExpression.Result,
-       valueExpression.Result, reference);
+     return new AssignmentDefinition(variableReference.result, constantValue.result, targetExpression.result,
+       valueExpression.result, reference);
    }
 
    public override getChildren(): Array<INode> {
@@ -54,15 +55,15 @@ export class AssignmentDefinition extends Node {
    }
 
    protected override validate(context: IValidationContext): void {
-     if (!context.VariableContext.Contains(Variable, context))
+     if (!context.variableContext.contains(Variable, context))
        //logger by IdentifierExpressionValidation
        return;
 
-     let expressionType = valueExpression.DeriveType(context);
+     let expressionType = valueExpression.deriveType(context);
 
-     VariableType = context.VariableContext.GetVariableType(Variable, context);
-     if (expressionType != null && !expressionType.Equals(VariableType))
-       context.Logger.Fail(Reference,
+     VariableType = context.variableContext.getVariableType(Variable, context);
+     if (expressionType != null && !expressionType.equals(VariableType))
+       context.logger.fail(this.reference,
          $`Variable '{Variable}' of type '{VariableType}' is not assignable from expression of type '{expressionType}'.`);
    }
 }

@@ -26,6 +26,6 @@ export class NodesLogger {
    }
 
    public override toString(): string {
-     return builder.ToString();
+     return builder.toString();
    }
 }

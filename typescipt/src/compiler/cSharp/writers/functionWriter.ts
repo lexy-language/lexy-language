@@ -10,7 +10,7 @@ export class FunctionWriter extends IRootTokenWriter {
      let members = new Array<MemberDeclarationSyntax> {
        VariableClassFactory.TranslateVariablesClass(LexyCodeConstants.ParametersType,
          function.Parameters.Variables),
-       VariableClassFactory.TranslateVariablesClass(LexyCodeConstants.ResultsType, function.Results.Variables),
+       VariableClassFactory.TranslateVariablesClass(LexyCodeConstants.resultsType, function.results.Variables),
        RunMethod(function, context)
      };
      members.AddRange(CustomBuiltInFunctions(context));
@@ -47,7 +47,7 @@ export class FunctionWriter extends IRootTokenWriter {
      statements.Add(ReturnResults());
 
      let functionSyntax = MethodDeclaration(
-         IdentifierName(LexyCodeConstants.ResultsType),
+         IdentifierName(LexyCodeConstants.resultsType),
          Identifier(LexyCodeConstants.RunMethod))
        .WithModifiers(Modifiers.PublicStatic())
        .WithParameterList(
@@ -66,7 +66,7 @@ export class FunctionWriter extends IRootTokenWriter {
    }
 
    private returnResults(): StatementSyntax {
-     return ReturnStatement(IdentifierName(LexyCodeConstants.ResultsVariable));
+     return ReturnStatement(IdentifierName(LexyCodeConstants.resultsVariable));
    }
 
    private initializeResults(): StatementSyntax {
@@ -77,11 +77,11 @@ export class FunctionWriter extends IRootTokenWriter {
          .WithVariables(
            SingletonSeparatedList(
              VariableDeclarator(
-                 Identifier(LexyCodeConstants.ResultsVariable))
+                 Identifier(LexyCodeConstants.resultsVariable))
                .WithInitializer(
                  EqualsValueClause(
                    ObjectCreationExpression(
-                       IdentifierName(LexyCodeConstants.ResultsType))
+                       IdentifierName(LexyCodeConstants.resultsType))
                      .WithArgumentList(
                        ArgumentList()))))));
    }

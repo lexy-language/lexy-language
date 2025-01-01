@@ -1,13 +1,13 @@
 
 
 export class ParsableTokenResult extends ParseResult<ParsableToken> {
-   public SourceReference Reference
+   public SourceReference reference
 
    private ParsableTokenResult(ParsableToken result) : base(result) {
    }
 
    private ParsableTokenResult(boolean success, SourceReference sourceReference, string errorMessage) : base(success, errorMessage) {
-     Reference = sourceReference;
+     reference = sourceReference;
    }
 
    public static success(result: ParsableToken): ParsableTokenResult {

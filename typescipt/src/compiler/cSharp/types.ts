@@ -60,7 +60,7 @@ internal static class Types {
          IdentifierName(LexyCodeConstants.ParametersType)),
        FunctionResultsType _ => QualifiedName(
          IdentifierName(ClassNames.FunctionClassName(complexTypeReference.Name)),
-         IdentifierName(LexyCodeConstants.ResultsType)),
+         IdentifierName(LexyCodeConstants.resultsType)),
        TableRowType _ => QualifiedName(
          IdentifierName(ClassNames.TableClassName(complexTypeReference.Name)),
          IdentifierName(LexyCodeConstants.RowType)),
@@ -77,7 +77,7 @@ internal static class Types {
        case ComplexTypeSource.FunctionResults:
          return QualifiedName(
            IdentifierName(ClassNames.FunctionClassName(complexType.Name)),
-           IdentifierName(LexyCodeConstants.ResultsType));
+           IdentifierName(LexyCodeConstants.resultsType));
        case ComplexTypeSource.TableRow:
          return QualifiedName(
            IdentifierName(ClassNames.TableClassName(complexType.Name)),
@@ -131,7 +131,7 @@ internal static class Types {
        case TypeNames.String:
          return LiteralExpression(
            SyntaxKind.StringLiteralExpression,
-           Literal(``));
+           Literal("));
 
        case TypeNames.Date:
          return TranslateDate(DateTypeDefault.Value);

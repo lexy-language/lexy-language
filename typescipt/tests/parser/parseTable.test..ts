@@ -3,10 +3,10 @@
 export class ParseTableTests extends ScopedServicesTestFixture {
   it('XXXX', async () => {
    public testInAndStringColumns(): void {
-     let code = @`Table: TestTable
+     let code = `Table: TestTable
   | number Value | string Result |
-  | 7 | ``Test quoted`` |
-  | 8 | ``Test`` |`;
+  | 7 | "Test quoted" |
+  | 8 | "Test" |`;
 
      let parser = ServiceProvider.GetRequiredService<ILexyParser>();
      let table = parser.ParseTable(code);
@@ -26,10 +26,10 @@ export class ParseTableTests extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public testDateTimeAndBoolean(): void {
-     let code = @`Table: TestTable
+     let code = `Table: TestTable
   | date Value | boolean Result |
-  | d``2024-12-18T17:07:45`` | false |
-  | d``2024-12-18T17:08:12`` | true |`;
+  | d"2024-12-18T17:07:45" | false |
+  | d"2024-12-18T17:08:12" | true |`;
 
      let parser = ServiceProvider.GetService<ILexyParser>();
      let table = parser.ParseTable(code);

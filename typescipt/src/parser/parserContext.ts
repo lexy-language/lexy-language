@@ -24,7 +24,7 @@ export class ParserContext extends IParserContext {
    }
 
    public isFileIncluded(fileName: string): boolean {
-     return includedFiles.Contains(NormalizePath(fileName));
+     return includedFiles.contains(NormalizePath(fileName));
    }
 
    private static normalizePath(fileName: string): string {

@@ -14,7 +14,7 @@ export class CompilerResult {
    }
 
    public containsEnum(type: string): boolean {
-     return enums.ContainsKey(type);
+     return enums.containsKey(type);
    }
 
    public getEnumType(type: string): Type {

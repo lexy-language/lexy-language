@@ -1,83 +1,99 @@
+import {Expression} from "./Expression";
+import {CaseExpression} from "./caseExpression";
+import {IParsableNode} from "../parsableNode";
+import {ExpressionSource} from "./expressionSource";
+import {SourceReference} from "../../parser/sourceReference";
+import {IParseLineContext} from "../../parser/ParseLineContext";
+import {ExpressionFactory} from "./expressionFactory";
+import {INode} from "../node";
+import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {Keywords} from "../../parser/Keywords";
+import {IValidationContext} from "../../parser/validationContext";
+import {VariableType} from "../types/variableType";
 
+export class SwitchExpression extends Expression implements IParsableNode {
 
-export class SwitchExpression extends Expression, IParsableNode {
-   private readonly Array<CaseExpression> cases = list<CaseExpression>(): new;
+  public isParsableNode: true;
+  public nodeType: "SwitchExpression";
 
-   public Expression Condition
-   public Array<CaseExpression> Cases => cases;
+  public condition: Expression;
+  public cases: Array<CaseExpression> = [];
 
-   private SwitchExpression(Expression condition, ExpressionSource source, SourceReference reference) : base(source,
-     reference) {
-     Condition = condition;
-   }
+  constructor(condition: Expression, source: ExpressionSource, reference: SourceReference) {
+    super(source, reference);
+    this.condition = condition;
+  }
 
    public parse(context: IParseLineContext): IParsableNode {
-     let line = context.Line;
-     let expression = ExpressionFactory.Parse(line.Tokens, line);
-     if (!expression.IsSuccess) {
-       context.Logger.Fail(line.LineStartReference(), expression.ErrorMessage);
+     let line = context.line;
+     let expression = ExpressionFactory.parse(line.tokens, line);
+     if (expression.state != 'success') {
+       context.logger.fail(line.lineStartReference(), expression.errorMessage);
        return this;
      }
 
-     if (expression.Result is CaseExpression caseExpression) {
-       caseExpression.LinkPreviousExpression(this, context);
+     if (expression.result.nodeType == "CaseExpression") {
+       const caseExpression = expression.result as CaseExpression;
+       caseExpression.linkPreviousExpression(this, context);
        return caseExpression;
      }
 
-     context.Logger.Fail(expression.Result.Reference, `Invalid expression. 'case' or 'default' expected.`);
+     context.logger.fail(expression.result.reference, `Invalid expression. 'case' or 'default' expected.`);
      return this;
    }
 
-   public override getChildren(): Array<INode> {
-     yield return Condition;
-     foreach (let caseValue in Cases) yield return caseValue;
-   }
+  public override getChildren(): Array<INode> {
+    const result = [this.condition];
+    this.cases.forEach(caseValue => result.push(caseValue));
+    return result;
+  }
 
    public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.Tokens;
-     if (!IsValid(tokens)) return ParseExpressionResult.Invalid<IfExpression>(`Not valid.`);
+     let tokens = source.tokens;
+     if (!this.isValid(tokens)) return newParseExpressionFailed(SwitchExpression, `Not valid.`);
 
-     if (tokens.Length == 1) return ParseExpressionResult.Invalid<IfExpression>(`No condition found`);
+     if (tokens.length == 1) return newParseExpressionFailed(SwitchExpression, `No condition found`);
 
-     let condition = tokens.TokensFrom(1);
-     let conditionExpression = ExpressionFactory.Parse(condition, source.Line);
-     if (!conditionExpression.IsSuccess) return conditionExpression;
+     let condition = tokens.tokensFrom(1);
+     let conditionExpression = ExpressionFactory.parse(condition, source.line);
+     if (conditionExpression.state != 'success') return conditionExpression;
 
-     let reference = source.CreateReference();
+     let reference = source.createReference();
 
-     let expression = new SwitchExpression(conditionExpression.Result, source, reference);
+     let expression = new SwitchExpression(conditionExpression.result, source, reference);
 
-     return ParseExpressionResult.Success(expression);
+     return newParseExpressionSuccess(expression);
    }
 
    public static isValid(tokens: TokenList): boolean {
-     return tokens.IsKeyword(0, Keywords.Switch);
+     return tokens.isKeyword(0, Keywords.Switch);
    }
 
    protected override validate(context: IValidationContext): void {
-     let type = Condition.DeriveType(context);
+     let type = this.condition.deriveType(context);
      if (type == null
-       || !(type is PrimitiveType) && !(type is EnumType)) {
-       context.Logger.Fail(Reference,
-         $`'Switch' condition expression should have a primitive or enum type. Not: '{type}'.`);
+       || type.variableTypeName != "PrimitiveType" && type.variableTypeName != "EnumType") {
+       context.logger.fail(this.reference,
+         `'Switch' condition expression should have a primitive or enum type. Not: '${type}'.`);
        return;
      }
 
-     foreach (let caseExpression in cases) {
-       if (caseExpression.IsDefault) continue;
+     this.cases.forEach(caseExpression => {
+       if (caseExpression.IsDefault) return;
 
-       let caseType = caseExpression.DeriveType(context);
-       if (caseType == null || !type.Equals(caseType))
-         context.Logger.Fail(Reference,
-           $`'case' condition expression should be of type '{type}', is of wrong type '{caseType}'.`);
-     }
+       let caseType = caseExpression.deriveType(context);
+       if (caseType == null || !type?.equals(caseType))
+         context.logger.fail(this.reference,
+           `'case' condition expression should be of type '${type}', is of wrong type '${caseType}'.`);
+     });
    }
 
-   internal linkElse(caseExpression: CaseExpression): void {
+   public linkElse(caseExpression: CaseExpression): void {
      cases.Add(caseExpression);
    }
 
-   public override deriveType(context: IValidationContext): VariableType {
+   public override deriveType(context: IValidationContext): VariableType | null {
      return null;
    }
 }

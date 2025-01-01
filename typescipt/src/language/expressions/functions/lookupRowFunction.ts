@@ -35,14 +35,14 @@ export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies 
    public static ParseExpressionFunctionsResult Parse(string name, SourceReference functionCallReference,
      IReadOnlyArray<Expression> arguments) {
      if (arguments.Count != Arguments)
-       return ParseExpressionFunctionsResult.Failed($`Invalid number of arguments. {FunctionHelp}`);
+       return ParseExpressionFunctionsResult.failed($`Invalid number of arguments. {FunctionHelp}`);
 
      if (!(arguments[ArgumentTable] is IdentifierExpression tableNameExpression))
-       return ParseExpressionFunctionsResult.Failed(
+       return ParseExpressionFunctionsResult.failed(
          $`Invalid argument {ArgumentTable}. Should be valid table name. {FunctionHelp}`);
 
      if (!(arguments[ArgumentSearchValueColumn] is MemberAccessExpression searchValueColumnHeader))
-       return ParseExpressionFunctionsResult.Failed(
+       return ParseExpressionFunctionsResult.failed(
          $`Invalid argument {ArgumentSearchValueColumn}. Should be search column. {FunctionHelp}`);
 
      let tableName = tableNameExpression.Identifier;
@@ -63,23 +63,23 @@ export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies 
 
      let tableType = context.RootNodes.GetTable(Table);
      if (tableType == null) {
-       context.Logger.Fail(Reference,
+       context.logger.fail(this.reference,
          $`Invalid argument {ArgumentTable}. Table name '{Table}' not found. {FunctionHelp}`);
        return;
      }
 
      let searchColumnHeader = tableType.Header.Get(SearchValueColumn);
      if (searchColumnHeader == null) {
-       context.Logger.Fail(Reference,
+       context.logger.fail(this.reference,
          $`Invalid argument {ArgumentSearchValueColumn}. Column name '{SearchValueColumn}' not found in table '{Table}'. {FunctionHelp}`);
        return;
      }
 
-     let conditionValueType = ValueExpression.DeriveType(context);
-     SearchValueColumnType = searchColumnHeader.Type.CreateVariableType(context);
+     let conditionValueType = ValueExpression.deriveType(context);
+     SearchValueColumnType = searchColumnHeader.Type.createVariableType(context);
 
-     if (conditionValueType == null || !conditionValueType.Equals(SearchValueColumnType))
-       context.Logger.Fail(Reference,
+     if (conditionValueType == null || !conditionValueType.equals(SearchValueColumnType))
+       context.logger.fail(this.reference,
          $`Invalid argument {ArgumentSearchValueColumn}. Column type '{SearchValueColumn}': '{SearchValueColumnType}' doesn't match condition type '{conditionValueType}'. {FunctionHelp}`);
 
      RowType = tableType?.GetRowType(context);
@@ -88,11 +88,11 @@ export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies 
 
    private validateColumn(context: IValidationContext, column: MemberAccessLiteral, index: number): void {
      if (column.Parent != Table)
-       context.Logger.Fail(Reference,
+       context.logger.fail(this.reference,
          $`Invalid argument {index}. Result column table '{column.Parent}' should be table name '{Table}'`);
 
-     if (column.Parts.Length != 2)
-       context.Logger.Fail(Reference,
+     if (column.Parts.length != 2)
+       context.logger.fail(this.reference,
          $`Invalid argument {index}. Result column table '{column.Parent}' should be table name '{Table}'`);
    }
 

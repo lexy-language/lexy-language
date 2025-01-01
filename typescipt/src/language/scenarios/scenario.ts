@@ -18,7 +18,8 @@ export class Scenario extends RootNode {
 
    public override string NodeName => Name.Value;
 
-   private Scenario(string name, SourceReference reference) : base(reference) {
+   private Scenario(string name, SourceReference reference) { {
+     super(reference);
      Name = new ScenarioName(reference);
      FunctionName = new ScenarioFunctionName(reference);
 
@@ -37,11 +38,11 @@ export class Scenario extends RootNode {
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let line = context.Line;
-     let name = line.Tokens.TokenValue(0);
-     let reference = line.LineStartReference();
-     if (!line.Tokens.IsTokenType<KeywordToken>(0)) {
-       context.Logger.Fail(reference, $`Invalid token '{name}'. Keyword expected.`);
+     let line = context.line;
+     let name = line.tokens.tokenValue(0);
+     let reference = line.lineStartReference();
+     if (!line.tokens.isTokenType<KeywordToken>(0)) {
+       context.logger.fail(reference, $`Invalid token '{name}'. Keyword expected.`);
        return this;
      }
 
@@ -52,9 +53,9 @@ export class Scenario extends RootNode {
 
        Keywords.Function => ResetRootNode(context, ParseFunctionName(context)),
        Keywords.Parameters => ResetRootNode(context, Parameters),
-       Keywords.Results => ResetRootNode(context, Results),
+       Keywords.results => ResetRootNode(context, Results),
        Keywords.ValidationTable => ResetRootNode(context, ValidationTable),
-       Keywords.ExpectError => ResetRootNode(context, ExpectError.Parse(context)),
+       Keywords.ExpectError => ResetRootNode(context, ExpectError.parse(context)),
        Keywords.ExpectRootErrors => ResetRootNode(context, ExpectRootErrors),
 
        _ => InvalidToken(context, name, reference)
@@ -62,59 +63,59 @@ export class Scenario extends RootNode {
    }
 
    private resetRootNode(parserContext: IParseLineContext, node: IParsableNode): IParsableNode {
-     parserContext.Logger.SetCurrentNode(this);
+     parserContext.logger.SetCurrentNode(this);
      return node;
    }
 
    private parseFunctionName(context: IParseLineContext): IParsableNode {
-     FunctionName.Parse(context);
+     FunctionName.parse(context);
      return this;
    }
 
    private parseFunction(context: IParseLineContext, reference: SourceReference): IParsableNode {
      if (Function != null) {
-       context.Logger.Fail(reference, $`Duplicated inline Function '{NodeName}'.`);
+       context.logger.fail(reference, $`Duplicated inline Function '{NodeName}'.`);
        return null;
      }
 
-     let tokenName = Parser.NodeName.Parse(context);
+     let tokenName = Parser.NodeName.parse(context);
      if (tokenName.Name != null)
-       context.Logger.Fail(context.Line.TokenReference(1),
+       context.logger.fail(context.line.TokenReference(1),
          $`Unexpected function name. Inline function should not have a name: '{tokenName.Name}'`);
 
      Function = Function.Create($`{Name.Value}Function`, reference);
-     context.Logger.SetCurrentNode(Function);
+     context.logger.SetCurrentNode(Function);
      return Function;
    }
 
    private parseEnum(context: IParseLineContext, reference: SourceReference): IParsableNode {
      if (Enum != null) {
-       context.Logger.Fail(reference, $`Duplicated inline Enum '{NodeName}'.`);
+       context.logger.fail(reference, $`Duplicated inline Enum '{NodeName}'.`);
        return null;
      }
 
-     let tokenName = Parser.NodeName.Parse(context);
+     let tokenName = Parser.NodeName.parse(context);
 
-     Enum = EnumDefinition.Parse(tokenName, reference);
-     context.Logger.SetCurrentNode(Enum);
+     Enum = EnumDefinition.parse(tokenName, reference);
+     context.logger.SetCurrentNode(Enum);
      return Enum;
    }
 
    private parseTable(context: IParseLineContext, reference: SourceReference): IParsableNode {
      if (Table != null) {
-       context.Logger.Fail(reference, $`Duplicated inline Enum '{NodeName}'.`);
+       context.logger.fail(reference, $`Duplicated inline Enum '{NodeName}'.`);
        return null;
      }
 
-     let tokenName = Parser.NodeName.Parse(context);
+     let tokenName = Parser.NodeName.parse(context);
 
-     Table = Table.Parse(tokenName, reference);
-     context.Logger.SetCurrentNode(Table);
+     Table = Table.parse(tokenName, reference);
+     context.logger.SetCurrentNode(Table);
      return Table;
    }
 
    private invalidToken(context: IParseLineContext, name: string, reference: SourceReference): IParsableNode {
-     context.Logger.Fail(reference, $`Invalid token '{name}'.`);
+     context.logger.fail(reference, $`Invalid token '{name}'.`);
      return this;
    }
 
@@ -152,20 +153,20 @@ export class Scenario extends RootNode {
      let function = Function ?? (FunctionName != null ? context.RootNodes.GetFunction(FunctionName.Value) : null);
      if (function == null) return;
 
-     AddVariablesForValidation(context, function.Parameters.Variables, VariableSource.Parameters);
-     AddVariablesForValidation(context, function.Results.Variables, VariableSource.Results);
+     addVariablesForValidation(context, function.Parameters.Variables, VariableSource.Parameters);
+     addVariablesForValidation(context, function.results.Variables, VariableSource.results);
    }
 
-   private static void AddVariablesForValidation(IValidationContext context, Array<VariableDefinition> definitions,
+   private static void addVariablesForValidation(IValidationContext context, Array<VariableDefinition> definitions,
      VariableSource source) {
      foreach (let result in definitions) {
-       let variableType = result.Type.CreateVariableType(context);
-       context.VariableContext.AddVariable(result.Name, variableType, source);
+       let variableType = result.Type.createVariableType(context);
+       context.variableContext.addVariable(result.Name, variableType, source);
      }
    }
 
    protected override validate(context: IValidationContext): void {
      if (FunctionName.IsEmpty() && Function == null && Enum == null && Table == null && !ExpectRootErrors.HasValues)
-       context.Logger.Fail(Reference, `Scenario has no function, enum, table or expect errors.`);
+       context.logger.fail(this.reference, `Scenario has no function, enum, table or expect errors.`);
    }
 }

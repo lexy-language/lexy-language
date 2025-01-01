@@ -52,7 +52,7 @@ export class SpecificationRunnerContext extends ISpecificationRunnerContext, IDi
    public failedScenariosRunners(): Array<IScenarioRunner> {
      return fileRunners
        .SelectMany(runner => runner.ScenarioRunners)
-       .Where(scenario => scenario.Failed);
+       .Where(scenario => scenario.failed);
    }
 
    public countScenarios(): number {

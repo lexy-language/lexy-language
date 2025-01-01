@@ -46,7 +46,7 @@ export class ExpressionTestExtensions {
    }
 
    public static validateDateTimeLiteralExpression(expression: Expression, value: string): void {
-     let valueDate = DateTime.Parse(value);
+     let valueDate = DateTime.parse(value);
      expression.ValidateOfType<LiteralExpression>(literal => {
        literal.Literal.ValidateOfType<DateTimeLiteral>(number =>
          number.DateTimeValue.ShouldBe(valueDate));
@@ -58,6 +58,6 @@ export class ExpressionTestExtensions {
    }
 
    public static validateMemberAccessExpression(expression: Expression, value: string): void {
-     expression.ValidateOfType<MemberAccessExpression>(literal => { literal.Variable.ToString().ShouldBe(value); });
+     expression.ValidateOfType<MemberAccessExpression>(literal => { literal.Variable.toString().ShouldBe(value); });
    }
 }

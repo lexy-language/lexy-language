@@ -60,14 +60,14 @@ export class SpecificationFileRunner extends ISpecificationFileRunner {
    }
 
    private validateHasScenarioCheckingRootErrors(fileName: string): void {
-     if (!parserContext.Logger.HasRootErrors()) return;
+     if (!parserContext.logger.HasRootErrors()) return;
 
      let rootScenarioRunner =
        scenarioRunners.FirstOrDefault(runner => runner.Scenario.ExpectRootErrors.HasValues);
 
      if (rootScenarioRunner == null)
        throw new Error(
-         $`{fileName} has root errors but no scenario that verifies expected root errors. Errors: {parserContext.Logger.ErrorRootMessages().Format(2)}`);
+         $`{fileName} has root errors but no scenario that verifies expected root errors. Errors: {parserContext.logger.ErrorRootMessages().Format(2)}`);
    }
 
    public static ISpecificationFileRunner Create(string fileName, IServiceProvider serviceProvider

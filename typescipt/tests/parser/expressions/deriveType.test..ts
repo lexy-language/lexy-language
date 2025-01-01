@@ -1,133 +1,122 @@
+import {PrimitiveType} from "../../../src/language/types/primitiveType";
+import {VariableType} from "../../../src/language/types/variableType";
+import {IValidationContext} from "../../../src/parser/IValidationContext";
+import {SourceReference} from "../../../src/parser/sourceReference";
+import {SourceFile} from "../../../src/parser/sourceFile";
+import {ValidationContext} from "../../../src/parser/validationContext";
 
+describe('DeriveTypeTests', () => {
+  it('numberLiteral', async () => {
+     const type = deriveType(`5`);
+     expect(type).toBe(PrimitiveType.number);
+   });
 
-export class DeriveTypeTests extends ScopedServicesTestFixture {
-  it('XXXX', async () => {
-   public numberLiteral(): void {
-     let type = DeriveType(`5`);
-     type.ShouldBe(PrimitiveType.Number);
-   }
+  it('stringLiteral', async () => {
+     const type = deriveType(`"abc"`);
+     expect(type).toBe(PrimitiveType.string);
+   });
 
-  it('XXXX', async () => {
-   public stringLiteral(): void {
-     let type = DeriveType(@```abc```);
-     type.ShouldBe(PrimitiveType.String);
-   }
+  it('booleanLiteral', async () => {
+     const type = deriveType(`true`);
+     expect(type).toBe(PrimitiveType.boolean);
+   });
 
-  it('XXXX', async () => {
-   public booleanLiteral(): void {
-     let type = DeriveType(@`true`);
-     type.ShouldBe(PrimitiveType.Boolean);
-   }
+  it('booleanLiteralFalse', async () => {
+     const type = deriveType(`false`);
+     expect(type).toBe(PrimitiveType.boolean);
+   });
 
-  it('XXXX', async () => {
-   public booleanLiteralFalse(): void {
-     let type = DeriveType(@`false`);
-     type.ShouldBe(PrimitiveType.Boolean);
-   }
+  it('dateTimeLiteral', async () => {
+     const type = deriveType(`d"2024-12-24T10:05:00"`);
+     expect(type).toBe(PrimitiveType.date);
+   });
 
-  it('XXXX', async () => {
-   public dateTimeLiteral(): void {
-     let type = DeriveType(@`d``2024-12-24T10:05:00```);
-     type.ShouldBe(PrimitiveType.Date);
-   }
+  it('numberCalculationLiteral', async () => {
+     const type = deriveType(`5 + 5`);
+     expect(type).toBe(PrimitiveType.number);
+   });
 
-  it('XXXX', async () => {
-   public numberCalculationLiteral(): void {
-     let type = DeriveType(@`5 + 5`);
-     type.ShouldBe(PrimitiveType.Number);
-   }
+  it('stringConcatLiteral', async () => {
+     const type = deriveType(`"abc" + "def"`);
+     expect(type).toBe(PrimitiveType.string);
+   });
 
-  it('XXXX', async () => {
-   public stringConcatLiteral(): void {
-     let type = DeriveType(@```abc`` + ``def```);
-     type.ShouldBe(PrimitiveType.String);
-   }
+  it('booleanLogicalLiteral', async () => {
+     const type = deriveType(`true && false`);
+     expect(type).toBe(PrimitiveType.boolean);
+   });
 
-  it('XXXX', async () => {
-   public booleanLogicalLiteral(): void {
-     let type = DeriveType(@`true && false`);
-     type.ShouldBe(PrimitiveType.Boolean);
-   }
-
-  it('XXXX', async () => {
-   public stringVariable(): void {
-     let type = DeriveType(@`a`, context => {
-       let reference = new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
-       context.VariableContext.RegisterVariableAndVerifyUnique(reference, `a`, PrimitiveType.String,
-         VariableSource.Results);
+  it('stringVariable', async () => {
+     const type = deriveType(`a`, context => {
+       context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.string,
+         VariableSource.results);
      });
 
-     type.ShouldBe(PrimitiveType.String);
-   }
+     expect(type).toBe(PrimitiveType.string);
+   });
 
-  it('XXXX', async () => {
-   public numberVariable(): void {
-     let type = DeriveType(@`a`, context => {
-       let reference = new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
-       context.VariableContext.RegisterVariableAndVerifyUnique(reference, `a`, PrimitiveType.Number,
-         VariableSource.Results);
+  it('numberVariable', async () => {
+     const type = deriveType(`a`, context => {
+       context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.number,
+         VariableSource.results);
      });
-     type.ShouldBe(PrimitiveType.Number);
-   }
+     expect(type).toBe(PrimitiveType.number);
+   });
 
-  it('XXXX', async () => {
-   public booleanVariable(): void {
-     let type = DeriveType(@`a`, context => {
-       let reference = new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
-       context.VariableContext.RegisterVariableAndVerifyUnique(reference, `a`, PrimitiveType.Boolean,
-         VariableSource.Results);
+  it('booleanVariable', async () => {
+     const type = deriveType(`a`, context => {
+       context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.boolean,
+         VariableSource.results);
      });
-     type.ShouldBe(PrimitiveType.Boolean);
-   }
+     expect(type).toBe(PrimitiveType.boolean);
+   });
 
-  it('XXXX', async () => {
-   public dateTimeVariable(): void {
-     let type = DeriveType(@`a`, context => {
-       let reference = new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
-       context.VariableContext.RegisterVariableAndVerifyUnique(reference, `a`, PrimitiveType.Date,
-         VariableSource.Results);
+  it('dateTimeVariable', async () => {
+     const type = deriveType(`a`, context => {
+       context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.date,
+         VariableSource.results);
      });
-     type.ShouldBe(PrimitiveType.Date);
-   }
+     expect(type).toBe(PrimitiveType.date);
+   });
 
-  it('XXXX', async () => {
-   public stringVariableConcat(): void {
-     let type = DeriveType(@`a + ``bc```, context => {
-       let reference = new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
-       context.VariableContext.RegisterVariableAndVerifyUnique(reference, `a`, PrimitiveType.String,
-         VariableSource.Results);
+  it('stringVariableConcat', async () => {
+     const type = deriveType(`a + "bc"`, context => {
+       context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.string,
+         VariableSource.results);
      });
-     type.ShouldBe(PrimitiveType.String);
-   }
+     expect(type).toBe(PrimitiveType.string);
+   });
 
-  it('XXXX', async () => {
-   public numberVariableCalculation(): void {
-     let type = DeriveType(@`a + 20`, context => {
-       let reference = new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
-       context.VariableContext.RegisterVariableAndVerifyUnique(reference, `a`, PrimitiveType.Number,
-         VariableSource.Results);
+  it('numberVariableCalculation', async () => {
+     const type = deriveType(`a + 20`, context => {
+       context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.number,
+         VariableSource.results);
      });
-     type.ShouldBe(PrimitiveType.Number);
-   }
+     expect(type).toBe(PrimitiveType.number);
+   });
 
-  it('XXXX', async () => {
-   public numberVariableWithParenthesisCalculation(): void {
-     let type = DeriveType(@`(a + 20.05) * 3`, context => {
-       let reference = new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
-       context.VariableContext.RegisterVariableAndVerifyUnique(reference, `a`, PrimitiveType.Number,
-         VariableSource.Results);
+  it('numberVariableWithParenthesisCalculation', async () => {
+     const type = deriveType(`(a + 20.05) * 3`, context => {
+       context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.number,
+         VariableSource.results);
      });
-     type.ShouldBe(PrimitiveType.Number);
-   }
+     expect(type).toBe(PrimitiveType.number);
+   });
+  
+  function newReference() {
+    return new SourceReference(new SourceFile(`tests.lexy`), 1, 1);
+  }
 
-   private deriveType(expressionValue: string, validationContextHandler: Action<IValidationContext> =: Action<IValidationContext> null: Action<IValidationContext>): VariableType {
+  function deriveType(expressionValue: string,
+                       validationContextHandler: ((context: IValidationContext) => void) | null = null): VariableType {
+
      let parserContext = GetService<IParserContext>();
-     let validationContext = new ValidationContext(parserContext.Logger, parserContext.Nodes);
-     using let _ = validationContext.CreateVariableScope();
+     let validationContext = new ValidationContext(parserContext.logger, parserContext.Nodes);
+     using context = validationContext.createVariableScope();
 
      validationContextHandler?.Invoke(validationContext);
 
      let expression = this.ParseExpression(expressionValue);
-     return expression.DeriveType(validationContext);
+     return  expression.deriveType(validationContext);
    }
-}
+});

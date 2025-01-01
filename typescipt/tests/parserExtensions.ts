@@ -5,7 +5,7 @@ export class ParserExtensions {
      if (parser == null) throw new Error(nameof(parser));
 
      let codeLines = code.Split(Environment.NewLine);
-     let context = parser.Parse(codeLines, `tests.lexy`, false);
+     let context = parser.parse(codeLines, `tests.lexy`, false);
 
      return context.RootNodes;
    }

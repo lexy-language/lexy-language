@@ -68,7 +68,7 @@ export class RootNodeList extends Array<IRootNode> {
    }
 
    public addIfNew(node: IRootNode): void {
-     if (!values.Contains(node)) values.Add(node);
+     if (!values.contains(node)) values.Add(node);
    }
 
    public first(): INode {

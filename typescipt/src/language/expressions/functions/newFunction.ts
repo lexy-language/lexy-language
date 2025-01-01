@@ -12,7 +12,8 @@ export class NewFunction extends ExpressionFunction, IHasNodeDependencies {
    public ComplexTypeReference Type { get; private set; }
 
    constructor(valueExpression: Expression, reference: SourceReference)
-     : base(reference) {
+     {
+     super(reference);
      ValueExpression = valueExpression ?? throw new Error(nameof(valueExpression));
      TypeLiteral = (valueExpression as MemberAccessExpression)?.MemberAccessLiteral;
    }
@@ -30,9 +31,9 @@ export class NewFunction extends ExpressionFunction, IHasNodeDependencies {
    }
 
    protected override validate(context: IValidationContext): void {
-     let valueType = ValueExpression.DeriveType(context);
+     let valueType = ValueExpression.deriveType(context);
      if (!(valueType is ComplexTypeReference complexTypeReference)) {
-       context.Logger.Fail(Reference,
+       context.logger.fail(this.reference,
          $`Invalid argument 1 'Value' should be of type 'ComplexTypeType' but is 'ValueType'. {FunctionHelp}`);
        return;
      }

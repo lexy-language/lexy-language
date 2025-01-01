@@ -1,14 +1,14 @@
+import {Expression} from "./expression";
+
 type ParseExpressionFailed = {
   state: "failed";
   errorMessage: string;
-  reference: SourceReference;
 }
 
-export function newParseExpressionFailed(reference: SourceReference, errorMessage: string): ParseExpressionFailed {
+export function newParseExpressionFailed(constr: Function, errorMessage: string, ): ParseExpressionFailed {
   return {
     state: "failed",
-    errorMessage: errorMessage,
-    reference: reference
+    errorMessage: `(${constr.name}) ${errorMessage}`,
   } as const;
 }
 

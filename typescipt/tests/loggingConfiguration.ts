@@ -15,18 +15,18 @@ export class LoggingConfiguration {
    }
 
    public static configureSerilog(): void {
-     Log.Logger = new LoggerConfiguration()
+     Log.logger = new LoggerConfiguration()
        .MinimumLevel.Debug()
-       .WriteTo.Logger(lc => lc
+       .WriteTo.logger(lc => lc
          .Filter.ByIncludingOnly(Matching.FromSource<ParserLogger>())
          .WriteTo.File(FullLogFile(ParserLogFile)))
-       .WriteTo.Logger(lc => lc
+       .WriteTo.logger(lc => lc
          .Filter.ByIncludingOnly(Matching.FromSource<LexyCompiler>())
          .WriteTo.File(FullLogFile(CompilerLogFile)))
-       .WriteTo.Logger(lc => lc
+       .WriteTo.logger(lc => lc
          .Filter.ByIncludingOnly(Matching.FromSource<ExecutionContext>())
          .WriteTo.File(FullLogFile(ExecutionLogFile)))
-       .WriteTo.Logger(lc => lc
+       .WriteTo.logger(lc => lc
          .Filter.ByExcluding(Matching.FromSource<ParserLogger>())
          .Filter.ByExcluding(Matching.FromSource<LexyCompiler>())
          .Filter.ByExcluding(Matching.FromSource<ExecutionContext>())

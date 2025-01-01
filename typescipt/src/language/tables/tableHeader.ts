@@ -3,7 +3,8 @@
 export class TableHeader extends Node {
    public Array<ColumnHeader> Columns
 
-   private TableHeader(ColumnHeader[] columns, SourceReference reference) : base(reference) {
+   private TableHeader(ColumnHeader[] columns, SourceReference reference) {
+     super(reference);
      Columns = columns ?? throw new Error(nameof(columns));
    }
 
@@ -14,8 +15,8 @@ export class TableHeader extends Node {
      if (!validator.Type<TableSeparatorToken>(index).IsValid) return null;
 
      let headers = new Array<ColumnHeader>();
-     let tokens = context.Line.Tokens;
-     while (++index < tokens.Length) {
+     let tokens = context.line.tokens;
+     while (++index < tokens.length) {
        if (!validator
            .Type<StringLiteralToken>(index)
            .Type<StringLiteralToken>(index + 1)
@@ -23,17 +24,17 @@ export class TableHeader extends Node {
            .IsValid)
          return null;
 
-       let typeName = tokens.TokenValue(index);
-       let name = tokens.TokenValue(++index);
-       let reference = context.Line.TokenReference(index);
+       let typeName = tokens.tokenValue(index);
+       let name = tokens.tokenValue(++index);
+       let reference = context.line.TokenReference(index);
 
-       let header = ColumnHeader.Parse(name, typeName, reference);
+       let header = ColumnHeader.parse(name, typeName, reference);
        headers.Add(header);
 
        ++index;
      }
 
-     return new TableHeader(headers.ToArray(), context.Line.LineStartReference());
+     return new TableHeader(headers.ToArray(), context.line.lineStartReference());
    }
 
    public override getChildren(): Array<INode> {
@@ -45,7 +46,7 @@ export class TableHeader extends Node {
 
    public get(memberAccess: MemberAccessLiteral): ColumnHeader {
      let parts = memberAccess.Parts;
-     if (parts.Length < 2) return null;
+     if (parts.length < 2) return null;
      let name = parts[1];
 
      return Columns.FirstOrDefault(value => value.Name == name);

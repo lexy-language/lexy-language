@@ -18,7 +18,7 @@ export class EnumerableExtensions {
      builder.AppendLine();
      foreach (let item in enumerable) builder.AppendLine(indent + item);
 
-     return builder.ToString();
+     return builder.toString();
    }
 
    public static formatLine<TItem>(enumerable: Array<TItem>, separator: string): string {
@@ -26,11 +26,11 @@ export class EnumerableExtensions {
 
      let builder = new StringBuilder();
      foreach (let item in enumerable) {
-       if (builder.Length > 0) builder.Append(separator);
+       if (builder.length > 0) builder.Append(separator);
 
        builder.Append(item);
      }
 
-     return builder.ToString();
+     return builder.toString();
    }
 }

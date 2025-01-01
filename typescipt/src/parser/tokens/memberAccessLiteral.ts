@@ -34,10 +34,10 @@ export class MemberAccessLiteral extends Token implements ILiteralToken {
 
   public deriveType(context: IValidationContext): VariableType {
     /* let variableReference = new VariableReference(Parts);
-    let variableType = context.VariableContext.GetVariableType(variableReference, context);
+    let variableType = context.variableContext.getVariableType(variableReference, context);
     if (variableType != null) return variableType;
 
-    if (this.parts.Length != 2) return null;
+    if (this.parts.length != 2) return null;
 
     let rootType = context.RootNodes.GetType(Parent);
     return rootType is not ITypeWithMembers typeWithMembers ? null : typeWithMembers.MemberType(Member, context);*/

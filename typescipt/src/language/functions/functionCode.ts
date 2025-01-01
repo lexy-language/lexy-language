@@ -5,13 +5,14 @@ export class FunctionCode extends ParsableNode {
 
    public IReadOnlyArray<Expression> Expressions => expressions;
 
-   public FunctionCode(SourceReference reference) : base(reference) {
+   public FunctionCode(SourceReference reference) {
+     super(reference);
      expressions = new ExpressionList(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let expression = expressions.Parse(context);
-     return expression.Result is IParsableNode node ? node : this;
+     let expression = expressions.parse(context);
+     return expression.result is IParsableNode node ? node : this;
    }
 
    public override getChildren(): Array<INode> {

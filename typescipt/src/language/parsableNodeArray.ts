@@ -9,7 +9,7 @@ export class ParsableNodeArray {
 
    public get(indent: number): IParsableNode {
      let node = values[indent];
-     for (let index = indent + 1; index < values.Length; index++) {
+     for (let index = indent + 1; index < values.length; index++) {
        if (values[index] == null) break;
 
        values[index] = null;
@@ -19,7 +19,7 @@ export class ParsableNodeArray {
    }
 
    public set(indent: number, node: IParsableNode): void {
-     if (indent >= values.Length) Array.Resize(ref values, values.Length * 2);
+     if (indent >= values.length) Array.Resize(ref values, values.length * 2);
 
      values[indent] = node;
    }

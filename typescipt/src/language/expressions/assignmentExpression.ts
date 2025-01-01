@@ -1,91 +1,119 @@
-
+import {Expression} from "./Expression";
+import {SourceReference} from "../../parser/sourceReference";
+import {ExpressionSource} from "./expressionSource";
+import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
+import {ExpressionFactory} from "./expressionFactory";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {OperatorType} from "../../parser/tokens/operatorType";
+import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
+import {MemberAccessLiteral} from "../../parser/tokens/memberAccessLiteral";
+import {INode} from "../node";
+import {IValidationContext} from "../../parser/validationContext";
+import {IdentifierExpression} from "./identifierExpression";
+import {MemberAccessExpression} from "./memberAccessExpression";
+import {ITypeWithMembers} from "../types/iTypeWithMembers";
+import {nameOf} from "../../infrastructure/nameOf";
+import {VariableType} from "../types/variableType";
 
 export class AssignmentExpression extends Expression {
-   public Expression Variable
-   public Expression Assignment
+  public nodeType: "AssignmentExpression"
+  public variable: Expression
+  public assignment: Expression
 
-   private AssignmentExpression(Expression variable, Expression assignment, ExpressionSource source,
-     SourceReference reference) : base(source, reference) {
-     Variable = variable;
-     Assignment = assignment;
+  private constructor(variable: Expression, assignment: Expression, source: ExpressionSource,
+   reference: SourceReference) {
+   super(source, reference);
+   this.variable = variable;
+   this.assignment = assignment;
+  }
+
+  public static parse(source: ExpressionSource): ParseExpressionResult {
+   let tokens = source.tokens;
+   if (!this.isValid(tokens)) return newParseExpressionFailed(`Invalid expression.`);
+
+   let variableExpression = ExpressionFactory.parse(tokens.tokensFromStart(1), source.line);
+   if (variableExpression.state != 'success') return variableExpression;
+
+   let assignment = ExpressionFactory.parse(tokens.tokensFrom(2), source.line);
+   if (assignment.state != 'success') return assignment;
+
+   let reference = source.createReference();
+
+   let expression = new AssignmentExpression(variableExpression.result, assignment.result, source, reference);
+
+   return newParseExpressionSuccess(expression);
+  }
+
+  public static isValid(tokens: TokenList): boolean {
+   return tokens.length >= 3
+      && (tokens.isTokenType<StringLiteralToken>(0, StringLiteralToken)
+       || tokens.isTokenType<MemberAccessLiteral>(0, MemberAccessLiteral))
+      && tokens.isOperatorToken(1, OperatorType.Assignment);
+  }
+
+  public override getChildren(): Array<INode> {
+   return [
+     this.assignment,
+     this.variable
+   ]
+  }
+
+  protected override validate(context: IValidationContext): void {
+   if (this.variable.nodeType != "IdentifierExpression") {
+     this.validateMemberAccess(context);
+     return;
    }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.Tokens;
-     if (!IsValid(tokens)) return ParseExpressionResult.Invalid<ParseExpressionResult>(`Invalid expression.`);
+   const identifierExpression = this.variable as IdentifierExpression;
 
-     let variableExpression = ExpressionFactory.Parse(tokens.TokensFromStart(1), source.Line);
-     if (!variableExpression.IsSuccess) return variableExpression;
+   let variableName = identifierExpression.identifier;
 
-     let assignment = ExpressionFactory.Parse(tokens.TokensFrom(2), source.Line);
-     if (!assignment.IsSuccess) return assignment;
-
-     let reference = source.CreateReference();
-
-     let expression = new AssignmentExpression(variableExpression.Result, assignment.Result, source, reference);
-
-     return ParseExpressionResult.Success(expression);
+   let variableType = context.variableContext?.getVariableTypeByName(variableName);
+   if (variableType == null) {
+     context.logger.fail(this.reference, `Unknown variable name: '${variableName}'.`);
+     return;
    }
 
-   public static isValid(tokens: TokenList): boolean {
-     return tokens.Length >= 3
-        && (tokens.IsTokenType<StringLiteralToken>(0) || tokens.IsTokenType<MemberAccessLiteral>(0))
-        && tokens.OperatorToken(1, OperatorType.Assignment);
+   let expressionType = this.assignment.deriveType(context);
+   if (!variableType?.equals(expressionType))
+     context.logger.fail(this.reference,
+       `Variable '${variableName}' of type '${variableType}' is not assignable from expression of type '{expressionType}'.`);
+  }
+
+  private validateMemberAccess(context: IValidationContext): void {
+   if (this.variable.nodeType != "MemberAccessExpression") {
+     return;
    }
 
-   public override getChildren(): Array<INode> {
-     yield return Assignment;
-     yield return Variable;
+   const memberAccessExpression = this.variable as MemberAccessExpression;
+
+   let assignmentType = this.assignment.deriveType(context);
+
+   let variableType = context.variableContext?.getVariableType(memberAccessExpression.variable, context);
+   if (variableType != null) {
+     if (assignmentType == null || !assignmentType.equals(variableType))
+       context.logger.fail(this.reference,
+         `Variable '${memberAccessExpression.variable}' of type '${variableType}' is not assignable from expression of type '${assignmentType}'.`);
+     return;
    }
 
-   protected override validate(context: IValidationContext): void {
-     if (!(Variable is IdentifierExpression identifierExpression)) {
-       ValidateMemberAccess(context);
-       return;
-     }
+   let literal = memberAccessExpression.MemberAccessLiteral;
+   let parentType = context.rootNodes.getType(literal.parent);
 
-     let variableName = identifierExpression.Identifier;
-
-     let variableType = context.VariableContext.GetVariableType(variableName);
-     if (variableType == null) {
-       context.Logger.Fail(Reference, $`Unknown variable name: '{variableName}'.`);
-       return;
-     }
-
-     let expressionType = Assignment.DeriveType(context);
-     if (!variableType.Equals(expressionType))
-       context.Logger.Fail(Reference,
-         $`Variable '{variableName}' of type '{variableType}' is not assignable from expression of type '{expressionType}'.`);
+   if (!(nameOf<ITypeWithMembers>("memberType") in parentType)) {
+     context.logger.fail(this.reference, `Type '${literal.Parent}' has no members.`);
+     return;
    }
 
-   private validateMemberAccess(context: IValidationContext): void {
-     if (!(Variable is MemberAccessExpression memberAccessExpression)) return;
+   const typeWithMembers = parentType as ITypeWithMembers;
 
-     let assignmentType = Assignment.DeriveType(context);
+   let memberType = typeWithMembers.memberType(literal.Member, context);
+   if (assignmentType == null || !assignmentType.equals(memberType))
+     context.logger.fail(this.reference,
+       `Variable '${literal}' of type '${memberType}' is not assignable from expression of type '${assignmentType}'.`);
+  }
 
-     let variableType = context.VariableContext.GetVariableType(memberAccessExpression.Variable, context);
-     if (variableType != null) {
-       if (assignmentType == null || !assignmentType.Equals(variableType))
-         context.Logger.Fail(Reference,
-           $`Variable '{memberAccessExpression.Variable}' of type '{variableType}' is not assignable from expression of type '{assignmentType}'.`);
-       return;
-     }
-
-     let literal = memberAccessExpression.MemberAccessLiteral;
-     let parentType = context.RootNodes.GetType(literal.Parent);
-
-     if (!(parentType is ITypeWithMembers typeWithMembers)) {
-       context.Logger.Fail(Reference, $`Type '{literal.Parent}' has no members.`);
-       return;
-     }
-
-     let memberType = typeWithMembers.MemberType(literal.Member, context);
-     if (assignmentType == null || !assignmentType.Equals(memberType))
-       context.Logger.Fail(Reference,
-         $`Variable '{literal}' of type '{memberType}' is not assignable from expression of type '{assignmentType}'.`);
-   }
-
-   public override deriveType(context: IValidationContext): VariableType {
-     return Assignment.DeriveType(context);
-   }
+  public override deriveType(context: IValidationContext): VariableType {
+    return this.assignment.deriveType(context);
+  }
 }

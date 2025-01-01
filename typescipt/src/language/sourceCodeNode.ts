@@ -9,13 +9,13 @@ export class SourceCodeNode extends RootNode {
    public RootNodeList RootNodes new(): =;
 
    public SourceCodeNode() : base(new SourceReference(new SourceFile(`SourceCodeNode`), 1, 1)) {
-     Comments = new Comments(Reference);
+     Comments = new Comments(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let line = context.Line;
+     let line = context.line;
 
-     if (line.Tokens.IsComment()) return Comments;
+     if (line.tokens.IsComment()) return Comments;
 
      let rootNode = ParseRootNode(context);
      if (rootNode == null) return this;
@@ -26,25 +26,25 @@ export class SourceCodeNode extends RootNode {
    }
 
    private parseRootNode(context: IParseLineContext): IRootNode {
-     if (Include.IsValid(context.Line)) {
-       let include = Include.Parse(context);
+     if (Include.isValid(context.line)) {
+       let include = Include.parse(context);
        if (include != null) {
          includes.Add(include);
          return null;
        }
      }
 
-     let tokenName = Parser.NodeName.Parse(context);
+     let tokenName = Parser.NodeName.parse(context);
      if (tokenName == null) return null;
 
-     let reference = context.Line.LineStartReference();
+     let reference = context.line.lineStartReference();
      let rootNode = tokenName.Keyword switch {
        null => null,
        Keywords.FunctionKeyword => Function.Create(tokenName.Name, reference),
-       Keywords.EnumKeyword => EnumDefinition.Parse(tokenName, reference),
-       Keywords.ScenarioKeyword => Scenario.Parse(tokenName, reference),
-       Keywords.TableKeyword => Table.Parse(tokenName, reference),
-       Keywords.TypeKeyword => TypeDefinition.Parse(tokenName, reference),
+       Keywords.EnumKeyword => EnumDefinition.parse(tokenName, reference),
+       Keywords.ScenarioKeyword => Scenario.parse(tokenName, reference),
+       Keywords.TableKeyword => Table.parse(tokenName, reference),
+       Keywords.TypeKeyword => TypeDefinition.parse(tokenName, reference),
        _ => InvalidNode(tokenName, context, reference)
      };
 
@@ -52,7 +52,7 @@ export class SourceCodeNode extends RootNode {
    }
 
    private invalidNode(tokenName: NodeName, context: IParseLineContext, reference: SourceReference): IRootNode {
-     context.Logger.Fail(reference, $`Unknown keyword: {tokenName.Keyword}`);
+     context.logger.fail(reference, $`Unknown keyword: {tokenName.Keyword}`);
      return null;
    }
 
@@ -63,7 +63,7 @@ export class SourceCodeNode extends RootNode {
    protected override validate(context: IValidationContext): void {
      DuplicateChecker.ValidateNode(
        context,
-       node => node.Reference,
+       node => node.reference,
        node => node.NodeName,
        node => $`Duplicated node name: '{node.NodeName}'`,
        RootNodes);

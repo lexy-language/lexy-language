@@ -1,7 +1,13 @@
-import {IParseLineContext} from "./IParseLineContext";
-import {Line} from "./tokens/line";
-import {IParserLogger} from "./tokens/IParserLogger";
+import {Line} from "./line";
 import {TokenValidator} from "./TokenValidator";
+import {IParserLogger} from "./IParserLogger";
+
+export interface IParseLineContext {
+  line: Line;
+  logger: IParserLogger
+
+  validateTokens(name: string): TokenValidator
+}
 
 export class ParseLineContext implements IParseLineContext {
 

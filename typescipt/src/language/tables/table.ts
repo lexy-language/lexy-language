@@ -8,7 +8,8 @@ export class Table extends RootNode {
 
    public override string NodeName => Name.Value;
 
-   private Table(string name, SourceReference reference) : base(reference) {
+   private Table(string name, SourceReference reference) {
+     super(reference);
      Name.ParseName(name);
    }
 
@@ -18,10 +19,10 @@ export class Table extends RootNode {
 
    public override parse(context: IParseLineContext): IParsableNode {
      if (IsFirstLine()) {
-       Header = TableHeader.Parse(context);
+       Header = TableHeader.parse(context);
      }
      else {
-       Rows.Add(TableRow.Parse(context));
+       Rows.Add(TableRow.parse(context));
      }
 
      return this;
@@ -48,7 +49,7 @@ export class Table extends RootNode {
 
    public getRowType(context: IValidationContext): ComplexType {
      let members = Header.Columns
-       .Select(column => new ComplexTypeMember(column.Name, column.Type.CreateVariableType(context)))
+       .Select(column => new ComplexTypeMember(column.Name, column.Type.createVariableType(context)))
        .ToList();
 
      return new ComplexType(Name.Value, ComplexTypeSource.TableRow, members);

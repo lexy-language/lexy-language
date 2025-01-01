@@ -1,5 +1,4 @@
-
-public enum ExpressionOperator {
+export enum ExpressionOperator {
    Addition,
    Subtraction,
    Multiplication,

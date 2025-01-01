@@ -6,9 +6,9 @@ internal static class ParseResultContextExtensions {
      if (result == null) throw new Error(nameof(result));
      if (reference == null) throw new Error(nameof(reference));
 
-     if (result.IsSuccess) return false;
+     if (result.state != 'success') return false;
 
-     context.Logger.Fail(reference, result.ErrorMessage);
+     context.logger.fail(reference, result.errorMessage);
      return true;
    }
 }

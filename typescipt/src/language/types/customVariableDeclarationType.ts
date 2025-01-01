@@ -1,40 +1,36 @@
+import {VariableDeclarationType} from "./variableDeclarationType";
+import {SourceReference} from "../../parser/sourceReference";
+import {IValidationContext} from "../../parser/validationContext";
+import {VariableType} from "./variableType";
+import {INode} from "../node";
 
+export class CustomVariableDeclarationType extends VariableDeclarationType {
 
-public sealed class CustomVariableDeclarationType : VariableDeclarationType {
-   public string Type
+  public nodeType: "CustomVariableDeclarationType";
+  public type: string;
 
-   public CustomVariableDeclarationType(string type, SourceReference reference) : base(reference) {
-     Type = type;
+   constructor(type: string, reference: SourceReference) {
+     super(reference);
+     this.type = type;
    }
 
    private equals(other: CustomVariableDeclarationType): boolean {
-     return Type == other.Type;
-   }
-
-   public override equals(obj: object): boolean {
-     if (ReferenceEquals(null, obj)) return false;
-     if (ReferenceEquals(this, obj)) return true;
-     if (obj.GetType() != GetType()) return false;
-     return Equals((CustomVariableDeclarationType)obj);
-   }
-
-   public override getHashCode(): number {
-     return Type != null ? Type.GetHashCode() : 0;
+     return this.type == other.type;
    }
 
    public override toString(): string {
-     return Type;
+     return this.type;
    }
 
    public override createVariableType(context: IValidationContext): VariableType {
-     return context.RootNodes.GetType(Type);
+     return context.rootNodes.getType(this.type);
    }
 
    public override getChildren(): Array<INode> {
-     yield break;
+     return [];
    }
 
    protected override validate(context: IValidationContext): void {
-     VariableType = CreateVariableType(context);
+     this.variableType = this.createVariableType(context);
    }
 }

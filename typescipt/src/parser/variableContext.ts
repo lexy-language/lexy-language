@@ -1,101 +1,129 @@
+import {IValidationContext} from "./ValidationContext";
+import {VariableType} from "../language/types/variableType";
+import {SourceReference} from "./sourceReference";
+import {IParserLogger} from "./IParserLogger";
+import {VariableEntry} from "./variableEntry";
+import {VariableReference} from "../runTime/variableReference";
+import {VariableSource} from "./variableSource";
+import {ITypeWithMembers} from "../language/types/iTypeWithMembers";
 
+export interface IVariableContext {
+  addVariable(variableName: string, type: VariableType, source: VariableSource): void;
 
-export class VariableContext extends IVariableContext {
-   private readonly IParserLogger logger;
-   private readonly IVariableContext parentContext;
-   private readonly IDictionary<string, VariableEntry> variables = dictionary<string, VariableEntry>(): new;
+  registerVariableAndVerifyUnique(reference: SourceReference, variableName: string, type: VariableType | null,
+                                  source: VariableSource): void;
 
-   constructor(logger: IParserLogger, parentContext: IVariableContext) {
-     this.logger = logger ?? throw new Error(nameof(logger));
+  ensureVariableExists(reference: SourceReference, variableName: string): boolean;
+
+  contains(variableName: string): boolean;
+  contains(reference: VariableReference, context: IValidationContext): boolean;
+
+  getVariableTypeByName(variableName: string): VariableType | null;
+  getVariableType(reference: VariableReference, context: IValidationContext): VariableType | null;
+  getVariableSource(variableName: string): VariableSource | null;
+
+  getVariable(variableName: string): VariableEntry | null;
+}
+
+export class VariableContext implements IVariableContext {
+   private readonly logger: IParserLogger;
+   private readonly parentContext: IVariableContext | null;
+   private readonly variables: { [id: string] : VariableEntry; } = {};
+
+   constructor(logger: IParserLogger, parentContext: IVariableContext | null) {
+     this.logger = logger;
      this.parentContext = parentContext;
    }
 
    public addVariable(name: string, type: VariableType, source: VariableSource): void {
-     if (Contains(name)) return;
+     if (this.contains(name)) return;
 
      let entry = new VariableEntry(type, source);
-     variables.Add(name, entry);
+     this.variables[name] = entry;
    }
 
-   public void RegisterVariableAndVerifyUnique(SourceReference reference, string name, VariableType type,
-     VariableSource source) {
-     if (Contains(name)) {
-       logger.Fail(reference, $`Duplicated variable name: '{name}'`);
+   public registerVariableAndVerifyUnique(reference: SourceReference, name: string, type: VariableType | null,
+                                               source: VariableSource): void {
+     if (this.contains(name)) {
+       this.logger.fail(reference, `Duplicated variable name: '${name}'`);
        return;
      }
 
      let entry = new VariableEntry(type, source);
-     variables.Add(name, entry);
+     this.variables[name] = entry;
    }
 
    public contains(name: string): boolean {
-     return variables.ContainsKey(name) || parentContext != null && parentContext.Contains(name);
+     return name in this.variables || this.parentContext != null && this.parentContext.contains(name);
    }
 
    public contains(reference: VariableReference, context: IValidationContext): boolean {
-     let parent = GetVariable(reference.ParentIdentifier);
+     let parent = this.getVariable(reference.ParentIdentifier);
      if (parent == null) return false;
 
      return !reference.HasChildIdentifiers ||
-        ContainChild(parent.VariableType, reference.ChildrenReference(), context);
+        this.containChild(parent.variableType, reference.childrenReference(), context);
    }
 
    public ensureVariableExists(reference: SourceReference, name: string): boolean {
-     if (!Contains(name)) {
-       logger.Fail(reference, $`Unknown variable name: '{name}'.`);
+     if (!this.contains(name)) {
+       this.logger.fail(reference, `Unknown variable name: '${name}'.`);
        return false;
      }
 
      return true;
    }
 
-   public getVariableType(name: string): VariableType {
-     return variables.TryGetValue(name, out let value)
-       ? value.VariableType
-       : parentContext?.GetVariableType(name);
+   public getVariableTypeByName(name: string): VariableType | null {
+     return name in this.variables
+       ? this.variables[name].variableType
+       : this.parentContext !== null
+          ? this.parentContext.getVariableTypeByName(name)
+          : null;
    }
 
-   public getVariableType(reference: VariableReference, context: IValidationContext): VariableType {
-     if (reference == null) throw new Error(nameof(reference));
-
-     let parent = GetVariableType(reference.ParentIdentifier);
+   public getVariableType(reference: VariableReference, context: IValidationContext): VariableType | null {
+     let parent = this.getVariableTypeByName(reference.ParentIdentifier);
      return parent == null || !reference.HasChildIdentifiers
        ? parent
-       : GetVariableType(parent, reference.ChildrenReference(), context);
+       : this.getVariableType(parent, reference.childrenReference(), context);
    }
 
-
-   public VariableSourcegetVariableSource(name: string): ? {
-     return variables.TryGetValue(name, out let value)
-       ? value.VariableSource
-       : parentContext?.GetVariableSource(name);
+   public getVariableSource(name: string): VariableSource | null {
+     return name in this.variables
+       ? this.variables[name].variableSource
+       : this.parentContext != null
+         ? this.parentContext.getVariableSource(name)
+         : null;
    }
 
-   public getVariable(name: string): VariableEntry {
-     return variables.TryGetValue(name, out let value)
-       ? value
+   public getVariable(name: string): VariableEntry | null {
+     return name in this.variables
+       ? this.variables[name]
        : null;
    }
 
-   private containChild(parentType: VariableType, reference: VariableReference, context: IValidationContext): boolean {
-     let typeWithMembers = parentType as ITypeWithMembers;
+   private containChild(parentType: VariableType | null, reference: VariableReference, context: IValidationContext): boolean {
+     let typeWithMembers = 'memberType' in parentType ? parentType as ITypeWithMembers : null;
 
-     let memberVariableType = typeWithMembers?.MemberType(reference.ParentIdentifier, context);
+     let memberVariableType = typeWithMembers != null ? typeWithMembers.memberType(reference.ParentIdentifier, context) : null;
      if (memberVariableType == null) return false;
 
      return !reference.HasChildIdentifiers
-        || ContainChild(memberVariableType, reference.ChildrenReference(), context);
+        || this.containChild(memberVariableType, reference.childrenReference(), context);
    }
 
-   private VariableType GetVariableType(VariableType parentType, VariableReference reference,
-     IValidationContext context) {
-     if (parentType is not ITypeWithMembers typeWithMembers) return null;
+   private getVariableType(parentType: VariableType, reference: VariableReference,
+                            context: IValidationContext ): VariableType | null {
 
-     let memberVariableType = typeWithMembers.MemberType(reference.ParentIdentifier, context);
+     let typeWithMembers = 'memberType' in parentType ? parentType as ITypeWithMembers : null;
+     if (typeWithMembers == null) return null;
+
+     let memberVariableType = typeWithMembers.memberType(reference.ParentIdentifier, context);
      if (memberVariableType == null) return null;
 
      return !reference.HasChildIdentifiers
        ? memberVariableType
-       : GetVariableType(memberVariableType, reference.ChildrenReference(), context);
+       : this.getVariableType(memberVariableType, reference.childrenReference(), context);
    }
 }

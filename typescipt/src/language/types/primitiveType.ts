@@ -1,33 +1,27 @@
+import {TypeNames} from "./TypeNames";
+import {VariableType} from "./variableType";
 
+export class PrimitiveType extends VariableType
+{
+  public static readonly boolean: PrimitiveType = new PrimitiveType(TypeNames.boolean);
+  public static readonly string: PrimitiveType = new PrimitiveType(TypeNames.string);
+  public static readonly number: PrimitiveType = new PrimitiveType(TypeNames.number);
+  public static readonly date: PrimitiveType = new PrimitiveType(TypeNames.date);
 
-export class PrimitiveType extends VariableType {
-   public static PrimitiveType Boolean =new(): >;
-   public static PrimitiveType String =new(): >;
-   public static PrimitiveType Number =new(): >;
-   public static PrimitiveType Date =new(): >;
+  public type: string;
 
-   public string Type
+  private constructor(type: string) {
+    super();
+    this.type = type;
+  }
 
-   constructor(type: string) {
-     Type = type;
-   }
+  public equals(other: PrimitiveType): boolean
+  {
+    return this.type == other.type;
+  }
 
-   protected equals(other: PrimitiveType): boolean {
-     return Type == other.Type;
-   }
-
-   public override equals(obj: object): boolean {
-     if (ReferenceEquals(null, obj)) return false;
-     if (ReferenceEquals(this, obj)) return true;
-     if (obj.GetType() != GetType()) return false;
-     return Equals((PrimitiveType)obj);
-   }
-
-   public override getHashCode(): number {
-     return Type != null ? Type.GetHashCode() : 0;
-   }
-
-   public override toString(): string {
-     return Type;
-   }
+  public toString()
+  {
+    return this.type;
+  }
 }

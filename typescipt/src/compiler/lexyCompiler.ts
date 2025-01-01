@@ -17,7 +17,7 @@ export class LexyCompiler extends ILexyCompiler {
        let assembly = CreateAssembly(syntaxNode);
 
        environment.CreateExecutables(assembly);
-       return environment.Result();
+       return environment.result();
      }
      catch (Exception e) {
        logger.LogError(e, `Exception occured during compilation`);
@@ -119,6 +119,6 @@ export class LexyCompiler extends ILexyCompiler {
      let stringWriter = new StringWriter();
      foreach (let diagnostic in emitResult) stringWriter.WriteLine($` {diagnostic}`);
 
-     return stringWriter.ToString();
+     return stringWriter.toString();
    }
 }

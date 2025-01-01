@@ -9,7 +9,8 @@ export class SingleArgumentFunction extends ExpressionFunction {
    public Expression ValueExpression
 
    constructor(valueExpression: Expression, reference: SourceReference)
-     : base(reference) {
+     {
+     super(reference);
      ValueExpression = valueExpression ?? throw new Error(nameof(valueExpression));
    }
 
@@ -18,7 +19,7 @@ export class SingleArgumentFunction extends ExpressionFunction {
    }
 
    protected override validate(context: IValidationContext): void {
-     context.ValidateType(ValueExpression, 1, `Value`, ArgumentType, Reference, FunctionHelp);
+     context.ValidateType(ValueExpression, 1, `Value`, ArgumentType, reference, FunctionHelp);
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {

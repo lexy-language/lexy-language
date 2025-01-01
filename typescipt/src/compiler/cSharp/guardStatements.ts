@@ -4,7 +4,7 @@ internal static class GuardStatements {
    public static verifyNotNull(variable: string): StatementSyntax {
      return SyntaxFactory.IfStatement(
        SyntaxFactory.BinaryExpression(
-         SyntaxKind.EqualsExpression,
+         SyntaxKind.equalsExpression,
          SyntaxFactory.IdentifierName(variable),
          SyntaxFactory.LiteralExpression(SyntaxKind.NullLiteralExpression)),
        SyntaxFactory.ThrowStatement(

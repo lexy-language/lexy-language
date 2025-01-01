@@ -6,7 +6,8 @@ export class ExpressionList extends Node, IReadOnlyArray<Expression> {
    public number Count => values.Count;
    public Expression this[number index] => values[index];
 
-   public ExpressionList(SourceReference reference) : base(reference) {
+   public ExpressionList(SourceReference reference) {
+     super(reference);
    }
 
    public getEnumerator(): IEnumerator<Expression> {
@@ -31,20 +32,20 @@ export class ExpressionList extends Node, IReadOnlyArray<Expression> {
    }
 
    public parse(context: IParseLineContext): ParseExpressionResult {
-     let line = context.Line;
-     let expression = ExpressionFactory.Parse(line.Tokens, line);
-     if (!expression.IsSuccess) {
-       context.Logger.Fail(line.LineStartReference(), expression.ErrorMessage);
+     let line = context.line;
+     let expression = ExpressionFactory.parse(line.tokens, line);
+     if (!expression.state != 'success') {
+       context.logger.fail(line.lineStartReference(), expression.errorMessage);
        return expression;
      }
 
-     Add(expression.Result, context);
+     Add(expression.result, context);
      return expression;
    }
 
    private add(expression: Expression, context: IParseLineContext): void {
      if (expression is IDependantExpression childExpression)
-       childExpression.LinkPreviousExpression(values.LastOrDefault(), context);
+       childExpression.linkPreviousExpression(values.LastOrDefault(), context);
      else
        values.Add(expression);
    }

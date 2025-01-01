@@ -5,8 +5,8 @@ export class YearFunction extends SingleArgumentFunction {
 
    protected override string FunctionHelp => $`'{Name} expects 1 argument (Date)`;
 
-   protected override VariableType ArgumentType => PrimitiveType.Date;
-   protected override VariableType ResultType => PrimitiveType.Number;
+   protected override VariableType ArgumentType => PrimitiveType.date;
+   protected override VariableType ResultType => PrimitiveType.number;
 
    constructor(valueExpression: Expression, reference: SourceReference)
      : base(valueExpression, reference) {

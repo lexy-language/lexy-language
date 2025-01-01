@@ -5,7 +5,7 @@ export class DependencyGraphExtensions {
      boolean throwException = true) {
      let parser = serviceProvider.GetRequiredService<ILexyParser>();
      let codeLines = code.Split(Environment.NewLine);
-     let result = parser.Parse(codeLines, `tests`, throwException);
+     let result = parser.parse(codeLines, `tests`, throwException);
      return DependencyGraphFactory.Create(result.RootNodes);
    }
 }

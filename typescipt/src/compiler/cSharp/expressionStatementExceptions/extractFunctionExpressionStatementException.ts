@@ -26,10 +26,10 @@ export class ExtractFunctionExpressionStatementException extends IExpressionStat
    private static statementSyntax(functionResultVariable: string, mapping: Mapping): StatementSyntax {
      let left = mapping.VariableSource == VariableSource.Code
        ? IdentifierName(mapping.VariableName)
-       : mapping.VariableSource == VariableSource.Results
+       : mapping.VariableSource == VariableSource.results
          ? (ExpressionSyntax)MemberAccessExpression(
            SyntaxKind.SimpleMemberAccessExpression,
-           IdentifierName(LexyCodeConstants.ResultsVariable),
+           IdentifierName(LexyCodeConstants.resultsVariable),
            IdentifierName(mapping.VariableName))
          : throw new Error($`Invalid source: {mapping.VariableSource}`);
 

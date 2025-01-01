@@ -1,5 +1,4 @@
-
-public enum VariableSource {
+export enum VariableSource {
    Unknown,
    Parameters,
    Results,

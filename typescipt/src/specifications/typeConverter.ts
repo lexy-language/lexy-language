@@ -10,17 +10,17 @@ internal static class TypeConverter {
        let enumType = compilerResult.GetEnumType(enumVariableType.Type);
        if (enumType == null) throw new Error($`Unknown enum: {enumVariableType.Type}`);
 
-       let enumValueName = value.ToString();
-       let indexOfSeparator = enumValueName.IndexOf(`.`, StringComparison.InvariantCulture);
+       let enumValueName = value.toString();
+       let indexOfSeparator = enumValueName.indexOf(`.`, StringComparison.InvariantCulture);
        let enumValue = enumValueName[(indexOfSeparator + 1)..];
-       return Enum.Parse(enumType, enumValue);
+       return Enum.parse(enumType, enumValue);
      }
 
      if (type is PrimitiveType primitiveVariableType)
        return primitiveVariableType.Type switch {
-         TypeNames.Number => value as decimal? ?? decimal.Parse(value.ToString(), CultureInfo.InvariantCulture),
-         TypeNames.Date => value as DateTime? ?? DateTime.Parse(value.ToString(), CultureInfo.InvariantCulture),
-         TypeNames.Boolean => value as boolean? ?? bool.Parse(value.ToString()),
+         TypeNames.Number => value as decimal? ?? decimal.parse(value.toString(), CultureInfo.InvariantCulture),
+         TypeNames.Date => value as DateTime? ?? DateTime.parse(value.toString(), CultureInfo.InvariantCulture),
+         TypeNames.Boolean => value as boolean? ?? bool.parse(value.toString()),
          TypeNames.String => value,
          _ => throw new Error($`Invalid type: '{primitiveVariableType.Type}'`)
        };

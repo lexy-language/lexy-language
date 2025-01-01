@@ -12,27 +12,27 @@ export class Include {
    }
 
    public static isValid(line: Line): boolean {
-     return line.Tokens.IsKeyword(0, Keywords.Include);
+     return line.tokens.isKeyword(0, Keywords.Include);
    }
 
    public static parse(context: IParseLineContext): Include {
-     let line = context.Line;
-     let lineTokens = line.Tokens;
-     if (lineTokens.Length != 2 || !lineTokens.IsQuotedString(1)) {
-       context.Logger.Fail(line.LineStartReference(),
-         `Invalid syntax. Expected: 'Include \`FileName\``);
+     let line = context.line;
+     let lineTokens = line.tokens;
+     if (lineTokens.length != 2 || !lineTokens.IsQuotedString(1)) {
+       context.logger.fail(line.lineStartReference(),
+         "Invalid syntax. Expected: 'Include \`FileName\`");
        return null;
      }
 
      let quotedString = lineTokens.Token<QuotedLiteralToken>(1);
 
-     return new Include(quotedString.Value, line.LineStartReference());
+     return new Include(quotedString.Value, line.lineStartReference());
    }
 
    public process(parentFullFileName: string, context: IParserContext): string {
      IsProcessed = true;
      if (string.IsNullOrEmpty(FileName)) {
-       context.Logger.Fail(reference, `No include file name specified.`);
+       context.logger.fail(reference, `No include file name specified.`);
        return null;
      }
 
@@ -41,7 +41,7 @@ export class Include {
      let fullFinName = $`{Path.Combine(fullPath, FileName)}.{LexySourceDocument.FileExtension}`;
 
      if (!File.Exists(fullFinName)) {
-       context.Logger.Fail(reference, $`Invalid include file name '{FileName}'`);
+       context.logger.fail(reference, $`Invalid include file name '{FileName}'`);
        return null;
      }
 

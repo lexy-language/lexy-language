@@ -20,7 +20,7 @@ internal static class TokenValuesSyntax {
 
    private static translateMemberAccessLiteral(memberAccess: MemberAccessLiteral): ExpressionSyntax {
      let parts = memberAccess.Parts;
-     if (parts.Length != 2) throw new Error(`Only 2 parts expected.`);
+     if (parts.length != 2) throw new Error(`Only 2 parts expected.`);
 
      let identifierNameSyntax = SyntaxFactory.IdentifierName(parts[0]);
 

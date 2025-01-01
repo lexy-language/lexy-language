@@ -16,7 +16,7 @@ export class VariableClassFactory {
      let initializer = DefaultExpression(variable);
 
      let variableDeclaration = SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier(variable.Name))
-       .WithInitializer(SyntaxFactory.EqualsValueClause(initializer));
+       .WithInitializer(SyntaxFactory.equalsValueClause(initializer));
 
 
      let fieldDeclaration = SyntaxFactory.FieldDeclaration(SyntaxFactory.VariableDeclaration(Types.Syntax(variable))

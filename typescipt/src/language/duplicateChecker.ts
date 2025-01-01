@@ -13,8 +13,8 @@ export class DuplicateChecker {
      foreach (let list in lists)
      foreach (let item in list) {
        let name = getName(item);
-       if (found.Contains(name))
-         context.Logger.Fail(getReference(item), getErrorMessage(item));
+       if (found.contains(name))
+         context.logger.fail(getReference(item), getErrorMessage(item));
        else
          found.Add(name);
      }
@@ -33,8 +33,8 @@ export class DuplicateChecker {
      foreach (let list in lists)
      foreach (let item in list) {
        let name = getName(item);
-       if (found.Contains(name))
-         context.Logger.Fail(item, getReference(item), getErrorMessage(item));
+       if (found.contains(name))
+         context.logger.fail(item, getReference(item), getErrorMessage(item));
        else
          found.Add(name);
      }

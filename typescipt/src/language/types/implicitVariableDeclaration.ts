@@ -1,9 +1,16 @@
+import {VariableDeclarationType} from "./variableDeclarationType";
+import {VariableType} from "./variableType";
+import {SourceReference} from "../../parser/sourceReference";
+import {IValidationContext} from "../../parser/validationContext";
+import {INode} from "../node";
 
+export class ImplicitVariableDeclaration extends VariableDeclarationType {
 
-public sealed class ImplicitVariableDeclaration : VariableDeclarationType {
-   public VariableType VariableType { get; private set; }
+  public nodeType: "ImplicitVariableDeclaration";
+  public variableType: VariableType;
 
-   public ImplicitVariableDeclaration(SourceReference reference) : base(reference) {
+   constructor(reference: SourceReference) {
+     super(reference);
    }
 
    public override createVariableType(context: IValidationContext): VariableType {
@@ -12,11 +19,11 @@ public sealed class ImplicitVariableDeclaration : VariableDeclarationType {
    }
 
    public define(variableType: VariableType): void {
-     VariableType = variableType;
+     this.variableType = variableType;
    }
 
    public override getChildren(): Array<INode> {
-     yield break;
+     return [];
    }
 
    protected override validate(context: IValidationContext): void {

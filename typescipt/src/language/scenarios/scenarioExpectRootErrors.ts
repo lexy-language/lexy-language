@@ -7,11 +7,12 @@ export class ScenarioExpectRootErrors extends ParsableNode {
 
    public boolean HasValues => messages.Count > 0;
 
-   public ScenarioExpectRootErrors(SourceReference reference) : base(reference) {
+   public ScenarioExpectRootErrors(SourceReference reference) {
+     super(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let line = context.Line;
+     let line = context.line;
      let valid = context.ValidateTokens<ScenarioExpectError>()
        .Count(1)
        .QuotedString(0)
@@ -19,7 +20,7 @@ export class ScenarioExpectRootErrors extends ParsableNode {
 
      if (!valid) return this;
 
-     messages.Add(line.Tokens.Token<QuotedLiteralToken>(0).Value);
+     messages.Add(line.tokens.Token<QuotedLiteralToken>(0).Value);
      return this;
    }
 

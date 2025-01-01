@@ -16,7 +16,7 @@ export class EnumName extends Node {
 
    protected override validate(context: IValidationContext): void {
      if (string.IsNullOrEmpty(Value))
-       context.Logger.Fail(Reference, $`Invalid enum name: {Value}. Name should not be empty.`);
-     if (!SyntaxFacts.IsValidIdentifier(Value)) context.Logger.Fail(Reference, $`Invalid enum name: {Value}.`);
+       context.logger.fail(this.reference, $`Invalid enum name: {Value}. Name should not be empty.`);
+     if (!SyntaxFacts.IsValidIdentifier(Value)) context.logger.fail(this.reference, $`Invalid enum name: {Value}.`);
    }
 }

@@ -58,14 +58,14 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
      let result = executable.Run(values);
 
      let validationResultText = GetValidationResult(result, compilerResult);
-     if (validationResultText.Length > 0)
+     if (validationResultText.length > 0)
        Fail(validationResultText);
      else
        context.Success(Scenario);
    }
 
    public parserLogging(): string {
-     return $`------- Filename: {fileName}{Environment.NewLine}{parserLogger.ErrorMessages().Format(2)}`;
+     return $`------- Filename: {fileName}{Environment.NewLine}{parserLogger.errorMessages().Format(2)}`;
    }
 
    public static IScenarioRunner Create(string fileName, Scenario scenario,
@@ -75,19 +75,19 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
 
      let serviceScope = serviceProvider.CreateScope();
      let scenarioRunner = serviceScope.ServiceProvider.GetRequiredService<IScenarioRunner>();
-     scenarioRunner.Initialize(fileName, parserContext.Nodes, scenario, context, serviceScope, parserContext.Logger);
+     scenarioRunner.Initialize(fileName, parserContext.Nodes, scenario, context, serviceScope, parserContext.logger);
 
      return scenarioRunner;
    }
 
    private fail(message: string): void {
      Failed = true;
-     context.Fail(Scenario, message);
+     context.fail(Scenario, message);
    }
 
    private getValidationResult(result: FunctionResult, compilerResult: CompilerResult): string {
      let validationResult = new StringWriter();
-     foreach (let expected in Scenario.Results.Assignments) {
+     foreach (let expected in Scenario.results.Assignments) {
        let actual = result.GetValue(expected.Variable);
        let expectedValue =
          TypeConverter.Convert(compilerResult, expected.ConstantValue.Value, expected.VariableType);
@@ -99,7 +99,7 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
            $`'{expected.Variable}' should be '{expectedValue ?? `<null>`}' ({expectedValue?.GetType().Name}) but is '{actual ?? `<null>`} ({actual?.GetType().Name})'`);
      }
 
-     return validationResult.ToString();
+     return validationResult.toString();
    }
 
    private validateErrors(runnerContext: ISpecificationRunnerContext): boolean {
@@ -108,20 +108,20 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
      let node = function ?? Scenario.Function ?? Scenario.Enum ?? (IRootNode)Scenario.Table;
      let failedMessages = parserLogger.ErrorNodeMessages(node);
 
-     if (failedMessages.Length > 0 && !Scenario.ExpectError.HasValue) {
+     if (failedMessages.length > 0 && !Scenario.ExpectError.HasValue) {
        Fail(`Exception occured: ` + failedMessages.Format(2));
        return false;
      }
 
      if (!Scenario.ExpectError.HasValue) return true;
 
-     if (failedMessages.Length == 0) {
+     if (failedMessages.length == 0) {
        Fail($`No exception {Environment.NewLine}` +
          $` Expected: {Scenario.ExpectError.Message}{Environment.NewLine}`);
        return false;
      }
 
-     if (!failedMessages.Any(message => message.Contains(Scenario.ExpectError.Message))) {
+     if (!failedMessages.Any(message => message.contains(Scenario.ExpectError.Message))) {
        Fail($`Wrong exception {Environment.NewLine}` +
          $` Expected: {Scenario.ExpectError.Message}{Environment.NewLine}` +
          $` Actual: {failedMessages.Format(4)}`);
@@ -133,7 +133,7 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
    }
 
    private validateRootErrors(): boolean {
-     let failedMessages = parserLogger.ErrorMessages().ToList();
+     let failedMessages = parserLogger.errorMessages().ToList();
      if (!failedMessages.Any()) {
        Fail($`No exceptions {Environment.NewLine}` +
          $` Expected: {Scenario.ExpectRootErrors.Messages.Format(4)}{Environment.NewLine}` +
@@ -143,7 +143,7 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
 
      let failed = false;
      foreach (let rootMessage in Scenario.ExpectRootErrors.Messages) {
-       let failedMessage = failedMessages.Find(message => message.Contains(rootMessage));
+       let failedMessage = failedMessages.Find(message => message.contains(rootMessage));
        if (failedMessage != null)
          failedMessages.Remove(failedMessage);
        else
@@ -157,7 +157,7 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
 
      Fail($`Wrong exception {Environment.NewLine}` +
        $` Expected: {Scenario.ExpectRootErrors.Messages.Format(4)}{Environment.NewLine}` +
-       $` Actual: {parserLogger.ErrorMessages().Format(4)}`);
+       $` Actual: {parserLogger.errorMessages().Format(4)}`);
      return false;
    }
 

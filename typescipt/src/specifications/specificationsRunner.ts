@@ -29,16 +29,16 @@ export class SpecificationsRunner extends ISpecificationsRunner {
 
      runners.ForEach(runner => runner.Run());
 
-     context.LogGlobal($`Specifications succeed: {countScenarios - context.Failed} / {countScenarios}`);
+     context.LogGlobal($`Specifications succeed: {countScenarios - context.failed} / {countScenarios}`);
 
-     if (context.Failed > 0) Failed(context);
+     if (context.failed > 0) Failed(context);
    }
 
    private static failed(context: ISpecificationRunnerContext): void {
      Console.WriteLine(`--------------- FAILED PARSER LOGGING ---------------`);
-     foreach (let runner in context.FailedScenariosRunners()) Console.WriteLine(runner.ParserLogging());
+     foreach (let runner in context.failedScenariosRunners()) Console.WriteLine(runner.ParserLogging());
 
-     throw new Error($`Specifications failed: {context.Failed}`);
+     throw new Error($`Specifications failed: {context.failed}`);
    }
 
    private getRunners(folder: string): void {

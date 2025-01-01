@@ -1,43 +1,54 @@
+import {IVariableContext, VariableContext} from "./variableContext";
+import {Stack} from "../infrastructure/lambdaComparer";
+import {IParserLogger} from "./IParserLogger";
+import {RootNodeList} from "../language/rootNodeList";
 
+class CodeContextScope  {
+  private readonly func: () => IVariableContext | null;
 
-export class ValidationContext extends IValidationContext {
-   private readonly Stack<IVariableContext> contexts new(): =;
-   private IVariableContext variableContext;
+  constructor(func: (() => IVariableContext | null)) {
+    this.func = func;
+  }
 
-   public IParserLogger Logger
-   public RootNodeList RootNodes
+  [Symbol.dispose] = () => {
+    this.func();
+  }
+}
+
+export interface IValidationContext {
+  logger: IParserLogger;
+  rootNodes: RootNodeList;
+
+  variableContext: IVariableContext | null;
+  createVariableScope() : { [Symbol.dispose] };
+}
+
+export class ValidationContext implements IValidationContext {
+   private contexts: Stack<IVariableContext> = new Stack<IVariableContext>()
+   private variableContextValue: IVariableContext | null;
+
+   public logger: IParserLogger;
+   public rootNodes: RootNodeList;
 
    constructor(logger: IParserLogger, rootNodes: RootNodeList) {
-     Logger = logger ?? throw new Error(nameof(logger));
-     RootNodes = rootNodes ?? throw new Error(nameof(rootNodes));
+     this.logger = logger;
+     this.rootNodes = rootNodes;
    }
 
-
-   public IVariableContext VariableContext {
-     get {
-       if (variableContext == null) throw new Error(`FunctionCodeContext not set.`);
-       return variableContext;
-     }
+   public get variableContext(): IVariableContext {
+     if (this.variableContextValue == null) throw new Error(`FunctionCodeContext not set.`);
+     return this.variableContextValue;
    }
 
-
-   public createVariableScope(): IDisposable {
-     if (variableContext != null) contexts.Push(variableContext);
-
-     variableContext = new VariableContext(Logger, variableContext);
-
-     return new CodeContextScope(() => { return variableContext = contexts.Count == 0 ? null : contexts.Pop(); });
-   }
-
-   private class CodeContextScope : IDisposable {
-     private readonly Func<IVariableContext> func;
-
-     codeContextScope(func: Func<IVariableContext>): public {
-       this.func = func;
+   public createVariableScope(): { [Symbol.dispose] } {
+     if (this.variableContextValue != null) {
+       this.contexts.push(this.variableContextValue);
      }
 
-     public dispose(): void {
-       func();
-     }
+     this.variableContextValue = new VariableContext(this.logger, this.variableContextValue);
+
+     return new CodeContextScope(() => {
+       return this.variableContextValue = this.contexts.size() == 0 ? null : this.contexts.pop();
+     });
    }
 }

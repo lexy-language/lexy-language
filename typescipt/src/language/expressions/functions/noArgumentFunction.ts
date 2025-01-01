@@ -4,7 +4,8 @@ export class NoArgumentFunction extends ExpressionFunction {
    protected abstract VariableType ResultType
 
    constructor(reference: SourceReference)
-     : base(reference) {
+     {
+     super(reference);
    }
 
    public override getChildren(): Array<INode> {

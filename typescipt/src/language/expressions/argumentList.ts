@@ -1,18 +1,28 @@
-
+import {TokenList} from "../../parser/tokens/tokenList";
+import {
+  ArgumentTokenParseResult,
+  newArgumentTokenParseFailed,
+  newArgumentTokenParseSuccess
+} from "./argumentTokenParseResult";
+import {Token} from "../../parser/tokens/token";
+import {OperatorToken} from "../../parser/tokens/operatorToken";
+import {OperatorType} from "../../parser/tokens/operatorType";
 
 export class ArgumentList {
    public static parse(tokens: TokenList): ArgumentTokenParseResult {
-     if (tokens == null) throw new Error(nameof(tokens));
-     if (tokens.Length == 0) return ArgumentTokenParseResult.Success();
+     if (tokens.length == 0) return newArgumentTokenParseSuccess(new Array<TokenList>());
 
-     let result = new Array<TokenArray>();
+     let result = new Array<TokenList>();
      let argumentTokens = new Array<Token>();
 
      let countParentheses = 0;
      let countBrackets = 0;
-     foreach (let token in tokens)
-       if (token is OperatorToken operatorToken) {
-         switch (operatorToken.Type) {
+
+     for (let index = 0 ; index < tokens.length; index ++) {
+       const token = tokens[index]
+       if (token.tokenType == "OperatorToken") {
+         const operatorToken = token as OperatorToken;
+         switch (operatorToken.type) {
            case OperatorType.OpenParentheses:
              countParentheses++;
              break;
@@ -27,26 +37,27 @@ export class ArgumentList {
              break;
          }
 
-         if (countParentheses == 0 && countBrackets == 0 && operatorToken.Type == OperatorType.ArgumentSeparator) {
-           if (argumentTokens.Count == 0)
-             return ArgumentTokenParseResult.Failed(@`Invalid token ','. No tokens before comma.`);
+         if (countParentheses == 0 && countBrackets == 0 && operatorToken.type == OperatorType.ArgumentSeparator) {
+           if (argumentTokens.length == 0) {
+             return newArgumentTokenParseFailed(`Invalid token ','. No tokens before comma.`);
+           }
 
-           result.Add(new TokenList(argumentTokens.ToArray()));
+           result.push(new TokenList(argumentTokens));
            argumentTokens = new Array<Token>();
+         } else {
+           argumentTokens.push(token);
          }
-         else {
-           argumentTokens.Add(token);
-         }
+       } else {
+         argumentTokens.push(token);
        }
-       else {
-         argumentTokens.Add(token);
-       }
+     }
 
-     if (argumentTokens.Count == 0)
-       return ArgumentTokenParseResult.Failed(@`Invalid token ','. No tokens before comma.`);
+     if (argumentTokens.length == 0){
+       return newArgumentTokenParseFailed(`Invalid token ','. No tokens before comma.`);
+     }
 
-     result.Add(new TokenList(argumentTokens.ToArray()));
+     result.push(new TokenList(argumentTokens));
 
-     return ArgumentTokenParseResult.Success(result);
+     return newArgumentTokenParseSuccess(result);
    }
 }

@@ -31,7 +31,7 @@ export class FunctionType extends TypeWithMembers {
    public override memberType(name: string, context: IValidationContext): VariableType {
      return name switch {
        Function.ParameterName => FunctionParametersType(context),
-       Function.ResultsName => FunctionResultsType(context),
+       Function.resultsName => FunctionResultsType(context),
        _ => null
      };
    }

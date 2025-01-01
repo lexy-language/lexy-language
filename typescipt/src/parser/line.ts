@@ -6,10 +6,19 @@ import {ITokenizer} from "./tokens/tokenizer";
 import {TokenList} from "./tokens/tokenList";
 
 export class Line {
+
+  public tokensValues: TokenList | null = null;
+
   public index: number;
   public content: string;
   public file: SourceFile;
-  public tokens: TokenList | null = null;
+
+  public get tokens(): TokenList {
+    if (!this.tokensValues) {
+      throw new Error("Tokens not set");
+    }
+    return this.tokensValues;
+  }
 
   constructor(index: number, content: string, file: SourceFile) {
     this.index = index;
@@ -102,7 +111,7 @@ export class Line {
   public tokenize(tokenizer: ITokenizer): TokenizeResult {
     let tokenizeResult = tokenizer.tokenize(this);
     if (tokenizeResult.state == 'success') {
-      this.tokens = tokenizeResult.result;
+      this.tokensValues = tokenizeResult.result;
     }
     return tokenizeResult;
   }

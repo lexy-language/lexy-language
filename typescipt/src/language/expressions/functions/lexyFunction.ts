@@ -14,7 +14,8 @@ export class LexyFunction extends ExpressionFunction, IHasNodeDependencies {
    public ComplexType FunctionParametersType { get; private set; }
    public ComplexType FunctionResultsType { get; private set; }
 
-   public LexyFunction(string functionName, Array<Expression> arguments, SourceReference reference) : base(reference) {
+   public LexyFunction(string functionName, Array<Expression> arguments, SourceReference reference) {
+     super(reference);
      FunctionName = functionName;
      Arguments = arguments;
    }
@@ -31,19 +32,19 @@ export class LexyFunction extends ExpressionFunction, IHasNodeDependencies {
    protected override validate(context: IValidationContext): void {
      let function = context.RootNodes.GetFunction(FunctionName);
      if (function == null) {
-       context.Logger.Fail(Reference, $`Invalid function name: '{FunctionName}'`);
+       context.logger.fail(this.reference, $`Invalid function name: '{FunctionName}'`);
        return;
      }
 
      if (Arguments.Count > 1) {
-       context.Logger.Fail(Reference, $`Invalid function argument: '{FunctionName}'. Should be 0 or 1`);
+       context.logger.fail(this.reference, $`Invalid function argument: '{FunctionName}'. Should be 0 or 1`);
        return;
      }
 
      if (Arguments.Count == 0) {
-       FillParametersFunction.GetMapping(Reference, context, function.GetParametersType(context),
+       FillParametersFunction.GetMapping(this.reference, context, function.GetParametersType(context),
          mappingParameters);
-       ExtractResultsFunction.GetMapping(Reference, context, function.GetResultsType(context), mappingResults);
+       ExtractResultsFunction.GetMapping(this.reference, context, function.GetResultsType(context), mappingResults);
 
        FunctionParametersType = function.GetParametersType(context);
        FunctionResultsType = function.GetResultsType(context);
@@ -51,11 +52,11 @@ export class LexyFunction extends ExpressionFunction, IHasNodeDependencies {
        return;
      }
 
-     let argumentType = Arguments[0].DeriveType(context);
+     let argumentType = Arguments[0].deriveType(context);
      let parametersType = function.GetParametersType(context);
 
-     if (argumentType == null || !argumentType.Equals(parametersType))
-       context.Logger.Fail(Reference, $`Invalid function argument: '{FunctionName}'. ` +
+     if (argumentType == null || !argumentType.equals(parametersType))
+       context.logger.fail(this.reference, $`Invalid function argument: '{FunctionName}'. ` +
                       `Argument should be of type function parameters. Use new(Function) of fill(Function) to create an variable of the function result type.`);
 
      VariableName = (Arguments[0] as IdentifierExpression)?.Identifier;

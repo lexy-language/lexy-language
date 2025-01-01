@@ -7,7 +7,7 @@ export class MemberAccessExpressionTests extends ScopedServicesTestFixture {
      expression.ValidateOfType<AssignmentExpression>(assignmentExpression => {
        assignmentExpression.Variable.ValidateIdentifierExpression(`A`);
        assignmentExpression.Assignment.ValidateOfType<MemberAccessExpression>(memberAccess =>
-         memberAccess.Variable.ToString().ShouldBe(`B.C`));
+         memberAccess.Variable.toString().ShouldBe(`B.C`));
      });
    }
 }

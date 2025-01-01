@@ -7,7 +7,8 @@ export class EnumDefinition extends RootNode {
 
    public Array<EnumMember> Members = list<EnumMember>(): new;
 
-   private EnumDefinition(string name, SourceReference reference) : base(reference) {
+   private EnumDefinition(string name, SourceReference reference) {
+     super(reference);
      Name = new EnumName(reference);
      Name.ParseName(name);
    }
@@ -18,7 +19,7 @@ export class EnumDefinition extends RootNode {
 
    public override parse(context: IParseLineContext): IParsableNode {
      let lastIndex = Members.LastOrDefault()?.NumberValue ?? -1;
-     let member = EnumMember.Parse(context, lastIndex);
+     let member = EnumMember.parse(context, lastIndex);
      if (member != null) Members.Add(member);
      return this;
    }
@@ -31,13 +32,13 @@ export class EnumDefinition extends RootNode {
 
    protected override validate(context: IValidationContext): void {
      if (Members.Count == 0) {
-       context.Logger.Fail(Reference, `Enum has no members defined.`);
+       context.logger.fail(this.reference, `Enum has no members defined.`);
        return;
      }
 
-     DuplicateChecker.Validate(
+     DuplicateChecker.validate(
        context,
-       member => member.Reference,
+       member => member.reference,
        member => member.Name,
        member => $`Enum member name should be unique. Duplicate name: '{member.Name}'`,
        Members);

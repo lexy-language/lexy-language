@@ -3,7 +3,7 @@
 export class LexyScriptTests extends ScopedServicesTestFixture {
   it('XXXX', async () => {
    public testSimpleReturn(): void {
-     let script = ServiceScope.CompileFunction(@`Function: TestSimpleReturn
+     let script = ServiceScope.CompileFunction(`Function: TestSimpleReturn
   Results
    number Result
   Code
@@ -14,7 +14,7 @@ export class LexyScriptTests extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public testParameterDefaultReturn(): void {
-     let script = ServiceScope.CompileFunction(@`Function: TestSimpleReturn
+     let script = ServiceScope.CompileFunction(`Function: TestSimpleReturn
   Parameters
    number Input = 5
   Results
@@ -27,7 +27,7 @@ export class LexyScriptTests extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public testAssignmentReturn(): void {
-     let script = ServiceScope.CompileFunction(@`Function: TestSimpleReturn
+     let script = ServiceScope.CompileFunction(`Function: TestSimpleReturn
   Parameters
    number Input = 5
 
@@ -44,7 +44,7 @@ export class LexyScriptTests extends ScopedServicesTestFixture {
 
   it('XXXX', async () => {
    public testMemberAccessAssignment(): void {
-     let script = ServiceScope.CompileFunction(@`Table: ValidateTableKeyword
+     let script = ServiceScope.CompileFunction(`Table: ValidateTableKeyword
 # Validate table keywords
   | number Value | number Result |
   | 0 | 0 |
@@ -66,7 +66,7 @@ Function: ValidateTableKeywordFunction
 
   it('XXXX', async () => {
    public variableDeclarationInCode(): void {
-     let script = ServiceScope.CompileFunction(@`Function: TestSimpleReturn
+     let script = ServiceScope.CompileFunction(`Function: TestSimpleReturn
   Parameters
    number Value = 5 
   Results
@@ -82,7 +82,7 @@ Function: ValidateTableKeywordFunction
 
   it('XXXX', async () => {
    public variableDeclarationWithDefaultInCode(): void {
-     let script = ServiceScope.CompileFunction(@`Function: TestSimpleReturn
+     let script = ServiceScope.CompileFunction(`Function: TestSimpleReturn
   Results
    number Result
   Code

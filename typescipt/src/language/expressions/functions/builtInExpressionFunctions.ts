@@ -47,7 +47,7 @@ export class BuiltInExpressionFunctions {
      Func<SourceReference, ExpressionFunction> factory) {
      return (name, reference, arguments) => {
        if (arguments.Count != 0)
-         return ParseExpressionFunctionsResult.Failed(`Invalid number of arguments. No arguments expected.`);
+         return ParseExpressionFunctionsResult.failed(`Invalid number of arguments. No arguments expected.`);
 
        let function = factory(reference);
        return ParseExpressionFunctionsResult.Success(function);
@@ -58,7 +58,7 @@ export class BuiltInExpressionFunctions {
      Func<SourceReference, Expression, ExpressionFunction> factory) {
      return (name, reference, arguments) => {
        if (arguments.Count != 1)
-         return ParseExpressionFunctionsResult.Failed(`Invalid number of arguments. 1 argument expected.`);
+         return ParseExpressionFunctionsResult.failed(`Invalid number of arguments. 1 argument expected.`);
 
        let function = factory(reference, arguments[0]);
        return ParseExpressionFunctionsResult.Success(function);
@@ -69,7 +69,7 @@ export class BuiltInExpressionFunctions {
      Func<SourceReference, Expression, Expression, ExpressionFunction> factory) {
      return (name, reference, arguments) => {
        if (arguments.Count != 2)
-         return ParseExpressionFunctionsResult.Failed(`Invalid number of arguments. 2 arguments expected.`);
+         return ParseExpressionFunctionsResult.failed(`Invalid number of arguments. 2 arguments expected.`);
 
        let function = factory(reference, arguments[0], arguments[1]);
        return ParseExpressionFunctionsResult.Success(function);

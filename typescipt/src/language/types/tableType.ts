@@ -30,7 +30,7 @@ export class TableType extends TypeWithMembers {
 
    public override memberType(name: string, context: IValidationContext): VariableType {
      return name switch {
-       `Count` => PrimitiveType.Number,
+       `Count` => PrimitiveType.number,
        Table.RowName => TableRowType(context),
        _ => null
      };
@@ -43,7 +43,7 @@ export class TableType extends TypeWithMembers {
 
    private getMembers(context: IValidationContext): Array<ComplexTypeMember> {
      return Table.Header.Columns.Select(column =>
-         new ComplexTypeMember(column.Name, column.Type.CreateVariableType(context)))
+         new ComplexTypeMember(column.Name, column.Type.createVariableType(context)))
        .ToList();
    }
 }

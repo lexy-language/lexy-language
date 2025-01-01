@@ -1,39 +1,36 @@
+import {VariableDeclarationType} from "./variableDeclarationType";
+import {SourceReference} from "../../parser/sourceReference";
+import {IValidationContext} from "../../parser/validationContext";
+import {VariableType} from "./variableType";
+import {PrimitiveType} from "./primitiveType";
+import {INode} from "../node";
 
+export class PrimitiveVariableDeclarationType extends VariableDeclarationType {
 
-public sealed class PrimitiveVariableDeclarationType : VariableDeclarationType {
-   public string Type
+  public nodeType: "PrimitiveVariableDeclarationType";
+  public type: string
 
-   public PrimitiveVariableDeclarationType(string type, SourceReference reference) : base(reference) {
-     Type = type ?? throw new Error(nameof(type));
-   }
+  constructor(type: string, reference: SourceReference) {
+    super(reference);
+    this.type = type;
+  }
 
-   protected equals(other: PrimitiveVariableDeclarationType): boolean {
-     return Type == other.Type;
-   }
+  protected equals(other: PrimitiveVariableDeclarationType): boolean {
+    return this.type == other.type;
+  }
 
-   public override equals(obj: object): boolean {
-     if (ReferenceEquals(null, obj)) return false;
-     if (ReferenceEquals(this, obj)) return true;
-     if (obj.GetType() != GetType()) return false;
-     return Equals((PrimitiveVariableDeclarationType)obj);
-   }
+  public override toString(): string {
+    return this.type;
+  }
 
-   public override getHashCode(): number {
-     return Type != null ? Type.GetHashCode() : 0;
-   }
+  public override createVariableType(context: IValidationContext): VariableType {
+    return new PrimitiveType(this.type);
+  }
 
-   public override toString(): string {
-     return Type;
-   }
+  public override getChildren(): Array<INode> {
+    return [];
+  }
 
-   public override createVariableType(context: IValidationContext): VariableType {
-     return new PrimitiveType(Type);
-   }
-
-   public override getChildren(): Array<INode> {
-     yield break;
-   }
-
-   protected override validate(context: IValidationContext): void {
-   }
+  protected override validate(context: IValidationContext): void {
+  }
 }

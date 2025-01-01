@@ -105,7 +105,7 @@ export class BinaryExpressionTests extends ScopedServicesTestFixture {
      let expression = this.ParseExpression(`B == 12`);
 
      expression.ValidateOfType<BinaryExpression>(multiplication => {
-       multiplication.Operator.ShouldBe(ExpressionOperator.Equals);
+       multiplication.Operator.ShouldBe(ExpressionOperator.equals);
        multiplication.Left.ValidateVariableExpression(`B`);
        multiplication.Right.ValidateNumericLiteralExpression(12m);
      });

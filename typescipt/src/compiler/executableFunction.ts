@@ -37,7 +37,7 @@ export class ExecutableFunction {
    }
 
    private getParameterField(parameters: object, name: string): FieldInfo {
-     if (variables.ContainsKey(name)) return variables[name];
+     if (variables.containsKey(name)) return variables[name];
 
      let type = parameters.GetType();
      let field = type.GetField(name, BindingFlags.Instance | BindingFlags.Public);

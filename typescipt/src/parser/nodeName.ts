@@ -9,9 +9,9 @@ export class NodeName {
    }
 
    public static parse(context: IParseLineContext): NodeName {
-     let line = context.Line;
-     let tokens = line.Tokens;
-     if (tokens.Length < 1 || tokens.Length > 2) return null;
+     let line = context.line;
+     let tokens = line.tokens;
+     if (tokens.length < 1 || tokens.length > 2) return null;
 
      let valid = context.ValidateTokens<NodeName>()
        .Keyword(0)
@@ -19,8 +19,8 @@ export class NodeName {
 
      if (!valid) return null;
 
-     let keyword = tokens.TokenValue(0);
-     if (tokens.Length == 1) return new NodeName(keyword, null);
+     let keyword = tokens.tokenValue(0);
+     if (tokens.length == 1) return new NodeName(keyword, null);
 
      valid = context.ValidateTokens<NodeName>()
        .StringLiteral(1)
@@ -28,7 +28,7 @@ export class NodeName {
 
      if (!valid) return null;
 
-     let parameter = tokens.TokenValue(1);
+     let parameter = tokens.tokenValue(1);
 
      return new NodeName(keyword, parameter);
    }

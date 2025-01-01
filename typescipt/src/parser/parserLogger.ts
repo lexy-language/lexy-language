@@ -27,7 +27,7 @@ export class ParserLogger extends IParserLogger {
      if (reference == null) throw new Error(nameof(reference));
      if (message == null) throw new Error(nameof(message));
 
-     logger.LogDebug(`{Reference}: {Message}`, reference, message);
+     logger.LogDebug(`{reference}: {Message}`, reference, message);
      logEntries.Add(new LogEntry(currentNode, false, $`{reference}: {message}`));
    }
 
@@ -37,7 +37,7 @@ export class ParserLogger extends IParserLogger {
 
      failedMessages++;
 
-     logger.LogError(`{Reference}: ERROR - {Message}`, reference, message);
+     logger.LogError(`{reference}: ERROR - {Message}`, reference, message);
      logEntries.Add(new LogEntry(currentNode, true, $`{reference}: ERROR - {message}`));
    }
 
@@ -47,7 +47,7 @@ export class ParserLogger extends IParserLogger {
 
      failedMessages++;
 
-     logger.LogError(`{Reference}: ERROR - {Message}`, reference, message);
+     logger.LogError(`{reference}: ERROR - {Message}`, reference, message);
      logEntries.Add(new LogEntry(node, true, $`{reference}: ERROR - {message}`));
    }
 
@@ -57,11 +57,11 @@ export class ParserLogger extends IParserLogger {
      let nodeLogger = new NodesLogger();
      nodeLogger.Log(nodes);
 
-     logger.LogDebug(`Parsed nodes: {Nodes}`, nodeLogger.ToString());
+     logger.LogDebug(`Parsed nodes: {Nodes}`, nodeLogger.toString());
    }
 
    public hasErrorMessage(expectedError: string): boolean {
-     return logEntries.Any(message => message.IsError && message.Message.Contains(expectedError));
+     return logEntries.Any(message => message.IsError && message.Message.contains(expectedError));
    }
 
    public formatMessages(): string {

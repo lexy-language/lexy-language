@@ -10,7 +10,8 @@ export class EndStartDateFunction extends ExpressionFunction {
 
    protected EndStartDateFunction(Expression endDateExpression, Expression startDateExpression,
      SourceReference reference)
-     : base(reference) {
+     {
+     super(reference);
      EndDateExpression = endDateExpression;
      StartDateExpression = startDateExpression;
    }
@@ -22,11 +23,11 @@ export class EndStartDateFunction extends ExpressionFunction {
 
    protected override validate(context: IValidationContext): void {
      context
-       .ValidateType(EndDateExpression, 1, `EndDate`, PrimitiveType.Date, Reference, FunctionHelp)
-       .ValidateType(StartDateExpression, 2, `EndDate`, PrimitiveType.Date, Reference, FunctionHelp);
+       .ValidateType(EndDateExpression, 1, `EndDate`, PrimitiveType.date, reference, FunctionHelp)
+       .ValidateType(StartDateExpression, 2, `EndDate`, PrimitiveType.date, reference, FunctionHelp);
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {
-     return PrimitiveType.Number;
+     return PrimitiveType.number;
    }
 }

@@ -3,7 +3,8 @@
 export class FunctionName extends Node {
    public string Value { get; private set; }
 
-   public FunctionName(SourceReference reference) : base(reference) {
+   public FunctionName(SourceReference reference) {
+     super(reference);
    }
 
    public parseName(name: string): void {
@@ -16,7 +17,7 @@ export class FunctionName extends Node {
 
    protected override validate(context: IValidationContext): void {
      if (string.IsNullOrEmpty(Value))
-       context.Logger.Fail(Reference, $`Invalid function name: '{Value}'. Name should not be empty.`);
-     if (!SyntaxFacts.IsValidIdentifier(Value)) context.Logger.Fail(Reference, $`Invalid function name: '{Value}'.`);
+       context.logger.fail(this.reference, $`Invalid function name: '{Value}'. Name should not be empty.`);
+     if (!SyntaxFacts.IsValidIdentifier(Value)) context.logger.fail(this.reference, $`Invalid function name: '{Value}'.`);
    }
 }

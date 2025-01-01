@@ -1,9 +1,10 @@
 
 
 export class ScenarioName extends Node {
-   public string Value { get; private set; } = Guid.NewGuid().ToString(`D`);
+   public string Value { get; private set; } = Guid.NewGuid().toString(`D`);
 
-   public ScenarioName(SourceReference reference) : base(reference) {
+   public ScenarioName(SourceReference reference) {
+     super(reference);
    }
 
    public parseName(parameter: string): void {

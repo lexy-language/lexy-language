@@ -16,7 +16,7 @@ internal static class ExpressionSyntaxFactory {
 
        { ExpressionOperator.And, SyntaxKind.LogicalAndExpression },
        { ExpressionOperator.Or, SyntaxKind.LogicalOrExpression },
-       { ExpressionOperator.Equals, SyntaxKind.EqualsExpression },
+       { ExpressionOperator.equals, SyntaxKind.equalsExpression },
        { ExpressionOperator.NotEqual, SyntaxKind.NotEqualsExpression }
      };
 
@@ -48,7 +48,7 @@ internal static class ExpressionSyntaxFactory {
                  Argument(
                    LiteralExpression(
                      SyntaxKind.StringLiteralExpression,
-                     Literal(expression.Source.Line.ToString())))))))
+                     Literal(expression.Source.line.toString())))))))
      };
 
      statements.AddRange(ExpressionStatementSyntax(expression, context));
@@ -178,10 +178,10 @@ internal static class ExpressionSyntaxFactory {
            IdentifierName(LexyCodeConstants.ParameterVariable),
            nameSyntax);
 
-       case VariableSource.Results:
+       case VariableSource.results:
          return MemberAccessExpression(
            SyntaxKind.SimpleMemberAccessExpression,
-           IdentifierName(LexyCodeConstants.ResultsVariable),
+           IdentifierName(LexyCodeConstants.resultsVariable),
            nameSyntax);
 
        case VariableSource.Code:
@@ -224,7 +224,7 @@ internal static class ExpressionSyntaxFactory {
        throw new Error($`Invalid MemberAccessExpression: {expression}`);
 
      let rootType = VariableClassName(expression, expression.Variable);
-     let childReference = expression.Variable.ChildrenReference();
+     let childReference = expression.Variable.childrenReference();
 
      ExpressionSyntax result = MemberAccessExpression(
        SyntaxKind.SimpleMemberAccessExpression,
@@ -232,7 +232,7 @@ internal static class ExpressionSyntaxFactory {
        IdentifierName(childReference.ParentIdentifier));
 
      while (childReference.HasChildIdentifiers) {
-       childReference = childReference.ChildrenReference();
+       childReference = childReference.childrenReference();
        result = MemberAccessExpression(
          SyntaxKind.SimpleMemberAccessExpression,
          result,

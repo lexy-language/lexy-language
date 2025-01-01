@@ -14,7 +14,7 @@ export class SimpleLexyFunctionFunctionExpressionStatementException extends IExp
          `functionCallExpression.ExpressionFunction should be ExtractResultsFunction`);
 
      let parameterVariable = $`{LexyCodeConstants.ParameterVariable}{Guid.NewGuid():N}`;
-     let resultsVariable = $`{LexyCodeConstants.ResultsVariable}{Guid.NewGuid():N}`;
+     let resultsVariable = $`{LexyCodeConstants.resultsVariable}{Guid.NewGuid():N}`;
 
      let result = new Array<StatementSyntax>();
      result.AddRange(FillFunctionExpressionStatementException.FillStatementSyntax(

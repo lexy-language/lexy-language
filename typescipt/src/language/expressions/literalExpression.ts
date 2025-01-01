@@ -1,44 +1,47 @@
-
+import {Expression} from "./Expression";
 
 export class LiteralExpression extends Expression {
+
+  public nodeType: "LiteralExpression"
+
    public ILiteralToken Literal
 
-   private LiteralExpression(ILiteralToken literal, ExpressionSource source, SourceReference reference) : base(source,
+  constructor(ILiteralToken literal, ExpressionSource source, SourceReference reference) : base(source,
      reference) {
      Literal = literal ?? throw new Error(nameof(literal));
    }
 
    public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.Tokens;
-     if (!IsValid(tokens)) return ParseExpressionResult.Invalid<LiteralExpression>(`Invalid expression.`);
+     let tokens = source.tokens;
+     if (!IsValid(tokens)) return newParseExpressionFailed(LiteralExpression>(`Invalid expression.`);
 
-     let reference = source.CreateReference();
+     let reference = source.createReference();
 
-     if (tokens.Length == 2) return NegativeNumeric(source, tokens, reference);
+     if (tokens.length == 2) return NegativeNumeric(source, tokens, reference);
 
      let literalToken = tokens.LiteralToken(0);
 
      let expression = new LiteralExpression(literalToken, source, reference);
-     return ParseExpressionResult.Success(expression);
+     return newParseExpressionSuccess(expression);
    }
 
    private static ParseExpressionResult NegativeNumeric(ExpressionSource source, TokenList tokens,
      SourceReference reference) {
-     let operatorToken = tokens.OperatorToken(0);
+     let operatorToken = tokens.operatorToken(0);
      let numericLiteralToken = tokens.LiteralToken(1) as NumberLiteralToken;
      let value = -numericLiteralToken.NumberValue;
 
      let negatedLiteral = new NumberLiteralToken(value, operatorToken.FirstCharacter);
 
      let negatedExpression = new LiteralExpression(negatedLiteral, source, reference);
-     return ParseExpressionResult.Success(negatedExpression);
+     return newParseExpressionSuccess(negatedExpression);
    }
 
    public static isValid(tokens: TokenList): boolean {
-     return tokens.Length == 1
+     return tokens.length == 1
         && tokens.IsLiteralToken(0)
-        || tokens.Length == 2
-        && tokens.OperatorToken(0, OperatorType.Subtraction)
+        || tokens.length == 2
+        && tokens.operatorToken(0, OperatorType.Subtraction)
         && tokens.IsLiteralToken(1)
         && tokens.LiteralToken(1) is NumberLiteralToken;
    }
@@ -51,6 +54,6 @@ export class LiteralExpression extends Expression {
    }
 
    public override deriveType(context: IValidationContext): VariableType {
-     return Literal.DeriveType(context);
+     return Literal.deriveType(context);
    }
 }

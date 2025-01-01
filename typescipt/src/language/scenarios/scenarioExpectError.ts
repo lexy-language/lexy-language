@@ -4,11 +4,12 @@ export class ScenarioExpectError extends ParsableNode {
    public string Message { get; private set; }
    public boolean HasValue => Message != null;
 
-   public ScenarioExpectError(SourceReference reference) : base(reference) {
+   public ScenarioExpectError(SourceReference reference) {
+     super(reference);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
-     let line = context.Line;
+     let line = context.line;
 
      let valid = context.ValidateTokens<ScenarioExpectError>()
        .Count(2)
@@ -18,7 +19,7 @@ export class ScenarioExpectError extends ParsableNode {
 
      if (!valid) return this;
 
-     Message = line.Tokens.Token<QuotedLiteralToken>(1).Value;
+     Message = line.tokens.Token<QuotedLiteralToken>(1).Value;
      return this;
    }
 

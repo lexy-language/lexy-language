@@ -3,7 +3,7 @@
 export class ParseFunctionTests extends ScopedServicesTestFixture {
   it('XXXX', async () => {
    public testDuplicatedFunctionName(): void {
-     let code = @`Function: ValidateTableKeyword
+     let code = `Function: ValidateTableKeyword
 # Validate table keywords
   Include
    table ValidateTableKeyword
