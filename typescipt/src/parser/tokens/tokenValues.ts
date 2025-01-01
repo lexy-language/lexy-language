@@ -1,0 +1,34 @@
+export class TokenValues {
+  public static TableSeparator = '|'.charCodeAt(0);
+  public static Quote = '\"'.charCodeAt(0);
+  public static Assignment = '='.charCodeAt(0);
+  public static MemberAccessString = '.';
+  public static MemberAccess = '.'.charCodeAt(0);
+  public static ArgumentSeparator = ','.charCodeAt(0);
+  public static Addition = '+'.charCodeAt(0);
+  public static Subtraction = '-'.charCodeAt(0);
+  public static Multiplication = '*'.charCodeAt(0);
+  public static Division = '/'.charCodeAt(0);
+  public static Modulus = '%'.charCodeAt(0);
+  public static OpenParentheses = '('.charCodeAt(0);
+  public static CloseParentheses = ')'.charCodeAt(0);
+  public static OpenBrackets = '['.charCodeAt(0);
+  public static CloseBrackets = ']'.charCodeAt(0);
+  public static GreaterThan = '>'.charCodeAt(0);
+  public static LessThan = '<'.charCodeAt(0);
+  public static GreaterThanOrEqual: string = `>=`;
+  public static LessThanOrEqual: string = `<=`;
+  public static Equal: string = `==`;
+  public static NotEqual: string = `!=`;
+  public static NotEqualStart = '!'.charCodeAt(0);
+  public static And = '&'.charCodeAt(0);
+  public static Or = '|'.charCodeAt(0);
+  public static DecimalSeparator = '.'.charCodeAt(0);
+  public static DateTimeStarter: string = `d`;
+  public static BooleanTrue: string = `true`;
+  public static BooleanFalse: string = `false`;
+  public static Dash = '-'.charCodeAt(0);
+  public static Colon = ':'.charCodeAt(0);
+  public static Space = ' '.charCodeAt(0);
+  public static CommentChar = '#'.charCodeAt(0);
+}
