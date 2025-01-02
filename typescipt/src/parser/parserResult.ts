@@ -1,9 +1,9 @@
 
 
 export class ParserResult {
-   public RootNodeList RootNodes
+   public RootNodeList rootNodes
 
    constructor(rootNodes: RootNodeList) {
-     RootNodes = rootNodes;
+     rootNodes = rootNodes;
    }
 }

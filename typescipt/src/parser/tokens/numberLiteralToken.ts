@@ -2,8 +2,6 @@ import {ParsableToken} from "./parsableToken";
 import {ILiteralToken} from "./ILiteralToken";
 import {TokenValues} from "./tokenValues";
 import {TokenCharacter} from "./tokenCharacter";
-import {IValidationContext} from "../IValidationContext";
-import {PrimitiveType, VariableType} from "../../language/variableTypes";
 import {
   newParseTokenFinishedResult,
   newParseTokenInProgressResult,
@@ -11,6 +9,13 @@ import {
   ParseTokenResult
 } from "./parseTokenResult";
 import {isDigit} from "./character";
+import {IValidationContext} from "../validationContext";
+import {VariableType} from "../../language/types/variableType";
+import {PrimitiveType} from "../../language/types/primitiveType";
+
+export function instanceOfNumberLiteralToken(object: any): object is NumberLiteralToken {
+  return object.tokenType == 'NumberLiteralToken';
+}
 
 export class NumberLiteralToken extends ParsableToken implements ILiteralToken {
 
@@ -57,7 +62,7 @@ export class NumberLiteralToken extends ParsableToken implements ILiteralToken {
     return this.numberValue;
   }
 
-  public deriveType(context: IValidationContext): VariableType {
+  public deriveType(context: IValidationContext): VariableType | null {
     return PrimitiveType.number;
   }
 

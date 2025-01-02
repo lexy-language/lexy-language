@@ -3,7 +3,7 @@
 export class EnumName extends Node {
    public string Value { get; private set; }
 
-   public EnumName(SourceReference sourceReference) : base(sourceReference) {
+   public EnumName(SourceReference sourceReference) super(sourceReference) {
    }
 
    public parseName(parameter: string): void {

@@ -46,10 +46,10 @@ export class TokenList {
     return index >= 0 && index <= this.values.length - 1 && this.values[index] instanceof type;
   }
 
-  public token<T extends Token>(index: number): T {
+  public token<T extends Token>(index: number, type: Function): T | null {
     this.checkValidTokenIndex(index);
 
-    return this.values[index] as T;
+    return this.values[index].tokenType == type.name ? this.values[index] as T : null;
   }
 
   public literalToken(index: number): ILiteralToken | null {

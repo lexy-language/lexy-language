@@ -1,18 +1,23 @@
+import {ExpressionFunction} from "./expressionFunction";
+import {IHasNodeDependencies} from "../../IHasNodeDependencies";
 
 
-export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies {
-   private const string FunctionHelp = ` lOOKUPROW(, , ): Arguments:`;
+export class LookupRowFunction extends ExpressionFunction implements IHasNodeDependencies {
 
-   public const string Name = `LOOKUPROW`;
+  private const string FunctionHelp = " Arguments: LOOKUPROW(Table, lookUpValue, Table.SearchValueColumn)";
+   private const string functionHelp = ` lOOKUPROW(, , ): Arguments:`;
+
+   public readonly name: string = `LOOKUPROW`;
 
    private const number Arguments = 3;
    private const number ArgumentTable = 0;
    private const number ArgumentLookupValue = 1;
    private const number ArgumentSearchValueColumn = 2;
 
-   public string Table
+  public readonly nodeType = "LookupRowFunction";
+  public string Table
 
-   public Expression ValueExpression
+   public Expression valueExpression
 
    public MemberAccessLiteral SearchValueColumn
 
@@ -21,9 +26,9 @@ export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies 
 
    private LookupRowFunction(string tableType, Expression valueExpression,
      MemberAccessLiteral searchValueColumn, SourceReference tableNameArgumentReference)
-     : base(tableNameArgumentReference) {
+     super(tableNameArgumentReference) {
      Table = tableType ?? throw new Error(nameof(tableType));
-     ValueExpression = valueExpression ?? throw new Error(nameof(valueExpression));
+     valueExpression = valueExpression ?? throw new Error(nameof(valueExpression));
      SearchValueColumn = searchValueColumn ?? throw new Error(nameof(searchValueColumn));
    }
 
@@ -35,15 +40,15 @@ export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies 
    public static ParseExpressionFunctionsResult Parse(string name, SourceReference functionCallReference,
      IReadOnlyArray<Expression> arguments) {
      if (arguments.Count != Arguments)
-       return ParseExpressionFunctionsResult.failed($`Invalid number of arguments. {FunctionHelp}`);
+       return ParseExpressionFunctionsResult.failed($`Invalid number of arguments. {functionHelp}`);
 
      if (!(arguments[ArgumentTable] is IdentifierExpression tableNameExpression))
        return ParseExpressionFunctionsResult.failed(
-         $`Invalid argument {ArgumentTable}. Should be valid table name. {FunctionHelp}`);
+         $`Invalid argument {ArgumentTable}. Should be valid table name. {functionHelp}`);
 
      if (!(arguments[ArgumentSearchValueColumn] is MemberAccessExpression searchValueColumnHeader))
        return ParseExpressionFunctionsResult.failed(
-         $`Invalid argument {ArgumentSearchValueColumn}. Should be search column. {FunctionHelp}`);
+         $`Invalid argument {ArgumentSearchValueColumn}. Should be search column. {functionHelp}`);
 
      let tableName = tableNameExpression.Identifier;
      let valueExpression = arguments[ArgumentLookupValue];
@@ -55,32 +60,32 @@ export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies 
    }
 
    public override getChildren(): Array<INode> {
-     yield return ValueExpression;
+     yield return valueExpression;
    }
 
    protected override validate(context: IValidationContext): void {
      ValidateColumn(context, SearchValueColumn, ArgumentSearchValueColumn);
 
-     let tableType = context.RootNodes.GetTable(Table);
+     let tableType = context.rootNodes.GetTable(Table);
      if (tableType == null) {
        context.logger.fail(this.reference,
-         $`Invalid argument {ArgumentTable}. Table name '{Table}' not found. {FunctionHelp}`);
+         $`Invalid argument {ArgumentTable}. Table name '{Table}' not found. {functionHelp}`);
        return;
      }
 
      let searchColumnHeader = tableType.Header.Get(SearchValueColumn);
      if (searchColumnHeader == null) {
        context.logger.fail(this.reference,
-         $`Invalid argument {ArgumentSearchValueColumn}. Column name '{SearchValueColumn}' not found in table '{Table}'. {FunctionHelp}`);
+         $`Invalid argument {ArgumentSearchValueColumn}. Column name '{SearchValueColumn}' not found in table '{Table}'. {functionHelp}`);
        return;
      }
 
-     let conditionValueType = ValueExpression.deriveType(context);
+     let conditionValueType = valueExpression.deriveType(context);
      SearchValueColumnType = searchColumnHeader.Type.createVariableType(context);
 
      if (conditionValueType == null || !conditionValueType.equals(SearchValueColumnType))
        context.logger.fail(this.reference,
-         $`Invalid argument {ArgumentSearchValueColumn}. Column type '{SearchValueColumn}': '{SearchValueColumnType}' doesn't match condition type '{conditionValueType}'. {FunctionHelp}`);
+         $`Invalid argument {ArgumentSearchValueColumn}. Column type '{SearchValueColumn}': '{SearchValueColumnType}' doesn't match condition type '{conditionValueType}'. {functionHelp}`);
 
      RowType = tableType?.GetRowType(context);
    }
@@ -97,7 +102,7 @@ export class LookupRowFunction extends ExpressionFunction, IHasNodeDependencies 
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {
-     let tableType = context.RootNodes.GetTable(Table);
+     let tableType = context.rootNodes.GetTable(Table);
      return tableType?.GetRowType(context);
    }
 }

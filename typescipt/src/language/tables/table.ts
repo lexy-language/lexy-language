@@ -1,3 +1,4 @@
+import {RootNode} from "../rootNode";
 
 
 export class Table extends RootNode {
@@ -43,7 +44,7 @@ export class Table extends RootNode {
 
    public override validateTree(context: IValidationContext): void {
      using (context.CreateVariableScope()) {
-       base.ValidateTree(context);
+       base.validateTree(context);
      }
    }
 

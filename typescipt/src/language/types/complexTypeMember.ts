@@ -1,10 +1,11 @@
+import {VariableType} from "./variableType";
 
 export class ComplexTypeMember {
-   public string Name
-   public VariableType Type
+   public name: string
+   public type: VariableType
 
    constructor(name: string, type: VariableType) {
-     Name = name;
-     Type = type;
+     this.name = name;
+     this.type = type;
    }
 }

@@ -7,7 +7,7 @@ export class Scenario extends RootNode {
    public EnumDefinition Enum { get; private set; }
    public Table Table { get; private set; }
 
-   public ScenarioFunctionName FunctionName
+   public ScenariofunctionName functionName
 
    public ScenarioParameters Parameters
    public ScenarioResults Results
@@ -21,7 +21,7 @@ export class Scenario extends RootNode {
    private Scenario(string name, SourceReference reference) { {
      super(reference);
      Name = new ScenarioName(reference);
-     FunctionName = new ScenarioFunctionName(reference);
+     functionName = new ScenariofunctionName(reference);
 
      Parameters = new ScenarioParameters(reference);
      Results = new ScenarioResults(reference);
@@ -51,7 +51,7 @@ export class Scenario extends RootNode {
        Keywords.EnumKeyword => ParseEnum(context, reference),
        Keywords.TableKeyword => ParseTable(context, reference),
 
-       Keywords.Function => ResetRootNode(context, ParseFunctionName(context)),
+       Keywords.Function => ResetRootNode(context, ParsefunctionName(context)),
        Keywords.Parameters => ResetRootNode(context, Parameters),
        Keywords.results => ResetRootNode(context, Results),
        Keywords.ValidationTable => ResetRootNode(context, ValidationTable),
@@ -67,8 +67,8 @@ export class Scenario extends RootNode {
      return node;
    }
 
-   private parseFunctionName(context: IParseLineContext): IParsableNode {
-     FunctionName.parse(context);
+   private parsefunctionName(context: IParseLineContext): IParsableNode {
+     functionName.parse(context);
      return this;
    }
 
@@ -125,7 +125,7 @@ export class Scenario extends RootNode {
      if (Table != null) yield return Table;
 
      yield return Name;
-     yield return FunctionName;
+     yield return functionName;
      yield return Parameters;
      yield return Results;
      yield return ValidationTable;
@@ -150,7 +150,7 @@ export class Scenario extends RootNode {
    }
 
    private addFunctionParametersAndResultsForValidation(context: IValidationContext): void {
-     let function = Function ?? (FunctionName != null ? context.RootNodes.GetFunction(FunctionName.Value) : null);
+     let function = Function ?? (functionName != null ? context.rootNodes.GetFunction(functionName.Value) : null);
      if (function == null) return;
 
      addVariablesForValidation(context, function.Parameters.Variables, VariableSource.Parameters);
@@ -166,7 +166,7 @@ export class Scenario extends RootNode {
    }
 
    protected override validate(context: IValidationContext): void {
-     if (FunctionName.IsEmpty() && Function == null && Enum == null && Table == null && !ExpectRootErrors.HasValues)
+     if (functionName.IsEmpty() && Function == null && Enum == null && Table == null && !ExpectRootErrors.HasValues)
        context.logger.fail(this.reference, `Scenario has no function, enum, table or expect errors.`);
    }
 }

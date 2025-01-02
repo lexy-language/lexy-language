@@ -15,7 +15,7 @@ export class ScenarioExpectError extends ParsableNode {
        .Count(2)
        .Keyword(0)
        .QuotedString(1)
-       .IsValid;
+       .isValid;
 
      if (!valid) return this;
 

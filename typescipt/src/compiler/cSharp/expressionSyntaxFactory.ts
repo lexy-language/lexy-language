@@ -76,7 +76,7 @@ internal static class ExpressionSyntaxFactory {
        SwitchExpression switchExpression => TranslateSwitchExpression(switchExpression, context),
        FunctionCallExpression functionCallExpression => ExpressionStatement(
          TranslateFunctionCallExpression(functionCallExpression, context)),
-       _ => throw new Error($`Wrong expression type {expression.GetType()}: {expression}`)
+       _ => throw new Error($`Wrong expression type {expression.getType()}: {expression}`)
      };
    }
 
@@ -149,7 +149,7 @@ internal static class ExpressionSyntaxFactory {
        LiteralExpression expression => TokenValuesSyntax.Expression(expression.Literal),
        IdentifierExpression expression => IdentifierNameSyntax(expression),
        MemberAccessExpression expression => TranslateMemberAccessExpression(expression),
-       _ => throw new Error($`Wrong expression type {line?.GetType()}: {line}`)
+       _ => throw new Error($`Wrong expression type {line?.getType()}: {line}`)
      };
    }
 
@@ -162,7 +162,7 @@ internal static class ExpressionSyntaxFactory {
        ParenthesizedExpression expression => ParenthesizedExpression(ExpressionSyntax(expression.Expression,
          context)),
        FunctionCallExpression expression => TranslateFunctionCallExpression(expression, context),
-       _ => throw new Error($`Wrong expression type {line.GetType()}: {line}`)
+       _ => throw new Error($`Wrong expression type {line.getType()}: {line}`)
      };
    }
 
@@ -198,7 +198,7 @@ internal static class ExpressionSyntaxFactory {
      ICompileFunctionContext context) {
      let functionCall = context.Get(expression.ExpressionFunction);
      if (functionCall == null)
-       throw new Error($`Function call not found: {expression.FunctionName}`);
+       throw new Error($`Function call not found: {expression.functionName}`);
 
      return functionCall.CallExpressionSyntax(context);
    }
@@ -229,14 +229,14 @@ internal static class ExpressionSyntaxFactory {
      ExpressionSyntax result = MemberAccessExpression(
        SyntaxKind.SimpleMemberAccessExpression,
        FromSource(expression.VariableSource, IdentifierName(rootType)),
-       IdentifierName(childReference.ParentIdentifier));
+       IdentifierName(childReference.parentIdentifier));
 
      while (childReference.HasChildIdentifiers) {
        childReference = childReference.childrenReference();
        result = MemberAccessExpression(
          SyntaxKind.SimpleMemberAccessExpression,
          result,
-         IdentifierName(childReference.ParentIdentifier));
+         IdentifierName(childReference.parentIdentifier));
      }
 
      return result;
@@ -244,11 +244,11 @@ internal static class ExpressionSyntaxFactory {
 
    private static variableClassName(expression: MemberAccessExpression, reference: VariableReference): string {
      return expression.RootType switch {
-       TableType _ => ClassNames.TableClassName(reference.ParentIdentifier),
-       FunctionType _ => ClassNames.TableClassName(reference.ParentIdentifier),
-       EnumType _ => ClassNames.EnumClassName(reference.ParentIdentifier),
-       CustomType _ => ClassNames.TypeClassName(reference.ParentIdentifier),
-       _ => reference.ParentIdentifier
+       TableType _ => ClassNames.TableClassName(reference.parentIdentifier),
+       FunctionType _ => ClassNames.TableClassName(reference.parentIdentifier),
+       EnumType _ => ClassNames.EnumClassName(reference.parentIdentifier),
+       CustomType _ => ClassNames.TypeClassName(reference.parentIdentifier),
+       _ => reference.parentIdentifier
      };
    }
 }

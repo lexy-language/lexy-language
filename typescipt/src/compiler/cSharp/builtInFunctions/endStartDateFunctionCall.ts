@@ -3,7 +3,7 @@
 internal abstract class EndStartDateFunctionCall : MethodFunctionCall {
    public EndStartDateFunction Function
 
-   protected EndStartDateFunctionCall(EndStartDateFunction function) : base(function) {
+   protected EndStartDateFunctionCall(EndStartDateFunction function) super(function) {
      Function = function;
    }
 
@@ -14,9 +14,9 @@ internal abstract class EndStartDateFunctionCall : MethodFunctionCall {
    protected override getArguments(context: ICompileFunctionContext): SeparatedSyntaxArray<ArgumentSyntax> {
      return SyntaxFactory.SeparatedArray<ArgumentSyntax>(
        new SyntaxNodeOrToken[] {
-         SyntaxFactory.Argument(ExpressionSyntaxFactory.ExpressionSyntax(Function.EndDateExpression, context)),
+         SyntaxFactory.Argument(ExpressionSyntaxFactory.ExpressionSyntax(Function.endDateExpression, context)),
          SyntaxFactory.Token(SyntaxKind.CommaToken),
-         SyntaxFactory.Argument(ExpressionSyntaxFactory.ExpressionSyntax(Function.StartDateExpression, context))
+         SyntaxFactory.Argument(ExpressionSyntaxFactory.ExpressionSyntax(Function.startDateExpression, context))
        });
    }
 }

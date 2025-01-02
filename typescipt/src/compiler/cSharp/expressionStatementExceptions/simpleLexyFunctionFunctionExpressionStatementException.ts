@@ -33,7 +33,7 @@ export class SimpleLexyFunctionFunctionExpressionStatementException extends IExp
 
    private static StatementSyntax RunFunction(LexyFunction lexyFunction, string parameterVariable,
      string resultsVariable) {
-     let initialize = LexyFunctionCall.RunFunction(lexyFunction.FunctionName, parameterVariable);
+     let initialize = LexyFunctionCall.RunFunction(lexyFunction.functionName, parameterVariable);
 
      let variable = VariableDeclarator(Identifier(resultsVariable))
        .WithInitializer(EqualsValueClause(initialize));

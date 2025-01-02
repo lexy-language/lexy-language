@@ -8,7 +8,7 @@ internal static class CSharpCode {
        Table _ => new TableWriter(),
        TypeDefinition _ => new TypeWriter(),
        Scenario _ => null,
-       _ => throw new Error(`No writer defined: ` + rootNode.GetType())
+       _ => throw new Error(`No writer defined: ` + rootNode.getType())
      };
    }
 }

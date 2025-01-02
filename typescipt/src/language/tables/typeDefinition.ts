@@ -30,7 +30,7 @@ export class TypeDefinition extends RootNode {
 
    public override validateTree(context: IValidationContext): void {
      using (context.CreateVariableScope()) {
-       base.ValidateTree(context);
+       base.validateTree(context);
      }
    }
 }

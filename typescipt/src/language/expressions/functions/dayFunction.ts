@@ -1,15 +1,29 @@
-
+import {VariableType} from "../../types/variableType";
+import {PrimitiveType} from "../../types/primitiveType";
+import {SingleArgumentFunction} from "./singleArgumentFunction";
+import {Expression} from "../expression";
+import {SourceReference} from "../../../parser/sourceReference";
+import {ExpressionFunction} from "./expressionFunction";
 
 export class DayFunction extends SingleArgumentFunction {
-   public const string Name = `DAY`;
 
-   protected override string FunctionHelp => $`'{Name} expects 1 argument (Date)`;
+   public readonly nodeType = `DayFunction`;
+   public readonly name = `DAY`;
 
-   protected override VariableType ArgumentType => PrimitiveType.date;
-   protected override VariableType ResultType => PrimitiveType.number;
+   protected override get functionHelp(): string {
+      return `${this.name} expects 1 argument (Date)`;
+   }
 
-   constructor(valueExpression: Expression, reference: SourceReference)
-     : base(valueExpression, reference) {
+   protected override get argumentType(): VariableType {
+      return PrimitiveType.date;
+   }
+
+   protected override get resultType(): VariableType {
+      return PrimitiveType.number;
+   }
+
+   constructor(valueExpression: Expression, reference: SourceReference) {
+      super(valueExpression, reference);
    }
 
    public static create(reference: SourceReference, expression: Expression): ExpressionFunction {

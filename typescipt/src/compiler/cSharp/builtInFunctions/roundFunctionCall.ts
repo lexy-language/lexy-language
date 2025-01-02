@@ -6,7 +6,7 @@ export class RoundFunctionCall extends MethodFunctionCall {
    protected override string ClassName =nameof(): >;
    protected override string MethodName =nameof(): >;
 
-   public RoundFunctionCall(RoundFunction function) : base(function) {
+   public RoundFunctionCall(RoundFunction function) super(function) {
      RoundFunction = function;
    }
 

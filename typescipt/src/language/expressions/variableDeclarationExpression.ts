@@ -12,7 +12,7 @@ import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../types/variableType";
 import {ImplicitVariableDeclaration} from "../types/implicitVariableDeclaration";
-import {VariableSource} from "../../parser/variableSource";
+import {VariableSource} from "../variableSource";
 
 export class VariableDeclarationExpression extends Expression {
 

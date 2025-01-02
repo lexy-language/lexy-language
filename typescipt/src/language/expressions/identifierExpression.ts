@@ -1,53 +1,70 @@
 import {Expression} from "./Expression";
+import {VariableSource} from "../variableSource";
+import {ExpressionSource} from "./expressionSource";
+import {SourceReference} from "../../parser/sourceReference";
+import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
+import {INode} from "../node";
+import {IValidationContext} from "../../parser/validationContext";
+import {VariableType} from "../types/variableType";
+
+export function asIdentifierExpression(object: any): IdentifierExpression | null {
+  return object.nodeType == "IdentifierExpression" ? object as IdentifierExpression : null;
+}
 
 export class IdentifierExpression extends Expression {
 
+  private variableSourceValue: VariableSource;
 
-  public nodeType: "IdentifierExpression"
+  public readonly nodeType: "IdentifierExpression";
+  public readonly identifier: string;
 
-  public VariableSource VariableSource { get; private set; }
+  public get variableSource() {
+    return this.variableSourceValue;
+  }
 
-   public string Identifier
+  constructor(identifier: string, source: ExpressionSource, reference: SourceReference) {
+    super(source, reference);
+    this.identifier = identifier;
+  }
 
-   private IdentifierExpression(string identifier, ExpressionSource source, SourceReference reference) : base(source,
-     reference) {
-     Identifier = identifier;
-   }
+  public static parse(source: ExpressionSource): ParseExpressionResult {
+    let tokens = source.tokens;
+    if (!this.isValid(tokens)) return newParseExpressionFailed(IdentifierExpression, `Invalid expression`);
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.tokens;
-     if (!IsValid(tokens)) return newParseExpressionFailed(IdentifierExpression>(`Invalid expression`);
+    let variableName = tokens.tokenValue(0);
+    if (!variableName) return newParseExpressionFailed(IdentifierExpression, `Invalid token`);
 
-     let variableName = tokens.tokenValue(0);
-     let reference = source.createReference();
+    let reference = source.createReference();
 
-     let expression = new IdentifierExpression(variableName, source, reference);
+    let expression = new IdentifierExpression(variableName, source, reference);
 
-     return newParseExpressionSuccess(expression);
-   }
+    return newParseExpressionSuccess(expression);
+  }
 
-   public static isValid(tokens: TokenList): boolean {
-     return tokens.length == 1
-        && tokens.isTokenType<StringLiteralToken>(0);
-   }
+  public static isValid(tokens: TokenList): boolean {
+    return tokens.length == 1
+      && tokens.isTokenType<StringLiteralToken>(0, StringLiteralToken);
+  }
 
-   public override getChildren(): Array<INode> {
-     yield break;
-   }
+  public override getChildren(): Array<INode> {
+    return [];
+  }
 
-   protected override validate(context: IValidationContext): void {
-     if (!context.variableContext.ensureVariableExists(this.reference, Identifier)) return;
+  protected override validate(context: IValidationContext): void {
+    if (!context.variableContext.ensureVariableExists(this.reference, this.identifier)) return;
 
-     let variableSource = context.variableContext.getVariableSource(Identifier);
-     if (variableSource == null) {
-       context.logger.fail(this.reference, `Can't define source of variable: ` + Identifier);
-       return;
-     }
+    let variableSource = context.variableContext.getVariableSource(this.identifier);
+    if (variableSource == null) {
+      context.logger.fail(this.reference, `Can't define source of variable: ${this.identifier}`);
+      return;
+    }
 
-     VariableSource = variableSource.Value;
-   }
+    this.variableSourceValue = VariableSource.Value;
+  }
 
-   public override deriveType(context: IValidationContext): VariableType {
-     return context.variableContext.getVariableType(Identifier);
-   }
+  public override deriveType(context: IValidationContext): VariableType | null {
+    return context.variableContext.getVariableTypeByName(this.identifier);
+  }
 }

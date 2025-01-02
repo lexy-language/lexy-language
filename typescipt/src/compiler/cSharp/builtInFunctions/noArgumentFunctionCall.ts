@@ -6,7 +6,7 @@ internal abstract class NoArgumentFunctionCall : FunctionCall {
    protected abstract string ClassName
    protected abstract string MethodName
 
-   protected NoArgumentFunctionCall(NoArgumentFunction function) : base(function) {
+   protected NoArgumentFunctionCall(NoArgumentFunction function) super(function) {
      Function = function;
    }
 

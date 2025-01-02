@@ -1,9 +1,9 @@
 
 
-export class FunctionName extends Node {
+export class functionName extends Node {
    public string Value { get; private set; }
 
-   public FunctionName(SourceReference reference) {
+   public functionName(SourceReference reference) {
      super(reference);
    }
 

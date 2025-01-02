@@ -4,7 +4,7 @@ export class ParserContext extends IParserContext {
    private readonly Array<string> includedFiles = list<string>(): new;
 
    public Line CurrentLine => SourceCode.CurrentLine;
-   public RootNodeList Nodes => RootNode.RootNodes;
+   public RootNodeList Nodes => RootNode.rootNodes;
 
    public SourceCodeNode RootNode
    public ISourceCodeDocument SourceCode

@@ -1,28 +1,33 @@
+import {Expression} from "./../expression";
+import {ExpressionFunction} from "./expressionFunction";
+import {VariableType} from "../../types/variableType";
+import {SourceReference} from "../../../parser/sourceReference";
+import {INode} from "../../node";
+import {IValidationContext} from "../../../parser/validationContext";
 
+export abstract class SingleArgumentFunction extends ExpressionFunction {
+   protected abstract functionHelp: string;
 
-export class SingleArgumentFunction extends ExpressionFunction {
-   protected abstract string FunctionHelp
+  public readonly nodeType = "XXXX";
+  protected abstract argumentType: VariableType;
+  protected abstract resultType: VariableType;
 
-   protected abstract VariableType ArgumentType
-   protected abstract VariableType ResultType
+  public readonly valueExpression: Expression;
 
-   public Expression ValueExpression
-
-   constructor(valueExpression: Expression, reference: SourceReference)
-     {
+   constructor(valueExpression: Expression, reference: SourceReference) {
      super(reference);
-     ValueExpression = valueExpression ?? throw new Error(nameof(valueExpression));
+     this.valueExpression = valueExpression;
    }
 
    public override getChildren(): Array<INode> {
-     yield return ValueExpression;
+     return [this.valueExpression];
    }
 
    protected override validate(context: IValidationContext): void {
-     context.ValidateType(ValueExpression, 1, `Value`, ArgumentType, reference, FunctionHelp);
+     context.validateType(this.valueExpression, 1, `Value`, this.argumentType, this.reference, this.functionHelp);
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {
-     return ResultType;
+     return this.resultType;
    }
 }

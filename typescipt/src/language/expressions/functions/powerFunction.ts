@@ -1,11 +1,12 @@
 
 
 export class PowerFunction extends ExpressionFunction {
-   public const string Name = `POWER`;
+   public readonly name: string = `POWER`;
 
-   private string FunctionHelp => $`'{Name} expects 2 arguments (Number, Power).`;
+   private string functionHelp => $`'{Name} expects 2 arguments (Number, Power).`;
 
-   public Expression NumberExpression
+  public readonly nodeType = "PowerFunction";
+  public Expression NumberExpression
    public Expression PowerExpression
 
    constructor(numberExpression: Expression, powerExpression: Expression, reference: SourceReference)
@@ -22,8 +23,8 @@ export class PowerFunction extends ExpressionFunction {
 
    protected override validate(context: IValidationContext): void {
      context
-       .ValidateType(NumberExpression, 1, `Number`, PrimitiveType.number, reference, FunctionHelp)
-       .ValidateType(PowerExpression, 2, `Power`, PrimitiveType.number, reference, FunctionHelp);
+       .validateType(NumberExpression, 1, `Number`, PrimitiveType.number, reference, functionHelp)
+       .validateType(PowerExpression, 2, `Power`, PrimitiveType.number, reference, functionHelp);
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {

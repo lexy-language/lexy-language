@@ -1,11 +1,11 @@
 
 
 export class FunctionResultsType extends ComplexTypeReference {
-   public string FunctionName
+   public string functionName
    public ComplexType ComplexType
 
-   public FunctionResultsType(string functionName, ComplexType complexType) : base(functionName) {
-     FunctionName = functionName ?? throw new Error(nameof(functionName));
+   public FunctionResultsType(string functionName, ComplexType complexType) super(functionName) {
+     functionName = functionName ?? throw new Error(nameof(functionName));
      ComplexType = complexType;
    }
 

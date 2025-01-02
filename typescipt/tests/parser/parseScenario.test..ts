@@ -24,12 +24,12 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      let scenario = parser.ParseScenario(code);
 
      scenario.Name.Value.ShouldBe(`TestScenario`);
-     scenario.FunctionName.Value.ShouldBe(`TestScenarioFunction`);
+     scenario.functionName.Value.ShouldBe(`TestScenarioFunction`);
      scenario.Parameters.Assignments.Count.ShouldBe(1);
-     scenario.Parameters.Assignments[0].Variable.ParentIdentifier.ShouldBe(`Value`);
+     scenario.Parameters.Assignments[0].Variable.parentIdentifier.ShouldBe(`Value`);
      scenario.Parameters.Assignments[0].ConstantValue.Value.ShouldBe(123m);
      scenario.results.Assignments.Count.ShouldBe(1);
-     scenario.results.Assignments[0].Variable.ParentIdentifier.ShouldBe(`Result`);
+     scenario.results.Assignments[0].Variable.parentIdentifier.ShouldBe(`Result`);
      scenario.results.Assignments[0].ConstantValue.Value.ShouldBe(456m);
    }
 
@@ -127,15 +127,15 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      scenario.Function.Code.Expressions[1].toString().ShouldBe(`Result2=Value2`);
 
      scenario.Parameters.Assignments.Count.ShouldBe(2);
-     scenario.Parameters.Assignments[0].Variable.ParentIdentifier.ShouldBe(`Value1`);
+     scenario.Parameters.Assignments[0].Variable.parentIdentifier.ShouldBe(`Value1`);
      scenario.Parameters.Assignments[0].ConstantValue.Value.ShouldBe(987m);
-     scenario.Parameters.Assignments[1].Variable.ParentIdentifier.ShouldBe(`Value2`);
+     scenario.Parameters.Assignments[1].Variable.parentIdentifier.ShouldBe(`Value2`);
      scenario.Parameters.Assignments[1].ConstantValue.Value.ShouldBe(654m);
 
      scenario.results.Assignments.Count.ShouldBe(2);
-     scenario.results.Assignments[0].Variable.ParentIdentifier.ShouldBe(`Result1`);
+     scenario.results.Assignments[0].Variable.parentIdentifier.ShouldBe(`Result1`);
      scenario.results.Assignments[0].ConstantValue.Value.ShouldBe(123m);
-     scenario.results.Assignments[1].Variable.ParentIdentifier.ShouldBe(`Result2`);
+     scenario.results.Assignments[1].Variable.parentIdentifier.ShouldBe(`Result2`);
      scenario.results.Assignments[1].ConstantValue.Value.ShouldBe(456m);
    }
 
@@ -149,7 +149,7 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      let parser = GetService<ILexyParser>();
      let scenario = parser.ParseScenario(code);
 
-     scenario.FunctionName.Value.ShouldBe(`ValidateFunctionKeywords`);
+     scenario.functionName.Value.ShouldBe(`ValidateFunctionKeywords`);
      scenario.Parameters.Assignments.Count.ShouldBe(0);
      scenario.results.Assignments.Count.ShouldBe(0);
    }
@@ -177,7 +177,7 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
    }
 
   it('XXXX', async () => {
-   public scenarioWithInlineFunctionShouldNotHaveAFunctionNameAfterKeywords(): void {
+   public scenarioWithInlineFunctionShouldNotHaveAfunctionNameAfterKeywords(): void {
      const string code = `Scenario: TestScenario
   Function: ThisShouldNotBeAllowed`;
 

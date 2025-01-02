@@ -12,7 +12,7 @@ export class TableHeader extends Node {
      let index = 0;
      let validator = context.ValidateTokens<TableHeader>();
 
-     if (!validator.Type<TableSeparatorToken>(index).IsValid) return null;
+     if (!validator.Type<TableSeparatorToken>(index).isValid) return null;
 
      let headers = new Array<ColumnHeader>();
      let tokens = context.line.tokens;
@@ -21,7 +21,7 @@ export class TableHeader extends Node {
            .Type<StringLiteralToken>(index)
            .Type<StringLiteralToken>(index + 1)
            .Type<TableSeparatorToken>(index + 2)
-           .IsValid)
+           .isValid)
          return null;
 
        let typeName = tokens.tokenValue(index);

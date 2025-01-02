@@ -11,8 +11,7 @@ import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
 import {IdentifierExpression} from "./identifierExpression";
 import {MemberAccessExpression} from "./memberAccessExpression";
-import {ITypeWithMembers} from "../types/iTypeWithMembers";
-import {nameOf} from "../../infrastructure/nameOf";
+import {asTypeWithMembers} from "../types/iTypeWithMembers";
 import {VariableType} from "../types/variableType";
 
 export class AssignmentExpression extends Expression {
@@ -29,7 +28,7 @@ export class AssignmentExpression extends Expression {
 
   public static parse(source: ExpressionSource): ParseExpressionResult {
    let tokens = source.tokens;
-   if (!this.isValid(tokens)) return newParseExpressionFailed(`Invalid expression.`);
+   if (!this.isValid(tokens)) return newParseExpressionFailed(AssignmentExpression,`Invalid expression.`);
 
    let variableExpression = ExpressionFactory.parse(tokens.tokensFromStart(1), source.line);
    if (variableExpression.state != 'success') return variableExpression;
@@ -97,23 +96,23 @@ export class AssignmentExpression extends Expression {
      return;
    }
 
-   let literal = memberAccessExpression.MemberAccessLiteral;
+   let literal = memberAccessExpression.memberAccessLiteral;
    let parentType = context.rootNodes.getType(literal.parent);
 
-   if (!(nameOf<ITypeWithMembers>("memberType") in parentType)) {
-     context.logger.fail(this.reference, `Type '${literal.Parent}' has no members.`);
+    const typeWithMembers = asTypeWithMembers(parentType);
+
+    if (typeWithMembers == null) {
+     context.logger.fail(this.reference, `Type '${literal.parent}' has no members.`);
      return;
    }
 
-   const typeWithMembers = parentType as ITypeWithMembers;
-
-   let memberType = typeWithMembers.memberType(literal.Member, context);
+   let memberType = typeWithMembers.memberType(literal.member, context);
    if (assignmentType == null || !assignmentType.equals(memberType))
      context.logger.fail(this.reference,
        `Variable '${literal}' of type '${memberType}' is not assignable from expression of type '${assignmentType}'.`);
   }
 
-  public override deriveType(context: IValidationContext): VariableType {
+  public override deriveType(context: IValidationContext): VariableType | null {
     return this.assignment.deriveType(context);
   }
 }

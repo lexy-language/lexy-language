@@ -1,16 +1,23 @@
-
+import {EndStartDateFunction} from "./endStartDateFunction";
+import {Expression} from "../expression";
+import {SourceReference} from "../../../parser/sourceReference";
+import {ExpressionFunction} from "./expressionFunction";
 
 export class DaysFunction extends EndStartDateFunction {
-   public const string Name = `DAYS`;
 
-   protected override string FunctionName => Name;
+   public readonly name: string = `DAYS`;
 
-   constructor(endDateExpression: Expression, startDateExpression: Expression, reference: SourceReference)
-     : base(endDateExpression, startDateExpression, reference) {
+   public readonly nodeType = "DaysFunction";
+   protected override get functionName() {
+      return this.name;
    }
 
-   public static ExpressionFunction Create(SourceReference reference, Expression endDateExpression,
-     Expression startDateExpression) {
+   constructor(endDateExpression: Expression, startDateExpression: Expression, reference: SourceReference) {
+      super(endDateExpression, startDateExpression, reference);
+   }
+
+   public static create(reference: SourceReference , endDateExpression: Expression,
+     startDateExpression: Expression): ExpressionFunction {
      return new DaysFunction(endDateExpression, startDateExpression, reference);
    }
 }

@@ -16,7 +16,7 @@ export class ScenarioExpectRootErrors extends ParsableNode {
      let valid = context.ValidateTokens<ScenarioExpectError>()
        .Count(1)
        .QuotedString(0)
-       .IsValid;
+       .isValid;
 
      if (!valid) return this;
 

@@ -1,11 +1,12 @@
 
 
 export class RoundFunction extends ExpressionFunction {
-   public const string Name = `ROUND`;
+   public readonly name: string = `ROUND`;
 
-   private string FunctionHelp => $`'{Name}' expects 2 arguments (Number, Digits).`;
+   private string functionHelp => $`'{Name}' expects 2 arguments (Number, Digits).`;
 
-   public Expression NumberExpression
+  public readonly nodeType = "RoundFunction";
+  public Expression NumberExpression
    public Expression DigitsExpression
 
    constructor(numberExpression: Expression, digitsExpression: Expression, reference: SourceReference)
@@ -22,8 +23,8 @@ export class RoundFunction extends ExpressionFunction {
 
    protected override validate(context: IValidationContext): void {
      context
-       .ValidateType(NumberExpression, 1, `Number`, PrimitiveType.number, reference, FunctionHelp)
-       .ValidateType(DigitsExpression, 2, `Digits`, PrimitiveType.number, reference, FunctionHelp);
+       .validateType(NumberExpression, 1, `Number`, PrimitiveType.number, reference, functionHelp)
+       .validateType(DigitsExpression, 2, `Digits`, PrimitiveType.number, reference, functionHelp);
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {

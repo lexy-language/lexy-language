@@ -1,7 +1,7 @@
 
 
 export class ValidationContextExtensions {
-   public static void ValidateTypeAndDefault(this IValidationContext context, SourceReference reference,
+   public static void validateTypeAndDefault(this IValidationContext context, SourceReference reference,
      VariableDeclarationType type, Expression defaultValueExpression) {
      if (context == null) throw new Error(nameof(context));
      if (reference == null) throw new Error(nameof(reference));
@@ -17,13 +17,13 @@ export class ValidationContextExtensions {
          break;
 
        default:
-         throw new Error($`Invalid Type: {type.GetType()}`);
+         throw new Error($`Invalid Type: {type.getType()}`);
      }
    }
 
    private static void ValidateCustomVariableType(IValidationContext context, SourceReference reference,
      CustomVariableDeclarationType customVariableDeclarationType, Expression defaultValueExpression) {
-     let type = context.RootNodes.GetType(customVariableDeclarationType.Type);
+     let type = context.rootNodes.getType(customVariableDeclarationType.Type);
      if (type == null || type is not EnumType && type is not CustomType) {
        context.logger.fail(reference, $`Unknown type: '{customVariableDeclarationType.Type}'`);
        return;
@@ -47,11 +47,11 @@ export class ValidationContextExtensions {
      if (variableReference.Parts != 2)
        context.logger.fail(reference,
          $`Invalid default value '{defaultValueExpression}'. (type: '{customVariableDeclarationType.Type}')`);
-     if (variableReference.ParentIdentifier != customVariableDeclarationType.Type)
+     if (variableReference.parentIdentifier != customVariableDeclarationType.Type)
        context.logger.fail(reference,
          $`Invalid default value '{defaultValueExpression}'. Invalid enum type. (type: '{customVariableDeclarationType.Type}')`);
 
-     let enumDeclaration = context.RootNodes.GetEnum(variableReference.ParentIdentifier);
+     let enumDeclaration = context.rootNodes.GetEnum(variableReference.parentIdentifier);
      if (enumDeclaration == null || !enumDeclaration.containsMember(variableReference.Path[1]))
        context.logger.fail(reference,
          $`Invalid default value '{defaultValueExpression}'. Invalid member. (type: '{customVariableDeclarationType.Type}')`);

@@ -1,17 +1,27 @@
+import {ExpressionFunction} from "./functions/expressionFunction";
 
-
-public sealed class ParseExpressionFunctionsResult : ParseResult<ExpressionFunction> {
-   private ParseExpressionFunctionsResult(ExpressionFunction result) : base(result) {
-   }
-
-   private ParseExpressionFunctionsResult(boolean success, string errorMessage) : base(success, errorMessage) {
-   }
-
-   public static success(result: ExpressionFunction =: ExpressionFunction null: ExpressionFunction): ParseExpressionFunctionsResult {
-     return new ParseExpressionFunctionsResult(result);
-   }
-
-   public static failed(errorMessage: string): ParseExpressionFunctionsResult {
-     return new ParseExpressionFunctionsResult(false, errorMessage);
-   }
+type ParseExpressionFunctionsFailed = {
+  state: "failed";
+  errorMessage: string;
 }
+
+export function newParseExpressionFunctionsFailed(errorMessage: string, ): ParseExpressionFunctionsFailed {
+  return {
+    state: "failed",
+    errorMessage: errorMessage,
+  } as const;
+}
+
+type ParseExpressionFunctionsSuccess = {
+  state: "success";
+  result: ExpressionFunction;
+}
+
+export function newParseExpressionFunctionsSuccess(result: ExpressionFunction) {
+  return {
+    state: "success",
+    result: result
+  } as const;
+}
+
+export type ParseExpressionFunctionsResult = ParseExpressionFunctionsFailed | ParseExpressionFunctionsSuccess;

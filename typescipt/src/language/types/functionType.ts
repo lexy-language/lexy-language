@@ -16,7 +16,7 @@ export class FunctionType extends TypeWithMembers {
    public override equals(obj: object): boolean {
      if (ReferenceEquals(null, obj)) return false;
      if (ReferenceEquals(this, obj)) return true;
-     if (obj.GetType() != GetType()) return false;
+     if (obj.getType() != getType()) return false;
      return Equals((FunctionType)obj);
    }
 
@@ -37,12 +37,12 @@ export class FunctionType extends TypeWithMembers {
    }
 
    private functionParametersType(context: IValidationContext): FunctionParametersType {
-     let complexType = context.RootNodes.GetFunction(Type)?.GetParametersType(context);
+     let complexType = context.rootNodes.GetFunction(Type)?.GetParametersType(context);
      return new FunctionParametersType(Type, complexType);
    }
 
    private functionResultsType(context: IValidationContext): FunctionResultsType {
-     let complexType = context.RootNodes.GetFunction(Type)?.GetResultsType(context);
+     let complexType = context.rootNodes.GetFunction(Type)?.GetResultsType(context);
      return new FunctionResultsType(Type, complexType);
    }
 }

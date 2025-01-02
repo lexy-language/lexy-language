@@ -1,13 +1,14 @@
-
+import {VariableType} from "../../types/variableType";
+import {VariableSource} from "../../variableSource";
 
 export class Mapping {
-   public string VariableName
-   public VariableType VariableType
-   public VariableSource VariableSource
+   public variableName: string
+   public variableType: VariableType
+   public variableSource: VariableSource
 
    constructor(variableName: string, variableType: VariableType, variableSource: VariableSource) {
-     VariableName = variableName;
-     VariableType = variableType;
-     VariableSource = variableSource;
+     this.variableName = variableName;
+     this.variableType = variableType;
+     this.variableSource = variableSource;
    }
 }

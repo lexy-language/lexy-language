@@ -49,7 +49,7 @@ export class Keywords
     Keywords.While,
     Keywords.Include,
     Keywords.Parameters,
-    Keywords.results,
+    Keywords.Results,
     Keywords.Code,
     Keywords.ExpectError,
     Keywords.ExpectRootErrors,

@@ -6,6 +6,6 @@ export class DependencyGraphExtensions {
      let parser = serviceProvider.GetRequiredService<ILexyParser>();
      let codeLines = code.Split(Environment.NewLine);
      let result = parser.parse(codeLines, `tests`, throwException);
-     return DependencyGraphFactory.Create(result.RootNodes);
+     return DependencyGraphFactory.Create(result.rootNodes);
    }
 }

@@ -1,9 +1,10 @@
 
 
 export class TodayFunction extends NoArgumentFunction {
-   public const string Name = `TODAY`;
+   public readonly name: string = `TODAY`;
 
-   protected override VariableType ResultType => PrimitiveType.date;
+  public readonly nodeType = "TodayFunction";
+  protected override get resultType(): VariableType => { return  PrimitiveType.date;
 
    constructor(reference: SourceReference)
      {

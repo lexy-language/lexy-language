@@ -1,15 +1,16 @@
 
 
 export class SecondFunction extends SingleArgumentFunction {
-   public const string Name = `SECOND`;
+   public readonly name: string = `SECOND`;
 
-   protected override string FunctionHelp => $`'{Name} expects 1 argument (Date)`;
+   protected override get functionHelp(): string { return $`'{Name} expects 1 argument (Date)`;
 
-   protected override VariableType ArgumentType => PrimitiveType.date;
-   protected override VariableType ResultType => PrimitiveType.number;
+   public readonly nodeType = "SecondFunction";
+   protected override get argumentType(): VariableType { PrimitiveType.date;
+   protected override get resultType(): VariableType => { return  PrimitiveType.number;
 
    constructor(valueExpression: Expression, reference: SourceReference)
-     : base(valueExpression, reference) {
+     super(valueExpression, reference);
    }
 
    public static create(reference: SourceReference, expression: Expression): ExpressionFunction {

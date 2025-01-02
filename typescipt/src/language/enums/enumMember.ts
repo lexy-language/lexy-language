@@ -16,7 +16,7 @@ export class EnumMember extends Node {
      let valid = context.ValidateTokens<EnumMember>()
        .CountMinimum(1)
        .StringLiteral(0)
-       .IsValid;
+       .isValid;
 
      if (!valid) return null;
 
@@ -36,7 +36,7 @@ export class EnumMember extends Node {
      valid = context.ValidateTokens<EnumMember>()
        .Operator(1, OperatorType.Assignment)
        .NumberLiteral(2)
-       .IsValid;
+       .isValid;
      if (!valid) return null;
 
      let value = tokens.Token<NumberLiteralToken>(2);

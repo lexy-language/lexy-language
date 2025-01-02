@@ -6,7 +6,7 @@ export class PowerFunctionCall extends MethodFunctionCall {
    protected override string ClassName =nameof(): >;
    protected override string MethodName =nameof(): >;
 
-   public PowerFunctionCall(PowerFunction function) : base(function) {
+   public PowerFunctionCall(PowerFunction function) super(function) {
      PowerFunction = function;
    }
 

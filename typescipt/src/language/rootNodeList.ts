@@ -1,4 +1,7 @@
-
+import {IRootNode} from "./rootNode";
+import {TypeWithMembers} from "./types/typeWithMembers";
+import {Function} from "./functions/function";
+import {Table} from "./tables/table";
 
 export class RootNodeList extends Array<IRootNode> {
    private readonly Array<IRootNode> values = collection<IRootNode>(): new;
@@ -23,7 +26,8 @@ export class RootNodeList extends Array<IRootNode> {
        .Any(definition => definition.Name.Value == enumName);
    }
 
-   public getNode(name: string): IRootNode {
+   public getNode(name: string | null): IRootNode | null {
+     if (name == null) return null;
      return values
        .FirstOrDefault(definition => definition.NodeName == name);
    }
@@ -76,7 +80,7 @@ export class RootNodeList extends Array<IRootNode> {
    }
 
    public getType(name: string): TypeWithMembers {
-     let node = GetNode(name);
+     let node = getNode(name);
      return node switch {
        Table table => new TableType(name, table),
        Function function => new FunctionType(name, function),

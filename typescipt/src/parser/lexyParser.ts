@@ -79,13 +79,13 @@ export class LexyParser extends ILexyParser {
      logger.Log(line.lineStartReference(), $`'{line.Content}'`);
 
      let tokens = line.Tokenize(tokenizer);
-     if (!tokens.state != 'success') {
+     if (tokens.state != 'success') {
        logger.fail(tokens.reference, tokens.errorMessage);
        return false;
      }
 
      let tokenNames = string.Join(` `, context.CurrentLine.tokens.Select(token =>
-       $`{token.GetType().Name}({token.Value})`).ToArray());
+       $`{token.getType().Name}({token.Value})`).ToArray());
 
      logger.Log(line.lineStartReference(), ` Tokens: ` + tokenNames);
 
@@ -114,7 +114,7 @@ export class LexyParser extends ILexyParser {
 
    private validateNodesTree(): void {
      let validationContext = new ValidationContext(logger, context.Nodes);
-     context.RootNode.ValidateTree(validationContext);
+     context.RootNode.validateTree(validationContext);
    }
 
    private detectCircularDependencies(): void {

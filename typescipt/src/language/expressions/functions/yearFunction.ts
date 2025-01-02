@@ -1,15 +1,16 @@
 
 
-export class YearFunction extends SingleArgumentFunction {
-   public const string Name = `YEAR`;
+export class YearsFunction extends SingleArgumentFunction {
+   public readonly name: string = `YEAR`;
 
-   protected override string FunctionHelp => $`'{Name} expects 1 argument (Date)`;
+   public readonly nodeType = "YearsFunction";
+   protected override get functionHelp(): string { return $`'{Name} expects 1 argument (Date)`;
 
-   protected override VariableType ArgumentType => PrimitiveType.date;
-   protected override VariableType ResultType => PrimitiveType.number;
+   protected override get argumentType(): VariableType { PrimitiveType.date;
+   protected override get resultType(): VariableType => { return  PrimitiveType.number;
 
    constructor(valueExpression: Expression, reference: SourceReference)
-     : base(valueExpression, reference) {
+     super(valueExpression, reference);
    }
 
    public static create(reference: SourceReference, expression: Expression): ExpressionFunction {

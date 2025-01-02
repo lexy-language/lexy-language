@@ -1,10 +1,10 @@
 
 
 public sealed class VariableReferenceParseResult : ParseResult<VariableReference> {
-   private VariableReferenceParseResult(VariableReference result) : base(result) {
+   private VariableReferenceParseResult(VariableReference result) super(result) {
    }
 
-   private VariableReferenceParseResult(boolean success, string errorMessage) : base(success, errorMessage) {
+   private VariableReferenceParseResult(boolean success, string errorMessage) super(success, errorMessage) {
    }
 
    public static success(result: VariableReference): VariableReferenceParseResult {

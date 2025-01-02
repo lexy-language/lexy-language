@@ -3,7 +3,7 @@
 export class LexyFunctionCall extends FunctionCall {
    public LexyFunction ExpressionFunction
 
-   public LexyFunctionCall(LexyFunction expressionFunction) : base(expressionFunction) {
+   public LexyFunctionCall(LexyFunction expressionFunction) super(expressionFunction) {
      ExpressionFunction = expressionFunction;
    }
 
@@ -12,7 +12,7 @@ export class LexyFunctionCall extends FunctionCall {
    }
 
    public override callExpressionSyntax(context: ICompileFunctionContext): ExpressionSyntax {
-     return RunFunction(ExpressionFunction.FunctionName, ExpressionFunction.VariableName);
+     return RunFunction(ExpressionFunction.functionName, ExpressionFunction.VariableName);
    }
 
    public static runFunction(functionName: string, variableName: string): InvocationExpressionSyntax {

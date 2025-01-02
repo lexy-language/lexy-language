@@ -1,10 +1,10 @@
 
 
 public sealed class ConstantValueParseResult : ParseResult<ConstantValue> {
-   private ConstantValueParseResult(ConstantValue result) : base(result) {
+   private ConstantValueParseResult(ConstantValue result) super(result) {
    }
 
-   private ConstantValueParseResult(boolean success, string errorMessage) : base(success, errorMessage) {
+   private ConstantValueParseResult(boolean success, string errorMessage) super(success, errorMessage) {
    }
 
    public static success(result: ConstantValue): ConstantValueParseResult {

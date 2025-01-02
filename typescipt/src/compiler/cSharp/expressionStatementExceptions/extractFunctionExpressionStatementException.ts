@@ -13,7 +13,7 @@ export class ExtractFunctionExpressionStatementException extends IExpressionStat
        throw new Error(
          `functionCallExpression.ExpressionFunction should be ExtractResultsFunction`);
 
-     return ExtractStatementSyntax(extractResultsFunction.Mapping, extractResultsFunction.FunctionResultVariable);
+     return ExtractStatementSyntax(extractResultsFunction.Mapping, extractResultsFunction.functionResultVariable);
    }
 
    public static Array<StatementSyntax> ExtractStatementSyntax(Array<Mapping> mappings,

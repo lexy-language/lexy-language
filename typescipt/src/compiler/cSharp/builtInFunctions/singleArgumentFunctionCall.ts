@@ -3,7 +3,7 @@
 internal abstract class SingleArgumentFunctionCall : MethodFunctionCall {
    public SingleArgumentFunction SingleArgumentFunction
 
-   protected SingleArgumentFunctionCall(SingleArgumentFunction function) : base(function) {
+   protected SingleArgumentFunctionCall(SingleArgumentFunction function) super(function) {
      SingleArgumentFunction = function;
    }
 
@@ -14,6 +14,6 @@ internal abstract class SingleArgumentFunctionCall : MethodFunctionCall {
    protected override getArguments(context: ICompileFunctionContext): SeparatedSyntaxArray<ArgumentSyntax> {
      return SyntaxFactory.SingletonSeparatedList(
        SyntaxFactory.Argument(
-         ExpressionSyntaxFactory.ExpressionSyntax(SingleArgumentFunction.ValueExpression, context)));
+         ExpressionSyntaxFactory.ExpressionSyntax(SingleArgumentFunction.valueExpression, context)));
    }
 }

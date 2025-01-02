@@ -1,13 +1,16 @@
+import {RootNode} from "../rootNode";
+import {IHasNodeDependencies} from "../IHasNodeDependencies";
 
 
-export class Function extends RootNode, IHasNodeDependencies {
-   public const string ParameterName = `Parameters`;
-   public const string ResultsName = `Results`;
+export class Function extends RootNode implements IHasNodeDependencies {
+
+   public static readonly parameterName = `Parameters`;
+    public static readonly resultsName = `Results`;
 
    private static readonly LambdaComparer<IRootNode> NodeComparer =
      new((token1, token2) => token1.NodeName == token2.NodeName);
 
-   public FunctionName Name
+   public functionName Name
    public FunctionParameters Parameters
    public FunctionResults Results
    public FunctionCode Code
@@ -16,7 +19,7 @@ export class Function extends RootNode, IHasNodeDependencies {
 
    private Function(string name, SourceReference reference) {
      super(reference);
-     Name = new FunctionName(reference);
+     Name = new functionName(reference);
      Parameters = new FunctionParameters(reference);
      Results = new FunctionResults(reference);
      Code = new FunctionCode(reference);
@@ -77,7 +80,7 @@ export class Function extends RootNode, IHasNodeDependencies {
    private static addNodeDependencies(node: INode, rootNodeList: RootNodeList, result: Array<IRootNode>): void {
      if (!(node is IHasNodeDependencies hasDependencies)) return;
 
-     let dependencies = hasDependencies.GetDependencies(rootNodeList);
+     let dependencies = hasDependencies.getDependencies(rootNodeList);
      foreach (let dependency in dependencies)
        if (!result.contains(dependency))
          result.Add(dependency);
@@ -95,7 +98,7 @@ export class Function extends RootNode, IHasNodeDependencies {
 
    public override validateTree(context: IValidationContext): void {
      using (context.CreateVariableScope()) {
-       base.ValidateTree(context);
+       base.validateTree(context);
      }
    }
 

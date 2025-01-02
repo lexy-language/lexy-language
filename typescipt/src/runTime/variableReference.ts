@@ -2,7 +2,7 @@
 
 export class VariableReference {
    public string[] Path
-   public string ParentIdentifier => Path[0];
+   public string parentIdentifier => Path[0];
    public boolean HasChildIdentifiers => Path.length > 1;
    public number Parts => Path.length;
 

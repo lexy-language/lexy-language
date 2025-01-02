@@ -7,7 +7,7 @@ export class ExpressionTestExtensions {
      let specificValue = value as T;
      if (specificValue == null)
        throw new Error(
-         $`Value '{value.GetType().Name}' should be of type '{typeof(T).Name}'`);
+         $`Value '{value.getType().Name}' should be of type '{typeof(T).Name}'`);
 
      validate(specificValue);
    }

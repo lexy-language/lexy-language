@@ -38,12 +38,12 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
      this.serviceScope = serviceScope ?? throw new Error(nameof(serviceScope));
 
      Scenario = scenario ?? throw new Error(nameof(scenario));
-     function = scenario.Function ?? rootNodeList.GetFunction(scenario.FunctionName.Value);
+     function = scenario.Function ?? rootNodeList.GetFunction(scenario.functionName.Value);
    }
 
    public run(): void {
      if (parserLogger.NodeHasErrors(Scenario)) {
-       Fail($` Parsing scenario failed: {Scenario.FunctionName}`);
+       Fail($` Parsing scenario failed: {Scenario.functionName}`);
        parserLogger.ErrorNodeMessages(Scenario).ForEach(context.Log);
        return;
      }
@@ -93,10 +93,10 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
          TypeConverter.Convert(compilerResult, expected.ConstantValue.Value, expected.VariableType);
 
        if (actual == null || expectedValue == null
-                || actual.GetType() != expectedValue.GetType()
+                || actual.getType() != expectedValue.getType()
                 || Comparer.Default.Compare(actual, expectedValue) != 0)
          validationResult.WriteLine(
-           $`'{expected.Variable}' should be '{expectedValue ?? `<null>`}' ({expectedValue?.GetType().Name}) but is '{actual ?? `<null>`} ({actual?.GetType().Name})'`);
+           $`'{expected.Variable}' should be '{expectedValue ?? `<null>`}' ({expectedValue?.getType().Name}) but is '{actual ?? `<null>`} ({actual?.getType().Name})'`);
      }
 
      return validationResult.toString();
@@ -166,12 +166,12 @@ export class ScenarioRunner extends IScenarioRunner, IDisposable {
      let result = new Dictionary<string, object>();
      foreach (let parameter in scenarioParameters.Assignments) {
        let type = functionParameters.Variables.FirstOrDefault(variable =>
-         variable.Name == parameter.Variable.ParentIdentifier);
+         variable.Name == parameter.Variable.parentIdentifier);
        if (type == null)
          throw new Error(
-           $`Function '{function.NodeName}' parameter '{parameter.Variable.ParentIdentifier}' not found.`);
+           $`Function '{function.NodeName}' parameter '{parameter.Variable.parentIdentifier}' not found.`);
        let value = GetValue(compilerResult, parameter.ConstantValue.Value, parameter.VariableType);
-       result.Add(parameter.Variable.ParentIdentifier, value);
+       result.Add(parameter.Variable.parentIdentifier, value);
      }
 
      return result;

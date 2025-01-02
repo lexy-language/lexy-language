@@ -3,14 +3,14 @@
 export class Comments extends ParsableNode {
    private readonly Array<string> lines = list<string>(): new;
 
-   public Comments(SourceReference sourceReference) : base(sourceReference) {
+   public Comments(SourceReference sourceReference) super(sourceReference) {
    }
 
    public override parse(context: IParseLineContext): IParsableNode {
      let valid = context.ValidateTokens<Comments>()
        .Count(1)
        .Comment(0)
-       .IsValid;
+       .isValid;
 
      if (!valid) return null;
 

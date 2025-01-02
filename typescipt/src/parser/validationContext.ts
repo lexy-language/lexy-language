@@ -1,7 +1,10 @@
 import {IVariableContext, VariableContext} from "./variableContext";
-import {Stack} from "../infrastructure/lambdaComparer";
+import {Stack} from "../infrastructure/stack";
 import {IParserLogger} from "./IParserLogger";
 import {RootNodeList} from "../language/rootNodeList";
+import {Expression} from "../language/expressions/expression";
+import {VariableType} from "../language/types/variableType";
+import {SourceReference} from "./sourceReference";
 
 class CodeContextScope  {
   private readonly func: () => IVariableContext | null;
@@ -19,8 +22,11 @@ export interface IValidationContext {
   logger: IParserLogger;
   rootNodes: RootNodeList;
 
-  variableContext: IVariableContext | null;
+  variableContext: IVariableContext;
   createVariableScope() : { [Symbol.dispose] };
+
+  validateType(expression: Expression, argumentIndex: number, name: string,
+               type: VariableType, reference: SourceReference, functionHelp: string): IValidationContext;
 }
 
 export class ValidationContext implements IValidationContext {
@@ -48,7 +54,22 @@ export class ValidationContext implements IValidationContext {
      this.variableContextValue = new VariableContext(this.logger, this.variableContextValue);
 
      return new CodeContextScope(() => {
-       return this.variableContextValue = this.contexts.size() == 0 ? null : this.contexts.pop();
+       if (this.contexts.size() == 0) {
+         return this.variableContextValue = null;
+       }
+
+       let variableContextValue = this.contexts.pop();
+       return this.variableContextValue = !!variableContextValue ? variableContextValue : null;
      });
    }
+
+  public validateType(expression: Expression, argumentIndex: number, name: string,
+                      type: VariableType, reference: SourceReference, functionHelp: string): IValidationContext {
+
+    let valueTypeEnd = expression.deriveType(this);
+    if (valueTypeEnd == null || !valueTypeEnd.equals(type))
+    this.logger.fail(reference, `Invalid argument ${argumentIndex}. '${name}' should be of type '${type}' but is '${valueTypeEnd}'. ${functionHelp}`);
+
+    return this;
+  }
 }

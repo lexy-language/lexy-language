@@ -6,7 +6,7 @@ internal abstract class MethodFunctionCall : FunctionCall {
    protected abstract string ClassName
    protected abstract string MethodName
 
-   protected MethodFunctionCall(ExpressionFunction function) : base(function) {
+   protected MethodFunctionCall(ExpressionFunction function) super(function) {
      Function = function;
    }
 

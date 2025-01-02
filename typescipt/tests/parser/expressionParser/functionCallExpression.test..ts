@@ -5,9 +5,9 @@ export class FunctionCallExpressionTests extends ScopedServicesTestFixture {
    public functionCallExpression(): void {
      let expression = this.ParseExpression(`INT(y)`);
      expression.ValidateOfType<FunctionCallExpression>(functionCallExpression => {
-       functionCallExpression.FunctionName.ShouldBe(`INT`);
+       functionCallExpression.functionName.ShouldBe(`INT`);
        functionCallExpression.ExpressionFunction.ValidateOfType<IntFunction>(function =>
-         function.ValueExpression.ValidateVariableExpression(`y`));
+         function.valueExpression.ValidateVariableExpression(`y`));
      });
    }
 
@@ -15,9 +15,9 @@ export class FunctionCallExpressionTests extends ScopedServicesTestFixture {
    public nestedParenthesizedExpression(): void {
      let expression = this.ParseExpression(`INT(5 * (3 + A))`);
      expression.ValidateOfType<FunctionCallExpression>(functionCall => {
-       functionCall.FunctionName.ShouldBe(`INT`);
+       functionCall.functionName.ShouldBe(`INT`);
        functionCall.ExpressionFunction.ValidateOfType<IntFunction>(function =>
-         function.ValueExpression.ValidateOfType<BinaryExpression>(multiplication =>
+         function.valueExpression.ValidateOfType<BinaryExpression>(multiplication =>
            multiplication.Right.ValidateOfType<ParenthesizedExpression>(inner =>
              inner.Expression.ValidateOfType<BinaryExpression>(addition =>
                addition.Operator.ShouldBe(ExpressionOperator.Addition)))));
@@ -28,7 +28,7 @@ export class FunctionCallExpressionTests extends ScopedServicesTestFixture {
    public nestedParenthesizedMultipleArguments(): void {
      let expression = this.ParseExpression(`ROUND(POWER(98.6,3.2),3)`);
      expression.ValidateOfType<FunctionCallExpression>(round => {
-       round.FunctionName.ShouldBe(`ROUND`);
+       round.functionName.ShouldBe(`ROUND`);
        round.Arguments.Count.ShouldBe(2);
        round.Arguments[0].ValidateOfType<FunctionCallExpression>(power => {
          power.Arguments.Count.ShouldBe(2);
@@ -43,7 +43,7 @@ export class FunctionCallExpressionTests extends ScopedServicesTestFixture {
    public callExtract(): void {
      let expression = this.ParseExpression(`extract(results)`);
      expression.ValidateOfType<FunctionCallExpression>(round => {
-       round.FunctionName.ShouldBe(`extract`);
+       round.functionName.ShouldBe(`extract`);
        round.Arguments.Count.ShouldBe(1);
        round.Arguments[0].ValidateIdentifierExpression(`results`);
      });

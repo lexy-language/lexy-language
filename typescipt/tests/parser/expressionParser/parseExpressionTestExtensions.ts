@@ -8,7 +8,7 @@ export class ParseExpressionTestExtensions {
      let line = new Line(0, expression, sourceFile);
 
      let tokens = line.Tokenize(tokenizer);
-     if (!tokens.state != 'success') {
+     if (tokens.state != 'success') {
        throw new Error(`Tokenizing failed: ` + context.logger.errorMessages().Format(2));
      }
 
@@ -26,7 +26,7 @@ export class ParseExpressionTestExtensions {
      let line = new Line(0, expression, sourceFile);
 
      let tokens = line.Tokenize(tokenizer);
-     if (!tokens.state != 'success') {
+     if (tokens.state != 'success') {
        throw new Error(`Tokenizing failed: ` + context.logger.errorMessages().Format(2));
      }
 

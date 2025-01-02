@@ -1,12 +1,13 @@
 
 
 export class YearsFunction extends EndStartDateFunction {
-   public const string Name = `YEARS`;
+   public readonly name: string = `YEARS`;
 
-   protected override string FunctionName => Name;
+   public readonly nodeType = "YearsFunction";
+   protected override get functionName(): string { return Name;
 
    constructor(endDateExpression: Expression, startDateExpression: Expression, reference: SourceReference)
-     : base(endDateExpression, startDateExpression, reference) {
+     super(endDateExpression, startDateExpression, reference) {
    }
 
    public static ExpressionFunction Create(SourceReference reference, Expression endDateExpression,

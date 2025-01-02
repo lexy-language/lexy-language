@@ -1,13 +1,25 @@
+import {VariableType} from "./variableType";
+import {ITypeWithMembers} from "./iTypeWithMembers";
+import {IValidationContext} from "../../parser/validationContext";
+import {ComplexType} from "./complexType";
 
+export function asComplexTypeReference(object: any): ComplexTypeReference | null {
+   return object.isComplexTypeReference ? object as ComplexTypeReference : null;
+}
 
-export class ComplexTypeReference extends VariableType, ITypeWithMembers {
-   public string Name
+export abstract class ComplexTypeReference extends VariableType implements ITypeWithMembers {
 
-   constructor(name: string) {
-     Name = name;
+   public readonly typeWithMember: true;
+   public readonly isComplexTypeReference: true;
+
+   public name: string;
+
+   protected constructor(name: string) {
+     super();
+     this.name = name;
    }
 
    public abstract memberType(name: string, context: IValidationContext): VariableType;
 
-   public abstract getComplexType(context: IValidationContext): ComplexType;
+   public abstract getComplexType(context: IValidationContext): ComplexType | null;
 }

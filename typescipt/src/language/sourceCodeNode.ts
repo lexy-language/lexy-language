@@ -6,9 +6,9 @@ export class SourceCodeNode extends RootNode {
    public override string NodeName => `SourceCodeNode`;
 
    public Comments Comments
-   public RootNodeList RootNodes new(): =;
+   public RootNodeList rootNodes new(): =;
 
-   public SourceCodeNode() : base(new SourceReference(new SourceFile(`SourceCodeNode`), 1, 1)) {
+   public SourceCodeNode() super(new SourceReference(new SourceFile(`SourceCodeNode`), 1, 1)) {
      Comments = new Comments(reference);
    }
 
@@ -20,7 +20,7 @@ export class SourceCodeNode extends RootNode {
      let rootNode = ParseRootNode(context);
      if (rootNode == null) return this;
 
-     RootNodes.Add(rootNode);
+     rootNodes.Add(rootNode);
 
      return rootNode;
    }
@@ -57,7 +57,7 @@ export class SourceCodeNode extends RootNode {
    }
 
    public override getChildren(): Array<INode> {
-     return RootNodes;
+     return rootNodes;
    }
 
    protected override validate(context: IValidationContext): void {
@@ -66,7 +66,7 @@ export class SourceCodeNode extends RootNode {
        node => node.reference,
        node => node.NodeName,
        node => $`Duplicated node name: '{node.NodeName}'`,
-       RootNodes);
+       rootNodes);
    }
 
    public getDueIncludes(): Array<Include> {

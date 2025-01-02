@@ -64,7 +64,7 @@ internal static class Types {
        TableRowType _ => QualifiedName(
          IdentifierName(ClassNames.TableClassName(complexTypeReference.Name)),
          IdentifierName(LexyCodeConstants.RowType)),
-       _ => throw new Error($`Invalid type: {complexTypeReference?.GetType()}`)
+       _ => throw new Error($`Invalid type: {complexTypeReference?.getType()}`)
      };
    }
 
@@ -112,7 +112,7 @@ internal static class Types {
        PrimitiveVariableDeclarationType expression => PrimitiveTypeDefaultExpression(expression),
        CustomVariableDeclarationType customType => DefaultExpressionSyntax(customType),
        _ => throw new Error(
-         $`Wrong VariableDeclarationType {variableDeclarationType.GetType()}`)
+         $`Wrong VariableDeclarationType {variableDeclarationType.getType()}`)
      };
    }
 

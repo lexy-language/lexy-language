@@ -1,67 +1,87 @@
 import {Expression} from "./Expression";
+import {asParsableNode, IParsableNode} from "../parsableNode";
+import {ExpressionList} from "./expressionList";
+import {ElseExpression} from "./elseExpression";
+import {ExpressionSource} from "./expressionSource";
+import {SourceReference} from "../../parser/sourceReference";
+import {IParseLineContext} from "../../parser/ParseLineContext";
+import {INode} from "../node";
+import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
+import {ExpressionFactory} from "./expressionFactory";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {Keywords} from "../../parser/Keywords";
+import {IValidationContext} from "../../parser/validationContext";
+import {PrimitiveType} from "../types/primitiveType";
+import {VariableType} from "../types/variableType";
 
-export class IfExpression extends Expression, IParsableNode {
-   private readonly ExpressionList trueExpressions;
+export class IfExpression extends Expression implements IParsableNode {
 
-  public nodeType: "IfExpression"
+  private readonly trueExpressionsValues: ExpressionList;
 
-  public Expression Condition
-   public Array<Expression> TrueExpressions => trueExpressions;
+  public isParsableNode: true;
+  public nodeType: "IfExpression";
 
-   public ElseExpression Else { get; set; }
+  public condition: Expression
 
-constructor(Expression condition, ExpressionSource source, SourceReference reference) : base(source,
-     reference) {
-     Condition = condition;
-     trueExpressions = new ExpressionList(reference);
-   }
+  public get trueExpressions(): Array<Expression> {
+    return this.trueExpressionsValues.asArray();
+  }
 
-   public parse(context: IParseLineContext): IParsableNode {
-     let expression = trueExpressions.parse(context);
-     return expression.result is IParsableNode node ? node : this;
-   }
+  public else: ElseExpression
 
-   public override getChildren(): Array<INode> {
-     yield return Condition;
-     yield return trueExpressions;
-     if (Else != null) yield return Else;
-   }
+  constructor(condition: Expression, source: ExpressionSource, reference: SourceReference) {
+    super(source, reference);
+    this.condition = condition;
+    this.trueExpressionsValues = new ExpressionList(reference);
+  }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.tokens;
-     if (!IsValid(tokens)) return newParseExpressionFailed(IfExpression>(`Not valid.`);
+  public parse(context: IParseLineContext): IParsableNode {
+    let expression = this.trueExpressionsValues.parse(context);
+    if (expression.state != "success") return this;
+    const parsableNode = asParsableNode(expression.result);
+    return parsableNode != null ? parsableNode : this;
+  }
 
-     if (tokens.length == 1) return newParseExpressionFailed(IfExpression>(`No condition found`);
+  public override getChildren(): Array<INode> {
+    const result: Array<INode> = [this.condition, ...this.trueExpressionsValues.asArray()];
+    if (this.else != null) result.push(this.else);
+    return result;
+  }
 
-     let condition = tokens.tokensFrom(1);
-     let conditionExpression = ExpressionFactory.parse(condition, source.line);
-     if (!conditionExpression.state != 'success') return conditionExpression;
+  public static parse(source: ExpressionSource): ParseExpressionResult {
+    let tokens = source.tokens;
+    if (!this.isValid(tokens)) return newParseExpressionFailed(IfExpression, `Not valid.`);
 
-     let reference = source.createReference();
+    if (tokens.length == 1) return newParseExpressionFailed(IfExpression, `No condition found`);
 
-     let expression = new IfExpression(conditionExpression.result, source, reference);
+    let condition = tokens.tokensFrom(1);
+    let conditionExpression = ExpressionFactory.parse(condition, source.line);
+    if (conditionExpression.state != 'success') return conditionExpression;
 
-     return newParseExpressionSuccess(expression);
-   }
+    let reference = source.createReference();
 
-   public static isValid(tokens: TokenList): boolean {
-     return tokens.isKeyword(0, Keywords.If);
-   }
+    let expression = new IfExpression(conditionExpression.result, source, reference);
 
-   protected override validate(context: IValidationContext): void {
-     let type = Condition.deriveType(context);
-     if (type == null || !type.equals(PrimitiveType.boolean))
-       context.logger.fail(this.reference,
-         $`'if' condition expression should be 'boolean', is of wrong type '{type}'.`);
-   }
+    return newParseExpressionSuccess(expression);
+  }
 
-   internal linkElse(elseExpression: ElseExpression): void {
-     if (Else != null) throw new Error(`'else' already linked.`);
+  public static isValid(tokens: TokenList): boolean {
+    return tokens.isKeyword(0, Keywords.If);
+  }
 
-     Else = elseExpression;
-   }
+  protected override validate(context: IValidationContext): void {
+    let type = this.condition.deriveType(context);
+    if (type == null || !type.equals(PrimitiveType.boolean))
+      context.logger.fail(this.reference, `'if' condition expression should be 'boolean', is of wrong type '${type}'.`);
+  }
 
-   public override deriveType(context: IValidationContext): VariableType {
-     return null;
-   }
+  public linkElse(elseExpression: ElseExpression): void {
+    if (this.else != null) throw new Error(`'else' already linked.`);
+
+    this.else = elseExpression;
+  }
+
+  public override deriveType(context: IValidationContext): VariableType | null {
+    return null;
+  }
 }

@@ -1,54 +1,77 @@
 import {Expression} from "./Expression";
+import {asParsableNode, IParsableNode} from "../parsableNode";
+import {IDependantExpression} from "./IDependantExpression";
+import {ExpressionList} from "./expressionList";
+import {ExpressionSource} from "./expressionSource";
+import {SourceReference} from "../../parser/sourceReference";
+import {IParseLineContext} from "../../parser/ParseLineContext";
+import {IfExpression} from "./ifExpression";
+import {INode} from "../node";
+import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
+import {TokenList} from "../../parser/tokens/tokenList";
+import {Keywords} from "../../parser/Keywords";
+import {IValidationContext} from "../../parser/validationContext";
+import {VariableType} from "../types/variableType";
 
-export class ElseExpression extends Expression, IParsableNode, IDependantExpression {
-   private readonly ExpressionList falseExpressions;
+export class ElseExpression extends Expression implements IParsableNode, IDependantExpression {
+  private readonly falseExpressionsValue: ExpressionList;
 
-  public nodeType: "ElseExpression"
-  public Array<Expression> FalseExpressions => falseExpressions;
+  public isParsableNode: true;
+  public isDependantExpression: true;
+  public nodeType: "ElseExpression";
 
-   private ElseExpression(ExpressionSource source, SourceReference reference) : {super(source, reference) {
-     falseExpressions = new ExpressionList(reference);
-   }
+  public get falseExpressions() {
+    return this.falseExpressionsValue;
+  }
 
-   public linkPreviousExpression(expression: Expression, context: IParseLineContext): void {
-     if (expression is not IfExpression ifExpression) {
-       context.logger.fail(this.reference, `Else should be following an If statement. No if statement found.`);
-       return;
-     }
+  constructor(source: ExpressionSource, reference: SourceReference) {
+    super(source, reference);
+    this.falseExpressionsValue = new ExpressionList(reference);
+  }
 
-     ifExpression.LinkElse(this);
-   }
+  public linkPreviousExpression(expression: Expression, context: IParseLineContext): void {
 
-   public override getChildren(): Array<INode> {
-     foreach (let expression in FalseExpressions) yield return expression;
-   }
+    if (expression.nodeType != "IfExpression") {
+      context.logger.fail(this.reference, `Else should be following an If statement. No if statement found.`);
+      return;
+    }
 
-   public parse(context: IParseLineContext): IParsableNode {
-     let expression = falseExpressions.parse(context);
-     return expression.result is IParsableNode node ? node : this;
-   }
+    const ifExpression = expression as IfExpression;
+    ifExpression.linkElse(this);
+  }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
-     let tokens = source.tokens;
-     if (!IsValid(tokens)) return newParseExpressionFailed(ElseExpression>(`Not valid.`);
+  public override getChildren(): Array<INode> {
+    return this.falseExpressionsValue.asArray();
+  }
 
-     if (tokens.length > 1) return newParseExpressionFailed(ElseExpression>(`No tokens expected.`);
+  public parse(context: IParseLineContext): IParsableNode {
+    let expression = this.falseExpressionsValue.parse(context);
+    if (expression.state != "success") return this;
+    const node = asParsableNode(expression.result);
+    return node != null ? node : this;
+  }
 
-     let reference = source.createReference();
+  public static parse(source: ExpressionSource): ParseExpressionResult {
+    let tokens = source.tokens;
+    if (!this.isValid(tokens)) return newParseExpressionFailed(ElseExpression, `Not valid.`);
 
-     let expression = new ElseExpression(source, reference);
+    if (tokens.length > 1) return newParseExpressionFailed(ElseExpression, `No tokens expected.`);
 
-     return newParseExpressionSuccess(expression);
-   }
+    let reference = source.createReference();
 
-   public static isValid(tokens: TokenList): boolean {
-     return tokens.isKeyword(0, Keywords.Else);
-   }
+    let expression = new ElseExpression(source, reference);
 
-   protected override validate(context: IValidationContext): void {
-   }
+    return newParseExpressionSuccess(expression);
+  }
 
-   public override deriveType(context: IValidationContext): VariableType {
-     return null;
-   }
+  public static isValid(tokens: TokenList): boolean {
+    return tokens.isKeyword(0, Keywords.Else);
+  }
+
+  protected override validate(context: IValidationContext): void {
+  }
+
+  public override deriveType(context: IValidationContext): VariableType | null {
+    return null;
+  }
 }

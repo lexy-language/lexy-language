@@ -7,7 +7,7 @@ export class ParserExtensions {
      let codeLines = code.Split(Environment.NewLine);
      let context = parser.parse(codeLines, `tests.lexy`, false);
 
-     return context.RootNodes;
+     return context.rootNodes;
    }
 
    public static parseFunction(parser: ILexyParser, code: string): Function {
@@ -34,7 +34,7 @@ export class ParserExtensions {
 
      let first = nodes.First();
      if (!(first is T node))
-       throw new Error($`Node not a {typeof(T).Name}. Actual: {first?.GetType()}`);
+       throw new Error($`Node not a {typeof(T).Name}. Actual: {first?.getType()}`);
 
      return node;
    }

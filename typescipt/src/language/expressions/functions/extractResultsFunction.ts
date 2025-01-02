@@ -1,71 +1,85 @@
-
+import {ExpressionFunction} from "./expressionFunction";
+import {Mapping} from "./mapping";
+import {Expression} from "../expression";
+import {SourceReference} from "../../../parser/sourceReference";
+import {IdentifierExpression} from "../identifierExpression";
+import {INode} from "../../node";
+import {asComplexType, ComplexType} from "../../types/complexType";
+import {IValidationContext} from "../../../parser/validationContext";
+import {VariableSource} from "../../variableSource";
+import {VariableType} from "../../types/variableType";
+import {VoidType} from "../../types/voidType";
 
 export class ExtractResultsFunction extends ExpressionFunction {
-   public const string Name = `extract`;
 
-   private readonly Array<Mapping> mapping = list<Mapping>(): new;
+  public readonly nodeType = "ExtractResultsFunction";
+   public readonly name: string  = `extract`;
 
-   protected string FunctionHelp => $`{Name} expects 1 argument. extract(variable)`;
+  protected get functionHelp() {
+    return `${this.name} expects 1 argument. extract(variable)`;
+  }
 
-   public string FunctionResultVariable
-   public Expression ValueExpression
+   public functionResultVariable: string | null;
+  public valueExpression: Expression;
 
-   public Array<Mapping> Mapping => mapping;
+  public readonly mapping: Array<Mapping> = [];
 
-   constructor(valueExpression: Expression, reference: SourceReference)
-     {
+   constructor(valueExpression: Expression, reference: SourceReference) {
      super(reference);
-     ValueExpression = valueExpression;
-     FunctionResultVariable = (valueExpression as IdentifierExpression)?.Identifier;
+     this.valueExpression = valueExpression;
+     const identifierExpression = valueExpression as IdentifierExpression
+     this.functionResultVariable = identifierExpression != null ? identifierExpression.identifier : null;
    }
 
    public override getChildren(): Array<INode> {
-     yield return ValueExpression;
+     return [this.valueExpression];
    }
 
    protected override validate(context: IValidationContext): void {
-     if (FunctionResultVariable == null) {
-       context.logger.fail(this.reference, $`Invalid variable argument. {FunctionHelp}`);
+     if (this.functionResultVariable == null) {
+       context.logger.fail(this.reference, `Invalid variable argument. ${(this.functionHelp)}`);
        return;
      }
 
-     let variableType = context.variableContext.getVariableType(FunctionResultVariable);
+     let variableType = context.variableContext.getVariableTypeByName(this.functionResultVariable);
      if (variableType == null) {
-       context.logger.fail(this.reference, $`Unknown variable: '{FunctionResultVariable}'. {FunctionHelp}`);
+       context.logger.fail(this.reference, `Unknown variable: '${(this.functionResultVariable)}'. ${(this.functionHelp)}`);
        return;
      }
 
-     if (!(variableType is ComplexType))
+     const complexType = asComplexType(variableType);
+     if (complexType == null) {
        context.logger.fail(this.reference,
-         $`Invalid variable type: '{FunctionResultVariable}'. ` +
+         `Invalid variable type: '${this.functionResultVariable}'. ` +
          `Should be Function Results. ` +
-         $`Use new(Function.results) or fill(Function.results) to create new function results. {FunctionHelp}`);
+         `Use new(Function.results) or fill(Function.results) to create new function results. ${this.functionHelp}`);
+       return;
+     }
 
-     GetMapping(this.reference, context, variableType as ComplexType, mapping);
+     ExtractResultsFunction.getMapping(this.reference, context, complexType, this.mapping);
    }
 
-   internal static void GetMapping(SourceReference reference, IValidationContext context, ComplexType complexType,
-     Array<Mapping> mapping) {
-     if (reference == null) throw new Error(nameof(reference));
-     if (context == null) throw new Error(nameof(context));
-     if (mapping == null) throw new Error(nameof(mapping));
+   public static getMapping(reference: SourceReference, context: IValidationContext, complexType: ComplexType | null,
+     mapping: Array<Mapping>): void {
 
      if (complexType == null) return;
 
-     foreach (let member in complexType.Members) {
-       let variable = context.variableContext.getVariable(member.Name);
-       if (variable == null || variable.VariableSource == VariableSource.Parameters) continue;
+    for (const member of complexType.members) {
+      let variable = context.variableContext.getVariable(member.name);
+      if (variable == null || variable.variableSource == VariableSource.Parameters) continue;
 
-       if (!variable.VariableType.equals(member.Type))
-         context.logger.fail(reference,
-           $`Invalid parameter mapping. Variable '{member.Name}' of type '{variable.VariableType}' can't be mapped to parameter '{member.Name}' of type '{member.Type}'.`);
-       else
-         mapping.Add(new Mapping(member.Name, variable.VariableType, variable.VariableSource));
-     }
+     if (!variable.variableType?.equals(member.type)) {
+       context.logger.fail(reference,
+         `Invalid parameter mapping. Variable '${member.name}' of type '${variable.variableType}' can't be mapped to parameter '${member.name}' of type '${member.type}'.`);
+     } else {
+        mapping.push(new Mapping(member.name, variable.variableType, variable.variableSource));
+      }
+    }
 
-     if (mapping.Count == 0)
+     if (mapping.length == 0) {
        context.logger.fail(reference,
          `Invalid parameter mapping. No parameter could be mapped from variables.`);
+     }
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {

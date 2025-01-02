@@ -8,19 +8,19 @@ export class ExpressionFactory {
    private static factories: [{
       criteria: (tokens: TokenList) => boolean,
       factory: ((source: ExpressionSource) => ParseExpressionResult) }] = [
-         { criteria: IfExpression.IsValid, factory: IfExpression.Parse },
-         { criteria: ElseExpression.IsValid, factory: ElseExpression.Parse },
-         { criteria: SwitchExpression.IsValid, factory: SwitchExpression.Parse },
-         { criteria: CaseExpression.IsValid, factory: CaseExpression.Parse },
-         { criteria: VariableDeclarationExpression.IsValid, factory: VariableDeclarationExpression.Parse },
-         { criteria: AssignmentExpression.IsValid, factory: AssignmentExpression.Parse },
-         { criteria: ParenthesizedExpression.IsValid, factory: ParenthesizedExpression.Parse },
-         { criteria: BracketedExpression.IsValid, factory: BracketedExpression.Parse },
-         { criteria: IdentifierExpression.IsValid, factory: IdentifierExpression.Parse },
-         { criteria: MemberAccessExpression.IsValid, factory: MemberAccessExpression.Parse },
-         { criteria: LiteralExpression.IsValid, factory: LiteralExpression.Parse },
-         { criteria: BinaryExpression.IsValid, factory: BinaryExpression.Parse },
-         { criteria: FunctionCallExpression.IsValid, factory: FunctionCallExpression.Parse }
+         { criteria: IfExpression.isValid, factory: IfExpression.Parse },
+         { criteria: ElseExpression.isValid, factory: ElseExpression.Parse },
+         { criteria: SwitchExpression.isValid, factory: SwitchExpression.Parse },
+         { criteria: CaseExpression.isValid, factory: CaseExpression.Parse },
+         { criteria: VariableDeclarationExpression.isValid, factory: VariableDeclarationExpression.Parse },
+         { criteria: AssignmentExpression.isValid, factory: AssignmentExpression.Parse },
+         { criteria: ParenthesizedExpression.isValid, factory: ParenthesizedExpression.Parse },
+         { criteria: BracketedExpression.isValid, factory: BracketedExpression.Parse },
+         { criteria: IdentifierExpression.isValid, factory: IdentifierExpression.Parse },
+         { criteria: MemberAccessExpression.isValid, factory: MemberAccessExpression.Parse },
+         { criteria: LiteralExpression.isValid, factory: LiteralExpression.Parse },
+         { criteria: BinaryExpression.isValid, factory: BinaryExpression.Parse },
+         { criteria: FunctionCallExpression.isValid, factory: FunctionCallExpression.Parse }
        ];
 
    public static parse(tokens: TokenList, currentLine: Line): ParseExpressionResult {

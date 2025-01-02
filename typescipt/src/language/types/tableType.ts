@@ -16,7 +16,7 @@ export class TableType extends TypeWithMembers {
    public override equals(obj: object): boolean {
      if (ReferenceEquals(null, obj)) return false;
      if (ReferenceEquals(this, obj)) return true;
-     if (obj.GetType() != GetType()) return false;
+     if (obj.getType() != getType()) return false;
      return Equals((TableType)obj);
    }
 
@@ -37,7 +37,7 @@ export class TableType extends TypeWithMembers {
    }
 
    private tableRowType(context: IValidationContext): TableRowType {
-     let complexType = context.RootNodes.GetTable(Type)?.GetRowType(context);
+     let complexType = context.rootNodes.GetTable(Type)?.GetRowType(context);
      return new TableRowType(Type, complexType);
    }
 

@@ -34,7 +34,7 @@ export class VariableDefinition extends Node, IHasNodeDependencies {
        .CountMinimum(2)
        .StringLiteral(0)
        .StringLiteral(1)
-       .IsValid;
+       .isValid;
 
      if (!result) return null;
 
@@ -74,6 +74,6 @@ export class VariableDefinition extends Node, IHasNodeDependencies {
 
      context.variableContext.registerVariableAndVerifyUnique(this.reference, Name, VariableType, Source);
 
-     context.ValidateTypeAndDefault(this.reference, Type, DefaultExpression);
+     context.validateTypeAndDefault(this.reference, Type, DefaultExpression);
    }
 }

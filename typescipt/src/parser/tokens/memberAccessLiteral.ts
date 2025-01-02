@@ -2,17 +2,19 @@ import {Token} from "./token";
 import {ILiteralToken} from "./ILiteralToken";
 import {TokenCharacter} from "./tokenCharacter";
 import {TokenValues} from "./tokenValues";
-import {IValidationContext} from "../IValidationContext";
-import {VariableType} from "../../language/variableTypes";
+import {VariableReference} from "../../runTime/variableReference";
+import {instanceOfTypeWithMembers, ITypeWithMembers} from "../../language/types/iTypeWithMembers";
+import {VariableType} from "../../language/types/variableType";
+import {IValidationContext} from "../validationContext";
 
 export class MemberAccessLiteral extends Token implements ILiteralToken {
 
-  public get parent() {
-    return this.parts.length >= 1 ? this.parts[0] : null;
+  public get parent(): string {
+    return this.parts.length >= 1 ? this.parts[0] : '';
   }
 
-  public get member() {
-    return this.parts.length >= 2 ? this.parts[1] : null;
+  public get member(): string {
+    return this.parts.length >= 2 ? this.parts[1] : '';
   }
 
   public readonly parts: string[];
@@ -32,16 +34,17 @@ export class MemberAccessLiteral extends Token implements ILiteralToken {
     return this.value;
   }
 
-  public deriveType(context: IValidationContext): VariableType {
-    /* let variableReference = new VariableReference(Parts);
+  public deriveType(context: IValidationContext): VariableType | null {
+    let variableReference = new VariableReference(this.parts);
     let variableType = context.variableContext.getVariableType(variableReference, context);
     if (variableType != null) return variableType;
 
     if (this.parts.length != 2) return null;
 
-    let rootType = context.RootNodes.GetType(Parent);
-    return rootType is not ITypeWithMembers typeWithMembers ? null : typeWithMembers.MemberType(Member, context);*/
-    throw Error("Not implemented.")
+    let rootType = context.rootNodes.getType(this.parent);
+    if (!instanceOfTypeWithMembers(rootType)) return null;
+    const typeWithMembers = rootType as ITypeWithMembers;
+    return typeWithMembers.memberType(this.member, context);
   }
 
   public toString() {

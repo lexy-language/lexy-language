@@ -5,7 +5,7 @@ export class BracketedExpressionTests extends ScopedServicesTestFixture {
    public functionCallExpression(): void {
      let expression = this.ParseExpression(`func[y]`);
      expression.ValidateOfType<BracketedExpression>(functionCallExpression => {
-       functionCallExpression.FunctionName.ShouldBe(`func`);
+       functionCallExpression.functionName.ShouldBe(`func`);
        functionCallExpression.Expression.ValidateVariableExpression(`y`);
      });
    }
@@ -14,7 +14,7 @@ export class BracketedExpressionTests extends ScopedServicesTestFixture {
    public nestedParenthesizedExpression(): void {
      let expression = this.ParseExpression(`func[5 * (3 + A)]`);
      expression.ValidateOfType<BracketedExpression>(functionCall => {
-       functionCall.FunctionName.ShouldBe(`func`);
+       functionCall.functionName.ShouldBe(`func`);
        functionCall.Expression.ValidateOfType<BinaryExpression>(multiplication => {
          multiplication.Operator.ShouldBe(ExpressionOperator.Multiplication);
          multiplication.Right.ValidateOfType<ParenthesizedExpression>(inner =>

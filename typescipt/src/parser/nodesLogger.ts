@@ -12,9 +12,9 @@ export class NodesLogger {
      builder.Append(new string(' ', indent));
 
      if (node is IRootNode rootNode)
-       builder.AppendLine($`{rootNode.GetType().Name}: {rootNode.NodeName}`);
+       builder.AppendLine($`{rootNode.getType().Name}: {rootNode.NodeName}`);
      else
-       builder.AppendLine(node == null ? `<null>` : node?.GetType().Name);
+       builder.AppendLine(node == null ? `<null>` : node?.getType().Name);
 
      if (node == null) return;
 

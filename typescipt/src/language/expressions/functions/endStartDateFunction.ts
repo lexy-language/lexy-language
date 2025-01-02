@@ -1,30 +1,37 @@
-
+import {ExpressionFunction} from "./expressionFunction";
+import {Expression} from "../expression";
+import {SourceReference} from "../../../parser/sourceReference";
+import {INode} from "../../node";
+import {IValidationContext} from "../../../parser/validationContext";
+import {PrimitiveType} from "../../types/primitiveType";
+import {VariableType} from "../../types/variableType";
 
 export class EndStartDateFunction extends ExpressionFunction {
-   private string FunctionHelp => $`'{FunctionName}' expects 2 arguments (EndDate, StartDate).`;
+   private get functionHelp() {
+     return `'${this.functionName}' expects 2 arguments (EndDate, StartDate).`;
+   }
 
-   protected abstract string FunctionName
+  public readonly nodeType = "EndStartDateFunction";
+  protected abstract functionName: string
 
-   public Expression EndDateExpression
-   public Expression StartDateExpression
+  public endDateExpression: Expression;
+  public startDateExpression: Expression;
 
-   protected EndStartDateFunction(Expression endDateExpression, Expression startDateExpression,
-     SourceReference reference)
-     {
+  constructor(endDateExpression: Expression, startDateExpression: Expression,
+     reference: SourceReference) {
      super(reference);
-     EndDateExpression = endDateExpression;
-     StartDateExpression = startDateExpression;
+     this.endDateExpression = endDateExpression;
+     this.startDateExpression = startDateExpression;
    }
 
    public override getChildren(): Array<INode> {
-     yield return EndDateExpression;
-     yield return StartDateExpression;
+     return [this.endDateExpression, this.startDateExpression];
    }
 
    protected override validate(context: IValidationContext): void {
      context
-       .ValidateType(EndDateExpression, 1, `EndDate`, PrimitiveType.date, reference, FunctionHelp)
-       .ValidateType(StartDateExpression, 2, `EndDate`, PrimitiveType.date, reference, FunctionHelp);
+       .validateType(this.endDateExpression, 1, `EndDate`, PrimitiveType.date, this.reference, this.functionHelp)
+       .validateType(this.startDateExpression, 2, `StartDate`, PrimitiveType.date, this.reference, this.functionHelp);
    }
 
    public override deriveReturnType(context: IValidationContext): VariableType {

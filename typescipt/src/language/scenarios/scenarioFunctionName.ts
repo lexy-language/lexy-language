@@ -1,9 +1,9 @@
 
 
-export class ScenarioFunctionName extends Node {
+export class ScenariofunctionName extends Node {
    public string Value { get; private set; }
 
-   public ScenarioFunctionName(SourceReference reference) {
+   public ScenariofunctionName(SourceReference reference) {
      super(reference);
    }
 

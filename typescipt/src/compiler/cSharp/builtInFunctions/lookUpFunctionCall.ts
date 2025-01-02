@@ -5,7 +5,7 @@ export class LookUpFunctionCall extends FunctionCall {
 
    public LookupFunction LookupFunction
 
-   public LookUpFunctionCall(LookupFunction lookupFunction) : base(lookupFunction) {
+   public LookUpFunctionCall(LookupFunction lookupFunction) super(lookupFunction) {
      LookupFunction = lookupFunction;
      methodName =
        $`__LookUp{lookupFunction.Table}{lookupFunction.resultColumn.Member}By{lookupFunction.SearchValueColumn.Member}`;
@@ -66,7 +66,7 @@ export class LookUpFunctionCall extends FunctionCall {
          ArgumentList(
            SeparatedArray<ArgumentSyntax>(
              new SyntaxNodeOrToken[] {
-               Argument(ExpressionSyntaxFactory.ExpressionSyntax(LookupFunction.ValueExpression,
+               Argument(ExpressionSyntaxFactory.ExpressionSyntax(LookupFunction.valueExpression,
                  context)),
                Token(SyntaxKind.CommaToken),
                Argument(IdentifierName(LexyCodeConstants.ContextVariable))

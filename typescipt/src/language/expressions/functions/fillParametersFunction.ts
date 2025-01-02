@@ -1,29 +1,47 @@
+import {IHasNodeDependencies} from "../../IHasNodeDependencies";
+import {ExpressionFunction} from "./expressionFunction";
+import {Mapping} from "./mapping";
+import {MemberAccessLiteral} from "../../../parser/tokens/memberAccessLiteral";
+import {asComplexTypeReference, ComplexTypeReference} from "../../types/complexTypeReference";
+import {Expression} from "../expression";
+import {SourceReference} from "../../../parser/sourceReference";
+import {IValidationContext} from "../../../parser/ValidationContext";
+import {asMemberAccessExpression} from "../memberAccessExpression";
+import {RootNodeList} from "../../rootNodeList";
+import {IRootNode} from "../../rootNode";
+import {INode} from "../../node";
+import {ComplexType} from "../../types/complexType";
+import {VariableType} from "../../types/variableType";
+import {Function} from "../../functions/function";
 
+export class FillParametersFunction extends ExpressionFunction implements IHasNodeDependencies {
 
-export class FillParametersFunction extends ExpressionFunction, IHasNodeDependencies {
-   public const string Name = `fill`;
+   public readonly name = `fill`;
 
-   private readonly Array<Mapping> mapping = list<Mapping>(): new;
+  public readonly nodeType = "FillParametersFunction";
 
-   protected string FunctionHelp => $`{Name} expects 1 argument (Function.Parameters)`;
+  protected get functionHelp() {
+    return `${this.name} expects 1 argument (Function.Parameters)`;
+  }
 
-   public MemberAccessLiteral TypeLiteral
+   public readonly typeLiteral: MemberAccessLiteral | undefined;
+  public readonly valueExpression: Expression;
 
-   public Expression ValueExpression
+   public type: ComplexTypeReference;
 
-   public ComplexTypeReference Type { get; private set; }
+  public readonly mapping: Array<Mapping> = [];
 
-   public Array<Mapping> Mapping => mapping;
-
-   constructor(valueExpression: Expression, reference: SourceReference)
-     {
+   constructor(valueExpression: Expression, reference: SourceReference) {
      super(reference);
-     ValueExpression = valueExpression ?? throw new Error(nameof(valueExpression));
-     TypeLiteral = (valueExpression as MemberAccessExpression)?.MemberAccessLiteral;
+     this.valueExpression = valueExpression;
+
+     const memberAccessExpression = asMemberAccessExpression(valueExpression);
+     this.typeLiteral = memberAccessExpression?.memberAccessLiteral;
    }
 
    public getDependencies(rootNodeList: RootNodeList): Array<IRootNode> {
-     if (Type != null) yield return rootNodeList.GetNode(Type.Name);
+     const rootNode = rootNodeList.getNode(this.type.name);
+     return rootNode != null ? [rootNode] : [];
    }
 
    public static create(reference: SourceReference, expression: Expression): ExpressionFunction {
@@ -31,58 +49,60 @@ export class FillParametersFunction extends ExpressionFunction, IHasNodeDependen
    }
 
    public override getChildren(): Array<INode> {
-     yield return ValueExpression;
+     return [this.valueExpression];
    }
 
    protected override validate(context: IValidationContext): void {
-     let valueType = ValueExpression.deriveType(context);
-     if (!(valueType is ComplexTypeReference complexTypeReference)) {
+     const valueType = this.valueExpression.deriveType(context);
+     const complexTypeReference = asComplexTypeReference(valueType);
+     if (complexTypeReference == null) {
        context.logger.fail(this.reference,
-         $`Invalid argument 1 'Value' should be of type 'ComplexTypeReference' but is '{valueType}'. {FunctionHelp}`);
+         `Invalid argument 1 'Value' should be of type 'ComplexTypeReference' but is '${valueType}'. ${this.functionHelp}`);
        return;
      }
 
-     Type = complexTypeReference;
+     this.type = complexTypeReference;
 
-     let complexType = complexTypeReference.GetComplexType(context);
+     const complexType = complexTypeReference.getComplexType(context);
 
      if (complexType == null) return;
 
-     GetMapping(this.reference, context, complexType, mapping);
+     FillParametersFunction.getMapping(this.reference, context, complexType, this.mapping);
    }
 
-   internal static void GetMapping(SourceReference reference, IValidationContext context, ComplexType complexType,
-     Array<Mapping> mapping) {
-     if (reference == null) throw new Error(nameof(reference));
-     if (context == null) throw new Error(nameof(context));
-     if (mapping == null) throw new Error(nameof(mapping));
+   public static getMapping(reference: SourceReference, context: IValidationContext, complexType: ComplexType,
+     mapping: Array<Mapping>): void {
 
-     if (complexType == null) return;
-
-     foreach (let member in complexType.Members) {
-       let variable = context.variableContext.getVariable(member.Name);
+     for (const member of complexType.members) {
+       let variable = context.variableContext.getVariable(member.name);
        if (variable == null) continue;
 
-       if (!variable.VariableType.equals(member.Type))
+       if (!variable.variableType.equals(member.type)) {
          context.logger.fail(reference,
-           $`Invalid parameter mapping. Variable '{member.Name}' of type '{variable.VariableType}' can't be mapped to parameter '{member.Name}' of type '{member.Type}'.`);
-       else
-         mapping.Add(new Mapping(member.Name, variable.VariableType, variable.VariableSource));
+           `Invalid parameter mapping. Variable '${member.name}' of type '${variable.variableType}' can't be mapped to parameter '${member.name}' of type '${member.type}'.`);
+       } else {
+         mapping.push(new Mapping(member.name, variable.variableType, variable.variableSource));
+       }
      }
 
-     if (mapping.Count == 0)
+     if (mapping.length == 0) {
        context.logger.fail(reference,
          `Invalid parameter mapping. No parameter could be mapped from variables.`);
+     }
    }
 
-   public override deriveReturnType(context: IValidationContext): VariableType {
-     let function = context.RootNodes.GetFunction(TypeLiteral.Parent);
-     if (function == null) return null;
+   public override deriveReturnType(context: IValidationContext): VariableType | null {
 
-     return TypeLiteral.Member switch {
-       Function.ParameterName => function.GetParametersType(context),
-       Function.resultsName => function.GetResultsType(context),
-       _ => null
-     };
+     if (this.typeLiteral == undefined) return null;
+     let functionValue = context.rootNodes.getFunction(this.typeLiteral.parent);
+     if (functionValue == null) return null;
+
+     if (this.typeLiteral.member == Function.parameterName) {
+       return functionValue.getParametersType(context);
+     }
+     if (this.typeLiteral.member == Function.parameterName) {
+       return functionValue.getResultsType(context);
+     }
+     return null;
    }
 }

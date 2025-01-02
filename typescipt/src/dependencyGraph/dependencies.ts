@@ -22,14 +22,14 @@ export class Dependencies {
 
    private processNode(node: INode, parentNode: DependencyNode): DependencyNode {
      let dependencyNode = NewDependencyNode(node, parentNode);
-     let dependencies = GetDependencies(node, dependencyNode);
+     let dependencies = getDependencies(node, dependencyNode);
      foreach (let dependency in dependencies) dependencyNode.AddDependency(dependency);
      return dependencyNode;
    }
 
    private static newDependencyNode(node: INode, parentNode: DependencyNode): DependencyNode {
-     let name = node is IRootNode { NodeName: { } } rootNode ? rootNode.NodeName : node.GetType().Name;
-     return new DependencyNode(name, node.GetType(), parentNode);
+     let name = node is IRootNode { NodeName: { } } rootNode ? rootNode.NodeName : node.getType().Name;
+     return new DependencyNode(name, node.getType(), parentNode);
    }
 
    private getDependencies(node: INode, parentNode: DependencyNode): IReadOnlyArray<DependencyNode> {
@@ -40,7 +40,7 @@ export class Dependencies {
 
    private void ProcessDependencies(DependencyNode parentNode, INode childNode,
      Array<DependencyNode> resultDependencies) {
-     let nodeDependencies = (childNode as IHasNodeDependencies)?.GetDependencies(rootNodes);
+     let nodeDependencies = (childNode as IHasNodeDependencies)?.getDependencies(rootNodes);
      if (nodeDependencies == null) return;
 
      foreach (let dependency in nodeDependencies) ValidateDependency(parentNode, resultDependencies, dependency);
@@ -50,7 +50,7 @@ export class Dependencies {
      IRootNode dependency) {
      if (dependency == null) throw new Error(`node.GetNodes() should never return null`);
 
-     if (parentNode != null && parentNode.ExistsInLineage(dependency.NodeName, dependency.GetType())) {
+     if (parentNode != null && parentNode.ExistsInLineage(dependency.NodeName, dependency.getType())) {
        circularReferences.Add(dependency);
      }
      else {
@@ -62,6 +62,6 @@ export class Dependencies {
    }
 
    private static dependencyExists(resultDependencies: Array<DependencyNode>, dependency: IRootNode): boolean {
-     return resultDependencies.Any(any => any.Name == dependency.NodeName && any.Type == dependency.GetType());
+     return resultDependencies.Any(any => any.Name == dependency.NodeName && any.Type == dependency.getType());
    }
 }

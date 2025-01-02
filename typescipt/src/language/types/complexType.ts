@@ -1,32 +1,42 @@
+import {VariableType} from "./variableType";
+import {ITypeWithMembers} from "./iTypeWithMembers";
+import {ComplexTypeMember} from "./complexTypeMember";
+import {IValidationContext} from "../../parser/validationContext";
 
+export function instanceOfComplexType(object: any): object is ComplexType {
+  return object.variableTypeName == "ComplexType";
+}
 
-export class ComplexType extends VariableType, ITypeWithMembers {
-   public string Name
-   public ComplexTypeSource Source
-   public Array<ComplexTypeMember> Members
+export function asComplexType(object: any): ComplexType | null {
+  return instanceOfComplexType(object) ? object as ComplexType : null;
+}
+
+export class ComplexType extends VariableType implements ITypeWithMembers {
+
+  public variableTypeName: "ComplexType";
+  public typeWithMember: true;
+   public name: string;
+  public source: ComplexTypeSource;
+   public members: Array<ComplexTypeMember>
 
    constructor(name: string, source: ComplexTypeSource, members: Array<ComplexTypeMember>) {
-     Name = name;
-     Source = source;
-     Members = members;
+     super();
+     this.name = name;
+     this.source = source;
+     this.members = members;
    }
 
-   public memberType(name: string, context: IValidationContext): VariableType {
-     return Members.FirstOrDefault(member => member.Name == name)?.Type;
+   public memberType(name: string, context: IValidationContext): VariableType | null {
+     for (let index = 0 ; index < this.members.length ; index++) {
+       const member = this.members[index];
+       if (member.name == name) {
+         return member.type;
+       }
+     }
+     return null;
    }
 
    protected equals(other: ComplexType): boolean {
-     return Name == other.Name && Source == other.Source;
-   }
-
-   public override equals(obj: object): boolean {
-     if (ReferenceEquals(null, obj)) return false;
-     if (ReferenceEquals(this, obj)) return true;
-     if (obj.GetType() != GetType()) return false;
-     return Equals((ComplexType)obj);
-   }
-
-   public override getHashCode(): number {
-     return HashCode.Combine(Name, (number)Source);
+     return this.name == other.name && this.source == other.source;
    }
 }

@@ -1,6 +1,6 @@
 
 export class LexyCodeConstants {
-   public const string Namespace = `Lexy.Runtime`;
+   public readonly string namespace = `Lexy.Runtime`;
 
    public const string RunMethod = `__Run`;
 

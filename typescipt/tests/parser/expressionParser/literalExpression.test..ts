@@ -49,7 +49,7 @@ export class LiteralExpressionTests extends ScopedServicesTestFixture {
      expression.ValidateOfType<AssignmentExpression>(assignment => {
        assignment.Variable.ValidateIdentifierExpression(`Result`);
        assignment.Assignment.ValidateOfType<FunctionCallExpression>(functionCall => {
-         functionCall.FunctionName.ShouldBe(`ABS`);
+         functionCall.functionName.ShouldBe(`ABS`);
          functionCall.Arguments.Count.ShouldBe(1);
          functionCall.Arguments[0].ValidateNumericLiteralExpression(-2);
        });

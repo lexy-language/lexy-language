@@ -12,15 +12,15 @@ export class TableRow extends Node {
      let index = 0;
      let validator = context.ValidateTokens<TableRow>();
 
-     if (!validator.Type<TableSeparatorToken>(index).IsValid) return null;
+     if (!validator.Type<TableSeparatorToken>(index).isValid) return null;
 
      let tokens = new Array<Expression>();
      let currentLineTokens = context.line.tokens;
      while (++index < currentLineTokens.length) {
        let valid = !validator
-         .IsLiteralToken(index)
+         .isLiteralToken(index)
          .Type<TableSeparatorToken>(index + 1)
-         .IsValid;
+         .isValid;
 
        if (valid) return null;
 

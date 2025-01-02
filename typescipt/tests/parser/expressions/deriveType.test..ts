@@ -112,11 +112,15 @@ describe('DeriveTypeTests', () => {
 
      let parserContext = GetService<IParserContext>();
      let validationContext = new ValidationContext(parserContext.logger, parserContext.Nodes);
-     using context = validationContext.createVariableScope();
 
-     validationContextHandler?.Invoke(validationContext);
+    const scope = validationContext.createVariableScope();
+    try {
+      validationContextHandler?(validationContext);
 
-     let expression = this.ParseExpression(expressionValue);
-     return  expression.deriveType(validationContext);
+      let expression = this.ParseExpression(expressionValue);
+      return  expression.deriveType(validationContext);
+    } finally {
+      scope[Symbol.dispose]();
+    }
    }
 });

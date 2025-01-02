@@ -39,7 +39,7 @@ export class ExecutableFunction {
    private getParameterField(parameters: object, name: string): FieldInfo {
      if (variables.containsKey(name)) return variables[name];
 
-     let type = parameters.GetType();
+     let type = parameters.getType();
      let field = type.GetField(name, BindingFlags.Instance | BindingFlags.Public);
      if (field == null)
        throw new Error($`Couldn't find parameter field: '{name}' on type: '{type.Name}'`);

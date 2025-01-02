@@ -1,12 +1,13 @@
 
 
 export class SecondsFunction extends EndStartDateFunction {
-   public const string Name = `SECONDS`;
+   public readonly name: string = `SECONDS`;
 
-   protected override string FunctionName => Name;
+   public readonly nodeType = "SecondsFunction";
+   protected override get functionName(): string { return Name;
 
    constructor(endDateExpression: Expression, startDateExpression: Expression, reference: SourceReference)
-     : base(endDateExpression, startDateExpression, reference) {
+     super(endDateExpression, startDateExpression, reference) {
    }
 
    public static ExpressionFunction Create(SourceReference reference, Expression endDateExpression,

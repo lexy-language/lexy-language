@@ -15,7 +15,7 @@ export class NodeName {
 
      let valid = context.ValidateTokens<NodeName>()
        .Keyword(0)
-       .IsValid;
+       .isValid;
 
      if (!valid) return null;
 
@@ -24,7 +24,7 @@ export class NodeName {
 
      valid = context.ValidateTokens<NodeName>()
        .StringLiteral(1)
-       .IsValid;
+       .isValid;
 
      if (!valid) return null;
 

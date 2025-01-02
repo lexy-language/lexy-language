@@ -14,7 +14,7 @@ internal static class TokenValuesSyntax {
          ? SyntaxKind.TrueLiteralExpression
          : SyntaxKind.FalseLiteralExpression),
        MemberAccessLiteral memberAccess => TranslateMemberAccessLiteral(memberAccess),
-       _ => throw new Error(`Couldn't map type: ` + token.GetType())
+       _ => throw new Error(`Couldn't map type: ` + token.getType())
      };
    }
 

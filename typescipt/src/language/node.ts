@@ -1,6 +1,6 @@
 import {IValidationContext} from "../parser/validationContext";
 import {SourceReference} from "../parser/sourceReference";
-import {IRootNode} from "./RootNode";
+import {asRootNode, IRootNode} from "./RootNode";
 import {nameOf} from "../infrastructure/nameOf";
 import {ITypeWithMembers} from "./types/iTypeWithMembers";
 
@@ -33,14 +33,14 @@ export abstract class Node implements INode {
    protected validateNodeTree(context: IValidationContext, child: INode | null): void {
      if (child == null) throw new Error(`(${this.nodeType}) Child is null`);
 
-     const rootNode = nameOf<IRootNode>("isRootNode") in this ? child as IRootNode : null;
+     const rootNode = asRootNode(child);
      if (rootNode != null) {
        context.logger.setCurrentNode(rootNode);
      }
 
      child.validateTree(context);
 
-     const thisAsRootNode = nameOf<IRootNode>("isRootNode") in this ? this as IRootNode : null;
+     const thisAsRootNode = asRootNode(this);
      if (thisAsRootNode != null) {
        context.logger.setCurrentNode(thisAsRootNode);
      }

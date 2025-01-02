@@ -30,7 +30,7 @@ export class ExecutionEnvironment extends IExecutionEnvironment {
    private createExecutable(assembly: Assembly, generatedClass: GeneratedClass): void {
      switch (generatedClass.Node) {
        case Function _: {
-         let instanceType = assembly.GetType(generatedClass.FullClassName);
+         let instanceType = assembly.getType(generatedClass.FullClassName);
          let executable = new ExecutableFunction(instanceType, executionContext);
 
          executables.Add(generatedClass.Node.NodeName, executable);
@@ -49,14 +49,14 @@ export class ExecutionEnvironment extends IExecutionEnvironment {
          break;
        }
        default: {
-         throw new Error(`Unknown generated type: ` + generatedClass.Node.GetType());
+         throw new Error(`Unknown generated type: ` + generatedClass.Node.getType());
        }
      }
    }
 
    private void CreateExecutable(Assembly assembly, GeneratedClass generatedClass,
      IDictionary<string, Type> dictionary) {
-     let instanceType = assembly.GetType(generatedClass.FullClassName);
+     let instanceType = assembly.getType(generatedClass.FullClassName);
 
      dictionary.Add(generatedClass.Node.NodeName, instanceType);
    }

@@ -4,7 +4,7 @@ export class TableRowType extends ComplexTypeReference {
    public string TableName
    public ComplexType ComplexType
 
-   public TableRowType(string tableName, ComplexType complexType) : base(tableName) {
+   public TableRowType(string tableName, ComplexType complexType) super(tableName) {
      TableName = tableName ?? throw new Error(nameof(tableName));
      ComplexType = complexType;
    }

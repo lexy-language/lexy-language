@@ -4,7 +4,7 @@ import {SourceReference} from "./sourceReference";
 import {IParserLogger} from "./IParserLogger";
 import {VariableEntry} from "./variableEntry";
 import {VariableReference} from "../runTime/variableReference";
-import {VariableSource} from "./variableSource";
+import {VariableSource} from "../language/variableSource";
 import {ITypeWithMembers} from "../language/types/iTypeWithMembers";
 
 export interface IVariableContext {
@@ -58,7 +58,7 @@ export class VariableContext implements IVariableContext {
    }
 
    public contains(reference: VariableReference, context: IValidationContext): boolean {
-     let parent = this.getVariable(reference.ParentIdentifier);
+     let parent = this.getVariable(reference.parentIdentifier);
      if (parent == null) return false;
 
      return !reference.HasChildIdentifiers ||
@@ -83,7 +83,7 @@ export class VariableContext implements IVariableContext {
    }
 
    public getVariableType(reference: VariableReference, context: IValidationContext): VariableType | null {
-     let parent = this.getVariableTypeByName(reference.ParentIdentifier);
+     let parent = this.getVariableTypeByName(reference.parentIdentifier);
      return parent == null || !reference.HasChildIdentifiers
        ? parent
        : this.getVariableType(parent, reference.childrenReference(), context);
@@ -106,7 +106,7 @@ export class VariableContext implements IVariableContext {
    private containChild(parentType: VariableType | null, reference: VariableReference, context: IValidationContext): boolean {
      let typeWithMembers = 'memberType' in parentType ? parentType as ITypeWithMembers : null;
 
-     let memberVariableType = typeWithMembers != null ? typeWithMembers.memberType(reference.ParentIdentifier, context) : null;
+     let memberVariableType = typeWithMembers != null ? typeWithMembers.memberType(reference.parentIdentifier, context) : null;
      if (memberVariableType == null) return false;
 
      return !reference.HasChildIdentifiers
@@ -119,7 +119,7 @@ export class VariableContext implements IVariableContext {
      let typeWithMembers = 'memberType' in parentType ? parentType as ITypeWithMembers : null;
      if (typeWithMembers == null) return null;
 
-     let memberVariableType = typeWithMembers.memberType(reference.ParentIdentifier, context);
+     let memberVariableType = typeWithMembers.memberType(reference.parentIdentifier, context);
      if (memberVariableType == null) return null;
 
      return !reference.HasChildIdentifiers
