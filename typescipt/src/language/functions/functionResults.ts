@@ -10,7 +10,7 @@ export class FunctionResults extends ParsableNode {
 
   private variablesValue: Array<VariableDefinition> = [];
 
-  public readonly nodeType: "FunctionResults";
+  public readonly nodeType = "FunctionResults";
 
   public get variables(): ReadonlyArray<VariableDefinition> {
     return this.variablesValue;

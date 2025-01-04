@@ -1,25 +1,26 @@
+import type {IExpressionFactory} from "../expressions/expressionFactory";
+import type {IParseLineContext} from "../../parser/ParseLineContext";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {INode} from "../node";
+
 import {asParsableNode, IParsableNode, ParsableNode} from "../parsableNode";
 import {Expression} from "../expressions/expression";
 import {ExpressionList} from "../expressions/expressionList";
 import {SourceReference} from "../../parser/sourceReference";
-import {IParseLineContext} from "../../parser/ParseLineContext";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
-
 
 export class FunctionCode extends ParsableNode {
 
    private readonly expressionsValue: ExpressionList;
 
-  public readonly nodeType: "FunctionCode";
+  public readonly nodeType = "FunctionCode";
 
   public get expressions(): ReadonlyArray<Expression> {
     return this.expressionsValue.asArray();
    }
 
-   constructor(reference: SourceReference) {
+   constructor(reference: SourceReference, factory: IExpressionFactory) {
      super(reference);
-     this.expressionsValue = new ExpressionList(reference);
+     this.expressionsValue = new ExpressionList(reference, factory);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {

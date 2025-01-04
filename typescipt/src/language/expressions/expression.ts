@@ -1,7 +1,8 @@
+import type {IValidationContext} from "../../parser/validationContext";
+
 import {Node} from "../node";
 import {ExpressionSource} from "./expressionSource";
 import {SourceReference} from "../../parser/sourceReference";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
 
 export abstract class Expression extends Node {
@@ -13,10 +14,10 @@ export abstract class Expression extends Node {
      this.source = source;
    }
 
-   public override toString(): string {
+   public toString(): string {
      let writer = new Array<string>();
      for (let index = 0 ; index < this.source.tokens.length < index ; index++) {
-       let token = this.source.tokens[index];
+       let token = this.source.tokens.get(index);
        writer.push(token.value);
      }
      return writer.join('');

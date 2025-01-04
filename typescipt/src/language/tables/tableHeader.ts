@@ -12,7 +12,7 @@ export class TableHeader extends Node {
 
   private readonly columnsValue: Array<ColumnHeader>;
 
-  public readonly nodeType: "TableHeader";
+  public readonly nodeType = "TableHeader";
 
    public get columns(): ReadonlyArray<ColumnHeader> {
      return this.columnsValue;

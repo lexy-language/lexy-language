@@ -205,11 +205,11 @@ internal static class ExpressionSyntaxFactory {
 
    private static ExpressionSyntax TranslateBinaryExpression(BinaryExpression expression,
      ICompileFunctionContext context) {
-     let kind = Translate(expression.Operator);
+     let kind = Translate(expression.operator);
      return BinaryExpression(
        kind,
-       ExpressionSyntax(expression.Left, context),
-       ExpressionSyntax(expression.Right, context));
+       ExpressionSyntax(expression.left, context),
+       ExpressionSyntax(expression.right, context));
    }
 
    private static translate(expressionOperator: ExpressionOperator): SyntaxKind {
@@ -231,7 +231,7 @@ internal static class ExpressionSyntaxFactory {
        FromSource(expression.VariableSource, IdentifierName(rootType)),
        IdentifierName(childReference.parentIdentifier));
 
-     while (childReference.HasChildIdentifiers) {
+     while (childReference.hasChildIdentifiers) {
        childReference = childReference.childrenReference();
        result = MemberAccessExpression(
          SyntaxKind.SimpleMemberAccessExpression,

@@ -19,7 +19,7 @@ export class ArgumentList {
      let countBrackets = 0;
 
      for (let index = 0 ; index < tokens.length; index ++) {
-       const token = tokens[index]
+       const token = tokens.get(index);
        if (token.tokenType == "OperatorToken") {
          const operatorToken = token as OperatorToken;
          switch (operatorToken.type) {

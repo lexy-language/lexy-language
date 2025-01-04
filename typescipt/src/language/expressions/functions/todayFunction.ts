@@ -4,7 +4,7 @@ import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {ExpressionFunction} from "./expressionFunction";
 
 export class TodayFunction extends NoArgumentFunction {
-   public readonly name: string = `TODAY`;
+   public static readonly name: string = `TODAY`;
 
   public readonly nodeType = "TodayFunction";
 

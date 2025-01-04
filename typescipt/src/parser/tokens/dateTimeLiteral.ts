@@ -8,10 +8,19 @@ import {
 } from "./parseTokenResult";
 import {TokenCharacter} from "./tokenCharacter";
 import {TokenValues} from "./tokenValues";
-import {IValidationContext} from "../IValidationContext";
-import {PrimitiveType, VariableType} from "../../language/variableTypes";
 import {formatLine} from "../../formatting/formatLine";
 import {Character, isDigit} from "./character";
+import {IValidationContext} from "../validationContext";
+import {VariableType} from "../../language/variableTypes/variableType";
+import {PrimitiveType} from "../../language/variableTypes/primitiveType";
+
+export function instanceOfDateTimeLiteral(object: any): boolean {
+  return object?.tokenType == "DateTimeLiteral";
+}
+
+export function asDateTimeLiteral(object: any): DateTimeLiteral | null {
+  return instanceOfDateTimeLiteral(object) ? object as DateTimeLiteral : null;
+}
 
 export class DateTimeLiteral extends ParsableToken implements ILiteralToken {
 

@@ -17,7 +17,7 @@ export class NewFunction extends ExpressionFunction implements IHasNodeDependenc
   private typeValue: ComplexTypeReference;
 
   public readonly hasNodeDependencies: true;
-  public readonly name: string = `new`;
+  public static readonly name: string = `new`;
   public readonly nodeType = "NewFunction";
 
   protected get functionHelp() {

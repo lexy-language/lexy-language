@@ -25,28 +25,28 @@ export class FactoryTests extends ScopedServicesTestFixture {
   it('XXXX', async () => {
    public simpleEnum(): void {
      let dependencies = ServiceProvider.BuildGraph(enumDefinition);
-     dependencies.Nodes.Count.ShouldBe(1);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleEnum`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(EnumDefinition));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
+     dependencies.Nodes.Count.toBe(1);
+     dependencies.Nodes[0].Name.toBe(`SimpleEnum`);
+     dependencies.Nodes[0].Type.toBe(typeof(EnumDefinition));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
    }
 
   it('XXXX', async () => {
    public simpleTable(): void {
      let dependencies = ServiceProvider.BuildGraph(table);
-     dependencies.Nodes.Count.ShouldBe(1);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleTable`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Table));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
+     dependencies.Nodes.Count.toBe(1);
+     dependencies.Nodes[0].Name.toBe(`SimpleTable`);
+     dependencies.Nodes[0].Type.toBe(typeof(Table));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
    }
 
   it('XXXX', async () => {
    public simpleFunction(): void {
      let dependencies = ServiceProvider.BuildGraph(function);
-     dependencies.Nodes.Count.ShouldBe(1);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
+     dependencies.Nodes.Count.toBe(1);
+     dependencies.Nodes[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[0].Type.toBe(typeof(Function));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
    }
 
   it('XXXX', async () => {
@@ -57,15 +57,15 @@ Function: Caller
    let parameters = new(SimpleFunction.Parameters)
 `);
 
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
-     dependencies.Nodes[1].Name.ShouldBe(`Caller`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
-     dependencies.Nodes[1].Dependencies[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[1].Dependencies[0].Type.ShouldBe(typeof(Function));
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[0].Type.toBe(typeof(Function));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
+     dependencies.Nodes[1].Name.toBe(`Caller`);
+     dependencies.Nodes[1].Type.toBe(typeof(Function));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
+     dependencies.Nodes[1].Dependencies[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[1].Dependencies[0].Type.toBe(typeof(Function));
    }
 
   it('XXXX', async () => {
@@ -76,15 +76,15 @@ Function: Caller
    let parameters = new(SimpleFunction.results)
 `);
 
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
-     dependencies.Nodes[1].Name.ShouldBe(`Caller`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
-     dependencies.Nodes[1].Dependencies[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[1].Dependencies[0].Type.ShouldBe(typeof(Function));
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[0].Type.toBe(typeof(Function));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
+     dependencies.Nodes[1].Name.toBe(`Caller`);
+     dependencies.Nodes[1].Type.toBe(typeof(Function));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
+     dependencies.Nodes[1].Dependencies[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[1].Dependencies[0].Type.toBe(typeof(Function));
    }
 
   it('XXXX', async () => {
@@ -97,15 +97,15 @@ Function: Caller
    let parameters = fill(SimpleFunction.Parameters)
 `);
 
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
-     dependencies.Nodes[1].Name.ShouldBe(`Caller`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
-     dependencies.Nodes[1].Dependencies[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[1].Dependencies[0].Type.ShouldBe(typeof(Function));
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[0].Type.toBe(typeof(Function));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
+     dependencies.Nodes[1].Name.toBe(`Caller`);
+     dependencies.Nodes[1].Type.toBe(typeof(Function));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
+     dependencies.Nodes[1].Dependencies[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[1].Dependencies[0].Type.toBe(typeof(Function));
    }
 
   it('XXXX', async () => {
@@ -118,15 +118,15 @@ Function: Caller
    let parameters = fill(SimpleFunction.results)
 `);
 
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
-     dependencies.Nodes[1].Name.ShouldBe(`Caller`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
-     dependencies.Nodes[1].Dependencies[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[1].Dependencies[0].Type.ShouldBe(typeof(Function));
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[0].Type.toBe(typeof(Function));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
+     dependencies.Nodes[1].Name.toBe(`Caller`);
+     dependencies.Nodes[1].Type.toBe(typeof(Function));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
+     dependencies.Nodes[1].Dependencies[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[1].Dependencies[0].Type.toBe(typeof(Function));
    }
 
   it('XXXX', async () => {
@@ -137,15 +137,15 @@ Function: Caller
    let result = LOOKUP(SimpleTable, 2, SimpleTable.Search, SimpleTable.Value)
 `);
 
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleTable`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Table));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
-     dependencies.Nodes[1].Name.ShouldBe(`Caller`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
-     dependencies.Nodes[1].Dependencies[0].Name.ShouldBe(`SimpleTable`);
-     dependencies.Nodes[1].Dependencies[0].Type.ShouldBe(typeof(Table));
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`SimpleTable`);
+     dependencies.Nodes[0].Type.toBe(typeof(Table));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
+     dependencies.Nodes[1].Name.toBe(`Caller`);
+     dependencies.Nodes[1].Type.toBe(typeof(Function));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
+     dependencies.Nodes[1].Dependencies[0].Name.toBe(`SimpleTable`);
+     dependencies.Nodes[1].Dependencies[0].Type.toBe(typeof(Table));
    }
 
   it('XXXX', async () => {
@@ -159,13 +159,13 @@ Scenario: Simple
   Parameters
    Value = 2
 `);
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`SimpleFunction`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
-     dependencies.Nodes[1].Name.ShouldBe(`Simple`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(Scenario));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(0);
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`SimpleFunction`);
+     dependencies.Nodes[0].Type.toBe(typeof(Function));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
+     dependencies.Nodes[1].Name.toBe(`Simple`);
+     dependencies.Nodes[1].Type.toBe(typeof(Scenario));
+     dependencies.Nodes[1].Dependencies.Count.toBe(0);
    }
 
   it('XXXX', async () => {
@@ -175,10 +175,10 @@ Type: Simple
   number Value1
   string Value2
 `);
-     dependencies.Nodes.Count.ShouldBe(1);
-     dependencies.Nodes[0].Name.ShouldBe(`Simple`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(TypeDefinition));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
+     dependencies.Nodes.Count.toBe(1);
+     dependencies.Nodes[0].Name.toBe(`Simple`);
+     dependencies.Nodes[0].Type.toBe(typeof(TypeDefinition));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
    }
 
   it('XXXX', async () => {
@@ -193,13 +193,13 @@ Type: Parent
   string Value2
   Inner Value3
 `);
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`Inner`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(TypeDefinition));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(0);
-     dependencies.Nodes[1].Name.ShouldBe(`Parent`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(TypeDefinition));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`Inner`);
+     dependencies.Nodes[0].Type.toBe(typeof(TypeDefinition));
+     dependencies.Nodes[0].Dependencies.Count.toBe(0);
+     dependencies.Nodes[1].Name.toBe(`Parent`);
+     dependencies.Nodes[1].Type.toBe(typeof(TypeDefinition));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
    }
 
   it('XXXX', async () => {
@@ -215,16 +215,16 @@ Type: Parent
   string Value2
   Inner Value3
 `, false);
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`Inner`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(TypeDefinition));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(1);
-     dependencies.Nodes[1].Name.ShouldBe(`Parent`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(TypeDefinition));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
-     dependencies.CircularReferences.Count().ShouldBe(2);
-     dependencies.CircularReferences[0].NodeName.ShouldBe(`Inner`);
-     dependencies.CircularReferences[1].NodeName.ShouldBe(`Parent`);
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`Inner`);
+     dependencies.Nodes[0].Type.toBe(typeof(TypeDefinition));
+     dependencies.Nodes[0].Dependencies.Count.toBe(1);
+     dependencies.Nodes[1].Name.toBe(`Parent`);
+     dependencies.Nodes[1].Type.toBe(typeof(TypeDefinition));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
+     dependencies.CircularReferences.Count().toBe(2);
+     dependencies.CircularReferences[0].NodeName.toBe(`Inner`);
+     dependencies.CircularReferences[1].NodeName.toBe(`Parent`);
    }
 
   it('XXXX', async () => {
@@ -239,15 +239,15 @@ Function: Parent
    Inner()
 `, false);
 
-     dependencies.Nodes.Count.ShouldBe(2);
-     dependencies.Nodes[0].Name.ShouldBe(`Inner`);
-     dependencies.Nodes[0].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[0].Dependencies.Count.ShouldBe(1);
-     dependencies.Nodes[1].Name.ShouldBe(`Parent`);
-     dependencies.Nodes[1].Type.ShouldBe(typeof(Function));
-     dependencies.Nodes[1].Dependencies.Count.ShouldBe(1);
-     dependencies.CircularReferences.Count().ShouldBe(2);
-     dependencies.CircularReferences[0].NodeName.ShouldBe(`Inner`);
-     dependencies.CircularReferences[1].NodeName.ShouldBe(`Parent`);
+     dependencies.Nodes.Count.toBe(2);
+     dependencies.Nodes[0].Name.toBe(`Inner`);
+     dependencies.Nodes[0].Type.toBe(typeof(Function));
+     dependencies.Nodes[0].Dependencies.Count.toBe(1);
+     dependencies.Nodes[1].Name.toBe(`Parent`);
+     dependencies.Nodes[1].Type.toBe(typeof(Function));
+     dependencies.Nodes[1].Dependencies.Count.toBe(1);
+     dependencies.CircularReferences.Count().toBe(2);
+     dependencies.CircularReferences[0].NodeName.toBe(`Inner`);
+     dependencies.CircularReferences[1].NodeName.toBe(`Parent`);
    }
 }

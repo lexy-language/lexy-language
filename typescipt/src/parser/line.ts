@@ -2,8 +2,9 @@ import {SourceFile} from "./sourceFile";
 import {IParserLogger} from "./IParserLogger";
 import {SourceReference} from "./sourceReference";
 import {TokenizeResult} from "./tokens/tokenizeResult";
-import {ITokenizer} from "./tokens/tokenizer";
 import {TokenList} from "./tokens/tokenList";
+
+import type {ITokenizer} from "./tokens/tokenizer";
 
 export class Line {
 

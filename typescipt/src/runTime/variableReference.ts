@@ -1,32 +1,36 @@
 
-
 export class VariableReference {
-   public readonly path: string[];
-  public string parentIdentifier => Path[0];
-   public boolean HasChildIdentifiers => Path.length > 1;
-   public number Parts => Path.length;
 
-   constructor(variableName: string) {
-     if (variableName == null) throw new Error(nameof(variableName));
-     Path = new[] { variableName };
+  public readonly path: string[];
+
+   public get parentIdentifier(): string {
+     return this.path[0];
+   }
+
+   public get hasChildIdentifiers(): boolean {
+     return this.path.length > 1;
+   }
+
+   public get parts(): number {
+     return this.path.length;
    }
 
    constructor(variablePath: string[]) {
-     Path = variablePath ?? throw new Error(nameof(variablePath));
+     this.path = variablePath;
    }
 
-   public override toString(): string {
-     let builder = new StringBuilder();
-     foreach (let value in Path) {
-       if (builder.length > 0) builder.Append('.');
-       builder.Append(value);
+   public toString(): string {
+     const builder: string[] = [];
+     for (const value of this.path) {
+       if (builder.length > 0) builder.push('.');
+       builder.push(value);
      }
 
-     return builder.toString();
+     return builder.join('');
    }
 
    public childrenReference(): VariableReference {
-     let parts = Path[1.];
+     const parts = this.path.slice(1);
      return new VariableReference(parts);
    }
 }

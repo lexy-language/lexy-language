@@ -1,10 +1,11 @@
-import {INode, Node} from "./node";
+import type {INode} from "./node";
+import type {IParseLineContext} from "../parser/ParseLineContext";
+
+import {Node} from "./node";
 import {SourceReference} from "../parser/sourceReference";
-import {IParseLineContext} from "../parser/ParseLineContext";
-import {nameOf} from "../infrastructure/nameOf";
 
 export function instanceOfParsableNode(object: any): object is IParsableNode {
-   return nameOf<IParsableNode>("isParsableNode") in object;
+   return object?.isParsableNode == true;
 }
 
 export function asParsableNode(object: any): IParsableNode | null {
@@ -13,7 +14,7 @@ export function asParsableNode(object: any): IParsableNode | null {
 
 export interface IParsableNode extends INode {
    isParsableNode: true;
-   parse(context: IParseLineContext ): IParsableNode;
+   parse(context: IParseLineContext): IParsableNode;
 }
 
 export abstract class ParsableNode extends Node implements IParsableNode {

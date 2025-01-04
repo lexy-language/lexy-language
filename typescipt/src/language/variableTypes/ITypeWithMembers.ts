@@ -1,9 +1,9 @@
-import {IValidationContext} from "../../parser/ValidationContext";
 import {VariableType} from "./variableType";
-import {nameOf} from "../../infrastructure/nameOf";
+
+import type {IValidationContext} from "../../parser/ValidationContext";
 
 export function instanceOfTypeWithMembers(object: any): object is ITypeWithMembers {
-   return nameOf<ITypeWithMembers>("typeWithMember") in object;
+   return object?.typeWithMember in object;
 }
 
 export function asTypeWithMembers(object: any): ITypeWithMembers | null {

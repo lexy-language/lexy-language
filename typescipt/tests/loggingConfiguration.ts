@@ -6,7 +6,7 @@ export class LoggingConfiguration {
    private const string ExecutionLogFile = `execution.log`;
    private const string TestsLogFile = `tests.log`;
 
-   private static readonly string logRun = $`{DateTime.Now:yyyyMMddHHmmss}-lexy-`;
+   private static readonly string logRun = $`{Date.Now:yyyyMMddHHmmss}-lexy-`;
 
    public static createLoggerFactory(): ILoggerFactory {
      let factory = new LoggerFactory();
@@ -56,9 +56,9 @@ export class LoggingConfiguration {
 
      foreach (let logFile in logFiles) {
        let datePart = Path.GetFileName(logFile).Split(`-`)[0];
-       if (DateTime.TryParseExact(datePart, `yyyyMMddHHmmss`, CultureInfo.InvariantCulture, DateTimeStyles.None,
+       if (Date.TryParseExact(datePart, `yyyyMMddHHmmss`, CultureInfo.InvariantCulture, DateTimeStyles.None,
            out let value)) {
-         if (DateTime.Now.Subtract(value).Hours > 1) {
+         if (Date.Now.Subtract(value).Hours > 1) {
            File.Delete(logFile);
          }
        }

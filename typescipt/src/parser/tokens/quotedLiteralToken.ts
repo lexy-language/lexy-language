@@ -2,14 +2,23 @@ import {ParsableToken} from "./parsableToken";
 import {ILiteralToken} from "./ILiteralToken";
 import {TokenCharacter} from "./tokenCharacter";
 import {TokenValues} from "./tokenValues";
-import {IValidationContext} from "../IValidationContext";
-import {PrimitiveType, VariableType} from "../../language/variableTypes";
 import {
   newParseTokenFinishedResult,
   newParseTokenInProgressResult,
   newParseTokenInvalidResult,
   ParseTokenResult
 } from "./parseTokenResult";
+import {IValidationContext} from "../validationContext";
+import {VariableType} from "../../language/variableTypes/variableType";
+import {PrimitiveType} from "../../language/variableTypes/primitiveType";
+
+export function instanceOfQuotedLiteralToken(object: any): object is QuotedLiteralToken {
+  return object?.tokenType == 'QuotedLiteralToken';
+}
+
+export function asQuotedLiteralToken(object: any): QuotedLiteralToken | null {
+  return instanceOfQuotedLiteralToken(object) ? object as QuotedLiteralToken : null;
+}
 
 export class QuotedLiteralToken extends ParsableToken implements ILiteralToken {
   private quoteClosed: boolean = false;

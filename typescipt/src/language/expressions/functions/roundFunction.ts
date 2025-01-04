@@ -7,7 +7,7 @@ import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {VariableType} from "../../variableTypes/variableType";
 
 export class RoundFunction extends ExpressionFunction {
-   public readonly name: string = `ROUND`;
+   public static readonly name: string = `ROUND`;
 
    private get functionHelp() {
      return `'${this.name}' expects 2 arguments (Number, Digits).`;

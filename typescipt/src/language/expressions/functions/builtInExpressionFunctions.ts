@@ -11,6 +11,7 @@ import {PowerFunction} from "./powerFunction";
 import {RoundFunction} from "./roundFunction";
 import {NowFunction} from "./nowFunction";
 import {TodayFunction} from "./todayFunction";
+import {YearFunction} from "./yearFunction";
 import {MonthFunction} from "./monthFunction";
 import {DayFunction} from "./dayFunction";
 import {HourFunction} from "./hourFunction";
@@ -34,34 +35,34 @@ export class BuiltInExpressionFunctions {
    private static readonly values: { 
      key: string, 
      factory: (value: string, reference: SourceReference, expressions: Array<Expression>) => ParseExpressionFunctionsResult }[] = [
-         { key: IntFunction.name, factory: this.create(IntFunction.create) },
-         { key: AbsFunction.name, factory: this.create(AbsFunction.create) },
-         { key: PowerFunction.name, factory: this.create(PowerFunction.create) },
-         { key: RoundFunction.name, factory: this.create(RoundFunction.create) },
+         { key: IntFunction.name, factory: BuiltInExpressionFunctions.create1(IntFunction.create) },
+         { key: AbsFunction.name, factory: BuiltInExpressionFunctions.create1(AbsFunction.create) },
+         { key: PowerFunction.name, factory: BuiltInExpressionFunctions.create2(PowerFunction.create) },
+         { key: RoundFunction.name, factory: BuiltInExpressionFunctions.create2(RoundFunction.create) },
 
-         { key: NowFunction.name, factory: this.create(NowFunction.create) },
-         { key: TodayFunction.name, factory: this.create(TodayFunction.create) },
+         { key: NowFunction.name, factory: BuiltInExpressionFunctions.create0(NowFunction.create) },
+         { key: TodayFunction.name, factory: BuiltInExpressionFunctions.create0(TodayFunction.create) },
 
-         { key: YearFunction.name, factory: this.create(YearFunction.create) },
-         { key: MonthFunction.name, factory: this.create(MonthFunction.create) },
-         { key: DayFunction.name, factory: this.create(DayFunction.create) },
-         { key: HourFunction.name, factory: this.create(HourFunction.create) },
-         { key: MinuteFunction.name, factory: this.create(MinuteFunction.create) },
-         { key: SecondFunction.name, factory: this.create(SecondFunction.create) },
+         { key: YearFunction.name, factory: BuiltInExpressionFunctions.create1(YearFunction.create) },
+         { key: MonthFunction.name, factory: BuiltInExpressionFunctions.create1(MonthFunction.create) },
+         { key: DayFunction.name, factory: BuiltInExpressionFunctions.create1(DayFunction.create) },
+         { key: HourFunction.name, factory: BuiltInExpressionFunctions.create1(HourFunction.create) },
+         { key: MinuteFunction.name, factory: BuiltInExpressionFunctions.create1(MinuteFunction.create) },
+         { key: SecondFunction.name, factory: BuiltInExpressionFunctions.create1(SecondFunction.create) },
 
-         { key: YearsFunction.name, factory: this.create(YearsFunction.create) },
-         { key: MonthsFunction.name, factory: this.create(MonthsFunction.create) },
-         { key: DaysFunction.name, factory: this.create(DaysFunction.create) },
-         { key: HoursFunction.name, factory: this.create(HoursFunction.create) },
-         { key: MinutesFunction.name, factory: this.create(MinutesFunction.create) },
-         { key: SecondsFunction.name, factory: this.create(SecondsFunction.create) },
+         { key: YearsFunction.name, factory: BuiltInExpressionFunctions.create2(YearsFunction.create) },
+         { key: MonthsFunction.name, factory: BuiltInExpressionFunctions.create2(MonthsFunction.create) },
+         { key: DaysFunction.name, factory: BuiltInExpressionFunctions.create2(DaysFunction.create) },
+         { key: HoursFunction.name, factory: BuiltInExpressionFunctions.create2(HoursFunction.create) },
+         { key: MinutesFunction.name, factory: BuiltInExpressionFunctions.create2(MinutesFunction.create) },
+         { key: SecondsFunction.name, factory: BuiltInExpressionFunctions.create2(SecondsFunction.create) },
 
          { key: LookupFunction.name, factory: LookupFunction.parse },
          { key: LookupRowFunction.name, factory: LookupRowFunction.parse },
 
-         { key: NewFunction.name, factory: this.create(NewFunction.create) },
-         { key: FillParametersFunction.name, factory: this.create(FillParametersFunction.create) },
-         { key: ExtractResultsFunction.name, factory: this.create(ExtractResultsFunction.create) }
+         { key: NewFunction.name, factory: BuiltInExpressionFunctions.create1(NewFunction.create) },
+         { key: FillParametersFunction.name, factory: BuiltInExpressionFunctions.create1(FillParametersFunction.create) },
+         { key: ExtractResultsFunction.name, factory: BuiltInExpressionFunctions.create1(ExtractResultsFunction.create) }
        ];
 
    public static parse(functionName: string, reference: SourceReference, argumentValues: Array<Expression>): ParseExpressionFunctionsResult | null {
@@ -75,19 +76,6 @@ export class BuiltInExpressionFunctions {
    }
 
    private static create0(factory: (reference: SourceReference) => ExpressionFunction):
-    (value: string, reference: SourceReference, expressions: Array<Expression>) => ParseExpressionFunctionsResult {
-
-    return function(name: string, reference: SourceReference, argumentValues: Array<Expression>) {
-      if (argumentValues.length != 0) {
-        return newParseExpressionFunctionsFailed(`Invalid number of arguments. No arguments expected.`);
-      }
-
-      const functionNode = factory(reference);
-      return newParseExpressionFunctionsSuccess(functionNode);
-    };
-  }
-
-  private static create1(factory: (reference: SourceReference) => ExpressionFunction):
     (value: string, reference: SourceReference, expressions: Array<Expression>) => ParseExpressionFunctionsResult {
 
     return function(name: string, reference: SourceReference, argumentValues: Array<Expression>) {

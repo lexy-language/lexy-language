@@ -9,13 +9,15 @@ export class ExpressionSource {
    public tokens: TokenList;
 
    constructor(line: Line, tokens: TokenList) {
+     if (tokens.length == 0) throw new Error("No tokens.")
      this.line = line;
      this.file = line.file;
      this.tokens = tokens;
    }
 
    public createReference(tokenIndex: number = 0): SourceReference {
-     let token = this.tokens[tokenIndex];
+     let token = this.tokens.get(tokenIndex);
+     if (!token) throw new Error(`No token at: ${tokenIndex}` + JSON.stringify(this.tokens))
 
      return new SourceReference(
        this.file,

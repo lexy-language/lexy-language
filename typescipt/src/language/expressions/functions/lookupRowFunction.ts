@@ -24,11 +24,11 @@ const functionHelp = " Arguments: LOOKUPROW(Table, lookUpValue, Table.searchValu
 
 export class LookupRowFunction extends ExpressionFunction implements IHasNodeDependencies {
 
-  private searchValueColumnTypeValue: VariableType;
-  private rowTypeValue: VariableType;
+  private searchValueColumnTypeValue: VariableType | null;
+  private rowTypeValue: VariableType | null;
 
   public readonly hasNodeDependencies: true;
-  public readonly name: string = `LOOKUPROW`;
+  public static readonly name: string = `LOOKUPROW`;
 
   public readonly nodeType = "LookupRowFunction";
   public readonly table: string
@@ -38,9 +38,11 @@ export class LookupRowFunction extends ExpressionFunction implements IHasNodeDep
    public readonly searchValueColumn: MemberAccessLiteral
    
   public get searchValueColumnType(): VariableType {
+    if (this.searchValueColumnTypeValue == null) throw new Error("rowType not set.");
     return this.searchValueColumnTypeValue;
   }
    public get rowType(): VariableType{
+     if (this.rowTypeValue == null) throw new Error("rowType not set.");
      return this.rowTypeValue;
    }
 
@@ -98,7 +100,7 @@ export class LookupRowFunction extends ExpressionFunction implements IHasNodeDep
        return;
      }
 
-     let searchColumnHeader = tableType.Header.Get(this.searchValueColumn);
+     let searchColumnHeader = tableType.header?.get(this.searchValueColumn);
      if (searchColumnHeader == null) {
        context.logger.fail(this.reference,
          `Invalid argument ${argumentSearchValueColumn}. Column name '${this.searchValueColumn}' not found in table '${this.table}'. $functionHelp}`);
@@ -106,16 +108,16 @@ export class LookupRowFunction extends ExpressionFunction implements IHasNodeDep
      }
 
      let conditionValueType = this.valueExpression.deriveType(context);
-     this.searchValueColumnTypeValue = searchColumnHeader.Type.createVariableType(context);
+     this.searchValueColumnTypeValue = searchColumnHeader.type.createVariableType(context);
 
      if (conditionValueType == null || !conditionValueType.equals(this.searchValueColumnType)) {
        context.logger.fail(this.reference,
          `Invalid argument ${argumentSearchValueColumn}. Column type '${this.searchValueColumn}': '${this.searchValueColumnType}' doesn't match condition type '${conditionValueType}'. ${functionHelp}`);
      }
 
-     this.rowTypeValue = tableType?.getRowType(context);
+     const rowTypeValue = tableType?.getRowType(context);
+     this.rowTypeValue = !!rowTypeValue ? rowTypeValue : null;
    }
-
 
    private validateColumn(context: IValidationContext, column: MemberAccessLiteral, index: number): void {
      if (column.parent != this.table)
@@ -127,8 +129,9 @@ export class LookupRowFunction extends ExpressionFunction implements IHasNodeDep
          `Invalid argument ${index}. Result column table '${column.parent}' should be table name '${this.table}'`);
    }
 
-   public override deriveReturnType(context: IValidationContext): VariableType {
+   public override deriveReturnType(context: IValidationContext): VariableType | null {
      let tableType = context.rootNodes.getTable(this.table);
-     return tableType?.getRowType(context);
+     const rowTypeValue = tableType?.getRowType(context);
+     return !!rowTypeValue ? rowTypeValue : null;
    }
 }

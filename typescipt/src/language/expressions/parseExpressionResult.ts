@@ -5,10 +5,10 @@ export type ParseExpressionFailed = {
   errorMessage: string;
 }
 
-export function newParseExpressionFailed(constr: Function, errorMessage: string, ): ParseExpressionFailed {
+export function newParseExpressionFailed(typeName: string, errorMessage: string, ): ParseExpressionFailed {
   return {
     state: "failed",
-    errorMessage: `(${constr.name}) ${errorMessage}`,
+    errorMessage: `(${typeName}) ${errorMessage}`,
   } as const;
 }
 

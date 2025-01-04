@@ -1,8 +1,11 @@
+import type {IRootNode} from "../rootNode";
+import type {IValidationContext} from "../../parser/validationContext";
+
 import {TypeWithMembers} from "./typeWithMembers";
 import {EnumDefinition} from "../enums/enumDefinition";
 import {VariableType} from "./variableType";
-import {IValidationContext} from "../../parser/validationContext";
 import {any} from "../../infrastructure/enumerableExtensions";
+import {RootNodeList} from "../rootNodeList";
 
 export function instanceOfEnumType(object: any): object is EnumType {
   return object?.variableTypeName == "EnumType";
@@ -29,11 +32,16 @@ export class EnumType extends TypeWithMembers {
      return this.type == other?.type;
    }
 
-   public override toString(): string {
+   public toString(): string {
      return this.type;
    }
 
    public override memberType(name: string, context: IValidationContext): VariableType | null {
      return any(this.enum.members, member => member.name == name) ? this : null;
    }
+
+  public getDependencies(rootNodeList: RootNodeList): Array<IRootNode> {
+    const enumDefinition = rootNodeList.getEnum(this.type);
+    return enumDefinition != null ? [enumDefinition] : [];
+  }
 }

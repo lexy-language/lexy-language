@@ -14,16 +14,16 @@ export class ParseExpressionsTests extends ScopedServicesTestFixture {
      let context = GetService<IParserContext>();
      context.logger.HasErrors().ShouldBeFalse(context.logger.FormatMessages());
 
-     script.Name.Value.ShouldBe(`TestTable`);
-     script.Header.Columns.Count.ShouldBe(2);
-     script.Header.Columns[0].Name.ShouldBe(`Value`);
+     script.Name.Value.toBe(`TestTable`);
+     script.Header.Columns.Count.toBe(2);
+     script.Header.Columns[0].Name.toBe(`Value`);
      script.Header.Columns[0].Type.ShouldBePrimitiveType(TypeNames.Number);
-     script.Header.Columns[1].Name.ShouldBe(`Result`);
+     script.Header.Columns[1].Name.toBe(`Result`);
      script.Header.Columns[1].Type.ShouldBePrimitiveType(TypeNames.String);
-     script.Rows.Count.ShouldBe(2);
-     script.Rows[0].Values[0].ValidateNumericLiteralExpression(7);
+     script.Rows.Count.toBe(2);
+     script.Rows[0].Values[0].validateNumericLiteralExpression(7);
      script.Rows[0].Values[1].ValidateQuotedLiteralExpression(`Test quoted`);
-     script.Rows[1].Values[0].ValidateNumericLiteralExpression(8);
+     script.Rows[1].Values[0].validateNumericLiteralExpression(8);
      script.Rows[1].Values[1].ValidateQuotedLiteralExpression(`Test`);
    }
 
@@ -37,13 +37,13 @@ export class ParseExpressionsTests extends ScopedServicesTestFixture {
      let parser = ServiceProvider.GetRequiredService<ILexyParser>();
      let script = parser.ParseTable(code);
 
-     script.Name.Value.ShouldBe(`TestTable`);
-     script.Header.Columns.Count.ShouldBe(2);
-     script.Header.Columns[0].Name.ShouldBe(`Value`);
+     script.Name.Value.toBe(`TestTable`);
+     script.Header.Columns.Count.toBe(2);
+     script.Header.Columns[0].Name.toBe(`Value`);
      script.Header.Columns[0].Type.ShouldBePrimitiveType(TypeNames.Date);
-     script.Header.Columns[1].Name.ShouldBe(`Result`);
+     script.Header.Columns[1].Name.toBe(`Result`);
      script.Header.Columns[1].Type.ShouldBePrimitiveType(TypeNames.Boolean);
-     script.Rows.Count.ShouldBe(2);
+     script.Rows.Count.toBe(2);
      script.Rows[0].Values[0].ValidateDateTimeLiteralExpression(`2024-12-18T17:07:45`);
      script.Rows[0].Values[1].ValidateBooleanLiteralExpression(false);
      script.Rows[1].Values[0].ValidateDateTimeLiteralExpression(`2024-12-18T17:08:12`);

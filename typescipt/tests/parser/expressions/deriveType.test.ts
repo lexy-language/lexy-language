@@ -1,9 +1,12 @@
 import {PrimitiveType} from "../../../src/language/variableTypes/primitiveType";
 import {VariableType} from "../../../src/language/variableTypes/variableType";
-import {IValidationContext} from "../../../src/parser/IValidationContext";
 import {SourceReference} from "../../../src/parser/sourceReference";
 import {SourceFile} from "../../../src/parser/sourceFile";
-import {ValidationContext} from "../../../src/parser/validationContext";
+import {IValidationContext, ValidationContext} from "../../../src/parser/validationContext";
+import {VariableSource} from "../../../src/language/variableSource";
+import {parseExpression} from "../expressionParser/parseExpression";
+import {RootNodeList} from "../../../src/language/rootNodeList";
+import {DummyParserLogger} from "../../tokenizer/tokenize";
 
 describe('DeriveTypeTests', () => {
   it('numberLiteral', async () => {
@@ -49,7 +52,7 @@ describe('DeriveTypeTests', () => {
   it('stringVariable', async () => {
      const type = deriveType(`a`, context => {
        context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.string,
-         VariableSource.results);
+         VariableSource.Results);
      });
 
      expect(type).toBe(PrimitiveType.string);
@@ -58,7 +61,7 @@ describe('DeriveTypeTests', () => {
   it('numberVariable', async () => {
      const type = deriveType(`a`, context => {
        context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.number,
-         VariableSource.results);
+         VariableSource.Results);
      });
      expect(type).toBe(PrimitiveType.number);
    });
@@ -66,7 +69,7 @@ describe('DeriveTypeTests', () => {
   it('booleanVariable', async () => {
      const type = deriveType(`a`, context => {
        context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.boolean,
-         VariableSource.results);
+         VariableSource.Results);
      });
      expect(type).toBe(PrimitiveType.boolean);
    });
@@ -74,7 +77,7 @@ describe('DeriveTypeTests', () => {
   it('dateTimeVariable', async () => {
      const type = deriveType(`a`, context => {
        context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.date,
-         VariableSource.results);
+         VariableSource.Results);
      });
      expect(type).toBe(PrimitiveType.date);
    });
@@ -82,7 +85,7 @@ describe('DeriveTypeTests', () => {
   it('stringVariableConcat', async () => {
      const type = deriveType(`a + "bc"`, context => {
        context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.string,
-         VariableSource.results);
+         VariableSource.Results);
      });
      expect(type).toBe(PrimitiveType.string);
    });
@@ -90,7 +93,7 @@ describe('DeriveTypeTests', () => {
   it('numberVariableCalculation', async () => {
      const type = deriveType(`a + 20`, context => {
        context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.number,
-         VariableSource.results);
+         VariableSource.Results);
      });
      expect(type).toBe(PrimitiveType.number);
    });
@@ -98,7 +101,7 @@ describe('DeriveTypeTests', () => {
   it('numberVariableWithParenthesisCalculation', async () => {
      const type = deriveType(`(a + 20.05) * 3`, context => {
        context.variableContext.registerVariableAndVerifyUnique(newReference(), `a`, PrimitiveType.number,
-         VariableSource.results);
+         VariableSource.Results);
      });
      expect(type).toBe(PrimitiveType.number);
    });
@@ -108,17 +111,18 @@ describe('DeriveTypeTests', () => {
   }
 
   function deriveType(expressionValue: string,
-                       validationContextHandler: ((context: IValidationContext) => void) | null = null): VariableType {
+                       validationContextHandler: ((context: IValidationContext) => void) | null = null): VariableType | null {
 
-     let parserContext = GetService<IParserContext>();
-     let validationContext = new ValidationContext(parserContext.logger, parserContext.Nodes);
+    const rootNodeList = new RootNodeList();
+    const dummyLogger = new DummyParserLogger();
+    let validationContext = new ValidationContext(dummyLogger, rootNodeList);
 
     const scope = validationContext.createVariableScope();
     try {
-      validationContextHandler?(validationContext);
+      if (validationContextHandler) validationContextHandler(validationContext);
 
-      let expression = this.ParseExpression(expressionValue);
-      return  expression.deriveType(validationContext);
+      let expression = parseExpression(expressionValue);
+      return expression.deriveType(validationContext);
     } finally {
       scope[Symbol.dispose]();
     }

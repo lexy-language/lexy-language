@@ -22,7 +22,7 @@ export class TableType extends TypeWithMembers {
      return this.type == other?.type;
    }
 
-   public override toString(): string {
+   public toString(): string {
      return this.type;
    }
 

@@ -5,7 +5,7 @@ import {ExpressionFunction} from "./expressionFunction";
 
 export class YearsFunction extends EndStartDateFunction {
 
-   public readonly name: string = `YEARS`;
+   public static readonly name: string = `YEARS`;
    public readonly nodeType = "YearsFunction";
 
   protected override get functionName() {

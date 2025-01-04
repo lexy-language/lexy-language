@@ -1,4 +1,10 @@
-import {IRootNode, RootNode} from "../rootNode";
+import type {IRootNode} from "../rootNode";
+import type {INode} from "../node";
+import type {IExpressionFactory} from "../expressions/expressionFactory";
+import type {IParseLineContext} from "../../parser/ParseLineContext";
+import type {IParsableNode} from "../parsableNode";
+
+import {RootNode} from "../rootNode";
 import {asHasNodeDependencies, IHasNodeDependencies} from "../IHasNodeDependencies";
 import {FunctionName} from "./functionName";
 import {FunctionParameters} from "./functionParameters";
@@ -6,11 +12,8 @@ import {FunctionResults} from "./functionResults";
 import {FunctionCode} from "./functionCode";
 import {SourceReference} from "../../parser/sourceReference";
 import {RootNodeList} from "../rootNodeList";
-import {IParseLineContext} from "../../parser/ParseLineContext";
-import {IParsableNode} from "../parsableNode";
 import {Keywords} from "../../parser/Keywords";
 import {KeywordToken} from "../../parser/tokens/keywordToken";
-import {INode} from "../node";
 import {contains} from "../../infrastructure/enumerableExtensions";
 import {VariableDefinition} from "../variableDefinition";
 import {asCustomVariableDeclarationType} from "../variableTypes/customVariableDeclarationType";
@@ -32,7 +35,7 @@ export class Function extends RootNode implements IHasNodeDependencies {
    public static readonly resultsName = `Results`;
 
    public readonly hasNodeDependencies: true;
-  public readonly nodeType: "Function";
+  public readonly nodeType = "Function";
 
   public readonly name: FunctionName;
    public readonly parameters: FunctionParameters;
@@ -43,12 +46,12 @@ export class Function extends RootNode implements IHasNodeDependencies {
      return this.name.value;
    }
 
-   constructor(name: string, reference: SourceReference) {
+   constructor(name: string, reference: SourceReference, factory) {
      super(reference);
      this.name = new FunctionName(reference);
      this.parameters = new FunctionParameters(reference);
      this.results = new FunctionResults(reference);
-     this.code = new FunctionCode(reference);
+     this.code = new FunctionCode(reference, factory);
 
      this.name.parseName(name);
    }
@@ -60,8 +63,8 @@ export class Function extends RootNode implements IHasNodeDependencies {
      return result;
    }
 
-   public static create(name: string, reference: SourceReference): Function {
-     return new Function(name, reference);
+   public static create(name: string, reference: SourceReference, factory: IExpressionFactory): Function {
+     return new Function(name, reference, factory);
    }
 
    public override parse(context: IParseLineContext): IParsableNode {

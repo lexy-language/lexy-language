@@ -22,7 +22,7 @@ export class FunctionResult {
    public getValue(expectedVariable: VariableReference): object {
      let currentReference = expectedVariable;
      let currentValue = GetField(valueObject, expectedVariable.parentIdentifier).GetValue(valueObject);
-     while (currentReference.HasChildIdentifiers) {
+     while (currentReference.hasChildIdentifiers) {
        currentReference = currentReference.childrenReference();
        currentValue = GetField(currentValue, currentReference.parentIdentifier).GetValue(currentValue);
      }

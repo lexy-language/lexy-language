@@ -22,7 +22,7 @@ export function asTable(object: any): Table | null {
 export class Table extends RootNode {
   public static readonly rowName: string = `Row`;
 
-  public readonly nodeType: "Table";
+  public readonly nodeType = "Table";
   public name: TableName;
   public header: TableHeader | null;
   public rows: Array<TableRow> = [];

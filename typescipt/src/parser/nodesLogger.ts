@@ -25,7 +25,7 @@ export class NodesLogger {
      indent -= 2;
    }
 
-   public override toString(): string {
+   public toString(): string {
      return builder.toString();
    }
 }

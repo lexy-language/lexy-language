@@ -1,5 +1,5 @@
 
 
 export class DateTypeDefault {
-   public static DateTime Value new(, , , , , ): =;
+   public static Date Value new(, , , , , ): =;
 }

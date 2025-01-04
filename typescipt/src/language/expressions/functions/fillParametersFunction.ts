@@ -16,13 +16,13 @@ import {Function} from "../../functions/function";
 
 export class FillParametersFunction extends ExpressionFunction implements IHasNodeDependencies {
 
-   public readonly name = `fill`;
+   public static readonly name = `fill`;
 
   public readonly hasNodeDependencies: true;
   public readonly nodeType = "FillParametersFunction";
 
   protected get functionHelp() {
-    return `${this.name} expects 1 argument (Function.Parameters)`;
+    return `${FillParametersFunction.name} expects 1 argument (Function.Parameters)`;
   }
 
    public readonly typeLiteral: MemberAccessLiteral | undefined;

@@ -5,7 +5,7 @@ import {ExpressionFunction} from "./expressionFunction";
 
 export class MonthsFunction extends EndStartDateFunction {
 
-   public readonly name: string = `MONTHS`;
+   public static readonly name: string = `MONTHS`;
    public readonly nodeType = "MonthsFunction";
 
   protected override get functionName() {

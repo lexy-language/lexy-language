@@ -9,7 +9,7 @@ export class LexyScriptTests extends ScopedServicesTestFixture {
   Code
    Result = 777`);
      let result = script.Run();
-     result.Number(`Result`).ShouldBe(777);
+     result.Number(`Result`).toBe(777);
    }
 
   it('XXXX', async () => {
@@ -22,7 +22,7 @@ export class LexyScriptTests extends ScopedServicesTestFixture {
   Code
    Result = Input`);
      let result = script.Run();
-     result.Number(`Result`).ShouldBe(5);
+     result.Number(`Result`).toBe(5);
    }
 
   it('XXXX', async () => {
@@ -38,7 +38,7 @@ export class LexyScriptTests extends ScopedServicesTestFixture {
      let result = script.Run(new Dictionary<string, object> {
        { `Input`, 777 }
      });
-     result.Number(`Result`).ShouldBe(777);
+     result.Number(`Result`).toBe(777);
    }
 
 
@@ -61,7 +61,7 @@ Function: ValidateTableKeywordFunction
    Result = ValidateTableKeyword.Count`);
 
      let result = script.Run();
-     result.Number(`Result`).ShouldBe(2);
+     result.Number(`Result`).toBe(2);
    }
 
   it('XXXX', async () => {
@@ -77,7 +77,7 @@ Function: ValidateTableKeywordFunction
    Result = temp`);
 
      let result = script.Run();
-     result.Number(`Result`).ShouldBe(5);
+     result.Number(`Result`).toBe(5);
    }
 
   it('XXXX', async () => {
@@ -90,6 +90,6 @@ Function: ValidateTableKeywordFunction
    Result = temp
 `);
      let result = script.Run();
-     result.Number(`Result`).ShouldBe(5);
+     result.Number(`Result`).toBe(5);
    }
 }

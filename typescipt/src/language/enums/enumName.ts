@@ -7,7 +7,7 @@ export class EnumName extends Node {
 
   private valueValue: string;
 
-  public nodeType: "EnumName";
+  public nodeType = "EnumName";
 
   public get value() {
     return this.valueValue;

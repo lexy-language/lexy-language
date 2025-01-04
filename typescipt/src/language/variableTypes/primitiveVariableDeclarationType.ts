@@ -15,7 +15,7 @@ export function asPrimitiveVariableDeclarationType(object: any): PrimitiveVariab
 
 export class PrimitiveVariableDeclarationType extends VariableDeclarationType {
 
-  public nodeType: "PrimitiveVariableDeclarationType";
+  public nodeType = "PrimitiveVariableDeclarationType";
   public type: string
 
   constructor(type: string, reference: SourceReference) {
@@ -27,7 +27,7 @@ export class PrimitiveVariableDeclarationType extends VariableDeclarationType {
     return this.type == other.type;
   }
 
-  public override toString(): string {
+  public toString(): string {
     return this.type;
   }
 

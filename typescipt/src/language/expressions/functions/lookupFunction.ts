@@ -25,11 +25,11 @@ const functionHelp = `Arguments: LOOKUP(Table, lookUpValue, Table.searchValueCol
 
 export class LookupFunction extends ExpressionFunction implements IHasNodeDependencies {
 
-  private resultColumnTypeValue: VariableType;
-  private searchValueColumnTypeValue: VariableType;
+  private resultColumnTypeValue: VariableType | null;
+  private searchValueColumnTypeValue: VariableType | null;
 
   public readonly hasNodeDependencies: true;
-  public readonly name: string = `LOOKUP`;
+  public static readonly name: string = `LOOKUP`;
    public readonly nodeType = "LookupFunction";
 
    public readonly table: string
@@ -40,9 +40,11 @@ export class LookupFunction extends ExpressionFunction implements IHasNodeDepend
    public readonly searchValueColumn: MemberAccessLiteral;
 
    public get resultColumnType(): VariableType {
+     if (this.resultColumnTypeValue == null) throw new Error("resultColumnType not set");
      return this.resultColumnTypeValue;
    }
    public get searchValueColumnType(): VariableType {
+     if (this.searchValueColumnTypeValue == null) throw new Error("searchValueColumnType not set");
      return this.searchValueColumnTypeValue;
    }
 
@@ -111,14 +113,14 @@ export class LookupFunction extends ExpressionFunction implements IHasNodeDepend
        return;
      }
 
-     const resultColumnHeader = tableType.Header.Get(this.resultColumn);
+     const resultColumnHeader = tableType.header?.get(this.resultColumn);
      if (resultColumnHeader == null) {
        context.logger.fail(this.reference,
          `Invalid argument ${argumentResultColumn}. Column name '${this.resultColumn}' not found in table '${this.table}'. ${functionHelp}`);
        return;
      }
 
-     const searchColumnHeader = tableType.Header.Get(this.searchValueColumn);
+     const searchColumnHeader = tableType.header?.get(this.searchValueColumn);
      if (searchColumnHeader == null) {
        context.logger.fail(this.reference,
          `Invalid argument ${argumentSearchValueColumn}. Column name '${this.searchValueColumn}' not found in table '${this.table}'. ${functionHelp}`);
@@ -126,8 +128,8 @@ export class LookupFunction extends ExpressionFunction implements IHasNodeDepend
      }
 
      const conditionValueType = this.valueExpression.deriveType(context);
-     this.resultColumnTypeValue = resultColumnHeader.Type.createVariableType(context);
-     this.searchValueColumnTypeValue = searchColumnHeader.Type.createVariableType(context);
+     this.resultColumnTypeValue = resultColumnHeader.type.createVariableType(context);
+     this.searchValueColumnTypeValue = searchColumnHeader.type.createVariableType(context);
 
      if (conditionValueType == null || !conditionValueType.equals(this.searchValueColumnTypeValue)) {
        context.logger.fail(this.reference,
@@ -147,10 +149,11 @@ export class LookupFunction extends ExpressionFunction implements IHasNodeDepend
      }
    }
 
-   public override deriveReturnType(context: IValidationContext): VariableType {
+   public override deriveReturnType(context: IValidationContext): VariableType | null {
      let tableType = context.rootNodes.getTable(this.table);
-     let resultColumnHeader = tableType?.Header.Get(this.resultColumn);
+     let resultColumnHeader = tableType?.header?.get(this.resultColumn);
 
-     return resultColumnHeader?.Type.createVariableType(context);
+     const variableType = resultColumnHeader?.type.createVariableType(context);
+     return !!variableType ? variableType : null;
    }
 }

@@ -6,7 +6,7 @@ import {INode} from "../node";
 
 export class ImplicitVariableDeclaration extends VariableDeclarationType {
 
-  public nodeType: "ImplicitVariableDeclaration";
+  public nodeType = "ImplicitVariableDeclaration";
   public variableType: VariableType;
 
    constructor(reference: SourceReference) {

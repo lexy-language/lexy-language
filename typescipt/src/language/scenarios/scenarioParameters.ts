@@ -9,7 +9,7 @@ export class ScenarioParameters extends ParsableNode {
 
   private assignmentsValue: Array<AssignmentDefinition> = [];
 
-  public nodeType: "ScenarioParameters";
+  public nodeType = "ScenarioParameters";
 
   public get assignments(): ReadonlyArray<AssignmentDefinition> {
     return this.assignmentsValue;

@@ -56,13 +56,13 @@ Scenario: DateVariableDeclarationInCodeWithDefault
   Results
     Result = d"2024-12-23T16:03:00"
 
-Scenario: InvalidNumberEndsWithLetter
+Scenario: InvalidDateWithSlashes
   Function:
     Results
       date Result
     Code
-      Result = d"2024-01-23 16:3:00"
-  ExpectError "Unexpected character: '-'"
+      Result = d"2024/01/23 16:3:00"
+  ExpectError "Unexpected character: '/'"
 
 Scenario: InvalidDateInitializeString
   Function:

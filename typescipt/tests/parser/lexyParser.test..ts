@@ -12,13 +12,13 @@ export class LexyParserTests extends ScopedServicesTestFixture {
      let parser = ServiceProvider.GetRequiredService<ILexyParser>();
      let script = parser.ParseFunction(code);
 
-     script.Name.Value.ShouldBe(`TestSimpleReturn`);
-     script.results.Variables.Count.ShouldBe(1);
-     script.results.Variables[0].Name.ShouldBe(`Result`);
-     script.results.Variables[0].Type.ValidateOfType<PrimitiveVariableDeclarationType>(type =>
-       ShouldBeStringTestExtensions.ShouldBe(type.Type, `number`));
-     script.Code.Expressions.Count.ShouldBe(1);
-     script.Code.Expressions[0].toString().ShouldBe(`Result=777`);
+     script.Name.Value.toBe(`TestSimpleReturn`);
+     script.results.Variables.Count.toBe(1);
+     script.results.Variables[0].Name.toBe(`Result`);
+     script.results.Variables[0].Type.validateOfType<PrimitiveVariableDeclarationType>(type =>
+       ShouldBeStringTestExtensions.toBe(type.type, `number`));
+     script.Code.Expressions.Count.toBe(1);
+     script.Code.Expressions[0].toString().toBe(`Result=777`);
    }
 
   it('XXXX', async () => {

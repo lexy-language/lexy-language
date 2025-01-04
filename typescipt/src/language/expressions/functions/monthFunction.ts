@@ -6,7 +6,7 @@ import {ExpressionFunction} from "./expressionFunction";
 
 export class MonthFunction extends SingleArgumentFunction {
 
-   public readonly name: string = `MONTH`;
+   public static readonly name: string = `MONTH`;
 
    public readonly nodeType = "MonthFunction";
 

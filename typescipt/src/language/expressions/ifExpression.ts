@@ -1,25 +1,28 @@
+import type {IParseLineContext} from "../../parser/ParseLineContext";
+import type {INode} from "../node";
+import type {IExpressionFactory} from "./expressionFactory";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IChildExpression, IParentExpression} from "./IChildExpression";
+
 import {Expression} from "./Expression";
 import {asParsableNode, IParsableNode} from "../parsableNode";
 import {ExpressionList} from "./expressionList";
-import {ElseExpression} from "./elseExpression";
+import {asElseExpression, ElseExpression} from "./elseExpression";
 import {ExpressionSource} from "./expressionSource";
 import {SourceReference} from "../../parser/sourceReference";
-import {IParseLineContext} from "../../parser/ParseLineContext";
-import {INode} from "../node";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
-import {ExpressionFactory} from "./expressionFactory";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {Keywords} from "../../parser/Keywords";
-import {IValidationContext} from "../../parser/validationContext";
 import {PrimitiveType} from "../variableTypes/primitiveType";
 import {VariableType} from "../variableTypes/variableType";
 
-export class IfExpression extends Expression implements IParsableNode {
+export class IfExpression extends Expression implements IParsableNode, IParentExpression {
 
   private readonly trueExpressionsValues: ExpressionList;
 
+  public isParentExpression: true;
   public isParsableNode: true;
-  public nodeType: "IfExpression";
+  public nodeType = "IfExpression";
 
   public condition: Expression
 
@@ -27,12 +30,12 @@ export class IfExpression extends Expression implements IParsableNode {
     return this.trueExpressionsValues.asArray();
   }
 
-  public else: ElseExpression
+  public else: ElseExpression | null;
 
-  constructor(condition: Expression, source: ExpressionSource, reference: SourceReference) {
+  constructor(condition: Expression, source: ExpressionSource, reference: SourceReference, factory: IExpressionFactory) {
     super(source, reference);
     this.condition = condition;
-    this.trueExpressionsValues = new ExpressionList(reference);
+    this.trueExpressionsValues = new ExpressionList(reference, factory);
   }
 
   public parse(context: IParseLineContext): IParsableNode {
@@ -48,19 +51,19 @@ export class IfExpression extends Expression implements IParsableNode {
     return result;
   }
 
-  public static parse(source: ExpressionSource): ParseExpressionResult {
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
     let tokens = source.tokens;
-    if (!this.isValid(tokens)) return newParseExpressionFailed(IfExpression, `Not valid.`);
+    if (!IfExpression.isValid(tokens)) return newParseExpressionFailed("IfExpression", `Not valid.`);
 
-    if (tokens.length == 1) return newParseExpressionFailed(IfExpression, `No condition found`);
+    if (tokens.length == 1) return newParseExpressionFailed("IfExpression", `No condition found`);
 
     let condition = tokens.tokensFrom(1);
-    let conditionExpression = ExpressionFactory.parse(condition, source.line);
+    let conditionExpression = factory.parse(condition, source.line);
     if (conditionExpression.state != 'success') return conditionExpression;
 
     let reference = source.createReference();
 
-    let expression = new IfExpression(conditionExpression.result, source, reference);
+    let expression = new IfExpression(conditionExpression.result, source, reference, factory);
 
     return newParseExpressionSuccess(expression);
   }
@@ -76,12 +79,20 @@ export class IfExpression extends Expression implements IParsableNode {
   }
 
   public linkElse(elseExpression: ElseExpression): void {
-    if (this.else != null) throw new Error(`'else' already linked.`);
 
-    this.else = elseExpression;
   }
 
   public override deriveType(context: IValidationContext): VariableType | null {
     return null;
+  }
+
+
+  linkChildExpression(expression: IChildExpression): void {
+    if (this.else != null) throw new Error(`'else' already linked.`);
+
+    const elseExpression = asElseExpression(expression);
+    if (elseExpression == null) throw new Error(`Invalid node type: ${expression.nodeType}`);
+
+    this.else = elseExpression;
   }
 }

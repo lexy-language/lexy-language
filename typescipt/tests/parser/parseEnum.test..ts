@@ -10,14 +10,14 @@ export class ParseEnumTests extends ScopedServicesTestFixture {
      let parser = ServiceProvider.GetRequiredService<ILexyParser>();
      let enumValue = parser.ParseEnum(code);
 
-     enumValue.Name.Value.ShouldBe(`Enum1`);
-     enumValue.Members.Count.ShouldBe(2);
-     enumValue.Members[0].Name.ShouldBe(`First`);
-     enumValue.Members[0].NumberValue.ShouldBe(0);
-     enumValue.Members[0].ValueLiteral.ShouldBeNull();
-     enumValue.Members[1].Name.ShouldBe(`Second`);
-     enumValue.Members[1].NumberValue.ShouldBe(1);
-     enumValue.Members[1].ValueLiteral.ShouldBeNull();
+     enumValue.Name.Value.toBe(`Enum1`);
+     enumValue.Members.Count.toBe(2);
+     enumValue.Members[0].Name.toBe(`First`);
+     enumValue.Members[0].NumberValue.toBe(0);
+     enumValue.Members[0].ValueLiteral.toBeNull();
+     enumValue.Members[1].Name.toBe(`Second`);
+     enumValue.Members[1].NumberValue.toBe(1);
+     enumValue.Members[1].ValueLiteral.toBeNull();
    }
 
   it('XXXX', async () => {
@@ -29,13 +29,13 @@ export class ParseEnumTests extends ScopedServicesTestFixture {
      let parser = ServiceProvider.GetRequiredService<ILexyParser>();
      let enumValue = parser.ParseEnum(code);
 
-     enumValue.Name.Value.ShouldBe(`Enum2`);
-     enumValue.Members.Count.ShouldBe(2);
-     enumValue.Members[0].Name.ShouldBe(`First`);
-     enumValue.Members[0].NumberValue.ShouldBe(5);
-     enumValue.Members[0].ValueLiteral.NumberValue.ShouldBe(5);
-     enumValue.Members[1].Name.ShouldBe(`Second`);
-     enumValue.Members[1].NumberValue.ShouldBe(6);
-     enumValue.Members[1].ValueLiteral.NumberValue.ShouldBe(6m);
+     enumValue.Name.Value.toBe(`Enum2`);
+     enumValue.Members.Count.toBe(2);
+     enumValue.Members[0].Name.toBe(`First`);
+     enumValue.Members[0].NumberValue.toBe(5);
+     enumValue.Members[0].ValueLiteral.NumberValue.toBe(5);
+     enumValue.Members[1].Name.toBe(`Second`);
+     enumValue.Members[1].NumberValue.toBe(6);
+     enumValue.Members[1].ValueLiteral.NumberValue.toBe(6m);
    }
 }

@@ -1,5 +1,6 @@
-import {ParsableToken} from "./parsableToken";
 import {Token} from "./token";
+
+import type {IParsableToken} from "./parsableToken";
 
 type ParseTokenInvalidResult = {
   state: "invalid";
@@ -31,10 +32,10 @@ export function newParseTokenFinishedResult(charProcessed: boolean = false, newT
 
 type ParseTokenInProgressResult = {
   state: "inProgress";
-  newToken: ParsableToken | null;
+  newToken: IParsableToken | null;
 }
 
-export function newParseTokenInProgressResult(newToken:ParsableToken | null = null)
+export function newParseTokenInProgressResult(newToken: IParsableToken | null = null)
   : ParseTokenInProgressResult {
   return {
     state: "inProgress",

@@ -1,15 +1,16 @@
+import type {ILiteralToken} from "../../parser/tokens/ILiteralToken";
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./Expression";
-import {ILiteralToken} from "../../parser/tokens/ILiteralToken";
 import {ExpressionSource} from "./expressionSource";
 import {SourceReference} from "../../parser/sourceReference";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {instanceOfNumberLiteralToken, NumberLiteralToken} from "../../parser/tokens/numberLiteralToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
-import {PrimitiveVariableDeclarationType} from "../variableTypes/primitiveVariableDeclarationType";
 
 export function instanceOfLiteralExpression(object: any): boolean {
   return object?.nodeType == "LiteralExpression";
@@ -21,7 +22,7 @@ export function asLiteralExpression(object: any): LiteralExpression | null {
 
 export class LiteralExpression extends Expression {
 
-  public nodeType: "LiteralExpression";
+  public nodeType = "LiteralExpression";
 
    public literal: ILiteralToken;
 
@@ -30,16 +31,16 @@ export class LiteralExpression extends Expression {
     this.literal = literal;
   }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
+   public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
      let tokens = source.tokens;
-     if (!this.isValid(tokens)) return newParseExpressionFailed(LiteralExpression, `Invalid expression.`);
+     if (!LiteralExpression.isValid(tokens)) return newParseExpressionFailed("LiteralExpression", `Invalid expression.`);
 
      let reference = source.createReference();
 
-     if (tokens.length == 2) return this.negativeNumeric(source, tokens, reference);
+     if (tokens.length == 2) return LiteralExpression.negativeNumeric(source, tokens, reference);
 
      let literalToken = tokens.literalToken(0);
-     if (!literalToken) return newParseExpressionFailed(LiteralExpression, "Invalid token");
+     if (!literalToken) return newParseExpressionFailed("LiteralExpression", "Invalid token");
 
      let expression = new LiteralExpression(literalToken, source, reference);
      return newParseExpressionSuccess(expression);
@@ -47,7 +48,7 @@ export class LiteralExpression extends Expression {
 
    private static negativeNumeric(source: ExpressionSource, tokens: TokenList, reference: SourceReference): ParseExpressionResult  {
      let operatorToken = tokens.operatorToken(0);
-     if (!operatorToken) return newParseExpressionFailed(LiteralExpression, "Invalid token");
+     if (!operatorToken) return newParseExpressionFailed("LiteralExpression", "Invalid token");
      
      let numericLiteralToken = tokens.literalToken(1) as NumberLiteralToken;
      let value = -numericLiteralToken.numberValue;

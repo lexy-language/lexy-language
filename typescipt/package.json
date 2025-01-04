@@ -8,13 +8,25 @@
     "ts-node": "^10.9.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "check-circular-dependencies": "npx madge -c --extensions ts ./"
   },
   "dependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.25.9",
     "typescript": "^5.7.2",
     "babel-jest": "^29.7.0"
+  },
+  "madge": {
+    "detectiveOptions": {
+      "ts": {
+        "skipTypeImports": true
+      },
+      "tsx": {
+        "skipTypeImports": true
+      }
+    }
   }
 }

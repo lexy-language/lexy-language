@@ -2,6 +2,14 @@ import {ParsableToken} from "./parsableToken";
 import {TokenCharacter} from "./tokenCharacter";
 import {newParseTokenFinishedResult, ParseTokenResult} from "./parseTokenResult";
 
+export function instanceOfTableSeparatorToken(object: any): object is TableSeparatorToken {
+  return object?.tokenType == 'TableSeparatorToken';
+}
+
+export function asTableSeparatorToken(object: any): TableSeparatorToken | null {
+  return instanceOfTableSeparatorToken(object) ? object as TableSeparatorToken : null;
+}
+
 export class TableSeparatorToken extends ParsableToken {
 
   public tokenIsLiteral: boolean = false;

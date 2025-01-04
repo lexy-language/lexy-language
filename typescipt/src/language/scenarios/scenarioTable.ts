@@ -11,7 +11,7 @@ export class ScenarioTable extends ParsableNode {
   private headerValue: TableHeader | null;
   private rowsValue: Array<TableRow>;
 
-  public nodeType: "ScenarioTable";
+  public nodeType = "ScenarioTable";
 
   public get rows(): ReadonlyArray<TableRow>{
     return this.rows;

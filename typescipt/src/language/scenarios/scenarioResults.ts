@@ -9,7 +9,7 @@ export class ScenarioResults extends ParsableNode {
 
   private assignmentsValue: Array<AssignmentDefinition> = [];
 
-  public nodeType: "ScenarioResults";
+  public nodeType = "ScenarioResults";
 
   public get assignments(): ReadonlyArray<AssignmentDefinition> {
     return this.assignmentsValue;

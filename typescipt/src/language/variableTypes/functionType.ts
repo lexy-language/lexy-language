@@ -1,13 +1,13 @@
 import {TypeWithMembers} from "./typeWithMembers";
 import {VariableType} from "./variableType";
+import {Function} from "../functions/function";
 import {IValidationContext} from "../../parser/validationContext";
 import {FunctionParametersType} from "./functionParametersType";
 import {FunctionResultsType} from "./functionResultsType";
 
-
 export class FunctionType extends TypeWithMembers {
 
-  public readonly variableTypeName: "FunctionType';
+  public readonly variableTypeName = "FunctionType";
 
   public type: string;
    public functionValue: Function;
@@ -22,7 +22,7 @@ export class FunctionType extends TypeWithMembers {
      return this.type == other?.type;
    }
 
-   public override toString(): string {
+   public toString(): string {
      return this.type;
    }
 

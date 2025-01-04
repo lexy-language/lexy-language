@@ -1,5 +1,5 @@
 import {VariableType} from "./variableType";
-import {ITypeWithMembers} from "./iTypeWithMembers";
+import {ITypeWithMembers} from "./ITypeWithMembers";
 import {ComplexTypeMember} from "./complexTypeMember";
 import {IValidationContext} from "../../parser/validationContext";
 

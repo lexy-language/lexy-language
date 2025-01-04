@@ -106,9 +106,9 @@ Function: DateVariableFunction
 Scenario: DateVariable
   Function DateVariableFunction
   Parameters
-    InDate = d"2022/12/16 13:26:55"
+    InDate = d"2022-12-16T13:26:55"
   Results
-    OutDate = d"2022/12/16 13:26:55"
+    OutDate = d"2022-12-16T13:26:55"
 
 Function: UnknownFunctionKeywordFunction
 # Validate function keywords

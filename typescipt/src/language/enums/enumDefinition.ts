@@ -22,7 +22,7 @@ export class EnumDefinition extends RootNode {
 
   public name: EnumName
 
-  public nodeType: "EnumDefinition";
+  public nodeType = "EnumDefinition";
 
    public override get nodeName() {
      return this.name.value;

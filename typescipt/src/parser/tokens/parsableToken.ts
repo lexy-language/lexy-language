@@ -1,7 +1,12 @@
 import {ParseTokenResult} from "./parseTokenResult";
 import {Character} from "./character";
 import {TokenCharacter} from "./tokenCharacter";
-import {Token} from "./token";
+import {IToken, Token} from "./token";
+
+export interface IParsableToken extends IToken {
+  parse(character: TokenCharacter): ParseTokenResult;
+  finalize(): ParseTokenResult;
+}
 
 export abstract class ParsableToken extends Token {
 

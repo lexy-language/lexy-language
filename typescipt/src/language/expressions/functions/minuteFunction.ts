@@ -5,7 +5,7 @@ import {Expression} from "../expression";
 import {ExpressionFunction} from "./expressionFunction";
 
 export class MinuteFunction extends SingleArgumentFunction {
-   public readonly name: string = `MINUTE`;
+   public static readonly name: string = `MINUTE`;
 
    public readonly nodeType = "MinuteFunction";
 

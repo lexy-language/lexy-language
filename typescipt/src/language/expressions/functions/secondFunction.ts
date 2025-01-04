@@ -5,7 +5,7 @@ import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {ExpressionFunction} from "./expressionFunction";
 
 export class SecondFunction extends SingleArgumentFunction {
-   public readonly name: string = `SECOND`;
+   public static readonly name: string = `SECOND`;
 
    protected override get functionHelp(): string {
       return `'${this.name} expects 1 argument (Date)`;

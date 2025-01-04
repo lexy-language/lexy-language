@@ -1,41 +1,45 @@
+import type {INode} from "../node";
+import type {IParseLineContext} from "../../parser/ParseLineContext";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IParsableNode} from "../parsableNode";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./Expression";
-import {CaseExpression} from "./caseExpression";
-import {IParsableNode} from "../parsableNode";
+import {asCaseExpression, CaseExpression} from "./caseExpression";
 import {ExpressionSource} from "./expressionSource";
 import {SourceReference} from "../../parser/sourceReference";
-import {IParseLineContext} from "../../parser/ParseLineContext";
-import {ExpressionFactory} from "./expressionFactory";
-import {INode} from "../node";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {Keywords} from "../../parser/Keywords";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
 
-export class SwitchExpression extends Expression implements IParsableNode {
+export class SwitchExpression extends Expression implements IParsableNode, I {
+
+  private factory: IExpressionFactory;
 
   public isParsableNode: true;
-  public nodeType: "SwitchExpression";
+  public nodeType = "SwitchExpression";
 
   public condition: Expression;
   public cases: Array<CaseExpression> = [];
 
-  constructor(condition: Expression, source: ExpressionSource, reference: SourceReference) {
+  constructor(condition: Expression, source: ExpressionSource, reference: SourceReference, factory: IExpressionFactory) {
     super(source, reference);
     this.condition = condition;
+    this.factory = factory;
   }
 
    public parse(context: IParseLineContext): IParsableNode {
      let line = context.line;
-     let expression = ExpressionFactory.parse(line.tokens, line);
+     let expression = this.factory.parse(line.tokens, line);
      if (expression.state != 'success') {
        context.logger.fail(line.lineStartReference(), expression.errorMessage);
        return this;
      }
 
-     if (expression.result.nodeType == "CaseExpression") {
-       const caseExpression = expression.result as CaseExpression;
-       caseExpression.linkPreviousExpression(this, context);
+     const caseExpression = asCaseExpression(expression.result);
+     if (caseExpression != null) {
+       cases.Add(caseExpression);
        return caseExpression;
      }
 
@@ -49,19 +53,19 @@ export class SwitchExpression extends Expression implements IParsableNode {
     return result;
   }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
+   public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
      let tokens = source.tokens;
-     if (!this.isValid(tokens)) return newParseExpressionFailed(SwitchExpression, `Not valid.`);
+     if (!SwitchExpression.isValid(tokens)) return newParseExpressionFailed("SwitchExpression", `Not valid.`);
 
-     if (tokens.length == 1) return newParseExpressionFailed(SwitchExpression, `No condition found`);
+     if (tokens.length == 1) return newParseExpressionFailed("SwitchExpression", `No condition found`);
 
      let condition = tokens.tokensFrom(1);
-     let conditionExpression = ExpressionFactory.parse(condition, source.line);
+     let conditionExpression = factory.parse(condition, source.line);
      if (conditionExpression.state != 'success') return conditionExpression;
 
      let reference = source.createReference();
 
-     let expression = new SwitchExpression(conditionExpression.result, source, reference);
+     let expression = new SwitchExpression(conditionExpression.result, source, reference, factory);
 
      return newParseExpressionSuccess(expression);
    }
@@ -80,17 +84,13 @@ export class SwitchExpression extends Expression implements IParsableNode {
      }
 
      this.cases.forEach(caseExpression => {
-       if (caseExpression.IsDefault) return;
+       if (caseExpression.isDefault) return;
 
        let caseType = caseExpression.deriveType(context);
        if (caseType == null || !type?.equals(caseType))
          context.logger.fail(this.reference,
            `'case' condition expression should be of type '${type}', is of wrong type '${caseType}'.`);
      });
-   }
-
-   public linkElse(caseExpression: CaseExpression): void {
-     cases.Add(caseExpression);
    }
 
    public override deriveType(context: IValidationContext): VariableType | null {

@@ -10,7 +10,7 @@ export class TokensListTests {
      });
 
      let result = list.tokensFrom(1);
-     result.length.ShouldBe(2);
+     result.length.toBe(2);
      result[0].ValidateStringLiteralToken(`456`);
      result[1].ValidateStringLiteralToken(`789`);
    }
@@ -24,7 +24,7 @@ export class TokensListTests {
      });
 
      let result = list.tokensFromStart(2);
-     result.length.ShouldBe(2);
+     result.length.toBe(2);
      result[0].ValidateStringLiteralToken(`123`);
      result[1].ValidateStringLiteralToken(`456`);
    }
@@ -40,7 +40,7 @@ export class TokensListTests {
      });
 
      let result = list.tokensRange(1, 3);
-     result.length.ShouldBe(3);
+     result.length.toBe(3);
      result[0].ValidateStringLiteralToken(`2222`);
      result[1].ValidateStringLiteralToken(`3333`);
      result[2].ValidateStringLiteralToken(`4444`);

@@ -1,24 +1,30 @@
+import type {IExpressionFactory} from "./expressionFactory";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IParseLineContext} from "../../parser/ParseLineContext";
+import type {INode} from "../node";
+import type {IChildExpression} from "./IChildExpression";
+
 import {Expression} from "./expression";
-import {INode, Node} from "../node";
+import {Node} from "../node";
 import {SourceReference} from "../../parser/sourceReference";
-import {IValidationContext} from "../../parser/validationContext";
-import {IParseLineContext} from "../../parser/ParseLineContext";
 import {ParseExpressionResult} from "./parseExpressionResult";
-import {ExpressionFactory} from "./expressionFactory";
-import { asDependantExpression} from "./IDependantExpression";
+import {asChildExpression, asParentExpression} from "./IChildExpression";
+import {lastOrDefault} from "../../infrastructure/enumerableExtensions";
 
 export class ExpressionList extends Node {
 
-   private readonly values: Array<Expression> = [];
+  private factory: IExpressionFactory;
+  private readonly values: Array<Expression> = [];
 
-  public nodeType: "ExpressionList";
+  public nodeType = "ExpressionList";
 
   public get length(): number {
      return this.values.length;
    }
 
-   constructor(reference: SourceReference) {
+   constructor(reference: SourceReference, factory: IExpressionFactory) {
      super(reference);
+     this.factory = factory;
    }
 
   public asArray(): Array<Expression> {
@@ -46,7 +52,7 @@ export class ExpressionList extends Node {
 
    public parse(context: IParseLineContext): ParseExpressionResult {
      let line = context.line;
-     let expression = ExpressionFactory.parse(line.tokens, line);
+     let expression = this.factory.parse(line.tokens, line);
      if (expression.state != 'success') {
        context.logger.fail(line.lineStartReference(), expression.errorMessage);
        return expression;
@@ -57,12 +63,18 @@ export class ExpressionList extends Node {
    }
 
    private add(expression: Expression, context: IParseLineContext): void {
-     const childExpression = asDependantExpression(expression);
+     const childExpression = asChildExpression(expression);
      if (childExpression != null) {
-       const lastOrDefault = this.values.length > 0 ? this.values[this.values.length - 1] : null;
-       childExpression.linkPreviousExpression(lastOrDefault, context);
+       this.addToParent(childExpression, context);
      } else {
        this.values.push(expression);
      }
    }
+
+  private addToParent(childExpression: IChildExpression, context: IParseLineContext) {
+    const parentExpression = asParentExpression(lastOrDefault(this.values));
+    if (childExpression.validateParentExpression(parentExpression, context)) {
+      parentExpression.linkChildExpression(childExpression);
+    }
+  }
 }

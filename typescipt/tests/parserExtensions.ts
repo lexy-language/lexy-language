@@ -1,10 +1,14 @@
+export function expectSuccess<T>(result: { state: "success", result: T } | { state: "failed", errorMessage: string }) {
+  if (result.state == "failed") {
+    throw new Error(result.errorMessage)
+  }
+  return result.result;
+}
 
-
+/*
 export class ParserExtensions {
    public static parseNodes(parser: ILexyParser, code: string): RootNodeList {
-     if (parser == null) throw new Error(nameof(parser));
-
-     let codeLines = code.Split(Environment.NewLine);
+     let codeLines = code.split("\n");
      let context = parser.parse(codeLines, `tests.lexy`, false);
 
      return context.rootNodes;
@@ -39,3 +43,4 @@ export class ParserExtensions {
      return node;
    }
 }
+*/

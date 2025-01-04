@@ -28,7 +28,7 @@ internal struct DateTimeSpan {
      Done
    }
 
-   public static compareDates(date1: DateTime, date2: DateTime): DateTimeSpan {
+   public static compareDates(date1: Date, date2: Date): DateTimeSpan {
      if (date2 < date1) {
        let sub = date1;
        date1 = date2;
@@ -61,7 +61,7 @@ internal struct DateTimeSpan {
              phase = Phase.Days;
              current = current.AddMonths(months);
              if (current.Day < officialDay &&
-               officialDay <= DateTime.DaysInMonth(current.Year, current.Month))
+               officialDay <= Date.DaysInMonth(current.Year, current.Month))
                current = current.AddDays(officialDay - current.Day);
            }
            else {

@@ -1,3 +1,7 @@
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./Expression";
 import {VariableSource} from "../variableSource";
 import {ExpressionSource} from "./expressionSource";
@@ -5,19 +9,17 @@ import {SourceReference} from "../../parser/sourceReference";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
 
 export function asIdentifierExpression(object: any): IdentifierExpression | null {
-  return object.nodeType == "IdentifierExpression" ? object as IdentifierExpression : null;
+  return object?.nodeType == "IdentifierExpression" ? object as IdentifierExpression : null;
 }
 
 export class IdentifierExpression extends Expression {
 
   private variableSourceValue: VariableSource;
 
-  public readonly nodeType: "IdentifierExpression";
+  public readonly nodeType = "IdentifierExpression";
   public readonly identifier: string;
 
   public get variableSource() {
@@ -29,12 +31,12 @@ export class IdentifierExpression extends Expression {
     this.identifier = identifier;
   }
 
-  public static parse(source: ExpressionSource): ParseExpressionResult {
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
     let tokens = source.tokens;
-    if (!this.isValid(tokens)) return newParseExpressionFailed(IdentifierExpression, `Invalid expression`);
+    if (!IdentifierExpression.isValid(tokens)) return newParseExpressionFailed("IdentifierExpression", `Invalid expression`);
 
     let variableName = tokens.tokenValue(0);
-    if (!variableName) return newParseExpressionFailed(IdentifierExpression, `Invalid token`);
+    if (!variableName) return newParseExpressionFailed("IdentifierExpression",`Invalid token`);
 
     let reference = source.createReference();
 
@@ -61,7 +63,7 @@ export class IdentifierExpression extends Expression {
       return;
     }
 
-    this.variableSourceValue = VariableSource.Value;
+    this.variableSourceValue = this.variableSource.value;
   }
 
   public override deriveType(context: IValidationContext): VariableType | null {

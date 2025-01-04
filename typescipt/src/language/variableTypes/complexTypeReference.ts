@@ -1,5 +1,5 @@
 import {VariableType} from "./variableType";
-import {ITypeWithMembers} from "./iTypeWithMembers";
+import {ITypeWithMembers} from "./ITypeWithMembers";
 import {IValidationContext} from "../../parser/validationContext";
 import {ComplexType} from "./complexType";
 
@@ -19,7 +19,7 @@ export abstract class ComplexTypeReference extends VariableType implements IType
      this.name = name;
    }
 
-   public abstract memberType(name: string, context: IValidationContext): VariableType;
+   public abstract memberType(name: string, context: IValidationContext): VariableType | null;
 
    public abstract getComplexType(context: IValidationContext): ComplexType | null;
 }

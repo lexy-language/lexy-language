@@ -1,17 +1,27 @@
+import {ConstantValue} from "./constantValue";
 
-
-public sealed class ConstantValueParseResult : ParseResult<ConstantValue> {
-   private ConstantValueParseResult(ConstantValue result) super(result) {
-   }
-
-   private ConstantValueParseResult(boolean success, string errorMessage) super(success, errorMessage) {
-   }
-
-   public static success(result: ConstantValue): ConstantValueParseResult {
-     return new ConstantValueParseResult(result);
-   }
-
-   public static failed(errorMessage: string): ConstantValueParseResult {
-     return new ConstantValueParseResult(false, errorMessage);
-   }
+type ConstantValueParseFailed = {
+  state: "failed";
+  errorMessage: string;
 }
+
+export function newConstantValueParseFailed(errorMessage: string): ConstantValueParseFailed {
+  return {
+    state: "failed",
+    errorMessage: errorMessage
+  } as const;
+}
+
+type ConstantValueParseSuccess = {
+  state: "success";
+  result: ConstantValue;
+}
+
+export function newConstantValueParseSuccess(result: ConstantValue) {
+  return {
+    state: "success",
+    result: result
+  } as const;
+}
+
+export type ConstantValueParseResult = ConstantValueParseFailed | ConstantValueParseSuccess;

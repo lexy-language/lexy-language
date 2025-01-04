@@ -2,10 +2,11 @@ import {VariableDeclarationType} from "../variableTypes/variableDeclarationType"
 import {SourceReference} from "../../parser/sourceReference";
 import {INode, Node} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
+import {VariableDeclarationTypeParser} from "../variableTypes/variableDeclarationTypeParser";
 
 export class ColumnHeader extends Node {
 
-  public nodeType: "ColumnHeader";
+  public nodeType = "ColumnHeader";
    public name: string
    public type: VariableDeclarationType
 
@@ -16,7 +17,7 @@ export class ColumnHeader extends Node {
    }
 
    public static parse(name: string, typeName: string, reference: SourceReference): ColumnHeader {
-     let type = VariableDeclarationType.parse(typeName, reference);
+     let type = VariableDeclarationTypeParser.parse(typeName, reference);
      return new ColumnHeader(name, type, reference);
    }
 

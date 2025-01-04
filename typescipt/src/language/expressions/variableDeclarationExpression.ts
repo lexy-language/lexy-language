@@ -1,22 +1,28 @@
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./Expression";
 import {SourceReference} from "../../parser/sourceReference";
 import {ExpressionSource} from "./expressionSource";
 import {VariableDeclarationType} from "../variableTypes/variableDeclarationType";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
-import {ExpressionFactory} from "./expressionFactory";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {Keywords} from "../../parser/Keywords";
 import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
 import {ImplicitVariableDeclaration} from "../variableTypes/implicitVariableDeclaration";
 import {VariableSource} from "../variableSource";
+import {VariableDeclarationTypeParser} from "../variableTypes/variableDeclarationTypeParser";
+
+export function asVariableDeclarationExpression(object: any): VariableDeclarationExpression | null {
+  return object.nodeType == "VariableDeclarationExpression" ? object as VariableDeclarationExpression : null;
+}
 
 export class VariableDeclarationExpression extends Expression {
 
-  public nodeType: "VariableDeclarationExpression"
+  public nodeType = "VariableDeclarationExpression"
 
   public type: VariableDeclarationType
   public name: string
@@ -24,30 +30,30 @@ export class VariableDeclarationExpression extends Expression {
 
   constructor(variableType: VariableDeclarationType, variableName: string, assignment: Expression | null, source: ExpressionSource, reference: SourceReference) {
     super(source, reference)
-    this.type = VariableDeclarationType;
+    this.type = variableType;
     this.name = variableName;
     this.assignment = assignment;
    }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
+   public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
      let tokens = source.tokens;
      if (!VariableDeclarationExpression.isValid(tokens)) {
-       return newParseExpressionFailed(VariableDeclarationExpression, `Invalid expression.`);
+       return newParseExpressionFailed("VariableDeclarationExpression", `Invalid expression.`);
      }
 
      const typeName = tokens.tokenValue(0)
      if (typeName == null) {
-       return newParseExpressionFailed(VariableDeclarationExpression, `Invalid type name.`);
+       return newParseExpressionFailed("VariableDeclarationExpression", `Invalid type name.`);
      }
 
-     let type = VariableDeclarationType.parse(typeName, source.createReference());
+     let type = VariableDeclarationTypeParser.parse(typeName, source.createReference());
      let name = tokens.tokenValue(1);
      if (name == null) {
-       return newParseExpressionFailed(VariableDeclarationExpression, `Invalid name.`);
+       return newParseExpressionFailed("VariableDeclarationExpression", `Invalid name.`);
      }
 
      let assignment = tokens.length > 3
-       ? ExpressionFactory.parse(tokens.tokensFrom(3), source.line)
+       ? factory.parse(tokens.tokensFrom(3), source.line)
        : null;
 
      if (assignment?.state == "failed") return assignment;
@@ -97,7 +103,7 @@ export class VariableDeclarationExpression extends Expression {
      context.variableContext?.registerVariableAndVerifyUnique(this.reference, this.name, variableType, VariableSource.Code);
    }
 
-   private getVariableType(context: IValidationContext, assignmentType: VariableType): VariableType {
+   private getVariableType(context: IValidationContext, assignmentType: VariableType): VariableType | null {
      if (this.type.nodeType == "ImplicitVariableDeclaration") {
        const implicitVariableType = this.type as ImplicitVariableDeclaration;
        implicitVariableType.define(assignmentType);

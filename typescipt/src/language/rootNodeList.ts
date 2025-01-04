@@ -1,4 +1,6 @@
-import {IRootNode} from "./rootNode";
+import type {IRootNode} from "./rootNode";
+import type {INode} from "./node";
+
 import {TypeWithMembers} from "./variableTypes/typeWithMembers";
 import {asFunction, Function, instanceOfFunction} from "./functions/function";
 import {asTable, instanceOfTable, Table} from "./tables/table";
@@ -6,7 +8,6 @@ import {asEnumDefinition, EnumDefinition, instanceOfEnumDefinition} from "./enum
 import {any, firstOrDefault, singleOrDefault, where, contains} from "../infrastructure/enumerableExtensions";
 import {asTypeDefinition, instanceOfTypeDefinition, TypeDefinition} from "./types/typeDefinition";
 import {asScenario, instanceOfScenario, Scenario} from "./scenarios/scenario";
-import {INode} from "./node";
 import {TableType} from "./variableTypes/tableType";
 import {FunctionType} from "./variableTypes/functionType";
 import {EnumType} from "./variableTypes/enumType";

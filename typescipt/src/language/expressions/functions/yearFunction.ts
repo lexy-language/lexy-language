@@ -6,7 +6,7 @@ import {PrimitiveType} from "../../variableTypes/primitiveType";
 
 export class YearFunction extends SingleArgumentFunction {
 
-   public readonly name: string = `YEAR`;
+   public static readonly name: string = `YEAR`;
    public readonly nodeType = "YearsFunction";
 
    protected override get functionHelp(): string {

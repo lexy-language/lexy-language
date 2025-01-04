@@ -1,19 +1,29 @@
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./expression";
 import {ExpressionSource} from "./expressionSource";
 import {SourceReference} from "../../parser/sourceReference";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
-import {ExpressionFactory} from "./expressionFactory";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {OperatorToken} from "../../parser/tokens/operatorToken";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
+import {IntFunction} from "./functions/intFunction";
+
+export function instanceOfBracketedExpression(object: any): object is BracketedExpression {
+  return object?.nodeType == 'BracketedExpression';
+}
+
+export function asBracketedExpression(object: any): BracketedExpression | null {
+  return instanceOfBracketedExpression(object) ? object as BracketedExpression : null;
+}
 
 export class BracketedExpression extends Expression {
 
-  public nodeType: "BracketedExpression"
+  public nodeType = "BracketedExpression"
   public functionName: string
   public expression: Expression
 
@@ -24,19 +34,19 @@ export class BracketedExpression extends Expression {
     this.expression = expression;
   }
 
-  public static parse(source: ExpressionSource): ParseExpressionResult {
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
     let tokens = source.tokens;
-    if (!BracketedExpression.isValid(tokens)) return newParseExpressionFailed(BracketedExpression, `Not valid.`);
+    if (!BracketedExpression.isValid(tokens)) return newParseExpressionFailed("BracketedExpression", `Not valid.`);
 
-    let matchingClosingParenthesis = this.findMatchingClosingBracket(tokens);
+    let matchingClosingParenthesis = BracketedExpression.findMatchingClosingBracket(tokens);
     if (matchingClosingParenthesis == -1)
-      return newParseExpressionFailed(BracketedExpression, `No closing bracket found.`);
+      return newParseExpressionFailed("BracketedExpression", `No closing bracket found.`);
 
     let functionName = tokens.tokenValue(0);
-    if (functionName == null) return newParseExpressionFailed(BracketedExpression, `Invalid function name.`);
+    if (functionName == null) return newParseExpressionFailed("BracketedExpression", `Invalid function name.`);
 
     let innerExpressionTokens = tokens.tokensRange(2, matchingClosingParenthesis - 1);
-    let innerExpression = ExpressionFactory.parse(innerExpressionTokens, source.line);
+    let innerExpression = factory.parse(innerExpressionTokens, source.line);
     if (innerExpression.state != 'success') return innerExpression;
 
     let reference = source.createReference();
@@ -54,8 +64,8 @@ export class BracketedExpression extends Expression {
   private static findMatchingClosingBracket(tokens: TokenList): number {
     let count = 0;
     for (let index = 0; index < tokens.length; index++) {
-      let token = tokens[index];
-      if (token.nodeType != "OperatorToken") continue;
+      let token = tokens.get(index);
+      if (token.tokenType != "OperatorToken") continue;
 
       const operatorToken = token as OperatorToken;
       if (operatorToken.type == OperatorType.OpenBrackets) {

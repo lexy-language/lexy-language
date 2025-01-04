@@ -1,63 +1,62 @@
+import {Expression} from "../../../src/language/expressions/expression";
+import {asIdentifierExpression, IdentifierExpression} from "../../../src/language/expressions/identifierExpression";
+import {asLiteralExpression, LiteralExpression} from "../../../src/language/expressions/literalExpression";
+import {asNumberLiteralToken, NumberLiteralToken} from "../../../src/parser/tokens/numberLiteralToken";
+import {asQuotedLiteralToken, QuotedLiteralToken} from "../../../src/parser/tokens/quotedLiteralToken";
+import {asDateTimeLiteral, DateTimeLiteral} from "../../../src/parser/tokens/dateTimeLiteral";
+import {
+  asMemberAccessExpression,
+  MemberAccessExpression
+} from "../../../src/language/expressions/memberAccessExpression";
+import {asBooleanLiteral, BooleanLiteral} from "../../../src/parser/tokens/booleanLiteral";
+import {validateOfType} from "../../validateOfType";
 
+export function validateVariableExpression(expression: Expression, name: string): void {
+   validateOfType<IdentifierExpression>(asIdentifierExpression, expression, left =>
+     expect(left.identifier).toBe(name));
+}
 
-export class ExpressionTestExtensions {
-   public static validateOfType<T>(value: object, validate: Action<T>): void where T : class {
-     if (value == null) throw new Error(nameof(value));
+export function validateNumericLiteralExpression(expression: Expression | null, value: number): void {
+ validateOfType<LiteralExpression>(asLiteralExpression, expression, literal => {
+   validateOfType<NumberLiteralToken>(asNumberLiteralToken, literal.literal, number =>
+     expect(number.numberValue).toBe(value));
+ });
+}
 
-     let specificValue = value as T;
-     if (specificValue == null)
-       throw new Error(
-         $`Value '{value.getType().Name}' should be of type '{typeof(T).Name}'`);
+export function validateQuotedLiteralExpression(expression: Expression | null, value: string): void {
+ validateOfType<LiteralExpression>(asLiteralExpression, expression, literal => {
+   validateOfType<QuotedLiteralToken>(asQuotedLiteralToken, literal.literal, number =>
+     expect(number.value).toBe(value));
+ });
+}
 
-     validate(specificValue);
-   }
+export function validateBooleanLiteralExpression(expression: Expression | null, value: boolean): void {
+ validateOfType<LiteralExpression>(asLiteralExpression, expression, literal => {
+   validateOfType<BooleanLiteral>(asBooleanLiteral, literal.literal, number =>
+     expect(number.booleanValue).toBe(value));
+ });
+}
 
-   public static validateVariableExpression(expression: Expression, name: string): void {
-     expression.ValidateOfType<IdentifierExpression>(left =>
-       left.Identifier.ShouldBe(name));
-   }
+export function validateDateTimeLiteralExpressionByDate(expression: Expression | null, value: Date): void {
+ validateOfType<LiteralExpression>(asLiteralExpression, expression, literal => {
+   validateOfType<DateTimeLiteral>(asDateTimeLiteral, literal.literal, number =>
+     expect(number.dateTimeValue?.toISOString()).toBe(value.toISOString()));
+ });
+}
 
-   public static validateNumericLiteralExpression(expression: Expression, value: decimal): void {
-     expression.ValidateOfType<LiteralExpression>(literal => {
-       literal.Literal.ValidateOfType<NumberLiteralToken>(number =>
-         number.NumberValue.ShouldBe(value));
-     });
-   }
+export function validateDateTimeLiteralExpression(expression: Expression, value: string): void {
+ let valueDate = new Date(value);
+ validateOfType<LiteralExpression>(asLiteralExpression, expression, literal =>
+   validateOfType<DateTimeLiteral>(asDateTimeLiteral, literal.literal, number =>
+     expect(number.dateTimeValue).toBe(valueDate)));
+}
 
-   public static validateQuotedLiteralExpression(expression: Expression, value: string): void {
-     expression.ValidateOfType<LiteralExpression>(literal => {
-       literal.Literal.ValidateOfType<QuotedLiteralToken>(number =>
-         number.Value.ShouldBe(value));
-     });
-   }
+export function validateIdentifierExpression(expression: Expression, value: string): void {
+ validateOfType<IdentifierExpression>(asIdentifierExpression, expression,
+     literal => expect(literal.identifier).toBe(value));
+}
 
-   public static validateBooleanLiteralExpression(expression: Expression, value: boolean): void {
-     expression.ValidateOfType<LiteralExpression>(literal => {
-       literal.Literal.ValidateOfType<BooleanLiteral>(number =>
-         number.BooleanValue.ShouldBe(value));
-     });
-   }
-
-   public static validateDateTimeLiteralExpression(expression: Expression, value: DateTime): void {
-     expression.ValidateOfType<LiteralExpression>(literal => {
-       literal.Literal.ValidateOfType<DateTimeLiteral>(number =>
-         number.DateTimeValue.ShouldBe(value));
-     });
-   }
-
-   public static validateDateTimeLiteralExpression(expression: Expression, value: string): void {
-     let valueDate = DateTime.parse(value);
-     expression.ValidateOfType<LiteralExpression>(literal => {
-       literal.Literal.ValidateOfType<DateTimeLiteral>(number =>
-         number.DateTimeValue.ShouldBe(valueDate));
-     });
-   }
-
-   public static validateIdentifierExpression(expression: Expression, value: string): void {
-     expression.ValidateOfType<IdentifierExpression>(literal => { literal.Identifier.ShouldBe(value); });
-   }
-
-   public static validateMemberAccessExpression(expression: Expression, value: string): void {
-     expression.ValidateOfType<MemberAccessExpression>(literal => { literal.Variable.toString().ShouldBe(value); });
-   }
+export function validateMemberAccessExpression(expression: Expression | null, value: string): void {
+ validateOfType<MemberAccessExpression>(asMemberAccessExpression, expression,
+     literal => expect(literal.variable.toString()).toBe(value));
 }

@@ -7,7 +7,7 @@ export class ScenarioName extends Node {
 
   private valueValue: string;
 
-  public readonly nodeType: "ScenarioName";
+  public readonly nodeType = "ScenarioName";
 
   public get value() {
     return this.valueValue;

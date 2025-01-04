@@ -1,11 +1,14 @@
+import type {IExpressionFactory} from "../language/expressions/expressionFactory";
+import type {IParserLogger} from "./IParserLogger";
+
 import {Line} from "./line";
-import {TokenValidator} from "./TokenValidator";
-import {IParserLogger} from "./IParserLogger";
+import {TokenValidator} from "./tokenValidator";
 import {SourceReference} from "./sourceReference";
 
 export interface IParseLineContext {
   line: Line;
   logger: IParserLogger;
+  expressionFactory: IExpressionFactory;
 
   validateTokens(name: string): TokenValidator;
 

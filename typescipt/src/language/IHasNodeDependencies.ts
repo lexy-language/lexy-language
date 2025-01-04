@@ -1,5 +1,5 @@
+import type {IRootNode} from "./rootNode";
 import {RootNodeList} from "./rootNodeList";
-import {IRootNode} from "./rootNode";
 
 export function instanceOfHasNodeDependencies(object: any): object is IHasNodeDependencies {
    return object?.hasNodeDependencies == true;

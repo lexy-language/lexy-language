@@ -1,5 +1,5 @@
 import {SourceReference} from "./sourceReference";
-import {IRootNode} from "../language/iRootNode";
+import {IRootNode} from "../language/rootNode";
 
 export interface IParserLogger {
 

@@ -8,7 +8,7 @@ import {VariableType} from "../../variableTypes/variableType";
 
 export class PowerFunction extends ExpressionFunction {
 
-   public readonly name: string = `POWER`;
+   public static readonly name: string = `POWER`;
 
    private get functionHelp() {
      return `${this.name} expects 2 arguments (Number, Power).`;

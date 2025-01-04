@@ -13,10 +13,10 @@ import {VoidType} from "../../variableTypes/voidType";
 export class ExtractResultsFunction extends ExpressionFunction {
 
   public readonly nodeType = "ExtractResultsFunction";
-   public readonly name: string  = `extract`;
+  public static readonly name: string = `extract`;
 
   protected get functionHelp() {
-    return `${this.name} expects 1 argument. extract(variable)`;
+    return `${ExtractResultsFunction.name} expects 1 argument. extract(variable)`;
   }
 
    public functionResultVariable: string | null;

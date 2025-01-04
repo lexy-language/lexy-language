@@ -1,10 +1,14 @@
+import {SourceReference} from "../parser/sourceReference";
 
 
 export class Include {
-   private readonly SourceReference reference;
+  private isProcessedValue: boolean;
+   private readonly reference: SourceReference;
 
-   public boolean IsProcessed { get; private set; }
-   public string FileName
+   public get isProcessed(): boolean {
+     return this.isProcessedValue;
+   }
+   public readonly string FileName
 
    constructor(fileName: string, reference: SourceReference) {
      this.reference = reference;

@@ -1,5 +1,7 @@
+import type {IValidationContext} from "../validationContext";
+import type {ILiteralToken} from "./ILiteralToken";
+
 import {ParsableToken} from "./parsableToken";
-import {ILiteralToken} from "./ILiteralToken";
 import {TokenValues} from "./tokenValues";
 import {TokenCharacter} from "./tokenCharacter";
 import {
@@ -9,12 +11,15 @@ import {
   ParseTokenResult
 } from "./parseTokenResult";
 import {isDigit} from "./character";
-import {IValidationContext} from "../validationContext";
 import {VariableType} from "../../language/variableTypes/variableType";
 import {PrimitiveType} from "../../language/variableTypes/primitiveType";
 
 export function instanceOfNumberLiteralToken(object: any): object is NumberLiteralToken {
-  return object.tokenType == 'NumberLiteralToken';
+  return object?.tokenType == 'NumberLiteralToken';
+}
+
+export function asNumberLiteralToken(object: any): NumberLiteralToken | null {
+  return instanceOfNumberLiteralToken(object) ? object as NumberLiteralToken : null;
 }
 
 export class NumberLiteralToken extends ParsableToken implements ILiteralToken {

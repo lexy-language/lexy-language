@@ -1,3 +1,5 @@
+import type {IToken} from "./token";
+
 import {ParsableToken} from "./parsableToken";
 import {OperatorType} from "./operatorType";
 import {TokenValues} from "./tokenValues";
@@ -7,7 +9,7 @@ import {TableSeparatorToken} from "./tableSeparatorToken";
 import {Character} from "./character";
 import {isDigitOrLetter} from "./character";
 
-export class OperatorCombinations {
+class OperatorCombinations {
   public firstChar: Character;
   public secondChar: Character | null;
   public type: OperatorType;
@@ -19,10 +21,22 @@ export class OperatorCombinations {
   }
 }
 
-export class OperatorToken extends ParsableToken {
+export function instanceOfOperatorToken(object: any): object is OperatorToken {
+  return object?.tokenType == 'OperatorToken';
+}
+
+export function asOperatorToken(object: any): OperatorToken | null {
+  return instanceOfOperatorToken(object) ? object as OperatorToken : null;
+}
+
+export interface IOperatorToken extends IToken {
+  type: OperatorType;
+}
+
+export class OperatorToken extends ParsableToken implements IOperatorToken {
 
   public tokenIsLiteral = false;
-  public tokenType = 'OperatorToken';
+  public tokenType: string = 'OperatorToken';
   public type: OperatorType = OperatorType.NotSet;
 
   private static readonly terminatorValues = [
@@ -51,7 +65,7 @@ export class OperatorToken extends ParsableToken {
     new OperatorCombinations(TokenValues.ArgumentSeparator, null, OperatorType.ArgumentSeparator),
     new OperatorCombinations(TokenValues.GreaterThan, TokenValues.Assignment, OperatorType.GreaterThanOrEqual),
     new OperatorCombinations(TokenValues.LessThan, TokenValues.Assignment, OperatorType.LessThanOrEqual),
-    new OperatorCombinations(TokenValues.Assignment, TokenValues.Assignment, OperatorType.equals),
+    new OperatorCombinations(TokenValues.Assignment, TokenValues.Assignment, OperatorType.Equals),
     new OperatorCombinations(TokenValues.NotEqualStart, TokenValues.Assignment, OperatorType.NotEqual),
     new OperatorCombinations(TokenValues.And, TokenValues.And, OperatorType.And),
     new OperatorCombinations(TokenValues.Or, TokenValues.Or, OperatorType.Or)

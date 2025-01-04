@@ -5,12 +5,12 @@ import {ExpressionFunction} from "./expressionFunction";
 
 export class DaysFunction extends EndStartDateFunction {
 
-   public readonly name: string = `DAYS`;
+   public static readonly name: string = `DAYS`;
 
    public readonly nodeType = "DaysFunction";
 
    protected override get functionName() {
-      return this.name;
+      return DaysFunction.name;
    }
 
    constructor(endDateExpression: Expression, startDateExpression: Expression, reference: SourceReference) {

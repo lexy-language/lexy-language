@@ -59,7 +59,7 @@ Scenario: InvalidEnumInitializeDate
       ValidEnum Result
     Code
       Result = Value
-  ExpectError "Invalid default value '2024/12/23 17:51:15'. (type: 'ValidEnum')"
+  ExpectError "Invalid default value '2024-12-23T17:51:15'. (type: 'ValidEnum')"
 
 Scenario: InvalidEnumInitializeNoMember
   Function:

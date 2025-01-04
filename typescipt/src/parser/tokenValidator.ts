@@ -55,7 +55,7 @@ export class TokenValidator {
     return this;
   }
 
-  public keyword(index: number, keyword: string | null): TokenValidator {
+  public keyword(index: number, keyword: string | null = null): TokenValidator {
     this.type(index, KeywordToken);
     if (keyword != null) this.value(index, keyword);
     return this;
@@ -91,7 +91,7 @@ export class TokenValidator {
     return this;
   }
 
-  public quotedString(index: number, literal: string | null): TokenValidator {
+  public quotedString(index: number, literal: string | null = null): TokenValidator {
     const token = this.validateType<QuotedLiteralToken>(index, QuotedLiteralToken);
     if (token != null && token.value != literal) {
       this.fail(`Invalid token ${index} value. Expected: '${literal}' Actual: '${token?.value}'`);

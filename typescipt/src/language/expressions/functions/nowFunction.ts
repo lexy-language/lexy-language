@@ -5,7 +5,7 @@ import {ExpressionFunction} from "./expressionFunction";
 
 export class NowFunction extends NoArgumentFunction {
 
-   public readonly name: string = `NOW`;
+   public static readonly name: string = `NOW`;
 
   public readonly nodeType = "NowFunction";
 

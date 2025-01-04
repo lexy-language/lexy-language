@@ -8,10 +8,10 @@ import {ExpressionFunction} from "./expressionFunction";
 export class DayFunction extends SingleArgumentFunction {
 
    public readonly nodeType = `DayFunction`;
-   public readonly name = `DAY`;
+   public static readonly name = `DAY`;
 
    protected override get functionHelp(): string {
-      return `${this.name} expects 1 argument (Date)`;
+      return `${DayFunction.name} expects 1 argument (Date)`;
    }
 
    constructor(valueExpression: Expression, reference: SourceReference) {

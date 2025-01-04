@@ -1,37 +1,21 @@
-import {IValidationContext} from "../../parser/validationContext";
-import {SourceReference} from "../../parser/sourceReference";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {SourceReference} from "../../parser/sourceReference";
+
 import {Expression} from "../expressions/expression";
 import {VariableDeclarationType} from "./variableDeclarationType";
 import {asCustomVariableDeclarationType, CustomVariableDeclarationType} from "./customVariableDeclarationType";
 import {asPrimitiveVariableDeclarationType, PrimitiveVariableDeclarationType} from "./primitiveVariableDeclarationType";
 import {instanceOfEnumType} from "./enumType";
-import {instanceOfCustomType} from "./customType";
 import {asMemberAccessExpression} from "../expressions/memberAccessExpression";
 import {TypeNames} from "./TypeNames";
 import {asLiteralExpression} from "../expressions/literalExpression";
 
-export function validateTypeAndDefault(context: IValidationContext, reference: SourceReference,
-                                       type: VariableDeclarationType, defaultValueExpression: Expression | null) {
-
-  const customVariableType = asCustomVariableDeclarationType(type);
-  if (customVariableType != null) {
-    validateCustomVariableType(context, reference, customVariableType, defaultValueExpression);
-    return;
-  }
-
-  const primitiveVariableType = asPrimitiveVariableDeclarationType(type);
-  if (primitiveVariableType != null) {
-    this.validatePrimitiveVariableType(context, reference, primitiveVariableType, defaultValueExpression);
-  }
-
-  throw new Error(`Invalid Type: ${type.nodeType}`);
-}
 
 function validateCustomVariableType(context: IValidationContext, reference: SourceReference,
                                     customVariableDeclarationType: CustomVariableDeclarationType, defaultValueExpression: Expression | null) {
 
   let type = context.rootNodes.getType(customVariableDeclarationType.type);
-  if (type == null || !instanceOfEnumType(type) && !instanceOfCustomType(type)) {
+  if (type == null || !instanceOfEnumType(type) && type.variableTypeName != "CustomType") {
     context.logger.fail(reference, `Unknown type: '${customVariableDeclarationType.type}'`);
     return;
   }
@@ -52,7 +36,7 @@ function validateCustomVariableType(context: IValidationContext, reference: Sour
   }
 
   const variableReference = memberAccessLiteralExpression.variable;
-  if (variableReference.Parts != 2) {
+  if (variableReference.parts != 2) {
     context.logger.fail(reference,
       `Invalid default value '${defaultValueExpression}'. (type: '${customVariableDeclarationType.type}')`);
   }
@@ -62,13 +46,13 @@ function validateCustomVariableType(context: IValidationContext, reference: Sour
   }
 
   const enumDeclaration = context.rootNodes.getEnum(variableReference.parentIdentifier);
-  if (enumDeclaration == null || !enumDeclaration.containsMember(variableReference.Path[1])) {
+  if (enumDeclaration == null || !enumDeclaration.containsMember(variableReference.path[1])) {
     context.logger.fail(reference,
       `Invalid default value '${defaultValueExpression}'. Invalid member. (type: '${customVariableDeclarationType.type}')`);
   }
 }
 
-function ValidatePrimitiveVariableType(context: IValidationContext, reference: SourceReference,
+function validatePrimitiveVariableType(context: IValidationContext, reference: SourceReference,
                                        primitiveVariableDeclarationType: PrimitiveVariableDeclarationType, defaultValueExpression: Expression | null) {
 
   if (defaultValueExpression == null) return;
@@ -113,4 +97,21 @@ function validateDefaultLiteral(literalType: string, context: IValidationContext
     context.logger.fail(reference,
       `Invalid default value '{defaultValueExpression}'. (type: '{primitiveVariableDeclarationType.Type}')`);
   }
+}
+
+export function validateTypeAndDefault(context: IValidationContext, reference: SourceReference,
+                                       type: VariableDeclarationType, defaultValueExpression: Expression | null) {
+
+  const customVariableType = asCustomVariableDeclarationType(type);
+  if (customVariableType != null) {
+    validateCustomVariableType(context, reference, customVariableType, defaultValueExpression);
+    return;
+  }
+
+  const primitiveVariableType = asPrimitiveVariableDeclarationType(type);
+  if (primitiveVariableType != null) {
+    validatePrimitiveVariableType(context, reference, primitiveVariableType, defaultValueExpression);
+  }
+
+  throw new Error(`Invalid Type: ${type.nodeType}`);
 }

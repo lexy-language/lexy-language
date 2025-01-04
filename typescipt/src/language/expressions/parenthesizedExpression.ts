@@ -1,18 +1,28 @@
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./Expression";
 import {OperatorToken} from "../../parser/tokens/operatorToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {SourceReference} from "../../parser/sourceReference";
 import {ExpressionSource} from "./expressionSource";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
-import {ExpressionFactory} from "./expressionFactory";
 import {TokenList} from "../../parser/tokens/tokenList";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
+import {ElseExpression} from "./elseExpression";
+
+export function instanceOfParenthesizedExpression(object: any): object is ParenthesizedExpression {
+  return object?.nodeType == "ParenthesizedExpression";
+}
+
+export function asParenthesizedExpression(object: any): ParenthesizedExpression | null {
+  return instanceOfParenthesizedExpression(object) ? object as ParenthesizedExpression : null;
+}
 
 export class ParenthesizedExpression extends Expression {
 
-  public nodeType: "ParenthesizedExpression"
+  public nodeType = "ParenthesizedExpression"
 
   public expression: Expression
 
@@ -21,16 +31,16 @@ export class ParenthesizedExpression extends Expression {
      this.expression = expression;
    }
 
-   public static parse(source: ExpressionSource): ParseExpressionResult {
+   public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
      let tokens = source.tokens;
-     if (!this.isValid(tokens)) return newParseExpressionFailed(ParenthesizedExpression, `Not valid.`);
+     if (!ParenthesizedExpression.isValid(tokens)) return newParseExpressionFailed("ParenthesizedExpression", `Not valid.`);
 
-     let matchingClosingParenthesis = this.findMatchingClosingParenthesis(tokens);
+     let matchingClosingParenthesis = ParenthesizedExpression.findMatchingClosingParenthesis(tokens);
      if (matchingClosingParenthesis == -1)
-       return newParseExpressionFailed(ParenthesizedExpression, `No closing parentheses found.`);
+       return newParseExpressionFailed("ParenthesizedExpression", `No closing parentheses found.`);
 
      let innerExpressionTokens = tokens.tokensRange(1, matchingClosingParenthesis - 1);
-     let innerExpression = ExpressionFactory.parse(innerExpressionTokens, source.line);
+     let innerExpression = factory.parse(innerExpressionTokens, source.line);
      if (innerExpression.state != 'success') return innerExpression;
 
      let reference = source.createReference();
@@ -42,7 +52,7 @@ export class ParenthesizedExpression extends Expression {
    public static findMatchingClosingParenthesis(tokens: TokenList): number {
      let count = 0;
      for (let index = 0; index < tokens.length; index++) {
-       let token = tokens[index];
+       let token = tokens.get(index);
        if (token.tokenType != "OperatorToken") continue;
 
        const operatorToken = token as OperatorToken;

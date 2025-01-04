@@ -2,3 +2,38 @@
 - support identifiers with numbers and _
 - remove name value objects?
 - typescript/c# private vars with _
+
+
+1) src/language/IRootNode.ts > src/language/ParsableNode.ts > src/language/node.ts
+2) src/language/ParsableNode.ts > src/language/node.ts > src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/IParserLogger.ts > src/language/iRootNode.ts
+3) src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenList.ts > src/parser/tokens/ILiteralToken.ts
+4) src/parser/tokens/parsableToken.ts > src/parser/tokens/parseTokenResult.ts
+5) src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenList.ts > src/parser/tokens/operatorToken.ts > src/parser/tokens/numberLiteralToken.ts > src/parser/tokens/memberAccessLiteral.ts > src/language/variableTypes/iTypeWithMembers.ts > src/parser/ValidationContext.ts
+6) src/language/variableTypes/iTypeWithMembers.ts > src/parser/ValidationContext.ts > src/parser/variableContext.ts
+7) src/parser/ValidationContext.ts > src/parser/variableContext.ts
+8) src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenList.ts > src/parser/tokens/operatorToken.ts > src/parser/tokens/numberLiteralToken.ts > src/parser/tokens/memberAccessLiteral.ts
+9) src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenList.ts > src/parser/tokens/operatorToken.ts > src/parser/tokens/numberLiteralToken.ts
+10) src/parser/line.ts > src/parser/tokens/tokenizer.ts
+11) src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenizer.ts > src/parser/tokens/buildLiteralToken.ts > src/parser/tokens/booleanLiteral.ts
+12) src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenizer.ts > src/parser/tokens/buildLiteralToken.ts > src/parser/tokens/dateTimeLiteral.ts
+13) src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenizer.ts > src/parser/tokens/buildLiteralToken.ts > src/parser/tokens/stringLiteralToken.ts
+14) src/parser/validationContext.ts > src/language/expressions/expression.ts > src/language/expressions/expressionSource.ts > src/parser/line.ts > src/parser/tokens/tokenizer.ts > src/parser/tokens/quotedLiteralToken.ts
+15) src/language/node.ts > src/parser/validationContext.ts > src/language/expressions/expression.ts
+16) src/parser/validationContext.ts > src/language/expressions/expression.ts
+17) src/language/expressions/assignmentExpression.ts > src/language/expressions/expressionFactory.ts
+18) src/language/expressions/expressionFactory.ts > src/language/expressions/binaryExpression.ts
+19) src/language/expressions/expressionFactory.ts > src/language/expressions/bracketedExpression.ts
+20) src/language/expressions/expressionFactory.ts > src/language/expressions/caseExpression.ts
+21) src/language/expressions/expressionFactory.ts > src/language/expressions/caseExpression.ts > src/language/expressions/expressionList.ts
+22) src/language/expressions/caseExpression.ts > src/language/expressions/switchExpression.ts
+23) src/language/expressions/expressionFactory.ts > src/language/expressions/caseExpression.ts > src/language/expressions/switchExpression.ts
+24) src/language/expressions/elseExpression.ts > src/language/expressions/ifExpression.ts
+25) src/language/expressions/expressionFactory.ts > src/language/expressions/elseExpression.ts > src/language/expressions/ifExpression.ts
+26) src/language/expressions/expressionFactory.ts > src/language/expressions/functionCallExpression.ts
+27) src/language/expressions/expressionFactory.ts > src/language/expressions/functionCallExpression.ts > src/language/expressions/functions/builtInExpressionFunctions.ts > src/language/expressions/functions/fillParametersFunction.ts > src/language/functions/function.ts > src/language/functions/functionParameters.ts > src/language/variableDefinition.ts
+28) src/language/variableDefinition.ts > src/language/variableTypes/customType.ts > src/language/types/typeDefinition.ts
+29) src/language/variableTypes/variableDeclarationType.ts > src/language/variableTypes/customVariableDeclarationType.ts
+30) src/language/variableTypes/variableDeclarationType.ts > src/language/variableTypes/primitiveVariableDeclarationType.ts
+31) src/language/expressions/expressionFactory.ts > src/language/expressions/functionCallExpression.ts > src/language/expressions/functions/builtInExpressionFunctions.ts > src/language/expressions/functions/fillParametersFunction.ts > src/language/functions/function.ts > src/language/functions/functionParameters.ts > src/language/variableDefinition.ts > src/language/variableTypes/customType.ts > src/language/variableTypes/tableType.ts > src/language/tables/table.ts > src/language/tables/tableRow.ts
+32) src/language/expressions/expressionFactory.ts > src/language/expressions/functionCallExpression.ts > src/language/expressions/parenthesizedExpression.ts
+33) src/language/expressions/expressionFactory.ts > src/language/expressions/variableDeclarationExpression.ts

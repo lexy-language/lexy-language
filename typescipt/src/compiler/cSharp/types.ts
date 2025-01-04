@@ -5,11 +5,11 @@ internal static class Types {
      return TranslateDate(dateTimeLiteral.DateTimeValue);
    }
 
-   private static translateDate(dateTimeValue: DateTime): ExpressionSyntax {
+   private static translateDate(dateTimeValue: Date): ExpressionSyntax {
      return ObjectCreationExpression(
          QualifiedName(
            IdentifierName(`System`),
-           IdentifierName(`DateTime`)))
+           IdentifierName(`Date`)))
        .WithArgumentList(
          ArgumentList(
            SeparatedArray<ArgumentSyntax>(
@@ -36,7 +36,7 @@ internal static class Types {
      return type switch {
        TypeNames.String => PredefinedType(Token(SyntaxKind.StringKeyword)),
        TypeNames.Number => PredefinedType(Token(SyntaxKind.DecimalKeyword)),
-       TypeNames.Date => ParseName(`System.DateTime`),
+       TypeNames.Date => ParseName(`System.Date`),
        TypeNames.Boolean => PredefinedType(Token(SyntaxKind.BoolKeyword)),
        _ => throw new Error(`Couldn't map type: ` + type)
      };
@@ -122,7 +122,7 @@ internal static class Types {
    }
 
    public static primitiveTypeDefaultExpression(type: PrimitiveVariableDeclarationType): ExpressionSyntax {
-     switch (type.Type) {
+     switch (type.type) {
        case TypeNames.Number:
        case TypeNames.Boolean:
          let typeSyntax = Syntax(type);
@@ -137,7 +137,7 @@ internal static class Types {
          return TranslateDate(DateTypeDefault.Value);
 
        default:
-         throw new Error(`Invalid type: ` + type.Type);
+         throw new Error(`Invalid type: ` + type.type);
      }
    }
 }

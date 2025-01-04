@@ -8,7 +8,7 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      let parser = GetService<ILexyParser>();
      let scenario = parser.ParseScenario(code);
 
-     scenario.Name.Value.ShouldBe(`TestScenario`);
+     scenario.Name.Value.toBe(`TestScenario`);
    }
 
   it('XXXX', async () => {
@@ -23,14 +23,14 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      let parser = GetService<ILexyParser>();
      let scenario = parser.ParseScenario(code);
 
-     scenario.Name.Value.ShouldBe(`TestScenario`);
-     scenario.functionName.Value.ShouldBe(`TestScenarioFunction`);
-     scenario.Parameters.Assignments.Count.ShouldBe(1);
-     scenario.Parameters.Assignments[0].Variable.parentIdentifier.ShouldBe(`Value`);
-     scenario.Parameters.Assignments[0].ConstantValue.Value.ShouldBe(123m);
-     scenario.results.Assignments.Count.ShouldBe(1);
-     scenario.results.Assignments[0].Variable.parentIdentifier.ShouldBe(`Result`);
-     scenario.results.Assignments[0].ConstantValue.Value.ShouldBe(456m);
+     scenario.Name.Value.toBe(`TestScenario`);
+     scenario.functionName.Value.toBe(`TestScenarioFunction`);
+     scenario.Parameters.Assignments.Count.toBe(1);
+     scenario.Parameters.Assignments[0].Variable.parentIdentifier.toBe(`Value`);
+     scenario.Parameters.Assignments[0].ConstantValue.Value.toBe(123m);
+     scenario.results.Assignments.Count.toBe(1);
+     scenario.results.Assignments[0].Variable.parentIdentifier.toBe(`Result`);
+     scenario.results.Assignments[0].ConstantValue.Value.toBe(456m);
    }
 
   it('XXXX', async () => {
@@ -50,11 +50,11 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
 
      logger.NodeHasErrors(scenario).ShouldBeTrue();
 
-     errors.length.ShouldBe(4, logger.errorMessages().Format(2));
-     errors[0].ShouldBe(`tests.lexy(2, 3): ERROR - Invalid token 'Functtion'. Keyword expected.`);
-     errors[1].ShouldBe(`tests.lexy(1, 1): ERROR - Scenario has no function, enum, table or expect errors.`);
-     errors[2].ShouldBe(`tests.lexy(4, 5): ERROR - Unknown variable name: 'Value'.`);
-     errors[3].ShouldBe(`tests.lexy(6, 5): ERROR - Unknown variable name: 'Result'.`);
+     errors.length.toBe(4, logger.errorMessages().Format(2));
+     errors[0].toBe(`tests.lexy(2, 3): ERROR - Invalid token 'Functtion'. Keyword expected.`);
+     errors[1].toBe(`tests.lexy(1, 1): ERROR - Scenario has no function, enum, table or expect errors.`);
+     errors[2].toBe(`tests.lexy(4, 5): ERROR - Unknown variable name: 'Value'.`);
+     errors[3].toBe(`tests.lexy(6, 5): ERROR - Unknown variable name: 'Result'.`);
    }
 
   it('XXXX', async () => {
@@ -75,8 +75,8 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      context.logger.NodeHasErrors(scenario).ShouldBeTrue();
 
      let errors = context.logger.ErrorNodeMessages(scenario);
-     errors.length.ShouldBe(1, context.logger.FormatMessages());
-     errors[0].ShouldBe(`tests.lexy(6, 15): ERROR - Invalid number token character: 'd'`);
+     errors.length.toBe(1, context.logger.FormatMessages());
+     errors[0].toBe(`tests.lexy(6, 15): ERROR - Invalid number token character: 'd'`);
    }
 
   it('XXXX', async () => {
@@ -102,41 +102,41 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      let parser = GetService<ILexyParser>();
      let scenario = parser.ParseScenario(code) ?? throw new Error(`parser.ParseScenario(code)`);
 
-     scenario.Name.Value.ShouldBe(`ValidNumberIntAsParameter`);
+     scenario.Name.Value.toBe(`ValidNumberIntAsParameter`);
      scenario.Function.ShouldNotBeNull();
-     scenario.Function.Parameters.Variables.Count.ShouldBe(2);
-     scenario.Function.Parameters.Variables[0].Name.ShouldBe(`Value1`);
-     scenario.Function.Parameters.Variables[0].Type.ValidateOfType<PrimitiveVariableDeclarationType>(value =>
-       ShouldBeStringTestExtensions.ShouldBe(value.Type, `number`));
-     scenario.Function.Parameters.Variables[0].DefaultExpression.toString().ShouldBe(`123`);
-     scenario.Function.Parameters.Variables[1].Name.ShouldBe(`Value2`);
-     scenario.Function.Parameters.Variables[1].Type.ValidateOfType<PrimitiveVariableDeclarationType>(value =>
-       value.Type.ShouldBe(`number`));
-     scenario.Function.Parameters.Variables[1].DefaultExpression.toString().ShouldBe(`456`);
-     scenario.Function.results.Variables.Count.ShouldBe(2);
-     scenario.Function.results.Variables[0].Name.ShouldBe(`Result1`);
-     scenario.Function.results.Variables[0].Type.ValidateOfType<PrimitiveVariableDeclarationType>(value =>
-       value.Type.ShouldBe(`number`));
-     scenario.Function.results.Variables[0].DefaultExpression.ShouldBeNull();
-     scenario.Function.results.Variables[1].Name.ShouldBe(`Result2`);
-     scenario.Function.results.Variables[1].Type.ValidateOfType<PrimitiveVariableDeclarationType>(value =>
-       value.Type.ShouldBe(`number`));
-     scenario.Function.results.Variables[1].DefaultExpression.ShouldBeNull();
-     scenario.Function.Code.Expressions.Count.ShouldBe(2);
-     scenario.Function.Code.Expressions[0].toString().ShouldBe(`Result1=Value1`);
-     scenario.Function.Code.Expressions[1].toString().ShouldBe(`Result2=Value2`);
+     scenario.Function.Parameters.Variables.Count.toBe(2);
+     scenario.Function.Parameters.Variables[0].Name.toBe(`Value1`);
+     scenario.Function.Parameters.Variables[0].Type.validateOfType<PrimitiveVariableDeclarationType>(value =>
+       ShouldBeStringTestExtensions.toBe(value.Type, `number`));
+     scenario.Function.Parameters.Variables[0].DefaultExpression.toString().toBe(`123`);
+     scenario.Function.Parameters.Variables[1].Name.toBe(`Value2`);
+     scenario.Function.Parameters.Variables[1].Type.validateOfType<PrimitiveVariableDeclarationType>(value =>
+       value.Type.toBe(`number`));
+     scenario.Function.Parameters.Variables[1].DefaultExpression.toString().toBe(`456`);
+     scenario.Function.results.Variables.Count.toBe(2);
+     scenario.Function.results.Variables[0].Name.toBe(`Result1`);
+     scenario.Function.results.Variables[0].Type.validateOfType<PrimitiveVariableDeclarationType>(value =>
+       value.Type.toBe(`number`));
+     scenario.Function.results.Variables[0].DefaultExpression.toBeNull();
+     scenario.Function.results.Variables[1].Name.toBe(`Result2`);
+     scenario.Function.results.Variables[1].Type.validateOfType<PrimitiveVariableDeclarationType>(value =>
+       value.Type.toBe(`number`));
+     scenario.Function.results.Variables[1].DefaultExpression.toBeNull();
+     scenario.Function.Code.Expressions.Count.toBe(2);
+     scenario.Function.Code.Expressions[0].toString().toBe(`Result1=Value1`);
+     scenario.Function.Code.Expressions[1].toString().toBe(`Result2=Value2`);
 
-     scenario.Parameters.Assignments.Count.ShouldBe(2);
-     scenario.Parameters.Assignments[0].Variable.parentIdentifier.ShouldBe(`Value1`);
-     scenario.Parameters.Assignments[0].ConstantValue.Value.ShouldBe(987m);
-     scenario.Parameters.Assignments[1].Variable.parentIdentifier.ShouldBe(`Value2`);
-     scenario.Parameters.Assignments[1].ConstantValue.Value.ShouldBe(654m);
+     scenario.Parameters.Assignments.Count.toBe(2);
+     scenario.Parameters.Assignments[0].Variable.parentIdentifier.toBe(`Value1`);
+     scenario.Parameters.Assignments[0].ConstantValue.Value.toBe(987m);
+     scenario.Parameters.Assignments[1].Variable.parentIdentifier.toBe(`Value2`);
+     scenario.Parameters.Assignments[1].ConstantValue.Value.toBe(654m);
 
-     scenario.results.Assignments.Count.ShouldBe(2);
-     scenario.results.Assignments[0].Variable.parentIdentifier.ShouldBe(`Result1`);
-     scenario.results.Assignments[0].ConstantValue.Value.ShouldBe(123m);
-     scenario.results.Assignments[1].Variable.parentIdentifier.ShouldBe(`Result2`);
-     scenario.results.Assignments[1].ConstantValue.Value.ShouldBe(456m);
+     scenario.results.Assignments.Count.toBe(2);
+     scenario.results.Assignments[0].Variable.parentIdentifier.toBe(`Result1`);
+     scenario.results.Assignments[0].ConstantValue.Value.toBe(123m);
+     scenario.results.Assignments[1].Variable.parentIdentifier.toBe(`Result2`);
+     scenario.results.Assignments[1].ConstantValue.Value.toBe(456m);
    }
 
   it('XXXX', async () => {
@@ -149,9 +149,9 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
      let parser = GetService<ILexyParser>();
      let scenario = parser.ParseScenario(code);
 
-     scenario.functionName.Value.ShouldBe(`ValidateFunctionKeywords`);
-     scenario.Parameters.Assignments.Count.ShouldBe(0);
-     scenario.results.Assignments.Count.ShouldBe(0);
+     scenario.functionName.Value.toBe(`ValidateFunctionKeywords`);
+     scenario.Parameters.Assignments.Count.toBe(0);
+     scenario.results.Assignments.Count.toBe(0);
    }
 
   it('XXXX', async () => {
@@ -189,8 +189,8 @@ export class ParseScenarioTests extends ScopedServicesTestFixture {
 
      logger.NodeHasErrors(scenario).ShouldBeTrue();
 
-     errors.length.ShouldBe(1);
-     errors[0].ShouldBe(
+     errors.length.toBe(1);
+     errors[0].toBe(
        `tests.lexy(2, 13): ERROR - Unexpected function name. ` +
        `Inline function should not have a name: 'ThisShouldNotBeAllowed'`);
    }

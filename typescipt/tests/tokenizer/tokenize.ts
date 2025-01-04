@@ -4,13 +4,15 @@ import {SourceReference} from "../../src/parser/sourceReference";
 import {SourceFile} from "../../src/parser/sourceFile";
 import {IParserLogger} from "../../src/parser/IParserLogger";
 import {Line} from "../../src/parser/line";
-import {TokenValidator} from "../../src/parser/TokenValidator";
+import {TokenValidator} from "../../src/parser/tokenValidator";
 import {ParseLineContext} from "../../src/parser/ParseLineContext";
 import {TokenizeFailed} from "../../src/parser/tokens/tokenizeResult";
+import {IRootNode} from "../../src/language/rootNode";
 
-class DummyParserLogger implements IParserLogger {
+export class DummyParserLogger implements IParserLogger {
 
   private errors: Array<string> = [];
+  private currentNode: IRootNode;
 
   fail(reference: SourceReference, message: string) {
     this.errors.push(message);
@@ -35,6 +37,14 @@ class DummyParserLogger implements IParserLogger {
 
   logInfo(message: string) {
     console.log(`INFO - ${message}`)
+  }
+
+  reset(): void {
+    this.currentNode = null;
+  }
+
+  setCurrentNode(node): void {
+    this.currentNode = node;
   }
 }
 

@@ -14,7 +14,7 @@ export function asCustomVariableDeclarationType(object: any): CustomVariableDecl
 
 export class CustomVariableDeclarationType extends VariableDeclarationType {
 
-  public nodeType: "CustomVariableDeclarationType";
+  public nodeType = "CustomVariableDeclarationType";
   public type: string;
 
    constructor(type: string, reference: SourceReference) {
@@ -26,7 +26,7 @@ export class CustomVariableDeclarationType extends VariableDeclarationType {
      return this.type == other.type;
    }
 
-   public override toString(): string {
+   public toString(): string {
      return this.type;
    }
 

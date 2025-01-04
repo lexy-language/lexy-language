@@ -1,11 +1,12 @@
-import {IValidationContext} from "./ValidationContext";
 import {VariableType} from "../language/variableTypes/variableType";
 import {SourceReference} from "./sourceReference";
-import {IParserLogger} from "./IParserLogger";
 import {VariableEntry} from "./variableEntry";
 import {VariableReference} from "../runTime/variableReference";
 import {VariableSource} from "../language/variableSource";
-import {ITypeWithMembers} from "../language/variableTypes/iTypeWithMembers";
+
+import type {IParserLogger} from "./IParserLogger";
+import type {ITypeWithMembers} from "../language/variableTypes/ITypeWithMembers";
+import type {IValidationContext} from "./ValidationContext";
 
 export interface IVariableContext {
   addVariable(variableName: string, type: VariableType, source: VariableSource): void;
@@ -61,7 +62,7 @@ export class VariableContext implements IVariableContext {
      let parent = this.getVariable(reference.parentIdentifier);
      if (parent == null) return false;
 
-     return !reference.HasChildIdentifiers ||
+     return !reference.hasChildIdentifiers ||
         this.containChild(parent.variableType, reference.childrenReference(), context);
    }
 
@@ -84,7 +85,7 @@ export class VariableContext implements IVariableContext {
 
    public getVariableType(reference: VariableReference, context: IValidationContext): VariableType | null {
      let parent = this.getVariableTypeByName(reference.parentIdentifier);
-     return parent == null || !reference.HasChildIdentifiers
+     return parent == null || !reference.hasChildIdentifiers
        ? parent
        : this.getVariableType(parent, reference.childrenReference(), context);
    }
@@ -109,7 +110,7 @@ export class VariableContext implements IVariableContext {
      let memberVariableType = typeWithMembers != null ? typeWithMembers.memberType(reference.parentIdentifier, context) : null;
      if (memberVariableType == null) return false;
 
-     return !reference.HasChildIdentifiers
+     return !reference.hasChildIdentifiers
         || this.containChild(memberVariableType, reference.childrenReference(), context);
    }
 
@@ -122,7 +123,7 @@ export class VariableContext implements IVariableContext {
      let memberVariableType = typeWithMembers.memberType(reference.parentIdentifier, context);
      if (memberVariableType == null) return null;
 
-     return !reference.HasChildIdentifiers
+     return !reference.hasChildIdentifiers
        ? memberVariableType
        : this.getVariableType(memberVariableType, reference.childrenReference(), context);
    }

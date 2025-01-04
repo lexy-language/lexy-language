@@ -11,16 +11,16 @@ export class ParseTableTests extends ScopedServicesTestFixture {
      let parser = ServiceProvider.GetRequiredService<ILexyParser>();
      let table = parser.ParseTable(code);
 
-     table.Name.Value.ShouldBe(`TestTable`);
-     table.Header.Columns.Count.ShouldBe(2);
-     table.Header.Columns[0].Name.ShouldBe(`Value`);
+     table.Name.Value.toBe(`TestTable`);
+     table.Header.Columns.Count.toBe(2);
+     table.Header.Columns[0].Name.toBe(`Value`);
      table.Header.Columns[0].Type.ShouldBePrimitiveType(TypeNames.Number);
-     table.Header.Columns[1].Name.ShouldBe(`Result`);
+     table.Header.Columns[1].Name.toBe(`Result`);
      table.Header.Columns[1].Type.ShouldBePrimitiveType(TypeNames.String);
-     table.Rows.Count.ShouldBe(2);
-     table.Rows[0].Values[0].ValidateNumericLiteralExpression(7);
+     table.Rows.Count.toBe(2);
+     table.Rows[0].Values[0].validateNumericLiteralExpression(7);
      table.Rows[0].Values[1].ValidateQuotedLiteralExpression(`Test quoted`);
-     table.Rows[1].Values[0].ValidateNumericLiteralExpression(8);
+     table.Rows[1].Values[0].validateNumericLiteralExpression(8);
      table.Rows[1].Values[1].ValidateQuotedLiteralExpression(`Test`);
    }
 
@@ -34,13 +34,13 @@ export class ParseTableTests extends ScopedServicesTestFixture {
      let parser = ServiceProvider.GetService<ILexyParser>();
      let table = parser.ParseTable(code);
 
-     table.Name.Value.ShouldBe(`TestTable`);
-     table.Header.Columns.Count.ShouldBe(2);
-     table.Header.Columns[0].Name.ShouldBe(`Value`);
+     table.Name.Value.toBe(`TestTable`);
+     table.Header.Columns.Count.toBe(2);
+     table.Header.Columns[0].Name.toBe(`Value`);
      table.Header.Columns[0].Type.ShouldBePrimitiveType(TypeNames.Date);
-     table.Header.Columns[1].Name.ShouldBe(`Result`);
+     table.Header.Columns[1].Name.toBe(`Result`);
      table.Header.Columns[1].Type.ShouldBePrimitiveType(TypeNames.Boolean);
-     table.Rows.Count.ShouldBe(2);
+     table.Rows.Count.toBe(2);
      table.Rows[0].Values[0].ValidateDateTimeLiteralExpression(`2024-12-18T17:07:45`);
      table.Rows[0].Values[1].ValidateBooleanLiteralExpression(false);
      table.Rows[1].Values[0].ValidateDateTimeLiteralExpression(`2024-12-18T17:08:12`);

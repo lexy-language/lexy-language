@@ -1,9 +1,12 @@
+import type {IRootNode} from "../rootNode";
+import type {IValidationContext} from "../../parser/validationContext";
+
 import {TypeWithMembers} from "./typeWithMembers";
 import {TypeDefinition} from "../types/typeDefinition";
 import {TableType} from "./tableType";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "./variableType";
 import {firstOrDefault} from "../../infrastructure/enumerableExtensions";
+import {RootNodeList} from "../rootNodeList";
 
 export function instanceOfCustomType(object: any): object is CustomType {
   return object?.variableTypeName == "CustomType";
@@ -29,7 +32,7 @@ export class CustomType extends TypeWithMembers {
      return this.type == other?.type;
    }
 
-   public override toString(): string {
+   public toString(): string {
      return this.type;
    }
 
@@ -38,4 +41,8 @@ export class CustomType extends TypeWithMembers {
      const variableType = definition?.type.createVariableType(context);
      return variableType ? variableType : null;
    }
+
+  public getDependencies(rootNodeList: RootNodeList): Array<IRootNode> {
+    return [this.typeDefinition];
+  }
 }

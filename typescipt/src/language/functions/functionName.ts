@@ -7,7 +7,7 @@ export class FunctionName extends Node {
 
   private valueValue: string;
 
-  public readonly nodeType: "FunctionName";
+  public readonly nodeType = "FunctionName";
 
    public get value() {
      return this.valueValue;

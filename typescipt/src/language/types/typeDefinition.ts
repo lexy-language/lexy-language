@@ -1,13 +1,14 @@
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IParseLineContext} from "../../parser/ParseLineContext";
+import type {IParsableNode} from "../parsableNode";
+import type {INode} from "../node";
+
 import {RootNode} from "../rootNode";
 import {TypeName} from "./typeName";
 import {VariableDefinition} from "../variableDefinition";
 import {SourceReference} from "../../parser/sourceReference";
 import {NodeName} from "../../parser/nodeName";
-import {IParseLineContext} from "../../parser/ParseLineContext";
-import {IParsableNode} from "../parsableNode";
 import {VariableSource} from "../variableSource";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 
 export function instanceOfTypeDefinition(object: any) {
   return object?.nodeType == "TypeDefinition";
@@ -19,10 +20,15 @@ export function asTypeDefinition(object: any): TypeDefinition | null {
 
 export class TypeDefinition extends RootNode {
 
-  public readonly nodeType: "TypeDefinition";
+  private variablesValue: Array<VariableDefinition> = [];
+
+  public readonly nodeType = "TypeDefinition";
 
   public name: TypeName = new TypeName();
-  public variables: Array<VariableDefinition> = []
+
+  public get variables(): ReadonlyArray<VariableDefinition> {
+    return this.variablesValue;
+  }
 
    public override get nodeName() {
      return this.name.value;
@@ -39,7 +45,7 @@ export class TypeDefinition extends RootNode {
 
    public override parse(context: IParseLineContext): IParsableNode {
      let variableDefinition = VariableDefinition.parse(VariableSource.Parameters, context);
-     if (variableDefinition != null) this.variables.push(variableDefinition);
+     if (variableDefinition != null) this.variablesValue.push(variableDefinition);
      return this;
    }
 

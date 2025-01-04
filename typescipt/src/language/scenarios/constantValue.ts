@@ -1,26 +1,38 @@
+import {Expression} from "../expressions/expression";
+import {asLiteralExpression, LiteralExpression} from "../expressions/literalExpression";
+import {asMemberAccessExpression, MemberAccessExpression} from "../expressions/memberAccessExpression";
+import {
+  ConstantValueParseResult,
+  newConstantValueParseFailed,
+  newConstantValueParseSuccess
+} from "./constantValueParseResult";
 
 
 export class ConstantValue {
-   public object Value
+   public value: any;
 
-   constructor(value: object) {
-     Value = value;
+   constructor(value: any) {
+     this.value = value;
    }
 
    public static parse(expression: Expression): ConstantValueParseResult {
-     return expression switch {
-       LiteralExpression literalExpression => Parse(literalExpression),
-       MemberAccessExpression literalExpression => Parse(literalExpression),
-       _ => ConstantValueParseResult.failed(`Invalid expression variable. Expected: 'Variable = ConstantValue'`)
-     };
+     const literalExpression = asLiteralExpression(expression);
+     if (literalExpression != null ) {
+       this.parseLiteralExpression(literalExpression);
+     }
+     const memberAccessExpression = asMemberAccessExpression(expression);
+     if (memberAccessExpression != null ) {
+       this.parseMemberAccessExpression(memberAccessExpression);
+     }
+     return newConstantValueParseFailed(`Invalid expression variable. Expected: 'Variable = ConstantValue'`);
    }
 
-   private static parse(literalExpression: LiteralExpression): ConstantValueParseResult {
-     let value = new ConstantValue(literalExpression.Literal.TypedValue);
-     return ConstantValueParseResult.Success(value);
+   private static parseLiteralExpression(literalExpression: LiteralExpression): ConstantValueParseResult {
+     let value = new ConstantValue(literalExpression.literal.typedValue);
+     return newConstantValueParseSuccess(value);
    }
 
-   private static parse(literalExpression: MemberAccessExpression): ConstantValueParseResult {
-     return ConstantValueParseResult.Success(new ConstantValue(literalExpression.MemberAccessLiteral.Value));
+   private static parseMemberAccessExpression(literalExpression: MemberAccessExpression): ConstantValueParseResult {
+     return newConstantValueParseSuccess(new ConstantValue(literalExpression.memberAccessLiteral.value));
    }
 }

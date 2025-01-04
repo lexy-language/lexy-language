@@ -1,5 +1,10 @@
+import type {IRootNode} from "../rootNode";
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+import type {IHasNodeDependencies} from "../IHasNodeDependencies";
+
 import {Expression} from "./Expression";
-import {IHasNodeDependencies} from "../IHasNodeDependencies";
 import {VariableReference} from "../../runTime/variableReference";
 import {VariableType} from "../variableTypes/variableType";
 import {SourceReference} from "../../parser/sourceReference";
@@ -7,12 +12,9 @@ import {ExpressionSource} from "./expressionSource";
 import {MemberAccessLiteral} from "../../parser/tokens/memberAccessLiteral";
 import {VariableSource} from "../variableSource"
 import {RootNodeList} from "../rootNodeList";
-import {IRootNode} from "../rootNode";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
 import {TokenList} from "../../parser/tokens/tokenList";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
-import {asTypeWithMembers} from "../variableTypes/iTypeWithMembers";
+import {asTypeWithMembers} from "../variableTypes/ITypeWithMembers";
 
 export function asMemberAccessExpression(object: any): MemberAccessExpression | null {
   return object.nodeType == "MemberAccessExpression" ? object as MemberAccessExpression : null;
@@ -21,7 +23,7 @@ export function asMemberAccessExpression(object: any): MemberAccessExpression | 
 export class MemberAccessExpression extends Expression implements IHasNodeDependencies {
 
   public readonly hasNodeDependencies: true;
-  public nodeType: "MemberAccessExpression";
+  public nodeType = "MemberAccessExpression";
 
   public readonly memberAccessLiteral: MemberAccessLiteral;
   public readonly variable: VariableReference;
@@ -41,12 +43,12 @@ export class MemberAccessExpression extends Expression implements IHasNodeDepend
     return rootNode != null ? [rootNode] : [];
   }
 
-  public static parse(source: ExpressionSource): ParseExpressionResult {
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
     let tokens = source.tokens;
-    if (!this.isValid(tokens)) return newParseExpressionFailed(MemberAccessExpression, `Invalid expression.`);
+    if (!MemberAccessExpression.isValid(tokens)) return newParseExpressionFailed("MemberAccessExpression", `Invalid expression.`);
 
     let literal = tokens.token<MemberAccessLiteral>(0, MemberAccessLiteral);
-    if (!literal) return newParseExpressionFailed(MemberAccessExpression, `Invalid expression.`);
+    if (!literal) return newParseExpressionFailed("MemberAccessExpression", `Invalid expression.`);
 
     let variable = new VariableReference(literal.parts);
     let reference = source.createReference();
@@ -97,10 +99,11 @@ export class MemberAccessExpression extends Expression implements IHasNodeDepend
     }
 
     let variableSource = context.variableContext.getVariableSource(this.variable.parentIdentifier);
-    if (variableSource == null)
+    if (variableSource == null) {
       context.logger.fail(this.reference, `Can't define source of variable: ${this.variable.parentIdentifier}`);
-    else
-      this.variableSource = VariableSource.Value;
+    } else {
+      this.variableSource = variableSource;
+    }
   }
 
   public override deriveType(context: IValidationContext): VariableType | null {

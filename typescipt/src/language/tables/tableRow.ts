@@ -1,18 +1,19 @@
-import {INode, Node} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IParseLineContext} from "../../parser/ParseLineContext";
+import type {INode} from "../node";
+
+import {Node} from "../node";
 import {Expression} from "../expressions/expression";
 import {SourceReference} from "../../parser/sourceReference";
-import {IParseLineContext} from "../../parser/ParseLineContext";
 import {TableSeparatorToken} from "../../parser/tokens/tableSeparatorToken";
 import {Token} from "../../parser/tokens/token";
-import {ExpressionFactory} from "../expressions/expressionFactory";
 import {TokenList} from "../../parser/tokens/tokenList";
-import {IValidationContext} from "../../parser/validationContext";
 
 export class TableRow extends Node {
 
   private readonly valuesValue: Array<Expression>;
 
-  public readonly nodeType: "TableRow";
+  public readonly nodeType = "TableRow";
 
   public get values(): ReadonlyArray<Expression> {
     return this.valuesValue;
@@ -42,7 +43,7 @@ export class TableRow extends Node {
        let token = currentLineTokens.token<Token>(index++, Token);
        if (token == null) return null;
 
-       let expression = ExpressionFactory.parse(new TokenList([token]), context.line);
+       let expression = context.expressionFactory.parse(new TokenList([token]), context.line);
        if (expression.state == "failed") {
          context.logger.fail(context.line.tokenReference(index), expression.errorMessage);
          return null;

@@ -7,7 +7,7 @@ export class ScenarioFunctionName extends Node {
 
   private valueValue: string;
 
-  public readonly nodeType: "ScenarioFunctionName";
+  public readonly nodeType = "ScenarioFunctionName";
 
   public get value() {
     return this.valueValue;
@@ -17,7 +17,7 @@ export class ScenarioFunctionName extends Node {
     super(reference);
   }
 
-  public parseName(name: string): void {
+  public parse(name: string): void {
     this.valueValue = name;
   }
 

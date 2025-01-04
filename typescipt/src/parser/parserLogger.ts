@@ -116,7 +116,7 @@ export class ParserLogger extends IParserLogger {
        Message = message;
      }
 
-     public override toString(): string {
+     public toString(): string {
        return Message;
      }
    }

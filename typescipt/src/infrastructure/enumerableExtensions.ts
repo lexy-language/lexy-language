@@ -6,7 +6,7 @@ export function any<TItem>(array: Array<TItem>, where: (value: TItem) => boolean
   return false;
 }
 
-export function firstOrDefault<TItem>(array: Array<TItem>, where: ((value: TItem) => boolean) | null = null): TItem | null {
+export function firstOrDefault<TItem>(array: ReadonlyArray<TItem>, where: ((value: TItem) => boolean) | null = null): TItem | null {
 
   if (where == null) return array.length > 0 ? array[0] : null;
 
@@ -16,7 +16,7 @@ export function firstOrDefault<TItem>(array: Array<TItem>, where: ((value: TItem
   return null;
 }
 
-export function singleOrDefault<TItem>(array: Array<TItem>, where: ((value: TItem) => boolean) | null = null): TItem | null {
+export function singleOrDefault<TItem>(array: ReadonlyArray<TItem>, where: ((value: TItem) => boolean) | null = null): TItem | null {
   if (where == null) {
     if (array.length > 1) throw new Error("More as one element found in array.");
     return array.length == 1 ? array[0] : null;
@@ -34,7 +34,7 @@ export function singleOrDefault<TItem>(array: Array<TItem>, where: ((value: TIte
   return value;
 }
 
-export function lastOrDefault<TItem>(array: Array<TItem>, where: ((value: TItem) => boolean) | null = null): TItem | null {
+export function lastOrDefault<TItem>(array: ReadonlyArray<TItem>, where: ((value: TItem) => boolean) | null = null): TItem | null {
 
   if (where == null) return array.length > 0 ? array[array.length - 1] : null;
 
@@ -45,21 +45,21 @@ export function lastOrDefault<TItem>(array: Array<TItem>, where: ((value: TItem)
   return null;
 }
 
-export function forEach<TItem>(array: Array<TItem>, action: (value: TItem) => void): Array<TItem> {
+export function forEach<TItem>(array: ReadonlyArray<TItem>, action: (value: TItem) => void): ReadonlyArray<TItem> {
   for (const value of array) {
     action(value);
   }
   return array;
 }
 
-export function contains<TItem>(array: Array<TItem>, value: TItem): boolean {
+export function contains<TItem>(array: ReadonlyArray<TItem>, value: TItem): boolean {
   for (const item of array) {
     if (item == value) return true;
   }
   return false;
 }
 
-export function where<TItem>(array: Array<TItem>, predicate: (value: TItem) => void): Array<TItem> {
+export function where<TItem>(array: ReadonlyArray<TItem>, predicate: (value: TItem) => void): ReadonlyArray<TItem> {
   const results = [];
   for (const item of array) {
     if (predicate(item)) {

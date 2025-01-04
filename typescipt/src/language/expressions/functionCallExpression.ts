@@ -1,3 +1,7 @@
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./Expression";
 import {ExpressionFunction} from "./functions/expressionFunction";
 import {SourceReference} from "../../parser/sourceReference";
@@ -5,18 +9,25 @@ import {ExpressionSource} from "./expressionSource";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
 import {ParenthesizedExpression} from "./parenthesizedExpression";
 import {ArgumentList} from "./argumentList";
-import {ExpressionFactory} from "./expressionFactory";
 import {BuiltInExpressionFunctions} from "./functions/builtInExpressionFunctions";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
+import {LexyFunction} from "./functions/lexyFunction";
+import {BinaryExpression} from "./binaryExpression";
+
+export function instanceOfFunctionCallExpression(object: any): object is FunctionCallExpression {
+  return object?.nodeType == 'FunctionCallExpression';
+}
+
+export function asFunctionCallExpression(object: any): FunctionCallExpression | null {
+  return instanceOfFunctionCallExpression(object) ? object as FunctionCallExpression : null;
+}
 
 export class FunctionCallExpression extends Expression {
 
-  public nodeType: "FunctionCallExpression"
+  public readonly nodeType = "FunctionCallExpression"
 
   public readonly functionName: string;
   public readonly arguments: Array<Expression>;
@@ -31,25 +42,25 @@ export class FunctionCallExpression extends Expression {
     this.expressionFunction = expressionFunction;
   }
 
-  public static parse(source: ExpressionSource): ParseExpressionResult {
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
     let tokens = source.tokens;
-    if (!this.isValid(tokens)) return newParseExpressionFailed(FunctionCallExpression, `Not valid.`);
+    if (!FunctionCallExpression.isValid(tokens)) return newParseExpressionFailed("FunctionCallExpression", `Not valid.`);
 
     let matchingClosingParenthesis = ParenthesizedExpression.findMatchingClosingParenthesis(tokens);
     if (matchingClosingParenthesis == -1)
-      return newParseExpressionFailed(FunctionCallExpression, `No closing parentheses found.`);
+      return newParseExpressionFailed("FunctionCallExpression", `No closing parentheses found.`);
 
     let functionName = tokens.tokenValue(0);
-    if (!functionName) return newParseExpressionFailed(FunctionCallExpression, "Invalid token.");
+    if (!functionName) return newParseExpressionFailed("FunctionCallExpression", "Invalid token.");
 
     let innerExpressionTokens = tokens.tokensRange(2, matchingClosingParenthesis - 1);
     let argumentsTokenList = ArgumentList.parse(innerExpressionTokens);
     if (argumentsTokenList.state != 'success')
-      return newParseExpressionFailed(FunctionCallExpression, argumentsTokenList.errorMessage);
+      return newParseExpressionFailed("FunctionCallExpression", argumentsTokenList.errorMessage);
 
     let argumentValues = new Array<Expression>();
     argumentsTokenList.result.forEach(argumentTokens => {
-      let argumentExpression = ExpressionFactory.parse(argumentTokens, source.line);
+      let argumentExpression = factory.parse(argumentTokens, source.line);
       if (argumentExpression.state != 'success') return argumentExpression;
 
       argumentValues.push(argumentExpression.result);
@@ -57,12 +68,12 @@ export class FunctionCallExpression extends Expression {
 
     let reference = source.createReference();
 
-    let builtInFunctionResult = BuiltInExpressionFunctions.parse(functionName, source.createReference(), arguments);
-    if (builtInFunctionResult.state != "success")
-      return newParseExpressionFailed(FunctionCallExpression, builtInFunctionResult.errorMessage);
+    let builtInFunctionResult = BuiltInExpressionFunctions.parse(functionName, source.createReference(), argumentValues);
+    if (builtInFunctionResult != null && builtInFunctionResult.state != "success")
+      return newParseExpressionFailed("FunctionCallExpression", builtInFunctionResult.errorMessage);
 
     let expressionFunction = builtInFunctionResult?.result
-                          ?? new LexyFunction(functionName, arguments, source.createReference());
+                          ?? new LexyFunction(functionName, argumentValues, source.createReference());
 
     let expression = new FunctionCallExpression(functionName, argumentValues, expressionFunction, source, reference);
 
@@ -82,6 +93,6 @@ export class FunctionCallExpression extends Expression {
   }
 
   public override deriveType(context: IValidationContext): VariableType | null {
-    return this.expressionFunction?.deriveReturnType(context);
+    return this.expressionFunction != null ? this.expressionFunction.deriveReturnType(context) : null;
   }
 }

@@ -1,27 +1,27 @@
-import {IHasNodeDependencies} from "./IHasNodeDependencies";
+import type {INode} from "./node";
+import type {IHasNodeDependencies} from "./IHasNodeDependencies";
+import type {IValidationContext} from "../parser/validationContext";
+import type {IParseLineContext} from "../parser/ParseLineContext";
+import type {IRootNode} from "./rootNode";
+
 import {VariableType} from "./variableTypes/variableType";
 import {VariableDeclarationType} from "./variableTypes/variableDeclarationType";
 import {SourceReference} from "../parser/sourceReference";
 import {Expression} from "./expressions/expression";
 import {VariableSource} from "./variableSource";
-import {INode, Node} from "./node";
+import {Node} from "./node";
 import {RootNodeList} from "./rootNodeList";
-import {IRootNode} from "./rootNode";
-import {asEnumType} from "./variableTypes/enumType";
-import {asCustomType} from "./variableTypes/customType";
-import {IParseLineContext} from "../parser/ParseLineContext";
 import {OperatorType} from "../parser/tokens/operatorType";
 import {OperatorToken} from "../parser/tokens/operatorToken";
-import {ExpressionFactory} from "./expressions/expressionFactory";
-import {IValidationContext} from "../parser/validationContext";
 import {validateTypeAndDefault} from "./variableTypes/validationContextExtensions";
+import {VariableDeclarationTypeParser} from "./variableTypes/variableDeclarationTypeParser";
 
 export class VariableDefinition extends Node implements IHasNodeDependencies {
 
   private variableTypeValue: VariableType | null;
 
   public readonly hasNodeDependencies: true;
-  public readonly nodeType: "VariableDefinition";
+  public readonly nodeType = "VariableDefinition";
   public readonly defaultExpression: Expression | null;
   public readonly source: VariableSource;
   public readonly type: VariableDeclarationType;
@@ -41,15 +41,8 @@ export class VariableDefinition extends Node implements IHasNodeDependencies {
    }
 
    public getDependencies(rootNodeList: RootNodeList): Array<IRootNode> {
-
-    const enumType = asEnumType(this.variableType);
-     if (enumType != null) {
-       var enumDefinition = rootNodeList.getEnum(enumType.type);
-       return enumDefinition != null ? [enumDefinition] : [];
-     }
-
-     const customType = asCustomType(this.variableType);
-     return customType != null ? [customType.typeDefinition] : [];
+     const dependencies = this.variableType?.getDependencies(rootNodeList);
+     return !!dependencies ? dependencies : [];
    }
 
    public static parse(source: VariableSource, context: IParseLineContext): VariableDefinition | null {
@@ -67,7 +60,7 @@ export class VariableDefinition extends Node implements IHasNodeDependencies {
      let type = tokens.tokenValue(0);
      if (name == null || type == null) return null;
 
-     let variableType = VariableDeclarationType.parse(type, line.tokenReference(0));
+     let variableType = VariableDeclarationTypeParser.parse(type, line.tokenReference(0));
      if (variableType == null) return null;
 
      if (tokens.length == 2) return new VariableDefinition(name, variableType, source, line.lineStartReference());
@@ -83,7 +76,7 @@ export class VariableDefinition extends Node implements IHasNodeDependencies {
        return null;
      }
 
-     const defaultValue = ExpressionFactory.parse(tokens.tokensFrom(3), line);
+     const defaultValue = context.expressionFactory.parse(tokens.tokensFrom(3), line);
      if (defaultValue.state == "failed") {
        context.logger.fail(line.tokenReference(3), defaultValue.errorMessage);
        return null;

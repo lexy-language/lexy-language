@@ -1,8 +1,9 @@
-import {ILiteralToken} from "./ILiteralToken";
-import {OperatorType} from "./operatorType";
 import {Token} from "./token";
-import {OperatorToken} from "./operatorToken";
-import {CommentToken} from "./commentToken";
+
+import type {ILiteralToken} from "./ILiteralToken";
+import {OperatorType} from "./operatorType";
+
+import type {IOperatorToken} from "./operatorToken";
 
 export class TokenList {
   private readonly values: Array<Token>;
@@ -20,7 +21,7 @@ export class TokenList {
   }
 
   public isComment(): boolean {
-    return this.values.length == 1 && this.values[0] instanceof CommentToken;
+    return this.values.length == 1 && this.values[0].tokenType == "CommentToken";
   }
 
   public tokenValue(index: number): string | null {
@@ -29,7 +30,7 @@ export class TokenList {
 
   public tokensFrom(index: number): TokenList {
     this.checkValidTokenIndex(index);
-    return this.tokensRange(0, this.values.length - 1);
+    return this.tokensRange(index, this.values.length - 1);
   }
 
   public tokensFromStart(count: number): TokenList {
@@ -81,14 +82,14 @@ export class TokenList {
     return index >= 0
       && index <= this.values.length - 1
       && this.values[index].tokenType == 'OperatorToken'
-      && (this.values[index] as OperatorToken).type == type;
+      && (this.values[index] as IOperatorToken).type == type;
   }
 
-  public operatorToken(index: number): OperatorToken | null {
+  public operatorToken(index: number): IOperatorToken | null {
     return index >= 0
     && index <= this.values.length - 1
     && this.values[index].tokenType == 'OperatorToken'
-      ? this.values[index] as OperatorToken
+      ? this.values[index] as IOperatorToken
       : null;
   }
 

@@ -1,14 +1,15 @@
+import type {INode} from "../node";
+import type {IExpressionFactory} from "./expressionFactory";
+import type {IValidationContext} from "../../parser/validationContext";
+
 import {Expression} from "./Expression";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {ExpressionOperator} from "./expressionOperator";
 import {SourceReference} from "../../parser/sourceReference";
 import {ExpressionSource} from "./expressionSource";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
-import {ExpressionFactory} from "./expressionFactory";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {OperatorToken} from "../../parser/tokens/operatorToken";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "../variableTypes/variableType";
 
 class OperatorEntry {
@@ -33,6 +34,14 @@ class TokenIndex {
   }
 }
 
+export function instanceOfBinaryExpression(object: any): object is BinaryExpression {
+  return object?.nodeType == 'BinaryExpression';
+}
+
+export function asBinaryExpression(object: any): BinaryExpression | null {
+  return instanceOfBinaryExpression(object) ? object as BinaryExpression : null;
+}
+
 export class BinaryExpression extends Expression {
   private static readonly SupportedOperatorsByPriority: Array<OperatorEntry> = [
     new OperatorEntry(OperatorType.Multiplication, ExpressionOperator.Multiplication),
@@ -54,7 +63,7 @@ export class BinaryExpression extends Expression {
     new OperatorEntry(OperatorType.Or, ExpressionOperator.Or)
   ];
 
-  public nodeType: "BinaryExpression";
+  public nodeType = "BinaryExpression";
   public left: Expression;
   public right: Expression;
   public operator: ExpressionOperator;
@@ -67,27 +76,30 @@ export class BinaryExpression extends Expression {
     this.operator = operatorValue;
   }
 
-  public static parse(source: ExpressionSource): ParseExpressionResult {
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
     let tokens = source.tokens;
-    let supportedTokens = this.getCurrentLevelSupportedTokens(tokens);
-    let lowestPriorityOperation = this.getLowestPriorityOperation(supportedTokens);
+    let supportedTokens = BinaryExpression.getCurrentLevelSupportedTokens(tokens);
+    let lowestPriorityOperation = BinaryExpression.getLowestPriorityOperation(supportedTokens);
     if (lowestPriorityOperation == null)
-      return newParseExpressionFailed(BinaryExpression, `No valid Operator token found.`);
+      return newParseExpressionFailed("BinaryExpression", `No valid Operator token found.`);
 
     let leftTokens = tokens.tokensRange(0, lowestPriorityOperation.index - 1);
-    if (leftTokens.length == 0)
-      return newParseExpressionFailed(BinaryExpression,
+    if (leftTokens.length == 0) {
+      return newParseExpressionFailed("BinaryExpression",
         `No tokens left from: ${lowestPriorityOperation.index} (${tokens})`);
-    let rightTokens = tokens.tokensFrom(lowestPriorityOperation.index + 1);
-    if (rightTokens.length == 0)
-      return newParseExpressionFailed(BinaryExpression,
-        `No tokens right from: ${lowestPriorityOperation.index} (${tokens})`);
+    }
 
-    let left = ExpressionFactory.parse(leftTokens, source.line);
+    let rightTokens = tokens.tokensFrom(lowestPriorityOperation.index + 1);
+    if (rightTokens.length == 0) {
+      return newParseExpressionFailed("BinaryExpression",
+        `No tokens right from: ${lowestPriorityOperation.index} (${tokens})`);
+    }
+
+    let left = factory.parse(leftTokens, source.line);
     if (left.state != 'success') return left;
 
-    let right = ExpressionFactory.parse(rightTokens, source.line);
-    if (right.state != 'success') return left;
+    let right = factory.parse(rightTokens, source.line);
+    if (right.state != 'success') return right;
 
     let operatorValue = lowestPriorityOperation.expressionOperator;
     let reference = source.createReference(lowestPriorityOperation.index);
@@ -99,10 +111,11 @@ export class BinaryExpression extends Expression {
   private static getLowestPriorityOperation(supportedTokens: Array<TokenIndex>): TokenIndex | null {
     for (let index = BinaryExpression.SupportedOperatorsByPriority.length - 1; index >= 0; index--) {
       const supportedOperator = BinaryExpression.SupportedOperatorsByPriority[index];
-      for (let indexValues = 0; indexValues <= supportedTokens.length - 1; indexValues--) {
+      for (let indexValues = 0; indexValues < supportedTokens.length; indexValues++) {
         const supportedToken = supportedTokens[indexValues];
-        if (supportedOperator.operatorType == supportedToken.operatorType)
+        if (supportedOperator.operatorType == supportedToken.operatorType) {
           return supportedToken;
+        }
       }
     }
 
@@ -110,7 +123,7 @@ export class BinaryExpression extends Expression {
   }
 
   public static isValid(tokens: TokenList): boolean {
-    let supportedTokens = this.getCurrentLevelSupportedTokens(tokens);
+    let supportedTokens = BinaryExpression.getCurrentLevelSupportedTokens(tokens);
     return supportedTokens.length > 0;
   }
 
@@ -119,7 +132,7 @@ export class BinaryExpression extends Expression {
     let countParentheses = 0;
     let countBrackets = 0;
     for (let index = 0; index < tokens.length; index++) {
-      let token = tokens[index];
+      let token = tokens.get(index);
       if (token.tokenType != "OperatorToken") continue;
       const operatorToken = token as OperatorToken;
       switch (operatorToken.type) {

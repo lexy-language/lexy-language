@@ -6,7 +6,7 @@ import {IValidationContext} from "../../../parser/validationContext";
 import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {VariableType} from "../../variableTypes/variableType";
 
-export class EndStartDateFunction extends ExpressionFunction {
+export abstract class EndStartDateFunction extends ExpressionFunction {
    private get functionHelp() {
      return `'${this.functionName}' expects 2 arguments (EndDate, StartDate).`;
    }

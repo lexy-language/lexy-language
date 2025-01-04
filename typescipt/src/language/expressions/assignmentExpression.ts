@@ -1,21 +1,30 @@
+import type {INode} from "../node";
+import type {IValidationContext} from "../../parser/validationContext";
+import type {IExpressionFactory} from "./expressionFactory";
+
 import {Expression} from "./Expression";
 import {SourceReference} from "../../parser/sourceReference";
 import {ExpressionSource} from "./expressionSource";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
-import {ExpressionFactory} from "./expressionFactory";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
 import {MemberAccessLiteral} from "../../parser/tokens/memberAccessLiteral";
-import {INode} from "../node";
-import {IValidationContext} from "../../parser/validationContext";
 import {IdentifierExpression} from "./identifierExpression";
 import {MemberAccessExpression} from "./memberAccessExpression";
-import {asTypeWithMembers} from "../variableTypes/iTypeWithMembers";
+import {asTypeWithMembers} from "../variableTypes/ITypeWithMembers";
 import {VariableType} from "../variableTypes/variableType";
 
+export function instanceOfAssignmentExpression(object: any): object is AssignmentExpression {
+  return object?.nodeType == 'AssignmentExpression';
+}
+
+export function asAssignmentExpression(object: any): AssignmentExpression | null {
+  return instanceOfAssignmentExpression(object) ? object as AssignmentExpression : null;
+}
+
 export class AssignmentExpression extends Expression {
-  public nodeType: "AssignmentExpression"
+  public nodeType = "AssignmentExpression"
   public variable: Expression
   public assignment: Expression
 
@@ -26,14 +35,14 @@ export class AssignmentExpression extends Expression {
    this.assignment = assignment;
   }
 
-  public static parse(source: ExpressionSource): ParseExpressionResult {
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
    let tokens = source.tokens;
-   if (!this.isValid(tokens)) return newParseExpressionFailed(AssignmentExpression,`Invalid expression.`);
+   if (!AssignmentExpression.isValid(tokens)) return newParseExpressionFailed("AssignmentExpression",`Invalid expression.`);
 
-   let variableExpression = ExpressionFactory.parse(tokens.tokensFromStart(1), source.line);
+   let variableExpression = factory.parse(tokens.tokensFromStart(1), source.line);
    if (variableExpression.state != 'success') return variableExpression;
 
-   let assignment = ExpressionFactory.parse(tokens.tokensFrom(2), source.line);
+   let assignment = factory.parse(tokens.tokensFrom(2), source.line);
    if (assignment.state != 'success') return assignment;
 
    let reference = source.createReference();
