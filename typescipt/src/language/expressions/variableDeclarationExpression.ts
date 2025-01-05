@@ -93,11 +93,12 @@ export class VariableDeclarationExpression extends Expression {
      let assignmentType = this.assignment?.deriveType(context);
      if (this.assignment != null && assignmentType == null) {
        context.logger.fail(this.reference, `Invalid expression. Could not derive type.`);
+       return;
      }
 
      let variableType = !!assignmentType ? this.getVariableType(context, assignmentType): null;
      if (variableType == null) {
-       context.logger.fail(this.reference, `Invalid variable type '${this.type}'`);
+       context.logger.fail(this.reference, `Invalid variable type '${this.type.nodeType}'`);
      }
 
      context.variableContext?.registerVariableAndVerifyUnique(this.reference, this.name, variableType, VariableSource.Code);

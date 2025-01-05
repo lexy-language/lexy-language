@@ -17,7 +17,7 @@ export function asEnumType(object: any): EnumType | null {
 
 export class EnumType extends TypeWithMembers {
 
-  public readonly variableTypeName: "EnumType";
+  public readonly variableTypeName = "EnumType";
 
   public type: string;
    public enum: EnumDefinition;

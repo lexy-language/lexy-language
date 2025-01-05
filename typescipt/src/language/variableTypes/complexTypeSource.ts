@@ -1,5 +1,5 @@
 
-public enum ComplexTypeSource {
+export enum ComplexTypeSource {
    FunctionParameters,
    FunctionResults,
    TableRow,

@@ -1,4 +1,8 @@
 
+export interface ISpecificationsRunner {
+  void Run(string folder);
+  void RunAll(string file);
+}
 
 export class SpecificationsRunner extends ISpecificationsRunner {
    private readonly ISpecificationRunnerContext context;

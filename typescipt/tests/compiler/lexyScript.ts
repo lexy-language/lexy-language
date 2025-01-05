@@ -1,16 +1,18 @@
+import {ExecutableFunction} from "../../src/compiler/executableFunction";
+import {parseNodes} from "../parseFunctions";
+import {firstOrDefault} from "../../src/infrastructure/enumerableExtensions";
+import {instanceOfFunction} from "../../src/language/functions/function";
+import {LexyCompiler} from "../../src/compiler/lexyCompiler";
+import {ExecutionEnvironment} from "../../src/compiler/executionEnvironment";
+import {ExecutionContext} from "../../src/runTime/executionContext";
 
+export function compileFunction(code: string): ExecutableFunction {
+  let {nodes, logger} = parseNodes(code);
 
-export class LexyScript {
-   public static compileFunction(serviceScope: IServiceScope, code: string): ExecutableFunction {
-     if (serviceScope == null) throw new Error(nameof(serviceScope));
-     if (code == null) throw new Error(nameof(code));
+  const array = nodes.asArray();
+  let functionNode = firstOrDefault(array, value => instanceOfFunction(value));
 
-     let parser = serviceScope.ServiceProvider.GetRequiredService<ILexyParser>();
-     let nodes = parser.ParseNodes(code);
-     let function = nodes.GetSingleFunction();
-
-     let compiler = serviceScope.ServiceProvider.GetRequiredService<ILexyCompiler>();
-     let environment = compiler.Compile(nodes);
-     return environment.GetFunction(function);
-   }
+  let compiler = new LexyCompiler(logger, new ExecutionEnvironment(new ExecutionContext(logger)));
+  let environment = compiler.compile(array);
+  return environment.getFunction(functionNode);
 }

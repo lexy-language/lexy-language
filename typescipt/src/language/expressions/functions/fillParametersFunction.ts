@@ -18,7 +18,7 @@ export class FillParametersFunction extends ExpressionFunction implements IHasNo
 
    public static readonly name = `fill`;
 
-  public readonly hasNodeDependencies: true;
+  public readonly hasNodeDependencies = true;
   public readonly nodeType = "FillParametersFunction";
 
   protected get functionHelp() {
@@ -101,7 +101,7 @@ export class FillParametersFunction extends ExpressionFunction implements IHasNo
      if (this.typeLiteral.member == Function.parameterName) {
        return functionValue.getParametersType(context);
      }
-     if (this.typeLiteral.member == Function.parameterName) {
+     if (this.typeLiteral.member == Function.resultsName) {
        return functionValue.getResultsType(context);
      }
      return null;

@@ -6,8 +6,13 @@ import {INode} from "../node";
 
 export class ImplicitVariableDeclaration extends VariableDeclarationType {
 
+  private variableTypeValue: VariableType;
+
   public nodeType = "ImplicitVariableDeclaration";
-  public variableType: VariableType;
+
+  public get variableType(): VariableType{
+    return this.variableTypeValue;
+  }
 
    constructor(reference: SourceReference) {
      super(reference);
@@ -19,7 +24,7 @@ export class ImplicitVariableDeclaration extends VariableDeclarationType {
    }
 
    public define(variableType: VariableType): void {
-     this.variableType = variableType;
+     this.variableTypeValue = variableType;
    }
 
    public override getChildren(): Array<INode> {

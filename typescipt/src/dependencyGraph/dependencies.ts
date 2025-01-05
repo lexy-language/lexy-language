@@ -9,7 +9,7 @@ import {any} from "../infrastructure/enumerableExtensions";
 import {NodesWalker} from "../language/nodesWalker";
 
 export class Dependencies {
-   private readonly circularReferences: Array<IRootNode> = [];
+   private readonly circularReferencesValue: Array<IRootNode> = [];
    private readonly rootNodes: RootNodeList;
 
    public nodes: Array<DependencyNode> = [];
@@ -19,7 +19,7 @@ export class Dependencies {
    }
 
    public get circularReferences() {
-     return [...this.circularReferences];
+     return [...this.circularReferencesValue];
    }
 
    constructor(rootNodes: RootNodeList) {
@@ -70,7 +70,7 @@ export class Dependencies {
      if (dependency == null) throw new Error(`node.GetNodes() should never return null`);
 
      if (parentNode != null && parentNode.existsInLineage(dependency.nodeName, dependency.nodeType)) {
-       this.circularReferences.push(dependency);
+       this.circularReferencesValue.push(dependency);
      }
      else {
        if (this.dependencyExists(resultDependencies, dependency)) return;
@@ -81,6 +81,6 @@ export class Dependencies {
    }
 
    private dependencyExists(resultDependencies: Array<DependencyNode>, dependency: IRootNode): boolean {
-     return any(resultDependencies, any => any.Name == dependency.nodeName && any.Type == dependency.nodeType);
+     return any(resultDependencies, any => any.name == dependency.nodeName && any.type == dependency.nodeType);
    }
 }

@@ -1,11 +1,8 @@
+import {CompilerResult} from "../compiler/compilerResult";
+import {VariableType} from "../language/variableTypes/variableType";
 
-
-internal static class TypeConverter {
+export class TypeConverter {
    public static convert(compilerResult: CompilerResult, value: object, type: VariableType): object {
-     if (compilerResult == null) throw new Error(nameof(compilerResult));
-     if (value == null) throw new Error(nameof(value));
-     if (type == null) throw new Error(nameof(type));
-
      if (type is EnumType enumVariableType) {
        let enumType = compilerResult.GetEnumType(enumVariableType.Type);
        if (enumType == null) throw new Error($`Unknown enum: {enumVariableType.Type}`);

@@ -10,7 +10,7 @@ import {SourceReference} from "../../parser/sourceReference";
 import {OperatorToken} from "../../parser/tokens/operatorToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {VariableReferenceParser} from "./variableReferenceParser";
-import {contains} from "../../infrastructure/enumerableExtensions";
+import {ConstantValueParser} from "./constantValueParser";
 
 export class AssignmentDefinition extends Node {
 

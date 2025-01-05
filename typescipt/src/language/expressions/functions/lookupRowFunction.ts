@@ -27,7 +27,7 @@ export class LookupRowFunction extends ExpressionFunction implements IHasNodeDep
   private searchValueColumnTypeValue: VariableType | null;
   private rowTypeValue: VariableType | null;
 
-  public readonly hasNodeDependencies: true;
+  public readonly hasNodeDependencies = true;
   public static readonly name: string = `LOOKUPROW`;
 
   public readonly nodeType = "LookupRowFunction";

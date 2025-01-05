@@ -1,11 +1,9 @@
+import {DependencyGraphFactory} from "../../src/dependencyGraph/dependencyGraphFactory";
+import {parseNodes} from "../parseFunctions";
+import {Dependencies} from "../../src/dependencyGraph/dependencies";
 
-
-export class DependencyGraphExtensions {
-   public static Dependencies BuildGraph(this IServiceProvider serviceProvider, string code,
-     boolean throwException = true) {
-     let parser = serviceProvider.GetRequiredService<ILexyParser>();
-     let codeLines = code.Split(Environment.NewLine);
-     let result = parser.parse(codeLines, `tests`, throwException);
-     return DependencyGraphFactory.Create(result.rootNodes);
-   }
+export function buildDependencyGraph(code: string , throwException:boolean = true): Dependencies {
+  let {nodes, logger} = parseNodes(code);
+  if (throwException) logger.assertNoErrors();
+  return DependencyGraphFactory.create(nodes);
 }

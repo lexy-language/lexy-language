@@ -8,7 +8,7 @@ import {ComplexTypeMember} from "./complexTypeMember";
 
 export class TableType extends TypeWithMembers {
 
-  public readonly variableTypeName: "TableType";
+  public readonly variableTypeName = "TableType";
    public readonly type: string;
    public readonly table: Table;
 

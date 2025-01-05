@@ -11,66 +11,64 @@ import {INode} from "../../node";
 import {IValidationContext} from "../../../parser/validationContext";
 import {VariableType} from "../../variableTypes/variableType";
 
-
 export class NewFunction extends ExpressionFunction implements IHasNodeDependencies {
 
   private typeValue: ComplexTypeReference;
 
-  public readonly hasNodeDependencies: true;
+  public readonly hasNodeDependencies = true;
   public static readonly name: string = `new`;
   public readonly nodeType = "NewFunction";
 
   protected get functionHelp() {
-    return `${this.name} expects 1 argument (Function.Parameters)`;
+    return `${NewFunction.name} expects 1 argument (Function.Parameters)`;
   }
 
-   public typeLiteral: MemberAccessLiteral;
+  public typeLiteral: MemberAccessLiteral;
 
-   public valueExpression: Expression;
+  public valueExpression: Expression;
 
-   public get type(): ComplexTypeReference {
-     return this.typeValue;
+  public get type(): ComplexTypeReference {
+    return this.typeValue;
   }
 
-  constructor(valueExpression: Expression, reference: SourceReference)
-     {
-     super(reference);
-     this.valueExpression = valueExpression;
+  constructor(valueExpression: Expression, reference: SourceReference) {
+    super(reference);
+    this.valueExpression = valueExpression;
 
-     const memberAccessExpression = asMemberAccessExpression(valueExpression);
-     if (memberAccessExpression == null) throw new Error("valueExpression should be MemberAccessExpression");
-     this.typeLiteral = memberAccessExpression.memberAccessLiteral;
-   }
+    const memberAccessExpression = asMemberAccessExpression(valueExpression);
+    if (memberAccessExpression == null) throw new Error("valueExpression should be MemberAccessExpression");
+    this.typeLiteral = memberAccessExpression.memberAccessLiteral;
+  }
 
-   public getDependencies(rootNodeList: RootNodeList): Array<IRootNode> {
-     let rootNode = rootNodeList.getNode(this.type.name);
-     return rootNode != null ? [rootNode] : [];
-   }
+  public getDependencies(rootNodeList: RootNodeList): Array<IRootNode> {
+    let rootNode = this.typeValue ? rootNodeList.getNode(this.typeValue.name) : null;
+    return rootNode != null ? [rootNode] : [];
+  }
 
-   public static create(reference: SourceReference, expression: Expression): ExpressionFunction {
-     return new NewFunction(expression, reference);
-   }
+  public static create(reference: SourceReference, expression: Expression): ExpressionFunction {
+    return new NewFunction(expression, reference);
+  }
 
-   public override getChildren(): Array<INode> {
-     return [this.valueExpression];
-   }
+  public override getChildren(): Array<INode> {
+    return [this.valueExpression];
+  }
 
-   protected override validate(context: IValidationContext): void {
-     const valueType = this.valueExpression.deriveType(context);
-     const complexTypeReference = asComplexTypeReference(valueType);
-     if (complexTypeReference == null) {
-       context.logger.fail(this.reference,
-         `Invalid argument 1 'Value' should be of type 'ComplexTypeType' but is 'ValueType'. ${this.functionHelp}`);
-       return;
-     }
+  protected override validate(context: IValidationContext): void {
+    const valueType = this.valueExpression.deriveType(context);
+    const complexTypeReference = asComplexTypeReference(valueType);
+    if (complexTypeReference == null) {
+      context.logger.fail(this.reference,
+        `Invalid argument 1 'Value' should be of type 'ComplexTypeType' but is 'ValueType'. ${this.functionHelp}`);
+      return;
+    }
 
-     this.typeValue = complexTypeReference;
-   }
+    this.typeValue = complexTypeReference;
+  }
 
-   public override deriveReturnType(context: IValidationContext): VariableType | null {
-     let nodeType = context.rootNodes.getType(this.typeLiteral.parent);
-     let typeReference = nodeType?.memberType(this.typeLiteral.member, context) as ComplexTypeReference;
-     let complexType = typeReference?.getComplexType(context);
-     return !!complexType ? complexType : null;
-   }
+  public override deriveReturnType(context: IValidationContext): VariableType | null {
+    let nodeType = context.rootNodes.getType(this.typeLiteral.parent);
+    let typeReference = nodeType?.memberType(this.typeLiteral.member, context) as ComplexTypeReference;
+    let complexType = typeReference?.getComplexType(context);
+    return !!complexType ? complexType : null;
+  }
 }

@@ -32,13 +32,13 @@ export class FunctionType extends TypeWithMembers {
      return null;
    }
 
-   private functionParametersType(context: IValidationContext): FunctionParametersType {
+   private functionParametersType(context: IValidationContext): FunctionParametersType | null {
      let complexType = context.rootNodes.getFunction(this.type)?.getParametersType(context);
-     return new FunctionParametersType(this.type, complexType);
+     return complexType ? new FunctionParametersType(this.type, complexType) : null;
    }
 
-   private functionResultsType(context: IValidationContext): FunctionResultsType {
+   private functionResultsType(context: IValidationContext): FunctionResultsType | null {
      let complexType = context.rootNodes.getFunction(this.type)?.getResultsType(context);
-     return new FunctionResultsType(this.type, complexType);
+     return complexType ? new FunctionResultsType(this.type, complexType) : null;
    }
 }

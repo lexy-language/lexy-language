@@ -3,7 +3,7 @@ import {VariableType} from "./variableType";
 import type {IValidationContext} from "../../parser/ValidationContext";
 
 export function instanceOfTypeWithMembers(object: any): object is ITypeWithMembers {
-   return object?.typeWithMember in object;
+   return object?.typeWithMember == true;
 }
 
 export function asTypeWithMembers(object: any): ITypeWithMembers | null {

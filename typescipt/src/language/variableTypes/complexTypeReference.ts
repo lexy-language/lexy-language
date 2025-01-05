@@ -4,13 +4,13 @@ import {IValidationContext} from "../../parser/validationContext";
 import {ComplexType} from "./complexType";
 
 export function asComplexTypeReference(object: any): ComplexTypeReference | null {
-   return object.isComplexTypeReference ? object as ComplexTypeReference : null;
+   return object?.isComplexTypeReference == true ? object as ComplexTypeReference : null;
 }
 
 export abstract class ComplexTypeReference extends VariableType implements ITypeWithMembers {
 
-   public readonly typeWithMember: true;
-   public readonly isComplexTypeReference: true;
+   public readonly typeWithMember = true;
+   public readonly isComplexTypeReference = true;
 
    public name: string;
 

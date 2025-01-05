@@ -20,7 +20,7 @@ export class VariableDefinition extends Node implements IHasNodeDependencies {
 
   private variableTypeValue: VariableType | null;
 
-  public readonly hasNodeDependencies: true;
+  public readonly hasNodeDependencies = true;
   public readonly nodeType = "VariableDefinition";
   public readonly defaultExpression: Expression | null;
   public readonly source: VariableSource;

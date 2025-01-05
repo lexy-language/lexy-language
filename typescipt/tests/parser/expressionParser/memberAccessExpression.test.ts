@@ -9,11 +9,11 @@ import {
 
 describe('MemberAccessExpressionTests', () => {
   it('simpleMemberAccess', async () => {
-     let expression = parseExpression(`A = B.C`);
-     validateOfType<AssignmentExpression>(asAssignmentExpression, expression, assignmentExpression => {
-       validateIdentifierExpression(assignmentExpression.variable, `A`);
-       validateOfType<MemberAccessExpression>(asMemberAccessExpression, assignmentExpression.assignment, memberAccess =>
-         expect(memberAccess.variable.toString()).toBe(`B.C`));
-     });
-   });
+    let expression = parseExpression(`A = B.C`);
+    validateOfType<AssignmentExpression>(asAssignmentExpression, expression, assignmentExpression => {
+      validateIdentifierExpression(assignmentExpression.variable, `A`);
+      validateOfType<MemberAccessExpression>(asMemberAccessExpression, assignmentExpression.assignment, memberAccess =>
+        expect(memberAccess.variable.toString()).toBe(`B.C`));
+    });
+  });
 });

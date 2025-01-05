@@ -19,7 +19,7 @@ export class LexyFunction extends ExpressionFunction implements IHasNodeDependen
   private functionParametersTypeValue: ComplexType;
   private functionResultsTypeValue: ComplexType;
 
-  public readonly hasNodeDependencies: true;
+  public readonly hasNodeDependencies = true;
   public readonly nodeType = "LexyFunction";
 
   public readonly functionName: string

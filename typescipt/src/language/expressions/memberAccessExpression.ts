@@ -22,7 +22,7 @@ export function asMemberAccessExpression(object: any): MemberAccessExpression | 
 
 export class MemberAccessExpression extends Expression implements IHasNodeDependencies {
 
-  public readonly hasNodeDependencies: true;
+  public readonly hasNodeDependencies = true;
   public nodeType = "MemberAccessExpression";
 
   public readonly memberAccessLiteral: MemberAccessLiteral;

@@ -2,11 +2,11 @@ import {parseEnum} from "../parseFunctions";
 
 describe('ParseEnumTests', () => {
   it('simpleEnum', async () => {
-     const code = `Enum: Enum1
+    const code = `Enum: Enum1
   First
   Second`;
 
-     let {enumDefinition} = parseEnum(code);
+    let {enumDefinition} = parseEnum(code);
 
     expect(enumDefinition.name.value).toBe(`Enum1`);
     expect(enumDefinition.members.length).toBe(2);
@@ -19,11 +19,11 @@ describe('ParseEnumTests', () => {
   });
 
   it('enumWithValues', async () => {
-     const code = `Enum: Enum2
+    const code = `Enum: Enum2
   First = 5
   Second = 6`;
 
-     let {enumDefinition, _} = parseEnum(code);
+    let {enumDefinition, _} = parseEnum(code);
 
     expect(enumDefinition.name.value).toBe(`Enum2`);
     expect(enumDefinition.members.length).toBe(2);
@@ -33,5 +33,5 @@ describe('ParseEnumTests', () => {
     expect(enumDefinition.members[1].name).toBe(`Second`);
     expect(enumDefinition.members[1].numberValue).toBe(6);
     expect(enumDefinition.members[1].valueLiteral?.numberValue).toBe(6);
-   });
+  });
 });

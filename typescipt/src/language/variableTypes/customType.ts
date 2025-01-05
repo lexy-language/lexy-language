@@ -18,7 +18,7 @@ export function asCustomType(object: any): CustomType | null {
 
 export class CustomType extends TypeWithMembers {
 
-  public readonly variableTypeName: "CustomType";
+  public readonly variableTypeName = "CustomType";
    public type: string;
    public typeDefinition: TypeDefinition;
 

@@ -149,7 +149,7 @@ export class LexyParser implements ILexyParser {
      for (const circularReference of dependencies.circularReferences) {
        this.context.logger.setCurrentNode(circularReference);
        this.context.logger.fail(circularReference.reference,
-         `Circular reference detected in: '${circularReference.NodeName}'`);
+         `Circular reference detected in: '${circularReference.nodeName}'`);
      }
    }
 
