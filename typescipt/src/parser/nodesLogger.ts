@@ -1,5 +1,6 @@
 import type {IRootNode} from "../language/rootNode";
 import type {INode} from "../language/node";
+import {NodeType} from "../language/nodeType";
 
 export class NodesLogger {
    private readonly builder: string[] = [];
@@ -16,9 +17,9 @@ export class NodesLogger {
 
      const rootNode = this.asRootNode(node)
      if (rootNode != null) {
-       this.builder.push(`${rootNode.nodeType}: ${rootNode.nodeName}`);
+       this.builder.push(`${NodeType[rootNode.nodeType]}: ${rootNode.nodeName}`);
      } else {
-       this.builder.push(node.nodeType);
+       this.builder.push(NodeType[node.nodeType]);
      }
      this.builder.push("\n")
 

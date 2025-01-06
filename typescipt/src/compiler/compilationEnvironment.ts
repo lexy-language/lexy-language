@@ -6,10 +6,11 @@ import {LexyCodeConstants} from "./lexyCodeConstants";
 import {ILogger} from "../infrastructure/logger";
 
 export interface ICompilationEnvironment extends Disposable {
+  namespace: string;
+  fullNamespace: string;
+
   addType(generatedType: GeneratedType);
-
   initialize(): void;
-
   result(): CompilerResult;
 }
 
@@ -22,13 +23,15 @@ export class CompilationEnvironment implements ICompilationEnvironment, Disposab
   private readonly executionLogger: ILogger;
   private readonly compilationLogger: ILogger;
 
-  public readonly namespace;
+  public readonly namespace: string;
+  public readonly fullNamespace: string;
 
   constructor(compilationLogger: ILogger, executionLogger: ILogger) {
     this.compilationLogger = compilationLogger;
     this.executionLogger = executionLogger;
     const now = new Date().toISOString();
     this.namespace = `environment_${normalize(now)}`;
+    this.fullNamespace = `globalThis.${LexyCodeConstants.namespace}.${this.namespace}`
   }
 
   public initialize(): void {
@@ -53,7 +56,7 @@ export class CompilationEnvironment implements ICompilationEnvironment, Disposab
 
   private initializeType(generatedType: GeneratedType): void {
     const code = `"use strict";
-const type = ${generatedType.initializationFunction} 
+const type = ${generatedType.initializationFunction};
 globalThis.${LexyCodeConstants.namespace}.${this.namespace}.${generatedType.name} = type;`;
 
     try {

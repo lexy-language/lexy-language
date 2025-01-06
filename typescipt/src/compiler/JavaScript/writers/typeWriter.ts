@@ -8,13 +8,20 @@ import {CodeWriter} from "./codeWriter";
 import {CompileFunctionContext} from "../compileFunctionContext";
 
 export class TypeWriter implements IRootTokenWriter {
-   public createCode(node: IRootNode): GeneratedType {
+
+  private readonly namespace: string;
+
+  constructor(namespace: string) {
+    this.namespace = namespace;
+  }
+
+  public createCode(node: IRootNode): GeneratedType {
      const typeDefinition = asTypeDefinition(node);
      if (typeDefinition == null) throw new Error(`Root token not type`);
 
      const className = typeClassName(typeDefinition.name.value);
 
-     const codeWriter = new CodeWriter();
+     const codeWriter = new CodeWriter(this.namespace);
      const context = new CompileFunctionContext(null, []); //todo remove reference of create interface
      createVariableClass(className, typeDefinition.variables, context, codeWriter);
 

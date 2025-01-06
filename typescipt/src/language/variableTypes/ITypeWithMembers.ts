@@ -11,6 +11,6 @@ export function asTypeWithMembers(object: any): ITypeWithMembers | null {
 }
 
 export interface ITypeWithMembers {
-   typeWithMember: true;
+   typeWithMember: boolean;
    memberType(name: string , context: IValidationContext): VariableType | null;
 }

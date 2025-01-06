@@ -93,7 +93,7 @@ export class ParserLogger implements IParserLogger {
      let nodeLogger = new NodesLogger();
      nodeLogger.log(nodes);
 
-     this.logger.logDebug(`Parsed nodes: ${nodeLogger.toString()}`);
+     this.logger.logDebug(`Parsed nodes:\n${nodeLogger.toString()}`);
    }
 
    public hasErrorMessage(expectedError: string): boolean {

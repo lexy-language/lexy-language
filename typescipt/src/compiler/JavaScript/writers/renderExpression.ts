@@ -1,5 +1,3 @@
-import type {ICompileFunctionContext} from "../CompileFunctionContext";
-
 import {Expression} from "../../../language/expressions/expression";
 import {CodeWriter} from "./codeWriter";
 import {NodeType} from "../../../language/nodeType";
@@ -39,20 +37,43 @@ import {VariableSource} from "../../../language/variableSource";
 import {LexyCodeConstants} from "../../lexyCodeConstants";
 import {renderTypeDefaultExpression} from "./renderVariableClass";
 
-export function renderExpressions(expressions: ReadonlyArray<Expression>, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+export function renderExpressions(expressions: ReadonlyArray<Expression>, codeWriter: CodeWriter) {
   for (const expression of expressions) {
     codeWriter.startLine()
-    renderExpression(expression, context, codeWriter);
+    renderExpression(expression, codeWriter);
     codeWriter.endLine(";")
   }
 }
 
-export function renderExpression(expression: Expression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+export function renderValueExpression(expression: Expression, codeWriter: CodeWriter) {
 
-  function render<T>(castFunction: (expression: Expression) => T, render: (render: T, context: ICompileFunctionContext, codeWriter: CodeWriter) => void) {
+  function render<T>(castFunction: (expression: Expression) => T, render: (render: T, codeWriter: CodeWriter) => void) {
     const specificExpression = castFunction(expression);
     if (specificExpression == null) throw new Error(`Invalid expression type: '${expression.nodeType}' cast is null`);
-    render(specificExpression, context, codeWriter);
+    render(specificExpression, codeWriter);
+  }
+
+  switch (expression.nodeType) {
+    case NodeType.LiteralExpression:
+      return render(asLiteralExpression, renderLiteralExpression);
+
+    case NodeType.IdentifierExpression:
+      return render(asIdentifierExpression, renderIdentifierExpression);
+
+    case NodeType.MemberAccessExpression:
+      return render(asMemberAccessExpression, renderMemberAccessExpression);
+
+    default:
+      throw new Error(`Invalid expression type: ${NodeType[expression.nodeType]}`);
+  }
+}
+
+export function renderExpression(expression: Expression, codeWriter: CodeWriter) {
+
+  function render<T>(castFunction: (expression: Expression) => T, render: (render: T, codeWriter: CodeWriter) => void) {
+    const specificExpression = castFunction(expression);
+    if (specificExpression == null) throw new Error(`Invalid expression type: '${expression.nodeType}' cast is null`);
+    render(specificExpression, codeWriter);
   }
 
   switch (expression.nodeType) {
@@ -90,59 +111,63 @@ export function renderExpression(expression: Expression, context: ICompileFuncti
       return render(asVariableDeclarationExpression, renderVariableDeclarationExpression);
 
     default:
-      throw new Error(`Invalid expression type: ${expression.nodeType}`);
+      throw new Error(`Invalid expression type: ${NodeType[expression.nodeType]}`);
   }
 }
 
-function renderMemberAccessExpression(memberAccessExpression: MemberAccessExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderMemberAccessExpression(memberAccessExpression: MemberAccessExpression, codeWriter: CodeWriter) {
   if (memberAccessExpression.variable.parts < 2) throw new Error(`Invalid MemberAccessExpression: {expression}`);
 
-  const rootType = variableClassName(memberAccessExpression, memberAccessExpression.variable);
-  let childReference = memberAccessExpression.variable.childrenReference();
+  renderVariableClassName(memberAccessExpression, memberAccessExpression.variable, codeWriter);
 
-  codeWriter.write(rootType)
-
+  let childReference = memberAccessExpression.variable;
   while (childReference.hasChildIdentifiers) {
     childReference = childReference.childrenReference();
     codeWriter.write(".")
     codeWriter.write(childReference.parentIdentifier)
   }
-
-  return result;
 }
 
-function variableClassName(expression: MemberAccessExpression, reference: VariableReference): string {
+function renderVariableClassName(expression: MemberAccessExpression, reference: VariableReference, codeWriter: CodeWriter) {
   switch (expression.rootType?.variableTypeName) {
     case VariableTypeName.CustomType:
-      return typeClassName(reference.parentIdentifier);
+      codeWriter.writeNamespace()
+      codeWriter.write(`.${typeClassName(reference.parentIdentifier)}`);
+      break;
     case VariableTypeName.EnumType:
-      return enumClassName(reference.parentIdentifier);
+      codeWriter.writeNamespace()
+      codeWriter.write(`.${enumClassName(reference.parentIdentifier)}`);
+      break;
     case VariableTypeName.FunctionType:
-      return functionClassName(reference.parentIdentifier);
+      codeWriter.writeNamespace()
+      codeWriter.write(`.${functionClassName(reference.parentIdentifier)}`);
+      break;
     case VariableTypeName.TableType:
-      return tableClassName(reference.parentIdentifier);
+      codeWriter.writeNamespace()
+      codeWriter.write(`.${tableClassName(reference.parentIdentifier)}`);
+      break;
   }
 }
 
-function renderIdentifierExpression(expression: IdentifierExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderIdentifierExpression(expression: IdentifierExpression, codeWriter: CodeWriter) {
   const value = fromSource(expression.variableSource, expression.identifier);
   codeWriter.write(value);
 }
 
-function renderLiteralExpression(expression: LiteralExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderLiteralExpression(expression: LiteralExpression, codeWriter: CodeWriter) {
   codeWriter.write(expression.literal.value);
 }
 
-function renderAssignmentExpression(expression: AssignmentExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
-  renderExpression(expression.variable, context, codeWriter);
+function renderAssignmentExpression(expression: AssignmentExpression, codeWriter: CodeWriter) {
+  renderExpression(expression.variable, codeWriter);
   codeWriter.write(" = ");
-  renderExpression(expression.assignment, context, codeWriter);
+  renderExpression(expression.assignment, codeWriter);
 }
 
-function renderBinaryExpression(expression: BinaryExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
-  renderExpression(expression.left, context, codeWriter);
+function renderBinaryExpression(expression: BinaryExpression, codeWriter: CodeWriter) {
+  renderExpression(expression.left, codeWriter);
   codeWriter.write(operaorString(expression.operator));
-  renderExpression(expression.right, context, codeWriter);
+  renderExpression(expression.right, codeWriter);
 }
 
 function operaorString(operator: ExpressionOperator) {
@@ -179,61 +204,61 @@ function operaorString(operator: ExpressionOperator) {
   }
 }
 
-function renderBracketedExpression(expression: BracketedExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderBracketedExpression(expression: BracketedExpression, codeWriter: CodeWriter) {
   codeWriter.write("[");
-  renderExpression(expression.expression, context, codeWriter);
+  renderExpression(expression.expression, codeWriter);
   codeWriter.write("]");
 }
 
-function renderElseExpression(expression: ElseExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderElseExpression(expression: ElseExpression, codeWriter: CodeWriter) {
   codeWriter.openScope("else")
-  renderExpressions(expression.falseExpressions, context, codeWriter);
+  renderExpressions(expression.falseExpressions, codeWriter);
   codeWriter.closeScope();
 }
 
-function renderIfExpression(expression: IfExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderIfExpression(expression: IfExpression, codeWriter: CodeWriter) {
   codeWriter.openScope("if")
-  renderExpressions(expression.trueExpressions, context, codeWriter);
+  renderExpressions(expression.trueExpressions, codeWriter);
   codeWriter.closeScope();
 }
 
-function renderParenthesizedExpression(expression: ParenthesizedExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderParenthesizedExpression(expression: ParenthesizedExpression, codeWriter: CodeWriter) {
   codeWriter.write("(");
-  renderExpression(expression.expression, context, codeWriter);
+  renderExpression(expression.expression, codeWriter);
   codeWriter.write(")");
 }
 
-function renderCaseExpression(caseValue: CaseExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderCaseExpression(caseValue: CaseExpression, codeWriter: CodeWriter) {
   if (caseValue.value == null) {
     codeWriter.openScope("default:");
-    renderExpressions(caseValue.expressions, context, codeWriter);
+    renderExpressions(caseValue.expressions, codeWriter);
     codeWriter.closeScope()
     return;
   }
 
   codeWriter.write("case ");
-  renderExpression(caseValue.value, context, codeWriter)
+  renderExpression(caseValue.value, codeWriter)
   codeWriter.openScope(":");
-  renderExpressions(caseValue.expressions, context, codeWriter);
+  renderExpressions(caseValue.expressions, codeWriter);
   codeWriter.closeScope()
 }
 
-function renderSwitchExpression(expression: SwitchExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderSwitchExpression(expression: SwitchExpression, codeWriter: CodeWriter) {
   codeWriter.write("switch(");
-  renderExpression(expression.condition, context, codeWriter)
+  renderExpression(expression.condition, codeWriter)
   codeWriter.openScope(")");
   for (const caseValue of expression.cases) {
-    renderCaseExpression(caseValue, context, codeWriter)
+    renderCaseExpression(caseValue, codeWriter)
   }
   codeWriter.closeScope()
 }
 
-function renderVariableDeclarationExpression(expression: VariableDeclarationExpression, context: ICompileFunctionContext, codeWriter: CodeWriter) {
+function renderVariableDeclarationExpression(expression: VariableDeclarationExpression, codeWriter: CodeWriter) {
   codeWriter.write(`let ${expression.name} = `);
   if (expression.assignment != null) {
-    renderExpression(expression.assignment, context, codeWriter);
+    renderExpression(expression.assignment, codeWriter);
   } else {
-    renderTypeDefaultExpression(expression.type, context, codeWriter);
+    renderTypeDefaultExpression(expression.type, codeWriter);
   }
 }
 

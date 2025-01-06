@@ -3,32 +3,13 @@ import path from "path-browserify";
 import * as fs from 'fs';
 import {ILogger, LogLevel} from "../src/infrastructure/logger";
 
-
 const parserLogFile = "parser.log";
 const compilerLogFile = "compiler.log";
 const executionLogFile = "execution.log";
 const testsLogFile = "tests.log";
 
-const digit0 = '0'.charCodeAt(0);
-const digit9 = '9'.charCodeAt(0);
-const point = '.'.charCodeAt(0);
-
-function normalize(date: string): string {
-  let nameBuilder: Array<string> = [];
-  for (let index = 0; index < date.length; index++) {
-    const value = date.charCodeAt(index);
-    if (value >= digit0 && value <= digit9) {
-      nameBuilder.push(String.fromCharCode(value));
-    } else if (value == point) {
-      break;
-    }
-  }
-  return nameBuilder.join("");
-}
-
 beforeAll(() => {
   LoggingConfiguration.configure();
-
 });
 
 class WinstonLogger implements ILogger {
@@ -56,11 +37,20 @@ class WinstonLogger implements ILogger {
   logInformation(message: string) {
     this.logger.info(message);
   }
+}
 
+function timestamp() {
+  let now = new Date();
+  return now.getFullYear()
+    + ("0" + (now.getMonth() + 1)).slice(-2)
+    + ("0" + now.getDate()).slice(-2)
+    + ("0" + now.getHours()).slice(-2)
+    + ("0" + now.getMinutes()).slice(-2)
+    + ("0" + now.getSeconds()).slice(-2);
 }
 
 export class LoggingConfiguration {
-  static readonly logRun = `${normalize(new Date().toISOString())}-lexy-`;
+  static readonly logRun = `${timestamp()}-lexy-`;
 
   public static getParserLogger(): ILogger {
     return LoggingConfiguration.winstonLogger('LexyParser');
@@ -116,7 +106,7 @@ export class LoggingConfiguration {
     return LoggingConfiguration.logRun + fileName;
   }
 
-  private findFiles(folder, pattern = /.*/) {
+  private static findFiles(folder, pattern = /.*/) {
     const result = [];
     fs.readdirSync(folder).map(function (file) {
       const name = path.join(folder, file);
@@ -127,7 +117,7 @@ export class LoggingConfiguration {
     return result;
   };
 
-  public removeOldFiles() {
+  private static removeOldFiles() {
     const logFiles = this.findFiles(LoggingConfiguration.logFilesDirectory(), /.log/);
     const now = new Date();
 
@@ -177,6 +167,7 @@ export class LoggingConfiguration {
     }
 
     LoggingConfiguration.logFileNames();
+    LoggingConfiguration.removeOldFiles();
   }
 }
 

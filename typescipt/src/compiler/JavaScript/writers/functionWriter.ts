@@ -14,6 +14,12 @@ import {createVariableClass} from "./renderVariableClass";
 
 export class FunctionWriter implements IRootTokenWriter {
 
+  private readonly namespace: string;
+
+  constructor(namespace: string) {
+    this.namespace = namespace;
+  }
+
   public createCode(node: IRootNode): GeneratedType {
     const functionNode = asFunction(node);
     if (functionNode == null) throw new Error(`Root token not Function`);
@@ -24,9 +30,9 @@ export class FunctionWriter implements IRootTokenWriter {
     return this.createFunction(functionNode, context, node);
   }
 
-
   private createFunction(functionNode: Function, context: CompileFunctionContext, node: IRootNode) {
-    const initializationFunction = new CodeWriter()
+
+    const initializationFunction = new CodeWriter(this.namespace)
     initializationFunction.openScope("function scope()");
     this.renderRunFunction(functionNode, context, initializationFunction);
     createVariableClass(LexyCodeConstants.parametersType, functionNode.parameters.variables, context, initializationFunction);
@@ -44,9 +50,9 @@ export class FunctionWriter implements IRootTokenWriter {
 
     initializationFunction.openScope(`function ${LexyCodeConstants.runMethod}(${LexyCodeConstants.parameterVariable}, ${LexyCodeConstants.contextVariable})`);
 
-    this.renderResults(functionNode, context, initializationFunction)
+    this.renderResults(functionNode, initializationFunction)
 
-    this.renderCode(functionNode, context, initializationFunction);
+    this.renderCode(functionNode, initializationFunction);
 
     initializationFunction.writeLine(`return ${LexyCodeConstants.resultsVariable};`);
 
@@ -67,11 +73,11 @@ export class FunctionWriter implements IRootTokenWriter {
       });
   }
 
-  private renderCode(functionNode: Function, context: CompileFunctionContext, codeWriter: CodeWriter) {
-    renderExpressions(functionNode.code.expressions, context, codeWriter);
+  private renderCode(functionNode: Function, codeWriter: CodeWriter) {
+    renderExpressions(functionNode.code.expressions, codeWriter);
   }
 
-  private renderResults(functionNode: Function, context: CompileFunctionContext, codeWriter: CodeWriter) {
+  private renderResults(functionNode: Function, codeWriter: CodeWriter) {
     codeWriter.writeLine(`const ${LexyCodeConstants.resultsVariable} = new ${LexyCodeConstants.resultsType}();`);
   }
 

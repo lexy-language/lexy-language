@@ -14,7 +14,7 @@ const type = function scope() {
 
   }
 
-  class __Parameters {
+  class __Row {
     aaa = 141;
     bbb = 777
     ccc = 666;
@@ -33,5 +33,30 @@ const type = function scope() {
   TestSimpleReturn.__Results = __Results;
   TestSimpleReturn.__parameters = __parameters;
 
-  return TestSimpleReturn
+
+
+  class __Row
+  {
+    Value = 0;
+    Result = 0;
+    constructor(Value, Result) {
+      this.Value = Value;
+      this.Result = Result;
+    }
+  }
+
+  const _values = [
+    new __Row(0, 0),
+    new __Row(1, 1),
+  ];
+
+  function count() {
+    return _values.length;
+  }
+
+  return {
+    __Row: __Row,
+    _values: _values,
+    count: count
+  }
 }();

@@ -1,141 +1,82 @@
+import type {IRootNode} from "../../../language/rootNode";
+import type {IRootTokenWriter} from "../../IRootTokenWriter";
 
+import {GeneratedType, GeneratedTypeKind} from "../../generatedType";
+import {asTable, Table} from "../../../language/tables/table";
+import {tableClassName} from "../classNames";
+import {CodeWriter} from "./codeWriter";
+import {renderTypeDefaultExpression} from "./renderVariableClass";
+import {LexyCodeConstants} from "../../lexyCodeConstants";
+import {renderValueExpression} from "./renderExpression";
 
-export class TableWriter extends IRootTokenWriter {
-   public createCode(node: IRootNode): GeneratedType {
-     if (!(node is Table table)) throw new Error(`Root token not table`);
+export class TableWriter implements IRootTokenWriter {
 
-     let className = ClassNames.TableClassName(table.Name.Value);
+  private readonly namespace: string;
 
-     let members = new Array<MemberDeclarationSyntax>();
-     members.Add(GenerateRowClass(LexyCodeConstants.RowType, table));
-     members.Add(GenerateFields(LexyCodeConstants.RowType));
-     members.Add(GenerateStaticConstructor(className, table, LexyCodeConstants.RowType));
-     members.AddRange(GenerateProperties(LexyCodeConstants.RowType));
+  constructor(namespace: string) {
+    this.namespace = namespace;
+  }
 
-     let classDeclaration = ClassDeclaration(className)
-       .WithModifiers(Modifiers.Public())
-       .WithMembers(List(members));
+  public createCode(node: IRootNode): GeneratedType {
+    const table = asTable(node);
+    if (table == null) throw new Error(`Root token not Table`);
 
-     return new GeneratedType(node, className, classDeclaration);
-   }
+    const className = tableClassName(table.name.value);
 
-   private static generateRowClass(rowName: string, table: Table): ClassDeclarationSyntax {
-     let fields = Array<MemberDeclarationSyntax>(
-       table.Header.Columns
-         .Select(Field));
+    const codeWriter = new CodeWriter(this.namespace);
+    codeWriter.openScope("function scope()");
 
-     let rowClassDeclaration = ClassDeclaration(rowName)
-       .WithModifiers(Modifiers.Public())
-       .WithMembers(fields);
+    this.renderRowClass(LexyCodeConstants.rowType, table, codeWriter);
+    this.renderValues(LexyCodeConstants.rowType, table, codeWriter);
 
-     return rowClassDeclaration;
-   }
+    codeWriter.openScope(`return`)
+    codeWriter.writeLine(`${LexyCodeConstants.rowType}: ${LexyCodeConstants.rowType},`)
+    codeWriter.writeLine(`Count: ${LexyCodeConstants.valuesVariable}.length,`)
+    codeWriter.writeLine(`Values: ${LexyCodeConstants.valuesVariable}`)
+    codeWriter.closeScope(";")
 
-   private static field(header: ColumnHeader): FieldDeclarationSyntax {
-     return FieldDeclaration(
-         VariableDeclaration(Types.Syntax(header.Type))
-           .WithVariables(SingletonSeparatedList(VariableDeclarator(Identifier(header.Name))
-             .WithInitializer(EqualsValueClause(
-               Types.TypeDefaultExpression(header.Type))))))
-       .WithModifiers(Modifiers.Public());
-   }
+    codeWriter.closeScope("();");
 
-   private static generateFields(rowName: string): FieldDeclarationSyntax {
-     let fieldDeclaration = FieldDeclaration(
-         VariableDeclaration(
-             GenericName(Identifier(`List`))
-               .WithTypeArgumentList(
-                 TypeArgumentList(SingletonSeparatedArray<TypeSyntax>(
-                   IdentifierName(rowName)))))
-           .WithVariables(
-             SingletonSeparatedList(
-               VariableDeclarator(Identifier(`_value`)))))
-       .WithModifiers(Modifiers.PrivateStatic());
+    return new GeneratedType(GeneratedTypeKind.type, node, className, codeWriter.toString());
+  }
 
-     return fieldDeclaration;
-   }
+  private renderRowClass(rowName: string, table: Table, codeWriter: CodeWriter) {
+    codeWriter.openScope("class " + rowName);
+    for (const column of table.header?.columns) {
+      codeWriter.startLine(column.name + " = ")
+      renderTypeDefaultExpression(column.type, codeWriter);
+      codeWriter.endLine(";")
+    }
+    codeWriter.startLine("constructor(")
+    for (let i = 0; i < table.header?.columns.length; i++) {
+      const column = table.header?.columns[i];
+      codeWriter.write(column?.name ?? "")
+      if (i < table.header?.columns.length - 1) {
+        codeWriter.write(",")
+      }
+    }
+    codeWriter.openInlineScope(")")
+    for (const column of table.header?.columns) {
+      codeWriter.writeLine("this." + column.name + " = " + column.name + ";")
+    }
 
-   private static generateStaticConstructor(className: string, table: Table, rowName: string): ConstructorDeclarationSyntax {
-     let rows = table.rows.Select(row =>
-       ObjectCreationExpression(
-           IdentifierName(rowName))
-         .WithInitializer(
-           InitializerExpression(
-             SyntaxKind.ObjectInitializerExpression,
-             SeparatedArray<ExpressionSyntax>(
-               RowValues(row, table.Header)))));
+    codeWriter.closeScope();
+    codeWriter.closeScope();
+  }
 
-     let declaration = ConstructorDeclaration(Identifier(className))
-       .WithModifiers(Modifiers.Static())
-       .WithBody(
-         Block(
-           SingletonArray<StatementSyntax>(
-             ExpressionStatement(
-               AssignmentExpression(
-                 SyntaxKind.SimpleAssignmentExpression,
-                 IdentifierName(`_value`),
-                 ObjectCreationExpression(
-                     GenericName(Identifier(`List`))
-                       .WithTypeArgumentList(
-                         TypeArgumentList(
-                           SingletonSeparatedArray<TypeSyntax>(
-                             IdentifierName(rowName)))))
-                   .WithInitializer(
-                     InitializerExpression(
-                       SyntaxKind.CollectionInitializerExpression,
-                       SeparatedArray<ExpressionSyntax>(
-                         rows
-                       ))))))));
-
-     return declaration;
-   }
-
-   private static SyntaxNodeOrToken[rowValues(tableRow: TableRow, header: TableHeader): ] {
-     let result = new Array<SyntaxNodeOrToken>();
-     for (let index = 0; index < header.Columns.Count; index++) {
-       let columnHeader = header.Columns[index];
-       let value = tableRow.Values[index];
-
-       if (result.Count > 0) result.Add(Token(SyntaxKind.CommaToken));
-
-       result.Add(
-         AssignmentExpression(
-           SyntaxKind.SimpleAssignmentExpression,
-           IdentifierName(columnHeader.Name),
-           ExpressionSyntaxFactory.ExpressionSyntax(value)));
-     }
-
-     return result.ToArray();
-   }
-
-   private static generateProperties(rowName: string): Array<PropertyDeclarationSyntax> {
-     yield return PropertyDeclaration(
-         PredefinedType(
-           Token(SyntaxKind.IntKeyword)),
-         Identifier(`Count`))
-       .WithModifiers(Modifiers.PublicStatic())
-       .WithExpressionBody(
-         ArrowExpressionClause(
-           MemberAccessExpression(
-             SyntaxKind.SimpleMemberAccessExpression,
-             IdentifierName(`_value`),
-             IdentifierName(`Count`))))
-       .WithSemicolonToken(
-         Token(SyntaxKind.SemicolonToken));
-
-     yield return
-       PropertyDeclaration(
-           GenericName(Identifier(`IReadOnlyList`))
-             .WithTypeArgumentList(
-               TypeArgumentList(
-                 SingletonSeparatedArray<TypeSyntax>(
-                   IdentifierName(rowName)))),
-           Identifier(`Values`))
-         .WithModifiers(Modifiers.PublicStatic())
-         .WithExpressionBody(
-           ArrowExpressionClause(
-             IdentifierName(`_value`)))
-         .WithSemicolonToken(
-           Token(SyntaxKind.SemicolonToken));
-   }
+  private renderValues(rowName: string, table: Table, codeWriter: CodeWriter) {
+    codeWriter.openBrackets(`const ${LexyCodeConstants.valuesVariable} = `);
+    for (const row of table.rows) {
+      codeWriter.startLine("new " + rowName + "(")
+      for (let rowIndex = 0; rowIndex < row.values.length; rowIndex++) {
+        const value = row.values[rowIndex];
+        renderValueExpression(value, codeWriter)
+        if (rowIndex < row.values.length - 1) {
+          codeWriter.write(",")
+        }
+      }
+      codeWriter.endLine("),")
+    }
+    codeWriter.closeBrackets();
+  }
 }

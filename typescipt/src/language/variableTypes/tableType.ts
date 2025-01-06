@@ -19,37 +19,37 @@ export function asTableType(object: any): TableType | null {
 export class TableType extends TypeWithMembers {
 
   public readonly variableTypeName = VariableTypeName.TableType;
-   public readonly type: string;
-   public readonly table: Table;
+  public readonly type: string;
+  public readonly table: Table;
 
-   constructor(type: string, table: Table) {
-     super();
-     this.type = type;
-     this.table = table;
-   }
+  constructor(type: string, table: Table) {
+    super();
+    this.type = type;
+    this.table = table;
+  }
 
-   protected equals(other: TableType): boolean {
-     return this.type == other?.type;
-   }
+  protected equals(other: TableType): boolean {
+    return this.type == other?.type;
+  }
 
-   public toString(): string {
-     return this.type;
-   }
+  public toString(): string {
+    return this.type;
+  }
 
-   public override memberType(name: string, context: IValidationContext): VariableType | null {
+  public override memberType(name: string, context: IValidationContext): VariableType | null {
 
-     if (name ==`Count`) return  PrimitiveType.number;
-     if (name == Table.rowName) return TableRowType(context);
+    if (name == `Count`) return PrimitiveType.number;
+    if (name == Table.rowName) return TableRowType(context);
     return null;
-   }
+  }
 
-   private tableRowType(context: IValidationContext): TableRowType {
-     let complexType = context.rootNodes.getTable(this.type)?.getRowType(context);
-     return new TableRowType(this.type, complexType);
-   }
+  private tableRowType(context: IValidationContext): TableRowType {
+    let complexType = context.rootNodes.getTable(this.type)?.getRowType(context);
+    return new TableRowType(this.type, complexType);
+  }
 
-   private getMembers(context: IValidationContext): Array<ComplexTypeMember> {
-     return this.table.header.columns.map(column =>
-         new ComplexTypeMember(column.Name, column.Type.createVariableType(context)));
-   }
+  private getMembers(context: IValidationContext): Array<ComplexTypeMember> {
+    return this.table.header.columns.map(column =>
+      new ComplexTypeMember(column.Name, column.Type.createVariableType(context)));
+  }
 }

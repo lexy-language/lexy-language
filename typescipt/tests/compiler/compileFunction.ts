@@ -21,7 +21,9 @@ class CompileFunctionResult {
 }
 
 export function compileFunction(code: string): CompileFunctionResult {
-  let {nodes, _} = parseNodes(code);
+  let {nodes, logger} = parseNodes(code);
+
+  logger.assertNoErrors();
 
   const array = nodes.asArray();
   const functionNode = asFunction(firstOrDefault(array, value => instanceOfFunction(value)));

@@ -49,9 +49,6 @@ export class LexyParser implements ILexyParser {
      this.context.addFileIncluded(fullFileName);
 
      this.parseDocument(code, fullFileName);
-
-     this.logger.logNodes(this.context.nodes.asArray());
-
      this.validateNodesTree();
      this.logger.logNodes(this.context.nodes.asArray());
 

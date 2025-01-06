@@ -1,6 +1,11 @@
 export class CodeWriter {
-  private builder: Array<string> = [];
+  private readonly builder: Array<string> = [];
+  private readonly namespace;
   private indent = 0;
+
+  constructor(namespace: string) {
+    this.namespace = namespace;
+  }
 
   startLine(value: string | null = null) {
     if (value != null) {
@@ -19,15 +24,24 @@ export class CodeWriter {
   }
 
   writeLine(value: string) {
-    this.builder.push(' '.repeat(this.indent * 2) + value + "\n");
+    this.builder.push(this.indentString() + value + "\n");
   }
 
   write(value: string) {
     this.builder.push(value);
   }
 
+  writeNamespace() {
+    this.builder.push(this.namespace);
+  }
+
   openScope(name: string) {
     this.writeLine(name + " {")
+    this.indent++
+  }
+
+  openInlineScope(value: string) {
+    this.endLine(value + " {")
     this.indent++
   }
 
@@ -37,6 +51,20 @@ export class CodeWriter {
       this.writeLine("}" + suffix)
     } else {
       this.writeLine("}")
+    }
+  }
+
+  openBrackets(name: string) {
+    this.writeLine(name + " [")
+    this.indent++
+  }
+
+  closeBrackets(suffix: string | null = null) {
+    this.indent--;
+    if (suffix != null) {
+      this.writeLine("]" + suffix)
+    } else {
+      this.writeLine("]")
     }
   }
 

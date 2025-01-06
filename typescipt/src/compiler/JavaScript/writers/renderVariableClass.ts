@@ -40,30 +40,28 @@ function renderDefaultExpression(variable: VariableDefinition,
                                  codeWriter: CodeWriter) {
 
   if (variable.defaultExpression != null) {
-    renderExpression(variable.defaultExpression, context, codeWriter);
+    renderExpression(variable.defaultExpression, codeWriter);
   } else {
-    renderTypeDefaultExpression(variable.type, context, codeWriter);
+    renderTypeDefaultExpression(variable.type, codeWriter);
   }
 }
 
 export function renderTypeDefaultExpression(variableDeclarationType: VariableDeclarationType,
-                                            context: ICompileFunctionContext,
                                             codeWriter: CodeWriter) {
 
   const primitiveVariableDeclarationType = asPrimitiveVariableDeclarationType(variableDeclarationType);
   if (primitiveVariableDeclarationType != null) {
-    renderPrimitiveTypeDefaultExpression(primitiveVariableDeclarationType, context, codeWriter);
+    renderPrimitiveTypeDefaultExpression(primitiveVariableDeclarationType, codeWriter);
     return;
   }
   const customType = asCustomVariableDeclarationType(variableDeclarationType);
   if (customType != null) {
-    renderDefaultExpressionSyntax(customType, context, codeWriter);
+    renderDefaultExpressionSyntax(customType, codeWriter);
   }
   throw new Error(`Wrong VariableDeclarationType ${variableDeclarationType.nodeType}`)
 }
 
 function renderPrimitiveTypeDefaultExpression(type: PrimitiveVariableDeclarationType,
-                                              context: ICompileFunctionContext,
                                               codeWriter: CodeWriter) {
   switch (type.type) {
     case TypeNames.number:
@@ -88,7 +86,6 @@ function renderPrimitiveTypeDefaultExpression(type: PrimitiveVariableDeclaration
 }
 
 function renderDefaultExpressionSyntax(customType: CustomVariableDeclarationType,
-                                       context: ICompileFunctionContext,
                                        codeWriter: CodeWriter) {
   if (instanceOfCustomType(customType.variableType)) {
     codeWriter.write(`new ${customType}()`);
