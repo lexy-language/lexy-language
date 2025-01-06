@@ -3,10 +3,11 @@ import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {Expression} from "../expression";
 import {SourceReference} from "../../../parser/sourceReference";
 import {ExpressionFunction} from "./expressionFunction";
+import {NodeType} from "../../nodeType";
 
 export class HourFunction extends SingleArgumentFunction {
 
-   public readonly nodeType = "HourFunction";
+   public readonly nodeType = NodeType.HourFunction;
    public static readonly name = `HOUR`;
 
    protected override get functionHelp() {

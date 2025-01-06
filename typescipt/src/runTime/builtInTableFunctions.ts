@@ -1,9 +1,9 @@
 
-
 export class BuiltInTableFunctions {
+  /*
    public static TResult LookUp<TCondition, TRow, TResult>(
-     string resultName,
-     string valueName,
+     resultName string,
+     valueName string,
      string tableName,
      IReadOnlyArray<TRow> tableValues,
      TCondition condition,
@@ -91,4 +91,5 @@ export class BuiltInTableFunctions {
      context.LogDebug($`{functionName} returned value from last row: {tableValues.Count}`);
      return lastRow;
    }
+   */
 }

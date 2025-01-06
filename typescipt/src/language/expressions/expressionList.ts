@@ -10,13 +10,14 @@ import {SourceReference} from "../../parser/sourceReference";
 import {ParseExpressionResult} from "./parseExpressionResult";
 import {asChildExpression, asParentExpression} from "./IChildExpression";
 import {lastOrDefault} from "../../infrastructure/enumerableExtensions";
+import {NodeType} from "../nodeType";
 
 export class ExpressionList extends Node {
 
   private factory: IExpressionFactory;
   private readonly values: Array<Expression> = [];
 
-  public nodeType = "ExpressionList";
+  public nodeType = NodeType.ExpressionList;
 
   public get length(): number {
      return this.values.length;

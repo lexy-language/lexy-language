@@ -22,9 +22,10 @@ import {ComplexType} from "../variableTypes/complexType";
 import {ComplexTypeMember} from "../variableTypes/complexTypeMember";
 import {ComplexTypeSource} from "../variableTypes/complexTypeSource";
 import {NodesWalker} from "../nodesWalker";
+import {NodeType} from "../nodeType";
 
 export function instanceOfFunction(object: any) {
-  return object?.nodeType == "Function";
+  return object?.nodeType == NodeType.Function;
 }
 
 export function asFunction(object: any): Function | null {
@@ -37,7 +38,7 @@ export class Function extends RootNode implements IHasNodeDependencies {
   public static readonly resultsName = `Results`;
 
   public readonly hasNodeDependencies = true;
-  public readonly nodeType = "Function";
+  public readonly nodeType = NodeType.Function;
 
   public readonly name: FunctionName;
   public readonly parameters: FunctionParameters;

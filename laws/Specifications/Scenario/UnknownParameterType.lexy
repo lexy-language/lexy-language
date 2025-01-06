@@ -1,0 +1,11 @@
+Scenario: NestedParametersShouldBeAssignableAndReadable
+  Function:
+    Parameters
+      CustomType Result
+    Results
+      number Value1
+      number Value2
+    Code
+      Value1 = Result.NumberValue
+      Value2 = Result.Complex.InnerNumber
+  ExpectError "Invalid type 'CustomType' for Parameters variable 'Result'"

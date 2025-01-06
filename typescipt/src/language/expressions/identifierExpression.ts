@@ -10,16 +10,17 @@ import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResu
 import {TokenList} from "../../parser/tokens/tokenList";
 import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
 import {VariableType} from "../variableTypes/variableType";
+import {NodeType} from "../nodeType";
 
 export function asIdentifierExpression(object: any): IdentifierExpression | null {
-  return object?.nodeType == "IdentifierExpression" ? object as IdentifierExpression : null;
+  return object?.nodeType == NodeType.IdentifierExpression ? object as IdentifierExpression : null;
 }
 
 export class IdentifierExpression extends Expression {
 
   private variableSourceValue: VariableSource;
 
-  public readonly nodeType = "IdentifierExpression";
+  public readonly nodeType = NodeType.IdentifierExpression;
   public readonly identifier: string;
 
   public get variableSource() {
@@ -63,7 +64,7 @@ export class IdentifierExpression extends Expression {
       return;
     }
 
-    this.variableSourceValue = this.variableSourceValue;
+    this.variableSourceValue = variableSource;
   }
 
   public override deriveType(context: IValidationContext): VariableType | null {

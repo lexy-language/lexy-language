@@ -4,17 +4,18 @@ import type {IValidationContext} from "../../parser/validationContext";
 import {Expression} from "../expressions/expression";
 import {INode, Node} from "../node";
 import {ConstantValue} from "./constantValue";
-import {VariableReference} from "../../runTime/variableReference";
+import {VariableReference} from "../variableReference";
 import {VariableType} from "../variableTypes/variableType";
 import {SourceReference} from "../../parser/sourceReference";
 import {OperatorToken} from "../../parser/tokens/operatorToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {VariableReferenceParser} from "./variableReferenceParser";
 import {ConstantValueParser} from "./constantValueParser";
+import {NodeType} from "../nodeType";
 
 export class AssignmentDefinition extends Node {
 
-  public readonly nodeType = "AssignmentDefinition";
+  public readonly nodeType = NodeType.AssignmentDefinition;
 
    private readonly valueExpression: Expression;
    private readonly variableExpression: Expression;

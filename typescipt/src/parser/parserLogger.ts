@@ -1,10 +1,10 @@
 import type {IRootNode} from "../language/rootNode";
 import type {INode} from "../language/node";
-import type {ILogger} from "./logger";
+import type {ILogger} from "../infrastructure/logger";
 
 import {SourceReference} from "./sourceReference";
 import {any, where} from "../infrastructure/enumerableExtensions";
-import {LogLevel} from "./logger";
+import {LogLevel} from "../infrastructure/logger";
 import {format} from "../infrastructure/formatting";
 import {NodesLogger} from "./nodesLogger";
 

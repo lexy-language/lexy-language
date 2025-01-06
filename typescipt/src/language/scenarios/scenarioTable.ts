@@ -5,13 +5,14 @@ import {SourceReference} from "../../parser/sourceReference";
 import {IParseLineContext} from "../../parser/ParseLineContext";
 import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
+import {NodeType} from "../nodeType";
 
 export class ScenarioTable extends ParsableNode {
 
   private headerValue: TableHeader | null;
   private rowsValue: Array<TableRow> = [];
 
-  public nodeType = "ScenarioTable";
+  public nodeType = NodeType.ScenarioTable;
 
   public get rows(): ReadonlyArray<TableRow>{
     return this.rows;

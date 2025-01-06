@@ -15,6 +15,7 @@ import {asIdentifierExpression} from "../identifierExpression";
 import {asMemberAccessExpression} from "../memberAccessExpression";
 import {INode} from "../../node";
 import {IValidationContext} from "../../../parser/validationContext";
+import {NodeType} from "../../nodeType";
 
 const argumentsNumber = 4;
 const argumentTable = 0;
@@ -30,7 +31,7 @@ export class LookupFunction extends ExpressionFunction implements IHasNodeDepend
 
   public readonly hasNodeDependencies = true;
   public static readonly name: string = `LOOKUP`;
-   public readonly nodeType = "LookupFunction";
+   public readonly nodeType = NodeType.LookupFunction;
 
    public readonly table: string
 

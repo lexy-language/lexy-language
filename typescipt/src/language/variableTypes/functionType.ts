@@ -4,10 +4,11 @@ import {Function} from "../functions/function";
 import {IValidationContext} from "../../parser/validationContext";
 import {FunctionParametersType} from "./functionParametersType";
 import {FunctionResultsType} from "./functionResultsType";
+import {VariableTypeName} from "./variableTypeName";
 
 export class FunctionType extends TypeWithMembers {
 
-  public readonly variableTypeName = "FunctionType";
+  public readonly variableTypeName = VariableTypeName.FunctionType;
 
   public type: string;
    public functionValue: Function;

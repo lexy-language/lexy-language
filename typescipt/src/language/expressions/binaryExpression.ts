@@ -11,6 +11,7 @@ import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResu
 import {TokenList} from "../../parser/tokens/tokenList";
 import {OperatorToken} from "../../parser/tokens/operatorToken";
 import {VariableType} from "../variableTypes/variableType";
+import {NodeType} from "../nodeType";
 
 class OperatorEntry {
   public operatorType: OperatorType;
@@ -35,7 +36,7 @@ class TokenIndex {
 }
 
 export function instanceOfBinaryExpression(object: any): object is BinaryExpression {
-  return object?.nodeType == 'BinaryExpression';
+  return object?.nodeType == NodeType.BinaryExpression;
 }
 
 export function asBinaryExpression(object: any): BinaryExpression | null {
@@ -63,7 +64,7 @@ export class BinaryExpression extends Expression {
     new OperatorEntry(OperatorType.Or, ExpressionOperator.Or)
   ];
 
-  public nodeType = "BinaryExpression";
+  public nodeType = NodeType.BinaryExpression;
   public left: Expression;
   public right: Expression;
   public operator: ExpressionOperator;

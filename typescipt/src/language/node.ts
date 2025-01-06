@@ -1,10 +1,11 @@
-import {SourceReference} from "../parser/sourceReference";
-
 import type {IValidationContext} from "../parser/validationContext";
+import type {NodeType} from "./nodeType";
+
+import {SourceReference} from "../parser/sourceReference";
 
 export interface INode {
 
-  nodeType: string;
+  nodeType: NodeType;
   reference: SourceReference
 
   validateTree(context: IValidationContext): void
@@ -27,7 +28,7 @@ export abstract class Node implements INode {
      children.forEach(child => this.validateNodeTree(context, child));
    }
 
-  public abstract nodeType: string;
+  public abstract nodeType: NodeType;
   public abstract getChildren(): Array<INode>;
 
    protected validateNodeTree(context: IValidationContext, child: INode | null): void {

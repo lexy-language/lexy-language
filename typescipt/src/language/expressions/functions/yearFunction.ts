@@ -3,11 +3,12 @@ import {SourceReference} from "../../../parser/sourceReference";
 import {Expression} from "../expression";
 import {ExpressionFunction} from "./expressionFunction";
 import {PrimitiveType} from "../../variableTypes/primitiveType";
+import {NodeType} from "../../nodeType";
 
 export class YearFunction extends SingleArgumentFunction {
 
    public static readonly name: string = `YEAR`;
-   public readonly nodeType = "YearsFunction";
+   public readonly nodeType = NodeType.YearsFunction;
 
    protected override get functionHelp(): string {
       return `'{Name} expects 1 argument (Date)`;

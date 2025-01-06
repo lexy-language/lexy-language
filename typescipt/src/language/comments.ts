@@ -3,12 +3,13 @@ import {SourceReference} from "../parser/sourceReference";
 import {IParseLineContext} from "../parser/ParseLineContext";
 import {INode} from "./node";
 import {IValidationContext} from "../parser/validationContext";
+import {NodeType} from "./nodeType";
 
 export class Comments extends ParsableNode {
 
   private readonly lines: Array<string> = [];
 
-  public nodeType = "Comments";
+  public nodeType = NodeType.Comments;
 
    constructor(sourceReference: SourceReference) {
      super(sourceReference);

@@ -1,90 +1,74 @@
+import {ISpecificationRunnerContext} from "./specificationRunnerContext";
+import {ILexyParser} from "../parser/lexyParser";
+import {IParserLogger} from "../parser/parserLogger";
+import {IScenarioRunner, ScenarioRunner} from "./scenarioRunner";
+import {firstOrDefault} from "../infrastructure/enumerableExtensions";
+import {format} from "../infrastructure/formatting";
+import {Scenario} from "../language/scenarios/scenario";
+import {RootNodeList} from "../language/rootNodeList";
+import {ILexyCompiler} from "../compiler/lexyCompiler";
 
+export interface ISpecificationFileRunner {
+  scenarioRunners: ReadonlyArray<IScenarioRunner>;
 
-export interface ISpecificationFileRunner extends IDisposable {
-  Array<IScenarioRunner> ScenarioRunners
-
-  void Initialize(IServiceScope serviceScope, ISpecificationRunnerContext runnerContext, string fileName);
-
-  number CountScenarioRunners();
-  void Run();
+  countScenarioRunners(): number;
+  run(): void;
 }
 
+export class SpecificationFileRunner implements ISpecificationFileRunner {
 
-export class SpecificationFileRunner extends ISpecificationFileRunner {
-   private readonly ILexyParser parser;
-   private readonly IParserContext parserContext;
+  private readonly compiler: ILexyCompiler;
+  private readonly parser: ILexyParser;
+  private readonly fileName: string;
+  private readonly runnerContext: ISpecificationRunnerContext;
 
-   private string fileName;
-   private ISpecificationRunnerContext runnerContext;
+  private readonly scenarioRunnersValue: Array<IScenarioRunner> = [];
 
-   private Array<IScenarioRunner> scenarioRunners = list<IScenarioRunner>(): new;
+  public get scenarioRunners(): ReadonlyArray<IScenarioRunner> {
+    return [...this.scenarioRunnersValue]
+  }
 
-   private IServiceScope serviceScope;
+  constructor(fileName: string, compiler: ILexyCompiler, parser: ILexyParser, runnerContext: ISpecificationRunnerContext) {
+    this.fileName = fileName;
+    this.compiler = compiler;
+    this.parser = parser;
+    this.runnerContext = runnerContext;
+  }
 
-   constructor(parser: ILexyParser, parserContext: IParserContext) {
-     this.parser = parser ?? throw new Error(nameof(parser));
-     this.parserContext = parserContext ?? throw new Error(nameof(parserContext));
-   }
+  public run(): void {
+    const result = this.parser.parseFile(this.fileName, false);
 
-   public initialize(serviceScope: IServiceScope, runnerContext: ISpecificationRunnerContext, fileName: string): void {
-     //runnerContext is managed by a parent ServiceProvider scope,
-     //thus they can't be injected via the constructor
+    result
+      .rootNodes
+      .getScenarios()
+      .forEach(scenario =>
+        this.scenarioRunnersValue.push(this.getScenarioRunner(scenario, result.rootNodes, result.logger)));
 
-     if (this.fileName != null)
-       throw new Error(`Each SpecificationFileRunner should only be initialized once. ` +
-                         `Use ServiceProvider.CreateScope to manage scope op each SpecificationFileRunner`);
+    this.validateHasScenarioCheckingRootErrors(result.logger);
 
-     this.runnerContext = runnerContext ?? throw new Error(nameof(runnerContext));
-     this.serviceScope = serviceScope;
-     this.fileName = fileName;
+    if (this.scenarioRunners.length == 0) return;
 
-     parser.ParseFile(fileName, false);
+    this.runnerContext.logGlobal(`Filename: ${this.fileName}`);
 
-     scenarioRunners = parserContext
-       .Nodes
-       .GetScenarios()
-       .Select(scenario => ScenarioRunner.Create(fileName, scenario, parserContext, runnerContext,
-         this.serviceScope.ServiceProvider))
-       .ToList();
+    this.scenarioRunners.forEach(runner => runner.run());
+  }
 
-     ValidateHasScenarioCheckingRootErrors(fileName);
-   }
+  private getScenarioRunner(scenario: Scenario, rootNodeList: RootNodeList, parserLogger: IParserLogger) {
+    return new ScenarioRunner(this.fileName, this.compiler, rootNodeList, scenario, this.runnerContext, parserLogger);
+  }
 
-   public Array<IScenarioRunner> ScenarioRunners => scenarioRunners;
+  public countScenarioRunners(): number {
+    return this.scenarioRunners.length;
+  }
 
-   public run(): void {
-     if (scenarioRunners.Count == 0) return;
+  private validateHasScenarioCheckingRootErrors(logger: IParserLogger): void {
+    if (!logger.hasRootErrors()) return;
 
-     runnerContext.LogGlobal($`Filename: {fileName}`);
+    let rootScenarioRunner =
+      firstOrDefault(this.scenarioRunners, runner => runner.scenario.expectRootErrors.hasValues);
 
-     foreach (let scenario in scenarioRunners) scenario.Run();
-   }
-
-   public dispose(): void {
-     serviceScope?.Dispose();
-     serviceScope = null;
-   }
-
-   public countScenarioRunners(): number {
-     return scenarioRunners.Count;
-   }
-
-   private validateHasScenarioCheckingRootErrors(fileName: string): void {
-     if (!parserContext.logger.HasRootErrors()) return;
-
-     let rootScenarioRunner =
-       scenarioRunners.FirstOrDefault(runner => runner.Scenario.ExpectRootErrors.HasValues);
-
-     if (rootScenarioRunner == null)
-       throw new Error(
-         $`{fileName} has root errors but no scenario that verifies expected root errors. Errors: {parserContext.logger.ErrorRootMessages().Format(2)}`);
-   }
-
-   public static ISpecificationFileRunner Create(string fileName, IServiceProvider serviceProvider
-     , ISpecificationRunnerContext runnerContext) {
-     let serviceScope = serviceProvider.CreateScope();
-     let runner = serviceScope.ServiceProvider.GetRequiredService<ISpecificationFileRunner>();
-     runner.Initialize(serviceScope, runnerContext, fileName);
-     return runner;
-   }
+    if (rootScenarioRunner == null)
+      throw new Error(
+        `${this.fileName} has root errors but no scenario that verifies expected root errors. Errors: ${format(logger.errorRootMessages(), 2)}`);
+  }
 }

@@ -1,4 +1,4 @@
-import {VariableReference} from "../../runTime/variableReference";
+import {VariableReference} from "../variableReference";
 
 export type VariableReferenceParseFailed = {
   state: "failed";

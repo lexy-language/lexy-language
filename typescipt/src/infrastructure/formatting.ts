@@ -1,4 +1,4 @@
-export function format<TItem>(enumerable: Array<TItem>, indentLevel: number): string {
+export function format<TItem>(enumerable: ReadonlyArray<TItem>, indentLevel: number): string {
 
   const indent = indentLevel > 0 ? ' '.repeat(indentLevel * 2) : '';
   const builder: Array<string> = [];
@@ -12,7 +12,7 @@ export function format<TItem>(enumerable: Array<TItem>, indentLevel: number): st
   return builder.join('');
 }
 
-export function formatLine<TItem>(enumerable: Array<TItem>, separator: string): string {
+export function formatLine<TItem>(enumerable: ReadonlyArray<TItem>, separator: string): string {
 
   const builder: Array<string> = [];
   for (const item of enumerable)

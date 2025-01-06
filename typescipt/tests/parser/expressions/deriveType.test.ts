@@ -7,7 +7,8 @@ import {VariableSource} from "../../../src/language/variableSource";
 import {parseExpression} from "../expressionParser/parseExpression";
 import {RootNodeList} from "../../../src/language/rootNodeList";
 import {ParserLogger} from "../../../src/parser/parserLogger";
-import {ConsoleLogger} from "../../../src/parser/logger";
+import {ConsoleLogger} from "../../../src/infrastructure/logger";
+import {LoggingConfiguration} from "../../testsInitialization";
 
 describe('DeriveTypeTests', () => {
   it('numberLiteral', async () => {
@@ -115,7 +116,7 @@ describe('DeriveTypeTests', () => {
                       validationContextHandler: ((context: IValidationContext) => void) | null = null): VariableType | null {
 
     const rootNodeList = new RootNodeList();
-    const logger = new ParserLogger(new ConsoleLogger());
+    const logger = new ParserLogger(LoggingConfiguration.getParserLogger());
     const validationContext = new ValidationContext(logger, rootNodeList);
 
     const scope = validationContext.createVariableScope();

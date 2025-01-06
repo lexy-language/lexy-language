@@ -4,12 +4,13 @@ import {SourceReference} from "../../parser/sourceReference";
 import {IParseLineContext} from "../../parser/ParseLineContext";
 import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
+import {NodeType} from "../nodeType";
 
 export class ScenarioResults extends ParsableNode {
 
   private assignmentsValue: Array<AssignmentDefinition> = [];
 
-  public nodeType = "ScenarioResults";
+  public nodeType = NodeType.ScenarioResults;
 
   public get assignments(): ReadonlyArray<AssignmentDefinition> {
     return this.assignmentsValue;

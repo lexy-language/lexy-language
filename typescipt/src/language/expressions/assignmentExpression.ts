@@ -14,9 +14,10 @@ import {IdentifierExpression} from "./identifierExpression";
 import {MemberAccessExpression} from "./memberAccessExpression";
 import {asTypeWithMembers} from "../variableTypes/ITypeWithMembers";
 import {VariableType} from "../variableTypes/variableType";
+import {NodeType} from "../nodeType";
 
 export function instanceOfAssignmentExpression(object: any): object is AssignmentExpression {
-  return object?.nodeType == 'AssignmentExpression';
+  return object?.nodeType == NodeType.AssignmentExpression;
 }
 
 export function asAssignmentExpression(object: any): AssignmentExpression | null {
@@ -24,7 +25,7 @@ export function asAssignmentExpression(object: any): AssignmentExpression | null
 }
 
 export class AssignmentExpression extends Expression {
-  public nodeType = "AssignmentExpression"
+  public nodeType = NodeType.AssignmentExpression;
   public variable: Expression
   public assignment: Expression
 

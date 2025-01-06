@@ -11,9 +11,10 @@ import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResu
 import {TokenList} from "../../parser/tokens/tokenList";
 import {VariableType} from "../variableTypes/variableType";
 import {ElseExpression} from "./elseExpression";
+import {NodeType} from "../nodeType";
 
 export function instanceOfParenthesizedExpression(object: any): object is ParenthesizedExpression {
-  return object?.nodeType == "ParenthesizedExpression";
+  return object?.nodeType == NodeType.ParenthesizedExpression;
 }
 
 export function asParenthesizedExpression(object: any): ParenthesizedExpression | null {
@@ -22,9 +23,9 @@ export function asParenthesizedExpression(object: any): ParenthesizedExpression 
 
 export class ParenthesizedExpression extends Expression {
 
-  public nodeType = "ParenthesizedExpression"
+  public nodeType = NodeType.ParenthesizedExpression;
 
-  public expression: Expression
+  public expression: Expression;
 
   constructor(expression: Expression, source: ExpressionSource, reference: SourceReference)  {
     super(source, reference);

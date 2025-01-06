@@ -2,10 +2,11 @@ import {ComplexTypeReference} from "./complexTypeReference";
 import {ComplexType} from "./complexType";
 import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "./variableType";
+import {VariableTypeName} from "./variableTypeName";
 
 export class FunctionResultsType extends ComplexTypeReference {
 
-  public readonly variableTypeName = "FunctionResultsType";
+  public readonly variableTypeName = VariableTypeName.FunctionResultsType;
   public functionName: string
   public complexType: ComplexType
 

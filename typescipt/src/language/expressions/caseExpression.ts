@@ -12,9 +12,10 @@ import {SourceReference} from "../../parser/sourceReference";
 import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResult} from "./parseExpressionResult";
 import {Keywords} from "../../parser/Keywords";
 import {TokenList} from "../../parser/tokens/tokenList";
+import {NodeType} from "../nodeType";
 
 export function instanceOfCaseExpression(object: any): object is CaseExpression {
-  return object?.nodeType == "CaseExpression";
+  return object?.nodeType == NodeType.CaseExpression;
 }
 
 export function asCaseExpression(object: any): CaseExpression | null {
@@ -29,7 +30,7 @@ export class CaseExpression extends Expression implements IParsableNode {
   public readonly isChildExpression: true;
 
   public readonly isDefault: boolean;
-  public readonly nodeType = "CaseExpression";
+  public readonly nodeType = NodeType.CaseExpression;
   public readonly value: Expression | null;
 
    public get expressions(): Array<Expression>  {

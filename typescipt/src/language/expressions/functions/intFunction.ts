@@ -3,9 +3,10 @@ import {PrimitiveType} from "../../variableTypes/PrimitiveType";
 import {Expression} from "../expression";
 import {SourceReference} from "../../../parser/sourceReference";
 import {ExpressionFunction} from "./expressionFunction";
+import {NodeType} from "../../nodeType";
 
 export function instanceOfIntFunction(object: any): object is IntFunction {
-   return object?.nodeType == 'IntFunction';
+   return object?.nodeType == NodeType.IntFunction;
 }
 
 export function asIntFunction(object: any): IntFunction | null {
@@ -15,7 +16,7 @@ export function asIntFunction(object: any): IntFunction | null {
 export class IntFunction extends SingleArgumentFunction {
    
    public static name: string = `INT`;
-   public readonly nodeType = "IntFunction";
+   public readonly nodeType = NodeType.IntFunction;
 
    protected override get functionHelp(): string {
       return `${IntFunction.name} expects 1 argument (Value)`;

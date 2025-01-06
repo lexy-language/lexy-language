@@ -19,9 +19,10 @@ import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
 import {VariableSource} from "../variableSource";
 import {VariableDefinition} from "../variableDefinition";
+import {NodeType} from "../nodeType";
 
 export function instanceOfScenario(object: any) {
-  return object?.nodeType == "Scenario";
+  return object?.nodeType == NodeType.Scenario;
 }
 
 export function asScenario(object: any): Scenario | null {
@@ -34,7 +35,7 @@ export class Scenario extends RootNode {
   private enumValue: EnumDefinition | null;
   private tableValue: Table | null;
 
-  public readonly nodeType = "Scenario";
+  public readonly nodeType = NodeType.Scenario;
   public readonly name: ScenarioName;
 
   public get functionNode(): Function | null {

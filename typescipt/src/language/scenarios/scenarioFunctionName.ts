@@ -3,12 +3,13 @@ import {SourceReference} from "../../parser/sourceReference";
 import {IValidationContext} from "../../parser/validationContext";
 import {isNullOrEmpty, isValidIdentifier} from "../../parser/tokens/character";
 import {IParseLineContext} from "../../parser/ParseLineContext";
+import {NodeType} from "../nodeType";
 
 export class ScenarioFunctionName extends Node {
 
   private valueValue: string;
 
-  public readonly nodeType = "ScenarioFunctionName";
+  public readonly nodeType = NodeType.ScenarioFunctionName;
 
   public get value() {
     return this.valueValue;

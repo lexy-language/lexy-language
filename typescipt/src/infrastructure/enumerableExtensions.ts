@@ -1,7 +1,7 @@
 
-export function any<TItem>(array: Array<TItem>, where: (value: TItem) => boolean): boolean {
+export function any<TItem>(array: Array<TItem>, where: (value: TItem) => boolean = null): boolean {
   for (const item of array) {
-    if (where(item)) return true;
+    if (where == null || where(item)) return true;
   }
   return false;
 }

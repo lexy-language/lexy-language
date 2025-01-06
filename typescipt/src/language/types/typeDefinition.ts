@@ -9,9 +9,10 @@ import {VariableDefinition} from "../variableDefinition";
 import {SourceReference} from "../../parser/sourceReference";
 import {NodeName} from "../../parser/nodeName";
 import {VariableSource} from "../variableSource";
+import {NodeType} from "../nodeType";
 
 export function instanceOfTypeDefinition(object: any) {
-  return object?.nodeType == "TypeDefinition";
+  return object?.nodeType == NodeType.TypeDefinition;
 }
 
 export function asTypeDefinition(object: any): TypeDefinition | null {
@@ -22,7 +23,7 @@ export class TypeDefinition extends RootNode {
 
   private variablesValue: Array<VariableDefinition> = [];
 
-  public readonly nodeType = "TypeDefinition";
+  public readonly nodeType = NodeType.TypeDefinition;
 
   public name: TypeName = new TypeName();
 

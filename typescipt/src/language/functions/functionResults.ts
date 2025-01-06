@@ -5,12 +5,13 @@ import {IParsableNode, ParsableNode} from "../parsableNode";
 import {VariableSource} from "../variableSource";
 import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
+import {NodeType} from "../nodeType";
 
 export class FunctionResults extends ParsableNode {
 
   private variablesValue: Array<VariableDefinition> = [];
 
-  public readonly nodeType = "FunctionResults";
+  public readonly nodeType = NodeType.FunctionResults;
 
   public get variables(): ReadonlyArray<VariableDefinition> {
     return this.variablesValue;

@@ -5,15 +5,16 @@ import {ExpressionFunction} from "./expressionFunction";
 import {Expression} from "../expression";
 import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {VariableType} from "../../variableTypes/variableType";
+import {NodeType} from "../../nodeType";
 
 export class RoundFunction extends ExpressionFunction {
    public static readonly name: string = `ROUND`;
 
    private get functionHelp() {
-     return `'${this.name}' expects 2 arguments (Number, Digits).`;
+     return `'${RoundFunction.name}' expects 2 arguments (Number, Digits).`;
    }
 
-  public readonly nodeType = "RoundFunction";
+  public readonly nodeType = NodeType.RoundFunction;
   public numberExpression: Expression;
   public digitsExpression: Expression;
 

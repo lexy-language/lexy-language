@@ -5,10 +5,11 @@ import {IParseLineContext} from "../../parser/ParseLineContext";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {IValidationContext} from "../../parser/validationContext";
 import {isValidIdentifier} from "../../parser/tokens/character";
+import {NodeType} from "../nodeType";
 
 export class EnumMember extends Node {
 
-  public nodeType: 'EnumMember';
+  public nodeType = NodeType.EnumMember;
   public name: string;
   public valueLiteral: NumberLiteralToken | null;
   public numberValue: number;

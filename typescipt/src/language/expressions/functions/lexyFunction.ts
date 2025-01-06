@@ -12,6 +12,7 @@ import {FillParametersFunction} from "./fillParametersFunction";
 import {ExtractResultsFunction} from "./extractResultsFunction";
 import {asIdentifierExpression} from "../identifierExpression";
 import {VariableType} from "../../variableTypes/variableType";
+import {NodeType} from "../../nodeType";
 
 export class LexyFunction extends ExpressionFunction implements IHasNodeDependencies {
 
@@ -20,7 +21,7 @@ export class LexyFunction extends ExpressionFunction implements IHasNodeDependen
   private functionResultsTypeValue: ComplexType;
 
   public readonly hasNodeDependencies = true;
-  public readonly nodeType = "LexyFunction";
+  public readonly nodeType = NodeType.LexyFunction;
 
   public readonly functionName: string
   public readonly argumentValues: Array<Expression>;

@@ -7,25 +7,21 @@ import {VariableType} from "../variableTypes/variableType";
 
 export abstract class Expression extends Node {
 
-   public source: ExpressionSource;
+  public source: ExpressionSource;
 
-   protected constructor(source: ExpressionSource, reference: SourceReference) {
-     super(reference);
-     this.source = source;
-   }
+  protected constructor(source: ExpressionSource, reference: SourceReference) {
+    super(reference);
+    this.source = source;
+  }
 
-   public toString(): string {
-     let writer = new Array<string>();
-     for (let index = 0 ; index < this.source.tokens.length ; index++) {
-       let token = this.source.tokens.get(index);
-       writer.push(token.value);
-     }
-     return writer.join('');
-   }
+  public toString(): string {
+    let writer = new Array<string>();
+    for (let index = 0; index < this.source.tokens.length; index++) {
+      let token = this.source.tokens.get(index);
+      writer.push(token.value);
+    }
+    return writer.join('');
+  }
 
-   public A(): string{
-     return this.toString();
-   }
-
-   public abstract deriveType(context: IValidationContext): VariableType | null;
+  public abstract deriveType(context: IValidationContext): VariableType | null;
 }

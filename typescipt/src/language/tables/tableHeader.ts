@@ -7,12 +7,13 @@ import {StringLiteralToken} from "../../parser/tokens/stringLiteralToken";
 import {IValidationContext} from "../../parser/validationContext";
 import {MemberAccessLiteral} from "../../parser/tokens/memberAccessLiteral";
 import {firstOrDefault} from "../../infrastructure/enumerableExtensions";
+import {NodeType} from "../nodeType";
 
 export class TableHeader extends Node {
 
   private readonly columnsValue: Array<ColumnHeader>;
 
-  public readonly nodeType = "TableHeader";
+  public readonly nodeType = NodeType.TableHeader;
 
    public get columns(): ReadonlyArray<ColumnHeader> {
      return this.columnsValue;

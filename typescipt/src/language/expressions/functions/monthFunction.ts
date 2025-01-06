@@ -3,15 +3,16 @@ import {Expression} from "../expression";
 import {SourceReference} from "../../../parser/sourceReference";
 import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {ExpressionFunction} from "./expressionFunction";
+import {NodeType} from "../../nodeType";
 
 export class MonthFunction extends SingleArgumentFunction {
 
    public static readonly name: string = `MONTH`;
 
-   public readonly nodeType = "MonthFunction";
+   public readonly nodeType = NodeType.MonthFunction;
 
    protected override get functionHelp(): string {
-      return `'{Name} expects 1 argument (Date)`;
+      return `'${MonthFunction.name} expects 1 argument (Date)`;
    }
 
    constructor(valueExpression: Expression, reference: SourceReference) {

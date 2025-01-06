@@ -15,6 +15,16 @@ import {TokenList} from "../../parser/tokens/tokenList";
 import {Keywords} from "../../parser/Keywords";
 import {PrimitiveType} from "../variableTypes/primitiveType";
 import {VariableType} from "../variableTypes/variableType";
+import {NodeType} from "../nodeType";
+import {LiteralExpression} from "./literalExpression";
+
+export function instanceOfIfExpression(object: any): boolean {
+  return object?.nodeType == NodeType.IfExpression;
+}
+
+export function asIfExpression(object: any): IfExpression | null {
+  return instanceOfIfExpression(object) ? object as IfExpression : null;
+}
 
 export class IfExpression extends Expression implements IParsableNode, IParentExpression {
 
@@ -22,11 +32,11 @@ export class IfExpression extends Expression implements IParsableNode, IParentEx
 
   public isParentExpression: true;
   public isParsableNode: true;
-  public nodeType = "IfExpression";
+  public nodeType = NodeType.IfExpression;
 
   public condition: Expression
 
-  public get trueExpressions(): Array<Expression> {
+  public get trueExpressions(): ReadonlyArray<Expression> {
     return this.trueExpressionsValues.asArray();
   }
 

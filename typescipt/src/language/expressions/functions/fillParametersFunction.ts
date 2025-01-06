@@ -13,13 +13,14 @@ import {INode} from "../../node";
 import {ComplexType} from "../../variableTypes/complexType";
 import {VariableType} from "../../variableTypes/variableType";
 import {Function} from "../../functions/function";
+import {NodeType} from "../../nodeType";
 
 export class FillParametersFunction extends ExpressionFunction implements IHasNodeDependencies {
 
    public static readonly name = `fill`;
 
   public readonly hasNodeDependencies = true;
-  public readonly nodeType = "FillParametersFunction";
+  public readonly nodeType = NodeType.FillParametersFunction;
 
   protected get functionHelp() {
     return `${FillParametersFunction.name} expects 1 argument (Function.Parameters)`;

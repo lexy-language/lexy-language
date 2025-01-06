@@ -10,6 +10,7 @@ import {IRootNode} from "../../rootNode";
 import {INode} from "../../node";
 import {IValidationContext} from "../../../parser/validationContext";
 import {VariableType} from "../../variableTypes/variableType";
+import {NodeType} from "../../nodeType";
 
 export class NewFunction extends ExpressionFunction implements IHasNodeDependencies {
 
@@ -17,7 +18,7 @@ export class NewFunction extends ExpressionFunction implements IHasNodeDependenc
 
   public readonly hasNodeDependencies = true;
   public static readonly name: string = `new`;
-  public readonly nodeType = "NewFunction";
+  public readonly nodeType = NodeType.NewFunction;
 
   protected get functionHelp() {
     return `${NewFunction.name} expects 1 argument (Function.Parameters)`;

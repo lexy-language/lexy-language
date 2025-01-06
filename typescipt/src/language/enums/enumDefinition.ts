@@ -9,9 +9,10 @@ import {any, lastOrDefault} from "../../infrastructure/enumerableExtensions";
 import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
 import {DuplicateChecker} from "../duplicateChecker";
+import {NodeType} from "../nodeType";
 
 export function instanceOfEnumDefinition(object: any) {
-  return object?.nodeType == "EnumDefinition";
+  return object?.nodeType == NodeType.EnumDefinition;
 }
 
 export function asEnumDefinition(object: any): EnumDefinition | null {
@@ -22,7 +23,7 @@ export class EnumDefinition extends RootNode {
 
   public name: EnumName
 
-  public nodeType = "EnumDefinition";
+  public nodeType = NodeType.EnumDefinition;
 
    public override get nodeName() {
      return this.name.value;

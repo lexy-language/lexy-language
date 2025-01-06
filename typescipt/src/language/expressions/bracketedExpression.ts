@@ -12,9 +12,10 @@ import {OperatorType} from "../../parser/tokens/operatorType";
 import {OperatorToken} from "../../parser/tokens/operatorToken";
 import {VariableType} from "../variableTypes/variableType";
 import {IntFunction} from "./functions/intFunction";
+import {NodeType} from "../nodeType";
 
 export function instanceOfBracketedExpression(object: any): object is BracketedExpression {
-  return object?.nodeType == 'BracketedExpression';
+  return object?.nodeType == NodeType.BracketedExpression;
 }
 
 export function asBracketedExpression(object: any): BracketedExpression | null {
@@ -23,7 +24,7 @@ export function asBracketedExpression(object: any): BracketedExpression | null {
 
 export class BracketedExpression extends Expression {
 
-  public nodeType = "BracketedExpression"
+  public nodeType = NodeType.BracketedExpression;
   public functionName: string
   public expression: Expression
 

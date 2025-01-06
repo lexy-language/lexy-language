@@ -3,10 +3,11 @@ import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {SourceReference} from "../../../parser/sourceReference";
 import {Expression} from "../expression";
 import {ExpressionFunction} from "./expressionFunction";
+import {NodeType} from "../../nodeType";
 
 export class AbsFunction extends SingleArgumentFunction {
 
-   public readonly nodeType = "AbsFunction";
+   public readonly nodeType = NodeType.AbsFunction;
    public static readonly name = `ABS`;
 
    protected override get functionHelp(): string {

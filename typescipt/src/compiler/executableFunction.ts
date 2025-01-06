@@ -1,50 +1,65 @@
+import {VariableReference} from "../language/variableReference";
+import {IExecutionContext} from "../runTime/executionContext";
 
+export class FunctionResult {
+  private readonly valueObject: { [key: string]: any };
+
+  constructor(valueObject: any) {
+    this.valueObject = valueObject;
+  }
+
+  public number(name: string): number {
+    const value = this.valueObject[name];
+    return value as number;
+  }
+
+  public getValue(expectedVariable: VariableReference): any {
+    let currentReference = expectedVariable;
+    let currentValue = this.valueObject[expectedVariable.parentIdentifier];
+    while (currentReference.hasChildIdentifiers) {
+      currentReference = currentReference.childrenReference();
+      currentValue = this.valueObject[currentReference.parentIdentifier];
+    }
+
+    return currentValue;
+  }
+}
 
 export class ExecutableFunction {
-   private readonly IExecutionContext context;
-   private readonly Type parametersType;
+  private functionReference: Function;
 
-   private readonly MethodInfo runMethod;
-   private readonly IDictionary<string, FieldInfo> variables = dictionary<string, FieldInfo>(): new;
+  constructor(functionReference: Function) {
+    this.functionReference = functionReference;
+  }
 
-   constructor(functionType: Type, context: IExecutionContext) {
-     this.context = context ?? throw new Error(nameof(context));
+  public run(executionContext: IExecutionContext, values: { [key: string]: any } | null = null): FunctionResult {
+    let parameters = this.getParameters(values);
+    let results = this.functionReference(parameters);
+    return new FunctionResult(results);
+  }
 
-     runMethod = functionType.GetMethod(LexyCodeConstants.RunMethod, BindingFlags.Static | BindingFlags.Public);
-     parametersType = functionType.GetNestedType(LexyCodeConstants.ParametersType);
-   }
+  private getParameters(values: { [p: string]: any } | null) {
+    let parameters = {};
 
-   public run(): FunctionResult {
-     return Run(new Dictionary<string, object>());
-   }
+    if (values == null) return parameters;
 
-   public run(values: IDictionary<string, object>): FunctionResult {
-     let parameters = CreateParameters();
+    for (const key in values) {
+      const value = values[key];
+      let field = this.getParameterSetter(parameters, key);
+      //let convertedValue = this.changeType(value, field.fieldType); // todo very variable type
+      field(value);
+    }
+    return parameters;
+  }
 
-     foreach (let value in values) {
-       let field = GetParameterField(parameters, value.Key);
-       let convertedValue = Convert.ChangeType(value.Value, field.FieldType);
-       field.SetValue(parameters, convertedValue);
-     }
+  private getParameterSetter(parameters: any, key: string): ((value: any) => void) {
+    let currentReference = VariableReference.parse(key);
+    let currentValue = parameters;
+    while (currentReference.hasChildIdentifiers) {
+      currentValue = parameters[currentReference.parentIdentifier];
+      currentReference = currentReference.childrenReference();
+    }
 
-     let results = runMethod.Invoke(null, new[] { parameters, context });
-
-     return new FunctionResult(results);
-   }
-
-   private createParameters(): object {
-     return Activator.CreateInstance(parametersType);
-   }
-
-   private getParameterField(parameters: object, name: string): FieldInfo {
-     if (variables.containsKey(name)) return variables[name];
-
-     let type = parameters.getType();
-     let field = type.GetField(name, BindingFlags.Instance | BindingFlags.Public);
-     if (field == null)
-       throw new Error($`Couldn't find parameter field: '{name}' on type: '{type.Name}'`);
-
-     variables[name] = field;
-     return field;
-   }
+    return (value: any) => currentValue[currentReference.parentIdentifier] = value;
+  }
 }

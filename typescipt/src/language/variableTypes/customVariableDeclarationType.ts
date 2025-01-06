@@ -3,9 +3,10 @@ import {SourceReference} from "../../parser/sourceReference";
 import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "./variableType";
 import {INode} from "../node";
+import {NodeType} from "../nodeType";
 
 export function instanceOfCustomVariableDeclarationType(object: any): boolean {
-  return object?.nodeType == "CustomVariableDeclarationType";
+  return object?.nodeType == NodeType.CustomVariableDeclarationType;
 }
 
 export function asCustomVariableDeclarationType(object: any): CustomVariableDeclarationType | null {
@@ -14,7 +15,7 @@ export function asCustomVariableDeclarationType(object: any): CustomVariableDecl
 
 export class CustomVariableDeclarationType extends VariableDeclarationType {
 
-  public nodeType = "CustomVariableDeclarationType";
+  public nodeType = NodeType.CustomVariableDeclarationType;
   public type: string;
 
    constructor(type: string, reference: SourceReference) {

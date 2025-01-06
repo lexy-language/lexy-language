@@ -9,9 +9,10 @@ import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
 import {ComplexType} from "../variableTypes/complexType";
 import {ComplexTypeMember} from "../variableTypes/complexTypeMember";
+import {NodeType} from "../nodeType";
 
 export function instanceOfTable(object: any) {
-  return object?.nodeType == "Table";
+  return object?.nodeType == NodeType.Table;
 }
 
 export function asTable(object: any): Table | null {
@@ -24,7 +25,7 @@ export class Table extends RootNode {
   private rowsValue: Array<TableRow> = [];
   private headerValue: TableHeader | null;
 
-  public readonly nodeType = "Table";
+  public readonly nodeType = NodeType.Table;
   public readonly name: TableName = new TableName();
 
   public get header(): TableHeader | null {

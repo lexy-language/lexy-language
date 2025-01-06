@@ -1,76 +1,81 @@
+import type {ISpecificationFileRunner} from "./specificationFileRunner";
+import type {IScenarioRunner} from "./scenarioRunner";
+import type {ILogger} from "../infrastructure/logger";
 
+import {Scenario} from "../language/scenarios/scenario";
 
 export interface ISpecificationRunnerContext {
-  number Failed
-  IReadOnlyCollection<ISpecificationFileRunner> FileRunners
+  failed: number
+  fileRunners: ReadonlyArray<ISpecificationFileRunner>
 
-  void Fail(Scenario scenario, string message);
-  void LogGlobal(string message);
-  void Log(string message);
-  void Success(Scenario scenario);
-  void Add(ISpecificationFileRunner fileRunner);
-  Array<IScenarioRunner> FailedScenariosRunners();
-  number CountScenarios();
+  fail(scenario: Scenario, message: string);
+  success(scenario: Scenario);
+
+  logGlobal(message: string);
+  log(message: string);
+
+  add(fileRunner: ISpecificationFileRunner);
+
+  failedScenariosRunners(): ReadonlyArray<IScenarioRunner>;
+  countScenarios(): number;
 }
 
+export class SpecificationRunnerContext implements ISpecificationRunnerContext {
 
-export class SpecificationRunnerContext extends ISpecificationRunnerContext, IDisposable {
-   private readonly Array<ISpecificationFileRunner> fileRunners new(): =;
+  private readonly fileRunnersValue: Array<ISpecificationFileRunner> = [];
+  private readonly logger: ILogger;
+  private failedValues = 0;
 
-   private readonly ILogger<SpecificationRunnerContext> logger;
+  constructor(logger: ILogger) {
+    this.logger = logger;
+  }
 
-   constructor(logger: ILogger<SpecificationRunnerContext>) {
-     this.logger = logger;
-   }
+  public get failed(): number {
+    return this.failedValues;
+  }
 
-   public dispose(): void {
-     foreach (let fileRunner in fileRunners) fileRunner.Dispose();
-   }
+  public get fileRunners() {
+    return this.fileRunnersValue;
+  }
 
-   //public Array<string> Messages = list<string>(): new;
+  public fail(scenario: Scenario, message: string): void {
+    this.failedValues++;
 
-   public number Failed { get; private set; }
+    let log = `- FAILED - ${scenario.name}: ${message}`;
 
-   public IReadOnlyCollection<ISpecificationFileRunner> FileRunners => fileRunners;
+    this.logger.logError(log);
+  }
 
-   public fail(scenario: Scenario, message: string): void {
-     Failed++;
+  public logGlobal(message: string): void {
+    this.logger.logInformation(message);
+  }
 
-     let log = $`- FAILED - {scenario.Name}: {message}`;
+  public log(message: string): void {
+    let log = ` ${message}`;
+    this.logger.logInformation(log);
+  }
 
-     Console.WriteLine(log);
-     logger.LogError(log);
-   }
+  public success(scenario: Scenario): void {
+    let log = `- SUCCESS - {scenario.Name}`;
+    this.logger.logInformation(log);
+  }
 
-   public logGlobal(message: string): void {
-     Console.WriteLine(Environment.NewLine + message + Environment.NewLine);
-     logger.logInformation(message);
-   }
+  public add(fileRunner: ISpecificationFileRunner): void {
+    this.fileRunners.push(fileRunner);
+  }
 
-   public log(message: string): void {
-     let log = $` {message}`;
-     Console.WriteLine(log);
-     logger.logInformation(log);
-   }
+  public failedScenariosRunners(): Array<IScenarioRunner> {
+    const result = [];
+    this.fileRunners.forEach(runner =>
+      runner.scenarioRunners.forEach(scenario => {
+        if (scenario.failed) result.push(scenario)
+      }));
+    return result;
+  }
 
-   public success(scenario: Scenario): void {
-     let log = $`- SUCCESS - {scenario.Name}`;
-     Console.WriteLine(log);
-     logger.logInformation(log);
-   }
-
-   public add(fileRunner: ISpecificationFileRunner): void {
-     fileRunners.Add(fileRunner);
-   }
-
-   public failedScenariosRunners(): Array<IScenarioRunner> {
-     return fileRunners
-       .SelectMany(runner => runner.ScenarioRunners)
-       .Where(scenario => scenario.failed);
-   }
-
-   public countScenarios(): number {
-     return FileRunners.Select(fileRunner => fileRunner.CountScenarioRunners())
-       .Aggregate((value, total) => value + total);
-   }
+  public countScenarios(): number {
+    let total = 0;
+    this.fileRunners.map(fileRunner => total += fileRunner.countScenarioRunners());
+    return total;
+  }
 }

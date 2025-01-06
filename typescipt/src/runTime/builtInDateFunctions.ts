@@ -1,59 +1,60 @@
-
+import moment from "moment";
 
 export class BuiltInDateFunctions {
    public static now(): Date {
-     return Date.Now;
+     return new Date();
    }
 
    public static today(): Date {
-     return Date.Today;
+     let now = new Date();
+     return new Date(now.getFullYear(), now.getMonth(), now.getDay());
    }
 
-   public static year(value: Date): decimal {
-     return value.Year;
+   public static year(value: Date): number {
+     return value.getFullYear();
    }
 
-   public static month(value: Date): decimal {
-     return value.Month;
+   public static month(value: Date): number {
+     return value.getMonth() + 1;
    }
 
-   public static day(value: Date): decimal {
-     return value.Day;
+   public static day(value: Date): number {
+     return value.getDay();
    }
 
-   public static hour(value: Date): decimal {
-     return value.Hour;
+   public static hour(value: Date): number {
+     return value.getHours();
    }
 
-   public static minute(value: Date): decimal {
-     return value.Minute;
+   public static minute(value: Date): number {
+     return value.getHours();
    }
 
-   public static second(value: Date): decimal {
-     return value.Second;
+   public static second(value: Date): number {
+     return value.getSeconds();
    }
 
-   public static years(end: Date, start: Date): decimal {
-     return DateTimeSpan.CompareDates(end, start).Years;
+   public static years(end: Date, start: Date): number {
+     return new moment(end).diff(moment(start), "years");
    }
 
-   public static months(end: Date, start: Date): decimal {
-     return DateTimeSpan.CompareDates(end, start).Months;
+   public static months(end: Date, start: Date): number {
+     return new moment(end).diff(moment(start), "months");
    }
 
-   public static days(end: Date, start: Date): decimal {
-     return DateTimeSpan.CompareDates(end, start).Days;
+   public static days(end: Date, start: Date): number {
+     return new moment(end).diff(moment(start), "days");
    }
 
-   public static hours(end: Date, start: Date): decimal {
-     return DateTimeSpan.CompareDates(end, start).Hours;
+   public static hours(end: Date, start: Date): number {
+     return new moment(end).diff(moment(start), "hours");
    }
 
-   public static minutes(end: Date, start: Date): decimal {
-     return DateTimeSpan.CompareDates(end, start).Minutes;
+   public static minutes(end: Date, start: Date): number {
+     return new moment(end).diff(moment(start), "minutes");
    }
 
-   public static seconds(end: Date, start: Date): decimal {
-     return DateTimeSpan.CompareDates(end, start).Seconds;
+   public static seconds(end: Date, start: Date): number {
+     return new moment(end).diff(moment(start), "seconds");
    }
 }

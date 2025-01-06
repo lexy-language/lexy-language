@@ -1,4 +1,4 @@
 
 export class LexySourceDocument {
-   public const string FileExtension = `lexy`;
+   public static readonly fileExtension: string = `lexy`;
 }

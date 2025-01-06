@@ -2,12 +2,13 @@ import {SourceReference} from "../../parser/sourceReference";
 import {INode, Node} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
 import {isNullOrEmpty, isValidIdentifier} from "../../parser/tokens/character";
+import {NodeType} from "../nodeType";
 
 export class EnumName extends Node {
 
   private valueValue: string;
 
-  public nodeType = "EnumName";
+  public nodeType = NodeType.EnumName;
 
   public get value() {
     return this.valueValue;

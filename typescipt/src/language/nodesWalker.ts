@@ -28,13 +28,13 @@ export class NodesWalker {
      return true;
    }
 
-   public static walkWithResult<T>(nodes: Array<INode>, action: (node : INode) => T): Array<T> {
+   public static walkWithResult<T>(nodes: ReadonlyArray<INode>, action: (node : INode) => T | null): Array<T> {
      let result = new Array<T>();
      NodesWalker.walkWithResultNodes(nodes, action, result);
      return result;
    }
 
-   private static walkWithResultNode<T>(node: INode, action: (node : INode) => T, result: Array<T>): void {
+   private static walkWithResultNode<T>(node: INode, action: (node : INode) => T | null, result: Array<T>): void {
      let actionResult = action(node);
      if (actionResult != null) result.push(actionResult);
 
@@ -43,7 +43,7 @@ export class NodesWalker {
      NodesWalker.walkWithResultNodes(children, action, result);
    }
 
-   private static walkWithResultNodes<T>(nodes: Array<INode>, action: (node : INode) => T, result: Array<T>): void {
+   private static walkWithResultNodes<T>(nodes: ReadonlyArray<INode>, action: (node : INode) => T | null, result: Array<T>): void {
      for (const node of nodes) {
        NodesWalker.walkWithResultNode(node, action, result);
      }

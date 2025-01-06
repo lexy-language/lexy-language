@@ -11,7 +11,7 @@ export class RunLexySpecifications extends ScopedServicesTestFixture {
     LoggingConfiguration.LogFileNames();
 
     let runner = GetService<ISpecificationsRunner>();
-    runner.RunAll(`../../../../../../laws/Specifications`);
+    runner.runAll(`../../../../../../laws/Specifications`);
   }
 
   it(
@@ -30,7 +30,7 @@ export class RunLexySpecifications extends ScopedServicesTestFixture {
 
   let
   runner = GetService<ISpecificationsRunner>();
-// runner.Run(`../../../../../../laws/Specifications/Isolate.lexy`);
+// runner.run(`../../../../../../laws/Specifications/Isolate.lexy`);
 
   runner
 .
@@ -38,7 +38,7 @@ export class RunLexySpecifications extends ScopedServicesTestFixture {
   Run(
 
 `../../../../../../laws/Specifications/Function/If.lexy`);
-  //runner.Run(`../../../../../../laws/Specifications/Function/Variables.lexy`);
-  //runner.Run(`../../../../../../laws/Specifications/BuiltInFunctions/Extract.lexy`);
+  //runner.run(`../../../../../../laws/Specifications/Function/Variables.lexy`);
+  //runner.run(`../../../../../../laws/Specifications/BuiltInFunctions/Extract.lexy`);
 }
 }

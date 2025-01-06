@@ -1,17 +1,23 @@
+import {ILogger} from "../infrastructure/logger";
 
+export interface IExecutionContext {
+  logDebug(message: string): void;
+  logVariable<T>(name: string , value: T ): void;
+}
 
-export class ExecutionContext extends IExecutionContext {
-   private readonly ILogger<ExecutionContext> logger;
+export class ExecutionContext implements IExecutionContext {
 
-   constructor(logger: ILogger<ExecutionContext>) {
-     this.logger = logger ?? throw new Error(nameof(logger));
+  private readonly logger: ILogger;
+
+   constructor(logger: ILogger) {
+     this.logger = logger;
    }
 
    public logDebug(message: string): void {
-     logger.LogDebug(message);
+     this.logger.logDebug(message);
    }
 
    public logVariable<T>(name: string, value: T): void {
-     logger.LogDebug(` {Name}: {Value}`, name, value);
+     this.logger.logDebug(` ${name}: ${value}`);
    }
 }

@@ -13,9 +13,10 @@ import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResu
 import {TokenList} from "../../parser/tokens/tokenList";
 import {Keywords} from "../../parser/Keywords";
 import {VariableType} from "../variableTypes/variableType";
+import {NodeType} from "../nodeType";
 
 export function instanceOfElseExpression(object: any): object is ElseExpression {
-  return object?.nodeType == "ElseExpression";
+  return object?.nodeType == NodeType.ElseExpression;
 }
 
 export function asElseExpression(object: any): ElseExpression | null {
@@ -27,10 +28,10 @@ export class ElseExpression extends Expression implements IParsableNode, IChildE
 
   public isParsableNode: true;
   public isChildExpression: true;
-  public nodeType = "ElseExpression";
+  public nodeType = NodeType.ElseExpression;
 
-  public get falseExpressions() {
-    return this.falseExpressionsValue;
+  public get falseExpressions(): ReadonlyArray<Expression> {
+    return this.falseExpressionsValue.asArray();
   }
 
   constructor(source: ExpressionSource, reference: SourceReference, factory: IExpressionFactory) {

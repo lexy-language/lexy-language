@@ -12,13 +12,23 @@ import {newParseExpressionFailed, newParseExpressionSuccess, ParseExpressionResu
 import {TokenList} from "../../parser/tokens/tokenList";
 import {Keywords} from "../../parser/Keywords";
 import {VariableType} from "../variableTypes/variableType";
+import {NodeType} from "../nodeType";
+import {IfExpression} from "./ifExpression";
+
+export function instanceOfSwitchExpression(object: any): boolean {
+  return object?.nodeType == NodeType.SwitchExpression;
+}
+
+export function asSwitchExpression(object: any): SwitchExpression | null {
+  return instanceOfSwitchExpression(object) ? object as SwitchExpression : null;
+}
 
 export class SwitchExpression extends Expression implements IParsableNode, I {
 
   private factory: IExpressionFactory;
 
   public isParsableNode: true;
-  public nodeType = "SwitchExpression";
+  public nodeType = NodeType.SwitchExpression;
 
   public condition: Expression;
   public cases: Array<CaseExpression> = [];

@@ -5,10 +5,20 @@ import {VariableType} from "./variableType";
 import {PrimitiveType} from "./primitiveType";
 import {TableRowType} from "./tableRowType";
 import {ComplexTypeMember} from "./complexTypeMember";
+import {VariableTypeName} from "./variableTypeName";
+import {EnumType} from "./enumType";
+
+export function instanceOfTableType(object: any): object is TableType {
+  return object?.variableTypeName == VariableTypeName.TableType;
+}
+
+export function asTableType(object: any): TableType | null {
+  return instanceOfTableType(object) ? object as TableType : null;
+}
 
 export class TableType extends TypeWithMembers {
 
-  public readonly variableTypeName = "TableType";
+  public readonly variableTypeName = VariableTypeName.TableType;
    public readonly type: string;
    public readonly table: Table;
 

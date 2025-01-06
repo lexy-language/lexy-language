@@ -4,9 +4,10 @@ import {IValidationContext} from "../../parser/validationContext";
 import {VariableType} from "./variableType";
 import {PrimitiveType} from "./primitiveType";
 import {INode} from "../node";
+import {NodeType} from "../nodeType";
 
 export function instanceOfPrimitiveVariableDeclarationType(object: any): boolean {
-  return object?.nodeType == "PrimitiveVariableDeclarationType";
+  return object?.nodeType == NodeType.PrimitiveVariableDeclarationType;
 }
 
 export function asPrimitiveVariableDeclarationType(object: any): PrimitiveVariableDeclarationType | null {
@@ -15,7 +16,7 @@ export function asPrimitiveVariableDeclarationType(object: any): PrimitiveVariab
 
 export class PrimitiveVariableDeclarationType extends VariableDeclarationType {
 
-  public nodeType = "PrimitiveVariableDeclarationType";
+  public nodeType = NodeType.PrimitiveVariableDeclarationType;
   public type: string
 
   constructor(type: string, reference: SourceReference) {

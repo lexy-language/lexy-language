@@ -4,14 +4,13 @@ import {ParserContext} from "../src/parser/parserContext";
 import {Tokenizer} from "../src/parser/tokens/tokenizer";
 import {ExpressionFactory} from "../src/language/expressions/expressionFactory";
 import {IParserLogger, ParserLogger} from "../src/parser/parserLogger";
-import {ConsoleLogger} from "../src/parser/logger";
 import {IFileSystem} from "../src/parser/IFileSystem";
 import {asTable, Table} from "../src/language/tables/table";
 import {asScenario, Scenario} from "../src/language/scenarios/scenario";
 import {asEnumDefinition, EnumDefinition} from "../src/language/enums/enumDefinition";
 import {RootNode} from "../src/language/rootNode";
 import {asFunction, Function} from "../src/language/functions/function";
-
+import {LoggingConfiguration} from "./testsInitialization";
 
 class NodeFileSystem implements IFileSystem {
   combine(fullPath: string, fileName: string): string {
@@ -37,10 +36,26 @@ class NodeFileSystem implements IFileSystem {
   readAllLines(fileName: string): Array<string> {
     return [];
   }
+
+  directoryExists(absoluteFolder: string): boolean {
+    return false;
+  }
+
+  getDirectories(folder: string): Array<string> {
+    return [];
+  }
+
+  getDirectoryFiles(folder: string, filter: string): Array<string> {
+    return [];
+  }
+
+  isPathRooted(folder: string): boolean {
+    return false;
+  }
 }
 
 export function parseNodes(code: string): { nodes: RootNodeList, logger: IParserLogger } {
-  const parserLogger = new ParserLogger(new ConsoleLogger())
+  const parserLogger = new ParserLogger(LoggingConfiguration.getParserLogger())
   const expressionFactory = new ExpressionFactory();
   const fileSystem = new NodeFileSystem();
   const context = new ParserContext(parserLogger, fileSystem, expressionFactory)

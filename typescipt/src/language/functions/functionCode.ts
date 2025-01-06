@@ -7,12 +7,13 @@ import {asParsableNode, IParsableNode, ParsableNode} from "../parsableNode";
 import {Expression} from "../expressions/expression";
 import {ExpressionList} from "../expressions/expressionList";
 import {SourceReference} from "../../parser/sourceReference";
+import {NodeType} from "../nodeType";
 
 export class FunctionCode extends ParsableNode {
 
    private readonly expressionsValue: ExpressionList;
 
-  public readonly nodeType = "FunctionCode";
+  public readonly nodeType = NodeType.FunctionCode;
 
   public get expressions(): ReadonlyArray<Expression> {
     return this.expressionsValue.asArray();

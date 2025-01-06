@@ -5,8 +5,9 @@ import {TokenValidator} from "../../src/parser/tokenValidator";
 import {ParseLineContext} from "../../src/parser/ParseLineContext";
 import {TokenizeFailed} from "../../src/parser/tokens/tokenizeResult";
 import {ExpressionFactory} from "../../src/language/expressions/expressionFactory";
-import {ConsoleLogger} from "../../src/parser/logger";
+import {ConsoleLogger} from "../../src/infrastructure/logger";
 import {ParserLogger} from "../../src/parser/parserLogger";
+import {LoggingConfiguration} from "../testsInitialization";
 
 export function tokenize(value: string): TokenValidator {
 
@@ -18,7 +19,7 @@ export function tokenize(value: string): TokenValidator {
     throw new Error(`Process line failed: ` + tokens.errorMessage);
   }
 
-  const logger = new ParserLogger(new ConsoleLogger());
+  const logger = new ParserLogger(LoggingConfiguration.getParserLogger());
   const expressionFactory = new ExpressionFactory();
 
   const parseLineContext = new ParseLineContext(line, logger, expressionFactory);

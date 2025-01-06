@@ -2,7 +2,7 @@ import {Token} from "./token";
 import {ILiteralToken} from "./ILiteralToken";
 import {TokenCharacter} from "./tokenCharacter";
 import {TokenValues} from "./tokenValues";
-import {VariableReference} from "../../runTime/variableReference";
+import {VariableReference} from "../../language/variableReference";
 import {instanceOfTypeWithMembers, ITypeWithMembers} from "../../language/variableTypes/ITypeWithMembers";
 import {VariableType} from "../../language/variableTypes/variableType";
 import {IValidationContext} from "../validationContext";

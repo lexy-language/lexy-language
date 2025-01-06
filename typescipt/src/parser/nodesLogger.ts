@@ -3,7 +3,7 @@ import type {INode} from "../language/node";
 
 export class NodesLogger {
    private readonly builder: string[] = [];
-   private indent: number ;
+   private indent: number = 0;
 
    public log(nodes: Array<INode>): void {
      for (const node of nodes) {

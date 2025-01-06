@@ -1,5 +1,14 @@
 import {TypeNames} from "./TypeNames";
 import {VariableType} from "./variableType";
+import {VariableTypeName} from "./variableTypeName";
+
+export function instanceOfPrimitiveType(object: any): object is PrimitiveType {
+  return object?.variableTypeName == VariableTypeName.PrimitiveType;
+}
+
+export function asPrimitiveType(object: any): PrimitiveType | null {
+  return instanceOfPrimitiveType(object) ? object as PrimitiveType : null;
+}
 
 export class PrimitiveType extends VariableType
 {
@@ -8,7 +17,7 @@ export class PrimitiveType extends VariableType
   public static readonly number: PrimitiveType = new PrimitiveType(TypeNames.number);
   public static readonly date: PrimitiveType = new PrimitiveType(TypeNames.date);
 
-  public readonly variableTypeName = "PrimitiveType";
+  public readonly variableTypeName = VariableTypeName.PrimitiveType;
 
   public type: string;
 

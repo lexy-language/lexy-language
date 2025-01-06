@@ -1,193 +1,190 @@
+import type {ILexyCompiler} from "../compiler/lexyCompiler";
+import type {IParserLogger} from "../parser/parserLogger";
+import type {ISpecificationRunnerContext} from "./specificationRunnerContext";
+
+import {CompilerResult} from "../compiler/compilerResult";
+import {Function} from "../language/functions/function";
+import {Scenario} from "../language/scenarios/scenario";
+import {RootNodeList} from "../language/rootNodeList";
+import {format} from "../infrastructure/formatting";
+import {FunctionResult} from "../runTime/functionResult";
+import {TypeConverter} from "./typeConverter";
+import {any, firstOrDefault} from "../infrastructure/enumerableExtensions";
+import {ScenarioParameters} from "../language/scenarios/scenarioParameters";
+import {FunctionParameters} from "../language/functions/functionParameters";
+import {VariableType} from "../language/variableTypes/variableType";
+
 export interface IScenarioRunner {
-  boolean Failed
-  Scenario Scenario
+  failed: boolean;
+  scenario: Scenario;
 
-  void Initialize(string fileName, RootNodeList rootNodeList, Scenario scenario,
-  ISpecificationRunnerContext context, IServiceScope serviceScope, IParserLogger parserLogger);
+  run(): void;
 
-  void Run();
-  string ParserLogging();
+  parserLogging(): string;
 }
 
+export class ScenarioRunner implements IScenarioRunner {
 
-export class ScenarioRunner extends IScenarioRunner, IDisposable {
-   private readonly ILexyCompiler lexyCompiler;
-   private ISpecificationRunnerContext context;
+  private readonly context: ISpecificationRunnerContext;
+  private readonly compiler: ILexyCompiler;
+  private readonly fileName: string;
+  private readonly functionNode: Function;
+  private readonly parserLogger: IParserLogger;
+  private readonly rootNodeList: RootNodeList;
 
-   private string fileName;
-   private Function function;
-   private IParserLogger parserLogger;
-   private RootNodeList rootNodeList;
-   private IServiceScope serviceScope;
+  private failedValue: boolean;
 
-   constructor(lexyCompiler: ILexyCompiler) {
-     this.lexyCompiler = lexyCompiler;
-   }
+  public get failed(): boolean {
+    return this.failedValue;
+  }
 
-   public dispose(): void {
-     serviceScope?.Dispose();
-     serviceScope = null;
-   }
+  public readonly scenario: Scenario
 
-   public boolean Failed { get; private set; }
-   public Scenario Scenario { get; private set; }
+  constructor(fileName: string, compiler: ILexyCompiler, rootNodeList: RootNodeList, scenario: Scenario,
+              context: ISpecificationRunnerContext, parserLogger: IParserLogger) {
+    this.fileName = fileName;
+    this.compiler = compiler;
+    this.context = context;
+    this.rootNodeList = rootNodeList;
+    this.parserLogger = parserLogger;
 
-   public void Initialize(string fileName, RootNodeList rootNodeList, Scenario scenario,
-     ISpecificationRunnerContext context, IServiceScope serviceScope, IParserLogger parserLogger) {
-     //parserContext and runnerContext are managed by a parent ServiceProvider scope,
-     //thus they can't be injected via the constructor
-     if (this.fileName != null)
-       throw new Error(
-         `Initialize should only called once. Scope should be managed by ServiceProvider.CreateScope`);
+    this.scenario = scenario;
+    this.functionNode = scenario.functionNode ?? rootNodeList.getFunction(scenario.functionName.value);
+  }
 
-     this.fileName = fileName ?? throw new Error(nameof(fileName));
-     this.context = context;
+  public run(): void {
+    if (this.parserLogger.nodeHasErrors(this.scenario)) {
+      this.fail(` Parsing scenario failed: ${this.scenario.functionName}`);
+      this.parserLogger.errorNodeMessages(Scenario).forEach(this.context.log);
+      return;
+    }
 
-     this.rootNodeList = rootNodeList ?? throw new Error(nameof(rootNodeList));
-     this.parserLogger = parserLogger ?? throw new Error(nameof(parserLogger));
-     this.serviceScope = serviceScope ?? throw new Error(nameof(serviceScope));
+    if (!this.validateErrors()) return;
 
-     Scenario = scenario ?? throw new Error(nameof(scenario));
-     function = scenario.Function ?? rootNodeList.GetFunction(scenario.functionName.Value);
-   }
+    let nodes = this.functionNode.getFunctionAndDependencies(this.rootNodeList);
+    let compilerResult = this.compiler.compile(nodes);
+    let executable = compilerResult.getFunction(this.functionNode);
+    let values = this.getValues(this.scenario.parameters, this.functionNode.parameters, compilerResult);
 
-   public run(): void {
-     if (parserLogger.NodeHasErrors(Scenario)) {
-       Fail($` Parsing scenario failed: {Scenario.functionName}`);
-       parserLogger.ErrorNodeMessages(Scenario).ForEach(context.Log);
-       return;
-     }
+    let result = executable.run(values);
 
-     if (!ValidateErrors(context)) return;
+    let validationResultText = this.getValidationResult(result, compilerResult);
+    if (validationResultText.length > 0) {
+      this.fail(validationResultText);
+    } else {
+      this.context.success(Scenario);
+    }
+  }
 
-     let nodes = function.GetFunctionAndDependencies(rootNodeList);
-     let compilerResult = lexyCompiler.Compile(nodes);
-     let executable = compilerResult.GetFunction(function);
-     let values = GetValues(Scenario.Parameters, function.Parameters, compilerResult);
+  public parserLogging(): string {
+    return `------- Filename: ${this.fileName}\n${format(this.parserLogger.errorMessages(), 2)}`;
+  }
 
-     let result = executable.Run(values);
+  private fail(message: string): void {
+    this.failedValue = true;
+    this.context.fail(Scenario, message);
+  }
 
-     let validationResultText = GetValidationResult(result, compilerResult);
-     if (validationResultText.length > 0)
-       Fail(validationResultText);
-     else
-       context.Success(Scenario);
-   }
+  private getValidationResult(result: FunctionResult, compilerResult: CompilerResult): string {
+    const validationResult: Array<string> = [];
+    for (const expected of this.scenario.results.assignments) {
+      let actual = result.getValue(expected.variable);
+      let expectedValue =
+        TypeConverter.convert(compilerResult, expected.constantValue.value, expected.variableType);
 
-   public parserLogging(): string {
-     return $`------- Filename: {fileName}{Environment.NewLine}{parserLogger.errorMessages().Format(2)}`;
-   }
+      if (actual == null || expectedValue == null || !ScenarioRunner.compare(actual, expectedValue)) {
+        validationResult.push(
+          `'${expected.variable}' should be '${expectedValue ?? `<null>`}' (${expectedValue?.constructor.name}) but is '${actual ?? `<null>`} (${actual?.constructor.name})'`);
+      }
+    }
 
-   public static IScenarioRunner Create(string fileName, Scenario scenario,
-     IParserContext parserContext, ISpecificationRunnerContext context,
-     IServiceProvider serviceProvider) {
-     if (scenario == null) throw new Error(nameof(scenario));
+    return validationResult.toString();
+  }
 
-     let serviceScope = serviceProvider.CreateScope();
-     let scenarioRunner = serviceScope.ServiceProvider.GetRequiredService<IScenarioRunner>();
-     scenarioRunner.Initialize(fileName, parserContext.Nodes, scenario, context, serviceScope, parserContext.logger);
+  private validateErrors(): boolean {
+    if (this.scenario.expectRootErrors.hasValues) return this.validateRootErrors();
 
-     return scenarioRunner;
-   }
+    let node = this.functionNode ?? this.scenario.functionNode ?? this.scenario.enum ?? this.scenario.table;
+    let failedMessages = this.parserLogger.errorNodeMessages(node);
 
-   private fail(message: string): void {
-     Failed = true;
-     context.fail(Scenario, message);
-   }
+    if (failedMessages.length > 0 && !this.scenario.expectError.hasValue) {
+      this.fail(`Exception occurred: ${format(failedMessages, 2)}`);
+      return false;
+    }
 
-   private getValidationResult(result: FunctionResult, compilerResult: CompilerResult): string {
-     let validationResult = new StringWriter();
-     foreach (let expected in Scenario.results.Assignments) {
-       let actual = result.GetValue(expected.Variable);
-       let expectedValue =
-         TypeConverter.Convert(compilerResult, expected.ConstantValue.Value, expected.VariableType);
+    if (!this.scenario.expectError.hasValue) return true;
 
-       if (actual == null || expectedValue == null
-                || actual.getType() != expectedValue.getType()
-                || Comparer.Default.Compare(actual, expectedValue) != 0)
-         validationResult.WriteLine(
-           $`'{expected.Variable}' should be '{expectedValue ?? `<null>`}' ({expectedValue?.getType().Name}) but is '{actual ?? `<null>`} ({actual?.getType().Name})'`);
-     }
+    if (failedMessages.length == 0) {
+      this.fail(`No exception \n` +
+        ` Expected: ${this.scenario.expectError.message}\n`);
+      return false;
+    }
 
-     return validationResult.toString();
-   }
+    if (!any(failedMessages, message => this.scenario.expectError.message != null && message.includes(this.scenario.expectError.message))) {
+      this.fail(`Wrong exception \n` +
+        ` Expected: ${this.scenario.expectError.message}\n` +
+        ` Actual: ${format(failedMessages, 4)}`);
+      return false;
+    }
 
-   private validateErrors(runnerContext: ISpecificationRunnerContext): boolean {
-     if (Scenario.ExpectRootErrors.HasValues) return ValidateRootErrors();
+    this.context.success(Scenario);
+    return false;
+  }
 
-     let node = function ?? Scenario.Function ?? Scenario.Enum ?? (IRootNode)Scenario.Table;
-     let failedMessages = parserLogger.ErrorNodeMessages(node);
+  private validateRootErrors(): boolean {
+    let failedMessages = this.parserLogger.errorMessages();
+    if (!any(failedMessages)) {
+      this.fail(`No exceptions \n` +
+        ` Expected: ${format(this.scenario.expectRootErrors.messages, 4)}{Environment.NewLine}` +
+        ` Actual: none`);
+      return false;
+    }
 
-     if (failedMessages.length > 0 && !Scenario.ExpectError.HasValue) {
-       Fail(`Exception occured: ` + failedMessages.Format(2));
-       return false;
-     }
+    let failed = false;
+    for (const rootMessage of this.scenario.expectRootErrors.messages) {
+      let failedMessage = firstOrDefault(failedMessages, message => message.includes(rootMessage));
+      if (failedMessage != null) {
+        failedMessages = failedMessages.filter(item => item !== failedMessage);
+      } else {
+        failed = true;
+      }
+    }
 
-     if (!Scenario.ExpectError.HasValue) return true;
+    if (!any(failedMessages) && !failed) {
+      this.context.success(Scenario);
+      return false; // don't compile and run rest of scenario
+    }
 
-     if (failedMessages.length == 0) {
-       Fail($`No exception {Environment.NewLine}` +
-         $` Expected: {Scenario.ExpectError.Message}{Environment.NewLine}`);
-       return false;
-     }
+    this.fail(`Wrong exception \n` +
+      ` Expected: ${format(this.scenario.expectRootErrors.messages, 4)}\n` +
+      ` Actual: ${format(this.parserLogger.errorMessages(), 4)}`);
+    return false;
+  }
 
-     if (!failedMessages.Any(message => message.contains(Scenario.ExpectError.Message))) {
-       Fail($`Wrong exception {Environment.NewLine}` +
-         $` Expected: {Scenario.ExpectError.Message}{Environment.NewLine}` +
-         $` Actual: {failedMessages.Format(4)}`);
-       return false;
-     }
+  private getValues(scenarioParameters: ScenarioParameters, functionParameters: FunctionParameters,
+                    compilerResult: CompilerResult): { [key: string], value: any } {
+    let result = {};
+    for (const parameter of scenarioParameters.assignments) {
+      let type = firstOrDefault(functionParameters.variables, variable =>
+        variable.name == parameter.variable.parentIdentifier);
 
-     runnerContext.Success(Scenario);
-     return false;
-   }
+      if (type == null) {
+        throw new Error(
+          `Function '${this.functionNode.name}' parameter '${parameter.variable.parentIdentifier}' not found.`);
+      }
 
-   private validateRootErrors(): boolean {
-     let failedMessages = parserLogger.errorMessages().ToList();
-     if (!failedMessages.Any()) {
-       Fail($`No exceptions {Environment.NewLine}` +
-         $` Expected: {Scenario.ExpectRootErrors.Messages.Format(4)}{Environment.NewLine}` +
-         ` Actual: none`);
-       return false;
-     }
+      result[parameter.variable.parentIdentifier] =
+        ScenarioRunner.getValue(compilerResult, parameter.constantValue.value, parameter.variableType);
+    }
 
-     let failed = false;
-     foreach (let rootMessage in Scenario.ExpectRootErrors.Messages) {
-       let failedMessage = failedMessages.Find(message => message.contains(rootMessage));
-       if (failedMessage != null)
-         failedMessages.Remove(failedMessage);
-       else
-         failed = true;
-     }
+    return result;
+  }
 
-     if (!failedMessages.Any() && !failed) {
-       context.Success(Scenario);
-       return false; // don't compile and run rest of scenario
-     }
+  private static getValue(compilerResult: CompilerResult, value: object, type: VariableType): object {
+    return TypeConverter.convert(compilerResult, value, type);
+  }
 
-     Fail($`Wrong exception {Environment.NewLine}` +
-       $` Expected: {Scenario.ExpectRootErrors.Messages.Format(4)}{Environment.NewLine}` +
-       $` Actual: {parserLogger.errorMessages().Format(4)}`);
-     return false;
-   }
-
-   private IDictionary<string, object> GetValues(ScenarioParameters scenarioParameters,
-     FunctionParameters functionParameters, CompilerResult compilerResult) {
-     let result = new Dictionary<string, object>();
-     foreach (let parameter in scenarioParameters.Assignments) {
-       let type = functionParameters.Variables.FirstOrDefault(variable =>
-         variable.Name == parameter.Variable.parentIdentifier);
-       if (type == null)
-         throw new Error(
-           $`Function '{function.NodeName}' parameter '{parameter.Variable.parentIdentifier}' not found.`);
-       let value = GetValue(compilerResult, parameter.ConstantValue.Value, parameter.VariableType);
-       result.Add(parameter.Variable.parentIdentifier, value);
-     }
-
-     return result;
-   }
-
-   private getValue(compilerResult: CompilerResult, value: object, type: VariableType): object {
-     return TypeConverter.Convert(compilerResult, value, type);
-   }
+  private static compare(actual: object, expectedValue: object): boolean {
+    return actual == expectedValue;
+  }
 }

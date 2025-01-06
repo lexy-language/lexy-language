@@ -3,9 +3,10 @@ import {ITypeWithMembers} from "./ITypeWithMembers";
 import {ComplexTypeMember} from "./complexTypeMember";
 import {IValidationContext} from "../../parser/validationContext";
 import {ComplexTypeSource} from "./complexTypeSource";
+import {VariableTypeName} from "./variableTypeName";
 
 export function instanceOfComplexType(object: any): object is ComplexType {
-  return object.variableTypeName == "ComplexType";
+  return object.variableTypeName == VariableTypeName.ComplexType;
 }
 
 export function asComplexType(object: any): ComplexType | null {
@@ -14,7 +15,7 @@ export function asComplexType(object: any): ComplexType | null {
 
 export class ComplexType extends VariableType implements ITypeWithMembers {
 
-  public variableTypeName = "ComplexType";
+  public variableTypeName = VariableTypeName.ComplexType;
   public typeWithMember: true;
   public name: string;
   public source: ComplexTypeSource;

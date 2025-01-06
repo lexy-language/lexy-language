@@ -9,10 +9,11 @@ import {IValidationContext} from "../../../parser/validationContext";
 import {VariableSource} from "../../variableSource";
 import {VariableType} from "../../variableTypes/variableType";
 import {VoidType} from "../../variableTypes/voidType";
+import {NodeType} from "../../nodeType";
 
 export class ExtractResultsFunction extends ExpressionFunction {
 
-  public readonly nodeType = "ExtractResultsFunction";
+  public readonly nodeType = NodeType.ExtractResultsFunction;
   public static readonly name: string = `extract`;
 
   protected get functionHelp() {

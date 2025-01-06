@@ -4,7 +4,7 @@ import {
   VariableReferenceParseResult
 } from "./variableReferenceParseResult";
 import {Expression} from "../expressions/expression";
-import {VariableReference} from "../../runTime/variableReference";
+import {VariableReference} from "../variableReference";
 import {asMemberAccessExpression, MemberAccessExpression} from "../expressions/memberAccessExpression";
 import {asLiteralExpression, LiteralExpression} from "../expressions/literalExpression";
 import {asIdentifierExpression} from "../expressions/identifierExpression";

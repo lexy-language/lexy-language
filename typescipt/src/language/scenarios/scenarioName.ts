@@ -2,12 +2,13 @@ import {INode, Node} from "../node";
 import {SourceReference} from "../../parser/sourceReference";
 import {IValidationContext} from "../../parser/validationContext";
 import {isNullOrEmpty, isValidIdentifier} from "../../parser/tokens/character";
+import {NodeType} from "../nodeType";
 
 export class ScenarioName extends Node {
 
   private valueValue: string;
 
-  public readonly nodeType = "ScenarioName";
+  public readonly nodeType = NodeType.ScenarioName;
 
   public get value() {
     return this.valueValue;

@@ -5,7 +5,7 @@ import type {IValidationContext} from "./ValidationContext";
 import {VariableType} from "../language/variableTypes/variableType";
 import {SourceReference} from "./sourceReference";
 import {VariableEntry} from "./variableEntry";
-import {VariableReference} from "../runTime/variableReference";
+import {VariableReference} from "../language/variableReference";
 import {VariableSource} from "../language/variableSource";
 import {asTypeWithMembers} from "../language/variableTypes/ITypeWithMembers";
 

@@ -1,0 +1,23 @@
+Type: ComplexType
+  number InnerNumber
+
+Type: CustomType
+  number NumberValue
+  ComplexType Complex
+
+Scenario: NestedParametersShouldBeAssignableAndReadable
+  Function:
+    Parameters
+      CustomType Result
+    Results
+      number Value1
+      number Value2
+    Code
+      Value1 = Result.NumberValue
+      Value2 = Result.Complex.InnerNumber
+  Parameters
+    Result.NumberValue = 9
+    Result.Complex.InnerNumber = 8
+  Results
+    Value1 = 9
+    Value2 = 8

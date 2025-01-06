@@ -8,12 +8,13 @@ import {SourceReference} from "../../parser/sourceReference";
 import {TableSeparatorToken} from "../../parser/tokens/tableSeparatorToken";
 import {asToken, Token} from "../../parser/tokens/token";
 import {TokenList} from "../../parser/tokens/tokenList";
+import {NodeType} from "../nodeType";
 
 export class TableRow extends Node {
 
   private readonly valuesValue: Array<Expression>;
 
-  public readonly nodeType = "TableRow";
+  public readonly nodeType = NodeType.TableRow;
 
   public get values(): ReadonlyArray<Expression> {
     return this.valuesValue;

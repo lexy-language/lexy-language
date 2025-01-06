@@ -3,12 +3,23 @@ import {VariableType} from "./variableType";
 import {SourceReference} from "../../parser/sourceReference";
 import {IValidationContext} from "../../parser/validationContext";
 import {INode} from "../node";
+import {NodeType} from "../nodeType";
+import {SwitchExpression} from "../expressions/switchExpression";
+
+
+export function instanceOfImplicitVariableDeclaration(object: any): boolean {
+  return object?.nodeType == NodeType.ImplicitVariableDeclaration;
+}
+
+export function asImplicitVariableDeclaration(object: any): ImplicitVariableDeclaration | null {
+  return instanceOfImplicitVariableDeclaration(object) ? object as ImplicitVariableDeclaration : null;
+}
 
 export class ImplicitVariableDeclaration extends VariableDeclarationType {
 
   private variableTypeValue: VariableType;
 
-  public nodeType = "ImplicitVariableDeclaration";
+  public nodeType = NodeType.ImplicitVariableDeclaration;
 
   public get variableType(): VariableType{
     return this.variableTypeValue;

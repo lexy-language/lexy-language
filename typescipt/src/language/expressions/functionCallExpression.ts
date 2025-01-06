@@ -16,9 +16,10 @@ import {OperatorType} from "../../parser/tokens/operatorType";
 import {VariableType} from "../variableTypes/variableType";
 import {LexyFunction} from "./functions/lexyFunction";
 import {BinaryExpression} from "./binaryExpression";
+import {NodeType} from "../nodeType";
 
 export function instanceOfFunctionCallExpression(object: any): object is FunctionCallExpression {
-  return object?.nodeType == 'FunctionCallExpression';
+  return object?.nodeType == NodeType.FunctionCallExpression;
 }
 
 export function asFunctionCallExpression(object: any): FunctionCallExpression | null {
@@ -27,7 +28,7 @@ export function asFunctionCallExpression(object: any): FunctionCallExpression | 
 
 export class FunctionCallExpression extends Expression {
 
-  public readonly nodeType = "FunctionCallExpression"
+  public readonly nodeType = NodeType.FunctionCallExpression
 
   public readonly functionName: string;
   public readonly arguments: Array<Expression>;

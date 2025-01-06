@@ -8,5 +8,9 @@ export abstract class ExpressionFunction extends Node {
      super(reference);
    }
 
+   public equals(other: ExpressionFunction): boolean {
+     return other != null && this.nodeType == other.nodeType;
+   }
+
    public abstract deriveReturnType(context: IValidationContext): VariableType | null;
 }

@@ -9,4 +9,10 @@ export interface IFileSystem {
   combine(fullPath: string, fileName: string): string;
 
   fileExists(fullFinName: string): boolean;
+  directoryExists(absoluteFolder: string): boolean;
+
+  isPathRooted(folder: string): boolean;
+
+  getDirectoryFiles(folder: string, filter: string): Array<string>;
+  getDirectories(folder: string): Array<string>;
 }

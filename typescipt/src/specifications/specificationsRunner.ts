@@ -1,82 +1,96 @@
+import type {ILogger} from "../infrastructure/logger";
+
+import {ISpecificationRunnerContext, SpecificationRunnerContext} from "./specificationRunnerContext";
+import {IFileSystem} from "../parser/IFileSystem";
+import {SpecificationFileRunner} from "./specificationFileRunner";
+import {LexySourceDocument} from "../parser/lexySourceDocument";
+import {ILexyParser} from "../parser/lexyParser";
+import {ILexyCompiler} from "../compiler/lexyCompiler";
 
 export interface ISpecificationsRunner {
-  void Run(string folder);
-  void RunAll(string file);
+  run(folder: string);
+  runAll(file: string);
 }
 
-export class SpecificationsRunner extends ISpecificationsRunner {
-   private readonly ISpecificationRunnerContext context;
-   private readonly IServiceProvider serviceProvider;
+export class SpecificationsRunner implements ISpecificationsRunner {
 
-   constructor(serviceProvider: IServiceProvider, context: ISpecificationRunnerContext) {
-     this.serviceProvider = serviceProvider ?? throw new Error(nameof(serviceProvider));
-     this.context = context;
-   }
+  private readonly parser: ILexyParser;
+  private readonly compiler: ILexyCompiler;
+  private readonly logger: ILogger;
+  private readonly fileSystem: IFileSystem;
 
-   public run(file: string): void {
-     CreateFileRunner(file);
+  constructor(logger: ILogger, fileSystem: IFileSystem, parser: ILexyParser, compiler: ILexyCompiler) {
+    this.logger = logger;
+    this.fileSystem = fileSystem;
+    this.parser = parser;
+    this.compiler = compiler;
+  }
 
-     RunScenarios();
-   }
+  public run(file: string): void {
+    const context = new SpecificationRunnerContext(this.logger);
+    this.createFileRunner(context, file);
+    SpecificationsRunner.runScenarios(context);
+  }
 
-   public runAll(folder: string): void {
-     GetRunners(folder);
+  public runAll(folder: string): void {
+    const context = new SpecificationRunnerContext(this.logger);
+    this.getRunners(context, folder);
+    SpecificationsRunner.runScenarios(context);
+  }
 
-     RunScenarios();
-   }
+  private static runScenarios(context: ISpecificationRunnerContext): void {
+    let runners = context.fileRunners;
+    let countScenarios = context.countScenarios();
+    context.log(`Specifications found: {countScenarios}`);
+    if (runners.length == 0) throw new Error(`No specifications found`);
 
-   private runScenarios(): void {
-     let runners = context.FileRunners;
-     let countScenarios = context.CountScenarios();
-     Console.WriteLine($`Specifications found: {countScenarios}`);
-     if (runners.Count == 0) throw new Error(`No specifications found`);
+    runners.forEach(runner => runner.run());
 
-     runners.ForEach(runner => runner.Run());
+    context.logGlobal(`Specifications succeed: ${countScenarios - context.failed} / ${countScenarios}`);
 
-     context.LogGlobal($`Specifications succeed: {countScenarios - context.failed} / {countScenarios}`);
+    if (context.failed > 0) SpecificationsRunner.failed(context);
+  }
 
-     if (context.failed > 0) Failed(context);
-   }
+  private static failed(context: ISpecificationRunnerContext): void {
+    context.log(`--------------- FAILED PARSER LOGGING ---------------`);
+    for (const runner of context.failedScenariosRunners()) {
+      console.log(runner.parserLogging());
+    }
+    throw new Error(`Specifications failed: ${context.failed}`);
+  }
 
-   private static failed(context: ISpecificationRunnerContext): void {
-     Console.WriteLine(`--------------- FAILED PARSER LOGGING ---------------`);
-     foreach (let runner in context.failedScenariosRunners()) Console.WriteLine(runner.ParserLogging());
+  private getRunners(context: ISpecificationRunnerContext, folder: string): void {
+    let absoluteFolder = this.getAbsoluteFolder(folder);
 
-     throw new Error($`Specifications failed: {context.failed}`);
-   }
+    context.log(`Specifications folder: ${absoluteFolder}`);
 
-   private getRunners(folder: string): void {
-     let absoluteFolder = GetAbsoluteFolder(folder);
+    this.addFolder(context, absoluteFolder);
+  }
 
-     Console.WriteLine($`Specifications folder: {absoluteFolder}`);
+  private addFolder(context: ISpecificationRunnerContext, folder: string): void {
+    let files = this.fileSystem.getDirectoryFiles(folder, `*.${LexySourceDocument.fileExtension}`);
 
-     AddFolder(absoluteFolder);
-   }
+    files
+      .sort()
+      .forEach(file => this.createFileRunner(context, file));
 
-   private addFolder(folder: string): void {
-     let files = Directory.GetFiles(folder, $`*.{LexySourceDocument.FileExtension}`);
+    this.fileSystem.getDirectories(folder)
+      .sort()
+      .forEach(folder => this.addFolder(context, folder));
+  }
 
-     files
-       .OrderBy(name => name)
-       .ForEach(CreateFileRunner);
+  private createFileRunner(context: ISpecificationRunnerContext, fileName: string): void {
+    let runner = new SpecificationFileRunner(fileName, this.compiler, this.parser, context);
+    context.add(runner);
+  }
 
-     Directory.GetDirectories(folder)
-       .OrderBy(name => name)
-       .ForEach(AddFolder);
-   }
+  private getAbsoluteFolder(folder: string): string {
+    let absoluteFolder = this.fileSystem.isPathRooted(folder)
+      ? folder
+      : this.fileSystem.getFullPath(folder);
+    if (!this.fileSystem.directoryExists(absoluteFolder))
+      throw new Error(`Specifications folder doesn't exist: ${absoluteFolder}`);
 
-   private createFileRunner(fileName: string): void {
-     let runner = SpecificationFileRunner.Create(fileName, serviceProvider, context);
-     context.Add(runner);
-   }
-
-   private static getAbsoluteFolder(folder: string): string {
-     let absoluteFolder = Path.IsPathRooted(folder)
-       ? folder
-       : Path.GetFullPath(folder);
-     if (!Directory.Exists(absoluteFolder))
-       throw new Error($`Specifications folder doesn't exist: {absoluteFolder}`);
-
-     return absoluteFolder;
-   }
+    return absoluteFolder;
+  }
 }

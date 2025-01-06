@@ -15,13 +15,14 @@ import {OperatorType} from "../parser/tokens/operatorType";
 import {asOperatorToken, OperatorToken} from "../parser/tokens/operatorToken";
 import {validateTypeAndDefault} from "./variableTypes/validationContextExtensions";
 import {VariableDeclarationTypeParser} from "./variableTypes/variableDeclarationTypeParser";
+import {NodeType} from "./nodeType";
 
 export class VariableDefinition extends Node implements IHasNodeDependencies {
 
   private variableTypeValue: VariableType | null;
 
   public readonly hasNodeDependencies = true;
-  public readonly nodeType = "VariableDefinition";
+  public readonly nodeType = NodeType.VariableDefinition;
   public readonly defaultExpression: Expression | null;
   public readonly source: VariableSource;
   public readonly type: VariableDeclarationType;

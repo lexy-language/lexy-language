@@ -1,23 +1,41 @@
+import type {ICompilationEnvironment} from "./compilationEnvironment";
+import {ExecutableFunction} from "./executableFunction";
+import {Function} from "../language/functions/function";
+import {GeneratedType} from "./generatedType";
+import {ExecutionContext, IExecutionContext} from "../runTime/executionContext";
+import {ILogger} from "../infrastructure/logger";
 
+export class CompilerResult implements Disposable {
 
-export class CompilerResult {
-   private readonly IDictionary<string, Type> enums;
-   private readonly IDictionary<string, ExecutableFunction> executables;
+  private enums: {[key: string]: GeneratedType};
+  private executables: {[key: string]: ExecutableFunction};
+  private environment: ICompilationEnvironment | null;
+  private executionLogger: ILogger;
 
-   constructor(executables: IDictionary<string, ExecutableFunction>, enums: IDictionary<string, Type>) {
-     this.executables = executables;
-     this.enums = enums;
-   }
+  constructor(executables: {[key: string]: ExecutableFunction}, enums: {[key: string]: GeneratedType},
+              environment: ICompilationEnvironment, executionLogger: ILogger) {
+    this.executables = executables;
+    this.enums = enums;
+    this.environment = environment;
+    this.executionLogger = executionLogger;
+  }
 
-   public getFunction(function: Function): ExecutableFunction {
-     return executables[function.NodeName];
-   }
+  public getFunction(functionNode: Function): ExecutableFunction {
+    return this.executables[functionNode.name.value];
+  }
 
-   public containsEnum(type: string): boolean {
-     return enums.containsKey(type);
-   }
+  public getEnumType(type: string): any {
+    return this.enums[type];
+  }
 
-   public getEnumType(type: string): Type {
-     return enums[type];
-   }
+  public createContext(): IExecutionContext {
+    return new ExecutionContext(this.executionLogger);
+  }
+
+  [Symbol.dispose](): void {
+    if (this.environment != null) {
+      this.environment[Symbol.dispose]();
+      this.environment = null;
+    }
+  }
 }

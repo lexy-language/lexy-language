@@ -7,9 +7,10 @@ import {TableType} from "./tableType";
 import {VariableType} from "./variableType";
 import {firstOrDefault} from "../../infrastructure/enumerableExtensions";
 import {RootNodeList} from "../rootNodeList";
+import {VariableTypeName} from "./variableTypeName";
 
 export function instanceOfCustomType(object: any): object is CustomType {
-  return object?.variableTypeName == "CustomType";
+  return object?.variableTypeName == VariableTypeName.CustomType;
 }
 
 export function asCustomType(object: any): CustomType | null {
@@ -18,7 +19,7 @@ export function asCustomType(object: any): CustomType | null {
 
 export class CustomType extends TypeWithMembers {
 
-  public readonly variableTypeName = "CustomType";
+  public readonly variableTypeName = VariableTypeName.CustomType;
    public type: string;
    public typeDefinition: TypeDefinition;
 

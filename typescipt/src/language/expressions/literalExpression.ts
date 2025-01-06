@@ -11,9 +11,10 @@ import {TokenList} from "../../parser/tokens/tokenList";
 import {instanceOfNumberLiteralToken, NumberLiteralToken} from "../../parser/tokens/numberLiteralToken";
 import {OperatorType} from "../../parser/tokens/operatorType";
 import {VariableType} from "../variableTypes/variableType";
+import {NodeType} from "../nodeType";
 
 export function instanceOfLiteralExpression(object: any): boolean {
-  return object?.nodeType == "LiteralExpression";
+  return object?.nodeType == NodeType.LiteralExpression;
 }
 
 export function asLiteralExpression(object: any): LiteralExpression | null {
@@ -22,60 +23,60 @@ export function asLiteralExpression(object: any): LiteralExpression | null {
 
 export class LiteralExpression extends Expression {
 
-  public nodeType = "LiteralExpression";
+  public nodeType = NodeType.LiteralExpression;
 
-   public literal: ILiteralToken;
+  public literal: ILiteralToken;
 
   constructor(literal: ILiteralToken, source: ExpressionSource, reference: SourceReference) {
     super(source, reference);
     this.literal = literal;
   }
 
-   public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
-     let tokens = source.tokens;
-     if (!LiteralExpression.isValid(tokens)) return newParseExpressionFailed("LiteralExpression", `Invalid expression.`);
+  public static parse(source: ExpressionSource, factory: IExpressionFactory): ParseExpressionResult {
+    let tokens = source.tokens;
+    if (!LiteralExpression.isValid(tokens)) return newParseExpressionFailed("LiteralExpression", `Invalid expression.`);
 
-     let reference = source.createReference();
+    let reference = source.createReference();
 
-     if (tokens.length == 2) return LiteralExpression.negativeNumeric(source, tokens, reference);
+    if (tokens.length == 2) return LiteralExpression.negativeNumeric(source, tokens, reference);
 
-     let literalToken = tokens.literalToken(0);
-     if (!literalToken) return newParseExpressionFailed("LiteralExpression", "Invalid token");
+    let literalToken = tokens.literalToken(0);
+    if (!literalToken) return newParseExpressionFailed("LiteralExpression", "Invalid token");
 
-     let expression = new LiteralExpression(literalToken, source, reference);
-     return newParseExpressionSuccess(expression);
-   }
+    let expression = new LiteralExpression(literalToken, source, reference);
+    return newParseExpressionSuccess(expression);
+  }
 
-   private static negativeNumeric(source: ExpressionSource, tokens: TokenList, reference: SourceReference): ParseExpressionResult  {
-     let operatorToken = tokens.operatorToken(0);
-     if (!operatorToken) return newParseExpressionFailed("LiteralExpression", "Invalid token");
-     
-     let numericLiteralToken = tokens.literalToken(1) as NumberLiteralToken;
-     let value = -numericLiteralToken.numberValue;
+  private static negativeNumeric(source: ExpressionSource, tokens: TokenList, reference: SourceReference): ParseExpressionResult {
+    let operatorToken = tokens.operatorToken(0);
+    if (!operatorToken) return newParseExpressionFailed("LiteralExpression", "Invalid token");
 
-     let negatedLiteral = new NumberLiteralToken(value, operatorToken.firstCharacter);
+    let numericLiteralToken = tokens.literalToken(1) as NumberLiteralToken;
+    let value = -numericLiteralToken.numberValue;
 
-     let negatedExpression = new LiteralExpression(negatedLiteral, source, reference);
-     return newParseExpressionSuccess(negatedExpression);
-   }
+    let negatedLiteral = new NumberLiteralToken(value, operatorToken.firstCharacter);
 
-   public static isValid(tokens: TokenList): boolean {
-     return tokens.length == 1
-        && tokens.isLiteralToken(0)
-        || tokens.length == 2
-        && tokens.isOperatorToken(0, OperatorType.Subtraction)
-        && tokens.isLiteralToken(1)
-        && instanceOfNumberLiteralToken(tokens.literalToken(1));
-   }
+    let negatedExpression = new LiteralExpression(negatedLiteral, source, reference);
+    return newParseExpressionSuccess(negatedExpression);
+  }
 
-   public override getChildren(): Array<INode> {
-     return [];
-   }
+  public static isValid(tokens: TokenList): boolean {
+    return tokens.length == 1
+      && tokens.isLiteralToken(0)
+      || tokens.length == 2
+      && tokens.isOperatorToken(0, OperatorType.Subtraction)
+      && tokens.isLiteralToken(1)
+      && instanceOfNumberLiteralToken(tokens.literalToken(1));
+  }
 
-   protected override validate(context: IValidationContext): void {
-   }
+  public override getChildren(): Array<INode> {
+    return [];
+  }
 
-   public override deriveType(context: IValidationContext): VariableType | null {
-     return this.literal.deriveType(context);
-   }
+  protected override validate(context: IValidationContext): void {
+  }
+
+  public override deriveType(context: IValidationContext): VariableType | null {
+    return this.literal.deriveType(context);
+  }
 }
