@@ -4,12 +4,13 @@ import {IParseLineContext} from "../../parser/ParseLineContext";
 import {asQuotedLiteralToken, QuotedLiteralToken} from "../../parser/tokens/quotedLiteralToken";
 import {INode} from "../node";
 import {IValidationContext} from "../../parser/validationContext";
+import {NodeType} from "../nodeType";
 
 export class ScenarioExpectRootErrors extends ParsableNode {
 
    private readonly messagesValue: Array<string> = [];
 
-  public readonly nodeType: "ScenarioExpectRootErrors";
+  public readonly nodeType = NodeType.ScenarioExpectRootErrors;
 
   public get messages(): ReadonlyArray<string> {
      return this.messagesValue

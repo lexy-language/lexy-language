@@ -1,29 +1,24 @@
+import {FunctionCall} from "./functionCall";
+import {ExpressionFunction} from "../../../language/expressions/functions/expressionFunction";
+import {CodeWriter} from "../writers/codeWriter";
 
+export abstract class MethodFunctionCall extends FunctionCall {
+  public functionNode: ExpressionFunction
 
-internal abstract class MethodFunctionCall : FunctionCall {
-   public ExpressionFunction Function
+  public abstract className: string
+  public abstract methodName: string
 
-   protected abstract string ClassName
-   protected abstract string MethodName
+  constructor(functionNode: ExpressionFunction) {
+    super(functionNode);
+    this.functionNode = functionNode;
+  }
 
-   protected MethodFunctionCall(ExpressionFunction function) super(function) {
-     Function = function;
-   }
+  public override renderExpression(codeWriter: CodeWriter) {
+    codeWriter.writeNamespace();
+    codeWriter.write("." + this.className + "." + this.methodName + "(");
+    this.renderArguments(codeWriter);
+    codeWriter.write(")");
+  }
 
-   public override customMethodSyntax(context: ICompileFunctionContext): MemberDeclarationSyntax {
-     return null;
-   }
-
-   public override callExpressionSyntax(context: ICompileFunctionContext): ExpressionSyntax {
-     let arguments = GetArguments(context);
-
-     return SyntaxFactory.InvocationExpression(
-         SyntaxFactory.MemberAccessExpression(
-           SyntaxKind.SimpleMemberAccessExpression,
-           SyntaxFactory.IdentifierName(ClassName),
-           SyntaxFactory.IdentifierName(MethodName)))
-       .WithArgumentList(SyntaxFactory.ArgumentList(arguments));
-   }
-
-   protected abstract getArguments(context: ICompileFunctionContext): SeparatedSyntaxArray<ArgumentSyntax>;
+  protected abstract renderArguments(codeWriter: CodeWriter);
 }

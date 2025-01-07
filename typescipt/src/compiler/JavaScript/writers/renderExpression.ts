@@ -36,12 +36,20 @@ import {asImplicitVariableDeclaration} from "../../../language/variableTypes/imp
 import {VariableSource} from "../../../language/variableSource";
 import {LexyCodeConstants} from "../../lexyCodeConstants";
 import {renderTypeDefaultExpression} from "./renderVariableClass";
+import {
+  asFunctionCallExpression,
+  FunctionCallExpression,
+  instanceOfFunctionCallExpression
+} from "../../../language/expressions/functionCallExpression";
 
 export function renderExpressions(expressions: ReadonlyArray<Expression>, codeWriter: CodeWriter) {
   for (const expression of expressions) {
+    const line = codeWriter.currentLine;
     codeWriter.startLine()
     renderExpression(expression, codeWriter);
-    codeWriter.endLine(";")
+    if (line == codeWriter.currentLine) {
+      codeWriter.endLine(";")
+    }
   }
 }
 
@@ -64,7 +72,7 @@ export function renderValueExpression(expression: Expression, codeWriter: CodeWr
       return render(asMemberAccessExpression, renderMemberAccessExpression);
 
     default:
-      throw new Error(`Invalid expression type: ${NodeType[expression.nodeType]}`);
+      throw new Error(`Invalid expression type: ${expression.nodeType}`);
   }
 }
 
@@ -109,10 +117,14 @@ export function renderExpression(expression: Expression, codeWriter: CodeWriter)
 
     case NodeType.VariableDeclarationExpression:
       return render(asVariableDeclarationExpression, renderVariableDeclarationExpression);
-
-    default:
-      throw new Error(`Invalid expression type: ${NodeType[expression.nodeType]}`);
   }
+
+  const functionCallExpression = asFunctionCallExpression(expression);
+  if (functionCallExpression != null) {
+    return render(asFunctionCallExpression, renderFunctionCallExpression);
+  }
+
+  throw new Error(`Invalid expression type: ${expression.nodeType}`);
 }
 
 function renderMemberAccessExpression(memberAccessExpression: MemberAccessExpression, codeWriter: CodeWriter) {
@@ -217,7 +229,9 @@ function renderElseExpression(expression: ElseExpression, codeWriter: CodeWriter
 }
 
 function renderIfExpression(expression: IfExpression, codeWriter: CodeWriter) {
-  codeWriter.openScope("if")
+  codeWriter.write("if (");
+  renderExpression(expression.condition, codeWriter);
+  codeWriter.openInlineScope(")");
   renderExpressions(expression.trueExpressions, codeWriter);
   codeWriter.closeScope();
 }
@@ -317,4 +331,8 @@ function fromSource(source: VariableSource, name: string): string {
     default:
       throw new Error(`source: {source}`);
   }
+}
+
+function renderFunctionCallExpression(expression: FunctionCallExpression, codeWriter: CodeWriter) {
+  codeWriter.renderFunctionCall(expression.expressionFunction);
 }

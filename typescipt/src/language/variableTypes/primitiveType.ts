@@ -27,7 +27,7 @@ export class PrimitiveType extends VariableType
   }
 
   public equals(other: PrimitiveType): boolean {
-    return this.type == other.type;
+    return other != null && this.type == other.type;
   }
 
   public toString() {

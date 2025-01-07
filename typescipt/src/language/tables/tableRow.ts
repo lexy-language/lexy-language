@@ -9,6 +9,7 @@ import {TableSeparatorToken} from "../../parser/tokens/tableSeparatorToken";
 import {asToken, Token} from "../../parser/tokens/token";
 import {TokenList} from "../../parser/tokens/tokenList";
 import {NodeType} from "../nodeType";
+import {TokenType} from "../../parser/tokens/tokenType";
 
 export class TableRow extends Node {
 
@@ -29,14 +30,14 @@ export class TableRow extends Node {
      let index = 0;
      let validator = context.validateTokens("TableRow");
 
-     if (!validator.type<TableSeparatorToken>(index, TableSeparatorToken).isValid) return null;
+     if (!validator.type<TableSeparatorToken>(index, TokenType.TableSeparatorToken).isValid) return null;
 
      let tokens = new Array<Expression>();
      let currentLineTokens = context.line.tokens;
      while (++index < currentLineTokens.length) {
        let valid = !validator
          .isLiteralToken(index)
-         .type<TableSeparatorToken>(index + 1, TableSeparatorToken)
+         .type<TableSeparatorToken>(index + 1, TokenType.TableSeparatorToken)
          .isValid;
 
        if (valid) return null;

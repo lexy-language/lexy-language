@@ -1,4 +1,5 @@
 import {TokenCharacter} from "./tokenCharacter";
+import {TokenType} from "./tokenType";
 
 export function instanceOfToken(object: any): object is Token {
   return !!object?.tokenType;
@@ -17,7 +18,7 @@ export interface IToken {
 export abstract class Token implements IToken {
 
   abstract tokenIsLiteral: boolean;
-  abstract tokenType: string;
+  abstract tokenType: TokenType;
   abstract value: string;
 
   public firstCharacter: TokenCharacter;

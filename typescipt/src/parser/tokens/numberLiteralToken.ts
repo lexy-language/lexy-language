@@ -13,9 +13,10 @@ import {
 import {isDigit} from "./character";
 import {VariableType} from "../../language/variableTypes/variableType";
 import {PrimitiveType} from "../../language/variableTypes/primitiveType";
+import {TokenType} from "./tokenType";
 
 export function instanceOfNumberLiteralToken(object: any): object is NumberLiteralToken {
-  return object?.tokenType == 'NumberLiteralToken';
+  return object?.tokenType == TokenType.NumberLiteralToken;
 }
 
 export function asNumberLiteralToken(object: any): NumberLiteralToken | null {
@@ -45,7 +46,7 @@ export class NumberLiteralToken extends ParsableToken implements ILiteralToken {
   private numberValueValue: number | null;
 
   public tokenIsLiteral: boolean = true;
-  public tokenType: string = 'NumberLiteralToken';
+  public tokenType = TokenType.NumberLiteralToken;
 
   public get numberValue(): number {
     if (this.numberValueValue == null) throw new Error("NumberLiteralToken not finalized.");

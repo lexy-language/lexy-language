@@ -1,9 +1,10 @@
 import {ParsableToken} from "./parsableToken";
 import {TokenCharacter} from "./tokenCharacter";
 import {newParseTokenFinishedResult, newParseTokenInProgressResult, ParseTokenResult} from "./parseTokenResult";
+import {TokenType} from "./tokenType";
 
 export function instanceOfCommentToken(object: any): boolean {
-  return object?.tokenType == "CommentToken";
+  return object?.tokenType == TokenType.CommentToken;
 }
 
 export function asCommentToken(object: any): CommentToken | null {
@@ -13,7 +14,7 @@ export function asCommentToken(object: any): CommentToken | null {
 export class CommentToken extends ParsableToken {
 
   public tokenIsLiteral: boolean = false;
-  public tokenType: string = 'CommentToken';
+  public tokenType = TokenType.CommentToken;
 
   constructor(character: TokenCharacter) {
     super(character);

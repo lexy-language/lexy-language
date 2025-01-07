@@ -16,7 +16,7 @@ export function asComplexType(object: any): ComplexType | null {
 export class ComplexType extends VariableType implements ITypeWithMembers {
 
   public variableTypeName = VariableTypeName.ComplexType;
-  public typeWithMember: true;
+  public typeWithMember = true;
   public name: string;
   public source: ComplexTypeSource;
   public members: Array<ComplexTypeMember>

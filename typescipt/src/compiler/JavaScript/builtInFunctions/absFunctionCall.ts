@@ -1,9 +1,11 @@
-
+import {AbsFunction} from "../../../language/expressions/functions/absFunction";
+import {SingleArgumentFunctionCall} from "./singleArgumentFunctionCall";
 
 export class AbsFunctionCall extends SingleArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+  protected override className = "BuiltInNumberFunctions";
+  protected override methodName = "abs";
 
-   public AbsFunctionCall(AbsFunction function) super(function) {
-   }
+  constructor(functionNode: AbsFunction) {
+    super(functionNode);
+  }
 }

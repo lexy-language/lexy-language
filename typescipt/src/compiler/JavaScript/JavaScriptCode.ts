@@ -20,7 +20,7 @@ export class JavaScriptCode {
        /* case "Scenario":
          return null; */
        default:
-         throw new Error(`No writer defined: ` + NodeType[rootNode.nodeType]);
+         throw new Error(`No writer defined: ` + rootNode.nodeType);
      }
    }
 }

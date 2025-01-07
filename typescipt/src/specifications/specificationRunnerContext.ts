@@ -3,6 +3,7 @@ import type {IScenarioRunner} from "./scenarioRunner";
 import type {ILogger} from "../infrastructure/logger";
 
 import {Scenario} from "../language/scenarios/scenario";
+import {format} from "../infrastructure/formatting";
 
 export interface ISpecificationRunnerContext {
   failed: number
@@ -12,16 +13,18 @@ export interface ISpecificationRunnerContext {
   success(scenario: Scenario);
 
   logGlobal(message: string);
-  log(message: string);
 
   add(fileRunner: ISpecificationFileRunner);
 
   failedScenariosRunners(): ReadonlyArray<IScenarioRunner>;
   countScenarios(): number;
+
+  formatGlobalLog(): string;
 }
 
 export class SpecificationRunnerContext implements ISpecificationRunnerContext {
 
+  private globalLog: Array<string> = [];
   private readonly fileRunnersValue: Array<ISpecificationFileRunner> = [];
   private readonly logger: ILogger;
   private failedValues = 0;
@@ -43,10 +46,12 @@ export class SpecificationRunnerContext implements ISpecificationRunnerContext {
 
     let log = `- FAILED - ${scenario.name}: ${message}`;
 
+    this.globalLog.push(log)
     this.logger.logError(log);
   }
 
   public logGlobal(message: string): void {
+    this.globalLog.push(message)
     this.logger.logInformation(message);
   }
 
@@ -56,7 +61,8 @@ export class SpecificationRunnerContext implements ISpecificationRunnerContext {
   }
 
   public success(scenario: Scenario): void {
-    let log = `- SUCCESS - {scenario.Name}`;
+    let log = `- SUCCESS - ${scenario.name}`;
+    this.globalLog.push(log)
     this.logger.logInformation(log);
   }
 
@@ -77,5 +83,9 @@ export class SpecificationRunnerContext implements ISpecificationRunnerContext {
     let total = 0;
     this.fileRunners.map(fileRunner => total += fileRunner.countScenarioRunners());
     return total;
+  }
+
+  public formatGlobalLog(): string {
+    return format(this.globalLog, 2);
   }
 }

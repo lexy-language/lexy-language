@@ -2,7 +2,7 @@ import type {IParseLineContext} from "../../parser/ParseLineContext";
 import type {INode} from "../node";
 
 export function instanceOfChildExpression(object: any): object is IChildExpression {
-   return object?.isChildExpression == true in object;
+   return object?.isChildExpression == true;
 }
 
 export function asChildExpression(object: any): IChildExpression | null {
@@ -15,7 +15,7 @@ export interface IChildExpression extends INode {
 }
 
 export function instanceOfParentExpression(object: any): object is IParentExpression {
-   return object?.isParentExpression == true in object;
+   return object?.isParentExpression == true;
 }
 
 export function asParentExpression(object: any): IParentExpression | null {

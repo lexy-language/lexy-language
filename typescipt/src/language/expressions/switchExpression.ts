@@ -23,15 +23,15 @@ export function asSwitchExpression(object: any): SwitchExpression | null {
   return instanceOfSwitchExpression(object) ? object as SwitchExpression : null;
 }
 
-export class SwitchExpression extends Expression implements IParsableNode, I {
+export class SwitchExpression extends Expression implements IParsableNode {
 
-  private factory: IExpressionFactory;
+  private readonly factory: IExpressionFactory;
 
-  public isParsableNode: true;
-  public nodeType = NodeType.SwitchExpression;
+  public readonly isParsableNode = true;
+  public readonly nodeType = NodeType.SwitchExpression;
 
-  public condition: Expression;
-  public cases: Array<CaseExpression> = [];
+  public readonly condition: Expression;
+  public readonly cases: Array<CaseExpression> = [];
 
   constructor(condition: Expression, source: ExpressionSource, reference: SourceReference, factory: IExpressionFactory) {
     super(source, reference);
@@ -49,7 +49,7 @@ export class SwitchExpression extends Expression implements IParsableNode, I {
 
      const caseExpression = asCaseExpression(expression.result);
      if (caseExpression != null) {
-       cases.Add(caseExpression);
+       this.cases.push(caseExpression);
        return caseExpression;
      }
 

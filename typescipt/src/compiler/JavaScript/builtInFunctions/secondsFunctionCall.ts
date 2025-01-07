@@ -1,9 +1,12 @@
-
+import {EndStartDateFunctionCall} from "./endStartDateFunctionCall";
+import {SecondsFunction} from "../../../language/expressions/functions/secondsFunction";
 
 export class SecondsFunctionCall extends EndStartDateFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
 
-   public SecondsFunctionCall(SecondsFunction function) super(function) {
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "seconds";
+
+   constructor(functionNode: SecondsFunction) {
+      super(functionNode);
    }
 }

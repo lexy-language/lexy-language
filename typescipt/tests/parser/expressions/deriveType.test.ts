@@ -8,7 +8,7 @@ import {parseExpression} from "../expressionParser/parseExpression";
 import {RootNodeList} from "../../../src/language/rootNodeList";
 import {ParserLogger} from "../../../src/parser/parserLogger";
 import {ConsoleLogger} from "../../../src/infrastructure/logger";
-import {LoggingConfiguration} from "../../testsInitialization";
+import {LoggingConfiguration} from "../../loggingConfiguration";
 
 describe('DeriveTypeTests', () => {
   it('numberLiteral', async () => {

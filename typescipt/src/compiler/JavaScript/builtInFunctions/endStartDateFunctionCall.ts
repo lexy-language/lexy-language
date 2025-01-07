@@ -1,22 +1,19 @@
+import {EndStartDateFunction} from "../../../language/expressions/functions/endStartDateFunction";
+import {MethodFunctionCall} from "./methodFunctionCall";
+import {CodeWriter} from "../writers/codeWriter";
+import {renderExpression} from "../writers/renderExpression";
 
+export abstract class EndStartDateFunctionCall extends MethodFunctionCall {
+  public functionNode: EndStartDateFunction;
 
-internal abstract class EndStartDateFunctionCall : MethodFunctionCall {
-   public EndStartDateFunction Function
+  protected constructor(functionNode: EndStartDateFunction) {
+    super(functionNode);
+    this.functionNode = functionNode;
+  }
 
-   protected EndStartDateFunctionCall(EndStartDateFunction function) super(function) {
-     Function = function;
-   }
-
-   public override customMethodSyntax(context: ICompileFunctionContext): MemberDeclarationSyntax {
-     return null;
-   }
-
-   protected override getArguments(context: ICompileFunctionContext): SeparatedSyntaxArray<ArgumentSyntax> {
-     return SyntaxFactory.SeparatedArray<ArgumentSyntax>(
-       new SyntaxNodeOrToken[] {
-         SyntaxFactory.Argument(ExpressionSyntaxFactory.ExpressionSyntax(Function.endDateExpression, context)),
-         SyntaxFactory.Token(SyntaxKind.CommaToken),
-         SyntaxFactory.Argument(ExpressionSyntaxFactory.ExpressionSyntax(Function.startDateExpression, context))
-       });
-   }
+  protected override renderArguments(codeWriter: CodeWriter) {
+    renderExpression(this.functionNode.endDateExpression, codeWriter);
+    codeWriter.write(", ")
+    renderExpression(this.functionNode.startDateExpression, codeWriter);
+  }
 }

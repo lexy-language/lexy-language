@@ -1,9 +1,11 @@
-
+import {SingleArgumentFunctionCall} from "./singleArgumentFunctionCall";
+import {DayFunction} from "../../../language/expressions/functions/dayFunction";
 
 export class DayFunctionCall extends SingleArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+  protected override className = "BuiltInDateFunctions";
+  protected override methodName = "day";
 
-   public DayFunctionCall(DayFunction function) super(function) {
-   }
+  constructor(functionNode: DayFunction) {
+    super(functionNode);
+  }
 }

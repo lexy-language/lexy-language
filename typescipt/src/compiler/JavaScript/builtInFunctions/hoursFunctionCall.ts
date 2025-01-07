@@ -1,9 +1,11 @@
-
+import {EndStartDateFunctionCall} from "./endStartDateFunctionCall";
+import {HoursFunction} from "../../../language/expressions/functions/hoursFunction";
 
 export class HoursFunctionCall extends EndStartDateFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "hours";
 
-   public HoursFunctionCall(HoursFunction function) super(function) {
+   constructor(functionNode: HoursFunction) {
+      super(functionNode);
    }
 }

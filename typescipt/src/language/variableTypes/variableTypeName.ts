@@ -1,11 +1,11 @@
 export enum VariableTypeName {
-  ComplexType,
-  CustomType,
-  EnumType,
-  FunctionParametersType,
-  FunctionResultsType,
-  FunctionType,
-  PrimitiveType,
-  TableType,
-  VoidType
+  ComplexType = "ComplexType",
+  CustomType = "CustomType",
+  EnumType = "EnumType",
+  FunctionParametersType = "FunctionParametersType",
+  FunctionResultsType = "FunctionResultsType",
+  FunctionType = "FunctionType",
+  PrimitiveType = "PrimitiveType",
+  TableType = "TableType",
+  VoidType = "VoidType",
 }

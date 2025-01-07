@@ -7,6 +7,7 @@ import {format} from "../infrastructure/formatting";
 import {Scenario} from "../language/scenarios/scenario";
 import {RootNodeList} from "../language/rootNodeList";
 import {ILexyCompiler} from "../compiler/lexyCompiler";
+import {ParserResult} from "../parser/parserResult";
 
 export interface ISpecificationFileRunner {
   scenarioRunners: ReadonlyArray<IScenarioRunner>;
@@ -21,8 +22,9 @@ export class SpecificationFileRunner implements ISpecificationFileRunner {
   private readonly parser: ILexyParser;
   private readonly fileName: string;
   private readonly runnerContext: ISpecificationRunnerContext;
-
   private readonly scenarioRunnersValue: Array<IScenarioRunner> = [];
+
+  private result: ParserResult;
 
   public get scenarioRunners(): ReadonlyArray<IScenarioRunner> {
     return [...this.scenarioRunnersValue]
@@ -35,16 +37,23 @@ export class SpecificationFileRunner implements ISpecificationFileRunner {
     this.runnerContext = runnerContext;
   }
 
-  public run(): void {
-    const result = this.parser.parseFile(this.fileName, false);
 
-    result
+  initialize() {
+    try {
+      this.result = this.parser.parseFile(this.fileName, false);
+    } catch(e) {
+      throw new Error("Error while parsing " + this.fileName + "\n" + e.stack + "\n--------------------------------------\n")
+    }
+    this.result
       .rootNodes
       .getScenarios()
       .forEach(scenario =>
-        this.scenarioRunnersValue.push(this.getScenarioRunner(scenario, result.rootNodes, result.logger)));
+        this.scenarioRunnersValue.push(this.getScenarioRunner(scenario, this.result.rootNodes, this.result.logger)));
+  }
 
-    this.validateHasScenarioCheckingRootErrors(result.logger);
+  public run(): void {
+
+    this.validateHasScenarioCheckingRootErrors(this.result.logger);
 
     if (this.scenarioRunners.length == 0) return;
 
@@ -67,8 +76,10 @@ export class SpecificationFileRunner implements ISpecificationFileRunner {
     let rootScenarioRunner =
       firstOrDefault(this.scenarioRunners, runner => runner.scenario.expectRootErrors.hasValues);
 
-    if (rootScenarioRunner == null)
+    if (rootScenarioRunner == null) {
+      const rootErrors = format(logger.errorRootMessages(), 2);
       throw new Error(
-        `${this.fileName} has root errors but no scenario that verifies expected root errors. Errors: ${format(logger.errorRootMessages(), 2)}`);
+        `${this.fileName} has root errors but no scenario that verifies expected root errors. Errors: ${rootErrors}`);
+    }
   }
 }

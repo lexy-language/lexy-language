@@ -1,9 +1,12 @@
+import {NoArgumentFunctionCall} from "./noArgumentFunctionCall";
+import {NowFunction} from "../../../language/expressions/functions/nowFunction";
 
 
 export class NowFunctionCall extends NoArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "now";
 
-   public NowFunctionCall(NowFunction function) super(function) {
+   constructor(functionNode: NowFunction) {
+      super(functionNode);
    }
 }

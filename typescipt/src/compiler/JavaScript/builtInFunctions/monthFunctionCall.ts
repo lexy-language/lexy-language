@@ -1,9 +1,11 @@
-
+import {SingleArgumentFunctionCall} from "./singleArgumentFunctionCall";
+import {MonthFunction} from "../../../language/expressions/functions/monthFunction";
 
 export class MonthFunctionCall extends SingleArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "month";
 
-   public MonthFunctionCall(MonthFunction function) super(function) {
+   constructor(functionNode: MonthFunction) {
+      super(functionNode);
    }
 }

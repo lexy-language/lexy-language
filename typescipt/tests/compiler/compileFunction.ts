@@ -2,9 +2,10 @@ import {parseNodes} from "../parseFunctions";
 import {firstOrDefault} from "../../src/infrastructure/enumerableExtensions";
 import {asFunction, instanceOfFunction} from "../../src/language/functions/function";
 import {LexyCompiler} from "../../src/compiler/lexyCompiler";
-import {LoggingConfiguration} from "../testsInitialization";
-import {ExecutableFunction, FunctionResult} from "../../src/compiler/executableFunction";
+import {ExecutableFunction} from "../../src/compiler/executableFunction";
 import {IExecutionContext} from "../../src/runTime/executionContext";
+import {LoggingConfiguration} from "../loggingConfiguration";
+import {FunctionResult} from "../../src/runTime/functionResult";
 
 class CompileFunctionResult {
   private executableFunction: ExecutableFunction;

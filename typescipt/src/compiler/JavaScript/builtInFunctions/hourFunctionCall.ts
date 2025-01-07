@@ -1,9 +1,11 @@
-
+import {SingleArgumentFunctionCall} from "./singleArgumentFunctionCall";
+import {HourFunction} from "../../../language/expressions/functions/hourFunction";
 
 export class HourFunctionCall extends SingleArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "hour";
 
-   public HourFunctionCall(HourFunction function) super(function) {
+   constructor(functionNode: HourFunction) {
+      super(functionNode);
    }
 }

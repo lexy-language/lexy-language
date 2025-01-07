@@ -6,9 +6,10 @@ import {VariableReference} from "../../language/variableReference";
 import {instanceOfTypeWithMembers, ITypeWithMembers} from "../../language/variableTypes/ITypeWithMembers";
 import {VariableType} from "../../language/variableTypes/variableType";
 import {IValidationContext} from "../validationContext";
+import {TokenType} from "./tokenType";
 
 export function instanceOfMemberAccessLiteral(object: any): boolean {
-  return object?.tokenType == "MemberAccessLiteral";
+  return object?.tokenType == TokenType.MemberAccessLiteral;
 }
 
 export function asMemberAccessLiteral(object: any): MemberAccessLiteral | null {
@@ -28,7 +29,7 @@ export class MemberAccessLiteral extends Token implements ILiteralToken {
   public readonly parts: string[];
 
   public tokenIsLiteral: boolean = true;
-  public tokenType: string = 'MemberAccessLiteral';
+  public tokenType = TokenType.MemberAccessLiteral;
 
   constructor(value: string, character: TokenCharacter) {
     super(character);

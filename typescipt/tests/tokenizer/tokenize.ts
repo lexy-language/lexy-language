@@ -7,7 +7,7 @@ import {TokenizeFailed} from "../../src/parser/tokens/tokenizeResult";
 import {ExpressionFactory} from "../../src/language/expressions/expressionFactory";
 import {ConsoleLogger} from "../../src/infrastructure/logger";
 import {ParserLogger} from "../../src/parser/parserLogger";
-import {LoggingConfiguration} from "../testsInitialization";
+import {LoggingConfiguration} from "../loggingConfiguration";
 
 export function tokenize(value: string): TokenValidator {
 

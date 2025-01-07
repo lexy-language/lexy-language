@@ -1,9 +1,11 @@
-
+import {SingleArgumentFunctionCall} from "./singleArgumentFunctionCall";
+import {SecondFunction} from "../../../language/expressions/functions/secondFunction";
 
 export class SecondFunctionCall extends SingleArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "second";
 
-   public SecondFunctionCall(SecondFunction function) super(function) {
+   constructor(functionNode: SecondFunction) {
+      super(functionNode);
    }
 }

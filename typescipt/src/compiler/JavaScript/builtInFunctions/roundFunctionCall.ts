@@ -1,23 +1,22 @@
-
+import {MethodFunctionCall} from "./methodFunctionCall";
+import {RoundFunction} from "../../../language/expressions/functions/roundFunction";
+import {CodeWriter} from "../writers/codeWriter";
+import {renderExpression} from "../writers/renderExpression";
 
 export class RoundFunctionCall extends MethodFunctionCall {
-   public RoundFunction RoundFunction
+  public roundFunction: RoundFunction;
 
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+  protected override className = "BuiltInNumberFunctions";
+  protected override methodName = "round";
 
-   public RoundFunctionCall(RoundFunction function) super(function) {
-     RoundFunction = function;
-   }
+  constructor(functionNode: RoundFunction) {
+    super(functionNode);
+    this.roundFunction = functionNode;
+  }
 
-   protected override getArguments(context: ICompileFunctionContext): SeparatedSyntaxArray<ArgumentSyntax> {
-     return SyntaxFactory.SeparatedArray<ArgumentSyntax>(
-       new SyntaxNodeOrToken[] {
-         SyntaxFactory.Argument(
-           ExpressionSyntaxFactory.ExpressionSyntax(RoundFunction.numberExpression, context)),
-         SyntaxFactory.Token(SyntaxKind.CommaToken),
-         SyntaxFactory.Argument(
-           ExpressionSyntaxFactory.ExpressionSyntax(RoundFunction.digitsExpression, context))
-       });
-   }
+  protected override renderArguments(codeWriter: CodeWriter) {
+    renderExpression(this.roundFunction.numberExpression, codeWriter);
+    codeWriter.write(", ");
+    renderExpression(this.roundFunction.digitsExpression, codeWriter);
+  }
 }

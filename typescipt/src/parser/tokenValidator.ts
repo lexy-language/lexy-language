@@ -3,16 +3,13 @@ import {Line} from "./line";
 import {TokenList} from "./tokens/tokenList";
 import {BooleanLiteral} from "./tokens/BooleanLiteral";
 import {DateTimeLiteral} from "./tokens/DateTimeLiteral";
-import {KeywordToken} from "./tokens/KeywordToken";
-import {MemberAccessLiteral} from "./tokens/MemberAccessLiteral";
 import {QuotedLiteralToken} from "./tokens/QuotedLiteralToken";
-import {StringLiteralToken} from "./tokens/StringLiteralToken";
 import {OperatorType} from "./tokens/operatorType";
 import {ILiteralToken} from "./tokens/ILiteralToken";
 import {Token} from "./tokens/token";
 import {OperatorToken} from "./tokens/operatorToken";
 import {NumberLiteralToken} from "./tokens/numberLiteralToken";
-import {CommentToken} from "./tokens/commentToken";
+import {TokenType} from "./tokens/tokenType";
 
 export class TokenValidator {
 
@@ -56,13 +53,13 @@ export class TokenValidator {
   }
 
   public keyword(index: number, keyword: string | null = null): TokenValidator {
-    this.type(index, KeywordToken);
+    this.type(index, TokenType.KeywordToken);
     if (keyword != null) this.value(index, keyword);
     return this;
   }
 
   public stringLiteral(index: number, value: string | null = null): TokenValidator {
-    this.type(index, StringLiteralToken);
+    this.type(index, TokenType.StringLiteralToken);
     if (value != null) this.value(index, value);
     return this;
   }
@@ -70,7 +67,7 @@ export class TokenValidator {
   public operator(index: number, operatorType: OperatorType): TokenValidator {
     if (!this.checkValidTokenIndex(index)) return this;
 
-    this.type(index, OperatorToken);
+    this.type(index, TokenType.OperatorToken);
     const token = this.tokens.get(index) as OperatorToken;
     if (token?.type != operatorType) {
       this.fail(`Invalid operator token {index} value. Expected: '${operatorType}' Actual: '${token?.type}'`);
@@ -81,19 +78,19 @@ export class TokenValidator {
   }
 
   public memberAccess(index: number, value: string | null): TokenValidator {
-    this.type(index, MemberAccessLiteral);
+    this.type(index, TokenType.MemberAccessLiteral);
     if (value != null) this.value(index, value);
     return this;
   }
 
   public comment(index: number): TokenValidator {
-    this.type(index, CommentToken);
+    this.type(index, TokenType.CommentToken);
     return this;
   }
 
   public quotedString(index: number, literal: string | null = null): TokenValidator {
-    const token = this.validateType<QuotedLiteralToken>(index, QuotedLiteralToken);
-    if (token != null && token.value != literal) {
+    const token = this.validateType<QuotedLiteralToken>(index, TokenType.QuotedLiteralToken);
+    if (token != null && literal != null && token.value != literal) {
       this.fail(`Invalid token ${index} value. Expected: '${literal}' Actual: '${token?.value}'`);
       this.isValid = false;
     }
@@ -101,7 +98,7 @@ export class TokenValidator {
   }
 
   public numberLiteral(index: number, value: number | null = null): TokenValidator {
-    let token = this.validateType<NumberLiteralToken>(index, NumberLiteralToken);
+    let token = this.validateType<NumberLiteralToken>(index, TokenType.NumberLiteralToken);
     if (token != null && value != null && token.numberValue != value) {
       this.fail(`Invalid token ${index} value. Expected: '${value}' Actual: '${token.value}'`);
       this.isValid = false;
@@ -111,7 +108,7 @@ export class TokenValidator {
   }
 
   public boolean(index: number, value: boolean): TokenValidator {
-    const token = this.validateType<BooleanLiteral>(index, BooleanLiteral);
+    const token = this.validateType<BooleanLiteral>(index, TokenType.BooleanLiteral);
     if (token != null && token.booleanValue != value) {
       this.fail(`Invalid token ${index} value. Expected: '${value}' Actual: '${token.value}'`);
       this.isValid = false;
@@ -121,7 +118,7 @@ export class TokenValidator {
   }
 
   public dateTime(index: number, year: number, month: number, day: number, hours: number, minutes: number, seconds: number): TokenValidator {
-    let token = this.validateType<DateTimeLiteral>(index, DateTimeLiteral);
+    let token = this.validateType<DateTimeLiteral>(index, TokenType.DateTimeLiteral);
     let expected = new Date(`${year}-${month}-${day}T${hours}:${minutes}:${seconds}`);
     if (token != null && token.dateTimeValue != null && token.dateTimeValue.getTime() != expected.getTime()) {
       this.fail(`Invalid token value at ${index}. Expected: '${expected.toISOString()}' Actual: '${token.dateTimeValue.toISOString()}'`);
@@ -131,9 +128,8 @@ export class TokenValidator {
     return this;
   }
 
-  //todo this will not work with minification
-  public type<T extends Token>(index: number, constr: Function) {
-    this.validateType<T>(index, constr);
+  public type<T extends Token>(index: number, tokenType: TokenType) {
+    this.validateType<T>(index, tokenType);
     return this;
   }
 
@@ -151,12 +147,12 @@ export class TokenValidator {
     return this;
   }
 
-  private validateType<T>(index: number, constr: Function): T | null {
+  private validateType<T>(index: number, tokenType: TokenType): T | null {
     if (!this.checkValidTokenIndex(index)) return null;
 
     let token = this.tokens.get(index);
-    if (token.tokenType != constr.name) {
-      this.fail(`Invalid token ${index} type. Expected: '${constr.name}' Actual: '${this.type.name}(${token.value})'`);
+    if (token.tokenType != tokenType) {
+      this.fail(`Invalid token ${index} type. Expected: '${tokenType}' Actual: '${this.type.name}(${token.value})'`);
       this.isValid = false;
 
       return null;

@@ -1,9 +1,11 @@
-
+import {EndStartDateFunctionCall} from "./endStartDateFunctionCall";
+import {MonthsFunction} from "../../../language/expressions/functions/monthsFunction";
 
 export class MonthsFunctionCall extends EndStartDateFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "months";
 
-   public MonthsFunctionCall(MonthsFunction function) super(function) {
+   constructor(functionNode: MonthsFunction) {
+      super(functionNode);
    }
 }

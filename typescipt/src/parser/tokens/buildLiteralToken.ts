@@ -15,6 +15,7 @@ import {BooleanLiteral} from "./booleanLiteral";
 import {Token} from "./token";
 import {Keywords} from "../Keywords";
 import {isDigitOrLetter} from "./character";
+import {TokenType} from "./tokenType";
 
 const point = '.'.charCodeAt(0);
 const colon = ':'.charCodeAt(0);
@@ -31,7 +32,7 @@ export class BuildLiteralToken extends ParsableToken {
   ];
 
   public tokenIsLiteral: boolean = false;
-  public tokenType: string = 'BuildLiteralToken';
+  public tokenType = TokenType.BuildLiteralToken;
 
   private hasMemberAccessor: boolean = false;
   private lastMemberAccessor: boolean = false;

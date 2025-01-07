@@ -4,63 +4,26 @@ import {ParserContext} from "../src/parser/parserContext";
 import {Tokenizer} from "../src/parser/tokens/tokenizer";
 import {ExpressionFactory} from "../src/language/expressions/expressionFactory";
 import {IParserLogger, ParserLogger} from "../src/parser/parserLogger";
-import {IFileSystem} from "../src/parser/IFileSystem";
 import {asTable, Table} from "../src/language/tables/table";
 import {asScenario, Scenario} from "../src/language/scenarios/scenario";
 import {asEnumDefinition, EnumDefinition} from "../src/language/enums/enumDefinition";
 import {RootNode} from "../src/language/rootNode";
 import {asFunction, Function} from "../src/language/functions/function";
-import {LoggingConfiguration} from "./testsInitialization";
+import {LoggingConfiguration} from "./loggingConfiguration";
+import {NodeFileSystem} from "./nodeFileSystem";
 
-class NodeFileSystem implements IFileSystem {
-  combine(fullPath: string, fileName: string): string {
-    return fullPath + "/" + fileName;
-  }
-
-  fileExists(fullFinName: string): boolean {
-    return true;
-  }
-
-  getDirectoryName(parentFullFileName: string): string {
-    return parentFullFileName;
-  }
-
-  getFileName(fullFileName: string): string {
-    return fullFileName;
-  }
-
-  getFullPath(directName: string): string {
-    return directName;
-  }
-
-  readAllLines(fileName: string): Array<string> {
-    return [];
-  }
-
-  directoryExists(absoluteFolder: string): boolean {
-    return false;
-  }
-
-  getDirectories(folder: string): Array<string> {
-    return [];
-  }
-
-  getDirectoryFiles(folder: string, filter: string): Array<string> {
-    return [];
-  }
-
-  isPathRooted(folder: string): boolean {
-    return false;
-  }
-}
-
-export function parseNodes(code: string): { nodes: RootNodeList, logger: IParserLogger } {
+export function createParser() {
   const parserLogger = new ParserLogger(LoggingConfiguration.getParserLogger())
   const expressionFactory = new ExpressionFactory();
   const fileSystem = new NodeFileSystem();
   const context = new ParserContext(parserLogger, fileSystem, expressionFactory)
   const tokenizer = new Tokenizer();
   const parser = new LexyParser(context, parserLogger, tokenizer, fileSystem, expressionFactory);
+  return {parserLogger, parser};
+}
+
+export function parseNodes(code: string): { nodes: RootNodeList, logger: IParserLogger } {
+  const {parserLogger, parser} = createParser();
   const codeLines = code.split("\n");
   const result = parser.parse(codeLines, `tests.lexy`, false);
 

@@ -1,19 +1,21 @@
+import {MethodFunctionCall} from "./methodFunctionCall";
+import {SingleArgumentFunction} from "../../../language/expressions/functions/singleArgumentFunction";
+import {CodeWriter} from "../writers/codeWriter";
+import {renderExpression} from "../writers/renderExpression";
 
+export abstract class SingleArgumentFunctionCall extends MethodFunctionCall {
 
-internal abstract class SingleArgumentFunctionCall : MethodFunctionCall {
-   public SingleArgumentFunction SingleArgumentFunction
+  public singleArgumentFunction: SingleArgumentFunction;
 
-   protected SingleArgumentFunctionCall(SingleArgumentFunction function) super(function) {
-     SingleArgumentFunction = function;
+  constructor(functionNode: SingleArgumentFunction) {
+     super(functionNode);
+     this.singleArgumentFunction = functionNode;
    }
 
-   public override customMethodSyntax(context: ICompileFunctionContext): MemberDeclarationSyntax {
-     return null;
+   public override renderMethodSyntax(codeWriter: CodeWriter) {
    }
 
-   protected override getArguments(context: ICompileFunctionContext): SeparatedSyntaxArray<ArgumentSyntax> {
-     return SyntaxFactory.SingletonSeparatedList(
-       SyntaxFactory.Argument(
-         ExpressionSyntaxFactory.ExpressionSyntax(SingleArgumentFunction.valueExpression, context)));
+   protected override renderArguments(codeWriter: CodeWriter) {
+     renderExpression(this.singleArgumentFunction.valueExpression, codeWriter);
    }
 }

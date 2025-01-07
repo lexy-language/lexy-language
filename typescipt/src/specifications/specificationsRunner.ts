@@ -41,7 +41,7 @@ export class SpecificationsRunner implements ISpecificationsRunner {
   private static runScenarios(context: ISpecificationRunnerContext): void {
     let runners = context.fileRunners;
     let countScenarios = context.countScenarios();
-    context.log(`Specifications found: {countScenarios}`);
+    context.logGlobal(`Specifications found: ${countScenarios}`);
     if (runners.length == 0) throw new Error(`No specifications found`);
 
     runners.forEach(runner => runner.run());
@@ -52,17 +52,17 @@ export class SpecificationsRunner implements ISpecificationsRunner {
   }
 
   private static failed(context: ISpecificationRunnerContext): void {
-    context.log(`--------------- FAILED PARSER LOGGING ---------------`);
+    context.logGlobal(`--------------- FAILED PARSER LOGGING ---------------`);
     for (const runner of context.failedScenariosRunners()) {
       console.log(runner.parserLogging());
     }
-    throw new Error(`Specifications failed: ${context.failed}`);
+    throw new Error(`Specifications failed: ${context.failed}\n${context.formatGlobalLog()}`);
   }
 
   private getRunners(context: ISpecificationRunnerContext, folder: string): void {
     let absoluteFolder = this.getAbsoluteFolder(folder);
 
-    context.log(`Specifications folder: ${absoluteFolder}`);
+    context.logGlobal(`Specifications folder: ${absoluteFolder}`);
 
     this.addFolder(context, absoluteFolder);
   }
@@ -72,15 +72,16 @@ export class SpecificationsRunner implements ISpecificationsRunner {
 
     files
       .sort()
-      .forEach(file => this.createFileRunner(context, file));
+      .forEach(file => this.createFileRunner(context, this.fileSystem.combine(folder, file)));
 
     this.fileSystem.getDirectories(folder)
       .sort()
-      .forEach(folder => this.addFolder(context, folder));
+      .forEach(eachFolder => this.addFolder(context, this.fileSystem.combine(folder, eachFolder)));
   }
 
   private createFileRunner(context: ISpecificationRunnerContext, fileName: string): void {
     let runner = new SpecificationFileRunner(fileName, this.compiler, this.parser, context);
+    runner.initialize();
     context.add(runner);
   }
 
@@ -88,8 +89,9 @@ export class SpecificationsRunner implements ISpecificationsRunner {
     let absoluteFolder = this.fileSystem.isPathRooted(folder)
       ? folder
       : this.fileSystem.getFullPath(folder);
-    if (!this.fileSystem.directoryExists(absoluteFolder))
+    if (!this.fileSystem.directoryExists(absoluteFolder)) {
       throw new Error(`Specifications folder doesn't exist: ${absoluteFolder}`);
+    }
 
     return absoluteFolder;
   }

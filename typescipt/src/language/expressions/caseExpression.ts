@@ -26,8 +26,8 @@ export class CaseExpression extends Expression implements IParsableNode {
 
   private readonly expressionsValues: ExpressionList;
 
-  public readonly isParsableNode: true;
-  public readonly isChildExpression: true;
+  public readonly isParsableNode = true;
+  public readonly isChildExpression = true;
 
   public readonly isDefault: boolean;
   public readonly nodeType = NodeType.CaseExpression;
@@ -60,7 +60,7 @@ export class CaseExpression extends Expression implements IParsableNode {
      let tokens = source.tokens;
      if (!CaseExpression.isValid(tokens)) return newParseExpressionFailed("CaseExpression", `Not valid.`);
 
-     if (tokens.isKeyword(0, Keywords.Default)) return this.parseDefaultCase(source, tokens, factory);
+     if (tokens.isKeyword(0, Keywords.Default)) return CaseExpression.parseDefaultCase(source, tokens, factory);
 
      if (tokens.length == 1)
        return newParseExpressionFailed("CaseExpression", `Invalid 'case'. No parameters found.`);

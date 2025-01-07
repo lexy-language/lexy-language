@@ -17,9 +17,9 @@ export class NodesLogger {
 
      const rootNode = this.asRootNode(node)
      if (rootNode != null) {
-       this.builder.push(`${NodeType[rootNode.nodeType]}: ${rootNode.nodeName}`);
+       this.builder.push(`${rootNode.nodeType}: ${rootNode.nodeName}`);
      } else {
-       this.builder.push(NodeType[node.nodeType]);
+       this.builder.push(node.nodeType);
      }
      this.builder.push("\n")
 

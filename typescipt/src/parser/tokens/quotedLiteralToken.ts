@@ -11,9 +11,10 @@ import {
 import {IValidationContext} from "../validationContext";
 import {VariableType} from "../../language/variableTypes/variableType";
 import {PrimitiveType} from "../../language/variableTypes/primitiveType";
+import {TokenType} from "./tokenType";
 
 export function instanceOfQuotedLiteralToken(object: any): object is QuotedLiteralToken {
-  return object?.tokenType == 'QuotedLiteralToken';
+  return object?.tokenType == TokenType.QuotedLiteralToken;
 }
 
 export function asQuotedLiteralToken(object: any): QuotedLiteralToken | null {
@@ -24,7 +25,7 @@ export class QuotedLiteralToken extends ParsableToken implements ILiteralToken {
   private quoteClosed: boolean = false;
 
   public tokenIsLiteral: boolean = true;
-  public tokenType: string = 'QuotedLiteralToken';
+  public tokenType = TokenType.QuotedLiteralToken;
 
   constructor(character: TokenCharacter) {
     super(character, '');

@@ -1,9 +1,11 @@
-
+import {SingleArgumentFunctionCall} from "./singleArgumentFunctionCall";
+import {IntFunction} from "../../../language/expressions/functions/intFunction";
 
 export class IntFunctionCall extends SingleArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInNumberFunctions";
+   protected override methodName = "int";
 
-   public IntFunctionCall(IntFunction function) super(function) {
+   constructor(functionNode: IntFunction) {
+      super(functionNode);
    }
 }

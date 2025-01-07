@@ -1,24 +1,20 @@
+import {CodeWriter} from "../writers/codeWriter";
+import {NoArgumentFunction} from "../../../language/expressions/functions/noArgumentFunction";
+import {FunctionCall} from "./functionCall";
 
+export abstract class NoArgumentFunctionCall extends FunctionCall {
+   public noArgumentFunction: NoArgumentFunction
 
-internal abstract class NoArgumentFunctionCall : FunctionCall {
-   public NoArgumentFunction Function
+   protected abstract className: string;
+   protected abstract methodName: string
 
-   protected abstract string ClassName
-   protected abstract string MethodName
-
-   protected NoArgumentFunctionCall(NoArgumentFunction function) super(function) {
-     Function = function;
+  protected constructor(functionNode: NoArgumentFunction) {
+     super(functionNode);
+     this.noArgumentFunction = functionNode;
    }
 
-   public override customMethodSyntax(context: ICompileFunctionContext): MemberDeclarationSyntax {
-     return null;
-   }
-
-   public override callExpressionSyntax(context: ICompileFunctionContext): ExpressionSyntax {
-     return SyntaxFactory.InvocationExpression(
-       SyntaxFactory.MemberAccessExpression(
-         SyntaxKind.SimpleMemberAccessExpression,
-         SyntaxFactory.IdentifierName(ClassName),
-         SyntaxFactory.IdentifierName(MethodName)));
+   public override renderExpression(codeWriter: CodeWriter){
+     codeWriter.writeNamespace();
+     codeWriter.write("." + this.className + "." + this.methodName + "()");
    }
 }

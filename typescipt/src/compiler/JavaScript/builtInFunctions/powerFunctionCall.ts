@@ -1,22 +1,23 @@
-
+import {MethodFunctionCall} from "./methodFunctionCall";
+import {PowerFunction} from "../../../language/expressions/functions/powerFunction";
+import {CodeWriter} from "../writers/codeWriter";
+import {renderExpression} from "../writers/renderExpression";
 
 export class PowerFunctionCall extends MethodFunctionCall {
-   public PowerFunction PowerFunction
 
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+  public powerFunction: PowerFunction
 
-   public PowerFunctionCall(PowerFunction function) super(function) {
-     PowerFunction = function;
-   }
+  protected override className = "BuiltInNumberFunctions";
+  protected override methodName = "power";
 
-   protected override getArguments(context: ICompileFunctionContext): SeparatedSyntaxArray<ArgumentSyntax> {
-     return SyntaxFactory.SeparatedArray<ArgumentSyntax>(
-       new SyntaxNodeOrToken[] {
-         SyntaxFactory.Argument(
-           ExpressionSyntaxFactory.ExpressionSyntax(PowerFunction.numberExpression, context)),
-         SyntaxFactory.Token(SyntaxKind.CommaToken),
-         SyntaxFactory.Argument(ExpressionSyntaxFactory.ExpressionSyntax(PowerFunction.PowerExpression, context))
-       });
-   }
+  constructor(functionNode: PowerFunction) {
+    super(functionNode);
+    this.powerFunction = functionNode;
+  }
+
+  protected override renderArguments(codeWriter: CodeWriter) {
+    renderExpression(this.powerFunction.numberExpression, codeWriter);
+    codeWriter.write(", ");
+    renderExpression(this.powerFunction.powerExpression, codeWriter);
+  }
 }

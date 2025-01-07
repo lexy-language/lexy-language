@@ -32,4 +32,8 @@ export class ScenarioName extends Node {
     }
     if (!isValidIdentifier(this.value)) context.logger.fail(this.reference, `Invalid scenario name: '${this.value}'.`);
   }
+
+  public toString() {
+    return this.value;
+  }
 }

@@ -1,9 +1,10 @@
 import {ParsableToken} from "./parsableToken";
 import {TokenCharacter} from "./tokenCharacter";
 import {newParseTokenFinishedResult, ParseTokenResult} from "./parseTokenResult";
+import {TokenType} from "./tokenType";
 
 export function instanceOfTableSeparatorToken(object: any): object is TableSeparatorToken {
-  return object?.tokenType == 'TableSeparatorToken';
+  return object?.tokenType == TokenType.TableSeparatorToken;
 }
 
 export function asTableSeparatorToken(object: any): TableSeparatorToken | null {
@@ -13,7 +14,7 @@ export function asTableSeparatorToken(object: any): TableSeparatorToken | null {
 export class TableSeparatorToken extends ParsableToken {
 
   public tokenIsLiteral: boolean = false;
-  public tokenType: string = 'TableSeparatorToken';
+  public tokenType = TokenType.TableSeparatorToken;
 
   constructor(character: TokenCharacter) {
     super(character);

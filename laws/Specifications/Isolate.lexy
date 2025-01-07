@@ -1,0 +1,12 @@
+Scenario: ElseWithoutIf
+  Function:
+    Parameters
+    Results
+      number Number
+    Code
+      number temp
+      else
+        temp = 777
+      Number = temp
+  Parameters
+  ExpectError "Else should be following an If statement. No if statement found."

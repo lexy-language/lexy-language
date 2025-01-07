@@ -22,8 +22,7 @@ export class TypeWriter implements IRootTokenWriter {
      const className = typeClassName(typeDefinition.name.value);
 
      const codeWriter = new CodeWriter(this.namespace);
-     const context = new CompileFunctionContext(null, []); //todo remove reference of create interface
-     createVariableClass(className, typeDefinition.variables, context, codeWriter);
+     createVariableClass(className, typeDefinition.variables, codeWriter);
 
      return new GeneratedType(GeneratedTypeKind.type, node, className, codeWriter.toString());
    }

@@ -24,11 +24,12 @@ export function asElseExpression(object: any): ElseExpression | null {
 }
 
 export class ElseExpression extends Expression implements IParsableNode, IChildExpression {
+
   private readonly falseExpressionsValue: ExpressionList;
 
-  public isParsableNode: true;
-  public isChildExpression: true;
-  public nodeType = NodeType.ElseExpression;
+  public readonly isParsableNode = true;
+  public readonly isChildExpression = true;
+  public readonly nodeType = NodeType.ElseExpression;
 
   public get falseExpressions(): ReadonlyArray<Expression> {
     return this.falseExpressionsValue.asArray();

@@ -16,7 +16,6 @@ import {Keywords} from "../../parser/Keywords";
 import {PrimitiveType} from "../variableTypes/primitiveType";
 import {VariableType} from "../variableTypes/variableType";
 import {NodeType} from "../nodeType";
-import {LiteralExpression} from "./literalExpression";
 
 export function instanceOfIfExpression(object: any): boolean {
   return object?.nodeType == NodeType.IfExpression;
@@ -30,9 +29,9 @@ export class IfExpression extends Expression implements IParsableNode, IParentEx
 
   private readonly trueExpressionsValues: ExpressionList;
 
-  public isParentExpression: true;
-  public isParsableNode: true;
-  public nodeType = NodeType.IfExpression;
+  public readonly isParentExpression = true;
+  public readonly isParsableNode = true;
+  public readonly nodeType = NodeType.IfExpression;
 
   public condition: Expression
 
@@ -84,12 +83,14 @@ export class IfExpression extends Expression implements IParsableNode, IParentEx
 
   protected override validate(context: IValidationContext): void {
     let type = this.condition.deriveType(context);
-    if (type == null || !type.equals(PrimitiveType.boolean))
+    if (type == null || !type.equals(PrimitiveType.boolean)) {
       context.logger.fail(this.reference, `'if' condition expression should be 'boolean', is of wrong type '${type}'.`);
+    }
   }
 
   public linkElse(elseExpression: ElseExpression): void {
-
+    if (this.else != null) throw new Error("'else' can only be set once")
+    this.else = elseExpression;
   }
 
   public override deriveType(context: IValidationContext): VariableType | null {

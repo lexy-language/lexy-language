@@ -10,6 +10,7 @@ import {IValidationContext} from "../../parser/validationContext";
 import {ComplexType} from "../variableTypes/complexType";
 import {ComplexTypeMember} from "../variableTypes/complexTypeMember";
 import {NodeType} from "../nodeType";
+import {ComplexTypeSource} from "../variableTypes/complexTypeSource";
 
 export function instanceOfTable(object: any) {
   return object?.nodeType == NodeType.Table;
@@ -49,48 +50,48 @@ export class Table extends RootNode {
     return new Table(name, reference);
   }
 
-   public override parse(context: IParseLineContext): IParsableNode {
-     if (this.isFirstLine()) {
-       this.headerValue = TableHeader.parse(context);
-     } else {
-       const tableRow = TableRow.parse(context);
-       if (tableRow != null) this.rows.push(tableRow);
-     }
+  public override parse(context: IParseLineContext): IParsableNode {
+    if (this.isFirstLine()) {
+      this.headerValue = TableHeader.parse(context);
+    } else {
+      const tableRow = TableRow.parse(context);
+      if (tableRow != null) this.rows.push(tableRow);
+    }
 
-     return this;
-   }
+    return this;
+  }
 
-   private isFirstLine(): boolean {
-     return this.header == null;
-   }
+  private isFirstLine(): boolean {
+    return this.header == null;
+  }
 
-   public override getChildren(): Array<INode> {
-     if (this.header != null) {
-       return [this.header, ...this.rows];
-     } else {
-       return [...this.rows];
-     }
-   }
+  public override getChildren(): Array<INode> {
+    if (this.header != null) {
+      return [this.header, ...this.rows];
+    } else {
+      return [...this.rows];
+    }
+  }
 
-   protected override validate(context: IValidationContext): void {
-   }
+  protected override validate(context: IValidationContext): void {
+  }
 
-   public override validateTree(context: IValidationContext): void {
-     const scope = context.createVariableScope();
-     try {
-       super.validateTree(context);
-     } finally {
-       scope[Symbol.dispose]();
-     }
-   }
+  public override validateTree(context: IValidationContext): void {
+    const scope = context.createVariableScope();
+    try {
+      super.validateTree(context);
+    } finally {
+      scope[Symbol.dispose]();
+    }
+  }
 
-   public getRowType(context: IValidationContext): ComplexType {
+  public getRowType(context: IValidationContext): ComplexType {
     if (this.header == null) throw new Error("Header not set.");
-     const members = this.header.columns.map(column => {
-       const type = column.type.createVariableType(context);
-       return new ComplexTypeMember(column.name, type)
-     });
+    const members = this.header.columns.map(column => {
+      const type = column.type.createVariableType(context);
+      return new ComplexTypeMember(column.name, type)
+    });
 
-     return new ComplexType(this.name.value, ComplexTypeSource.TableRow, members);
-   }
+    return new ComplexType(this.name.value, ComplexTypeSource.TableRow, members);
+  }
 }

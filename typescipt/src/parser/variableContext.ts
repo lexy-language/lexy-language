@@ -106,7 +106,7 @@ export class VariableContext implements IVariableContext {
    }
 
    private containChild(parentType: VariableType | null, reference: VariableReference, context: IValidationContext): boolean {
-     let typeWithMembers = 'memberType' in parentType ? parentType as ITypeWithMembers : null;
+     let typeWithMembers = (parentType as any).typeWithMember == true ? parentType as ITypeWithMembers : null;
 
      let memberVariableType = typeWithMembers != null ? typeWithMembers.memberType(reference.parentIdentifier, context) : null;
      if (memberVariableType == null) return false;

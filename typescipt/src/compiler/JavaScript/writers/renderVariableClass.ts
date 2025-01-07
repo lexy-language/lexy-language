@@ -1,5 +1,3 @@
-import type {ICompileFunctionContext} from "../compileFunctionContext";
-
 import {VariableDefinition} from "../../../language/variableDefinition";
 import {CodeWriter} from "./codeWriter";
 import {renderExpression} from "./renderExpression";
@@ -14,29 +12,25 @@ import {
 } from "../../../language/variableTypes/customVariableDeclarationType";
 import {TypeNames} from "../../../language/variableTypes/typeNames";
 import {instanceOfCustomType} from "../../../language/variableTypes/customType";
-import {CompileFunctionContext} from "../compileFunctionContext";
 
 export function createVariableClass(className: string,
                                     variables: ReadonlyArray<VariableDefinition>,
-                                    context: CompileFunctionContext,
                                     codeWriter: CodeWriter) {
   codeWriter.openScope(`class ${className}`);
   for (const variable of variables) {
-    renderVariableDefinition(variable, context, codeWriter)
+    renderVariableDefinition(variable, codeWriter)
   }
   codeWriter.closeScope();
 }
 
 function renderVariableDefinition(variable: VariableDefinition,
-                                  context: ICompileFunctionContext,
                                   codeWriter: CodeWriter) {
   codeWriter.startLine(`${variable.name} = `);
-  renderDefaultExpression(variable, context, codeWriter);
+  renderDefaultExpression(variable, codeWriter);
   codeWriter.endLine(`;`);
 }
 
 function renderDefaultExpression(variable: VariableDefinition,
-                                 context: ICompileFunctionContext,
                                  codeWriter: CodeWriter) {
 
   if (variable.defaultExpression != null) {

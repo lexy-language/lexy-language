@@ -39,6 +39,10 @@ export class ScenarioFunctionName extends Node {
   }
 
   public isEmpty(): boolean {
-     return isNullOrEmpty(this.valueValue);
-   }
+    return isNullOrEmpty(this.valueValue);
+  }
+
+  public toString() {
+    return this.valueValue;
+  }
 }

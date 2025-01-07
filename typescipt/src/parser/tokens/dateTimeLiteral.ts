@@ -13,9 +13,10 @@ import {Character, isDigit} from "./character";
 import {IValidationContext} from "../validationContext";
 import {VariableType} from "../../language/variableTypes/variableType";
 import {PrimitiveType} from "../../language/variableTypes/primitiveType";
+import {TokenType} from "./tokenType";
 
 export function instanceOfDateTimeLiteral(object: any): boolean {
-  return object?.tokenType == "DateTimeLiteral";
+  return object?.tokenType == TokenType.DateTimeLiteral;
 }
 
 export function asDateTimeLiteral(object: any): DateTimeLiteral | null {
@@ -37,7 +38,7 @@ export class DateTimeLiteral extends ParsableToken implements ILiteralToken {
   public dateTimeValue: Date | null = null;
 
   public tokenIsLiteral: boolean = true;
-  public tokenType: string = 'DateTimeLiteral';
+  public tokenType = TokenType.DateTimeLiteral;
 
   constructor(character: TokenCharacter) {
     super(character, '');

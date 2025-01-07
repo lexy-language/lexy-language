@@ -39,17 +39,12 @@ export class TableType extends TypeWithMembers {
   public override memberType(name: string, context: IValidationContext): VariableType | null {
 
     if (name == `Count`) return PrimitiveType.number;
-    if (name == Table.rowName) return TableRowType(context);
+    if (name == Table.rowName) return this.tableRowType(context);
     return null;
   }
 
-  private tableRowType(context: IValidationContext): TableRowType {
+  private tableRowType(context: IValidationContext): TableRowType | null {
     let complexType = context.rootNodes.getTable(this.type)?.getRowType(context);
-    return new TableRowType(this.type, complexType);
-  }
-
-  private getMembers(context: IValidationContext): Array<ComplexTypeMember> {
-    return this.table.header.columns.map(column =>
-      new ComplexTypeMember(column.Name, column.Type.createVariableType(context)));
+    return complexType != null ? new TableRowType(this.type, complexType) : null;
   }
 }

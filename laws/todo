@@ -4,3 +4,7 @@
 - typescript/c# private vars with _
 - verify whether built in date functions work EXACTLY the same in dotnet and javascript. Many edge cases need to be confirmed.
 - Fix inconsistencies in node name (sometimes value object without validation)
+Add table validation
+- wrong row value types
+- invalid number of values
+- TEST: multiple lookup calls with same signature

@@ -1,9 +1,11 @@
-
+import {YearFunction} from "../../../language/expressions/functions/yearFunction";
+import {SingleArgumentFunctionCall} from "./singleArgumentFunctionCall";
 
 export class YearFunctionCall extends SingleArgumentFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "year";
 
-   public YearFunctionCall(YearFunction function) super(function) {
+   constructor(functionNode: YearFunction) {
+      super(functionNode);
    }
 }

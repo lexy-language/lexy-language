@@ -22,6 +22,6 @@ export abstract class ParsableNode extends Node implements IParsableNode {
       super(reference);
    }
 
-   public isParsableNode = true;
+   public readonly isParsableNode = true;
    public abstract parse(context: IParseLineContext): IParsableNode;
 }

@@ -5,9 +5,10 @@ import {TokenValues} from "./tokenValues";
 import {IValidationContext} from "../validationContext";
 import {VariableType} from "../../language/variableTypes/variableType";
 import {PrimitiveType} from "../../language/variableTypes/primitiveType";
+import {TokenType} from "./tokenType";
 
 export function instanceOfBooleanLiteral(object: any): boolean {
-  return object?.tokenType == "BooleanLiteral";
+  return object?.tokenType == TokenType.BooleanLiteral;
 }
 
 export function asBooleanLiteral(object: any): BooleanLiteral | null {
@@ -18,7 +19,7 @@ export class BooleanLiteral extends Token implements ILiteralToken {
   public booleanValue: boolean;
 
   public tokenIsLiteral: boolean = true;
-  public tokenType: string = 'BooleanLiteral';
+  public tokenType = TokenType.BooleanLiteral;
 
   constructor(value: boolean, character: TokenCharacter) {
     super(character);

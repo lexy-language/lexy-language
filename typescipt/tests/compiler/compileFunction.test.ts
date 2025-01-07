@@ -38,7 +38,6 @@ describe('CompileFunctionTests', () => {
      expect(result.number(`Result`)).toBe(777);
    });
 
-
   it('testMemberAccessAssignment', async () => {
      let script = compileFunction(`Table: ValidateTableKeyword
 # Validate table keywords
@@ -84,4 +83,21 @@ Function: ValidateTableKeywordFunction
      let result = script.run();
      expect(result.number(`Result`)).toBe(5);
    });
+
+
+  it('variableDeclarationWithDefaultInCode', async () => {
+    let script = compileFunction(`
+Enum: SimpleEnum
+  First
+  Second
+    
+Function: TestSimpleReturn
+  Results
+    SimpleEnum Result
+  Code
+    Result = SimpleEnum.Second
+`);
+    let result = script.run();
+    expect(result.number(`Result`)).toBe(5);
+  });
 });

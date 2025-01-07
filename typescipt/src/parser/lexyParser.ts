@@ -39,9 +39,13 @@ export class LexyParser implements ILexyParser {
    }
 
    public parseFile(fileName: string, throwException: boolean = true): ParserResult {
-     this.logger.logInfo(`Parse file: ` + fileName);
+     const fullFileName = this.fileSystem.isPathRooted(fileName)
+       ? fileName
+       : this.fileSystem.getFullPath(fileName);
 
-     const code = this.fileSystem.readAllLines(fileName);
+     this.logger.logInfo(`Parse file: ` + fullFileName);
+
+     const code = this.fileSystem.readAllLines(fullFileName);
      return this.parse(code, fileName, throwException);
    }
 
@@ -179,4 +183,5 @@ export class LexyParser implements ILexyParser {
   private asRootNode(object: any): IRootNode | null {
     return this.instanceOfRootNode(object) ? object as IRootNode : null;
   }
+
 }

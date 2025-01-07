@@ -8,6 +8,7 @@ import {newParseTokenFinishedResult, ParseTokenResult} from "./parseTokenResult"
 import {TableSeparatorToken} from "./tableSeparatorToken";
 import {Character} from "./character";
 import {isDigitOrLetter} from "./character";
+import {TokenType} from "./tokenType";
 
 class OperatorCombinations {
   public firstChar: Character;
@@ -22,7 +23,7 @@ class OperatorCombinations {
 }
 
 export function instanceOfOperatorToken(object: any): object is OperatorToken {
-  return object?.tokenType == 'OperatorToken';
+  return object?.tokenType == TokenType.OperatorToken;
 }
 
 export function asOperatorToken(object: any): OperatorToken | null {
@@ -36,7 +37,7 @@ export interface IOperatorToken extends IToken {
 export class OperatorToken extends ParsableToken implements IOperatorToken {
 
   public tokenIsLiteral = false;
-  public tokenType: string = 'OperatorToken';
+  public tokenType = TokenType.OperatorToken;
   public type: OperatorType = OperatorType.NotSet;
 
   private static readonly terminatorValues = [

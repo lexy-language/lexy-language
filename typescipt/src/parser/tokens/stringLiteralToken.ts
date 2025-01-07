@@ -3,9 +3,10 @@ import {ILiteralToken} from "./ILiteralToken";
 import {TokenCharacter} from "./tokenCharacter";
 import {IValidationContext} from "../validationContext";
 import {VariableType} from "../../language/variableTypes/variableType";
+import {TokenType} from "./tokenType";
 
 export function instanceOfStringLiteralToken(object: any) {
-  return object?.tokenType == "StringLiteralToken";
+  return object?.tokenType == TokenType.StringLiteralToken;
 }
 
 export function asStringLiteralToken(object: any): StringLiteralToken | null {
@@ -17,7 +18,7 @@ export class StringLiteralToken extends Token implements ILiteralToken {
   public value: string;
 
   public tokenIsLiteral: boolean = true;
-  public tokenType: string = 'StringLiteralToken';
+  public tokenType = TokenType.StringLiteralToken;
 
   constructor(value: string, character: TokenCharacter) {
     super(character);

@@ -1,9 +1,11 @@
-
+import {EndStartDateFunctionCall} from "./endStartDateFunctionCall";
+import {YearsFunction} from "../../../language/expressions/functions/yearsFunction";
 
 export class YearsFunctionCall extends EndStartDateFunctionCall {
-   protected override string ClassName =nameof(): >;
-   protected override string MethodName =nameof(): >;
+   protected override className = "BuiltInDateFunctions";
+   protected override methodName = "years";
 
-   public YearsFunctionCall(YearsFunction function) super(function) {
+   constructor(functionNode: YearsFunction) {
+      super(functionNode);
    }
 }

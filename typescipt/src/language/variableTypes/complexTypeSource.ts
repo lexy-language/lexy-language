@@ -1,7 +1,6 @@
-
 export enum ComplexTypeSource {
-   FunctionParameters,
-   FunctionResults,
-   TableRow,
-   Custom
+   FunctionParameters = "FunctionParameters",
+   FunctionResults = "FunctionResults",
+   TableRow = "TableRow",
+   Custom = "Custom"
 }

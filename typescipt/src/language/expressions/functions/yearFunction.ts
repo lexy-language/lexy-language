@@ -8,7 +8,7 @@ import {NodeType} from "../../nodeType";
 export class YearFunction extends SingleArgumentFunction {
 
    public static readonly name: string = `YEAR`;
-   public readonly nodeType = NodeType.YearsFunction;
+   public readonly nodeType = NodeType.YearFunction;
 
    protected override get functionHelp(): string {
       return `'{Name} expects 1 argument (Date)`;

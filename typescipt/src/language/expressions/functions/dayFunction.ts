@@ -1,13 +1,13 @@
-import {VariableType} from "../../variableTypes/variableType";
 import {PrimitiveType} from "../../variableTypes/primitiveType";
 import {SingleArgumentFunction} from "./singleArgumentFunction";
 import {Expression} from "../expression";
 import {SourceReference} from "../../../parser/sourceReference";
 import {ExpressionFunction} from "./expressionFunction";
+import {NodeType} from "../../nodeType";
 
 export class DayFunction extends SingleArgumentFunction {
 
-   public readonly nodeType = `DayFunction`;
+   public readonly nodeType = NodeType.DayFunction;
    public static readonly name = `DAY`;
 
    protected override get functionHelp(): string {

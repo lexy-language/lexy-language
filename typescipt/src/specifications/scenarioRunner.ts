@@ -55,24 +55,26 @@ export class ScenarioRunner implements IScenarioRunner {
   public run(): void {
     if (this.parserLogger.nodeHasErrors(this.scenario)) {
       this.fail(` Parsing scenario failed: ${this.scenario.functionName}`);
-      this.parserLogger.errorNodeMessages(Scenario).forEach(this.context.log);
+      this.parserLogger.errorNodeMessages(this.scenario)
+        .forEach(message => this.context.logGlobal(message));
       return;
     }
 
     if (!this.validateErrors()) return;
 
-    let nodes = this.functionNode.getFunctionAndDependencies(this.rootNodeList);
-    let compilerResult = this.compiler.compile(nodes);
-    let executable = compilerResult.getFunction(this.functionNode);
-    let values = this.getValues(this.scenario.parameters, this.functionNode.parameters, compilerResult);
+    const nodes = this.functionNode.getFunctionAndDependencies(this.rootNodeList);
+    const compilerResult = this.compiler.compile(nodes);
+    const context =compilerResult.createContext();
+    const executable = compilerResult.getFunction(this.functionNode);
+    const values = this.getValues(this.scenario.parameters, this.functionNode.parameters, compilerResult);
 
-    let result = executable.run(values);
+    const result = executable.run(context, values);
 
-    let validationResultText = this.getValidationResult(result, compilerResult);
+    const validationResultText = this.getValidationResult(result, compilerResult);
     if (validationResultText.length > 0) {
       this.fail(validationResultText);
     } else {
-      this.context.success(Scenario);
+      this.context.success(this.scenario);
     }
   }
 
@@ -82,7 +84,7 @@ export class ScenarioRunner implements IScenarioRunner {
 
   private fail(message: string): void {
     this.failedValue = true;
-    this.context.fail(Scenario, message);
+    this.context.fail(this.scenario, message);
   }
 
   private getValidationResult(result: FunctionResult, compilerResult: CompilerResult): string {
@@ -127,7 +129,7 @@ export class ScenarioRunner implements IScenarioRunner {
       return false;
     }
 
-    this.context.success(Scenario);
+    this.context.success(this.scenario);
     return false;
   }
 
@@ -151,7 +153,7 @@ export class ScenarioRunner implements IScenarioRunner {
     }
 
     if (!any(failedMessages) && !failed) {
-      this.context.success(Scenario);
+      this.context.success(this.scenario);
       return false; // don't compile and run rest of scenario
     }
 

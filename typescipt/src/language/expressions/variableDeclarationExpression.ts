@@ -91,13 +91,14 @@ export class VariableDeclarationExpression extends Expression {
   }
 
   protected override validate(context: IValidationContext): void {
+
     let assignmentType = this.assignment?.deriveType(context);
+
     if (this.assignment != null && assignmentType == null) {
       context.logger.fail(this.reference, `Invalid expression. Could not derive type.`);
-      return;
     }
 
-    let variableType = !!assignmentType ? this.getVariableType(context, assignmentType) : null;
+    let variableType = this.getVariableType(context, assignmentType ?? null);
     if (variableType == null) {
       context.logger.fail(this.reference, `Invalid variable type '${this.type.nodeType}'`);
     }
@@ -105,15 +106,15 @@ export class VariableDeclarationExpression extends Expression {
     context.variableContext?.registerVariableAndVerifyUnique(this.reference, this.name, variableType, VariableSource.Code);
   }
 
-  private getVariableType(context: IValidationContext, assignmentType: VariableType): VariableType | null {
-    if (this.type.nodeType == NodeType.ImplicitVariableDeclaration) {
+  private getVariableType(context: IValidationContext, assignmentType: VariableType | null): VariableType | null {
+    if (this.type.nodeType == NodeType.ImplicitVariableDeclaration && assignmentType != null) {
       const implicitVariableType = this.type as ImplicitVariableDeclaration;
       implicitVariableType.define(assignmentType);
       return assignmentType;
     }
 
     let variableType = this.type.createVariableType(context);
-    if (this.assignment != null && !assignmentType.equals(variableType)) {
+    if (this.assignment != null && !assignmentType?.equals(variableType)) {
       context.logger.fail(this.reference, `Invalid expression. Literal or enum value expression expected.`);
     }
 

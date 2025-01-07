@@ -6,11 +6,12 @@ import {ParsableNode} from "../parsableNode";
 import {SourceReference} from "../../parser/sourceReference";
 import {asQuotedLiteralToken, QuotedLiteralToken} from "../../parser/tokens/quotedLiteralToken";
 import {INode} from "../node";
+import {NodeType} from "../nodeType";
 
 export class ScenarioExpectError extends ParsableNode {
   private messageValue: string | null;
 
-  public readonly nodeType: "ScenarioExpectError";
+  public readonly nodeType = NodeType.ScenarioExpectError;
 
   public get message(): string | null {
      return this.messageValue;

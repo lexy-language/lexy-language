@@ -1,18 +1,22 @@
-
+import {FunctionCall} from "./functionCall";
+import {LookupRowFunction} from "../../../language/expressions/functions/lookupRowFunction";
+import {CodeWriter} from "../writers/codeWriter";
+import {LexyCodeConstants} from "../../lexyCodeConstants";
+import {renderExpression} from "../writers/renderExpression";
 
 export class LookUpRowFunctionCall extends FunctionCall {
-   private readonly string methodName;
+   private readonly methodName: string;
 
-   public LookupRowFunction LookupFunction
+   public lookupFunction: LookupRowFunction;
 
-   public LookUpRowFunctionCall(LookupRowFunction lookupFunction) super(lookupFunction) {
-     LookupFunction = lookupFunction;
-     methodName =
-       $`__LookUp{lookupFunction.Table}RowBy{lookupFunction.searchValueColumn.Member}`;
+  constructor(lookupFunction: LookupRowFunction) {
+    super(lookupFunction);
+    this.lookupFunction = lookupFunction;
+    this.methodName = `__LookUp${lookupFunction.table}RowBy${lookupFunction.searchValueColumn.member}`;
    }
 
-   public override customMethodSyntax(context: ICompileFunctionContext): MemberDeclarationSyntax {
-     return MethodDeclaration(
+   override renderCustomFunction(codeWriter: CodeWriter) {
+/*     return MethodDeclaration(
          Types.Syntax(LookupFunction.RowType),
          Identifier(methodName))
        .WithModifiers(Modifiers.PrivateStatic())
@@ -53,18 +57,12 @@ export class LookUpRowFunctionCall extends FunctionCall {
                          Token(SyntaxKind.CommaToken),
                          Argument(IdentifierName(LexyCodeConstants.ContextVariable))
                        })))))));
+ */
    }
 
-   public override callExpressionSyntax(context: ICompileFunctionContext): ExpressionSyntax {
-     return InvocationExpression(IdentifierName(methodName))
-       .WithArgumentList(
-         ArgumentList(
-           SeparatedArray<ArgumentSyntax>(
-             new SyntaxNodeOrToken[] {
-               Argument(ExpressionSyntaxFactory.ExpressionSyntax(LookupFunction.valueExpression,
-                 context)),
-               Token(SyntaxKind.CommaToken),
-               Argument(IdentifierName(LexyCodeConstants.ContextVariable))
-             })));
-   }
+  public override renderExpression(codeWriter: CodeWriter) {
+    codeWriter.write(`${this.methodName}(`)
+    renderExpression(this.lookupFunction.valueExpression, codeWriter);
+    codeWriter.write(`, ${LexyCodeConstants.contextVariable})`)
+  }
 }

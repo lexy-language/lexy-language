@@ -8,6 +8,7 @@ import {IValidationContext} from "../../parser/validationContext";
 import {MemberAccessLiteral} from "../../parser/tokens/memberAccessLiteral";
 import {firstOrDefault} from "../../infrastructure/enumerableExtensions";
 import {NodeType} from "../nodeType";
+import {TokenType} from "../../parser/tokens/tokenType";
 
 export class TableHeader extends Node {
 
@@ -28,15 +29,15 @@ export class TableHeader extends Node {
      let index = 0;
      let validator = context.validateTokens("TableHeader");
 
-     if (!validator.type<TableSeparatorToken>(index, TableSeparatorToken).isValid) return null;
+     if (!validator.type<TableSeparatorToken>(index, TokenType.TableSeparatorToken).isValid) return null;
 
      let headers = new Array<ColumnHeader>();
      let tokens = context.line.tokens;
      while (++index < tokens.length) {
        if (!validator
-           .type<StringLiteralToken>(index, StringLiteralToken)
-           .type<StringLiteralToken>(index + 1, StringLiteralToken)
-           .type<TableSeparatorToken>(index + 2, TableSeparatorToken)
+           .type<StringLiteralToken>(index, TokenType.StringLiteralToken)
+           .type<StringLiteralToken>(index + 1, TokenType.StringLiteralToken)
+           .type<TableSeparatorToken>(index + 2, TokenType.TableSeparatorToken)
            .isValid)
          return null;
 
