@@ -103,7 +103,7 @@ export class VariableDeclarationExpression extends Expression {
 
     let variableType = this.getVariableType(context, assignmentType ?? null);
     if (variableType == null) {
-      context.logger.fail(this.reference, `Invalid variable type '${this.type.nodeType}'`);
+      context.logger.fail(this.reference, `Invalid variable type '${this.type}'`);
     }
 
     context.variableContext?.registerVariableAndVerifyUnique(this.reference, this.name, variableType, VariableSource.Code);

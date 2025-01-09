@@ -242,6 +242,12 @@ function renderIfExpression(expression: IfExpression, codeWriter: CodeWriter) {
   renderExpression(expression.condition, codeWriter);
   codeWriter.openInlineScope(")");
   renderExpressions(expression.trueExpressions, codeWriter);
+
+  if (expression.else != null) {
+    codeWriter.write("} else {");
+    renderExpressions(expression.else.falseExpressions, codeWriter);
+  }
+
   codeWriter.closeScope();
 }
 
@@ -255,21 +261,23 @@ function renderCaseExpression(caseValue: CaseExpression, codeWriter: CodeWriter)
   if (caseValue.value == null) {
     codeWriter.openScope("default:");
     renderExpressions(caseValue.expressions, codeWriter);
+    codeWriter.writeLine("break;")
     codeWriter.closeScope()
     return;
   }
 
-  codeWriter.write("case ");
+  codeWriter.startLine("case ");
   renderExpression(caseValue.value, codeWriter)
-  codeWriter.openScope(":");
+  codeWriter.openInlineScope(":");
   renderExpressions(caseValue.expressions, codeWriter);
+  codeWriter.writeLine("break;")
   codeWriter.closeScope()
 }
 
 function renderSwitchExpression(expression: SwitchExpression, codeWriter: CodeWriter) {
   codeWriter.write("switch(");
   renderExpression(expression.condition, codeWriter)
-  codeWriter.openScope(")");
+  codeWriter.openInlineScope(")");
   for (const caseValue of expression.cases) {
     renderCaseExpression(caseValue, codeWriter)
   }

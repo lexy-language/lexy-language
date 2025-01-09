@@ -39,8 +39,7 @@ export class EnumMember extends Node {
      if (tokens.length == 1) return new EnumMember(name, reference, null, lastIndex + 1);
 
      if (tokens.length != 3) {
-       context.logger.fail(line.lineEndReference(),
-         `Invalid number of tokens: ${tokens.length}. Should be 1 or 3`);
+       context.logger.fail(line.lineEndReference(), `Invalid number of tokens: ${tokens.length}. Should be 1 or 3.`);
        return null;
      }
 

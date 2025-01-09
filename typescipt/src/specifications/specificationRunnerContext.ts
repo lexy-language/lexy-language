@@ -4,6 +4,7 @@ import type {ILogger} from "../infrastructure/logger";
 
 import {Scenario} from "../language/scenarios/scenario";
 import {format} from "../infrastructure/formatting";
+import moment from "moment";
 
 export interface ISpecificationRunnerContext {
   failed: number
@@ -13,6 +14,7 @@ export interface ISpecificationRunnerContext {
   success(scenario: Scenario);
 
   logGlobal(message: string);
+  logTimeSpent();
 
   add(fileRunner: ISpecificationFileRunner);
 
@@ -28,8 +30,10 @@ export class SpecificationRunnerContext implements ISpecificationRunnerContext {
   private readonly fileRunnersValue: Array<ISpecificationFileRunner> = [];
   private readonly logger: ILogger;
   private failedValues = 0;
+  private startTimestamp: Date;
 
   constructor(logger: ILogger) {
+    this.startTimestamp = new Date();
     this.logger = logger;
   }
 
@@ -51,6 +55,15 @@ export class SpecificationRunnerContext implements ISpecificationRunnerContext {
   }
 
   public logGlobal(message: string): void {
+    this.globalLog.push(message)
+    this.logger.logInformation(message);
+  }
+
+  public logTimeSpent(): void {
+
+    const difference = new moment(new Date()).diff(moment(this.startTimestamp), "milliseconds");
+    const message = `Time: ${difference} milliseconds`
+
     this.globalLog.push(message)
     this.logger.logInformation(message);
   }

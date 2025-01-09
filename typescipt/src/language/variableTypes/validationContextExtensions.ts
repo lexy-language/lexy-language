@@ -95,7 +95,7 @@ function validateDefaultLiteral(literalType: string, context: IValidationContext
 
   if (literalExpression.literal.tokenType != literalType) {
     context.logger.fail(reference,
-      `Invalid default value '{defaultValueExpression}'. (type: '{primitiveVariableDeclarationType.Type}')`);
+      `Invalid default value '${defaultValueExpression}'. (type: '${primitiveVariableDeclarationType.type}')`);
   }
 }
 

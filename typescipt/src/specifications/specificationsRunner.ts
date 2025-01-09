@@ -47,6 +47,7 @@ export class SpecificationsRunner implements ISpecificationsRunner {
     runners.forEach(runner => runner.run());
 
     context.logGlobal(`Specifications succeed: ${countScenarios - context.failed} / ${countScenarios}`);
+    context.logTimeSpent();
 
     if (context.failed > 0) SpecificationsRunner.failed(context);
   }

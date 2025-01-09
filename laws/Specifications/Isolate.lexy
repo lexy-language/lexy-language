@@ -1,15 +1,26 @@
-Function: ScopedVariablesOutOfScopeFunction
-# it should not be possible access the value of a variable out of it's scope
+Function: IfElse
   Parameters
     boolean Evil
   Results
-    number NumberResult
+    number Number
   Code
+    number temp
     if Evil
-      number numberValue = 123
+      temp = 666
+    else
+      temp = 777
+    Number = temp
 
-    NumberResult = numberValue
+Scenario: IfElseTrue
+  Function IfElse
+  Parameters
+    Evil = true
+  Results
+    Number = 666
 
-Scenario: ScopedVariablesOutOfScope
-  Function ScopedVariablesOutOfScopeFunction
-  ExpectError "Unknown variable name: 'numberValue'"
+Scenario: IfElseFalse
+  Function IfElse
+  Parameters
+    Evil = false
+  Results
+    Number = 777

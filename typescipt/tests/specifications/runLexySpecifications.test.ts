@@ -8,9 +8,7 @@ describe('RunLexySpecifications', () => {
 
   it('specificFile',  async()=> {
     const runner = createRunner();
-    //runner.run(`../laws/Specifications/Function/Variables.lexy`);
-    runner.run(`../laws/Specifications/Scenario/NestedParameters.lexy`);
-  //runner.run(`../laws/Specifications/Function/Variables.lexy`);
-  //runner.run(`../laws/Specifications/BuiltInFunctions/Date.lexy`);
+    runner.run(`../laws/Specifications/Type/Syntax.lexy`);
+    runner.run(`../laws/Specifications/Scenario/UnknownParameterType.lexy`);
   });
 });

@@ -12,6 +12,7 @@ export class BuiltInNumberFunctions {
    }
 
    public static round(number: number, digits: number): number {
-     return parseFloat(number.toFixed(digits));
+     const factor = Math.pow(10, digits);
+     return (number >= 0 || -1) *  Math.round(Math.abs(number) * factor)/factor;
    }
 }
