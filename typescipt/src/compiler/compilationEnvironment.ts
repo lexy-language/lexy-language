@@ -1,28 +1,32 @@
+import type {ILogger} from "../infrastructure/logger";
+
 import {GeneratedType, GeneratedTypeKind} from "./generatedType";
 import {CompilerResult} from "./compilerResult";
 import {ExecutableFunction} from "./executableFunction";
 import {normalize} from "./JavaScript/classNames";
 import {LexyCodeConstants} from "./lexyCodeConstants";
-import {ILogger} from "../infrastructure/logger";
 import {BuiltInDateFunctions} from "../runTime/builtInDateFunctions";
 import {BuiltInNumberFunctions} from "../runTime/builtInNumberFunctions";
 import {BuiltInTableFunctions} from "../runTime/builtInTableFunctions";
+import {SystemFunctions} from "../runTime/systemFunctions";
 
 export interface ICompilationEnvironment extends Disposable {
   namespace: string;
   fullNamespace: string;
 
   addType(generatedType: GeneratedType);
+
   initialize(): void;
+
   result(): CompilerResult;
 }
 
 export class CompilationEnvironment implements ICompilationEnvironment, Disposable {
   private readonly generatedTypes: Array<GeneratedType> = [];
-  private readonly enums: {[key: string]: GeneratedType} = {};
-  private readonly executables: {[key: string]: ExecutableFunction} = {};
-  private readonly tables: {[key: string]: GeneratedType} = {};
-  private readonly types: {[key: string]: GeneratedType} = {};
+  private readonly enums: { [key: string]: GeneratedType } = {};
+  private readonly executables: { [key: string]: ExecutableFunction } = {};
+  private readonly tables: { [key: string]: GeneratedType } = {};
+  private readonly types: { [key: string]: GeneratedType } = {};
   private readonly executionLogger: ILogger;
   private readonly compilationLogger: ILogger;
 
@@ -57,6 +61,7 @@ export class CompilationEnvironment implements ICompilationEnvironment, Disposab
       builtInDateFunctions: BuiltInDateFunctions,
       builtInNumberFunctions: BuiltInNumberFunctions,
       builtInTableFunctions: BuiltInTableFunctions,
+      systemFunctions: SystemFunctions
     }
     Function("functions", `if (!globalThis.${LexyCodeConstants.namespace}) globalThis.${LexyCodeConstants.namespace} = {};
     globalThis.${LexyCodeConstants.namespace}.${this.namespace} = functions;`)(functions)
@@ -78,7 +83,7 @@ ${code}`)
 
     switch (generatedType.kind) {
       case GeneratedTypeKind.function: {
-        let executable = this.createExecutableFunction(generatedType);
+        const executable = this.createExecutableFunction(generatedType);
         this.executables[generatedType.node.nodeName] = executable;
         break;
       }
@@ -103,9 +108,7 @@ ${code}`)
   private createExecutableFunction(generatedType: GeneratedType) {
     const code = `
 let ${LexyCodeConstants.parameterVariable} = new globalThis.${LexyCodeConstants.namespace}.${this.namespace}.${generatedType.name}.${LexyCodeConstants.parametersType}();
-for (let key in values) {
-  ${LexyCodeConstants.parameterVariable}[key] = values[key];
-}
+globalThis.${LexyCodeConstants.namespace}.${this.namespace}.systemFunctions.populate(${LexyCodeConstants.parameterVariable}, values);
 return globalThis.${LexyCodeConstants.namespace}.${this.namespace}.${generatedType.name}(${LexyCodeConstants.parameterVariable}, context);`;
 
     this.compilationLogger.logDebug(`Execution code: ${code}`)

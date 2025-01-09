@@ -39,9 +39,9 @@ export class NodeFileSystem implements IFileSystem {
         .map(dirent => dirent.name);
   }
 
-  getDirectoryFiles(folder: string, filter: string): Array<string> {
+  getDirectoryFiles(folder: string, extension: string): Array<string> {
     return fs.readdirSync(folder, { withFileTypes: true })
-      .filter(dirent => dirent.isFile())
+      .filter(dirent => dirent.isFile() && dirent.name.endsWith(extension))
       .map(dirent => dirent.name);
   }
 

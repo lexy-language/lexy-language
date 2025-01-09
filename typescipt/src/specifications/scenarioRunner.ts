@@ -16,6 +16,9 @@ import {VariableType} from "../language/variableTypes/variableType";
 import {IRootNode} from "../language/rootNode";
 import {ExecutableFunction} from "../compiler/executableFunction";
 import {IExecutionContext} from "../runTime/executionContext";
+import {AssignmentDefinition} from "../language/scenarios/assignmentDefinition";
+import {VariableReference} from "../language/variableReference";
+import {asTypeWithMembers} from "../language/variableTypes/ITypeWithMembers";
 
 export interface IScenarioRunner {
   failed: boolean;
@@ -186,19 +189,33 @@ export class ScenarioRunner implements IScenarioRunner {
                     compilerResult: CompilerResult): { [key: string], value: any } {
     let result = {};
     for (const parameter of scenarioParameters.assignments) {
-      let type = firstOrDefault(functionParameters.variables, variable =>
-        variable.name == parameter.variable.parentIdentifier);
-
-      if (type == null) {
-        throw new Error(
-          `Function '${this.functionNode.name}' parameter '${parameter.variable.parentIdentifier}' not found.`);
-      }
-
-      result[parameter.variable.parentIdentifier] =
-        ScenarioRunner.getValue(compilerResult, parameter.constantValue.value, parameter.variableType);
+      this.setParameter(functionParameters, parameter, compilerResult, result);
     }
 
     return result;
+  }
+
+  private setParameter(functionParameters: FunctionParameters, parameter: AssignmentDefinition, compilerResult: CompilerResult, result: {}) {
+    let type = firstOrDefault(functionParameters.variables, variable => variable.name == parameter.variable.parentIdentifier);
+
+    if (type == null) {
+      throw new Error(`Function '${this.functionNode.name}' parameter '${parameter.variable.parentIdentifier}' not found.`);
+    }
+
+    const value = ScenarioRunner.getValue(compilerResult, parameter.constantValue.value, parameter.variableType);
+
+    let valueObject = result;
+    let reference = parameter.variable;
+    while(reference.hasChildIdentifiers) {
+      if (!valueObject[reference.parentIdentifier]) {
+        valueObject[reference.parentIdentifier] = {};
+      }
+      valueObject = valueObject[reference.parentIdentifier];
+      reference = reference.childrenReference();
+
+      //todo verify var types of nested parameters
+    }
+    valueObject[reference.parentIdentifier] = value;
   }
 
   private static getValue(compilerResult: CompilerResult, value: object, type: VariableType): object {

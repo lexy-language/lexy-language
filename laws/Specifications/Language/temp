@@ -12,8 +12,6 @@ TODO
   - Add implementation doc
   - Add built in functions
   - Statements
-    - If
-    - Switch
     - Function call
     - Inline function call (single result)
   - Create dependency injection configuration nuget package
@@ -25,6 +23,7 @@ TODO
   - Failed parsing of scenario shouldn't throw exception, but log errors
   - Test expect errors and root errors
   - Scenario with a validation table
+  - Nested results and parameter valued (set child values with indentation)
 
 
 
