@@ -1,6 +1,6 @@
 
 logs/
-build/
+/build/
 
 bin/
 obj/
