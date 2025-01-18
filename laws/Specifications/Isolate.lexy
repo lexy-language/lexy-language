@@ -1,26 +1,20 @@
-Function: IfElse
+Enum: SimpleEnum
+  First
+  Next
+  Last
+
+Function: NoParameterDefaultValues
   Parameters
-    boolean Evil
+    SimpleEnum EnumValue
   Results
-    number Number
+    SimpleEnum EnumResult
   Code
-    number temp
-    if Evil
-      temp = 666
-    else
-      temp = 777
-    Number = temp
+    EnumResult = EnumValue
+    EnumResult = SimpleEnum.Next
 
-Scenario: IfElseTrue
-  Function IfElse
+Scenario: ValidationSuccessful
+  Function NoParameterDefaultValues
   Parameters
-    Evil = true
+    EnumValue = SimpleEnum.Last
   Results
-    Number = 666
-
-Scenario: IfElseFalse
-  Function IfElse
-  Parameters
-    Evil = false
-  Results
-    Number = 777
+    EnumResult = SimpleEnum.Next

@@ -3,24 +3,23 @@ Enum: CustomEnum
   Second
 
 Type: NestedType
-  number InnerNumber
-  string InnerString
-  date InnerDate
-  boolean InnerBoolean
-  CustomEnum InnerEnum
+  number InnerNumber = 0
+  string InnerString = ""
+  date InnerDate = d"0001-01-01T00:00:00"
+  boolean InnerBoolean = false
+  CustomEnum InnerEnum = CustomEnum.First
 
 Type: CustomType
-  number NumberValue
-  string StringValue
-  date DateValue
-  boolean BooleanValue
-  CustomEnum EnumValue
+  number NumberValue = 0
+  string StringValue = ""
+  date DateValue = d"0001-01-01 00:00:00"
+  boolean BooleanValue = false
+  CustomEnum EnumValue = CustomEnum.First
   NestedType Complex
 
 Scenario: FieldsShouldHaveDefaultValue
   Function:
     Parameters
-      CustomEnum Enum
     Results
       CustomType Result
   Results
@@ -31,7 +30,7 @@ Scenario: FieldsShouldHaveDefaultValue
     Result.EnumValue = CustomEnum.First
     Result.Complex.InnerNumber = 0
     Result.Complex.InnerString = ""
-    Result.Complex.InnerDate = d"0001-01-01T00:00:00"
+    Result.Complex.InnerDate = d"0001-01-01 00:00:00"
     Result.Complex.InnerBoolean = false
     Result.Complex.InnerEnum = CustomEnum.First
 
@@ -52,3 +51,20 @@ Scenario: NestedFieldsShouldBeAssignableAndReadable
     Result.Complex.InnerNumber = 8
     Value1 = 9
     Value2 = 8
+
+
+Scenario: ComplexTypeAsParameter
+  Function:
+    Parameters
+      CustomType Value
+    Results
+      CustomType Result
+    Code
+      Result.NumberValue = Value.NumberValue
+      Result.Complex.InnerNumber = Value.Complex.InnerNumber
+  Parameters
+    Value.NumberValue = 9
+    Value.Complex.InnerNumber = 8
+  Results
+    Result.NumberValue = 9
+    Result.Complex.InnerNumber = 8

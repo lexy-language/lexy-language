@@ -1,0 +1,162 @@
+Type: NestedType
+  string NestedStringValue
+  number NestedNumberValue
+  date NestedDateValue
+  boolean NestedBooleanValue
+  SimpleEnum NestedEnumValue
+
+Type: SimpleType
+  string ChildStringValue
+  number ChildNumberValue
+  date ChildDateValue
+  boolean ChildBooleanValue
+  NestedType ChildTypeValue
+  SimpleEnum ChildEnumValue
+
+Enum: SimpleEnum
+  First
+  Next
+  Last
+
+Function: NoParameterDefaultValues
+  Parameters
+    string StringValue
+    number NumberValue
+    date DateValue
+    boolean BooleanValue
+    SimpleType TypeValue 
+    SimpleEnum EnumValue
+  Results
+    string StringResult
+    number NumberResult
+    date DateResult
+    boolean BooleanResult
+    SimpleType TypeResult 
+    SimpleEnum EnumResult
+  Code
+    StringResult = StringValue
+    NumberResult = NumberValue
+    DateResult = DateValue
+    BooleanResult = BooleanValue
+    TypeResult = TypeValue
+    EnumResult = EnumValue
+    
+Scenario: ValidationSuccessful
+  Function NoParameterDefaultValues
+  Parameters
+    StringValue = "a111"
+    NumberValue = 2
+    DateValue = d"2222-03-28 12:01:12"
+    BooleanValue = true
+    TypeValue = 
+      ChildStringValue = "a444"
+      ChildNumberValue = 5
+      ChildDateValue = d"2222-06-28 12:01:12"
+      ChildBooleanValue = false
+      ChildTypeValue = 
+        NestedStringValue = "a777"
+        NestedNumberValue = 8
+        NestedDateValue = d"2222-12-28 12:01:12"
+        NestedBooleanValue = true
+        NestedEnumValue = SimpleEnum.First 
+      ChildEnumValue = SimpleEnum.Next
+    EnumValue = SimpleEnum.Last
+  Results
+    StringResult = "a111"
+    NumberResult = 2
+    DateResult = d"2222-03-28 12:01:12"
+    BooleanResult = true
+    TypeResult = 
+      ChildStringValue = "a444"
+      ChildNumberValue = 5
+      ChildDateValue = d"2222-06-28 12:01:12"
+      ChildBooleanValue = false
+      ChildTypeValue =
+        NestedStringValue = "a777"
+        NestedNumberValue = 8
+        NestedDateValue = d"2222-12-28 12:01:12"
+        NestedBooleanValue = true
+        NestedEnumValue = SimpleEnum.First
+      ChildEnumValue = SimpleEnum.Next
+    EnumResult = SimpleEnum.Last
+
+Scenario: ValidationParametersMissing
+  Function NoParameterDefaultValues
+  ExpectExecutionErrors
+    "'StringValue' should have a 'string' value"
+    "'NumberValue' should have a 'number' value"
+    "'DateValue' should have a 'date' value"
+    "'BooleanValue' should have a 'boolean' value"
+    "'TypeValue.ChildStringValue' should have a 'string' value"
+    "'TypeValue.ChildNumberValue' should have a 'number' value"
+    "'TypeValue.ChildDateValue' should have a 'date' value"
+    "'TypeValue.ChildBooleanValue' should have a 'boolean' value"
+    "'TypeValue.ChildTypeValue.NestedStringValue' should have a 'string' value"
+    "'TypeValue.ChildTypeValue.NestedNumberValue' should have a 'number' value"
+    "'TypeValue.ChildTypeValue.NestedDateValue' should have a 'date' value"
+    "'TypeValue.ChildTypeValue.NestedBooleanValue' should have a 'boolean' value"
+    "'TypeValue.ChildTypeValue.NestedEnumValue' should have a 'SimpleEnum' value"
+    "'TypeValue.ChildEnumValue' should have a 'SimpleEnum' value"
+    "'EnumValue' should have a 'SimpleEnum' value"
+
+Scenario: ValidationWrongType
+  Function NoParameterDefaultValues
+  Parameters
+    StringValue = 1
+    NumberValue = "2"
+    DateValue = "a33"
+    BooleanValue = "444"
+    TypeValue =
+      ChildStringValue = 5
+      ChildNumberValue = "6"
+      ChildDateValue = "a77"
+      ChildBooleanValue = "888"
+      ChildTypeValue =
+        NestedStringValue = 999
+        NestedNumberValue = "1010"
+        NestedDateValue = "1111"
+        NestedBooleanValue = "1212"
+        NestedEnumValue = 123
+      ChildEnumValue = 456
+    EnumValue = 789
+  ExpectExecutionErrors
+    "'StringValue' should have a 'string' value. Invalid type:"
+    "'NumberValue' should have a 'number' value. Invalid type:"
+    "'DateValue' should have a 'date' value. Invalid type:"
+    "'BooleanValue' should have a 'boolean' value. Invalid type:"
+    "'TypeValue.ChildStringValue' should have a 'string' value. Invalid type:"
+    "'TypeValue.ChildNumberValue' should have a 'number' value. Invalid type:"
+    "'TypeValue.ChildDateValue' should have a 'date' value. Invalid type:"
+    "'TypeValue.ChildBooleanValue' should have a 'boolean' value. Invalid type:"
+    "'TypeValue.ChildTypeValue.NestedStringValue' should have a 'string' value. Invalid type:"
+    "'TypeValue.ChildTypeValue.NestedNumberValue' should have a 'number' value. Invalid type:"
+    "'TypeValue.ChildTypeValue.NestedDateValue' should have a 'date' value. Invalid type:"
+    "'TypeValue.ChildTypeValue.NestedBooleanValue' should have a 'boolean' value. Invalid type:"
+    "'TypeValue.ChildTypeValue.NestedEnumValue' should have a 'SimpleEnum' value. Invalid type:"
+    "'TypeValue.ChildEnumValue' should have a 'SimpleEnum' value. Invalid type:"
+    "'EnumValue' should have a 'SimpleEnum' value. Invalid type:"
+
+Function: NoParameterSomeDefaultValues
+  Parameters
+    string StringValueOptional = "a"
+    number NumberValueOptional = 1
+    string StringValue
+    number NumberValue
+  Results
+    string Result
+  Code
+    Result = "success"
+
+Scenario: ValidateDefaultValuesMissing
+  Function NoParameterSomeDefaultValues
+  ExpectExecutionErrors
+    "'StringValue' should have a 'string' value"
+    "'NumberValue' should have a 'number' value"
+
+Scenario: ValidateDefaultValuesProvided
+  Function NoParameterSomeDefaultValues
+  Parameters
+    StringValue = "b"
+    NumberValue = 2
+  Results
+    Result = "success"

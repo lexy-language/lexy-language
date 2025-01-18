@@ -32,37 +32,6 @@ Scenario: RootDeclaration
     EnumResult = SimpleEnum.Next
 
 
-Scenario: ResultAssignmentAndDefaultValues
-# each declared parameter should have default value
-  Function:
-    Parameters
-      number NumberParam
-      string StringParam
-      boolean BooleanParam
-      date DateParam
-      SimpleEnum EnumParam
-    Results
-      number NumberResult
-      string StringResult
-      boolean BooleanResult
-      date DateResult
-      SimpleEnum EnumResult
-    Code
-      NumberResult = NumberParam
-      StringResult = StringParam
-      BooleanResult = BooleanParam
-      DateResult = DateParam
-      EnumResult = EnumParam
-
-  Results
-    NumberResult = 0
-    StringResult = ""
-    BooleanResult = false
-    DateResult = d"0001-01-01T00:00:00"
-    EnumResult = SimpleEnum.First
-
-
-
 Scenario: ResultVariablesDefaultValues
 # each declared result should have default value
   Function:
@@ -197,7 +166,7 @@ Scenario: ScopedVariablesOutOfScope
 Function: ScopedVariablesManyScopesFunction
 # it should be possible to declare variables with same name in different sub scopes
   Parameters
-    boolean Evil
+    boolean Evil = false
   Results
     number NumberResult
   Code
