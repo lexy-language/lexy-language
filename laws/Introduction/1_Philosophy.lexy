@@ -1,0 +1,7 @@
+Function: HelloWorld
+  Results
+    string Result
+  Code
+    Result = "World Peace ☮️"
+
+# How to use the editor

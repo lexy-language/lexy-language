@@ -1,0 +1,7 @@
+Function: ParametersAndResults
+  Parameters
+    string Result
+  Results
+    string Result
+  Code
+    Result = "World Peace ☮️"
