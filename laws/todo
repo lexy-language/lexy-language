@@ -11,6 +11,8 @@ Add table validation
 - ScenarioRunner.setParameter > check inner property types
 - Scenario TABLE for values
 - Refactor built in funciton scenarios so that the functions take values as parameters instead of default so it can be executed in UI
+- UI: Improve state management, don't put everything is a single context
+  - Implement backend
 
 
 

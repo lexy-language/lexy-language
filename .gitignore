@@ -1,5 +1,6 @@
-
+libs/
 logs/
+dist/
 /build/
 /dist/
 

@@ -1,0 +1,17 @@
+Scenario: SimpleFunctionCall
+  Function:
+    Parameters
+      date Value = d"2024-12-25T16:57:45"
+    Results
+      number Result
+    Code
+      Result = YEAR(Value)
+  ExecutionLogging
+    Log: Parameters
+      Value = d"2024-12-25T16:57:45"
+    Log: Execute: SimpleFunctionCallFunctions
+      Log: Result = YEAR(Value)
+        Value = d"2024-12-25T16:57:45"
+        Result = 2024
+    Log: Results
+      Result = d"2024"

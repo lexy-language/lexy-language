@@ -2,4 +2,4 @@ Enum: NoMembers
 
 Scenario: EnumDefault
   ExpectRootErrors
-    "No"
+    "Enum has no members defined"
