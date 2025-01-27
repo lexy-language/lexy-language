@@ -27,7 +27,8 @@ Scenario: ExtractWithTypeReference
     Results
     Code
       extract(SimpleTarget.Parameters)
-  ExpectError "Invalid variable argument. extract expects 1 argument. extract(variable)"
+  ExpectErrors
+    "Invalid variable argument. extract expects 1 argument. extract(variable)"
 
 Scenario: ExtractNoParameters
   Function:
@@ -36,7 +37,8 @@ Scenario: ExtractNoParameters
     Code
       SimpleTarget.Parameters parameters
       extract(parameters)
-  ExpectError "Invalid parameter mapping. No parameter could be mapped from variables."
+  ExpectErrors
+    "Invalid parameter mapping. No parameter could be mapped from variables."
 
 Scenario: ExtractSingleParameters
   Function:
@@ -123,4 +125,5 @@ Scenario: ExtractMultipleParametersInvalidType
     Code
       SimpleTarget.Results parameters
       parameters.NumberResult = BooleanValue
-  ExpectError "Variable 'parameters.NumberResult' of type 'number' is not assignable from expression of type 'boolean'."
+  ExpectErrors
+    "Variable 'parameters.NumberResult' of type 'number' is not assignable from expression of type 'boolean'."

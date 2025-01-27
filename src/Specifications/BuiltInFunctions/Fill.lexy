@@ -27,7 +27,8 @@ Scenario: FillNoParameters
     Results
     Code
       var parameters = fill(SimpleTarget.Parameters)
-  ExpectError "Invalid parameter mapping. No parameter could be mapped from variables."
+  ExpectErrors
+    "Invalid parameter mapping. No parameter could be mapped from variables."
 
 Scenario: FillSingleParameters
   Function:

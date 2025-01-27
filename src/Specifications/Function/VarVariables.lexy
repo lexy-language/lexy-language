@@ -46,7 +46,8 @@ Scenario: InvalidVariableName
       number temp
       temp = Value
       Result = temp
-  ExpectError "Unknown variable name: 'Value'"
+  ExpectErrors
+    "Unknown variable name: 'Value'"
 
 Scenario: DuplicatedVariableName
   Function:
@@ -56,4 +57,5 @@ Scenario: DuplicatedVariableName
       number temp
       number temp
       Result = temp
-  ExpectError "Duplicated variable name: 'temp'"
+  ExpectErrors
+    "Duplicated variable name: 'temp'"

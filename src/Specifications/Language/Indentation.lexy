@@ -2,10 +2,12 @@ Scenario: IndentErrorNextLevel
   Function:
       Results
       number Result
-  ExpectError "ERROR - Invalid indent: 3"
+  ExpectErrors
+    "ERROR - Invalid indent: 3"
 
 Scenario: IndentErrorInvalidSpaces
   Function:
      Results
       number Result
-  ExpectError "ERROR - Invalid indent: 3"
+  ExpectErrors
+    "ERROR - Invalid indent: 3"

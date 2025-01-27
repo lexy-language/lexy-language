@@ -179,7 +179,8 @@ Scenario: ElseWithoutIf
         temp = 777
       Number = temp
   Parameters
-  ExpectError "Else should be following an If statement. No if statement found."
+  ExpectErrors
+    "Else should be following an If statement. No if statement found."
 
 
 
@@ -195,7 +196,8 @@ Scenario: IfWithNumberCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'number'."
+  ExpectErrors
+    "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 Scenario: IfWithNumberCalculationCondition
   Function:
@@ -209,7 +211,8 @@ Scenario: IfWithNumberCalculationCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'number'."
+  ExpectErrors
+    "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 Scenario: IfWithStringCondition
   Function:
@@ -223,7 +226,8 @@ Scenario: IfWithStringCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'string'."
+  ExpectErrors
+    "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 Function: IfWithStringCalculationConditionFunction
   Parameters
@@ -239,7 +243,8 @@ Function: IfWithStringCalculationConditionFunction
 
 Scenario: IfWithStringCalculationCondition
   Function IfWithStringCalculationConditionFunction
-  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'string'."
+  ExpectErrors
+    "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 Scenario: IfWithDateCondition
   Function:
@@ -253,7 +258,8 @@ Scenario: IfWithDateCondition
         temp = 777
       Number = temp
   Parameters
-  ExpectError "'if' condition expression should be 'boolean', is of wrong type 'date'"
+  ExpectErrors
+    "'if' condition expression should be 'boolean', is of wrong type 'date'"
 
 
 Function: IfWithUnassignedLocalVariableFunction

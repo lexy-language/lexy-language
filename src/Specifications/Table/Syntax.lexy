@@ -25,13 +25,63 @@ Scenario: GetCountSimpleTable
     Result = 2
 
 
-Scenario: VarAsColumnType
+Scenario: TableVarAsColumnType
   Table: SimpleTable
     | var Value | number Result |
     | 0 | 0 |
     | 1 | 1 |
-  ExpectError "(TableHeader) Invalid token"
+  ExpectErrors
+    "(TableHeader) Invalid token"
+
+
+Scenario: TableIncompleteHeader
+  Table: SimpleTable
+    | number Value | number
+    | 0 | 0 |
+    | 1 | 1 |
+  ExpectErrors
+    "Token expected: 'StringLiteralToken'"
+    "Token expected: 'TableSeparatorToken'"
+
 
 Scenario: TableWithoutHeader
   Table: SimpleTable
-  ExpectError "No table header found"
+  ExpectErrors
+    "No table header found"
+
+
+Scenario: TableWithWrongValueTypes
+  Table: SimpleTable
+    | number Value | string Result |
+    | "0" | "0" |
+    | 1 | 1 |
+  ExpectErrors
+    "Invalid value type 'string'. Expected 'number'."
+    "Invalid value type 'number'. Expected 'string'."
+
+
+Scenario: TableWithInvalidNumberOfValues
+  Table: SimpleTable
+    | string Value | string Result |
+    | "0" | "0" | "0" |
+  ExpectErrors
+    "Invalid number of values 3. Expected 2."
+
+
+
+Scenario: TableWithInvalidNumberOfValuesLess
+  Table: SimpleTable
+    | string Value | string Result |
+    | "0" |
+  ExpectErrors
+    "Invalid number of values 1. Expected 2."
+
+
+
+
+Scenario: TableWithUnclosedRow
+  Table: SimpleTable
+    | string Value | string Result |
+    | "0" | "a"
+  ExpectErrors
+    "Token expected: 'TableSeparatorToken'"

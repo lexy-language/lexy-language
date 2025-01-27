@@ -4,7 +4,8 @@ Scenario: UnknownType
       int Value
     Results
     Code
-  ExpectError "Unknown type: 'int'"
+  ExpectErrors
+    "Unknown type: 'int'"
 
 Scenario: InvalidVariableDefaultValue
   Function:
@@ -12,4 +13,5 @@ Scenario: InvalidVariableDefaultValue
       int Value = 5 + 33
     Results
     Code
-  ExpectError "Invalid variable declaration. Expected literal token."
+  ExpectErrors
+    "Invalid variable declaration. Expected literal token."

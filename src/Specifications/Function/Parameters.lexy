@@ -10,21 +10,24 @@ Scenario: InvalidParameterType
       ValidateEnumKeyword Result
     Code
       Result = Value
-  ExpectError "Unknown type: 'InvalidValidateEnumKeyword'"
+  ExpectErrors
+    "Unknown type: 'InvalidValidateEnumKeyword'"
 
 Scenario: DuplicatedParameterName
   Function:
     Parameters
       number Value
       ValidateEnumKeyword Value
-  ExpectError "Duplicated variable name: 'Value'"
+  ExpectErrors
+    "Duplicated variable name: 'Value'"
 
 Scenario: DuplicatedResultName
   Function:
     Parameters
       number Value
       ValidateEnumKeyword Value
-  ExpectError "Duplicated variable name: 'Value'"
+  ExpectErrors
+    "Duplicated variable name: 'Value'"
 
 Scenario: DuplicatedParameterResultName
   Function:
@@ -32,4 +35,5 @@ Scenario: DuplicatedParameterResultName
       number Value
     Results
       ValidateEnumKeyword Value
-  ExpectError "Duplicated variable name: 'Value'"
+  ExpectErrors
+    "Duplicated variable name: 'Value'"

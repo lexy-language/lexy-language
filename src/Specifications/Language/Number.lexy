@@ -82,7 +82,8 @@ Scenario: InvalidNumberEndsWithLetter
       number Result
     Code
       Result = 123A
-  ExpectError "Invalid number token character: 'A'"
+  ExpectErrors
+    "Invalid number token character: 'A'"
 
 Scenario: InvalidNumberInitializeString
   Function:
@@ -92,7 +93,8 @@ Scenario: InvalidNumberInitializeString
       number Result
     Code
       Result = Value
-  ExpectError "Invalid default value '1'. (type: 'number')"
+  ExpectErrors
+    "Invalid default value '1'. (type: 'number')"
 
 Scenario: InvalidNumberInitializeBoolean
   Function:
@@ -102,7 +104,8 @@ Scenario: InvalidNumberInitializeBoolean
       number Result
     Code
       Result = Value
-  ExpectError "Invalid default value 'true'. (type: 'number')"
+  ExpectErrors
+    "Invalid default value 'true'. (type: 'number')"
 
 Scenario: InvalidNumberInitializeDate
   Function:
@@ -112,4 +115,5 @@ Scenario: InvalidNumberInitializeDate
       number Result
     Code
       Result = Value
-  ExpectError "Invalid default value '2024-12-23T17:51:15'. (type: 'number')"
+  ExpectErrors
+    "Invalid default value '2024-12-23T17:51:15'. (type: 'number')"
