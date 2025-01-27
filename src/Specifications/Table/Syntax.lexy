@@ -31,3 +31,7 @@ Scenario: VarAsColumnType
     | 0 | 0 |
     | 1 | 1 |
   ExpectError "(TableHeader) Invalid token"
+
+Scenario: TableWithoutHeader
+  Table: SimpleTable
+  ExpectError "No table header found"
