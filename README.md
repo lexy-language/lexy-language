@@ -4,7 +4,7 @@
 
 # Philosophy
 
-Lexy is a DSL (Domain Specific Language) designed to describe tax laws. Currently tax laws are published and updated with, sometimes ambiguos, textual description. 
+Lexy is a DSL (Domain Specific Language) designed by Tim Cools to describe tax laws. Currently tax laws are published and updated with, sometimes ambiguous, textual description. 
 The tax system in most countries does favor people with a lot of money who can pay expensive spcialists to learn how to avoid paying taxes. This contributes to widening the income and wealth inequality.
 
 - What: Executable tax laws published by governments
