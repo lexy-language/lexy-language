@@ -87,7 +87,7 @@ Scenario: InvalidDateInitializeNumber
   ExpectErrors
     "Invalid default value '5'. (type: 'date')"
 
-Scenario:
+Scenario: InvalidDateInitializeBoolean
   Function:
     Parameters
       date Value = true

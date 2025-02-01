@@ -2,4 +2,4 @@ aaa bbb ccc
 
 Scenario: InvalidKeyword
   ExpectRootErrors
-    "Invalid token 'aaa'. Keyword expected."
+    "Invalid token 'aaa'. Keyword and name expected."
