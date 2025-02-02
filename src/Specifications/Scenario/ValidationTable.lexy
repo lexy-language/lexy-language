@@ -7,9 +7,9 @@ Scenario: ValidationTableWithNestedVariables
       number Result1
       string Result2
     Code
-      Value1 = Result1
-      Value2 = Result2
-  Table
+      Result1 = Value1
+      Result2 = Value2
+  ValidationTable
     | Value1  | Value2 | Result1 | Result2 |
     | 0       | "aaa"  | 0       | "aaa"   |
     | 111     | "bbb"  | 111     | "bbb"   |
@@ -34,7 +34,7 @@ Scenario: ValidationTableWithNestedResults
     Code
       Result.NumberValue = Value1
       Result.Complex.InnerNumber = Value2
-  Table
+  ValidationTable
     | Value1 | Value2 | Result.NumberValue | Result.Complex.InnerNumber |
     | 0      | 1      | 0                  | 1                          |
     | 111    | 222    | 111                | 222                        |
@@ -52,7 +52,7 @@ Scenario: ValidationTableWithNestedParameters
     Code
       Result1 = Value.NumberValue
       Result2 = Value.Complex.InnerNumber
-  Table
+  ValidationTable
     | Value.NumberValue  | Value.Complex.InnerNumber  | Result1 | Result2 |
     | 0                  | 1                          | 0       | 1       |
     | 111                | 222                        | 111     | 222     |

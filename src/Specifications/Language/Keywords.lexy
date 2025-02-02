@@ -20,10 +20,12 @@ Scenario: InlineFunctionKeywords
   Parameters
   Results
 
-Scenario: ScenarioWithTableKeywords
+Scenario: ScenarioWithValidationTableKeywords
 # Validate Scenario with table keywords
   Function FunctionKeywords
   ValidationTable
+    | a |
+    | 0 |
 
 Enum: ValidateEnumKeyword
   First = 0
