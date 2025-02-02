@@ -6,6 +6,8 @@
 
 The mission of Lexy is to encourage governments to publish their Tax Laws as executable lexy scripts. It would ensure everyone knows how taxes are calculated, and that everyone adheres to the same rules.
 
+View published executable (Tax Laws)[https://github.com/lexy-language/lexy-language/blob/main/publications.md].
+
 # Philosophy
 
 Lexy is a DSL (Domain Specific Language) designed by Tim Cools to describe tax laws. Currently, tax laws are published and updated with textual descriptions (Tax Laws), often ambiguous and open for interpretation. 
