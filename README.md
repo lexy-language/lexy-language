@@ -1,6 +1,6 @@
 # lexy-language
 
-[View demo!](https://lexy-language.github.io/lexy-demo/)
+[View demo!](https://lexy-language.github.io/lexy-editor/)
 
 # Transparant and consistent Tax Laws
 
@@ -29,7 +29,7 @@ Advantages:
 Besides describing Tax Laws, the language can also be used to implement all kinds of calculations that benefit from these advantages. 
 
 Hosting:
-- Public portal/ Local IDE: lexy provides a [demo!](https://lexy-language.github.io/lexy-demo/) so you can learn more about the language.
+- Public portal/ Local IDE: lexy provides a [demo!](https://lexy-language.github.io/lexy-editor/) so you can learn more about the language.
 - Any host programming language: currently dotnet and typescript/javascript
 - Blockchain: Publishing laws on a blockchain, and calculating taxes on a blockchain was the initial idea. The main problem a blockchain solves is the decentralization of trust. While the lack of a central authority can be useful in some cases (a currency), this is only necessary when multiple organizations can't fully trust each other. We believe that governments should be able to trust themselves, and should be trusted by their citizens. So storing and executing tax scripts would be an irresponsible use of computing and storage resources. A blockchain that publicly publishes immutable lexy scripts, executes them, and publishes the results in public might have different use cases though.
 - GPU
