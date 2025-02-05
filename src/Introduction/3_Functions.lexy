@@ -1,8 +1,7 @@
-## Functions
-
+# Functions
 
 # A function has parameter and result variables, these are defined under
-# the Parameters and Results keywords. Parameters define the input variables of the funciton,
+# the Parameters and Results keywords. Parameters define the input variables of the function,
 # Results define the output.
 
 Function: ParametersAndResults
@@ -18,10 +17,14 @@ Function: ParametersAndResults
     TaxableIncomeYear = GrossIncomeYear - 12000      # 12000 contribution for demo purposes
     TotalTax = TaxableIncomeYear * TaxRate
 
-# On the right in the UI you can execute the function, for example enter 45000 and press the Execute button. It will show you the results variables of the function. If you click Execution Logging below, you can see all the execute lines and the variables used on this line. This can be stored for transparency and debugging.
+# On the right in the UI you can execute the function, for example enter 45000 and press the Execute button.
+# It will show you the results variables of the function. If you click Execution Logging below, you can see all
+# the execute lines and the variables used on this line. This can be stored for transparency and debugging.
 
-## Variable Types
-##---------------
+
+
+
+# Variable Types
 
 # Each variable needs a type, this is places before the variable name. Lexy support 4 primitive types:
 #  - number: represents any number

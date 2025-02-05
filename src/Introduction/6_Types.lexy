@@ -8,7 +8,7 @@ Type: TaxableIncome
 
 
 Function: TaxableIncomeFederalAndPerCanton
-# A tax calulation for Switzerland returns both federeal taxable income details, and details for the specified canton
+# A tax calculation for Switzerland returns both federeal taxable income details, and details for the specified canton
 # Example taken from: https://swisstaxcalculator.estv.admin.ch/#/calculator/income-wealth-tax
   Results
     TaxableIncome Canton

@@ -1,0 +1,63 @@
+# Built-in functions
+
+# Lexy defines a list of built-in functions used to manipulate numbers and dates, to retrieve data from a table, and to
+# declare fill and extract values from complex types.
+
+# number Functions
+# Examples: Specifications/BuiltInFunctions/Number.lexy
+
+# function              | description
+# -----------------------------------------------------------------------------------------------------
+# INT(value)            | Returns the integer part of a decimal number by rounding down to the integer
+# ABS(value)            | Returns the absolute value of a number
+# POWER(number, power)  | Returns the result of a number raised to a power.
+# ROUND(number, digits) | Rounds a number to a specified number of digits
+
+
+
+
+# date Functions
+# Examples: Specifications/BuiltInFunctions/Date.lexy
+
+# function                           | returns | description
+# -----------------------------------------------------------------------------------------------------
+# NOW()                              | date    | Returns current date and time
+# TODAY()                            | date    | Returns current date
+# YEAR(date value)                   | number  | Returns the year of a date value
+# MONTH(date value)                  | number  | Returns the month of a date value
+# DAY(date value)                    | number  | Returns the day of the month of a date value
+# HOUR(date value)                   | number  | Returns the hour of a date value
+# MINUTE(date value)                 | number  | Returns the minutes of a date value
+# SECONDS(date value)                | number  | Returns the seconds of a date value
+# YEARS(date end, date start)        | number  | Returns the number of years between two dates
+# MONTHS(date end, date start)       | number  | Returns the number of months between two dates
+# DAYS(date end, date start)         | number  | Returns the number of days between two dates
+# HOURS(date end, date start)        | number  | Returns the number of hours between two dates
+# MINUTES(date end, date start)      | number  | Returns the number of minutes between two dates
+# SECONDS(date end, date start)      | number  | Returns the number of seconds between two dates
+# MILLISECONDS(date end, date start) | number  | Returns the number of milliseconds between two dates
+
+
+
+
+# date Functions
+# Examples: 5_Tables and Specifications/Table/
+
+# function                                                                                                                      | description
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# LOOKUP(Table, lookUpValue, Table.SearchValueColumn, Table.ResultColumn)                                                       | Returns the value from a table of the row with corresponding search value
+# LOOKUPBY(Table, discriminatorValue, lookUpValue, Table.DiscriminatorValueColumn, Table.SearchValueColumn, Table.ResultColumn) | Returns the value from a table of the row with corresponding discriminator and search value
+# LOOKUPROW(Table, lookUpValue, Table.SearchValueColumn)                                                                        | Returns the row of a table with corresponding search value
+# LOOKUPROWBY(Table, discriminatorValue, lookUpValue, Table.DiscriminatorValueColumn, Table.SearchValueColumn)                  | Returns the row of a table with corresponding discriminator and search value
+
+
+
+
+# complex type Functions
+# Examples: Specifications/BuiltInFunctions/
+
+# function          | returns | description
+# -----------------------------------------------------------------------------------------------------
+# new(complexType)  | complexType | Declares a new complex type variable with default values
+# fill(complexType) | complexType | Declares a new complex type variable and fill the fields with the values of the corresponding variables
+# extract(variable) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
