@@ -147,4 +147,5 @@ Scenario: Logical0r
   Results
     Result = true
 
+
 # add scenarios for operation order and all kind of edge cases

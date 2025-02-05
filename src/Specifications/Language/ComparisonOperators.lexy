@@ -1,0 +1,59 @@
+Scenario: Equals
+  Function:
+    Results
+      boolean Result
+    Code
+      if 5 == 5
+        Result = true
+  Results
+    Result = true
+
+Scenario: NotEqual
+  Function:
+    Results
+      boolean Result
+    Code
+      if 5 != 4
+        Result = true
+  Results
+    Result = true
+
+Scenario: GreaterThan
+  Function:
+    Results
+      boolean Result
+    Code
+      if 5 > 4
+        Result = true
+  Results
+    Result = true
+
+Scenario: GreaterThanOrEqual
+  Function:
+    Results
+      boolean Result
+    Code
+      if 4 >= 4
+        Result = true
+  Results
+    Result = true
+
+Scenario: LessThan
+  Function:
+    Results
+      boolean Result
+    Code
+      if 4 < 5
+        Result = true
+  Results
+    Result = true
+
+Scenario: LessThanOrEqual
+  Function:
+    Results
+      boolean Result
+    Code
+      if 4 <= 4
+        Result = true
+  Results
+    Result = true
