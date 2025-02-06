@@ -1,6 +1,6 @@
 # Call Lexy Functions
 
-While we believe a flat tax system is the most honest system, real-world Tax Laws are often still very complex.
+While we believe a simplified, transparent and consistent tax system, real-world Tax Laws are often still very complex.
 They contain many exemptions and differences for different groups of people and geographical areas.
 To keep large Lexy scripts readable and maintainable, it is possible to split functions into smaller functions with their own responsibility.
 These functions can then be called from parent functions.
