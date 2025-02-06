@@ -98,6 +98,3 @@ Each parser shou
 ensure that the parser and compiler are running against the latest lexy language specifications.
 
 To update the submodule to the latest version: `cd tests/lexy-language/ && git pull` (ensure you pull the right branch is you're implementing a new branch of lexy-language)
-
-## Circular references
-`import type`
