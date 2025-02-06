@@ -2,7 +2,7 @@
 
 ## Lexy Specifications
 
-The lexy language describes itself with a collection of lexy scenarios and example functions. They define the expected output behavior and even expected compilation and validation errors. These specifications ensure that all lexy compiler implementations in all different languages have the same expected behavior. Have a look at the '[README](https://github.com/lexy-language/lexy-language/tree/main/src/Specifications)' in the 'Specifications' folder for more information about the specifications.
+The lexy language describes itself with a collection of lexy scenarios and example functions. They define the expected output behavior and even expected compilation and validation errors. These specifications ensure that all lexy compiler implementations in all different languages have the same expected behavior. Have a look at the '[README](https://github.com/lexy-language/lexy-language/tree/main/Specifications)' in the 'Specifications' folder for more information about the specifications.
 
 ## What's next?
 

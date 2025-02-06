@@ -4,7 +4,7 @@ Lexy defines a list of built-in functions used to manipulate numbers and dates, 
 declare fill and extract values from complex types.
 
 ## number Functions
-Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/src/Specifications/BuiltInFunctions/Number.lexy)
+Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/Number.lexy)
 
 | function              | description  | 
 | --------------------- | ------------ |
@@ -14,7 +14,7 @@ Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/src/
 | ROUND(number, digits) | Rounds a number to a specified number of digits  |
 
 ##date Functions
-Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/src/Specifications/BuiltInFunctions/Date.lexy)
+Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/Date.lexy)
 
 | function                           | returns | description
 | ---------------------------------- | ------- | ------------------------------------------------------------ | 
@@ -45,7 +45,7 @@ Examples: 5_Tables and [github](https://github.com/lexy-language/tree/main/lexy-
 | LOOKUPROWBY(Table, discriminatorValue, lookUpValue, Table.DiscriminatorValueColumn, Table.SearchValueColumn)                  | Returns the row of a table with corresponding discriminator and search value
 
 ## complex type Functions
-Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/src/Specifications/BuiltInFunctions/)
+Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/)
 
 | function          | returns | description
 | ----------------- | ------- | -----------------------------------------------------------------------------

@@ -30,7 +30,7 @@ The functions will loop over all rows in a table from the starts and will compar
 - If the value in the column equals the `lookUpValue`, the value in the `resultColumn` or row is returned.
 - If the value in the column exceeds the `lookUpValue`, the value `resultColumn` of the previous row or the previous row is returned.
 
-Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/src/Specifications/Table/)
+Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/Table/)
 
 Syntax: `LOOKUP(Table, lookUpValue, Table.searchValueColumn, Table.resultColumn)`
 
