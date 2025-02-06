@@ -1,14 +1,20 @@
-# en enum represents a single value with a limited number of values. It is used to limit the number
+# Enums
 
+An enum represents a single value with a limited number of values. It is used to limit the number
+
+```
 Enum: MaritalStatus
   Single
   Married
   CivilPartnership
   Cohabiting
+```
 
-# If used in a function, the input will be limited to these values. Check Execute Funtion on the right.
+If used in a function, the input will be limited to these values. Check Execute Funtion on the right.
 
-# An If or Switch statment can be used in the code to calculate something different based on the existing values.
+An If or Switch statement can be used in the code to calculate something different based on the existing values.
+
+```
 Function: EnumWithIfStatement
   Parameters
     MaritalStatus MaritalStatus
@@ -17,8 +23,10 @@ Function: EnumWithIfStatement
   Code
     if MaritalStatus == MaritalStatus.Single
       Tax = 0.45
-    else
+    elseif MaritalStatus == MaritalStatus.Married
       Tax = 0.40
+    else
+      Tax = 0.42
 
 Function: EnumWithSwitchStatement
   Parameters
@@ -35,3 +43,4 @@ Function: EnumWithSwitchStatement
         Tax = 0.41
       case MaritalStatus.Cohabiting
         Tax = 0.42
+```

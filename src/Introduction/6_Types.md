@@ -1,12 +1,17 @@
 # Complex types
 
+A custom complex data type defines multiple fields with their type that can be used throughout calculations.
+It defines a list of variables which are used together.
+
+```
 Type: TaxableIncome
   number NetSalary
   number OtherExpenses
   number InsurancePremiums
   number TaxableIncome
+```
 
-
+```
 Function: TaxableIncomeFederalAndPerCanton
 # A tax calculation for Switzerland returns both federeal taxable income details, and details for the specified canton
 # Example taken from: https://swisstaxcalculator.estv.admin.ch/#/calculator/income-wealth-tax
@@ -23,4 +28,4 @@ Function: TaxableIncomeFederalAndPerCanton
     Canton.OtherExpenses = -3228
     Canton.InsurancePremiums = -2900
     Canton.TaxableIncome = Canton.NetSalary + Canton.OtherExpenses + Canton.InsurancePremiums
-
+```

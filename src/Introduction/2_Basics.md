@@ -1,0 +1,42 @@
+# Language Basics
+
+The goals the Lexy Language is to be as simple as possible to describe very complicated Tax Laws.
+
+## Keywords
+
+Lexy contains 5 root level keywords that define the Lexy components 
+
+| Keyword   | Description 
+| --------- | -----------
+| Function: | A function is a callable unit of calculation logic that has a well-defined input (parameters) and output (results).
+| Scenario: | A scenario is an automated test used to validate the logic of a function.
+| Enum:     | A special data type that enables for a variable to be a set of predefined constants.
+| Table:    | A data table which can be used to retrieve data
+| Type:     | A custom complex data type defines multiple fields with their type that can be used throughout calculations
+
+Each of these keywords is covered in details in the following topics.
+
+## Comments
+
+Comments start with a #. Everything on a line after a # will be ignored by the compiler.
+
+## Indentation
+
+Indentation is used to determine the structure of a lexy script. 
+
+```
+Function: FirstFunction       # no indentatoin, start of a function component
+  Parameters                  # 2 spaces indentation, Parameters belongs to the function component declared above
+    number Income             # 4 spaces indentation, the Income variable belongs to the Parameters of the defined Function
+  Results                     # 2 spaces indentation, Results belongs to the function component declared above
+    number Tax                # 4 spaces indentation, the Tax variable belongs to the Results of the defined Function
+    number TaxRate            # 4 spaces indentation, the TaxRate variable belongs to the Results of the defined Function
+  Code                        # 2 spaces indentation, Code belongs to the function component declared above
+    TaxRate = 0.5             # 4 spaces indentation, the assignment is part of the Code
+    Tax = Income * TaxRate    # 4 spaces indentation, the assignment is part of the Code
+                              # empty lines are ignored by the compiler
+Function: SecondFunction      # no indentatoin, start of a new function component
+
+```
+
+Lexy support a strict indentation of 2 spaces or a tab. 
