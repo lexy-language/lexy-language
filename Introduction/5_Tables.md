@@ -13,11 +13,11 @@ Table: AverageTaxPerCanton
 # In Zwiterland income tax varies per canton, this is a simplified example as the tax depends on branckets and can variy from from canton to canton, and even from town to town.
 # Source: https://www.academics.com/guide/taxes-switzerland
   | string Canton | number AverageTax |
-  | "Bern"        | 0.4107            |
   | "Basel"       | 0.3783            |
-  | "Zurich"      | 0.3718            |
-  | "St. Gallen"  | 0.2939            |
+  | "Bern"        | 0.4107            |
   | "Luzern"      | 0.3003            |
+  | "St. Gallen"  | 0.2939            |
+  | "Zurich"      | 0.3718            |  
 ```
 
 ## Table Functions
@@ -29,6 +29,8 @@ A value or a row can be looked up by using the built-in `LOOKUP` or the `LOOKUPR
 The functions will loop over all rows in a table from the starts and will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.
 - If the value in the column equals the `lookUpValue`, the value in the `resultColumn` or row is returned.
 - If the value in the column exceeds the `lookUpValue`, the value `resultColumn` of the previous row or the previous row is returned.
+
+**NOTE: table search value columns should be sorted from small to large in order these functions to work correctly. This also applies to string columns, they should be sorted alphabetically.**
 
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/Table/)
 
@@ -47,6 +49,18 @@ Function: LookupAveragteTax
     Tax = Income * TaxRate
 ```
 
+```
+Scenario: LookupAveragteTaxExamples
+  Function LookupAveragteTax
+  ValidationTable
+    | Canton        | Income | TaxRate | Tax   |
+    | "Basel"       | 100000 | 0.3783  | 37830 |
+    | "Bern"        | 100000 | 0.4107  | 41070 |
+    | "Zurich"      | 100000 | 0.3718  | 37180 |
+    | "Luzern"      | 100000 | 0.3003  | 30030 |
+    | "St. Gallen"  | 100000 | 0.2939  | 29390 |
+```
+
 Syntax: `LOOKUPROW(Table, lookUpValue, Table.searchValueColumn, Table.resultColumn)`
 
 ```
@@ -61,6 +75,18 @@ Function: LookupRowAveragteTax
     var row = LOOKUPROW(AverageTaxPerCanton, Canton, AverageTaxPerCanton.Canton)
     TaxRate = row.AverageTax
     Tax = Income * TaxRate
+```
+
+```
+Scenario: LookupRowAveragteTaxExamples
+  Function LookupRowAveragteTax
+  ValidationTable
+    | Canton        | Income | TaxRate | Tax   |
+    | "Basel"       | 100000 | 0.3783  | 37830 |
+    | "Bern"        | 100000 | 0.4107  | 41070 |
+    | "Zurich"      | 100000 | 0.3718  | 37180 |
+    | "Luzern"      | 100000 | 0.3003  | 30030 |
+    | "St. Gallen"  | 100000 | 0.2939  | 29390 |
 ```
 
 ## Discriminator
@@ -102,7 +128,9 @@ Function: LookupByYearAndMax
   Code
     TaxRate = LOOKUPBY(YearlyTaxRate, Year, Income, YearlyTaxRate.Year, YearlyTaxRate.Max, YearlyTaxRate.Rate)
     Tax = Income * TaxRate
-      
+```
+
+```      
 Scenario: LookupByYearAndMaxExamples
   Function LookupByYearAndMax
   ValidationTable
@@ -132,7 +160,9 @@ Function: LookupRowByYearAndMax
     var row = LOOKUPROWBY(YearlyTaxRate, Year, Income, YearlyTaxRate.Year, YearlyTaxRate.Max)
     TaxRate = row.Rate
     Tax = Income * TaxRate
-    
+```
+
+```
 Scenario: LookupRowByYearAndMaxExamples
   Function LookupRowByYearAndMax
   ValidationTable

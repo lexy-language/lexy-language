@@ -88,6 +88,7 @@ Each parser shou
 - [ ] Syntax: support identifiers with underscore '_' (double underscores should not be allowed as it is reserved for system functions and variables)
 - [ ] Versioning: document versioning strategy for lexy scripts in Git (branches) and how to reuse scripts (by using submodules) 
 - [ ] Versioning: document versioning strategy for **lexy-langage** and its dependencies
+- [ ] Validation: check tables are sorted alphabetically.
 
 # Implementations notes
 

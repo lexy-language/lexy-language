@@ -16,6 +16,21 @@ Scenario: Subtraction
   Results
     Result = 4
 
+Scenario: Multiplication
+  Function:
+    Parameters
+      number Value
+      number Multiply
+    Results
+      number Result
+    Code
+      Result = Value * Multiply
+  ValidationTable
+    | Value | Multiply | Result |
+    | 0     | 1        | 0      |
+    | 5     | 2        | 10     |
+    | 0.1   | 0.2      | 0.02   |
+
 Scenario: Division
   Function:
     Results
@@ -24,6 +39,7 @@ Scenario: Division
       Result = 5 / 2
   Results
     Result = 2.5
+
 
 Scenario: Modulo
   Function:

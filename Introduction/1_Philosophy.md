@@ -44,10 +44,26 @@ Function: HelloWorld
 
 Execute this simple function by pressing the 'Execute' button on the right.
 
+Lexy has automated tests built into the language. Scenarios are execute in real-time in the IDE.
+
+```
+Scenario: HelloWorldPeace
+  Function HelloWorld
+  Results
+    Result = "World Peace ☮️"
+```
+
+Check the 'Test Logging' below for the automated tests logging.
+
+
 ## How to use the editor
 
+DEMO: This editor supports both `lexy` as `md` (markup files). All lexy code, also the code embedded in `md` files, is
+parsed and compiled in real time. All automated tests are also executed in real-time. You can always edit the source code
+to see how the parser react.
+
 - All files in this demo an introduction can be found in 'Explorer' on the left.
-- Parsed components of the file can be found in 'Structure' on the left.
+- Parsed components of the file can be found in 'Structure' on the left. You can use it to naviagte to the corresponding source line.
 - Execute a function from the current file on the right.
 - After execution, you can view a detailed log of the execution under 'Execution Logging'.
 - You find real-time compilation errors in the 'Logging' below.
