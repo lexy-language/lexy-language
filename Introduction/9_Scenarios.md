@@ -4,11 +4,11 @@ Lexy has built in automated testing. A scenario describes the parameters and the
 
 ## Keywords
 
-| Keyword    | Description
-| ---------- | -----------
-| Function   | Name of the function to test
-| Parameters | Parameter variables used to execute the function
-| Results    | Expected result variable values
+| Keyword    | Description                                      |
+|------------|--------------------------------------------------|
+| Function   | Name of the function to test                     |
+| Parameters | Parameter variables used to execute the function | 
+| Results    | Expected result variable values                  | 
 
 ## Example
 
