@@ -130,7 +130,7 @@ Function: LookupByYearAndMax
     Tax = Income * TaxRate
 ```
 
-```      
+``` 
 Scenario: LookupByYearAndMaxExamples
   Function LookupByYearAndMax
   ValidationTable

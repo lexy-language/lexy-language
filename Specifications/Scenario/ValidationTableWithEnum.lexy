@@ -1,0 +1,24 @@
+Function: EnumWithSwitchStatement
+  Parameters
+    MaritalStatus MaritalStatus
+  Results
+    number Tax
+  Code
+    switch MaritalStatus
+      case MaritalStatus.Single
+        Tax = 0.45
+      case MaritalStatus.Married
+        Tax = 0.40
+      case MaritalStatus.CivilPartnership
+        Tax = 0.41
+      case MaritalStatus.Cohabiting
+        Tax = 0.42
+
+Scenario: EnumWithSwitchStatementExamples
+  Function EnumWithSwitchStatement
+  ValidationTable
+    | MaritalStatus                  | Tax  |
+    | MaritalStatus.Single           | 0.45 |
+    | MaritalStatus.Married          | 0.40 |
+    | MaritalStatus.CivilPartnership | 0.41 |
+    | MaritalStatus.Cohabiting       | 0.42 |

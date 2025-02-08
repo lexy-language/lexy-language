@@ -25,7 +25,7 @@ Comments start with a #. Everything on a line after a # will be ignored by the c
 Indentation is used to determine the structure of a lexy script. 
 
 ```
-Function: FirstFunction       # no indentatoin, start of a function component
+Function: FirstFunction       # no indentation, start of a function component
   Parameters                  # 2 spaces indentation, Parameters belongs to the function component declared above
     number Income             # 4 spaces indentation, the Income variable belongs to the Parameters of the defined Function
   Results                     # 2 spaces indentation, Results belongs to the function component declared above
@@ -35,7 +35,7 @@ Function: FirstFunction       # no indentatoin, start of a function component
     TaxRate = 0.5             # 4 spaces indentation, the assignment is part of the Code
     Tax = Income * TaxRate    # 4 spaces indentation, the assignment is part of the Code
                               # empty lines are ignored by the compiler
-Function: SecondFunction      # no indentatoin, start of a new function component
+Function: SecondFunction      # no indentation, start of a new function component
 
 ```
 

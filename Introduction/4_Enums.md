@@ -27,7 +27,19 @@ Function: EnumWithIfStatement
       Tax = 0.40
     else
       Tax = 0.42
+```
 
+```
+Scenario: EnumWithIfStatementExamples
+  Function EnumWithIfStatement
+  ValidationTable
+    | MaritalStatus            | Tax  |
+    | MaritalStatus.Single     | 0.45 |
+    | MaritalStatus.Married    | 0.40 |
+    | MaritalStatus.Cohabiting | 0.42 |
+```
+
+```
 Function: EnumWithSwitchStatement
   Parameters
     MaritalStatus MaritalStatus
@@ -43,4 +55,15 @@ Function: EnumWithSwitchStatement
         Tax = 0.41
       case MaritalStatus.Cohabiting
         Tax = 0.42
+```
+
+```
+Scenario: EnumWithSwitchStatementExamples
+  Function EnumWithSwitchStatement
+  ValidationTable
+    | MaritalStatus                  | Tax  |
+    | MaritalStatus.Single           | 0.45 |
+    | MaritalStatus.Married          | 0.40 |
+    | MaritalStatus.CivilPartnership | 0.41 |
+    | MaritalStatus.Cohabiting       | 0.42 |
 ```
