@@ -75,7 +75,7 @@ Scenario: NewFunctionParametersInvalidMember
       SimpleTarget.Parameters row
       StringResult = row.ResultNumber
   ExpectErrors
-    "Unknown variable name: 'row.ResultNumber'"
+    "Invalid identifier: 'row.ResultNumber'"
 
 Scenario: NewFunctionResults
   Function:
@@ -95,5 +95,5 @@ Scenario: NewFunctionResultsInvalidMember
       SimpleTarget.Results row
       NumberResult = row.ResultNumber
   ExpectErrors
-    "Unknown variable name: 'row.ResultNumber'"
+    "Invalid identifier: 'row.ResultNumber'"
 

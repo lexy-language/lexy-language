@@ -89,6 +89,7 @@ Scenario: InvalidEnumInitializeUnknownMember
       Result = Value
   ExpectErrors
     "Invalid default value 'ValidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
+    "Invalid identifier: 'ValidEnum.Fourth'"
 
 Scenario: InvalidEnumInitializeInvalidEnumType
   Function:
@@ -100,6 +101,8 @@ Scenario: InvalidEnumInitializeInvalidEnumType
       Result = Value
   ExpectErrors
     "Invalid default value 'InvalidEnum.Fourth'. Invalid enum type. (type: 'ValidEnum')"
+    "Invalid default value 'InvalidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
+    "Invalid identifier: 'InvalidEnum.Fourth'"
 
 Scenario: InvalidEnumInitialize
   Function:
@@ -111,3 +114,4 @@ Scenario: InvalidEnumInitialize
       Result = Value
   ExpectErrors
     "Invalid default value 'ValidEnum.Third.First'. (type: 'ValidEnum')"
+    "Invalid identifier: 'ValidEnum.Third.First'"

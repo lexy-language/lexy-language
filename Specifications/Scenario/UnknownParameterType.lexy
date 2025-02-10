@@ -9,12 +9,14 @@ Scenario: NestedParametersShouldBeAssignableAndReadable
       Value1 = Result.NumberValue
       Value2 = Result.Complex.InnerNumber
   ExpectErrors
-    "Unknown type: 'CustomType'"
+    "Invalid type: 'CustomType'"
+    "Invalid identifier: 'Result.NumberValue'"
+    "Invalid identifier: 'Result.Complex.InnerNumber'"
 
 Type: ComplexType
   number Value
 
-Scenario: UnknownNestField
+Scenario: UnknownNestedField
   Function:
   ValidationTable
     | Result.Value |

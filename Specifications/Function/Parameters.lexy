@@ -11,7 +11,8 @@ Scenario: InvalidParameterType
     Code
       Result = Value
   ExpectErrors
-    "Unknown type: 'InvalidValidateEnumKeyword'"
+    "Invalid type: 'InvalidValidateEnumKeyword'"
+    "Invalid identifier: 'Value'"
 
 Scenario: DuplicatedParameterName
   Function:

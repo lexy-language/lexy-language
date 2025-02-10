@@ -18,3 +18,4 @@ Scenario: CallCircularFunction
   Function Function1
   ExpectErrors
     "Circular reference detected in: 'Function1'"
+    "Circular reference detected in: 'Function2'"

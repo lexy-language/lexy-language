@@ -1,0 +1,294 @@
+Enum: EnumValue
+  First
+  Second
+
+Scenario: AllowedOperatorCombinationsEqual
+  Function:
+    Results
+      boolean StringEquals
+      boolean NumberEquals
+      boolean DateEquals
+      boolean BooleanEquals
+      boolean EnumEquals
+    Code
+      StringEquals = "abc" == "abc"
+      NumberEquals = 666 == 666
+      DateEquals = d"2025-02-08 12:34:56" == d"2025-02-08 12:34:56"
+      BooleanEquals = false == false
+      EnumEquals = EnumValue.Second == EnumValue.Second
+  Results
+    StringEquals = true
+    NumberEquals = true
+    DateEquals = true
+    BooleanEquals = true
+    EnumEquals  = true
+
+Scenario: AllowedOperatorCombinationsNotEqual
+  Function:
+    Results
+      boolean StringNotEqual
+      boolean NumberNotEqual
+      boolean DateNotEqual
+      boolean BooleanNotEqual
+      boolean EnumNotEqual
+    Code
+      StringNotEqual = "abc" != "abc"
+      NumberNotEqual = 666 != 666
+      DateNotEqual = d"2025-02-08 12:34:56" != d"2025-02-08 12:34:56"
+      BooleanNotEqual = false != false
+      EnumNotEqual = EnumValue.Second != EnumValue.Second
+  Results
+    StringNotEqual = false
+    NumberNotEqual = false
+    DateNotEqual = false
+    BooleanNotEqual = false
+    EnumNotEqual = false
+
+Scenario: AllowedOperatorCombinationsStringManipulation
+  Function:
+    Results
+      string StringAddition
+      string StringNumberAddition
+      string StringBooleanAddition
+      string StringDateAddition
+      string StringEnumAddition
+    Code
+      StringAddition = "abc:" + "def"
+      StringNumberAddition = "abc:" + 123
+      StringBooleanAddition = "abc:" + true
+      StringDateAddition = "abc:" + d"2025-02-08 12:34:56"
+      StringEnumAddition = "abc:" + EnumValue.Second
+  Results
+    StringAddition = "abc:def"
+    StringNumberAddition = "abc:123"
+    StringBooleanAddition = "abc:true"
+    StringDateAddition = "abc:2025-02-08 12:34:56"
+    StringEnumAddition = "abc:EnumValue.Second"
+
+Scenario: AllowedOperatorCombinationsNumberArithmetic
+  Function:
+    Results
+      number NumberAddition
+      number NumberSubtraction
+      number NumberMultiplication
+      number NumberDivision
+      number NumberModulus
+    Code
+      NumberAddition = 123 + 456
+      NumberSubtraction = 456 - 123
+      NumberMultiplication = 5 * 6
+      NumberDivision = 9 / 3
+      NumberModulus = 10 % 3
+  Results
+    NumberAddition = 579
+    NumberSubtraction = 333
+    NumberMultiplication = 30
+    NumberDivision = 3
+    NumberModulus = 1
+
+Scenario: AllowedOperatorCombinationsComparison
+  Function:
+    Results
+      boolean StringGreaterThan
+      boolean StringGreaterThanOrEqual
+      boolean StringLessThan
+      boolean StringLessThanOrEqual
+      boolean NumberGreaterThan
+      boolean NumberGreaterThanOrEqual
+      boolean NumberLessThan
+      boolean NumberLessThanOrEqual
+      boolean DateGreaterThan
+      boolean DateGreaterThanOrEqual
+      boolean DateLessThan
+      boolean DateLessThanOrEqual
+    Code
+      StringGreaterThan = "a" > "b"
+      StringGreaterThanOrEqual = "a" >= "b"
+      StringLessThan = "a" < "b"
+      StringLessThanOrEqual = "a" <= "b"
+      NumberGreaterThan = 5 > 7
+      NumberGreaterThanOrEqual = 5 >= 7
+      NumberLessThan = 5 < 7
+      NumberLessThanOrEqual = 5 <= 7
+      DateGreaterThan = d"2025-02-08 12:34:56" > d"2025-02-09 12:34:56"
+      DateGreaterThanOrEqual = d"2025-02-08 12:34:56" >= d"2025-02-09 12:34:56"
+      DateLessThan = d"2025-02-08 12:34:56" < d"2025-02-09 12:34:56"
+      DateLessThanOrEqual = d"2025-02-08 12:34:56" <= d"2025-02-09 12:34:56"
+  Results
+    StringGreaterThan = false
+    StringGreaterThanOrEqual = false
+    StringLessThan = true
+    StringLessThanOrEqual = true
+    NumberGreaterThan = false
+    NumberGreaterThanOrEqual = false
+    NumberLessThan = true
+    NumberLessThanOrEqual = true
+    DateGreaterThan = false
+    DateGreaterThanOrEqual = false
+    DateLessThan = true
+    DateLessThanOrEqual = true
+
+Scenario: AllowedOperatorCombinationsLogical
+  Function:
+    Results
+      boolean BooleanAnd
+      boolean BooleanOr
+    Code
+      BooleanAnd = true && true
+      BooleanOr = true || true
+  Results
+    BooleanAnd = true
+    BooleanOr = true
+
+Scenario: InvalidOperatorCombinationsString
+  Function:
+    Code
+      var s1 = "abc" == 123
+      var s2 = "abc" == true
+      var s3 = "abc" == d"2025-02-08 12:34:56"
+      var s4 = "abc" == EnumValue.Second
+      var s5 = "abc" != 123
+      var s6 = "abc" != true
+      var s7 = "abc" != d"2025-02-08 12:34:56"
+      var s8 = "abc" != EnumValue.Second
+      var s9 = "abc" - "def"
+      var s10 = "abc" / "def"
+      var s11 = "abc" * "def"
+      var s12 = "abc" % "def"
+      var s13 = "abc" && "def"
+      var s14 = "abc" || "def"
+  ExpectErrors
+    "Invalid operator 'Equals'. Left type: 'string' and right type 'number' not supported."
+    "Invalid operator 'Equals'. Left type: 'string' and right type 'boolean' not supported."
+    "Invalid operator 'Equals'. Left type: 'string' and right type 'date' not supported."
+    "Invalid operator 'Equals'. Left type: 'string' and right type 'EnumValue' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'string' and right type 'number' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'string' and right type 'boolean' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'string' and right type 'date' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'string' and right type 'EnumValue' not supported."
+    "Invalid operator 'Subtraction'. Left type: 'string' and right type 'string' not supported."
+    "Invalid operator 'Division'. Left type: 'string' and right type 'string' not supported."
+    "Invalid operator 'Multiplication'. Left type: 'string' and right type 'string' not supported."
+    "Invalid operator 'Modulus'. Left type: 'string' and right type 'string' not supported."
+    "Invalid operator 'And'. Left type: 'string' and right type 'string' not supported."
+    "Invalid operator 'Or'. Left type: 'string' and right type 'string' not supported."
+
+Scenario: InvalidOperatorCombinationsNumber
+  Function:
+    Code
+      var n1 = 123 == "abc"
+      var n2 = 123 == true
+      var n3 = 123 == d"2025-02-08 12:34:56"
+      var n4 = 123 == EnumValue.Second
+      var n5 = 123 != "abc"
+      var n6 = 123 != true
+      var n7 = 123 != d"2025-02-08 12:34:56"
+      var n8 = 123 != EnumValue.Second
+      var n9 = 123 && 123
+      var n10 = 123 || 123
+  ExpectErrors
+    "Invalid operator 'Equals'. Left type: 'number' and right type 'string' not supported."
+    "Invalid operator 'Equals'. Left type: 'number' and right type 'boolean' not supported."
+    "Invalid operator 'Equals'. Left type: 'number' and right type 'date' not supported."
+    "Invalid operator 'Equals'. Left type: 'number' and right type 'EnumValue' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'number' and right type 'string' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'number' and right type 'boolean' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'number' and right type 'date' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'number' and right type 'EnumValue' not supported."
+    "Invalid operator 'And'. Left type: 'number' and right type 'number' not supported."
+    "Invalid operator 'Or'. Left type: 'number' and right type 'number' not supported."
+
+Scenario: InvalidOperatorCombinationsBoolean
+  Function:
+    Code
+      var b1 = true == "abc"
+      var b2 = true == 123
+      var b3 = true == d"2025-02-08 12:34:56"
+      var b4 = true == EnumValue.Second
+      var b5 = true != "abc"
+      var b6 = true != 123
+      var b7 = true != d"2025-02-08 12:34:56"
+      var b8 = true != EnumValue.Second
+      var s9 = true - true
+      var s10 = true / true
+      var s11 = true * true
+      var s12 = true % true
+  ExpectErrors
+    "Invalid operator 'Equals'. Left type: 'boolean' and right type 'string' not supported."
+    "Invalid operator 'Equals'. Left type: 'boolean' and right type 'number' not supported."
+    "Invalid operator 'Equals'. Left type: 'boolean' and right type 'date' not supported."
+    "Invalid operator 'Equals'. Left type: 'boolean' and right type 'EnumValue' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'boolean' and right type 'string' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'boolean' and right type 'number' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'boolean' and right type 'date' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'boolean' and right type 'EnumValue' not supported."
+    "Invalid operator 'Subtraction'. Left type: 'boolean' and right type 'boolean' not supported."
+    "Invalid operator 'Division'. Left type: 'boolean' and right type 'boolean' not supported."
+    "Invalid operator 'Multiplication'. Left type: 'boolean' and right type 'boolean' not supported."
+    "Invalid operator 'Modulus'. Left type: 'boolean' and right type 'boolean' not supported."
+
+Scenario: InvalidOperatorCombinationsDate
+  Function:
+    Code
+      var d1 = d"2025-02-08 12:34:56" == "abc"
+      var d2 = d"2025-02-08 12:34:56" == 123
+      var d3 = d"2025-02-08 12:34:56" == true
+      var d4 = d"2025-02-08 12:34:56" == EnumValue.Second
+      var d5 = d"2025-02-08 12:34:56" != "abc"
+      var d6 = d"2025-02-08 12:34:56" != 123
+      var d7 = d"2025-02-08 12:34:56" != true
+      var d8 = d"2025-02-08 12:34:56" != EnumValue.Second
+      var d9 = d"2025-02-08 12:34:56" - d"2025-02-08 12:34:56"
+      var d10 = d"2025-02-08 12:34:56" / d"2025-02-08 12:34:56"
+      var d11 = d"2025-02-08 12:34:56" * d"2025-02-08 12:34:56"
+      var d12 = d"2025-02-08 12:34:56" % d"2025-02-08 12:34:56"
+      var d13 = d"2025-02-08 12:34:56" && d"2025-02-08 12:34:56"
+      var d14 = d"2025-02-08 12:34:56" || d"2025-02-08 12:34:56"
+  ExpectErrors
+    "Invalid operator 'Equals'. Left type: 'date' and right type 'string' not supported."
+    "Invalid operator 'Equals'. Left type: 'date' and right type 'number' not supported."
+    "Invalid operator 'Equals'. Left type: 'date' and right type 'boolean' not supported."
+    "Invalid operator 'Equals'. Left type: 'date' and right type 'EnumValue' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'date' and right type 'string' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'date' and right type 'number' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'date' and right type 'boolean' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'date' and right type 'EnumValue' not supported."
+    "Invalid operator 'Subtraction'. Left type: 'date' and right type 'date' not supported."
+    "Invalid operator 'Division'. Left type: 'date' and right type 'date' not supported."
+    "Invalid operator 'Multiplication'. Left type: 'date' and right type 'date' not supported."
+    "Invalid operator 'Modulus'. Left type: 'date' and right type 'date' not supported."
+    "Invalid operator 'And'. Left type: 'date' and right type 'date' not supported."
+    "Invalid operator 'Or'. Left type: 'date' and right type 'date' not supported."
+
+Scenario: InvalidOperatorCombinationsEnum
+  Function:
+    Code
+      var e1 = EnumValue.Second == "abc"
+      var e2 = EnumValue.Second == 123
+      var e3 = EnumValue.Second == d"2025-02-08 12:34:56"
+      var e4 = EnumValue.Second == true
+      var e5 = EnumValue.Second != "abc"
+      var e6 = EnumValue.Second != 123
+      var e7 = EnumValue.Second != d"2025-02-08 12:34:56"
+      var e8 = EnumValue.Second != true
+      var s9 = EnumValue.Second - EnumValue.First
+      var s10 = EnumValue.Second / EnumValue.First
+      var s11 = EnumValue.Second * EnumValue.First
+      var s12 = EnumValue.Second % EnumValue.First
+      var s13 = EnumValue.Second && EnumValue.First
+      var s14 = EnumValue.Second || EnumValue.First
+  ExpectErrors
+    "Invalid operator 'Equals'. Left type: 'EnumValue' and right type 'string' not supported."
+    "Invalid operator 'Equals'. Left type: 'EnumValue' and right type 'number' not supported."
+    "Invalid operator 'Equals'. Left type: 'EnumValue' and right type 'date' not supported."
+    "Invalid operator 'Equals'. Left type: 'EnumValue' and right type 'boolean' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'EnumValue' and right type 'string' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'EnumValue' and right type 'number' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'EnumValue' and right type 'date' not supported."
+    "Invalid operator 'NotEqual'. Left type: 'EnumValue' and right type 'boolean' not supported."
+    "Invalid operator 'Subtraction'. Left type: 'EnumValue' and right type 'EnumValue' not supported."
+    "Invalid operator 'Division'. Left type: 'EnumValue' and right type 'EnumValue' not supported."
+    "Invalid operator 'Multiplication'. Left type: 'EnumValue' and right type 'EnumValue' not supported."
+    "Invalid operator 'Modulus'. Left type: 'EnumValue' and right type 'EnumValue' not supported."
+    "Invalid operator 'And'. Left type: 'EnumValue' and right type 'EnumValue' not supported."
+    "Invalid operator 'Or'. Left type: 'EnumValue' and right type 'EnumValue' not supported."

@@ -83,6 +83,7 @@ Scenario: ValidationSuccessful
 Scenario: ValidationParametersMissing
   Function NoParameterDefaultValues
   ExpectExecutionErrors
+    "Validation failed:"
     "'StringValue' should have a 'string' value"
     "'NumberValue' should have a 'number' value"
     "'DateValue' should have a 'date' value"
@@ -120,6 +121,7 @@ Scenario: ValidationWrongType
       ChildEnumValue = 456
     EnumValue = 789
   ExpectExecutionErrors
+    "Validation failed:"
     "'StringValue' should have a 'string' value. Invalid type:"
     "'NumberValue' should have a 'number' value. Invalid type:"
     "'DateValue' should have a 'date' value. Invalid type:"
@@ -150,6 +152,7 @@ Function: NoParameterSomeDefaultValues
 Scenario: ValidateDefaultValuesMissing
   Function NoParameterSomeDefaultValues
   ExpectExecutionErrors
+    "Validation failed:"
     "'StringValue' should have a 'string' value"
     "'NumberValue' should have a 'number' value"
 

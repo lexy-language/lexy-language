@@ -5,7 +5,7 @@ Scenario: UnknownType
     Results
     Code
   ExpectErrors
-    "Unknown type: 'int'"
+    "Invalid type: 'int'"
 
 Scenario: InvalidVariableDefaultValue
   Function:

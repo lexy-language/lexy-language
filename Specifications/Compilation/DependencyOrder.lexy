@@ -1,0 +1,77 @@
+Scenario: ValidateBuiltOrder
+  Function:
+    Parameters
+      TypeExample Example
+    Results
+      number Result
+    Code
+      FunctionWithFunctionDependency()
+      FunctionWithFunctionTypeDependency()
+  Parameters
+    Example.EnumValue = EnumExample.Single
+    Example.Nested.EnumValue = EnumExample.Married
+  Results
+    Result = 777
+
+Function: FunctionWithFunctionDependency
+  Parameters
+    TypeExample Example
+  Results
+    number Result
+  Code
+    FunctionWithTypeDependency()
+    FunctionWithTableDependency()
+    FunctionWithEnumDependency()
+
+Function: FunctionWithFunctionTypeDependency
+  Parameters
+    TypeExample Example
+  Results
+    number Result
+  Code
+    var functionParametersFill = fill(FunctionWithTypeDependency.Parameters)
+    var functionParametersNew = new(FunctionWithTypeDependency.Parameters)
+    var tableParameters = new(TableExample.Row)
+    Result = 777
+
+Function: FunctionWithTypeDependency
+  Parameters
+    TypeExample Example
+  Results
+    number Result
+  Code
+    Result = Example.Nested.Result
+
+Function: FunctionWithTableDependency
+  Parameters
+    TypeExample Example
+  Results
+    number Result
+  Code
+    Result = LOOKUP(TableExample, EnumExample.Single, TableExample.Example, TableExample.Value)
+
+Function: FunctionWithEnumDependency
+  Parameters
+    EnumExample EnumValue
+    TypeExample Example
+  Results
+    number Result
+  Code
+    Result = 666
+
+Type: NestedType
+  EnumExample EnumValue
+  number Result = 888
+
+Type: TypeExample
+  EnumExample EnumValue
+  NestedType Nested
+
+Table: TableExample
+  | EnumExample Example | number Value |
+  | EnumExample.Single  | 123          |
+
+Enum: EnumExample
+  Single
+  Married
+  CivilPartnership

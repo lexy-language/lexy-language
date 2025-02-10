@@ -31,6 +31,7 @@ Scenario: TableVarAsColumnType
     | 0 | 0 |
     | 1 | 1 |
   ExpectErrors
+    "No table header found."
     "(TableHeader) Invalid token"
 
 
@@ -40,6 +41,7 @@ Scenario: TableIncompleteHeader
     | 0 | 0 |
     | 1 | 1 |
   ExpectErrors
+    "No table header found."
     "Token expected: 'StringLiteralToken'"
     "Token expected: 'TableSeparatorToken'"
 

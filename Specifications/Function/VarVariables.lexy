@@ -47,7 +47,7 @@ Scenario: InvalidVariableName
       temp = Value
       Result = temp
   ExpectErrors
-    "Unknown variable name: 'Value'"
+    "Invalid identifier: 'Value'"
 
 Scenario: DuplicatedVariableName
   Function:

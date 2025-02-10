@@ -210,6 +210,7 @@ Scenario: ElseifAfterElse
       Number = temp
   Parameters
   ExpectErrors
+    "'else' should be following an 'if' statement. No 'if' statement found."
     "'elseif' should be following an 'if' statement. No 'if' statement found."
 
 
