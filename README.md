@@ -1,6 +1,7 @@
 # lexy-language
-🖥️ [Interactive DEMO! (Desktop only for now)](https://github.com/lexy-language/lexy-language/blob/main/Introduction/1_Philosophy.md)
-📄 [Documentation! (On GitHub)](https://lexy-language.github.io/lexy-editor/)
+🖥️ [Interactive DEMO! (Web from a desktop browser only for now)](https://lexy-language.github.io/lexy-editor/)
+📄 [Documentation! (On GitHub)](https://github.com/lexy-language/lexy-language/blob/main/Introduction/1_Philosophy.md)
+
 ## Transparent and consistent Tax Laws
 
 The mission of Lexy is to encourage governments to publish their Tax Laws as executable lexy scripts. It would ensure everyone knows how taxes are calculated, and that everyone adheres to the same rules.
@@ -29,14 +30,17 @@ Besides describing Tax Laws, the language can also be used to implement all kind
 
 Hosting:
 - Public portal/ Local IDE: lexy provides a [demo!](https://lexy-language.github.io/lexy-editor/) so you can learn more about the language.
-- Any host programming language: currently dotnet and typescript/javascript
-- Blockchain: Publishing laws on a blockchain, and calculating taxes on a blockchain was the initial idea. The main problem a blockchain solves is the decentralization of trust. While the lack of a central authority can be useful in some cases (a currency), this is only necessary when multiple organizations can't fully trust each other. We believe that governments should be able to trust themselves, and should be trusted by their citizens. So storing and executing tax scripts would be an irresponsible use of computing and storage resources. A blockchain that publicly publishes immutable lexy scripts, executes them, and publishes the results in public might have different use cases though.
-- GPU
+- The Lexy script compiler can be implemented in any programming language. Current compilers: [typescript/javascript](https://github.com/lexy-language/lexy-typescript) and [.NET](https://github.com/lexy-language/lexy-dotnet) 
+- Blockchain: Publishing and executing laws on a blockchain was Tim's initial idea. The main problem a blockchain solves is the decentralization of trust. While the lack of a central authority can be useful in some cases (a currency), this is only necessary when multiple organizations can't fully trust each other. We believe that governments should be able to trust themselves, and should be trusted by their citizens. So storing and executing tax scripts would be an irresponsible use of computing and storage resources. A blockchain that publicly publishes immutable lexy scripts, executes them, and publishes the results in public might have different use cases though.
 
 ## Learn More
 
-🖥️ [Interactive DEMO! (Desktop only for now)](https://github.com/lexy-language/lexy-language/blob/main/Introduction/1_Philosophy.md) 
-📄 [Documentation! (On GitHub)](https://lexy-language.github.io/lexy-editor/)
+The documentation can be viewed in two ways:
+
+🖥️ [Interactive DEMO! (Web from a desktop browser only for now)](https://lexy-language.github.io/lexy-editor/) 
+📄 [Documentation! (On GitHub)](https://github.com/lexy-language/lexy-language/blob/main/Introduction/1_Philosophy.md)
+
+Both contain the same information.
 
 [![forthebadge](https://forthebadge.com/images/badges/license-mit.svg)](https://github.com/lexy-language/lexy-language/blob/main/README.md)
 
@@ -51,7 +55,7 @@ Do you like the mission and want to help it succeed? Do you have any of the foll
 - Organisational (Management)
 - Anything else you think of that can contribute to helping the mission succeed?
 
-Then we'd love to hear from you? [Fill in the contact form to register as a contributor!](https://lucidmonk.live-website.com/lexy/get-involved/) - Reality is pretty crazy now 😊 So we'll ge back to you in a few weeks, probably second half of March. (Please only us for involvement in this project, anything else will be ignored!)
+Then we'd love to hear from you! [Fill in the contact form to register as a contributor!](https://lucidmonk.live-website.com/lexy/get-involved/) - Reality is pretty crazy now 😊 So we'll ge back to you in a few weeks, probably second half of March. (Please only us for involvement in this project, anything else will be ignored!)
 
 ## Compilers
 
