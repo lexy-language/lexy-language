@@ -33,7 +33,7 @@ Scenario: RootDeclaration
 
 
 Scenario: ResultVariablesDefaultValues
-# each declared result should have default value
+// each declared result should have default value
   function
     Results
       number NumberResult
@@ -51,7 +51,7 @@ Scenario: ResultVariablesDefaultValues
 
 
 Scenario: InCodeVariablesDefaultValues
-# each declared variable should have default value
+// each declared variable should have default value
   function
     Results
       number NumberResult
@@ -81,7 +81,7 @@ Scenario: InCodeVariablesDefaultValues
 
 
 Scenario: ResultAssignmentWithInitializerAndDefaultValues
-# each declared parameter variable should an initialized value
+// each declared parameter variable should an initialized value
   function
     Parameters
       number NumberParam = 1
@@ -147,7 +147,7 @@ Scenario: ScopedVariables
 
 
 function ScopedVariablesOutOfScopeFunction
-# it should not be possible access the value of a variable out of it's scope
+// it should not be possible access the value of a variable out of it's scope
   Parameters
     boolean Evil
   Results
@@ -165,7 +165,7 @@ Scenario: ScopedVariablesOutOfScope
 
 
 function ScopedVariablesManyScopesFunction
-# it should be possible to declare variables with same name in different sub scopes
+// it should be possible to declare variables with same name in different sub scopes
   Parameters
     boolean Evil = false
   Results

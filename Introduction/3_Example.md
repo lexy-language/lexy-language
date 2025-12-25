@@ -6,7 +6,7 @@ A function is a callable unit of calculation logic that has a well-defined input
 
 ```
 function NaiveFlatTaxLaw
-# calculate imaginary tax statement for demo purposes (amounts are in  €)
+// calculate imaginary tax statement for demo purposes (amounts are in  €)
   Parameters
     number GrossIncomeYear
   Results
@@ -14,8 +14,8 @@ function NaiveFlatTaxLaw
     number TaxRate
     number TotalTax
   Code
-    TaxRate = 0.40                                   # 40% income tax
-    TaxableIncomeYear = GrossIncomeYear - 12000      # 12000 contribution for demo purposes
+    TaxRate = 0.40                                   // 40% income tax
+    TaxableIncomeYear = GrossIncomeYear - 12000      // 12000 contribution for demo purposes
     TotalTax = TaxableIncomeYear * TaxRate
 ```
 

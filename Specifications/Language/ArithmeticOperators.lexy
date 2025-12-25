@@ -164,4 +164,4 @@ Scenario: Logical0r
     Result = true
 
 
-# add scenarios for operation order and all kind of edge cases
+// add scenarios for operation order and all kind of edge cases

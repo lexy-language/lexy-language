@@ -125,7 +125,7 @@ function FillParameterObject
     TaxCalculationForIT.Results Result
   Code    
     var parameters = fill(TaxCalculationForIT.Parameters) 
-    # parameters.Income and parameters.Children are filled by the fill function
+    // parameters.Income and parameters.Children are filled by the fill function
     Result = TaxCalculationForIT(parameters)
 
 Scenario: FillParameterObjectExamples
@@ -153,7 +153,7 @@ function ExtractResultsObject
   Code    
     var parameters = fill(TaxCalculationForIT.Parameters)
     var results = TaxCalculationForIT(parameters)
-    extract(results)         # Tax and TaxRate will be set
+    extract(results)         // Tax and TaxRate will be set
 
 Scenario: ExtractResultsObjectExamples
   function ExtractResultsObject

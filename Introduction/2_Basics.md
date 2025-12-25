@@ -27,17 +27,17 @@ Component keywords are always placed at the first character of a line.
 Children of keywords always use 2 spaces more as indentation as their parent.
 
 ```
-function FirstFunction       # no indentation, start of a function component
-  Parameters                  # 2 spaces indentation, Parameters belongs to the function component declared above
-    number Income             # 4 spaces indentation, the Income variable belongs to the Parameters of the defined Function
-  Results                     # 2 spaces indentation, Results belongs to the function component declared above
-    number Tax                # 4 spaces indentation, the Tax variable belongs to the Results of the defined Function
-    number TaxRate            # 4 spaces indentation, the TaxRate variable belongs to the Results of the defined Function
-  Code                        # 2 spaces indentation, Code belongs to the function component declared above
-    TaxRate = 0.5             # 4 spaces indentation, the assignment is part of the Code
-    Tax = Income * TaxRate    # 4 spaces indentation, the assignment is part of the Code
-                              # empty lines are ignored by the compiler
-function SecondFunction      # no indentation, start of a new function component
+function FirstFunction       // no indentation, start of a function component
+  Parameters                 // 2 spaces indentation, Parameters belongs to the function component declared above
+    number Income            // 4 spaces indentation, the Income variable belongs to the Parameters of the defined Function
+  Results                    // 2 spaces indentation, Results belongs to the function component declared above
+    number Tax               // 4 spaces indentation, the Tax variable belongs to the Results of the defined Function
+    number TaxRate           // 4 spaces indentation, the TaxRate variable belongs to the Results of the defined Function
+  Code                       // 2 spaces indentation, Code belongs to the function component declared above
+    TaxRate = 0.5            // 4 spaces indentation, the assignment is part of the Code
+    Tax = Income * TaxRate   // 4 spaces indentation, the assignment is part of the Code
+                             // empty lines are ignored by the compiler
+function SecondFunction      // no indentation, start of a new function component
 ```
 
 

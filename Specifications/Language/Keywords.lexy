@@ -1,19 +1,19 @@
 function FunctionKeywords
-# Validate function keywords
+// Validate function keywords
   Parameters
   Results
   Code
 
 Scenario: ScenarioKeywords
-# Validate Scenario keywords
+// Validate Scenario keywords
   function FunctionKeywords
   Parameters
   Results
 
 Scenario: InlineFunctionKeywords
-# Validate Scenario keywords
+// Validate Scenario keywords
   function
-  # Validate function keywords
+  // Validate function keywords
     Parameters
     Results
     Code
@@ -21,7 +21,7 @@ Scenario: InlineFunctionKeywords
   Results
 
 Scenario: ScenarioWithValidationTableKeywords
-# Validate Scenario with table keywords
+// Validate Scenario with table keywords
   function
     Parameters
       number a
@@ -34,7 +34,7 @@ Enum: ValidateEnumKeyword
   Second = 1
 
 function EnumKeywordFunction
-# Validate enum keywords
+// Validate enum keywords
   Parameters
     ValidateEnumKeyword Value
   Results
@@ -43,7 +43,7 @@ function EnumKeywordFunction
     Result = Value
 
 Scenario: EnumKeywords
-# Validate enum keywords
+// Validate enum keywords
   function EnumKeywordFunction
   Parameters
     Value = ValidateEnumKeyword.Second
@@ -51,7 +51,7 @@ Scenario: EnumKeywords
     Result = ValidateEnumKeyword.Second
 
 function IntVariableFunction
-# Validate number variable type with int
+// Validate number variable type with int
   Parameters
     number InInt
   Results
@@ -67,7 +67,7 @@ Scenario: IntVariable
     OutInt = 777
 
 function NumberVariableFunction
-# Validate number variable type with decimal
+// Validate number variable type with decimal
   Parameters
     number InNumber
   Results
@@ -83,7 +83,7 @@ Scenario: NumberVariable
     OutNumber = 999
 
 function BooleanVariableFunction
-# Validate boolean variable type
+// Validate boolean variable type
   Parameters
     boolean InBoolean
   Results
@@ -99,7 +99,7 @@ Scenario: BooleanVariable
     OutBoolean = true
 
 function DateVariableFunction
-# Validate date variable type
+// Validate date variable type
   Parameters
     date InDate
   Results
@@ -115,7 +115,7 @@ Scenario: DateVariable
     OutDate = d"2022-12-16T13:26:55"
 
 function UnknownFunctionKeywordFunction
-# Validate function keywords
+// Validate function keywords
   Paraeters
 
 Scenario: UnknownFunctionKeyword
@@ -124,13 +124,13 @@ Scenario: UnknownFunctionKeyword
     "Invalid token 'Paraeters'"
 
 Table: ValidateTableKeyword
-# Validate table keywords
+// Validate table keywords
   | number Value | number Result |
   | 0 | 0 |
   | 1 | 1 |
 
 function TableKeywordFunction
-# Validate table keywords
+// Validate table keywords
   Parameters
   Results
     number Result

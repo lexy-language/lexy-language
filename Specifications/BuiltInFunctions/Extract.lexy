@@ -56,7 +56,7 @@ Scenario: ExtractSingleParameters
     NumberResult = 5
 
 Scenario: ExtractMultipleParameters
-# only corresponding parameters should be mapped
+// only corresponding parameters should be mapped
   function
     Parameters
       number NumberValue
@@ -67,9 +67,9 @@ Scenario: ExtractMultipleParameters
     Results
       number NumberResult
       string StringResult
-      boolean BooleanResultOther    #not mapped
-      date DateResultOther          #not mapped
-      SimpleEnum EnumResultOther    #not mapped
+      boolean BooleanResultOther    // not mapped
+      date DateResultOther          // not mapped
+      SimpleEnum EnumResultOther    // not mapped
     Code
       SimpleTarget.Results parameters
       parameters.NumberResult = NumberValue
@@ -87,9 +87,9 @@ Scenario: ExtractMultipleParameters
   Results
     NumberResult = 5
     StringResult = "abc"
-    BooleanResultOther = false                #not mapped
-    DateResultOther = d"0001-01-01T00:00:00"  #not mapped
-    EnumResultOther = SimpleEnum.First        #not mapped
+    BooleanResultOther = false                // not mapped
+    DateResultOther = d"0001-01-01T00:00:00"  // not mapped
+    EnumResultOther = SimpleEnum.First        // not mapped
 
 
 

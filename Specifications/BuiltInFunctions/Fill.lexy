@@ -45,14 +45,14 @@ Scenario: FillSingleParameters
     NumberResult = 5
 
 Scenario: FillMultipleParameters
-# only corresponding parameters should be mapped
+// only corresponding parameters should be mapped
   function
     Parameters
       number NumberValue
       string StringValue
-      boolean BooleanValueOther          #not mapped
-      date DateValueOther            #not mapped
-      SimpleEnum EnumValueOther          #not mapped
+      boolean BooleanValueOther          // not mapped
+      date DateValueOther                // not mapped
+      SimpleEnum EnumValueOther          // not mapped
     Results
       number NumberResult
       string StringResult
@@ -75,9 +75,9 @@ Scenario: FillMultipleParameters
   Results
     NumberResult = 5
     StringResult = "abc"
-    BooleanResult = false                    #not mapped
-    DateResult = d"0001-01-01T00:00:00"  #not mapped
-    EnumResult = SimpleEnum.First            #not mapped
+    BooleanResult = false                    // not mapped
+    DateResult = d"0001-01-01T00:00:00"      // not mapped
+    EnumResult = SimpleEnum.First            // not mapped
 
 
 Scenario: FillInIfScopeParameters

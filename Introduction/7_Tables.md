@@ -10,8 +10,8 @@ Tables store rows of values in a specific format. The column names and types are
 
 ```
 Table: AverageTaxPerCanton
-# In Zwiterland income tax varies per canton, this is a simplified example as the tax depends on branckets and can variy from from canton to canton, and even from town to town.
-# Source: https://www.academics.com/guide/taxes-switzerland
+// In Zwiterland income tax varies per canton, this is a simplified example as the tax depends on branckets and can variy from from canton to canton, and even from town to town.
+// Source: https://www.academics.com/guide/taxes-switzerland
   | string Canton | number AverageTax |
   | "Basel"       | 0.3783            |
   | "Bern"        | 0.4107            |

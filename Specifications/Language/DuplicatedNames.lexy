@@ -1,5 +1,5 @@
 function DuplicateFunctionName
-# Validate table keywords
+// Validate table keywords
   Results
     number Result
   Code
@@ -8,7 +8,7 @@ function DuplicateFunctionName
 function DuplicateFunctionName
 
 Table: DuplicateTableName
-# Validate table keywords
+// Validate table keywords
   | number Value | number Result |
   | 0 | 0 |
   | 1 | 1 |
