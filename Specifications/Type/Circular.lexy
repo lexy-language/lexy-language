@@ -12,7 +12,7 @@ Type: CustomType
   boolean BooleanValue
   NestedType Nested
 
-Scenario: ScenarioCircularReference
+scenario ScenarioCircularReference
   function
     Code
       CustomType invalidType

@@ -12,7 +12,7 @@ Table: OtherTable
   | "c"                | 444                 | "444"               | false                 | d"2024-12-24T23:44:44"   |
   | "d"                | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
-Scenario: InvalidSearchColumn
+scenario InvalidSearchColumn
   function
     Results
       number Result
@@ -21,7 +21,7 @@ Scenario: InvalidSearchColumn
   ExpectErrors
     "Invalid argument 2. Should be search column."
 
-Scenario: InvalidResultColumn
+scenario InvalidResultColumn
   function
     Results
       number Result
@@ -30,7 +30,7 @@ Scenario: InvalidResultColumn
   ExpectErrors
     "Invalid argument 3. Should be result column."
 
-Scenario: InvalidSearchColumnDifferentTable
+scenario InvalidSearchColumnDifferentTable
   function
     Results
       number Result
@@ -39,7 +39,7 @@ Scenario: InvalidSearchColumnDifferentTable
   ExpectErrors
     "Result column table 'OtherTable' should be table name 'StringTable'"
 
-Scenario: InvalidResultColumnDifferentTable
+scenario InvalidResultColumnDifferentTable
   function
     Results
       number Result
@@ -48,7 +48,7 @@ Scenario: InvalidResultColumnDifferentTable
   ExpectErrors
     "Result column table 'OtherTable' should be table name 'StringTable'"
 
-Scenario: UnknownTable
+scenario UnknownTable
   function
     Results
       number Result

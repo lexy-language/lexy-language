@@ -1,4 +1,4 @@
-Scenario: UnknownType
+scenario UnknownType
   function
     Parameters
       int Value
@@ -7,7 +7,7 @@ Scenario: UnknownType
   ExpectErrors
     "Invalid type: 'int'"
 
-Scenario: InvalidVariableDefaultValue
+scenario InvalidVariableDefaultValue
   function
     Parameters
       int Value = 5 + 33

@@ -1,18 +1,18 @@
-Scenario: InvalidEnumNegativeValue
+scenario InvalidEnumNegativeValue
   Enum: InvalidEnumNegativeValueEnum
     First = 0
     Second = -1
   ExpectErrors
     "Validation.lexy(4, 15): ERROR - Invalid number of tokens: 4. Should be 1 or 3."
 
-Scenario: InvalidEnumDecimalValue
+scenario InvalidEnumDecimalValue
   Enum: InvalidEnumDecimalValueEnum
     First = 0
     Second = 1.1
   ExpectErrors
     "Enum member value should not be decimal: 1.1"
 
-Scenario: InvalidEnumDuplicatedMember
+scenario InvalidEnumDuplicatedMember
   Enum: InvalidVEnumDuplicatedMemberEnum
     First = 0
     First = 1
@@ -24,7 +24,7 @@ Enum: ValidEnum
   Second
   Third
 
-Scenario: InvalidEnumInitializeNumber
+scenario InvalidEnumInitializeNumber
   function
     Parameters
       ValidEnum Value = 1
@@ -35,7 +35,7 @@ Scenario: InvalidEnumInitializeNumber
   ExpectErrors
     "Invalid default value '1'. (type: 'ValidEnum')"
 
-Scenario: InvalidEnumInitializeString
+scenario InvalidEnumInitializeString
   function
     Parameters
       ValidEnum Value = "a"
@@ -46,7 +46,7 @@ Scenario: InvalidEnumInitializeString
   ExpectErrors
     "Invalid default value 'a'. (type: 'ValidEnum')"
 
-Scenario: InvalidEnumInitializeBoolean
+scenario InvalidEnumInitializeBoolean
   function
     Parameters
       ValidEnum Value = true
@@ -57,7 +57,7 @@ Scenario: InvalidEnumInitializeBoolean
   ExpectErrors
     "Invalid default value 'true'. (type: 'ValidEnum')"
 
-Scenario: InvalidEnumInitializeDate
+scenario InvalidEnumInitializeDate
   function
     Parameters
       ValidEnum Value = d"2024-12-23T17:51:15"
@@ -68,7 +68,7 @@ Scenario: InvalidEnumInitializeDate
   ExpectErrors
     "Invalid default value '2024-12-23T17:51:15'. (type: 'ValidEnum')"
 
-Scenario: InvalidEnumInitializeNoMember
+scenario InvalidEnumInitializeNoMember
   function
     Parameters
       ValidEnum Value = ValidEnum
@@ -79,7 +79,7 @@ Scenario: InvalidEnumInitializeNoMember
   ExpectErrors
     "Invalid default value 'ValidEnum'. (type: 'ValidEnum')"
 
-Scenario: InvalidEnumInitializeUnknownMember
+scenario InvalidEnumInitializeUnknownMember
   function
     Parameters
       ValidEnum Value = ValidEnum.Fourth
@@ -91,7 +91,7 @@ Scenario: InvalidEnumInitializeUnknownMember
     "Invalid default value 'ValidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
     "Invalid identifier: 'ValidEnum.Fourth'"
 
-Scenario: InvalidEnumInitializeInvalidEnumType
+scenario InvalidEnumInitializeInvalidEnumType
   function
     Parameters
       ValidEnum Value = InvalidEnum.Fourth
@@ -104,7 +104,7 @@ Scenario: InvalidEnumInitializeInvalidEnumType
     "Invalid default value 'InvalidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
     "Invalid identifier: 'InvalidEnum.Fourth'"
 
-Scenario: InvalidEnumInitialize
+scenario InvalidEnumInitialize
   function
     Parameters
       ValidEnum Value = ValidEnum.Third.First

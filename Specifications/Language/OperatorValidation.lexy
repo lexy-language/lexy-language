@@ -2,7 +2,7 @@ Enum: EnumValue
   First
   Second
 
-Scenario: AllowedOperatorCombinationsEqual
+scenario AllowedOperatorCombinationsEqual
   function
     Results
       boolean StringEquals
@@ -23,7 +23,7 @@ Scenario: AllowedOperatorCombinationsEqual
     BooleanEquals = true
     EnumEquals  = true
 
-Scenario: AllowedOperatorCombinationsNotEqual
+scenario AllowedOperatorCombinationsNotEqual
   function
     Results
       boolean StringNotEqual
@@ -44,7 +44,7 @@ Scenario: AllowedOperatorCombinationsNotEqual
     BooleanNotEqual = false
     EnumNotEqual = false
 
-Scenario: AllowedOperatorCombinationsStringManipulation
+scenario AllowedOperatorCombinationsStringManipulation
   function
     Results
       string StringAddition
@@ -65,7 +65,7 @@ Scenario: AllowedOperatorCombinationsStringManipulation
     StringDateAddition = "abc:2025-02-08 12:34:56"
     StringEnumAddition = "abc:EnumValue.Second"
 
-Scenario: AllowedOperatorCombinationsNumberArithmetic
+scenario AllowedOperatorCombinationsNumberArithmetic
   function
     Results
       number NumberAddition
@@ -86,7 +86,7 @@ Scenario: AllowedOperatorCombinationsNumberArithmetic
     NumberDivision = 3
     NumberModulus = 1
 
-Scenario: AllowedOperatorCombinationsComparison
+scenario AllowedOperatorCombinationsComparison
   function
     Results
       boolean StringGreaterThan
@@ -128,7 +128,7 @@ Scenario: AllowedOperatorCombinationsComparison
     DateLessThan = true
     DateLessThanOrEqual = true
 
-Scenario: AllowedOperatorCombinationsLogical
+scenario AllowedOperatorCombinationsLogical
   function
     Results
       boolean BooleanAnd
@@ -140,7 +140,7 @@ Scenario: AllowedOperatorCombinationsLogical
     BooleanAnd = true
     BooleanOr = true
 
-Scenario: InvalidOperatorCombinationsString
+scenario InvalidOperatorCombinationsString
   function
     Code
       var s1 = "abc" == 123
@@ -173,7 +173,7 @@ Scenario: InvalidOperatorCombinationsString
     "Invalid operator 'And'. Left type: 'string' and right type 'string' not supported."
     "Invalid operator 'Or'. Left type: 'string' and right type 'string' not supported."
 
-Scenario: InvalidOperatorCombinationsNumber
+scenario InvalidOperatorCombinationsNumber
   function
     Code
       var n1 = 123 == "abc"
@@ -198,7 +198,7 @@ Scenario: InvalidOperatorCombinationsNumber
     "Invalid operator 'And'. Left type: 'number' and right type 'number' not supported."
     "Invalid operator 'Or'. Left type: 'number' and right type 'number' not supported."
 
-Scenario: InvalidOperatorCombinationsBoolean
+scenario InvalidOperatorCombinationsBoolean
   function
     Code
       var b1 = true == "abc"
@@ -227,7 +227,7 @@ Scenario: InvalidOperatorCombinationsBoolean
     "Invalid operator 'Multiplication'. Left type: 'boolean' and right type 'boolean' not supported."
     "Invalid operator 'Modulus'. Left type: 'boolean' and right type 'boolean' not supported."
 
-Scenario: InvalidOperatorCombinationsDate
+scenario InvalidOperatorCombinationsDate
   function
     Code
       var d1 = d"2025-02-08 12:34:56" == "abc"
@@ -260,7 +260,7 @@ Scenario: InvalidOperatorCombinationsDate
     "Invalid operator 'And'. Left type: 'date' and right type 'date' not supported."
     "Invalid operator 'Or'. Left type: 'date' and right type 'date' not supported."
 
-Scenario: InvalidOperatorCombinationsEnum
+scenario InvalidOperatorCombinationsEnum
   function
     Code
       var e1 = EnumValue.Second == "abc"

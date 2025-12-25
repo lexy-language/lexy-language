@@ -1,4 +1,4 @@
-Scenario: StringAsParameterDefault
+scenario StringAsParameterDefault
   function
     Parameters
       string Value = "abc"
@@ -9,7 +9,7 @@ Scenario: StringAsParameterDefault
   Results
     Result = "abc"
 
-Scenario: StringAsParameter
+scenario StringAsParameter
   function
     Parameters
       string Value = "abc"
@@ -22,7 +22,7 @@ Scenario: StringAsParameter
   Results
     Result = "xyz"
 
-Scenario: StringInCode
+scenario StringInCode
   function
     Results
       string Result
@@ -31,7 +31,7 @@ Scenario: StringInCode
   Results
     Result = "abc"
 
-Scenario: VariableDeclarationInCode
+scenario VariableDeclarationInCode
   function
     Parameters
       string Value
@@ -46,7 +46,7 @@ Scenario: VariableDeclarationInCode
   Results
     Result = "abs"
 
-Scenario: VariableDeclarationInCodeWithDefault
+scenario VariableDeclarationInCodeWithDefault
   function
     Results
       string Result
@@ -56,7 +56,7 @@ Scenario: VariableDeclarationInCodeWithDefault
   Results
     Result = "abs"
 
-Scenario: InvalidNumberEndsWithLetter
+scenario InvalidNumberEndsWithLetter
   function
     Results
       string Result
@@ -65,7 +65,7 @@ Scenario: InvalidNumberEndsWithLetter
   ExpectErrors
     "Invalid token at end of line. Closing quote expected."
 
-Scenario: ConcatenateStringInCode
+scenario ConcatenateStringInCode
   function
     Results
       string Result
@@ -74,7 +74,7 @@ Scenario: ConcatenateStringInCode
   Results
     Result = "abcdef"
 
-Scenario: InvalidStringInitializeNumber
+scenario InvalidStringInitializeNumber
   function
     Parameters
       string Value = 1
@@ -85,7 +85,7 @@ Scenario: InvalidStringInitializeNumber
   ExpectErrors
     "Invalid default value '1'. (type: 'string')"
 
-Scenario: InvalidStringInitializeBoolean
+scenario InvalidStringInitializeBoolean
   function
     Parameters
       string Value = true
@@ -96,7 +96,7 @@ Scenario: InvalidStringInitializeBoolean
   ExpectErrors
     "Invalid default value 'true'. (type: 'string')"
 
-Scenario: InvalidStringInitializeDate
+scenario InvalidStringInitializeDate
   function
     Parameters
       string Value = d"2024-12-23T17:51:15"

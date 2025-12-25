@@ -21,7 +21,7 @@ function SimpleTarget
     BooleanResult = BooleanValue
     EnumResult = EnumValue
 
-Scenario: ExtractInIfScopeParameters
+scenario ExtractInIfScopeParameters
   function
     Parameters
       boolean Evil

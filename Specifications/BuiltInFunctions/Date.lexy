@@ -1,4 +1,4 @@
-Scenario: Year
+scenario Year
   function
     Parameters
       date Value = d"2024-12-25T16:57:45"
@@ -9,7 +9,7 @@ Scenario: Year
   Results
     Result = 2024
 
-Scenario: Day
+scenario Day
   function
     Parameters
       date Value = d"2024-12-25T16:57:45"
@@ -20,7 +20,7 @@ Scenario: Day
   Results
     Result = 25
 
-Scenario: Month
+scenario Month
   function
     Parameters
       date Value = d"2024-12-25T16:57:45"
@@ -31,7 +31,7 @@ Scenario: Month
   Results
     Result = 12
 
-Scenario: Hour
+scenario Hour
   function
     Parameters
       date Value = d"2024-12-25T16:57:45"
@@ -42,7 +42,7 @@ Scenario: Hour
   Results
     Result = 16
 
-Scenario: Minute
+scenario Minute
   function
     Parameters
       date Value = d"2024-12-25T16:57:45"
@@ -53,7 +53,7 @@ Scenario: Minute
   Results
     Result = 57
 
-Scenario: Second
+scenario Second
   function
     Parameters
       date Value = d"2024-12-25T16:57:45"
@@ -66,7 +66,7 @@ Scenario: Second
 
 
 
-Scenario: Years
+scenario Years
   function
     Parameters
       date ValueEnd = d"2029-12-25T16:57:45"
@@ -78,7 +78,7 @@ Scenario: Years
   Results
     Result = 5
 
-Scenario: Months
+scenario Months
   function
     Parameters
       date ValueEnd = d"2024-12-25T16:57:45"
@@ -90,7 +90,7 @@ Scenario: Months
   Results
     Result = 4
 
-Scenario: Days
+scenario Days
   function
     Parameters
       date ValueEnd = d"2024-12-25T16:57:45"
@@ -102,7 +102,7 @@ Scenario: Days
   Results
     Result = 5
 
-Scenario: Hours
+scenario Hours
   function
     Parameters
       date ValueEnd = d"2024-12-25T18:57:45"
@@ -114,7 +114,7 @@ Scenario: Hours
   Results
     Result = 2
 
-Scenario: Minutes
+scenario Minutes
   function
     Parameters
       date ValueEnd = d"2024-12-25T16:57:45"
@@ -126,7 +126,7 @@ Scenario: Minutes
   Results
     Result = 30
 
-Scenario: Seconds
+scenario Seconds
   function
     Parameters
       date ValueEnd = d"2024-12-25T16:57:45"
@@ -138,7 +138,7 @@ Scenario: Seconds
   Results
     Result = 35
 
-Scenario: HoursFullDay
+scenario HoursFullDay
   function
     Parameters
       date ValueEnd = d"2024-12-25T16:57:45"
@@ -150,7 +150,7 @@ Scenario: HoursFullDay
   Results
     Result = 24
 
-Scenario: MinutesFullDay
+scenario MinutesFullDay
   function
     Parameters
       date ValueEnd = d"2024-12-25T16:57:45"
@@ -162,7 +162,7 @@ Scenario: MinutesFullDay
   Results
     Result = 1440
 
-Scenario: SecondsFullDay
+scenario SecondsFullDay
   function
     Parameters
       date ValueEnd = d"2024-12-25T16:57:45"
@@ -174,7 +174,7 @@ Scenario: SecondsFullDay
   Results
     Result = 86400
 
-Scenario: Today
+scenario Today
   function
     Results
       number Diff
@@ -185,7 +185,7 @@ Scenario: Today
   Results
     Diff = 0
 
-Scenario: NowAndDiff
+scenario NowAndDiff
   function
     Results
       number Diff

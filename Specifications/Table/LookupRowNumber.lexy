@@ -14,21 +14,21 @@ function SimpleLookUpNumberFunction
     var row = LOOKUPROW(NumberTable, Value, NumberTable.SearchValue)
     Result = row.ResultNumber
 
-Scenario: LookUpNumber
+scenario LookUpNumber
   function SimpleLookUpNumberFunction
   Parameters
     Value = 3
   Results
     Result = 333
 
-Scenario: LookUpNumberWithDecimal
+scenario LookUpNumberWithDecimal
   function SimpleLookUpNumberFunction
   Parameters
     Value = 4.5
   Results
     Result = 444
 
-Scenario: LookUpNumberAfterRange
+scenario LookUpNumberAfterRange
   function SimpleLookUpNumberFunction
   Parameters
     Value = 100
@@ -47,7 +47,7 @@ function SimpleLookUpStringFunction
     Result = row.ResultString
 
 
-Scenario: LookUpString
+scenario LookUpString
   function SimpleLookUpStringFunction
   Parameters
     Value = 3
@@ -65,7 +65,7 @@ function SimpleLookUpBooleanFunction
     var row = LOOKUPROW(NumberTable, Value, NumberTable.SearchValue)
     Result = row.ResultBoolean
 
-Scenario: LookUpBoolean
+scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
   Parameters
     Value = 3
@@ -84,7 +84,7 @@ function SimpleLookUpDateFunction
     var row = LOOKUPROW(NumberTable, Value, NumberTable.SearchValue)
     Result = row.ResultDate
 
-Scenario: LookUpDate
+scenario LookUpDate
   function SimpleLookUpDateFunction
   Parameters
     Value = 3

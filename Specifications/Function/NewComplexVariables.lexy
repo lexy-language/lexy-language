@@ -5,7 +5,7 @@ Table: StringTable
   | "c"                | 444                 | "444"               | false                 | d"2024-12-24T23:44:44"   |
   | "d"                | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
-Scenario: NewTableRow
+scenario NewTableRow
   function
     Results
       string StringResult
@@ -25,7 +25,7 @@ function SimpleTarget
     NumberResult = 666
     StringResult = StringValue
 
-Scenario: NewFunctionParameters
+scenario NewFunctionParameters
   function
     Results
       string StringResult
@@ -39,7 +39,7 @@ Type: CustomType
   number NumberValue = 123
   string StringValue = "abc"
 
-Scenario: NewCustomType
+scenario NewCustomType
   function
     Results
       string StringResult
@@ -52,7 +52,7 @@ Scenario: NewCustomType
     StringResult = "abc"
     NumberResult = 123
 
-Scenario: NewCustomTypeAssign
+scenario NewCustomTypeAssign
   function
     Results
       string StringResult
@@ -67,7 +67,7 @@ Scenario: NewCustomTypeAssign
     StringResult = "def"
     NumberResult = 456
 
-Scenario: NewFunctionParametersInvalidMember
+scenario NewFunctionParametersInvalidMember
   function
     Results
       string StringResult
@@ -77,7 +77,7 @@ Scenario: NewFunctionParametersInvalidMember
   ExpectErrors
     "Invalid identifier: 'row.ResultNumber'"
 
-Scenario: NewFunctionResults
+scenario NewFunctionResults
   function
     Results
       number NumberResult
@@ -87,7 +87,7 @@ Scenario: NewFunctionResults
   Results
     NumberResult = 0
 
-Scenario: NewFunctionResultsInvalidMember
+scenario NewFunctionResultsInvalidMember
   function
     Results
       number NumberResult

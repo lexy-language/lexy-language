@@ -1,5 +1,5 @@
 Include "FunctionUnknown"
 
-Scenario: UnknownInclude
+scenario UnknownInclude
   ExpectComponentErrors
     "Invalid include file name 'FunctionUnknown'"

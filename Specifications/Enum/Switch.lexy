@@ -20,28 +20,28 @@ function EnumWithSwitchStatement
       default
         Tax = 0.42
 
-Scenario: CheckEnumComparisonInSwitchStatementSingle
+scenario CheckEnumComparisonInSwitchStatementSingle
   function EnumWithSwitchStatement
   Parameters
     MaritalStatus = MaritalStatus.Single
   Results
     Tax = 0.45
 
-Scenario: CheckEnumComparisonInSwitchStatementMarried
+scenario CheckEnumComparisonInSwitchStatementMarried
   function EnumWithSwitchStatement
   Parameters
     MaritalStatus = MaritalStatus.Married
   Results
     Tax = 0.40
 
-Scenario: CheckEnumComparisonInSwitchStatementCivilPartnership
+scenario CheckEnumComparisonInSwitchStatementCivilPartnership
   function EnumWithSwitchStatement
   Parameters
     MaritalStatus = MaritalStatus.CivilPartnership
   Results
     Tax = 0.41
 
-Scenario: CheckEnumComparisonInSwitchStatementDefault
+scenario CheckEnumComparisonInSwitchStatementDefault
   function EnumWithSwitchStatement
   Parameters
     MaritalStatus = MaritalStatus.Cohabiting

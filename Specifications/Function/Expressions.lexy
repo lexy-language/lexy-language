@@ -1,4 +1,4 @@
-Scenario: Addition
+scenario Addition
   function
     Results
       number Result

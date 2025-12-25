@@ -21,7 +21,7 @@ function SimpleTarget
     BooleanResult = BooleanValue
     EnumResult = EnumValue
 
-Scenario: FillNoParameters
+scenario FillNoParameters
   function
     Parameters
     Results
@@ -30,7 +30,7 @@ Scenario: FillNoParameters
   ExpectErrors
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
-Scenario: FillSingleParameters
+scenario FillSingleParameters
   function
     Parameters
       number NumberValue
@@ -44,7 +44,7 @@ Scenario: FillSingleParameters
   Results
     NumberResult = 5
 
-Scenario: FillMultipleParameters
+scenario FillMultipleParameters
 // only corresponding parameters should be mapped
   function
     Parameters
@@ -80,7 +80,7 @@ Scenario: FillMultipleParameters
     EnumResult = SimpleEnum.First            // not mapped
 
 
-Scenario: FillInIfScopeParameters
+scenario FillInIfScopeParameters
   function
     Parameters
       boolean Evil

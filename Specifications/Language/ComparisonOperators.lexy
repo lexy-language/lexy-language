@@ -1,4 +1,4 @@
-Scenario: Equals
+scenario Equals
   function
     Results
       boolean Result
@@ -8,7 +8,7 @@ Scenario: Equals
   Results
     Result = true
 
-Scenario: NotEqual
+scenario NotEqual
   function
     Results
       boolean Result
@@ -18,7 +18,7 @@ Scenario: NotEqual
   Results
     Result = true
 
-Scenario: GreaterThan
+scenario GreaterThan
   function
     Results
       boolean Result
@@ -28,7 +28,7 @@ Scenario: GreaterThan
   Results
     Result = true
 
-Scenario: GreaterThanOrEqual
+scenario GreaterThanOrEqual
   function
     Results
       boolean Result
@@ -38,7 +38,7 @@ Scenario: GreaterThanOrEqual
   Results
     Result = true
 
-Scenario: LessThan
+scenario LessThan
   function
     Results
       boolean Result
@@ -48,7 +48,7 @@ Scenario: LessThan
   Results
     Result = true
 
-Scenario: LessThanOrEqual
+scenario LessThanOrEqual
   function
     Results
       boolean Result

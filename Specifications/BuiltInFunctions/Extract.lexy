@@ -21,7 +21,7 @@ function SimpleTarget
     BooleanResult = BooleanValue
     EnumResult = EnumValue
 
-Scenario: ExtractWithTypeReference
+scenario ExtractWithTypeReference
   function
     Parameters
     Results
@@ -30,7 +30,7 @@ Scenario: ExtractWithTypeReference
   ExpectErrors
     "Invalid variable argument. extract expects 1 argument. extract(variable)"
 
-Scenario: ExtractNoParameters
+scenario ExtractNoParameters
   function
     Parameters
     Results
@@ -40,7 +40,7 @@ Scenario: ExtractNoParameters
   ExpectErrors
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
-Scenario: ExtractSingleParameters
+scenario ExtractSingleParameters
   function
     Parameters
       number NumberValue
@@ -55,7 +55,7 @@ Scenario: ExtractSingleParameters
   Results
     NumberResult = 5
 
-Scenario: ExtractMultipleParameters
+scenario ExtractMultipleParameters
 // only corresponding parameters should be mapped
   function
     Parameters
@@ -94,7 +94,7 @@ Scenario: ExtractMultipleParameters
 
 
 
-Scenario: ExtractInIfScopeParameters
+scenario ExtractInIfScopeParameters
   function
     Parameters
       boolean Evil
@@ -116,7 +116,7 @@ Scenario: ExtractInIfScopeParameters
 
 
 
-Scenario: ExtractMultipleParametersInvalidType
+scenario ExtractMultipleParametersInvalidType
   function
     Parameters
       boolean BooleanValue

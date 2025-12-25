@@ -2,7 +2,7 @@ Enum: SimpleEnum
   First
   Next
 
-Scenario: VarVariableDeclarations
+scenario VarVariableDeclarations
   function
     Results
       number ResultNumber
@@ -28,7 +28,7 @@ Scenario: VarVariableDeclarations
     ResultDate = d"2024-12-26T14:10:20"
     ResultEnum = SimpleEnum.Next
 
-Scenario: VarVariableDeclarationNumber
+scenario VarVariableDeclarationNumber
   function
     Results
       number Result
@@ -38,7 +38,7 @@ Scenario: VarVariableDeclarationNumber
   Results
     Result = 777
 
-Scenario: InvalidVariableName
+scenario InvalidVariableName
   function
     Results
       number Result
@@ -49,7 +49,7 @@ Scenario: InvalidVariableName
   ExpectErrors
     "Invalid identifier: 'Value'"
 
-Scenario: DuplicatedVariableName
+scenario DuplicatedVariableName
   function
     Results
       number Result

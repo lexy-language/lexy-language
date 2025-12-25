@@ -47,7 +47,7 @@ Execute this simple function by pressing the 'Execute' button on the right.
 Lexy has automated tests built into the language. Scenarios are execute in real-time in the IDE.
 
 ```
-Scenario: HelloWorldPeace
+scenario HelloWorldPeace
   function HelloWorld
   Results
     Result = "World Peace ☮️"

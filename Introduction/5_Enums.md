@@ -30,7 +30,7 @@ function EnumWithIfStatement
 ```
 
 ```
-Scenario: EnumWithIfStatementExamples
+scenario EnumWithIfStatementExamples
   function EnumWithIfStatement
   ValidationTable
     | MaritalStatus            | Tax  |
@@ -58,7 +58,7 @@ function EnumWithSwitchStatement
 ```
 
 ```
-Scenario: EnumWithSwitchStatementExamples
+scenario EnumWithSwitchStatementExamples
   function EnumWithSwitchStatement
   ValidationTable
     | MaritalStatus                  | Tax  |

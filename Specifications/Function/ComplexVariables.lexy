@@ -10,7 +10,7 @@ function TableRowAsResultsFunction
   Code
     Result = LOOKUPROW(SimpleTable, 2, SimpleTable.Search)
 
-Scenario: UseTableRowAsResults
+scenario UseTableRowAsResults
   function TableRowAsResultsFunction
   Results
     Result =
@@ -26,7 +26,7 @@ function SimpleFunction
     string ResultString
   Code
 
-Scenario: FunctionParametersAsResults
+scenario FunctionParametersAsResults
   function
     Parameters
     Results
@@ -36,7 +36,7 @@ Scenario: FunctionParametersAsResults
   Results
     Result.ValueString = "abc"
 
-Scenario: FunctionResultsAsResults
+scenario FunctionResultsAsResults
   function
     Parameters
     Results
@@ -47,7 +47,7 @@ Scenario: FunctionResultsAsResults
     Result.ResultString = "abc"
 
 
-Scenario: FunctionParametersAsParameters
+scenario FunctionParametersAsParameters
   function
     Parameters
       SimpleFunction.Parameters Values
@@ -61,7 +61,7 @@ Scenario: FunctionParametersAsParameters
   Results
     Result = "abc"
 
-Scenario: FunctionResultsAsParameters
+scenario FunctionResultsAsParameters
   function
     Parameters
       SimpleFunction.Results Values

@@ -9,14 +9,14 @@ function If
       temp = 666
     Number = temp
 
-Scenario: IfTrue
+scenario IfTrue
   function If
   Parameters
     Evil = true
   Results
     Number = 666
 
-Scenario: IfFalse
+scenario IfFalse
   function If
   Parameters
     Evil = false
@@ -37,14 +37,14 @@ function IfElse
       temp = 777
     Number = temp
 
-Scenario: IfElseTrue
+scenario IfElseTrue
   function IfElse
   Parameters
     Evil = true
   Results
     Number = 666
 
-Scenario: IfElseFalse
+scenario IfElseFalse
   function IfElse
   Parameters
     Evil = false
@@ -65,14 +65,14 @@ function IfElseEmptyIf
       temp = 777
     Number = temp
 
-Scenario: IfElseEmptyIfTrue
+scenario IfElseEmptyIfTrue
   function IfElseEmptyIf
   Parameters
     Evil = true
   Results
     Number = 0
 
-Scenario: IfElseEmptyIfFalse
+scenario IfElseEmptyIfFalse
   function IfElseEmptyIf
   Parameters
     Evil = false
@@ -93,14 +93,14 @@ function IfElseEmptyElse
     else
     Number = temp
 
-Scenario: IfElseEmptyElseTrue
+scenario IfElseEmptyElseTrue
   function IfElseEmptyElse
   Parameters
     Evil = true
   Results
     Number = 666
 
-Scenario: IfElseEmptyElseFalse
+scenario IfElseEmptyElseFalse
   function IfElseEmptyElse
   Parameters
     Evil = false
@@ -123,14 +123,14 @@ function IfWithAndExpression
       temp = 777
     Number = temp
 
-Scenario: IfWithAndExpressionTrue
+scenario IfWithAndExpressionTrue
   function IfWithAndExpression
   Parameters
     Evil = true
   Results
     Number = 666
 
-Scenario: IfWithAndExpressionFalse
+scenario IfWithAndExpressionFalse
   function IfWithAndExpression
   Parameters
     Evil = false
@@ -152,14 +152,14 @@ function IfWithOrExpression
       temp = 777
     Number = temp
 
-Scenario: IfWithOrExpressionTrue
+scenario IfWithOrExpressionTrue
   function IfWithOrExpression
   Parameters
     Evil = true
   Results
     Number = 666
 
-Scenario: IfWithOrExpressionFalse
+scenario IfWithOrExpressionFalse
   function IfWithOrExpression
   Parameters
     Evil = false
@@ -168,7 +168,7 @@ Scenario: IfWithOrExpressionFalse
     Number = 777
 
 
-Scenario: ElseWithoutIf
+scenario ElseWithoutIf
   function
     Parameters
     Results
@@ -182,7 +182,7 @@ Scenario: ElseWithoutIf
   ExpectErrors
     "'else' should be following an 'if' statement. No 'if' statement found."
 
-Scenario: ElseifWithoutIf
+scenario ElseifWithoutIf
   function
     Parameters
     Results
@@ -196,7 +196,7 @@ Scenario: ElseifWithoutIf
   ExpectErrors
     "'elseif' should be following an 'if' statement. No 'if' statement found."
 
-Scenario: ElseifAfterElse
+scenario ElseifAfterElse
   function
     Parameters
     Results
@@ -215,7 +215,7 @@ Scenario: ElseifAfterElse
 
 
 
-Scenario: IfWithNumberCondition
+scenario IfWithNumberCondition
   function
     Parameters
     Results
@@ -230,7 +230,7 @@ Scenario: IfWithNumberCondition
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
-Scenario: IfWithNumberCalculationCondition
+scenario IfWithNumberCalculationCondition
   function
     Parameters
     Results
@@ -245,7 +245,7 @@ Scenario: IfWithNumberCalculationCondition
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
-Scenario: IfWithStringCondition
+scenario IfWithStringCondition
   function
     Parameters
     Results
@@ -272,12 +272,12 @@ function IfWithStringCalculationConditionFunction
       temp = 777
     Number = temp
 
-Scenario: IfWithStringCalculationCondition
+scenario IfWithStringCalculationCondition
   function IfWithStringCalculationConditionFunction
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
-Scenario: IfWithDateCondition
+scenario IfWithDateCondition
   function
     Parameters
     Results
@@ -305,7 +305,7 @@ function IfWithUnassignedLocalVariableFunction
       temp = 777
     Number = temp
 
-Scenario: IfWithUnassignedLocalVariable
+scenario IfWithUnassignedLocalVariable
   function IfWithUnassignedLocalVariableFunction
   Results
     Number = 0
@@ -333,7 +333,7 @@ function NestedIf
         temp = 999
     Number = temp
 
-Scenario: NestedIfTrueFalse
+scenario NestedIfTrueFalse
   function NestedIf
   Parameters
     Evil = true
@@ -341,7 +341,7 @@ Scenario: NestedIfTrueFalse
   Results
     Number = 777
 
-Scenario: NestedIfTrueTrue
+scenario NestedIfTrueTrue
   function NestedIf
   Parameters
     Evil = true
@@ -349,7 +349,7 @@ Scenario: NestedIfTrueTrue
   Results
     Number = 666
 
-Scenario: NestedIfFalseFalse
+scenario NestedIfFalseFalse
   function NestedIf
   Parameters
     Evil = false
@@ -357,7 +357,7 @@ Scenario: NestedIfFalseFalse
   Results
     Number = 999
 
-Scenario: NestedIfFalseTrue
+scenario NestedIfFalseTrue
   function NestedIf
   Parameters
     Evil = false
@@ -384,7 +384,7 @@ function IfElseif
       temp = 777
     Number = temp
 
-Scenario: IfElseifTrueTrue
+scenario IfElseifTrueTrue
   function IfElseif
   Parameters
     Evil = true
@@ -392,7 +392,7 @@ Scenario: IfElseifTrueTrue
   Results
     Number = 555
 
-Scenario: IfElseifTrueFalse
+scenario IfElseifTrueFalse
   function IfElseif
   Parameters
     Evil = true
@@ -400,7 +400,7 @@ Scenario: IfElseifTrueFalse
   Results
     Number = 555
 
-Scenario: IfElseifFalseTrue
+scenario IfElseifFalseTrue
   function IfElseif
   Parameters
     Evil = false
@@ -408,7 +408,7 @@ Scenario: IfElseifFalseTrue
   Results
     Number = 666
 
-Scenario: IfElseifFalseFalse
+scenario IfElseifFalseFalse
   function IfElseif
   Parameters
     Evil = false

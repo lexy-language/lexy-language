@@ -1,4 +1,4 @@
-Scenario: ValidateBuiltOrder
+scenario ValidateBuiltOrder
   function
     Parameters
       TypeExample Example

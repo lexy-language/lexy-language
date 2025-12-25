@@ -13,21 +13,21 @@ function SimpleLookUpNumberFunction
   Code
     Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultNumber)
 
-Scenario: LookUpNumber
+scenario LookUpNumber
   function SimpleLookUpNumberFunction
   Parameters
     Value = 3
   Results
     Result = 333
 
-Scenario: LookUpNumberWithDecimal
+scenario LookUpNumberWithDecimal
   function SimpleLookUpNumberFunction
   Parameters
     Value = 4.5
   Results
     Result = 444
 
-Scenario: LookUpNumberAfterRange
+scenario LookUpNumberAfterRange
   function SimpleLookUpNumberFunction
   Parameters
     Value = 100
@@ -44,7 +44,7 @@ function SimpleLookUpStringFunction
   Code
     Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultString)
 
-Scenario: LookUpString
+scenario LookUpString
   function SimpleLookUpStringFunction
   Parameters
     Value = 3
@@ -61,7 +61,7 @@ function SimpleLookUpBooleanFunction
   Code
     Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultBoolean)
 
-Scenario: LookUpBoolean
+scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
   Parameters
     Value = 3
@@ -79,7 +79,7 @@ function SimpleLookUpDateFunction
   Code
     Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultDate)
 
-Scenario: LookUpDate
+scenario LookUpDate
   function SimpleLookUpDateFunction
   Parameters
     Value = 3

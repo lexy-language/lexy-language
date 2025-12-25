@@ -4,13 +4,13 @@ function FunctionKeywords
   Results
   Code
 
-Scenario: ScenarioKeywords
+scenario ScenarioKeywords
 // Validate Scenario keywords
   function FunctionKeywords
   Parameters
   Results
 
-Scenario: InlineFunctionKeywords
+scenario InlineFunctionKeywords
 // Validate Scenario keywords
   function
   // Validate function keywords
@@ -20,7 +20,7 @@ Scenario: InlineFunctionKeywords
   Parameters
   Results
 
-Scenario: ScenarioWithValidationTableKeywords
+scenario ScenarioWithValidationTableKeywords
 // Validate Scenario with table keywords
   function
     Parameters
@@ -42,7 +42,7 @@ function EnumKeywordFunction
   Code
     Result = Value
 
-Scenario: EnumKeywords
+scenario EnumKeywords
 // Validate enum keywords
   function EnumKeywordFunction
   Parameters
@@ -59,7 +59,7 @@ function IntVariableFunction
   Code
     OutInt = InInt
 
-Scenario: IntVariable
+scenario IntVariable
   function IntVariableFunction
   Parameters
     InInt = 777
@@ -75,7 +75,7 @@ function NumberVariableFunction
   Code
     OutNumber = InNumber
 
-Scenario: NumberVariable
+scenario NumberVariable
   function NumberVariableFunction
   Parameters
     InNumber = 999
@@ -91,7 +91,7 @@ function BooleanVariableFunction
   Code
     OutBoolean = InBoolean
 
-Scenario: BooleanVariable
+scenario BooleanVariable
   function BooleanVariableFunction
   Parameters
     InBoolean = true
@@ -107,7 +107,7 @@ function DateVariableFunction
   Code
     OutDate = InDate
 
-Scenario: DateVariable
+scenario DateVariable
   function DateVariableFunction
   Parameters
     InDate = d"2022-12-16T13:26:55"
@@ -118,7 +118,7 @@ function UnknownFunctionKeywordFunction
 // Validate function keywords
   Paraeters
 
-Scenario: UnknownFunctionKeyword
+scenario UnknownFunctionKeyword
   function UnknownFunctionKeywordFunction
   ExpectErrors
     "Invalid token 'Paraeters'"
@@ -137,7 +137,7 @@ function TableKeywordFunction
   Code
     Result = ValidateTableKeyword.Count
 
-Scenario: TableKeywordScenario
+scenario TableKeywordScenario
   function TableKeywordFunction
   Results
     Result = 2

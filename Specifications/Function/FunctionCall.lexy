@@ -6,7 +6,7 @@ function SimpleFunction
   Code
     Result = Value
 
-Scenario: CallSimpleFunctionNewParameters
+scenario CallSimpleFunctionNewParameters
   function
     Parameters
       number Value
@@ -22,7 +22,7 @@ Scenario: CallSimpleFunctionNewParameters
   Results
     Result = 3
 
-Scenario: CallSimpleFunctionExplicitParameters
+scenario CallSimpleFunctionExplicitParameters
   function
     Parameters
       number Value
@@ -37,7 +37,7 @@ Scenario: CallSimpleFunctionExplicitParameters
   Results
     Result = 3
 
-Scenario: CallSimpleFunctionImplicitParameters
+scenario CallSimpleFunctionImplicitParameters
   function
     Parameters
       number Value

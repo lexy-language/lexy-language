@@ -2,7 +2,7 @@ function UnknownFunction
   Code
     unknown()
 
-Scenario: Unknown
+scenario Unknown
   function UnknownFunction
   ExpectErrors
     "Invalid function name: 'unknown'"

@@ -1,4 +1,4 @@
-Scenario: Addition
+scenario Addition
   function
     Results
       number Result
@@ -7,7 +7,7 @@ Scenario: Addition
   Results
     Result = 2
 
-Scenario: Subtraction
+scenario Subtraction
   function
     Results
       number Result
@@ -16,7 +16,7 @@ Scenario: Subtraction
   Results
     Result = 4
 
-Scenario: Multiplication
+scenario Multiplication
   function
     Parameters
       number Value
@@ -31,7 +31,7 @@ Scenario: Multiplication
     | 5     | 2        | 10     |
     | 0.1   | 0.2      | 0.02   |
 
-Scenario: Division
+scenario Division
   function
     Results
       number Result
@@ -41,7 +41,7 @@ Scenario: Division
     Result = 2.5
 
 
-Scenario: Modulo
+scenario Modulo
   function
     Results
       number Result
@@ -50,7 +50,7 @@ Scenario: Modulo
   Results
     Result = 1
 
-Scenario: Parenthesis
+scenario Parenthesis
   function
     Results
       number Result
@@ -59,7 +59,7 @@ Scenario: Parenthesis
   Results
     Result = 14
 
-Scenario: AdditionParameters
+scenario AdditionParameters
   function
     Parameters
       number Value
@@ -72,7 +72,7 @@ Scenario: AdditionParameters
   Results
     Result = 4
 
-Scenario: SubtractionParameters
+scenario SubtractionParameters
   function
     Parameters
       number Value
@@ -85,7 +85,7 @@ Scenario: SubtractionParameters
   Results
     Result = 8
 
-Scenario: DivisionParameters
+scenario DivisionParameters
   function
     Parameters
       number Value
@@ -98,7 +98,7 @@ Scenario: DivisionParameters
   Results
     Result = 5
 
-Scenario: ModuloParameters
+scenario ModuloParameters
   function
     Parameters
       number Value
@@ -111,7 +111,7 @@ Scenario: ModuloParameters
   Results
     Result = 2
 
-Scenario: ParenthesisParameters
+scenario ParenthesisParameters
   function
     Parameters
       number Value
@@ -124,7 +124,7 @@ Scenario: ParenthesisParameters
   Results
     Result = 22
 
-Scenario: NoParenthesisParameters
+scenario NoParenthesisParameters
   function
     Parameters
       number Value
@@ -137,7 +137,7 @@ Scenario: NoParenthesisParameters
   Results
     Result = 18
 
-Scenario: LogicalAnd
+scenario LogicalAnd
   function
     Parameters
       boolean Value
@@ -150,7 +150,7 @@ Scenario: LogicalAnd
   Results
     Result = true
 
-Scenario: Logical0r
+scenario Logical0r
   function
     Parameters
       boolean Value

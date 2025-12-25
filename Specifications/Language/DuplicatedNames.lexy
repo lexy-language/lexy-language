@@ -21,7 +21,7 @@ Enum: DuplicateEnumName
 Enum: DuplicateEnumName
   First = 1
 
-Scenario: DuplicateScenarioName
+scenario DuplicateScenarioName
   ExpectComponentErrors
     "Duplicated node name: 'DuplicateTableName'"
     "Duplicated node name: 'DuplicateFunctionName'"

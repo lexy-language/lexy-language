@@ -1,6 +1,6 @@
 Include "ValidFunction"
 
-Scenario: Valid
+scenario Valid
   function ValidFunction
   Parameters
     Value = 5

@@ -1,6 +1,6 @@
 Include "Function"
 
-Scenario: NestedIncludes
+scenario NestedIncludes
   function IncludeFunction
   Parameters
     NumberValue = 3

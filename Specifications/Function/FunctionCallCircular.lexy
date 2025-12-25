@@ -14,7 +14,7 @@ function Function2
   Code
     Function1()
 
-Scenario: CallCircularFunction
+scenario CallCircularFunction
   function Function1
   ExpectErrors
     "Circular reference detected in: 'Function1'"

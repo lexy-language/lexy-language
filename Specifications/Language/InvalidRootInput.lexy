@@ -1,5 +1,5 @@
 aaa bbb ccc
 
-Scenario: InvalidKeyword
+scenario InvalidKeyword
   ExpectComponentErrors
     "Invalid token 'aaa'. Keyword and name expected."

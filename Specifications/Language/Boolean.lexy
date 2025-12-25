@@ -1,11 +1,11 @@
-Scenario: BooleanDefault
+scenario BooleanDefault
   function
     Results
       boolean Result
   Results
     Result = false
 
-Scenario: BooleanAsParameterDefault
+scenario BooleanAsParameterDefault
   function
     Parameters
       boolean Value = true
@@ -16,7 +16,7 @@ Scenario: BooleanAsParameterDefault
   Results
     Result = true
 
-Scenario: BooleanAsParameter
+scenario BooleanAsParameter
   function
     Parameters
       boolean Value = true
@@ -29,7 +29,7 @@ Scenario: BooleanAsParameter
   Results
     Result = false
 
-Scenario: BooleanInCode
+scenario BooleanInCode
   function
     Results
       boolean Result
@@ -38,7 +38,7 @@ Scenario: BooleanInCode
   Results
     Result = true
 
-Scenario: BooleanVariableDeclarationInCode
+scenario BooleanVariableDeclarationInCode
   function
     Results
       boolean Result
@@ -53,7 +53,7 @@ Scenario: BooleanVariableDeclarationInCode
   Results
     Result = true
 
-Scenario: BooleanVariableDeclarationInCodeWithDefault
+scenario BooleanVariableDeclarationInCodeWithDefault
   function
     Results
       boolean Result
@@ -63,7 +63,7 @@ Scenario: BooleanVariableDeclarationInCodeWithDefault
   Results
     Result = true
 
-Scenario: InvalidBooleanInitializeString
+scenario InvalidBooleanInitializeString
   function
     Parameters
       boolean Value = "1"
@@ -74,7 +74,7 @@ Scenario: InvalidBooleanInitializeString
   ExpectErrors
     "Invalid default value '1'. (type: 'boolean')"
 
-Scenario: InvalidBooleanInitializeNumber
+scenario InvalidBooleanInitializeNumber
   function
     Parameters
       boolean Value = 5
@@ -85,7 +85,7 @@ Scenario: InvalidBooleanInitializeNumber
   ExpectErrors
     "Invalid default value '5'. (type: 'boolean')"
 
-Scenario: InvalidBooleanInitializeDate
+scenario InvalidBooleanInitializeDate
   function
     Parameters
       boolean Value = d"2024-12-23T17:51:15"

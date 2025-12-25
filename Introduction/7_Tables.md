@@ -50,7 +50,7 @@ function LookupAveragteTax
 ```
 
 ```
-Scenario: LookupAveragteTaxExamples
+scenario LookupAveragteTaxExamples
   function LookupAveragteTax
   ValidationTable
     | Canton        | Income | TaxRate | Tax   |
@@ -78,7 +78,7 @@ function LookupRowAveragteTax
 ```
 
 ```
-Scenario: LookupRowAveragteTaxExamples
+scenario LookupRowAveragteTaxExamples
   function LookupRowAveragteTax
   ValidationTable
     | Canton        | Income | TaxRate | Tax   |
@@ -131,7 +131,7 @@ function LookupByYearAndMax
 ```
 
 ``` 
-Scenario: LookupByYearAndMaxExamples
+scenario LookupByYearAndMaxExamples
   function LookupByYearAndMax
   ValidationTable
     | Year | Income | TaxRate | Tax        |
@@ -163,7 +163,7 @@ function LookupRowByYearAndMax
 ```
 
 ```
-Scenario: LookupRowByYearAndMaxExamples
+scenario LookupRowByYearAndMaxExamples
   function LookupRowByYearAndMax
   ValidationTable
     | Year | Income | TaxRate | Tax     |

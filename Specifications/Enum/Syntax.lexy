@@ -3,14 +3,14 @@ Enum: ValidEnum
   Second
   Third
 
-Scenario: EnumDefault
+scenario EnumDefault
   function
     Results
       ValidEnum Result
   Results
     Result = ValidEnum.First
 
-Scenario: EnumParameterDefault
+scenario EnumParameterDefault
   function
     Parameters
       ValidEnum Value = ValidEnum.Second
@@ -21,7 +21,7 @@ Scenario: EnumParameterDefault
   Results
     Result = ValidEnum.Second
 
-Scenario: EnumParameter
+scenario EnumParameter
   function
     Parameters
       ValidEnum Value = ValidEnum.Third
@@ -34,7 +34,7 @@ Scenario: EnumParameter
   Results
     Result = ValidEnum.Second
 
-Scenario: EnumInCode
+scenario EnumInCode
   function
     Results
       ValidEnum Result
@@ -43,7 +43,7 @@ Scenario: EnumInCode
   Results
     Result = ValidEnum.Second
 
-Scenario: EnumDeclarationInCode
+scenario EnumDeclarationInCode
   function
     Results
       ValidEnum Result

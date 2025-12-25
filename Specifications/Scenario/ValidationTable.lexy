@@ -1,4 +1,4 @@
-Scenario: ValidationTableWithNestedVariables
+scenario ValidationTableWithNestedVariables
   function
     Parameters
       number Value1
@@ -24,7 +24,7 @@ Type: CustomType
   number NumberValue
   ComplexType Complex
 
-Scenario: ValidationTableWithNestedResults
+scenario ValidationTableWithNestedResults
   function
     Parameters
       number Value1
@@ -42,7 +42,7 @@ Scenario: ValidationTableWithNestedResults
     | 777    | 444    | 777                | 444                        |
     | 999    | 555    | 999                | 555                        |
 
-Scenario: ValidationTableWithNestedParameters
+scenario ValidationTableWithNestedParameters
   function
     Parameters
       CustomType Value

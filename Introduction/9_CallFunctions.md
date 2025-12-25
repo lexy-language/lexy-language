@@ -76,7 +76,7 @@ When calling a Lexy function without any parameters or results assigment it will
 Any parameter or result variables that doesn't have a corresponding variable in the calling function will be ignored. There should be at least 1 matching parameter and result variable.
 
 ```
-Scenario: TaxCalculationPerIndustryExamples
+scenario TaxCalculationPerIndustryExamples
   function TaxCalculationPerIndustry
   ValidationTable
     | Industry     | Income | Children | TaxRate | Tax   | ProvinceTax |
@@ -102,7 +102,7 @@ function DeclareNewParameterObject
     parameters.Income = Income
     Result = TaxCalculationForIT(parameters)
 
-Scenario: DeclareNewParameterObjectExamples
+scenario DeclareNewParameterObjectExamples
   function DeclareNewParameterObject
   ValidationTable
     | Income | Children | Result.TaxRate | Result.Tax    |
@@ -128,7 +128,7 @@ function FillParameterObject
     // parameters.Income and parameters.Children are filled by the fill function
     Result = TaxCalculationForIT(parameters)
 
-Scenario: FillParameterObjectExamples
+scenario FillParameterObjectExamples
   function FillParameterObject
   ValidationTable
     | Income | Children | Result.TaxRate | Result.Tax    |
@@ -155,7 +155,7 @@ function ExtractResultsObject
     var results = TaxCalculationForIT(parameters)
     extract(results)         // Tax and TaxRate will be set
 
-Scenario: ExtractResultsObjectExamples
+scenario ExtractResultsObjectExamples
   function ExtractResultsObject
   ValidationTable
     | Income | Children | TaxRate | Tax    |

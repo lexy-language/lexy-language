@@ -14,21 +14,21 @@ function SimpleLookUpNumberFunction
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
     Result = row.ResultNumber
 
-Scenario: LookUpNumber
+scenario LookUpNumber
   function SimpleLookUpNumberFunction
   Parameters
     Value = d"2024-12-25T11:22:22"
   Results
     Result = 333
 
-Scenario: LookUpNumberWithDecimal
+scenario LookUpNumberWithDecimal
   function SimpleLookUpNumberFunction
   Parameters
     Value = d"2024-12-25T11:36:33"
   Results
     Result = 444
 
-Scenario: LookUpNumberAfterRange
+scenario LookUpNumberAfterRange
   function SimpleLookUpNumberFunction
   Parameters
     Value = d"2024-12-25T11:55:55"
@@ -46,7 +46,7 @@ function SimpleLookUpStringFunction
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
     Result = row.ResultString
 
-Scenario: LookUpString
+scenario LookUpString
   function SimpleLookUpStringFunction
   Parameters
     Value = d"2024-12-25T11:22:22"
@@ -64,7 +64,7 @@ function SimpleLookUpBooleanFunction
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
     Result = row.ResultBoolean
 
-Scenario: LookUpBoolean
+scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
   Parameters
     Value = d"2024-12-25T11:22:22"
@@ -83,7 +83,7 @@ function SimpleLookUpDateFunction
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
     Result = row.ResultDate
 
-Scenario: LookUpDate
+scenario LookUpDate
   function SimpleLookUpDateFunction
   Parameters
     Value = d"2024-12-25T11:22:22"

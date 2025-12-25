@@ -5,7 +5,7 @@ Type: CustomType
   number NumberValue
   ComplexType Complex
 
-Scenario: NestedParametersShouldBeAssignableAndReadable
+scenario NestedParametersShouldBeAssignableAndReadable
   function
     Parameters
       CustomType Result

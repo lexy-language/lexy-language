@@ -1,4 +1,4 @@
-Scenario: SimpleFunctionCall
+scenario SimpleFunctionCall
   function
     Parameters
       date Value = d"2024-12-25T16:57:45"

@@ -11,7 +11,7 @@ function If
       temp = 888
     Number = temp
 
-Scenario: IfTrue
+scenario IfTrue
   function If
   Parameters
     Evil = true
@@ -33,7 +33,7 @@ Scenario: IfTrue
       Log "Results"
         Number = 666
 
-Scenario: IfFalse
+scenario IfFalse
   function If
   Parameters
     Evil = false

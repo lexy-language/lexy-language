@@ -26,7 +26,7 @@ Lexy has built in automated testing to describe the desire behavior of a functio
 ## Scenario
 
 ```
-Scenario: NaiveFlatTaxLawSpecifications
+scenario NaiveFlatTaxLawSpecifications
   function NaiveFlatTaxLaw
   Parameters
     GrossIncomeYear = 120000

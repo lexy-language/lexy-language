@@ -14,14 +14,14 @@ function EnumWithIfStatement
     else
       Tax = 0.40
 
-Scenario: CheckEnumComparisonInIfStatementTrue
+scenario CheckEnumComparisonInIfStatementTrue
   function EnumWithIfStatement
   Parameters
     MaritalStatus = MaritalStatus.Single
   Results
     Tax = 0.45
 
-Scenario: CheckEnumComparisonInIfStatementFalse
+scenario CheckEnumComparisonInIfStatementFalse
   function EnumWithIfStatement
   Parameters
     MaritalStatus = MaritalStatus.Married

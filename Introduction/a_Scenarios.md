@@ -36,7 +36,7 @@ function NaiveTaxLaw
 ```
 
 ```
-Scenario: NaiveTaxLaw40k
+scenario NaiveTaxLaw40k
   function NaiveTaxLaw
   Parameters
     Income = 40000
@@ -52,7 +52,7 @@ DEMO: You can find the result of the executed scenarios below under 'Test Loggin
 Scenarios also supports a validation table which allows to validate many scenarios from a single table.
 
 ```
-Scenario: NaiveTaxLawScenarios
+scenario NaiveTaxLawScenarios
   function NaiveTaxLaw
   ValidationTable
     | Income  | TaxRate  | Tax   |
@@ -92,7 +92,7 @@ function AssignNestedFields
 Use a point `.` to access the field of variable.
 
 ```
-Scenario: NestedFieldsWithMemberAccessor
+scenario NestedFieldsWithMemberAccessor
   function AssignNestedFields
   Parameters
     Values.NumberValue = 777
@@ -105,7 +105,7 @@ Scenario: NestedFieldsWithMemberAccessor
 Use indentation of define the fields of a parent variable.
 
 ```
-Scenario: NestedFieldsWithNesting
+scenario NestedFieldsWithNesting
   function AssignNestedFields
   Parameters
     Values =
@@ -120,7 +120,7 @@ Scenario: NestedFieldsWithNesting
 In a ValidationTable it's also possible to access the fields of a variable:
 
 ```
-Scenario: NestedFieldsWithTable
+scenario NestedFieldsWithTable
   function AssignNestedFields
   ValidationTable
     | Values.NumberValue | Values.TextValue | Result.NumberResult | Result.TextResult | 

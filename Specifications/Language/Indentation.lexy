@@ -1,4 +1,4 @@
-Scenario: IndentErrorNextLevel
+scenario IndentErrorNextLevel
   function
       Results
       number Result
@@ -6,7 +6,7 @@ Scenario: IndentErrorNextLevel
     "ERROR - Invalid indent: 3"
     "ERROR - Invalid indent: 3"
 
-Scenario: IndentErrorInvalidSpaces
+scenario IndentErrorInvalidSpaces
   function
      Results
       number Result

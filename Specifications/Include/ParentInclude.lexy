@@ -1,6 +1,6 @@
 Include "../Function/Code"
 
-Scenario: ParentFunction
+scenario ParentFunction
   function ValidFunction
   Parameters
     Value = 5

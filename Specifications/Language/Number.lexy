@@ -1,4 +1,4 @@
-Scenario: NumberIntAsParameterDefault
+scenario NumberIntAsParameterDefault
   function
     Parameters
       number Value = 123
@@ -9,7 +9,7 @@ Scenario: NumberIntAsParameterDefault
   Results
     Result = 123
 
-Scenario: NumberIntAsParameter
+scenario NumberIntAsParameter
   function
     Parameters
       number Value = 123
@@ -22,7 +22,7 @@ Scenario: NumberIntAsParameter
   Results
     Result = 456
 
-Scenario: NumberDecimalAsParameter
+scenario NumberDecimalAsParameter
   function
     Parameters
       number Value = 123.45
@@ -33,7 +33,7 @@ Scenario: NumberDecimalAsParameter
   Results
     Result = 123.45
 
-Scenario: NumberIntInCode
+scenario NumberIntInCode
   function
     Results
       number Result
@@ -42,7 +42,7 @@ Scenario: NumberIntInCode
   Results
     Result = 123
 
-Scenario: NumberDecimalInCode
+scenario NumberDecimalInCode
   function
     Results
       number Result
@@ -51,7 +51,7 @@ Scenario: NumberDecimalInCode
   Results
     Result = 123.45
 
-Scenario: NumberVariableDeclarationInCode
+scenario NumberVariableDeclarationInCode
   function
     Parameters
       number Value
@@ -66,7 +66,7 @@ Scenario: NumberVariableDeclarationInCode
   Results
     Result = 123.45
 
-Scenario: NumberVariableDeclarationInCodeWithDefault
+scenario NumberVariableDeclarationInCodeWithDefault
   function
     Results
       number Result
@@ -76,7 +76,7 @@ Scenario: NumberVariableDeclarationInCodeWithDefault
   Results
     Result = 123.45
 
-Scenario: InvalidNumberEndsWithLetter
+scenario InvalidNumberEndsWithLetter
   function
     Results
       number Result
@@ -85,7 +85,7 @@ Scenario: InvalidNumberEndsWithLetter
   ExpectErrors
     "Invalid number token character: 'A'"
 
-Scenario: InvalidNumberInitializeString
+scenario InvalidNumberInitializeString
   function
     Parameters
       number Value = "1"
@@ -96,7 +96,7 @@ Scenario: InvalidNumberInitializeString
   ExpectErrors
     "Invalid default value '1'. (type: 'number')"
 
-Scenario: InvalidNumberInitializeBoolean
+scenario InvalidNumberInitializeBoolean
   function
     Parameters
       number Value = true
@@ -107,7 +107,7 @@ Scenario: InvalidNumberInitializeBoolean
   ExpectErrors
     "Invalid default value 'true'. (type: 'number')"
 
-Scenario: InvalidNumberInitializeDate
+scenario InvalidNumberInitializeDate
   function
     Parameters
       number Value = d"2024-12-23T17:51:15"

@@ -1,6 +1,6 @@
 Include "FunctionSimple"
 
-Scenario: Simple
+scenario Simple
   function FunctionSimple
   Parameters
     Value = 3

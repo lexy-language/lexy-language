@@ -12,14 +12,14 @@ function BooleanSwitch
         temp = 777
     Number = temp
 
-Scenario: BooleanSwitchTrue
+scenario BooleanSwitchTrue
   function BooleanSwitch
   Parameters
     Evil = true
   Results
     Number = 666
 
-Scenario: BooleanSwitchFalse
+scenario BooleanSwitchFalse
   function BooleanSwitch
   Parameters
     Evil = false
@@ -44,14 +44,14 @@ function NumberSwitch
         temp = 888
     Number = temp
 
-Scenario: NumberSwitchCase
+scenario NumberSwitchCase
   function NumberSwitch
   Parameters
     Evil = 7
   Results
     Number = 777
 
-Scenario: NumberSwitchDefault
+scenario NumberSwitchDefault
   function NumberSwitch
   Parameters
     Evil = 9
@@ -77,14 +77,14 @@ function StringSwitch
         temp = "888"
     Number = temp
 
-Scenario: StringSwitchCase
+scenario StringSwitchCase
   function StringSwitch
   Parameters
     Evil = "7"
   Results
     Number = "777"
 
-Scenario: StringSwitchDefault
+scenario StringSwitchDefault
   function StringSwitch
   Parameters
     Evil = "9"
@@ -113,21 +113,21 @@ function EnumSwitch
         temp = "888"
     Number = temp
 
-Scenario: EnumSwitchCaseHoly
+scenario EnumSwitchCaseHoly
   function EnumSwitch
   Parameters
     Level = SwitchValue.Holy
   Results
     Number = "777"
 
-Scenario: EnumSwitchCaseEvil
+scenario EnumSwitchCaseEvil
   function EnumSwitch
   Parameters
     Level = SwitchValue.Evil
   Results
     Number = "666"
 
-Scenario: EnumSwitchDefault
+scenario EnumSwitchDefault
   function EnumSwitch
   Parameters
     Level = SwitchValue.Unknown
@@ -157,7 +157,7 @@ function EnumNestedSwitch
         temp = "888"
     Number = temp
 
-Scenario: EnumNestedSwitchIfFalse
+scenario EnumNestedSwitchIfFalse
   function EnumNestedSwitch
   Parameters
     Level = SwitchValue.Evil
@@ -165,7 +165,7 @@ Scenario: EnumNestedSwitchIfFalse
   Results
     Number = "555"
 
-Scenario: EnumNestedSwitchIfTrue
+scenario EnumNestedSwitchIfTrue
   function EnumNestedSwitch
   Parameters
     Level = SwitchValue.Evil

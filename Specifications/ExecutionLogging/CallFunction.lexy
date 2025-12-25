@@ -17,7 +17,7 @@ function CallSimpleFunctionNewParametersFunction
     var results = SimpleFunction(parameters)
     Result = results.Result
 
-Scenario: CallSimpleFunctionNewParameters
+scenario CallSimpleFunctionNewParameters
   function CallSimpleFunctionNewParametersFunction
   Parameters
     Value = 3

@@ -14,7 +14,7 @@ function SimpleLookUpNumberFunction
   Code
     Result = LOOKUPROWBY(StringTable, Discriminator, Value, StringTable.Discriminator, StringTable.SearchValue)
 
-Scenario: LookUpFirstDiscriminator1
+scenario LookUpFirstDiscriminator1
   function SimpleLookUpNumberFunction
   Parameters
     Discriminator = "da"
@@ -22,7 +22,7 @@ Scenario: LookUpFirstDiscriminator1
   Results
     Result.ResultNumber = 222
 
-Scenario: LookUpFirstDiscriminator2
+scenario LookUpFirstDiscriminator2
   function SimpleLookUpNumberFunction
   Parameters
     Discriminator = "da"
@@ -30,7 +30,7 @@ Scenario: LookUpFirstDiscriminator2
   Results
     Result.ResultNumber = 333
 
-Scenario: LookUpSecondDiscriminator1
+scenario LookUpSecondDiscriminator1
   function SimpleLookUpNumberFunction
   Parameters
     Discriminator = "db"
@@ -38,7 +38,7 @@ Scenario: LookUpSecondDiscriminator1
   Results
     Result.ResultNumber = 444
 
-Scenario: LookUpSecondDiscriminator2
+scenario LookUpSecondDiscriminator2
   function SimpleLookUpNumberFunction
   Parameters
     Discriminator = "db"

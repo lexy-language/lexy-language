@@ -9,7 +9,7 @@ function IncludeSimpleTableFunction
     number Result
   Code
 
-Scenario: IncludeSimpleTable
+scenario IncludeSimpleTable
   function IncludeSimpleTableFunction
 
 function GetCountSimpleTableFunction
@@ -19,13 +19,13 @@ function GetCountSimpleTableFunction
   Code
     Result = SimpleTable.Count
 
-Scenario: GetCountSimpleTable
+scenario GetCountSimpleTable
   function GetCountSimpleTableFunction
   Results
     Result = 2
 
 
-Scenario: TableVarAsColumnType
+scenario TableVarAsColumnType
   Table: SimpleTable
     | var Value | number Result |
     | 0 | 0 |
@@ -35,7 +35,7 @@ Scenario: TableVarAsColumnType
     "(TableHeader) Invalid token"
 
 
-Scenario: TableIncompleteHeader
+scenario TableIncompleteHeader
   Table: SimpleTable
     | number Value | number
     | 0 | 0 |
@@ -46,13 +46,13 @@ Scenario: TableIncompleteHeader
     "Token expected: 'TableSeparatorToken'"
 
 
-Scenario: TableWithoutHeader
+scenario TableWithoutHeader
   Table: SimpleTable
   ExpectErrors
     "No table header found"
 
 
-Scenario: TableWithWrongValueTypes
+scenario TableWithWrongValueTypes
   Table: SimpleTable
     | number Value | string Result |
     | "0" | "0" |
@@ -62,7 +62,7 @@ Scenario: TableWithWrongValueTypes
     "Invalid value type 'number'. Expected 'string'."
 
 
-Scenario: TableWithInvalidNumberOfValues
+scenario TableWithInvalidNumberOfValues
   Table: SimpleTable
     | string Value | string Result |
     | "0" | "0" | "0" |
@@ -71,7 +71,7 @@ Scenario: TableWithInvalidNumberOfValues
 
 
 
-Scenario: TableWithInvalidNumberOfValuesLess
+scenario TableWithInvalidNumberOfValuesLess
   Table: SimpleTable
     | string Value | string Result |
     | "0" |
@@ -81,7 +81,7 @@ Scenario: TableWithInvalidNumberOfValuesLess
 
 
 
-Scenario: TableWithUnclosedRow
+scenario TableWithUnclosedRow
   Table: SimpleTable
     | string Value | string Result |
     | "0" | "a"

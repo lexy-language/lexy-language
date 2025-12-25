@@ -22,7 +22,7 @@ function RootDeclarationFunction
     DateResult = dateValue
     EnumResult = enumValue
 
-Scenario: RootDeclaration
+scenario RootDeclaration
   function RootDeclarationFunction
   Results
     NumberResult = 123
@@ -32,7 +32,7 @@ Scenario: RootDeclaration
     EnumResult = SimpleEnum.Next
 
 
-Scenario: ResultVariablesDefaultValues
+scenario ResultVariablesDefaultValues
 // each declared result should have default value
   function
     Results
@@ -50,7 +50,7 @@ Scenario: ResultVariablesDefaultValues
 
 
 
-Scenario: InCodeVariablesDefaultValues
+scenario InCodeVariablesDefaultValues
 // each declared variable should have default value
   function
     Results
@@ -80,7 +80,7 @@ Scenario: InCodeVariablesDefaultValues
     EnumResult = SimpleEnum.First
 
 
-Scenario: ResultAssignmentWithInitializerAndDefaultValues
+scenario ResultAssignmentWithInitializerAndDefaultValues
 // each declared parameter variable should an initialized value
   function
     Parameters
@@ -134,7 +134,7 @@ function ScopedVariablesFunction
       DateResult = dateValue
       EnumResult = enumValue
 
-Scenario: ScopedVariables
+scenario ScopedVariables
   function ScopedVariablesFunction
   Parameters
     Evil = true
@@ -158,7 +158,7 @@ function ScopedVariablesOutOfScopeFunction
 
     NumberResult = numberValue
 
-Scenario: ScopedVariablesOutOfScope
+scenario ScopedVariablesOutOfScope
   function ScopedVariablesOutOfScopeFunction
   ExpectErrors
     "Invalid identifier: 'numberValue'"
@@ -182,14 +182,14 @@ function ScopedVariablesManyScopesFunction
 
     NumberResult = 777
 
-Scenario: ScopedVariablesManyScopes
+scenario ScopedVariablesManyScopes
   function ScopedVariablesManyScopesFunction
   Results
     NumberResult = 777
 
 
 
-Scenario: ResultsShouldNotHaveADefaultValue
+scenario ResultsShouldNotHaveADefaultValue
   function
     Results
       date Value = d"2024-12-25T16:57:45"
@@ -199,7 +199,7 @@ Scenario: ResultsShouldNotHaveADefaultValue
 
 
 
-Scenario: UnknownVariable
+scenario UnknownVariable
   function
     Parameters
       date Value
@@ -209,7 +209,7 @@ Scenario: UnknownVariable
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
 
-Scenario: UnknownVariableInIfScope
+scenario UnknownVariableInIfScope
   function
     Parameters
       boolean Evil
@@ -222,7 +222,7 @@ Scenario: UnknownVariableInIfScope
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
 
-Scenario: InvalidAssignmentType
+scenario InvalidAssignmentType
   function
     Parameters
       date Value
@@ -235,7 +235,7 @@ Scenario: InvalidAssignmentType
 
 
 
-Scenario: VariableWithIfType
+scenario VariableWithIfType
   function
     Parameters
       date Value

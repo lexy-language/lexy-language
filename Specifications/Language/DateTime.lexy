@@ -1,4 +1,4 @@
-Scenario: NumberStringAsParameterDefault
+scenario NumberStringAsParameterDefault
   function
     Parameters
       date Value = d"2024-12-23T16:03:00"
@@ -9,7 +9,7 @@ Scenario: NumberStringAsParameterDefault
   Results
     Result = d"2024-12-23T16:03:00"
 
-Scenario: NumberStringAsParameter
+scenario NumberStringAsParameter
   function
     Parameters
       date Value = d"2000-01-01T12:34:56"
@@ -22,7 +22,7 @@ Scenario: NumberStringAsParameter
   Results
     Result = d"2024-12-23T16:03:00"
 
-Scenario: DateStringInCode
+scenario DateStringInCode
   function
     Results
       date Result
@@ -31,7 +31,7 @@ Scenario: DateStringInCode
   Results
     Result = d"2024-12-23T16:03:00"
 
-Scenario: DateVariableDeclarationInCode
+scenario DateVariableDeclarationInCode
   function
     Results
       date Result
@@ -46,7 +46,7 @@ Scenario: DateVariableDeclarationInCode
   Results
     Result = d"2024-12-23T16:03:00"
 
-Scenario: DateVariableDeclarationInCodeWithDefault
+scenario DateVariableDeclarationInCodeWithDefault
   function
     Results
       date Result
@@ -56,7 +56,7 @@ Scenario: DateVariableDeclarationInCodeWithDefault
   Results
     Result = d"2024-12-23T16:03:00"
 
-Scenario: ValidDateWithSpaceAndSlashes
+scenario ValidDateWithSpaceAndSlashes
   function
     Results
       date Result
@@ -65,7 +65,7 @@ Scenario: ValidDateWithSpaceAndSlashes
   Results
     Result = d"2024-12-23T16:03:00"
 
-Scenario: InvalidDateInitializeString
+scenario InvalidDateInitializeString
   function
     Parameters
       date Value = "1"
@@ -76,7 +76,7 @@ Scenario: InvalidDateInitializeString
   ExpectErrors
     "Invalid default value '1'. (type: 'date')"
 
-Scenario: InvalidDateInitializeNumber
+scenario InvalidDateInitializeNumber
   function
     Parameters
       date Value = 5
@@ -87,7 +87,7 @@ Scenario: InvalidDateInitializeNumber
   ExpectErrors
     "Invalid default value '5'. (type: 'date')"
 
-Scenario: InvalidDateInitializeBoolean
+scenario InvalidDateInitializeBoolean
   function
     Parameters
       date Value = true

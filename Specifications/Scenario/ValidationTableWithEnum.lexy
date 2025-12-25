@@ -20,7 +20,7 @@ function EnumWithSwitchStatement
       case MaritalStatus.Cohabiting
         Tax = 0.42
 
-Scenario: EnumWithSwitchStatementExamples
+scenario EnumWithSwitchStatementExamples
   function EnumWithSwitchStatement
   ValidationTable
     | MaritalStatus                  | Tax  |
