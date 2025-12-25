@@ -4,8 +4,8 @@ table SimpleTable
   | 1 | 1 |
 
 function IncludeSimpleTableFunction
-  Parameters
-  Results
+  parameters
+  results
     number Result
   Code
 
@@ -13,15 +13,15 @@ scenario IncludeSimpleTable
   function IncludeSimpleTableFunction
 
 function GetCountSimpleTableFunction
-  Parameters
-  Results
+  parameters
+  results
     number Result
   Code
     Result = SimpleTable.Count
 
 scenario GetCountSimpleTable
   function GetCountSimpleTableFunction
-  Results
+  results
     Result = 2
 
 

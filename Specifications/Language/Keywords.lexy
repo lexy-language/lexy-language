@@ -1,31 +1,31 @@
 function FunctionKeywords
 // Validate function keywords
-  Parameters
-  Results
+  parameters
+  results
   Code
 
 scenario ScenarioKeywords
 // Validate Scenario keywords
   function FunctionKeywords
-  Parameters
-  Results
+  parameters
+  results
 
 scenario InlineFunctionKeywords
 // Validate Scenario keywords
   function
   // Validate function keywords
-    Parameters
-    Results
+    parameters
+    results
     Code
-  Parameters
-  Results
+  parameters
+  results
 
 scenario ScenarioWithValidationTableKeywords
 // Validate Scenario with table keywords
   function
-    Parameters
+    parameters
       number a
-  ValidationTable
+  validationTable
     | a |
     | 0 |
 
@@ -35,9 +35,9 @@ enum ValidateEnumKeyword
 
 function EnumKeywordFunction
 // Validate enum keywords
-  Parameters
+  parameters
     ValidateEnumKeyword Value
-  Results
+  results
     ValidateEnumKeyword Result
   Code
     Result = Value
@@ -45,73 +45,73 @@ function EnumKeywordFunction
 scenario EnumKeywords
 // Validate enum keywords
   function EnumKeywordFunction
-  Parameters
+  parameters
     Value = ValidateEnumKeyword.Second
-  Results
+  results
     Result = ValidateEnumKeyword.Second
 
 function IntVariableFunction
 // Validate number variable type with int
-  Parameters
+  parameters
     number InInt
-  Results
+  results
     number OutInt
   Code
     OutInt = InInt
 
 scenario IntVariable
   function IntVariableFunction
-  Parameters
+  parameters
     InInt = 777
-  Results
+  results
     OutInt = 777
 
 function NumberVariableFunction
 // Validate number variable type with decimal
-  Parameters
+  parameters
     number InNumber
-  Results
+  results
     number OutNumber
   Code
     OutNumber = InNumber
 
 scenario NumberVariable
   function NumberVariableFunction
-  Parameters
+  parameters
     InNumber = 999
-  Results
+  results
     OutNumber = 999
 
 function BooleanVariableFunction
 // Validate boolean variable type
-  Parameters
+  parameters
     boolean InBoolean
-  Results
+  results
     boolean OutBoolean
   Code
     OutBoolean = InBoolean
 
 scenario BooleanVariable
   function BooleanVariableFunction
-  Parameters
+  parameters
     InBoolean = true
-  Results
+  results
     OutBoolean = true
 
 function DateVariableFunction
 // Validate date variable type
-  Parameters
+  parameters
     date InDate
-  Results
+  results
     date OutDate
   Code
     OutDate = InDate
 
 scenario DateVariable
   function DateVariableFunction
-  Parameters
+  parameters
     InDate = d"2022-12-16T13:26:55"
-  Results
+  results
     OutDate = d"2022-12-16T13:26:55"
 
 function UnknownFunctionKeywordFunction
@@ -131,13 +131,13 @@ table ValidateTableKeyword
 
 function TableKeywordFunction
 // Validate table keywords
-  Parameters
-  Results
+  parameters
+  results
     number Result
   Code
     Result = ValidateTableKeyword.Count
 
 scenario TableKeywordScenario
   function TableKeywordFunction
-  Results
+  results
     Result = 2

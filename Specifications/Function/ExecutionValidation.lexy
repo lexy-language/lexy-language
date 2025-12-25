@@ -19,14 +19,14 @@ enum SimpleEnum
   Last
 
 function NoParameterDefaultValues
-  Parameters
+  parameters
     string StringValue
     number NumberValue
     date DateValue
     boolean BooleanValue
     SimpleType TypeValue 
     SimpleEnum EnumValue
-  Results
+  results
     string StringResult
     number NumberResult
     date DateResult
@@ -43,7 +43,7 @@ function NoParameterDefaultValues
     
 scenario ValidationSuccessful
   function NoParameterDefaultValues
-  Parameters
+  parameters
     StringValue = "a111"
     NumberValue = 2
     DateValue = d"2222-03-28 12:01:12"
@@ -61,7 +61,7 @@ scenario ValidationSuccessful
         NestedEnumValue = SimpleEnum.First 
       ChildEnumValue = SimpleEnum.Next
     EnumValue = SimpleEnum.Last
-  Results
+  results
     StringResult = "a111"
     NumberResult = 2
     DateResult = d"2222-03-28 12:01:12"
@@ -102,7 +102,7 @@ scenario ValidationParametersMissing
 
 scenario ValidationWrongType
   function NoParameterDefaultValues
-  Parameters
+  parameters
     StringValue = 1
     NumberValue = "2"
     DateValue = "a33"
@@ -139,12 +139,12 @@ scenario ValidationWrongType
     "'EnumValue' should have a 'SimpleEnum' value. Invalid type:"
 
 function NoParameterSomeDefaultValues
-  Parameters
+  parameters
     string StringValueOptional = "a"
     number NumberValueOptional = 1
     string StringValue
     number NumberValue
-  Results
+  results
     string Result
   Code
     Result = "success"
@@ -158,8 +158,8 @@ scenario ValidateDefaultValuesMissing
 
 scenario ValidateDefaultValuesProvided
   function NoParameterSomeDefaultValues
-  Parameters
+  parameters
     StringValue = "b"
     NumberValue = 2
-  Results
+  results
     Result = "success"

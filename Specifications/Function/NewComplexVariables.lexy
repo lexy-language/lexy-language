@@ -7,18 +7,18 @@ table StringTable
 
 scenario NewTableRow
   function
-    Results
+    results
       string StringResult
     Code
       StringTable.Row row
       StringResult = row.SearchValue
-  Results
+  results
     StringResult = ""
 
 function SimpleTarget
-  Parameters
+  parameters
     string StringValue = "333"
-  Results
+  results
     number NumberResult
     string StringResult
   Code
@@ -27,12 +27,12 @@ function SimpleTarget
 
 scenario NewFunctionParameters
   function
-    Results
+    results
       string StringResult
     Code
       SimpleTarget.Parameters row
       StringResult = row.StringValue
-  Results
+  results
     StringResult = "333"
 
 type CustomType
@@ -41,20 +41,20 @@ type CustomType
 
 scenario NewCustomType
   function
-    Results
+    results
       string StringResult
       number NumberResult
     Code
       CustomType value
       NumberResult = value.NumberValue
       StringResult = value.StringValue
-  Results
+  results
     StringResult = "abc"
     NumberResult = 123
 
 scenario NewCustomTypeAssign
   function
-    Results
+    results
       string StringResult
       number NumberResult
     Code
@@ -63,13 +63,13 @@ scenario NewCustomTypeAssign
       value.StringValue = "def"
       NumberResult = value.NumberValue
       StringResult = value.StringValue
-  Results
+  results
     StringResult = "def"
     NumberResult = 456
 
 scenario NewFunctionParametersInvalidMember
   function
-    Results
+    results
       string StringResult
     Code
       SimpleTarget.Parameters row
@@ -79,17 +79,17 @@ scenario NewFunctionParametersInvalidMember
 
 scenario NewFunctionResults
   function
-    Results
+    results
       number NumberResult
     Code
       var row = new(SimpleTarget.Results)
       NumberResult = row.NumberResult
-  Results
+  results
     NumberResult = 0
 
 scenario NewFunctionResultsInvalidMember
   function
-    Results
+    results
       number NumberResult
     Code
       SimpleTarget.Results row

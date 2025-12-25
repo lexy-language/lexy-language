@@ -38,10 +38,10 @@ Syntax: `LOOKUP(Table, lookUpValue, Table.searchValueColumn, Table.resultColumn)
 
 ```
 function LookupAveragteTax
-  Parameters
+  parameters
     string Canton
     number Income
-  Results
+  results
     number TaxRate
     number Tax
   Code
@@ -52,7 +52,7 @@ function LookupAveragteTax
 ```
 scenario LookupAveragteTaxExamples
   function LookupAveragteTax
-  ValidationTable
+  validationTable
     | Canton        | Income | TaxRate | Tax   |
     | "Basel"       | 100000 | 0.3783  | 37830 |
     | "Bern"        | 100000 | 0.4107  | 41070 |
@@ -65,10 +65,10 @@ Syntax: `LOOKUPROW(Table, lookUpValue, Table.searchValueColumn, Table.resultColu
 
 ```
 function LookupRowAveragteTax
-  Parameters
+  parameters
     string Canton
     number Income
-  Results
+  results
     number TaxRate
     number Tax
   Code
@@ -80,7 +80,7 @@ function LookupRowAveragteTax
 ```
 scenario LookupRowAveragteTaxExamples
   function LookupRowAveragteTax
-  ValidationTable
+  validationTable
     | Canton        | Income | TaxRate | Tax   |
     | "Basel"       | 100000 | 0.3783  | 37830 |
     | "Bern"        | 100000 | 0.4107  | 41070 |
@@ -119,10 +119,10 @@ Syntax: `LOOKUPBY(Table, discriminator, lookUpValue, Table.discriminatorColumn, 
 
 ```
 function LookupByYearAndMax
-  Parameters
+  parameters
     number Year
     number Income
-  Results
+  results
     number TaxRate
     number Tax
   Code
@@ -133,7 +133,7 @@ function LookupByYearAndMax
 ``` 
 scenario LookupByYearAndMaxExamples
   function LookupByYearAndMax
-  ValidationTable
+  validationTable
     | Year | Income | TaxRate | Tax        |
     | 2023 | 10000  | 0.4     | 4000       | 
     | 2023 | 20000  | 0.45    | 9000       | 
@@ -150,10 +150,10 @@ Syntax: `LOOKUPROWBY(Table, discriminator, lookUpValue, Table.discriminatorColum
 
 ```
 function LookupRowByYearAndMax
-  Parameters
+  parameters
     number Year
     number Income
-  Results
+  results
     number TaxRate
     number Tax
   Code
@@ -165,7 +165,7 @@ function LookupRowByYearAndMax
 ```
 scenario LookupRowByYearAndMaxExamples
   function LookupRowByYearAndMax
-  ValidationTable
+  validationTable
     | Year | Income | TaxRate | Tax     |
     | 2024 | 10000  | 0.41    | 4100    | 
 ```

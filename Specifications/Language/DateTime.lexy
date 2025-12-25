@@ -1,75 +1,75 @@
 scenario NumberStringAsParameterDefault
   function
-    Parameters
+    parameters
       date Value = d"2024-12-23T16:03:00"
-    Results
+    results
       date Result
     Code
       Result = Value
-  Results
+  results
     Result = d"2024-12-23T16:03:00"
 
 scenario NumberStringAsParameter
   function
-    Parameters
+    parameters
       date Value = d"2000-01-01T12:34:56"
-    Results
+    results
       date Result
     Code
       Result = Value
-  Parameters
+  parameters
     Value = d"2024-12-23T16:03:00"
-  Results
+  results
     Result = d"2024-12-23T16:03:00"
 
 scenario DateStringInCode
   function
-    Results
+    results
       date Result
     Code
       Result = d"2024-12-23T16:03:00"
-  Results
+  results
     Result = d"2024-12-23T16:03:00"
 
 scenario DateVariableDeclarationInCode
   function
-    Results
+    results
       date Result
-    Parameters
+    parameters
       date Value
     Code
       date temp
       temp = Value
       Result = temp
-  Parameters
+  parameters
     Value =      d"2024-12-23T16:03:00"
-  Results
+  results
     Result = d"2024-12-23T16:03:00"
 
 scenario DateVariableDeclarationInCodeWithDefault
   function
-    Results
+    results
       date Result
     Code
       date temp =  d"2024-12-23T16:03:00"
       Result = temp
-  Results
+  results
     Result = d"2024-12-23T16:03:00"
 
 scenario ValidDateWithSpaceAndSlashes
   function
-    Results
+    results
       date Result
     Code
       Result = d"2024/12/23 16:03:00"
-  Results
+  results
     Result = d"2024-12-23T16:03:00"
 
 scenario InvalidDateInitializeString
   function
-    Parameters
+    parameters
       date Value = "1"
-    Results
+    results
       date Result
     Code
       Result = Value
@@ -78,9 +78,9 @@ scenario InvalidDateInitializeString
 
 scenario InvalidDateInitializeNumber
   function
-    Parameters
+    parameters
       date Value = 5
-    Results
+    results
       date Result
     Code
       Result = Value
@@ -89,9 +89,9 @@ scenario InvalidDateInitializeNumber
 
 scenario InvalidDateInitializeBoolean
   function
-    Parameters
+    parameters
       date Value = true
-    Results
+    results
       date Result
     Code
       Result = Value

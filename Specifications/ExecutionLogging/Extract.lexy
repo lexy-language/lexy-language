@@ -3,13 +3,13 @@ enum SimpleEnum
   Next
 
 function SimpleTarget
-  Parameters
+  parameters
     number NumberValue
     string StringValue
     boolean BooleanValue
     date DateValue
     SimpleEnum EnumValue
-  Results
+  results
     number NumberResult
     string StringResult
     boolean BooleanResult
@@ -23,22 +23,22 @@ function SimpleTarget
 
 scenario ExtractInIfScopeParameters
   function
-    Parameters
+    parameters
       boolean Evil
       number NumberValue
-    Results
+    results
       number NumberResultParent
     Code
       if Evil
         number NumberResult
-        SimpleTarget.Results parameters
-        parameters.NumberResult = NumberValue
-        extract(parameters)
+        SimpleTarget.Results params
+        params.NumberResult = NumberValue
+        extract(params)
         NumberResultParent = NumberResult
-  Parameters
+  parameters
     NumberValue = 5
     Evil = true
-  Results
+  results
     NumberResultParent = 5
   ExecutionLogging
     Log "Execute: ExtractInIfScopeParametersFunction"
@@ -48,18 +48,18 @@ scenario ExtractInIfScopeParameters
       Log "  if Evil"
         Log "    number NumberResult"
           NumberResult = 0
-        Log "    SimpleTarget.Results parameters"
-          parameters =
+        Log "    SimpleTarget.Results params"
+          params =
             NumberResult = 0
             StringResult = ""
             BooleanResult = false
             DateResult = d"0001-01-01T00:00:00"
             EnumResult = SimpleEnum.First
-        Log "    parameters.NumberResult = NumberValue"
+        Log "    params.NumberResult = NumberValue"
           NumberValue = 5
-          parameters.NumberResult = 5
-        Log "    extract(parameters)"
-          parameters =
+          params.NumberResult = 5
+        Log "    extract(params)"
+          params =
             NumberResult = 5
             StringResult = ""
             BooleanResult = false

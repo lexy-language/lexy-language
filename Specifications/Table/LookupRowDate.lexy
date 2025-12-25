@@ -6,9 +6,9 @@ table DateTable
   | d"2024-12-25T11:44:44" | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
 function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     date Value
-  Results
+  results
     number Result
   Code
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
@@ -16,31 +16,31 @@ function SimpleLookUpNumberFunction
 
 scenario LookUpNumber
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = d"2024-12-25T11:22:22"
-  Results
+  results
     Result = 333
 
 scenario LookUpNumberWithDecimal
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = d"2024-12-25T11:36:33"
-  Results
+  results
     Result = 444
 
 scenario LookUpNumberAfterRange
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = d"2024-12-25T11:55:55"
-  Results
+  results
     Result = 555
 
 
 
 function SimpleLookUpStringFunction
-  Parameters
+  parameters
     date Value
-  Results
+  results
     string Result
   Code
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
@@ -48,17 +48,17 @@ function SimpleLookUpStringFunction
 
 scenario LookUpString
   function SimpleLookUpStringFunction
-  Parameters
+  parameters
     Value = d"2024-12-25T11:22:22"
-  Results
+  results
     Result = "333"
 
 
 
 function SimpleLookUpBooleanFunction
-  Parameters
+  parameters
     date Value
-  Results
+  results
     boolean Result
   Code
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
@@ -66,18 +66,18 @@ function SimpleLookUpBooleanFunction
 
 scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
-  Parameters
+  parameters
     Value = d"2024-12-25T11:22:22"
-  Results
+  results
     Result = true
 
 
 
 
 function SimpleLookUpDateFunction
-  Parameters
+  parameters
     date Value
-  Results
+  results
     date Result
   Code
     var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
@@ -85,8 +85,8 @@ function SimpleLookUpDateFunction
 
 scenario LookUpDate
   function SimpleLookUpDateFunction
-  Parameters
+  parameters
     Value = d"2024-12-25T11:22:22"
-  Results
+  results
     Result = d"2024-12-24T23:33:33"
 

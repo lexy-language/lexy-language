@@ -1,7 +1,7 @@
-Include "CircularInclude"
+include "CircularInclude"
 
 function IncludeFunction
-  Results
+  results
     string Result
   Code
     Result = "should work"

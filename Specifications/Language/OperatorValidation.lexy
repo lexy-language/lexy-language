@@ -4,7 +4,7 @@ enum EnumValue
 
 scenario AllowedOperatorCombinationsEqual
   function
-    Results
+    results
       boolean StringEquals
       boolean NumberEquals
       boolean DateEquals
@@ -16,7 +16,7 @@ scenario AllowedOperatorCombinationsEqual
       DateEquals = d"2025-02-08 12:34:56" == d"2025-02-08 12:34:56"
       BooleanEquals = false == false
       EnumEquals = EnumValue.Second == EnumValue.Second
-  Results
+  results
     StringEquals = true
     NumberEquals = true
     DateEquals = true
@@ -25,7 +25,7 @@ scenario AllowedOperatorCombinationsEqual
 
 scenario AllowedOperatorCombinationsNotEqual
   function
-    Results
+    results
       boolean StringNotEqual
       boolean NumberNotEqual
       boolean DateNotEqual
@@ -37,7 +37,7 @@ scenario AllowedOperatorCombinationsNotEqual
       DateNotEqual = d"2025-02-08 12:34:56" != d"2025-02-08 12:34:56"
       BooleanNotEqual = false != false
       EnumNotEqual = EnumValue.Second != EnumValue.Second
-  Results
+  results
     StringNotEqual = false
     NumberNotEqual = false
     DateNotEqual = false
@@ -46,7 +46,7 @@ scenario AllowedOperatorCombinationsNotEqual
 
 scenario AllowedOperatorCombinationsStringManipulation
   function
-    Results
+    results
       string StringAddition
       string StringNumberAddition
       string StringBooleanAddition
@@ -58,7 +58,7 @@ scenario AllowedOperatorCombinationsStringManipulation
       StringBooleanAddition = "abc:" + true
       StringDateAddition = "abc:" + d"2025-02-08 12:34:56"
       StringEnumAddition = "abc:" + EnumValue.Second
-  Results
+  results
     StringAddition = "abc:def"
     StringNumberAddition = "abc:123"
     StringBooleanAddition = "abc:true"
@@ -67,7 +67,7 @@ scenario AllowedOperatorCombinationsStringManipulation
 
 scenario AllowedOperatorCombinationsNumberArithmetic
   function
-    Results
+    results
       number NumberAddition
       number NumberSubtraction
       number NumberMultiplication
@@ -79,7 +79,7 @@ scenario AllowedOperatorCombinationsNumberArithmetic
       NumberMultiplication = 5 * 6
       NumberDivision = 9 / 3
       NumberModulus = 10 % 3
-  Results
+  results
     NumberAddition = 579
     NumberSubtraction = 333
     NumberMultiplication = 30
@@ -88,7 +88,7 @@ scenario AllowedOperatorCombinationsNumberArithmetic
 
 scenario AllowedOperatorCombinationsComparison
   function
-    Results
+    results
       boolean StringGreaterThan
       boolean StringGreaterThanOrEqual
       boolean StringLessThan
@@ -114,7 +114,7 @@ scenario AllowedOperatorCombinationsComparison
       DateGreaterThanOrEqual = d"2025-02-08 12:34:56" >= d"2025-02-09 12:34:56"
       DateLessThan = d"2025-02-08 12:34:56" < d"2025-02-09 12:34:56"
       DateLessThanOrEqual = d"2025-02-08 12:34:56" <= d"2025-02-09 12:34:56"
-  Results
+  results
     StringGreaterThan = false
     StringGreaterThanOrEqual = false
     StringLessThan = true
@@ -130,13 +130,13 @@ scenario AllowedOperatorCombinationsComparison
 
 scenario AllowedOperatorCombinationsLogical
   function
-    Results
+    results
       boolean BooleanAnd
       boolean BooleanOr
     Code
       BooleanAnd = true && true
       BooleanOr = true || true
-  Results
+  results
     BooleanAnd = true
     BooleanOr = true
 

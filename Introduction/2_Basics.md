@@ -28,9 +28,9 @@ Children of keywords always use 2 spaces more as indentation as their parent.
 
 ```
 function FirstFunction       // no indentation, start of a function component
-  Parameters                 // 2 spaces indentation, Parameters belongs to the function component declared above
+  parameters                 // 2 spaces indentation, Parameters belongs to the function component declared above
     number Income            // 4 spaces indentation, the Income variable belongs to the Parameters of the defined Function
-  Results                    // 2 spaces indentation, Results belongs to the function component declared above
+  results                    // 2 spaces indentation, Results belongs to the function component declared above
     number Tax               // 4 spaces indentation, the Tax variable belongs to the Results of the defined Function
     number TaxRate           // 4 spaces indentation, the TaxRate variable belongs to the Results of the defined Function
   Code                       // 2 spaces indentation, Code belongs to the function component declared above

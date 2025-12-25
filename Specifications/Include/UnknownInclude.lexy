@@ -1,4 +1,4 @@
-Include "FunctionUnknown"
+include "FunctionUnknown"
 
 scenario UnknownInclude
   ExpectComponentErrors

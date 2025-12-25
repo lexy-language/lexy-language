@@ -16,9 +16,9 @@ An If or Switch statement can be used in the code to calculate something differe
 
 ```
 function EnumWithIfStatement
-  Parameters
+  parameters
     MaritalStatus MaritalStatus
-  Results
+  results
     number Tax
   Code
     if MaritalStatus == MaritalStatus.Single
@@ -32,7 +32,7 @@ function EnumWithIfStatement
 ```
 scenario EnumWithIfStatementExamples
   function EnumWithIfStatement
-  ValidationTable
+  validationTable
     | MaritalStatus            | Tax  |
     | MaritalStatus.Single     | 0.45 |
     | MaritalStatus.Married    | 0.40 |
@@ -41,9 +41,9 @@ scenario EnumWithIfStatementExamples
 
 ```
 function EnumWithSwitchStatement
-  Parameters
+  parameters
     MaritalStatus MaritalStatus
-  Results
+  results
     number Tax
   Code
     switch MaritalStatus
@@ -60,7 +60,7 @@ function EnumWithSwitchStatement
 ```
 scenario EnumWithSwitchStatementExamples
   function EnumWithSwitchStatement
-  ValidationTable
+  validationTable
     | MaritalStatus                  | Tax  |
     | MaritalStatus.Single           | 0.45 |
     | MaritalStatus.Married          | 0.40 |

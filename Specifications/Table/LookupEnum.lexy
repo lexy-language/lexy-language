@@ -14,83 +14,83 @@ table StringTable
   | TableEnum.D           | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
 function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     TableEnum Value
-  Results
+  results
     number Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultNumber)
 
 scenario LookUpNumber
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = TableEnum.B
-  Results
+  results
     Result = 333
 
 scenario LookUpNumberWithDecimal
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = TableEnum.CA
-  Results
+  results
     Result = 444
 
 scenario LookUpEnumAfterRange
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = TableEnum.E
-  Results
+  results
     Result = 555
 
 
 
 function SimpleLookUpEnumFunction
-  Parameters
+  parameters
     TableEnum Value
-  Results
+  results
     string Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
 
 scenario LookUpString
   function SimpleLookUpEnumFunction
-  Parameters
+  parameters
     Value = TableEnum.B
-  Results
+  results
     Result = "333"
 
 
 
 function SimpleLookUpBooleanFunction
-  Parameters
+  parameters
     TableEnum Value
-  Results
+  results
     boolean Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultBoolean)
 
 scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
-  Parameters
+  parameters
     Value = TableEnum.B
-  Results
+  results
     Result = true
 
 
 
 
 function SimpleLookUpDateFunction
-  Parameters
+  parameters
     TableEnum Value
-  Results
+  results
     date Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultDate)
 
 scenario LookUpDate
   function SimpleLookUpDateFunction
-  Parameters
+  parameters
     Value = TableEnum.B
-  Results
+  results
     Result = d"2024-12-24T23:33:33"
 

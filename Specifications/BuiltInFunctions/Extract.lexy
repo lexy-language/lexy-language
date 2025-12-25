@@ -3,13 +3,13 @@ enum SimpleEnum
   Next
 
 function SimpleTarget
-  Parameters
+  parameters
     number NumberValue
     string StringValue
     boolean BooleanValue
     date DateValue
     SimpleEnum EnumValue
-  Results
+  results
     number NumberResult
     string StringResult
     boolean BooleanResult
@@ -23,8 +23,8 @@ function SimpleTarget
 
 scenario ExtractWithTypeReference
   function
-    Parameters
-    Results
+    parameters
+    results
     Code
       extract(SimpleTarget.Parameters)
   ExpectErrors
@@ -32,59 +32,59 @@ scenario ExtractWithTypeReference
 
 scenario ExtractNoParameters
   function
-    Parameters
-    Results
+    parameters
+    results
     Code
-      SimpleTarget.Parameters parameters
-      extract(parameters)
+      SimpleTarget.Parameters params
+      extract(params)
   ExpectErrors
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
 scenario ExtractSingleParameters
   function
-    Parameters
+    parameters
       number NumberValue
-    Results
+    results
       number NumberResult
     Code
-      SimpleTarget.Results parameters
-      parameters.NumberResult = NumberValue
-      extract(parameters)
-  Parameters
+      SimpleTarget.Results params
+      params.NumberResult = NumberValue
+      extract(params)
+  parameters
     NumberValue = 5
-  Results
+  results
     NumberResult = 5
 
 scenario ExtractMultipleParameters
 // only corresponding parameters should be mapped
   function
-    Parameters
+    parameters
       number NumberValue
       string StringValue
       boolean BooleanValue
       date DateValue
       SimpleEnum EnumValue
-    Results
+    results
       number NumberResult
       string StringResult
       boolean BooleanResultOther    // not mapped
       date DateResultOther          // not mapped
       SimpleEnum EnumResultOther    // not mapped
     Code
-      SimpleTarget.Results parameters
-      parameters.NumberResult = NumberValue
-      parameters.StringResult = StringValue
-      parameters.BooleanResult = BooleanValue
-      parameters.DateResult = DateValue
-      parameters.EnumResult = EnumValue
-      extract(parameters)
-  Parameters
+      SimpleTarget.Results params
+      params.NumberResult = NumberValue
+      params.StringResult = StringValue
+      params.BooleanResult = BooleanValue
+      params.DateResult = DateValue
+      params.EnumResult = EnumValue
+      extract(params)
+  parameters
     NumberValue = 5
     StringValue = "abc"
     BooleanValue = true
     DateValue = d"2024-12-27T14:39:45"
     EnumValue = SimpleEnum.Next
-  Results
+  results
     NumberResult = 5
     StringResult = "abc"
     BooleanResultOther = false                // not mapped
@@ -96,34 +96,34 @@ scenario ExtractMultipleParameters
 
 scenario ExtractInIfScopeParameters
   function
-    Parameters
+    parameters
       boolean Evil
       number NumberValue
-    Results
+    results
       number NumberResultParent
     Code
       if Evil
         number NumberResult
-        SimpleTarget.Results parameters
-        parameters.NumberResult = NumberValue
-        extract(parameters)
+        SimpleTarget.Results params
+        params.NumberResult = NumberValue
+        extract(params)
         NumberResultParent = NumberResult
-  Parameters
+  parameters
     NumberValue = 5
     Evil = true
-  Results
+  results
     NumberResultParent = 5
 
 
 
 scenario ExtractMultipleParametersInvalidType
   function
-    Parameters
+    parameters
       boolean BooleanValue
-    Results
+    results
       number NumberResult
     Code
-      SimpleTarget.Results parameters
-      parameters.NumberResult = BooleanValue
+      SimpleTarget.Results params
+      params.NumberResult = BooleanValue
   ExpectErrors
-    "Variable 'parameters.NumberResult' of type 'number' is not assignable from expression of type 'boolean'."
+    "Variable 'params.NumberResult' of type 'number' is not assignable from expression of type 'boolean'."

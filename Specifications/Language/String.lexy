@@ -1,64 +1,64 @@
 scenario StringAsParameterDefault
   function
-    Parameters
+    parameters
       string Value = "abc"
-    Results
+    results
       string Result
     Code
       Result = Value
-  Results
+  results
     Result = "abc"
 
 scenario StringAsParameter
   function
-    Parameters
+    parameters
       string Value = "abc"
-    Results
+    results
       string Result
     Code
       Result = Value
-  Parameters
+  parameters
     Value = "xyz"
-  Results
+  results
     Result = "xyz"
 
 scenario StringInCode
   function
-    Results
+    results
       string Result
     Code
       Result = "abc"
-  Results
+  results
     Result = "abc"
 
 scenario VariableDeclarationInCode
   function
-    Parameters
+    parameters
       string Value
-    Results
+    results
       string Result
     Code
       string temp
       temp = Value
       Result = temp
-  Parameters
+  parameters
     Value = "abs"
-  Results
+  results
     Result = "abs"
 
 scenario VariableDeclarationInCodeWithDefault
   function
-    Results
+    results
       string Result
     Code
       string temp = "abs"
       Result = temp
-  Results
+  results
     Result = "abs"
 
 scenario InvalidNumberEndsWithLetter
   function
-    Results
+    results
       string Result
     Code
       Result = "and
@@ -67,18 +67,18 @@ scenario InvalidNumberEndsWithLetter
 
 scenario ConcatenateStringInCode
   function
-    Results
+    results
       string Result
     Code
       Result = "abc" + "def"
-  Results
+  results
     Result = "abcdef"
 
 scenario InvalidStringInitializeNumber
   function
-    Parameters
+    parameters
       string Value = 1
-    Results
+    results
       string Result
     Code
       Result = Value
@@ -87,9 +87,9 @@ scenario InvalidStringInitializeNumber
 
 scenario InvalidStringInitializeBoolean
   function
-    Parameters
+    parameters
       string Value = true
-    Results
+    results
       string Result
     Code
       Result = Value
@@ -98,9 +98,9 @@ scenario InvalidStringInitializeBoolean
 
 scenario InvalidStringInitializeDate
   function
-    Parameters
+    parameters
       string Value = d"2024-12-23T17:51:15"
-    Results
+    results
       string Result
     Code
       Result = Value

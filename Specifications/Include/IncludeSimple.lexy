@@ -1,8 +1,8 @@
-Include "FunctionSimple"
+include "FunctionSimple"
 
 scenario Simple
   function FunctionSimple
-  Parameters
+  parameters
     Value = 3
-  Results
+  results
     Result = 3

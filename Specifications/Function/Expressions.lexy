@@ -1,8 +1,8 @@
 scenario Addition
   function
-    Results
+    results
       number Result
     Code
       Result = 1 + 1
-  Results
+  results
     Result = 2

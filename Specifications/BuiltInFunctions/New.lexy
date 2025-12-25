@@ -7,18 +7,18 @@ table StringTable
 
 scenario NewTableRow
   function
-    Results
+    results
       string StringResult
     Code
       var row = new(StringTable.Row)
       StringResult = row.SearchValue
-  Results
+  results
     StringResult = ""
 
 function SimpleTarget
-  Parameters
+  parameters
     string StringValue = "333"
-  Results
+  results
     number NumberResult
     string StringResult
   Code
@@ -27,17 +27,17 @@ function SimpleTarget
 
 scenario NewFunctionParameters
   function
-    Results
+    results
       string StringResult
     Code
       var row = new(SimpleTarget.Parameters)
       StringResult = row.StringValue
-  Results
+  results
     StringResult = "333"
 
 scenario NewFunctionParametersInvalidMember
   function
-    Results
+    results
       string StringResult
     Code
       var row = new(SimpleTarget.Parameters)
@@ -47,17 +47,17 @@ scenario NewFunctionParametersInvalidMember
 
 scenario NewFunctionResults
   function
-    Results
+    results
       number NumberResult
     Code
       var row = new(SimpleTarget.Results)
       NumberResult = row.NumberResult
-  Results
+  results
     NumberResult = 0
 
 scenario NewFunctionResultsInvalidMember
   function
-    Results
+    results
       number NumberResult
     Code
       var row = new(SimpleTarget.Results)

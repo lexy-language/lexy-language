@@ -5,9 +5,9 @@ enum MaritalStatus
   Cohabiting
 
 function EnumWithSwitchStatement
-  Parameters
+  parameters
     MaritalStatus MaritalStatus
-  Results
+  results
     number Tax
   Code
     switch MaritalStatus
@@ -22,28 +22,28 @@ function EnumWithSwitchStatement
 
 scenario CheckEnumComparisonInSwitchStatementSingle
   function EnumWithSwitchStatement
-  Parameters
+  parameters
     MaritalStatus = MaritalStatus.Single
-  Results
+  results
     Tax = 0.45
 
 scenario CheckEnumComparisonInSwitchStatementMarried
   function EnumWithSwitchStatement
-  Parameters
+  parameters
     MaritalStatus = MaritalStatus.Married
-  Results
+  results
     Tax = 0.40
 
 scenario CheckEnumComparisonInSwitchStatementCivilPartnership
   function EnumWithSwitchStatement
-  Parameters
+  parameters
     MaritalStatus = MaritalStatus.CivilPartnership
-  Results
+  results
     Tax = 0.41
 
 scenario CheckEnumComparisonInSwitchStatementDefault
   function EnumWithSwitchStatement
-  Parameters
+  parameters
     MaritalStatus = MaritalStatus.Cohabiting
-  Results
+  results
     Tax = 0.42

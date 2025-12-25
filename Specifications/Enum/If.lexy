@@ -4,9 +4,9 @@ enum MaritalStatus
   CivilPartnership
 
 function EnumWithIfStatement
-  Parameters
+  parameters
     MaritalStatus MaritalStatus
-  Results
+  results
     number Tax
   Code
     if MaritalStatus == MaritalStatus.Single
@@ -16,14 +16,14 @@ function EnumWithIfStatement
 
 scenario CheckEnumComparisonInIfStatementTrue
   function EnumWithIfStatement
-  Parameters
+  parameters
     MaritalStatus = MaritalStatus.Single
-  Results
+  results
     Tax = 0.45
 
 scenario CheckEnumComparisonInIfStatementFalse
   function EnumWithIfStatement
-  Parameters
+  parameters
     MaritalStatus = MaritalStatus.Married
-  Results
+  results
     Tax = 0.40

@@ -1,31 +1,31 @@
 scenario Addition
   function
-    Results
+    results
       number Result
     Code
       Result = 1 + 1
-  Results
+  results
     Result = 2
 
 scenario Subtraction
   function
-    Results
+    results
       number Result
     Code
       Result = 5 - 1
-  Results
+  results
     Result = 4
 
 scenario Multiplication
   function
-    Parameters
+    parameters
       number Value
       number Multiply
-    Results
+    results
       number Result
     Code
       Result = Value * Multiply
-  ValidationTable
+  validationTable
     | Value | Multiply | Result |
     | 0     | 1        | 0      |
     | 5     | 2        | 10     |
@@ -33,134 +33,134 @@ scenario Multiplication
 
 scenario Division
   function
-    Results
+    results
       number Result
     Code
       Result = 5 / 2
-  Results
+  results
     Result = 2.5
 
 
 scenario Modulo
   function
-    Results
+    results
       number Result
     Code
       Result = 10 % 3
-  Results
+  results
     Result = 1
 
 scenario Parenthesis
   function
-    Results
+    results
       number Result
     Code
       Result = 2 * (3 + 4)
-  Results
+  results
     Result = 14
 
 scenario AdditionParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       Result = Value + Value
-  Parameters
+  parameters
     Value = 2
-  Results
+  results
     Result = 4
 
 scenario SubtractionParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       Result = 10 - Value
-  Parameters
+  parameters
     Value = 2
-  Results
+  results
     Result = 8
 
 scenario DivisionParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       Result = 10 / Value
-  Parameters
+  parameters
     Value = 2
-  Results
+  results
     Result = 5
 
 scenario ModuloParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       Result = 8 % Value
-  Parameters
+  parameters
     Value = 3
-  Results
+  results
     Result = 2
 
 scenario ParenthesisParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       Result = 2 * (Value + 4)
-  Parameters
+  parameters
     Value = 7
-  Results
+  results
     Result = 22
 
 scenario NoParenthesisParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       Result = 2 * Value + 4
-  Parameters
+  parameters
     Value = 7
-  Results
+  results
     Result = 18
 
 scenario LogicalAnd
   function
-    Parameters
+    parameters
       boolean Value
-    Results
+    results
       boolean Result
     Code
       Result = Value && true
-  Parameters
+  parameters
     Value = true
-  Results
+  results
     Result = true
 
 scenario Logical0r
   function
-    Parameters
+    parameters
       boolean Value
-    Results
+    results
       boolean Result
     Code
       Result = Value || true
-  Parameters
+  parameters
     Value = false
-  Results
+  results
     Result = true
 
 

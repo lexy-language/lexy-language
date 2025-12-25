@@ -1,84 +1,84 @@
 scenario NumberIntAsParameterDefault
   function
-    Parameters
+    parameters
       number Value = 123
-    Results
+    results
       number Result
     Code
       Result = Value
-  Results
+  results
     Result = 123
 
 scenario NumberIntAsParameter
   function
-    Parameters
+    parameters
       number Value = 123
-    Results
+    results
       number Result
     Code
       Result = Value
-  Parameters
+  parameters
     Value = 456
-  Results
+  results
     Result = 456
 
 scenario NumberDecimalAsParameter
   function
-    Parameters
+    parameters
       number Value = 123.45
-    Results
+    results
       number Result
     Code
       Result = Value
-  Results
+  results
     Result = 123.45
 
 scenario NumberIntInCode
   function
-    Results
+    results
       number Result
     Code
       Result = 123
-  Results
+  results
     Result = 123
 
 scenario NumberDecimalInCode
   function
-    Results
+    results
       number Result
     Code
       Result = 123.45
-  Results
+  results
     Result = 123.45
 
 scenario NumberVariableDeclarationInCode
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       number temp
       temp = Value
       Result = temp
-  Parameters
+  parameters
     Value = 123.45
-  Results
+  results
     Result = 123.45
 
 scenario NumberVariableDeclarationInCodeWithDefault
   function
-    Results
+    results
       number Result
     Code
       number temp = 123.45
       Result = temp
-  Results
+  results
     Result = 123.45
 
 scenario InvalidNumberEndsWithLetter
   function
-    Results
+    results
       number Result
     Code
       Result = 123A
@@ -87,9 +87,9 @@ scenario InvalidNumberEndsWithLetter
 
 scenario InvalidNumberInitializeString
   function
-    Parameters
+    parameters
       number Value = "1"
-    Results
+    results
       number Result
     Code
       Result = Value
@@ -98,9 +98,9 @@ scenario InvalidNumberInitializeString
 
 scenario InvalidNumberInitializeBoolean
   function
-    Parameters
+    parameters
       number Value = true
-    Results
+    results
       number Result
     Code
       Result = Value
@@ -109,9 +109,9 @@ scenario InvalidNumberInitializeBoolean
 
 scenario InvalidNumberInitializeDate
   function
-    Parameters
+    parameters
       number Value = d"2024-12-23T17:51:15"
-    Results
+    results
       number Result
     Code
       Result = Value

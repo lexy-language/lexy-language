@@ -1,11 +1,11 @@
-Include "Enum"
-Include "Table"
+include "Enum"
+include "Table"
 
 function IncludeFunction
-  Parameters
+  parameters
     number NumberValue
     IncludeEnum EnumValue
-  Results
+  results
     number NumberResult
     IncludeEnum EnumResult
     string StringResult

@@ -14,7 +14,7 @@ table OtherTable
 
 scenario InvalidSearchColumn
   function
-    Results
+    results
       number Result
     Code
       Result = LOOKUP(StringTable, "c", SearchValue, StringTable.ResultNumber)
@@ -23,7 +23,7 @@ scenario InvalidSearchColumn
 
 scenario InvalidResultColumn
   function
-    Results
+    results
       number Result
     Code
       Result = LOOKUP(StringTable, "c", StringTable.SearchValue, ResultNumber)
@@ -32,7 +32,7 @@ scenario InvalidResultColumn
 
 scenario InvalidSearchColumnDifferentTable
   function
-    Results
+    results
       number Result
     Code
       Result = LOOKUP(StringTable, "c", OtherTable.SearchValue, StringTable.ResultNumber)
@@ -41,7 +41,7 @@ scenario InvalidSearchColumnDifferentTable
 
 scenario InvalidResultColumnDifferentTable
   function
-    Results
+    results
       number Result
     Code
       Result = LOOKUP(StringTable, "c", StringTable.SearchValue, OtherTable.ResultNumber)
@@ -50,7 +50,7 @@ scenario InvalidResultColumnDifferentTable
 
 scenario UnknownTable
   function
-    Results
+    results
       number Result
     Code
       Result = LOOKUP(Unknown, "c", StringTable.StringTable, StringTable.ResultNumber)

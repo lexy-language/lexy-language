@@ -22,12 +22,12 @@ Each variable needs a type, this is places before the variable name. Lexy suppor
 
 ```
 function IfUsage
-  Parameters
+  parameters
     boolean Married
     number Income
     string Province
     date BirthDate
-  Results
+  results
     boolean HighEarner
     number TaxRate
     string TaxCode
@@ -57,10 +57,10 @@ The `if`, `elseif` and `else` statements control the flow based on certain condi
 
 ```
 function IfElseUsage
-  Parameters
+  parameters
     boolean Married
     boolean TaxExemption
-  Results
+  results
     number TaxRate
   Code
     if TaxExemption
@@ -77,9 +77,9 @@ A `switch` statement controls the flow of the code  based on a cetain value. A `
 
 ```
 function SwitchUsage
-  Parameters
+  parameters
     number Children
-  Results
+  results
     number Deduction
   Code
     switch Children
@@ -111,9 +111,9 @@ You can use the following operators to compare variables. The result of comparin
 
 ```
 function CalculationOperators
-  Parameters
+  parameters
     number YearlyIncome
-  Results
+  results
     number Add20k
     number Subtract20k
     number DiviseBy2
@@ -144,9 +144,9 @@ You can use the following operators to compare variables. The result of comparin
 
 ```
 function ComparisonOperators
-  Parameters
+  parameters
     number YearlyIncome
-  Results 
+  results 
     boolean IsEqualTo20k
     boolean IsNotEqualTo20k
     boolean IsLesserThan20k

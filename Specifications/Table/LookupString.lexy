@@ -6,83 +6,83 @@ table StringTable
   | "d"                | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
 function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     string Value
-  Results
+  results
     number Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultNumber)
 
 scenario LookUpNumber
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = "b"
-  Results
+  results
     Result = 333
 
 scenario LookUpNumberWithDecimal
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = "ca"
-  Results
+  results
     Result = 444
 
 scenario LookUpNumberAfterRange
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Value = "e"
-  Results
+  results
     Result = 555
 
 
 
 function SimpleLookUpStringFunction
-  Parameters
+  parameters
     string Value
-  Results
+  results
     string Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
 
 scenario LookUpString
   function SimpleLookUpStringFunction
-  Parameters
+  parameters
     Value = "b"
-  Results
+  results
     Result = "333"
 
 
 
 function SimpleLookUpBooleanFunction
-  Parameters
+  parameters
     string Value
-  Results
+  results
     boolean Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultBoolean)
 
 scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
-  Parameters
+  parameters
     Value = "b"
-  Results
+  results
     Result = true
 
 
 
 
 function SimpleLookUpDateFunction
-  Parameters
+  parameters
     string Value
-  Results
+  results
     date Result
   Code
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultDate)
 
 scenario LookUpDate
   function SimpleLookUpDateFunction
-  Parameters
+  parameters
     Value = "b"
-  Results
+  results
     Result = d"2024-12-24T23:33:33"
 

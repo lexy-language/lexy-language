@@ -19,10 +19,10 @@ type CustomType
 
 scenario FieldsShouldHaveDefaultValue
   function
-    Parameters
-    Results
+    parameters
+    results
       CustomType Result
-  Results
+  results
     Result.NumberValue = 0
     Result.StringValue = ""
     Result.DateValue = d"0001-01-01T00:00:00"
@@ -36,8 +36,8 @@ scenario FieldsShouldHaveDefaultValue
 
 scenario NestedFieldsShouldBeAssignableAndReadable
   function
-    Parameters
-    Results
+    parameters
+    results
       CustomType Result
       number Value1
       number Value2
@@ -46,7 +46,7 @@ scenario NestedFieldsShouldBeAssignableAndReadable
       Result.Complex.InnerNumber = 8
       Value1 = Result.NumberValue
       Value2 = Result.Complex.InnerNumber
-  Results
+  results
     Result.NumberValue = 9
     Result.Complex.InnerNumber = 8
     Value1 = 9
@@ -55,16 +55,16 @@ scenario NestedFieldsShouldBeAssignableAndReadable
 
 scenario ComplexTypeAsParameter
   function
-    Parameters
+    parameters
       CustomType Value
-    Results
+    results
       CustomType Result
     Code
       Result.NumberValue = Value.NumberValue
       Result.Complex.InnerNumber = Value.Complex.InnerNumber
-  Parameters
+  parameters
     Value.NumberValue = 9
     Value.Complex.InnerNumber = 8
-  Results
+  results
     Result.NumberValue = 9
     Result.Complex.InnerNumber = 8

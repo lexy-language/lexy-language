@@ -1,6 +1,6 @@
 function DuplicateFunctionName
 // Validate table keywords
-  Results
+  results
     number Result
   Code
     Result = 1

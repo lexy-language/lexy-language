@@ -3,7 +3,7 @@ enum SimpleEnum
   Next
 
 function RootDeclarationFunction
-  Results
+  results
     number NumberResult
     string StringResult
     boolean BooleanResult
@@ -24,7 +24,7 @@ function RootDeclarationFunction
 
 scenario RootDeclaration
   function RootDeclarationFunction
-  Results
+  results
     NumberResult = 123
     StringResult = "abc"
     BooleanResult = true
@@ -35,13 +35,13 @@ scenario RootDeclaration
 scenario ResultVariablesDefaultValues
 // each declared result should have default value
   function
-    Results
+    results
       number NumberResult
       string StringResult
       boolean BooleanResult
       date DateResult
       SimpleEnum EnumResult
-  Results
+  results
     NumberResult = 0
     StringResult = ""
     BooleanResult = false
@@ -53,7 +53,7 @@ scenario ResultVariablesDefaultValues
 scenario InCodeVariablesDefaultValues
 // each declared variable should have default value
   function
-    Results
+    results
       number NumberResult
       string StringResult
       boolean BooleanResult
@@ -72,7 +72,7 @@ scenario InCodeVariablesDefaultValues
       DateResult = dateValue
       EnumResult = enumValue
 
-  Results
+  results
     NumberResult = 0
     StringResult = ""
     BooleanResult = false
@@ -83,13 +83,13 @@ scenario InCodeVariablesDefaultValues
 scenario ResultAssignmentWithInitializerAndDefaultValues
 // each declared parameter variable should an initialized value
   function
-    Parameters
+    parameters
       number NumberParam = 1
       string StringParam = "1"
       boolean BooleanParam = true
       date DateParam = d"2024-12-25T00:00:00"
       SimpleEnum EnumParam = SimpleEnum.Next
-    Results
+    results
       number NumberResult
       string StringResult
       boolean BooleanResult
@@ -102,7 +102,7 @@ scenario ResultAssignmentWithInitializerAndDefaultValues
       DateResult = DateParam
       EnumResult = EnumParam
 
-  Results
+  results
     NumberResult = 1
     StringResult = "1"
     BooleanResult = true
@@ -112,9 +112,9 @@ scenario ResultAssignmentWithInitializerAndDefaultValues
 
 
 function ScopedVariablesFunction
-  Parameters
+  parameters
     boolean Evil
-  Results
+  results
     number NumberResult
     string StringResult
     boolean BooleanResult
@@ -136,9 +136,9 @@ function ScopedVariablesFunction
 
 scenario ScopedVariables
   function ScopedVariablesFunction
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     NumberResult = 123
     StringResult = "abc"
     BooleanResult = true
@@ -148,9 +148,9 @@ scenario ScopedVariables
 
 function ScopedVariablesOutOfScopeFunction
 // it should not be possible access the value of a variable out of it's scope
-  Parameters
+  parameters
     boolean Evil
-  Results
+  results
     number NumberResult
   Code
     if Evil
@@ -166,9 +166,9 @@ scenario ScopedVariablesOutOfScope
 
 function ScopedVariablesManyScopesFunction
 // it should be possible to declare variables with same name in different sub scopes
-  Parameters
+  parameters
     boolean Evil = false
-  Results
+  results
     number NumberResult
   Code
     switch Evil
@@ -184,14 +184,14 @@ function ScopedVariablesManyScopesFunction
 
 scenario ScopedVariablesManyScopes
   function ScopedVariablesManyScopesFunction
-  Results
+  results
     NumberResult = 777
 
 
 
 scenario ResultsShouldNotHaveADefaultValue
   function
-    Results
+    results
       date Value = d"2024-12-25T16:57:45"
     Code
   ExpectErrors
@@ -201,7 +201,7 @@ scenario ResultsShouldNotHaveADefaultValue
 
 scenario UnknownVariable
   function
-    Parameters
+    parameters
       date Value
     Code
       Result = DAY(Value)
@@ -211,7 +211,7 @@ scenario UnknownVariable
 
 scenario UnknownVariableInIfScope
   function
-    Parameters
+    parameters
       boolean Evil
       date Value
     Code
@@ -224,9 +224,9 @@ scenario UnknownVariableInIfScope
 
 scenario InvalidAssignmentType
   function
-    Parameters
+    parameters
       date Value
-    Results
+    results
       date Result
     Code
       Result = DAY(Value)
@@ -237,7 +237,7 @@ scenario InvalidAssignmentType
 
 scenario VariableWithIfType
   function
-    Parameters
+    parameters
       date Value
     Code
       If Evil

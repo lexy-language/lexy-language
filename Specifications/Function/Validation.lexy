@@ -1,17 +1,17 @@
 scenario UnknownType
   function
-    Parameters
+    parameters
       int Value
-    Results
+    results
     Code
   ExpectErrors
     "Invalid type: 'int'"
 
 scenario InvalidVariableDefaultValue
   function
-    Parameters
+    parameters
       int Value = 5 + 33
-    Results
+    results
     Code
   ExpectErrors
     "Invalid variable declaration. Expected literal token."

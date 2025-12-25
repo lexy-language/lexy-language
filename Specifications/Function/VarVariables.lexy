@@ -4,7 +4,7 @@ enum SimpleEnum
 
 scenario VarVariableDeclarations
   function
-    Results
+    results
       number ResultNumber
       string ResultString
       boolean ResultBoolean
@@ -21,7 +21,7 @@ scenario VarVariableDeclarations
       ResultBoolean = booleanTemp
       ResultDate = dateTemp
       ResultEnum = enumTemp
-  Results
+  results
     ResultNumber = 777
     ResultString = "888"
     ResultBoolean = true
@@ -30,17 +30,17 @@ scenario VarVariableDeclarations
 
 scenario VarVariableDeclarationNumber
   function
-    Results
+    results
       number Result
     Code
       var numberTemp = 777
       Result = numberTemp
-  Results
+  results
     Result = 777
 
 scenario InvalidVariableName
   function
-    Results
+    results
       number Result
     Code
       number temp
@@ -51,7 +51,7 @@ scenario InvalidVariableName
 
 scenario DuplicatedVariableName
   function
-    Results
+    results
       number Result
     Code
       number temp

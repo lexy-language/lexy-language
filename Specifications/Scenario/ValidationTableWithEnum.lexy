@@ -5,9 +5,9 @@ enum MaritalStatus
   Cohabiting
 
 function EnumWithSwitchStatement
-  Parameters
+  parameters
     MaritalStatus MaritalStatus
-  Results
+  results
     number Tax
   Code
     switch MaritalStatus
@@ -22,7 +22,7 @@ function EnumWithSwitchStatement
 
 scenario EnumWithSwitchStatementExamples
   function EnumWithSwitchStatement
-  ValidationTable
+  validationTable
     | MaritalStatus                  | Tax  |
     | MaritalStatus.Single           | 0.45 |
     | MaritalStatus.Married          | 0.40 |

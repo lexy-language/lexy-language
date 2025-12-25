@@ -1,4 +1,4 @@
-Include ""
+include ""
 
 scenario EmptyInclude
   ExpectComponentErrors

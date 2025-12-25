@@ -1,7 +1,7 @@
 function If
-  Parameters
+  parameters
     boolean Evil
-  Results
+  results
     number Number
   Code
     number temp = 777
@@ -13,9 +13,9 @@ function If
 
 scenario IfTrue
   function If
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     Number = 666
   ExecutionLogging
     Log "Execute: If"
@@ -35,9 +35,9 @@ scenario IfTrue
 
 scenario IfFalse
   function If
-  Parameters
+  parameters
     Evil = false
-  Results
+  results
     Number = 888
   ExecutionLogging
     Log "Execute: If"

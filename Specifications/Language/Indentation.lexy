@@ -1,6 +1,6 @@
 scenario IndentErrorNextLevel
   function
-      Results
+      results
       number Result
   ExpectErrors
     "ERROR - Invalid indent: 3"
@@ -8,7 +8,7 @@ scenario IndentErrorNextLevel
 
 scenario IndentErrorInvalidSpaces
   function
-     Results
+     results
       number Result
   ExpectErrors
     "ERROR - Invalid indent: 3"

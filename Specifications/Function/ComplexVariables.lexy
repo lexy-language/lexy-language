@@ -4,15 +4,15 @@ table SimpleTable
   | 1 | 10 | "ra"  |
 
 function TableRowAsResultsFunction
-  Parameters
-  Results
+  parameters
+  results
     SimpleTable.Row Result
   Code
     Result = LOOKUPROW(SimpleTable, 2, SimpleTable.Search)
 
 scenario UseTableRowAsResults
   function TableRowAsResultsFunction
-  Results
+  results
     Result =
       Search = 1
       Value = 10
@@ -20,57 +20,57 @@ scenario UseTableRowAsResults
 
 
 function SimpleFunction
-  Parameters
+  parameters
     string ValueString
-  Results
+  results
     string ResultString
   Code
 
 scenario FunctionParametersAsResults
   function
-    Parameters
-    Results
+    parameters
+    results
       SimpleFunction.Parameters Result
     Code
       Result.ValueString = "abc"
-  Results
+  results
     Result.ValueString = "abc"
 
 scenario FunctionResultsAsResults
   function
-    Parameters
-    Results
+    parameters
+    results
       SimpleFunction.Results Result
     Code
       Result.ResultString = "abc"
-  Results
+  results
     Result.ResultString = "abc"
 
 
 scenario FunctionParametersAsParameters
   function
-    Parameters
+    parameters
       SimpleFunction.Parameters Values
-    Results
+    results
       string Result
     Code
       Result = Values.ValueString
       Values.ValueString = Result
-  Parameters
+  parameters
     Values.ValueString = "abc"
-  Results
+  results
     Result = "abc"
 
 scenario FunctionResultsAsParameters
   function
-    Parameters
+    parameters
       SimpleFunction.Results Values
-    Results
+    results
       string Result
     Code
       Result = Values.ResultString
       Values.ResultString = Result
-  Parameters
+  parameters
     Values.ResultString = "abc"
-  Results
+  results
     Result = "abc"

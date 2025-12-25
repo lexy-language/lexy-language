@@ -10,9 +10,9 @@ These functions can then be called from parent functions.
 In this example we have 3 different calculations with the similar parameters and the same results.
 ```
 function TaxCalculationForIT
-  Parameters
+  parameters
     number Income    
-  Results
+  results
     number TaxRate
     number Tax
   Code
@@ -20,10 +20,10 @@ function TaxCalculationForIT
     Tax = Income * TaxRate
 
 function TaxCalculationForGovernment
-  Parameters
+  parameters
     number Income
     number Children
-  Results
+  results
     number TaxRate
     number Tax
   Code
@@ -34,9 +34,9 @@ function TaxCalculationForGovernment
     Tax = Income * TaxRate
 
 function TaxCalculationForDefault
-  Parameters
+  parameters
     number Income
-  Results
+  results
     number TaxRate
     number ProvinceTax
     number Tax
@@ -51,11 +51,11 @@ the `Industry` parameter.
 
 ```
 function TaxCalculationPerIndustry
-  Parameters
+  parameters
     string Industry
     number Income
     number Children
-  Results
+  results
     number TaxRate
     number ProvinceTax
     number Tax
@@ -78,7 +78,7 @@ Any parameter or result variables that doesn't have a corresponding variable in 
 ```
 scenario TaxCalculationPerIndustryExamples
   function TaxCalculationPerIndustry
-  ValidationTable
+  validationTable
     | Industry     | Income | Children | TaxRate | Tax   | ProvinceTax |
     | "it"         | 100000 | 0        | 0.5     | 50000 | 0           |
     | "government" | 100000 | 0        | 0.4     | 40000 | 0           |
@@ -92,19 +92,19 @@ The `new` function will declare an empty complex type with default values.
 
 ```
 function DeclareNewParameterObject
-  Parameters
+  parameters
     number Income
     number Children
-  Results
+  results
     TaxCalculationForIT.Results Result
   Code    
-    var parameters = new(TaxCalculationForIT.Parameters)
-    parameters.Income = Income
-    Result = TaxCalculationForIT(parameters)
+    var params = new(TaxCalculationForIT.Parameters)
+    params.Income = Income
+    Result = TaxCalculationForIT(params)
 
 scenario DeclareNewParameterObjectExamples
   function DeclareNewParameterObject
-  ValidationTable
+  validationTable
     | Income | Children | Result.TaxRate | Result.Tax    |
     | 100000 | 0        | 0.5            | 50000         |
     | 200000 | 0        | 0.5            | 100000        |
@@ -118,19 +118,19 @@ to the field of the variable.
 
 ```
 function FillParameterObject
-  Parameters
+  parameters
     number Income
     number Children
-  Results
+  results
     TaxCalculationForIT.Results Result
   Code    
-    var parameters = fill(TaxCalculationForIT.Parameters) 
-    // parameters.Income and parameters.Children are filled by the fill function
-    Result = TaxCalculationForIT(parameters)
+    var params = fill(TaxCalculationForIT.Parameters) 
+    // params.Income and params.Children are filled by the fill function
+    Result = TaxCalculationForIT(params)
 
 scenario FillParameterObjectExamples
   function FillParameterObject
-  ValidationTable
+  validationTable
     | Income | Children | Result.TaxRate | Result.Tax    |
     | 100000 | 0        | 0.5            | 50000         |
     | 200000 | 0        | 0.5            | 100000        |
@@ -144,20 +144,20 @@ corresponding variable will be ignored.
 
 ```
 function ExtractResultsObject
-  Parameters
+  parameters
     number Income
     number Children
-  Results
+  results
     number TaxRate
     number Tax
   Code    
-    var parameters = fill(TaxCalculationForIT.Parameters)
-    var results = TaxCalculationForIT(parameters)
-    extract(results)         // Tax and TaxRate will be set
+    var params = fill(TaxCalculationForIT.Parameters)
+    var result = TaxCalculationForIT(params)
+    extract(result)         // Tax and TaxRate will be set
 
 scenario ExtractResultsObjectExamples
   function ExtractResultsObject
-  ValidationTable
+  validationTable
     | Income | Children | TaxRate | Tax    |
     | 100000 | 0        | 0.5     | 50000  |
     | 200000 | 0        | 0.5     | 100000 |

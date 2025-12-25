@@ -1,52 +1,52 @@
 function SimpleFunction
-  Parameters
+  parameters
     number Value
-  Results
+  results
     number Result
   Code
     Result = Value
 
 scenario CallSimpleFunctionNewParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
-      SimpleFunction.Parameters parameters
-      parameters.Value = Value
-      var results = SimpleFunction(parameters)
-      Result = results.Result
-  Parameters
+      SimpleFunction.Parameters params
+      params.Value = Value
+      var result = SimpleFunction(params)
+      Result = result.Result
+  parameters
     Value = 3
-  Results
+  results
     Result = 3
 
 scenario CallSimpleFunctionExplicitParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
-      var parameters = fill(SimpleFunction.Parameters)
-      var results = SimpleFunction(parameters)
-      extract(results)
-  Parameters
+      var params = fill(SimpleFunction.Parameters)
+      var result = SimpleFunction(params)
+      extract(result)
+  parameters
     Value = 3
-  Results
+  results
     Result = 3
 
 scenario CallSimpleFunctionImplicitParameters
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       number Result
     Code
       SimpleFunction()
-  Parameters
+  parameters
     Value = 3
-  Results
+  results
     Result = 3
 

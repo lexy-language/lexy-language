@@ -1,8 +1,8 @@
 scenario NestedParametersShouldBeAssignableAndReadable
   function
-    Parameters
+    parameters
       CustomType Result
-    Results
+    results
       number Value1
       number Value2
     Code
@@ -18,7 +18,7 @@ type ComplexType
 
 scenario UnknownNestedField
   function
-  ValidationTable
+  validationTable
     | Result.Value |
   ExpectErrors
     "Unknown variable: 'Result.Value'"

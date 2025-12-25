@@ -1,197 +1,197 @@
 scenario Year
   function
-    Parameters
+    parameters
       date Value = d"2024-12-25T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = YEAR(Value)
-  Results
+  results
     Result = 2024
 
 scenario Day
   function
-    Parameters
+    parameters
       date Value = d"2024-12-25T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = DAY(Value)
-  Results
+  results
     Result = 25
 
 scenario Month
   function
-    Parameters
+    parameters
       date Value = d"2024-12-25T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = MONTH(Value)
-  Results
+  results
     Result = 12
 
 scenario Hour
   function
-    Parameters
+    parameters
       date Value = d"2024-12-25T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = HOUR(Value)
-  Results
+  results
     Result = 16
 
 scenario Minute
   function
-    Parameters
+    parameters
       date Value = d"2024-12-25T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = MINUTE(Value)
-  Results
+  results
     Result = 57
 
 scenario Second
   function
-    Parameters
+    parameters
       date Value = d"2024-12-25T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = SECOND(Value)
-  Results
+  results
     Result = 45
 
 
 
 scenario Years
   function
-    Parameters
+    parameters
       date ValueEnd = d"2029-12-25T16:57:45"
       date ValueStart = d"2024-12-20T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = YEARS(ValueEnd, ValueStart)
-  Results
+  results
     Result = 5
 
 scenario Months
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T16:57:45"
       date ValueStart = d"2024-08-20T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = MONTHS(ValueEnd, ValueStart)
-  Results
+  results
     Result = 4
 
 scenario Days
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T16:57:45"
       date ValueStart = d"2024-12-20T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = DAYS(ValueEnd, ValueStart)
-  Results
+  results
     Result = 5
 
 scenario Hours
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T18:57:45"
       date ValueStart = d"2024-12-25T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = HOURS(ValueEnd, ValueStart)
-  Results
+  results
     Result = 2
 
 scenario Minutes
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T16:57:45"
       date ValueStart = d"2024-12-25T16:27:45"
-    Results
+    results
       number Result
     Code
       Result = MINUTES(ValueEnd, ValueStart)
-  Results
+  results
     Result = 30
 
 scenario Seconds
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T16:57:45"
       date ValueStart = d"2024-12-25T16:57:10"
-    Results
+    results
       number Result
     Code
       Result = SECONDS(ValueEnd, ValueStart)
-  Results
+  results
     Result = 35
 
 scenario HoursFullDay
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T16:57:45"
       date ValueStart = d"2024-12-24T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = HOURS(ValueEnd, ValueStart)
-  Results
+  results
     Result = 24
 
 scenario MinutesFullDay
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T16:57:45"
       date ValueStart = d"2024-12-24T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = MINUTES(ValueEnd, ValueStart)
-  Results
+  results
     Result = 1440
 
 scenario SecondsFullDay
   function
-    Parameters
+    parameters
       date ValueEnd = d"2024-12-25T16:57:45"
       date ValueStart = d"2024-12-24T16:57:45"
-    Results
+    results
       number Result
     Code
       Result = SECONDS(ValueEnd, ValueStart)
-  Results
+  results
     Result = 86400
 
 scenario Today
   function
-    Results
+    results
       number Diff
     Code
       date first = TODAY()
       date second = TODAY()
       Diff = SECONDS(first, second)
-  Results
+  results
     Diff = 0
 
 scenario NowAndDiff
   function
-    Results
+    results
       number Diff
     Code
       date first = NOW()
       date second = NOW()
       Diff = INT(SECONDS(second, first))
-  Results
+  results
     Diff = 0

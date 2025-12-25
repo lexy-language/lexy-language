@@ -1,8 +1,8 @@
-Include "ValidFunction"
+include "ValidFunction"
 
 scenario Valid
   function ValidFunction
-  Parameters
+  parameters
     Value = 5
-  Results
+  results
     Result = 5

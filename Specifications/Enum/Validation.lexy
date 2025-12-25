@@ -26,9 +26,9 @@ enum ValidEnum
 
 scenario InvalidEnumInitializeNumber
   function
-    Parameters
+    parameters
       ValidEnum Value = 1
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
@@ -37,9 +37,9 @@ scenario InvalidEnumInitializeNumber
 
 scenario InvalidEnumInitializeString
   function
-    Parameters
+    parameters
       ValidEnum Value = "a"
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
@@ -48,9 +48,9 @@ scenario InvalidEnumInitializeString
 
 scenario InvalidEnumInitializeBoolean
   function
-    Parameters
+    parameters
       ValidEnum Value = true
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
@@ -59,9 +59,9 @@ scenario InvalidEnumInitializeBoolean
 
 scenario InvalidEnumInitializeDate
   function
-    Parameters
+    parameters
       ValidEnum Value = d"2024-12-23T17:51:15"
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
@@ -70,9 +70,9 @@ scenario InvalidEnumInitializeDate
 
 scenario InvalidEnumInitializeNoMember
   function
-    Parameters
+    parameters
       ValidEnum Value = ValidEnum
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
@@ -81,9 +81,9 @@ scenario InvalidEnumInitializeNoMember
 
 scenario InvalidEnumInitializeUnknownMember
   function
-    Parameters
+    parameters
       ValidEnum Value = ValidEnum.Fourth
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
@@ -93,9 +93,9 @@ scenario InvalidEnumInitializeUnknownMember
 
 scenario InvalidEnumInitializeInvalidEnumType
   function
-    Parameters
+    parameters
       ValidEnum Value = InvalidEnum.Fourth
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
@@ -106,9 +106,9 @@ scenario InvalidEnumInitializeInvalidEnumType
 
 scenario InvalidEnumInitialize
   function
-    Parameters
+    parameters
       ValidEnum Value = ValidEnum.Third.First
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value

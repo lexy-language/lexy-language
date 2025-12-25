@@ -36,7 +36,7 @@ Hello world example
 
 ```
 function HelloWorld
-  Results
+  results
     string Result
   Code
     Result = "World Peace ☮️"
@@ -49,7 +49,7 @@ Lexy has automated tests built into the language. Scenarios are execute in real-
 ```
 scenario HelloWorldPeace
   function HelloWorld
-  Results
+  results
     Result = "World Peace ☮️"
 ```
 

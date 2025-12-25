@@ -1,15 +1,15 @@
 scenario ValidationTableWithNestedVariables
   function
-    Parameters
+    parameters
       number Value1
       string Value2
-    Results
+    results
       number Result1
       string Result2
     Code
       Result1 = Value1
       Result2 = Value2
-  ValidationTable
+  validationTable
     | Value1  | Value2 | Result1 | Result2 |
     | 0       | "aaa"  | 0       | "aaa"   |
     | 111     | "bbb"  | 111     | "bbb"   |
@@ -26,15 +26,15 @@ type CustomType
 
 scenario ValidationTableWithNestedResults
   function
-    Parameters
+    parameters
       number Value1
       number Value2
-    Results
+    results
       CustomType Result
     Code
       Result.NumberValue = Value1
       Result.Complex.InnerNumber = Value2
-  ValidationTable
+  validationTable
     | Value1 | Value2 | Result.NumberValue | Result.Complex.InnerNumber |
     | 0      | 1      | 0                  | 1                          |
     | 111    | 222    | 111                | 222                        |
@@ -44,15 +44,15 @@ scenario ValidationTableWithNestedResults
 
 scenario ValidationTableWithNestedParameters
   function
-    Parameters
+    parameters
       CustomType Value
-    Results
+    results
       number Result1
       number Result2
     Code
       Result1 = Value.NumberValue
       Result2 = Value.Complex.InnerNumber
-  ValidationTable
+  validationTable
     | Value.NumberValue  | Value.Complex.InnerNumber  | Result1 | Result2 |
     | 0                  | 1                          | 0       | 1       |
     | 111                | 222                        | 111     | 222     |

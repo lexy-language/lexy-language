@@ -6,42 +6,42 @@ table StringTable
   | "db"                 | "b"                | 555                 |
 
 function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     string Discriminator
     string Value
-  Results
+  results
     StringTable.Row Result
   Code
     Result = LOOKUPROWBY(StringTable, Discriminator, Value, StringTable.Discriminator, StringTable.SearchValue)
 
 scenario LookUpFirstDiscriminator1
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Discriminator = "da"
     Value = "a"
-  Results
+  results
     Result.ResultNumber = 222
 
 scenario LookUpFirstDiscriminator2
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Discriminator = "da"
     Value = "b"
-  Results
+  results
     Result.ResultNumber = 333
 
 scenario LookUpSecondDiscriminator1
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Discriminator = "db"
     Value = "a"
-  Results
+  results
     Result.ResultNumber = 444
 
 scenario LookUpSecondDiscriminator2
   function SimpleLookUpNumberFunction
-  Parameters
+  parameters
     Discriminator = "db"
     Value = "b"
-  Results
+  results
     Result.ResultNumber = 555

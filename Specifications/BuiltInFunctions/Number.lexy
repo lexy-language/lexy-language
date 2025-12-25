@@ -1,95 +1,95 @@
 scenario Abs
   function
-    Results
+    results
       number Result
     Code
       Result = ABS(2)
-  Results
+  results
     Result = 2
 
 scenario AbsNegative
   function
-    Results
+    results
       number Result
     Code
       Result = ABS(-2)
-  Results
+  results
     Result = 2
 
 scenario Int
   function
-    Results
+    results
       number Result
     Code
       Result = INT(8.9)
-  Results
+  results
     Result = 8
 
 scenario IntNegative
   function
-    Results
+    results
       number Result
     Code
       Result = INT(-8.9)
-  Results
+  results
     Result = -9
 
 scenario Power
   function
-    Results
+    results
       number Result
     Code
       Result = POWER(5,2)
-  Results
+  results
     Result = 25
 
 scenario PowerDecimal
   function
-    Results
+    results
       number Result
     Code
       Result = ROUND(POWER(98.6,3.2), 3)
-  Results
+  results
     Result = 2401077.222
 
 scenario PowerDivision
   function
-    Results
+    results
       number Result
     Code
       Result = ROUND(POWER(4,5/4), 9)
-  Results
+  results
     Result = 5.656854249
 
 function RoundFunction
-  Parameters
+  parameters
     number Value
     number Digits
-  Results
+  results
     number Result
   Code
     Result = ROUND(Value, Digits)
 
 scenario RoundFraction1
   function RoundFunction
-  Parameters
+  parameters
     Value = 2.15
     Digits = 1
-  Results
+  results
     Result = 2.2
 
 scenario RoundFraction2
   function RoundFunction
-  Parameters
+  parameters
     Value = 2.149
     Digits = 1
-  Results
+  results
     Result = 2.1
 
 scenario RoundFraction3
   function RoundFunction
-  Parameters
+  parameters
     Value = -1.475
     Digits = 2
-  Results
+  results
     Result = -1.48

@@ -1,8 +1,8 @@
-Include "../Function/Code"
+include "../Function/Code"
 
 scenario ParentFunction
   function ValidFunction
-  Parameters
+  parameters
     Value = 5
-  Results
+  results
     Result = 5

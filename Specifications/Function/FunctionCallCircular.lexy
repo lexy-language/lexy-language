@@ -1,15 +1,15 @@
 function Function1
-  Parameters
+  parameters
     number Value
-  Results
+  results
     number Result
   Code
     Function2()
 
 function Function2
-  Parameters
+  parameters
     number Value
-  Results
+  results
     number Result
   Code
     Function1()

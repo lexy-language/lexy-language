@@ -7,17 +7,17 @@ type CustomType
 
 scenario NestedParametersShouldBeAssignableAndReadable
   function
-    Parameters
+    parameters
       CustomType Result
-    Results
+    results
       number Value1
       number Value2
     Code
       Value1 = Result.NumberValue
       Value2 = Result.Complex.InnerNumber
-  Parameters
+  parameters
     Result.NumberValue = 9
     Result.Complex.InnerNumber = 8
-  Results
+  results
     Value1 = 9
     Value2 = 8

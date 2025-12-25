@@ -4,9 +4,9 @@ enum ValidateEnumKeyword
 
 scenario InvalidParameterType
   function
-    Parameters
+    parameters
       InvalidValidateEnumKeyword Value
-    Results
+    results
       ValidateEnumKeyword Result
     Code
       Result = Value
@@ -16,7 +16,7 @@ scenario InvalidParameterType
 
 scenario DuplicatedParameterName
   function
-    Parameters
+    parameters
       number Value
       ValidateEnumKeyword Value
   ExpectErrors
@@ -24,7 +24,7 @@ scenario DuplicatedParameterName
 
 scenario DuplicatedResultName
   function
-    Parameters
+    parameters
       number Value
       ValidateEnumKeyword Value
   ExpectErrors
@@ -32,9 +32,9 @@ scenario DuplicatedResultName
 
 scenario DuplicatedParameterResultName
   function
-    Parameters
+    parameters
       number Value
-    Results
+    results
       ValidateEnumKeyword Value
   ExpectErrors
     "Duplicated variable name: 'Value'"

@@ -1,7 +1,7 @@
 function ValidFunction
-  Parameters
+  parameters
     number Value
-  Results
+  results
     number Result
   Code
     Result = Value

@@ -15,9 +15,9 @@ Lexy has built in automated testing. A scenario describes the parameters and the
 DEMO: check 'Test Logging' for the execute scenario result. Modify any code or values to see the effect in the logging.
 ```
 function NaiveTaxLaw
-  Parameters
+  parameters
     number Income
-  Results
+  results
     number TaxRate
     number Tax
   Code
@@ -38,9 +38,9 @@ function NaiveTaxLaw
 ```
 scenario NaiveTaxLaw40k
   function NaiveTaxLaw
-  Parameters
+  parameters
     Income = 40000
-  Results
+  results
     TaxRate = 0.6
     Tax = 24000
 ```
@@ -54,7 +54,7 @@ Scenarios also supports a validation table which allows to validate many scenari
 ```
 scenario NaiveTaxLawScenarios
   function NaiveTaxLaw
-  ValidationTable
+  validationTable
     | Income  | TaxRate  | Tax   |
     | 12000   | 0.2      | 2400  |
     | 18000   | 0.3      | 5400  |
@@ -80,9 +80,9 @@ type CustomResults
   string TextResult
 
 function AssignNestedFields
-  Parameters
+  parameters
     CustomParameters Values
-  Results
+  results
     CustomResults Result
   Code
     Result.NumberResult = Values.NumberValue
@@ -94,10 +94,10 @@ Use a point `.` to access the field of variable.
 ```
 scenario NestedFieldsWithMemberAccessor
   function AssignNestedFields
-  Parameters
+  parameters
     Values.NumberValue = 777
     Values.TextValue = "abc"
-  Results
+  results
     Result.NumberResult = 777
     Result.TextResult = "abc"
 ```
@@ -107,11 +107,11 @@ Use indentation of define the fields of a parent variable.
 ```
 scenario NestedFieldsWithNesting
   function AssignNestedFields
-  Parameters
+  parameters
     Values =
       NumberValue = 777
       TextValue = "abc"
-  Results
+  results
     Result = 
       NumberResult = 777
       TextResult = "abc"
@@ -122,7 +122,7 @@ In a ValidationTable it's also possible to access the fields of a variable:
 ```
 scenario NestedFieldsWithTable
   function AssignNestedFields
-  ValidationTable
+  validationTable
     | Values.NumberValue | Values.TextValue | Result.NumberResult | Result.TextResult | 
     | 5                  | "abc"            | 5                   | "abc"             |   
     | 8                  | "def"            | 8                   | "def"             |

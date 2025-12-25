@@ -3,13 +3,13 @@ enum SimpleEnum
   Next
 
 function SimpleTarget
-  Parameters
+  parameters
     number NumberValue
     string StringValue
     boolean BooleanValue
     date DateValue
     SimpleEnum EnumValue
-  Results
+  results
     number NumberResult
     string StringResult
     boolean BooleanResult
@@ -23,56 +23,56 @@ function SimpleTarget
 
 scenario FillNoParameters
   function
-    Parameters
-    Results
+    parameters
+    results
     Code
-      var parameters = fill(SimpleTarget.Parameters)
+      var params = fill(SimpleTarget.Parameters)
   ExpectErrors
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
 scenario FillSingleParameters
   function
-    Parameters
+    parameters
       number NumberValue
-    Results
+    results
       number NumberResult
     Code
-      var parameters = fill(SimpleTarget.Parameters)
-      NumberResult = parameters.NumberValue
-  Parameters
+      var params = fill(SimpleTarget.Parameters)
+      NumberResult = params.NumberValue
+  parameters
     NumberValue = 5
-  Results
+  results
     NumberResult = 5
 
 scenario FillMultipleParameters
 // only corresponding parameters should be mapped
   function
-    Parameters
+    parameters
       number NumberValue
       string StringValue
       boolean BooleanValueOther          // not mapped
       date DateValueOther                // not mapped
       SimpleEnum EnumValueOther          // not mapped
-    Results
+    results
       number NumberResult
       string StringResult
       boolean BooleanResult
       date DateResult
       SimpleEnum EnumResult
     Code
-      var parameters = fill(SimpleTarget.Parameters)
-      NumberResult = parameters.NumberValue
-      StringResult = parameters.StringValue
-      BooleanResult = parameters.BooleanValue
-      DateResult = parameters.DateValue
-      EnumResult = parameters.EnumValue
-  Parameters
+      var params = fill(SimpleTarget.Parameters)
+      NumberResult = params.NumberValue
+      StringResult = params.StringValue
+      BooleanResult = params.BooleanValue
+      DateResult = params.DateValue
+      EnumResult = params.EnumValue
+  parameters
     NumberValue = 5
     StringValue = "abc"
     BooleanValueOther = true
     DateValueOther = d"2024-12-27T14:39:45"
     EnumValueOther = SimpleEnum.Next
-  Results
+  results
     NumberResult = 5
     StringResult = "abc"
     BooleanResult = false                    // not mapped
@@ -82,18 +82,18 @@ scenario FillMultipleParameters
 
 scenario FillInIfScopeParameters
   function
-    Parameters
+    parameters
       boolean Evil
       number NumberValueParent
-    Results
+    results
       number NumberResult
     Code
       if Evil
         number NumberValue = NumberValueParent
-        var parameters = fill(SimpleTarget.Parameters)
-        NumberResult = parameters.NumberValue
-  Parameters
+        var params = fill(SimpleTarget.Parameters)
+        NumberResult = params.NumberValue
+  parameters
     NumberValueParent = 5
     Evil = true
-  Results
+  results
     NumberResult = 5

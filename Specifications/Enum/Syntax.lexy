@@ -5,50 +5,50 @@ enum ValidEnum
 
 scenario EnumDefault
   function
-    Results
+    results
       ValidEnum Result
-  Results
+  results
     Result = ValidEnum.First
 
 scenario EnumParameterDefault
   function
-    Parameters
+    parameters
       ValidEnum Value = ValidEnum.Second
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
-  Results
+  results
     Result = ValidEnum.Second
 
 scenario EnumParameter
   function
-    Parameters
+    parameters
       ValidEnum Value = ValidEnum.Third
-    Results
+    results
       ValidEnum Result
     Code
       Result = Value
-  Parameters
+  parameters
     Value = ValidEnum.Second
-  Results
+  results
     Result = ValidEnum.Second
 
 scenario EnumInCode
   function
-    Results
+    results
       ValidEnum Result
     Code
       Result = ValidEnum.Second
-  Results
+  results
     Result = ValidEnum.Second
 
 scenario EnumDeclarationInCode
   function
-    Results
+    results
       ValidEnum Result
     Code
       ValidEnum temp = ValidEnum.Second
       Result = temp
-  Results
+  results
     Result = ValidEnum.Second

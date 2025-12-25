@@ -7,9 +7,9 @@ A function is a callable unit of calculation logic that has a well-defined input
 ```
 function NaiveFlatTaxLaw
 // calculate imaginary tax statement for demo purposes (amounts are in  €)
-  Parameters
+  parameters
     number GrossIncomeYear
-  Results
+  results
     number TaxableIncomeYear
     number TaxRate
     number TotalTax
@@ -28,9 +28,9 @@ Lexy has built in automated testing to describe the desire behavior of a functio
 ```
 scenario NaiveFlatTaxLawSpecifications
   function NaiveFlatTaxLaw
-  Parameters
+  parameters
     GrossIncomeYear = 120000
-  Results
+  results
     TaxableIncomeYear = 108000
     TaxRate = 0.4
     TotalTax = 43200

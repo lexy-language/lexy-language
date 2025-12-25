@@ -1,7 +1,7 @@
 function If
-  Parameters
+  parameters
     boolean Evil
-  Results
+  results
     number Number
   Code
     number temp = 777
@@ -11,23 +11,23 @@ function If
 
 scenario IfTrue
   function If
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     Number = 666
 
 scenario IfFalse
   function If
-  Parameters
+  parameters
     Evil = false
-  Results
+  results
     Number = 777
 
 
 function IfElse
-  Parameters
+  parameters
     boolean Evil
-  Results
+  results
     number Number
   Code
     number temp
@@ -39,24 +39,24 @@ function IfElse
 
 scenario IfElseTrue
   function IfElse
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     Number = 666
 
 scenario IfElseFalse
   function IfElse
-  Parameters
+  parameters
     Evil = false
-  Results
+  results
     Number = 777
 
 
 
 function IfElseEmptyIf
-  Parameters
+  parameters
     boolean Evil
-  Results
+  results
     number Number
   Code
     number temp
@@ -67,24 +67,24 @@ function IfElseEmptyIf
 
 scenario IfElseEmptyIfTrue
   function IfElseEmptyIf
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     Number = 0
 
 scenario IfElseEmptyIfFalse
   function IfElseEmptyIf
-  Parameters
+  parameters
     Evil = false
-  Results
+  results
     Number = 777
 
 
 
 function IfElseEmptyElse
-  Parameters
+  parameters
     boolean Evil
-  Results
+  results
     number Number
   Code
     number temp
@@ -95,25 +95,25 @@ function IfElseEmptyElse
 
 scenario IfElseEmptyElseTrue
   function IfElseEmptyElse
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     Number = 666
 
 scenario IfElseEmptyElseFalse
   function IfElseEmptyElse
-  Parameters
+  parameters
     Evil = false
-  Results
+  results
     Number = 0
 
 
 
 function IfWithAndExpression
-  Parameters
+  parameters
     boolean Evil
     boolean FalseProphet = true
-  Results
+  results
     number Number
   Code
     number temp
@@ -125,24 +125,24 @@ function IfWithAndExpression
 
 scenario IfWithAndExpressionTrue
   function IfWithAndExpression
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     Number = 666
 
 scenario IfWithAndExpressionFalse
   function IfWithAndExpression
-  Parameters
+  parameters
     Evil = false
-  Results
+  results
     Number = 777
 
 
 function IfWithOrExpression
-  Parameters
+  parameters
     boolean Evil
     boolean FalseProphet = true
-  Results
+  results
     number Number
   Code
     number temp
@@ -154,52 +154,52 @@ function IfWithOrExpression
 
 scenario IfWithOrExpressionTrue
   function IfWithOrExpression
-  Parameters
+  parameters
     Evil = true
-  Results
+  results
     Number = 666
 
 scenario IfWithOrExpressionFalse
   function IfWithOrExpression
-  Parameters
+  parameters
     Evil = false
     FalseProphet = false
-  Results
+  results
     Number = 777
 
 
 scenario ElseWithoutIf
   function
-    Parameters
-    Results
+    parameters
+    results
       number Number
     Code
       number temp
       else
         temp = 777
       Number = temp
-  Parameters
+  parameters
   ExpectErrors
     "'else' should be following an 'if' statement. No 'if' statement found."
 
 scenario ElseifWithoutIf
   function
-    Parameters
-    Results
+    parameters
+    results
       number Number
     Code
       number temp
       elseif true
         temp = 777
       Number = temp
-  Parameters
+  parameters
   ExpectErrors
     "'elseif' should be following an 'if' statement. No 'if' statement found."
 
 scenario ElseifAfterElse
   function
-    Parameters
-    Results
+    parameters
+    results
       number Number
     Code
       number temp
@@ -208,7 +208,7 @@ scenario ElseifAfterElse
       elseif true
         temp = 777
       Number = temp
-  Parameters
+  parameters
   ExpectErrors
     "'else' should be following an 'if' statement. No 'if' statement found."
     "'elseif' should be following an 'if' statement. No 'if' statement found."
@@ -217,8 +217,8 @@ scenario ElseifAfterElse
 
 scenario IfWithNumberCondition
   function
-    Parameters
-    Results
+    parameters
+    results
       number Number
     Code
       number temp
@@ -226,14 +226,14 @@ scenario IfWithNumberCondition
       else
         temp = 777
       Number = temp
-  Parameters
+  parameters
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 scenario IfWithNumberCalculationCondition
   function
-    Parameters
-    Results
+    parameters
+    results
       number Number
     Code
       number temp
@@ -241,14 +241,14 @@ scenario IfWithNumberCalculationCondition
       else
         temp = 777
       Number = temp
-  Parameters
+  parameters
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 scenario IfWithStringCondition
   function
-    Parameters
-    Results
+    parameters
+    results
       number Number
     Code
       number temp
@@ -256,14 +256,14 @@ scenario IfWithStringCondition
       else
         temp = 777
       Number = temp
-  Parameters
+  parameters
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 function IfWithStringCalculationConditionFunction
-  Parameters
+  parameters
     string Input
-  Results
+  results
     number Number
   Code
     number temp
@@ -279,8 +279,8 @@ scenario IfWithStringCalculationCondition
 
 scenario IfWithDateCondition
   function
-    Parameters
-    Results
+    parameters
+    results
       number Number
     Code
       number temp
@@ -288,14 +288,14 @@ scenario IfWithDateCondition
       else
         temp = 777
       Number = temp
-  Parameters
+  parameters
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'date'"
 
 
 function IfWithUnassignedLocalVariableFunction
-  Parameters
-  Results
+  parameters
+  results
     number Number
   Code
     number temp
@@ -307,17 +307,17 @@ function IfWithUnassignedLocalVariableFunction
 
 scenario IfWithUnassignedLocalVariable
   function IfWithUnassignedLocalVariableFunction
-  Results
+  results
     Number = 0
 
 
 
 
 function NestedIf
-  Parameters
+  parameters
     boolean Evil
     boolean FalseProphet = true
-  Results
+  results
     number Number
   Code
     number temp
@@ -335,44 +335,44 @@ function NestedIf
 
 scenario NestedIfTrueFalse
   function NestedIf
-  Parameters
+  parameters
     Evil = true
     FalseProphet = false
-  Results
+  results
     Number = 777
 
 scenario NestedIfTrueTrue
   function NestedIf
-  Parameters
+  parameters
     Evil = true
     FalseProphet = true
-  Results
+  results
     Number = 666
 
 scenario NestedIfFalseFalse
   function NestedIf
-  Parameters
+  parameters
     Evil = false
     FalseProphet = false
-  Results
+  results
     Number = 999
 
 scenario NestedIfFalseTrue
   function NestedIf
-  Parameters
+  parameters
     Evil = false
     FalseProphet = true
-  Results
+  results
     Number = 888
 
 
 
 
 function IfElseif
-  Parameters
+  parameters
     boolean Evil
     boolean FalseProphet
-  Results
+  results
     number Number
   Code
     number temp
@@ -386,32 +386,32 @@ function IfElseif
 
 scenario IfElseifTrueTrue
   function IfElseif
-  Parameters
+  parameters
     Evil = true
     FalseProphet = true
-  Results
+  results
     Number = 555
 
 scenario IfElseifTrueFalse
   function IfElseif
-  Parameters
+  parameters
     Evil = true
     FalseProphet = true
-  Results
+  results
     Number = 555
 
 scenario IfElseifFalseTrue
   function IfElseif
-  Parameters
+  parameters
     Evil = false
     FalseProphet = true
-  Results
+  results
     Number = 666
 
 scenario IfElseifFalseFalse
   function IfElseif
-  Parameters
+  parameters
     Evil = false
     FalseProphet = false
-  Results
+  results
     Number = 777

@@ -1,73 +1,73 @@
 scenario BooleanDefault
   function
-    Results
+    results
       boolean Result
-  Results
+  results
     Result = false
 
 scenario BooleanAsParameterDefault
   function
-    Parameters
+    parameters
       boolean Value = true
-    Results
+    results
       boolean Result
     Code
       Result = Value
-  Results
+  results
     Result = true
 
 scenario BooleanAsParameter
   function
-    Parameters
+    parameters
       boolean Value = true
-    Results
+    results
       boolean Result
     Code
       Result = Value
-  Parameters
+  parameters
     Value = false
-  Results
+  results
     Result = false
 
 scenario BooleanInCode
   function
-    Results
+    results
       boolean Result
     Code
       Result = true
-  Results
+  results
     Result = true
 
 scenario BooleanVariableDeclarationInCode
   function
-    Results
+    results
       boolean Result
-    Parameters
+    parameters
       boolean Value
     Code
       boolean temp
       temp = Value
       Result = temp
-  Parameters
+  parameters
     Value = true
-  Results
+  results
     Result = true
 
 scenario BooleanVariableDeclarationInCodeWithDefault
   function
-    Results
+    results
       boolean Result
     Code
       boolean temp = true
       Result = temp
-  Results
+  results
     Result = true
 
 scenario InvalidBooleanInitializeString
   function
-    Parameters
+    parameters
       boolean Value = "1"
-    Results
+    results
       boolean Result
     Code
       Result = Value
@@ -76,9 +76,9 @@ scenario InvalidBooleanInitializeString
 
 scenario InvalidBooleanInitializeNumber
   function
-    Parameters
+    parameters
       boolean Value = 5
-    Results
+    results
       boolean Result
     Code
       Result = Value
@@ -87,9 +87,9 @@ scenario InvalidBooleanInitializeNumber
 
 scenario InvalidBooleanInitializeDate
   function
-    Parameters
+    parameters
       boolean Value = d"2024-12-23T17:51:15"
-    Results
+    results
       boolean Result
     Code
       Result = Value

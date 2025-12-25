@@ -1,40 +1,40 @@
 function SimpleFunction
-  Parameters
+  parameters
     number Value
-  Results
+  results
     number Result
   Code
     Result = Value + 2
 
 function CallSimpleFunctionNewParametersFunction
-  Parameters
+  parameters
     number Value
-  Results
+  results
     number Result
   Code
-    SimpleFunction.Parameters parameters
-    parameters.Value = Value
-    var results = SimpleFunction(parameters)
-    Result = results.Result
+    SimpleFunction.Parameters params
+    params.Value = Value
+    var result = SimpleFunction(params)
+    Result = result.Result
 
 scenario CallSimpleFunctionNewParameters
   function CallSimpleFunctionNewParametersFunction
-  Parameters
+  parameters
     Value = 3
   ExecutionLogging
     Log "Execute: CallSimpleFunctionNewParametersFunction"
       Log "Parameters"
         Value = 3
-      Log "SimpleFunction.Parameters parameters"
-        parameters =
+      Log "SimpleFunction.Parameters params"
+        params =
           Value = 0
-      Log "parameters.Value = Value"
+      Log "params.Value = Value"
         Value = 3
-        parameters.Value = 3
-      Log "var results = SimpleFunction(parameters)"
-        parameters =
+        params.Value = 3
+      Log "var result = SimpleFunction(params)"
+        params =
           Value = 3
-        results =
+        result =
           Result = 5
       Log "Execute: SimpleFunction"
         Log "Parameters"
@@ -44,8 +44,8 @@ scenario CallSimpleFunctionNewParameters
           Result = 5
         Log "Results"
           Result = 5
-      Log "Result = results.Result"
-        results.Result = 5
+      Log "Result = result.Result"
+        result.Result = 5
         Result = 5
       Log "Results"
         Result = 5
