@@ -4,7 +4,7 @@ A custom complex data type defines multiple fields with their type that can be u
 It defines a list of variables which are used together.
 
 ```
-Type: TaxableIncome
+type TaxableIncome
   number NetSalary
   number OtherExpenses
   number InsurancePremiums

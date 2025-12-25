@@ -1,4 +1,4 @@
-Table: IncludeTable
+table IncludeTable
   | number SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
   | 2                  | 222                 | "222"               | false                 | d"2024-12-24T23:22:22"   |
   | 3                  | 333                 | "333"               | true                  | d"2024-12-24T23:33:33"   |

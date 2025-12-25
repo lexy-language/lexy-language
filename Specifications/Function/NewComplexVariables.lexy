@@ -1,4 +1,4 @@
-Table: StringTable
+table StringTable
   | string SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
   | "a"                | 222                 | "222"               | false                 | d"2024-12-24T23:22:22"   |
   | "b"                | 333                 | "333"               | true                  | d"2024-12-24T23:33:33"   |
@@ -35,7 +35,7 @@ scenario NewFunctionParameters
   Results
     StringResult = "333"
 
-Type: CustomType
+type CustomType
   number NumberValue = 123
   string StringValue = "abc"
 
@@ -45,9 +45,9 @@ scenario NewCustomType
       string StringResult
       number NumberResult
     Code
-      CustomType type
-      NumberResult = type.NumberValue
-      StringResult = type.StringValue
+      CustomType value
+      NumberResult = value.NumberValue
+      StringResult = value.StringValue
   Results
     StringResult = "abc"
     NumberResult = 123
@@ -58,11 +58,11 @@ scenario NewCustomTypeAssign
       string StringResult
       number NumberResult
     Code
-      CustomType type
-      type.NumberValue = 456
-      type.StringValue = "def"
-      NumberResult = type.NumberValue
-      StringResult = type.StringValue
+      CustomType value
+      value.NumberValue = 456
+      value.StringValue = "def"
+      NumberResult = value.NumberValue
+      StringResult = value.StringValue
   Results
     StringResult = "def"
     NumberResult = 456

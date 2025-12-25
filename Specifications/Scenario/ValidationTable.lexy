@@ -17,10 +17,10 @@ scenario ValidationTableWithNestedVariables
     | 777     | "ddd"  | 777     | "ddd"   |
     | 999     | "eee"  | 999     | "eee"   |
 
-Type: ComplexType
+type ComplexType
   number InnerNumber
 
-Type: CustomType
+type CustomType
   number NumberValue
   ComplexType Complex
 

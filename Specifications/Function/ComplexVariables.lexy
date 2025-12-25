@@ -1,4 +1,4 @@
-Table: SimpleTable
+table SimpleTable
   | number Search | number Value | string Extra |
   | 0 | 05 | "ext" |
   | 1 | 10 | "ra"  |

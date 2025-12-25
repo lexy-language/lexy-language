@@ -1,7 +1,7 @@
-Type: ComplexType
+type ComplexType
   number InnerNumber
 
-Type: CustomType
+type CustomType
   number NumberValue
   ComplexType Complex
 

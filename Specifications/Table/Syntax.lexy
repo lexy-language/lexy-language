@@ -1,4 +1,4 @@
-Table: SimpleTable
+table SimpleTable
   | number Value | number Result |
   | 0 | 0 |
   | 1 | 1 |
@@ -26,7 +26,7 @@ scenario GetCountSimpleTable
 
 
 scenario TableVarAsColumnType
-  Table: SimpleTable
+  table SimpleTable
     | var Value | number Result |
     | 0 | 0 |
     | 1 | 1 |
@@ -36,7 +36,7 @@ scenario TableVarAsColumnType
 
 
 scenario TableIncompleteHeader
-  Table: SimpleTable
+  table SimpleTable
     | number Value | number
     | 0 | 0 |
     | 1 | 1 |
@@ -47,13 +47,13 @@ scenario TableIncompleteHeader
 
 
 scenario TableWithoutHeader
-  Table: SimpleTable
+  table SimpleTable
   ExpectErrors
     "No table header found"
 
 
 scenario TableWithWrongValueTypes
-  Table: SimpleTable
+  table SimpleTable
     | number Value | string Result |
     | "0" | "0" |
     | 1 | 1 |
@@ -63,7 +63,7 @@ scenario TableWithWrongValueTypes
 
 
 scenario TableWithInvalidNumberOfValues
-  Table: SimpleTable
+  table SimpleTable
     | string Value | string Result |
     | "0" | "0" | "0" |
   ExpectErrors
@@ -72,7 +72,7 @@ scenario TableWithInvalidNumberOfValues
 
 
 scenario TableWithInvalidNumberOfValuesLess
-  Table: SimpleTable
+  table SimpleTable
     | string Value | string Result |
     | "0" |
   ExpectErrors
@@ -82,7 +82,7 @@ scenario TableWithInvalidNumberOfValuesLess
 
 
 scenario TableWithUnclosedRow
-  Table: SimpleTable
+  table SimpleTable
     | string Value | string Result |
     | "0" | "a"
   ExpectErrors

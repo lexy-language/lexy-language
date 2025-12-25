@@ -1,11 +1,11 @@
-Type: NestedType
+type NestedType
   string NestedStringValue
   number NestedNumberValue
   date NestedDateValue
   boolean NestedBooleanValue
   SimpleEnum NestedEnumValue
 
-Type: SimpleType
+type SimpleType
   string ChildStringValue
   number ChildNumberValue
   date ChildDateValue

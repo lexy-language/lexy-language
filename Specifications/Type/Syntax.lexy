@@ -2,14 +2,14 @@ enum CustomEnum
   First
   Second
 
-Type: NestedType
+type NestedType
   number InnerNumber = 0
   string InnerString = ""
   date InnerDate = d"0001-01-01T00:00:00"
   boolean InnerBoolean = false
   CustomEnum InnerEnum = CustomEnum.First
 
-Type: CustomType
+type CustomType
   number NumberValue = 0
   string StringValue = ""
   date DateValue = d"0001-01-01 00:00:00"

@@ -7,7 +7,7 @@ function DuplicateFunctionName
 
 function DuplicateFunctionName
 
-Table: DuplicateTableName
+table DuplicateTableName
 // Validate table keywords
   | number Value | number Result |
   | 0 | 0 |

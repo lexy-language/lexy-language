@@ -13,7 +13,7 @@ scenario NestedParametersShouldBeAssignableAndReadable
     "Invalid identifier: 'Result.NumberValue'"
     "Invalid identifier: 'Result.Complex.InnerNumber'"
 
-Type: ComplexType
+type ComplexType
   number Value
 
 scenario UnknownNestedField

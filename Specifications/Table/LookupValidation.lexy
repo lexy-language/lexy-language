@@ -1,11 +1,11 @@
-Table: StringTable
+table StringTable
   | string SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
   | "a"                | 222                 | "222"               | false                 | d"2024-12-24T23:22:22"   |
   | "b"                | 333                 | "333"               | true                  | d"2024-12-24T23:33:33"   |
   | "c"                | 444                 | "444"               | false                 | d"2024-12-24T23:44:44"   |
   | "d"                | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
-Table: OtherTable
+table OtherTable
   | string SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
   | "a"                | 222                 | "222"               | false                 | d"2024-12-24T23:22:22"   |
   | "b"                | 333                 | "333"               | true                  | d"2024-12-24T23:33:33"   |

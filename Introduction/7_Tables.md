@@ -9,7 +9,7 @@ Tables store rows of values in a specific format. The column names and types are
 - A table row starts and ends and with a separator, and puts a separator in between each column. Each column contains the specific value.
 
 ```
-Table: AverageTaxPerCanton
+table AverageTaxPerCanton
 // In Zwiterland income tax varies per canton, this is a simplified example as the tax depends on branckets and can variy from from canton to canton, and even from town to town.
 // Source: https://www.academics.com/guide/taxes-switzerland
   | string Canton | number AverageTax |
@@ -94,7 +94,7 @@ scenario LookupRowAveragteTaxExamples
 A discriminator field can be used as an additional condition to retrieve data from a table.
 
 ```
-Table: YearlyTaxRate
+table YearlyTaxRate
   | number Year | number Max | number Rate |
   | 2023        | 0          | 0.4         |
   | 2023        | 20000      | 0.45        |

@@ -6,7 +6,7 @@ enum TableEnum
   D
   E
 
-Table: StringTable
+table StringTable
   | TableEnum SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
   | TableEnum.A           | 222                 | "222"               | false                 | d"2024-12-24T23:22:22"   |
   | TableEnum.B           | 333                 | "333"               | true                  | d"2024-12-24T23:33:33"   |

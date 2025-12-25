@@ -1,11 +1,11 @@
-Type: NestedType
+type NestedType
   number NumberValue
   string StringValue
   date DateValue
   boolean BooleanValue
   CustomType Custom
 
-Type: CustomType
+type CustomType
   number NumberValue
   string StringValue
   date DateValue

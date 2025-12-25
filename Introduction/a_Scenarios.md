@@ -71,11 +71,11 @@ There are two ways to define nested parameters and results in scenarios.
 - By using a point `.` to access the field of the variable. Eg: `Variable.Field`
 
 ```
-Type: CustomParameters
+type CustomParameters
   number NumberValue
   string TextValue
   
-Type: CustomResults
+type CustomResults
   number NumberResult
   string TextResult
 

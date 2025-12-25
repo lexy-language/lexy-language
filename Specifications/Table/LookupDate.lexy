@@ -1,4 +1,4 @@
-Table: DateTable
+table DateTable
   | date SearchValue       | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
   | d"2024-12-25T11:11:11" | 222                 | "222"               | false                 | d"2024-12-24T23:22:22"   |
   | d"2024-12-25T11:22:22" | 333                 | "333"               | true                  | d"2024-12-24T23:33:33"   |

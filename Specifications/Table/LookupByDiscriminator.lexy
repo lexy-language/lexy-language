@@ -1,4 +1,4 @@
-Table: StringTable
+table StringTable
   | string Discriminator | string SearchValue | number ResultNumber |
   | "da"                 | "a"                | 222                 |
   | "da"                 | "b"                | 333                 |
