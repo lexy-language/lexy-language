@@ -1,7 +1,7 @@
 Include "ValidFunction"
 
 Scenario: Valid
-  Function ValidFunction
+  function ValidFunction
   Parameters
     Value = 5
   Results

@@ -35,7 +35,7 @@ Hosting:
 Hello world example
 
 ```
-Function: HelloWorld
+function HelloWorld
   Results
     string Result
   Code
@@ -48,7 +48,7 @@ Lexy has automated tests built into the language. Scenarios are execute in real-
 
 ```
 Scenario: HelloWorldPeace
-  Function HelloWorld
+  function HelloWorld
   Results
     Result = "World Peace ☮️"
 ```

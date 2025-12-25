@@ -1,12 +1,12 @@
 Scenario: BooleanDefault
-  Function:
+  function
     Results
       boolean Result
   Results
     Result = false
 
 Scenario: BooleanAsParameterDefault
-  Function:
+  function
     Parameters
       boolean Value = true
     Results
@@ -17,7 +17,7 @@ Scenario: BooleanAsParameterDefault
     Result = true
 
 Scenario: BooleanAsParameter
-  Function:
+  function
     Parameters
       boolean Value = true
     Results
@@ -30,7 +30,7 @@ Scenario: BooleanAsParameter
     Result = false
 
 Scenario: BooleanInCode
-  Function:
+  function
     Results
       boolean Result
     Code
@@ -39,7 +39,7 @@ Scenario: BooleanInCode
     Result = true
 
 Scenario: BooleanVariableDeclarationInCode
-  Function:
+  function
     Results
       boolean Result
     Parameters
@@ -54,7 +54,7 @@ Scenario: BooleanVariableDeclarationInCode
     Result = true
 
 Scenario: BooleanVariableDeclarationInCodeWithDefault
-  Function:
+  function
     Results
       boolean Result
     Code
@@ -64,7 +64,7 @@ Scenario: BooleanVariableDeclarationInCodeWithDefault
     Result = true
 
 Scenario: InvalidBooleanInitializeString
-  Function:
+  function
     Parameters
       boolean Value = "1"
     Results
@@ -75,7 +75,7 @@ Scenario: InvalidBooleanInitializeString
     "Invalid default value '1'. (type: 'boolean')"
 
 Scenario: InvalidBooleanInitializeNumber
-  Function:
+  function
     Parameters
       boolean Value = 5
     Results
@@ -86,7 +86,7 @@ Scenario: InvalidBooleanInitializeNumber
     "Invalid default value '5'. (type: 'boolean')"
 
 Scenario: InvalidBooleanInitializeDate
-  Function:
+  function
     Parameters
       boolean Value = d"2024-12-23T17:51:15"
     Results

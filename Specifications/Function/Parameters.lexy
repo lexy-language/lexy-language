@@ -3,7 +3,7 @@ Enum: ValidateEnumKeyword
   Second
 
 Scenario: InvalidParameterType
-  Function:
+  function
     Parameters
       InvalidValidateEnumKeyword Value
     Results
@@ -15,7 +15,7 @@ Scenario: InvalidParameterType
     "Invalid identifier: 'Value'"
 
 Scenario: DuplicatedParameterName
-  Function:
+  function
     Parameters
       number Value
       ValidateEnumKeyword Value
@@ -23,7 +23,7 @@ Scenario: DuplicatedParameterName
     "Duplicated variable name: 'Value'"
 
 Scenario: DuplicatedResultName
-  Function:
+  function
     Parameters
       number Value
       ValidateEnumKeyword Value
@@ -31,7 +31,7 @@ Scenario: DuplicatedResultName
     "Duplicated variable name: 'Value'"
 
 Scenario: DuplicatedParameterResultName
-  Function:
+  function
     Parameters
       number Value
     Results

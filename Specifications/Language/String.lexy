@@ -1,5 +1,5 @@
 Scenario: StringAsParameterDefault
-  Function:
+  function
     Parameters
       string Value = "abc"
     Results
@@ -10,7 +10,7 @@ Scenario: StringAsParameterDefault
     Result = "abc"
 
 Scenario: StringAsParameter
-  Function:
+  function
     Parameters
       string Value = "abc"
     Results
@@ -23,7 +23,7 @@ Scenario: StringAsParameter
     Result = "xyz"
 
 Scenario: StringInCode
-  Function:
+  function
     Results
       string Result
     Code
@@ -32,7 +32,7 @@ Scenario: StringInCode
     Result = "abc"
 
 Scenario: VariableDeclarationInCode
-  Function:
+  function
     Parameters
       string Value
     Results
@@ -47,7 +47,7 @@ Scenario: VariableDeclarationInCode
     Result = "abs"
 
 Scenario: VariableDeclarationInCodeWithDefault
-  Function:
+  function
     Results
       string Result
     Code
@@ -57,7 +57,7 @@ Scenario: VariableDeclarationInCodeWithDefault
     Result = "abs"
 
 Scenario: InvalidNumberEndsWithLetter
-  Function:
+  function
     Results
       string Result
     Code
@@ -66,7 +66,7 @@ Scenario: InvalidNumberEndsWithLetter
     "Invalid token at end of line. Closing quote expected."
 
 Scenario: ConcatenateStringInCode
-  Function:
+  function
     Results
       string Result
     Code
@@ -75,7 +75,7 @@ Scenario: ConcatenateStringInCode
     Result = "abcdef"
 
 Scenario: InvalidStringInitializeNumber
-  Function:
+  function
     Parameters
       string Value = 1
     Results
@@ -86,7 +86,7 @@ Scenario: InvalidStringInitializeNumber
     "Invalid default value '1'. (type: 'string')"
 
 Scenario: InvalidStringInitializeBoolean
-  Function:
+  function
     Parameters
       string Value = true
     Results
@@ -97,7 +97,7 @@ Scenario: InvalidStringInitializeBoolean
     "Invalid default value 'true'. (type: 'string')"
 
 Scenario: InvalidStringInitializeDate
-  Function:
+  function
     Parameters
       string Value = d"2024-12-23T17:51:15"
     Results

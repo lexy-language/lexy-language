@@ -18,7 +18,7 @@ Enum: SimpleEnum
   Next
   Last
 
-Function: NoParameterDefaultValues
+function NoParameterDefaultValues
   Parameters
     string StringValue
     number NumberValue
@@ -42,7 +42,7 @@ Function: NoParameterDefaultValues
     EnumResult = EnumValue
     
 Scenario: ValidationSuccessful
-  Function NoParameterDefaultValues
+  function NoParameterDefaultValues
   Parameters
     StringValue = "a111"
     NumberValue = 2
@@ -81,7 +81,7 @@ Scenario: ValidationSuccessful
     EnumResult = SimpleEnum.Last
 
 Scenario: ValidationParametersMissing
-  Function NoParameterDefaultValues
+  function NoParameterDefaultValues
   ExpectExecutionErrors
     "Validation failed:"
     "'StringValue' should have a 'string' value"
@@ -101,7 +101,7 @@ Scenario: ValidationParametersMissing
     "'EnumValue' should have a 'SimpleEnum' value"
 
 Scenario: ValidationWrongType
-  Function NoParameterDefaultValues
+  function NoParameterDefaultValues
   Parameters
     StringValue = 1
     NumberValue = "2"
@@ -138,7 +138,7 @@ Scenario: ValidationWrongType
     "'TypeValue.ChildEnumValue' should have a 'SimpleEnum' value. Invalid type:"
     "'EnumValue' should have a 'SimpleEnum' value. Invalid type:"
 
-Function: NoParameterSomeDefaultValues
+function NoParameterSomeDefaultValues
   Parameters
     string StringValueOptional = "a"
     number NumberValueOptional = 1
@@ -150,14 +150,14 @@ Function: NoParameterSomeDefaultValues
     Result = "success"
 
 Scenario: ValidateDefaultValuesMissing
-  Function NoParameterSomeDefaultValues
+  function NoParameterSomeDefaultValues
   ExpectExecutionErrors
     "Validation failed:"
     "'StringValue' should have a 'string' value"
     "'NumberValue' should have a 'number' value"
 
 Scenario: ValidateDefaultValuesProvided
-  Function NoParameterSomeDefaultValues
+  function NoParameterSomeDefaultValues
   Parameters
     StringValue = "b"
     NumberValue = 2

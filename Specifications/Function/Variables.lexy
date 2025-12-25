@@ -2,7 +2,7 @@ Enum: SimpleEnum
   First
   Next
 
-Function: RootDeclarationFunction
+function RootDeclarationFunction
   Results
     number NumberResult
     string StringResult
@@ -23,7 +23,7 @@ Function: RootDeclarationFunction
     EnumResult = enumValue
 
 Scenario: RootDeclaration
-  Function RootDeclarationFunction
+  function RootDeclarationFunction
   Results
     NumberResult = 123
     StringResult = "abc"
@@ -34,7 +34,7 @@ Scenario: RootDeclaration
 
 Scenario: ResultVariablesDefaultValues
 # each declared result should have default value
-  Function:
+  function
     Results
       number NumberResult
       string StringResult
@@ -52,7 +52,7 @@ Scenario: ResultVariablesDefaultValues
 
 Scenario: InCodeVariablesDefaultValues
 # each declared variable should have default value
-  Function:
+  function
     Results
       number NumberResult
       string StringResult
@@ -82,7 +82,7 @@ Scenario: InCodeVariablesDefaultValues
 
 Scenario: ResultAssignmentWithInitializerAndDefaultValues
 # each declared parameter variable should an initialized value
-  Function:
+  function
     Parameters
       number NumberParam = 1
       string StringParam = "1"
@@ -111,7 +111,7 @@ Scenario: ResultAssignmentWithInitializerAndDefaultValues
 
 
 
-Function: ScopedVariablesFunction
+function ScopedVariablesFunction
   Parameters
     boolean Evil
   Results
@@ -135,7 +135,7 @@ Function: ScopedVariablesFunction
       EnumResult = enumValue
 
 Scenario: ScopedVariables
-  Function ScopedVariablesFunction
+  function ScopedVariablesFunction
   Parameters
     Evil = true
   Results
@@ -146,7 +146,7 @@ Scenario: ScopedVariables
     EnumResult = SimpleEnum.Next
 
 
-Function: ScopedVariablesOutOfScopeFunction
+function ScopedVariablesOutOfScopeFunction
 # it should not be possible access the value of a variable out of it's scope
   Parameters
     boolean Evil
@@ -159,12 +159,12 @@ Function: ScopedVariablesOutOfScopeFunction
     NumberResult = numberValue
 
 Scenario: ScopedVariablesOutOfScope
-  Function ScopedVariablesOutOfScopeFunction
+  function ScopedVariablesOutOfScopeFunction
   ExpectErrors
     "Invalid identifier: 'numberValue'"
 
 
-Function: ScopedVariablesManyScopesFunction
+function ScopedVariablesManyScopesFunction
 # it should be possible to declare variables with same name in different sub scopes
   Parameters
     boolean Evil = false
@@ -183,14 +183,14 @@ Function: ScopedVariablesManyScopesFunction
     NumberResult = 777
 
 Scenario: ScopedVariablesManyScopes
-  Function ScopedVariablesManyScopesFunction
+  function ScopedVariablesManyScopesFunction
   Results
     NumberResult = 777
 
 
 
 Scenario: ResultsShouldNotHaveADefaultValue
-  Function:
+  function
     Results
       date Value = d"2024-12-25T16:57:45"
     Code
@@ -200,7 +200,7 @@ Scenario: ResultsShouldNotHaveADefaultValue
 
 
 Scenario: UnknownVariable
-  Function:
+  function
     Parameters
       date Value
     Code
@@ -210,7 +210,7 @@ Scenario: UnknownVariable
     "Unknown variable name: 'Result'."
 
 Scenario: UnknownVariableInIfScope
-  Function:
+  function
     Parameters
       boolean Evil
       date Value
@@ -223,7 +223,7 @@ Scenario: UnknownVariableInIfScope
     "Unknown variable name: 'Result'."
 
 Scenario: InvalidAssignmentType
-  Function:
+  function
     Parameters
       date Value
     Results
@@ -236,7 +236,7 @@ Scenario: InvalidAssignmentType
 
 
 Scenario: VariableWithIfType
-  Function:
+  function
     Parameters
       date Value
     Code

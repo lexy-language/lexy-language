@@ -1,5 +1,5 @@
 Scenario: Equals
-  Function:
+  function
     Results
       boolean Result
     Code
@@ -9,7 +9,7 @@ Scenario: Equals
     Result = true
 
 Scenario: NotEqual
-  Function:
+  function
     Results
       boolean Result
     Code
@@ -19,7 +19,7 @@ Scenario: NotEqual
     Result = true
 
 Scenario: GreaterThan
-  Function:
+  function
     Results
       boolean Result
     Code
@@ -29,7 +29,7 @@ Scenario: GreaterThan
     Result = true
 
 Scenario: GreaterThanOrEqual
-  Function:
+  function
     Results
       boolean Result
     Code
@@ -39,7 +39,7 @@ Scenario: GreaterThanOrEqual
     Result = true
 
 Scenario: LessThan
-  Function:
+  function
     Results
       boolean Result
     Code
@@ -49,7 +49,7 @@ Scenario: LessThan
     Result = true
 
 Scenario: LessThanOrEqual
-  Function:
+  function
     Results
       boolean Result
     Code

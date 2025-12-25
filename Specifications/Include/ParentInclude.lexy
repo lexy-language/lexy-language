@@ -1,7 +1,7 @@
 Include "../Function/Code"
 
 Scenario: ParentFunction
-  Function ValidFunction
+  function ValidFunction
   Parameters
     Value = 5
   Results

@@ -8,7 +8,7 @@ Lexy contains 5 keywords that define the Lexy components.
 
 | Keyword   | Description 
 | --------- | -----------
-| Function: | A function is a callable unit of calculation logic that has a well-defined input (parameters) and output (results).
+| function | A function is a callable unit of calculation logic that has a well-defined input (parameters) and output (results).
 | Scenario: | A scenario is an automated test used to validate the logic of a function.
 | Enum:     | A special data type that enables for a variable to be a set of predefined constants.
 | Table:    | A data table which can be used to retrieve data
@@ -27,7 +27,7 @@ Component keywords are always placed at the first character of a line.
 Children of keywords always use 2 spaces more as indentation as their parent.
 
 ```
-Function: FirstFunction       # no indentation, start of a function component
+function FirstFunction       # no indentation, start of a function component
   Parameters                  # 2 spaces indentation, Parameters belongs to the function component declared above
     number Income             # 4 spaces indentation, the Income variable belongs to the Parameters of the defined Function
   Results                     # 2 spaces indentation, Results belongs to the function component declared above
@@ -37,7 +37,7 @@ Function: FirstFunction       # no indentation, start of a function component
     TaxRate = 0.5             # 4 spaces indentation, the assignment is part of the Code
     Tax = Income * TaxRate    # 4 spaces indentation, the assignment is part of the Code
                               # empty lines are ignored by the compiler
-Function: SecondFunction      # no indentation, start of a new function component
+function SecondFunction      # no indentation, start of a new function component
 ```
 
 

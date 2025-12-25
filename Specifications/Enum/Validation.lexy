@@ -25,7 +25,7 @@ Enum: ValidEnum
   Third
 
 Scenario: InvalidEnumInitializeNumber
-  Function:
+  function
     Parameters
       ValidEnum Value = 1
     Results
@@ -36,7 +36,7 @@ Scenario: InvalidEnumInitializeNumber
     "Invalid default value '1'. (type: 'ValidEnum')"
 
 Scenario: InvalidEnumInitializeString
-  Function:
+  function
     Parameters
       ValidEnum Value = "a"
     Results
@@ -47,7 +47,7 @@ Scenario: InvalidEnumInitializeString
     "Invalid default value 'a'. (type: 'ValidEnum')"
 
 Scenario: InvalidEnumInitializeBoolean
-  Function:
+  function
     Parameters
       ValidEnum Value = true
     Results
@@ -58,7 +58,7 @@ Scenario: InvalidEnumInitializeBoolean
     "Invalid default value 'true'. (type: 'ValidEnum')"
 
 Scenario: InvalidEnumInitializeDate
-  Function:
+  function
     Parameters
       ValidEnum Value = d"2024-12-23T17:51:15"
     Results
@@ -69,7 +69,7 @@ Scenario: InvalidEnumInitializeDate
     "Invalid default value '2024-12-23T17:51:15'. (type: 'ValidEnum')"
 
 Scenario: InvalidEnumInitializeNoMember
-  Function:
+  function
     Parameters
       ValidEnum Value = ValidEnum
     Results
@@ -80,7 +80,7 @@ Scenario: InvalidEnumInitializeNoMember
     "Invalid default value 'ValidEnum'. (type: 'ValidEnum')"
 
 Scenario: InvalidEnumInitializeUnknownMember
-  Function:
+  function
     Parameters
       ValidEnum Value = ValidEnum.Fourth
     Results
@@ -92,7 +92,7 @@ Scenario: InvalidEnumInitializeUnknownMember
     "Invalid identifier: 'ValidEnum.Fourth'"
 
 Scenario: InvalidEnumInitializeInvalidEnumType
-  Function:
+  function
     Parameters
       ValidEnum Value = InvalidEnum.Fourth
     Results
@@ -105,7 +105,7 @@ Scenario: InvalidEnumInitializeInvalidEnumType
     "Invalid identifier: 'InvalidEnum.Fourth'"
 
 Scenario: InvalidEnumInitialize
-  Function:
+  function
     Parameters
       ValidEnum Value = ValidEnum.Third.First
     Results

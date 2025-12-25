@@ -1,4 +1,4 @@
-Function: If
+function If
   Parameters
     boolean Evil
   Results
@@ -10,21 +10,21 @@ Function: If
     Number = temp
 
 Scenario: IfTrue
-  Function If
+  function If
   Parameters
     Evil = true
   Results
     Number = 666
 
 Scenario: IfFalse
-  Function If
+  function If
   Parameters
     Evil = false
   Results
     Number = 777
 
 
-Function: IfElse
+function IfElse
   Parameters
     boolean Evil
   Results
@@ -38,14 +38,14 @@ Function: IfElse
     Number = temp
 
 Scenario: IfElseTrue
-  Function IfElse
+  function IfElse
   Parameters
     Evil = true
   Results
     Number = 666
 
 Scenario: IfElseFalse
-  Function IfElse
+  function IfElse
   Parameters
     Evil = false
   Results
@@ -53,7 +53,7 @@ Scenario: IfElseFalse
 
 
 
-Function: IfElseEmptyIf
+function IfElseEmptyIf
   Parameters
     boolean Evil
   Results
@@ -66,14 +66,14 @@ Function: IfElseEmptyIf
     Number = temp
 
 Scenario: IfElseEmptyIfTrue
-  Function IfElseEmptyIf
+  function IfElseEmptyIf
   Parameters
     Evil = true
   Results
     Number = 0
 
 Scenario: IfElseEmptyIfFalse
-  Function IfElseEmptyIf
+  function IfElseEmptyIf
   Parameters
     Evil = false
   Results
@@ -81,7 +81,7 @@ Scenario: IfElseEmptyIfFalse
 
 
 
-Function: IfElseEmptyElse
+function IfElseEmptyElse
   Parameters
     boolean Evil
   Results
@@ -94,14 +94,14 @@ Function: IfElseEmptyElse
     Number = temp
 
 Scenario: IfElseEmptyElseTrue
-  Function IfElseEmptyElse
+  function IfElseEmptyElse
   Parameters
     Evil = true
   Results
     Number = 666
 
 Scenario: IfElseEmptyElseFalse
-  Function IfElseEmptyElse
+  function IfElseEmptyElse
   Parameters
     Evil = false
   Results
@@ -109,7 +109,7 @@ Scenario: IfElseEmptyElseFalse
 
 
 
-Function: IfWithAndExpression
+function IfWithAndExpression
   Parameters
     boolean Evil
     boolean FalseProphet = true
@@ -124,21 +124,21 @@ Function: IfWithAndExpression
     Number = temp
 
 Scenario: IfWithAndExpressionTrue
-  Function IfWithAndExpression
+  function IfWithAndExpression
   Parameters
     Evil = true
   Results
     Number = 666
 
 Scenario: IfWithAndExpressionFalse
-  Function IfWithAndExpression
+  function IfWithAndExpression
   Parameters
     Evil = false
   Results
     Number = 777
 
 
-Function: IfWithOrExpression
+function IfWithOrExpression
   Parameters
     boolean Evil
     boolean FalseProphet = true
@@ -153,14 +153,14 @@ Function: IfWithOrExpression
     Number = temp
 
 Scenario: IfWithOrExpressionTrue
-  Function IfWithOrExpression
+  function IfWithOrExpression
   Parameters
     Evil = true
   Results
     Number = 666
 
 Scenario: IfWithOrExpressionFalse
-  Function IfWithOrExpression
+  function IfWithOrExpression
   Parameters
     Evil = false
     FalseProphet = false
@@ -169,7 +169,7 @@ Scenario: IfWithOrExpressionFalse
 
 
 Scenario: ElseWithoutIf
-  Function:
+  function
     Parameters
     Results
       number Number
@@ -183,7 +183,7 @@ Scenario: ElseWithoutIf
     "'else' should be following an 'if' statement. No 'if' statement found."
 
 Scenario: ElseifWithoutIf
-  Function:
+  function
     Parameters
     Results
       number Number
@@ -197,7 +197,7 @@ Scenario: ElseifWithoutIf
     "'elseif' should be following an 'if' statement. No 'if' statement found."
 
 Scenario: ElseifAfterElse
-  Function:
+  function
     Parameters
     Results
       number Number
@@ -216,7 +216,7 @@ Scenario: ElseifAfterElse
 
 
 Scenario: IfWithNumberCondition
-  Function:
+  function
     Parameters
     Results
       number Number
@@ -231,7 +231,7 @@ Scenario: IfWithNumberCondition
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 Scenario: IfWithNumberCalculationCondition
-  Function:
+  function
     Parameters
     Results
       number Number
@@ -246,7 +246,7 @@ Scenario: IfWithNumberCalculationCondition
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 Scenario: IfWithStringCondition
-  Function:
+  function
     Parameters
     Results
       number Number
@@ -260,7 +260,7 @@ Scenario: IfWithStringCondition
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
-Function: IfWithStringCalculationConditionFunction
+function IfWithStringCalculationConditionFunction
   Parameters
     string Input
   Results
@@ -273,12 +273,12 @@ Function: IfWithStringCalculationConditionFunction
     Number = temp
 
 Scenario: IfWithStringCalculationCondition
-  Function IfWithStringCalculationConditionFunction
+  function IfWithStringCalculationConditionFunction
   ExpectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 Scenario: IfWithDateCondition
-  Function:
+  function
     Parameters
     Results
       number Number
@@ -293,7 +293,7 @@ Scenario: IfWithDateCondition
     "'if' condition expression should be 'boolean', is of wrong type 'date'"
 
 
-Function: IfWithUnassignedLocalVariableFunction
+function IfWithUnassignedLocalVariableFunction
   Parameters
   Results
     number Number
@@ -306,14 +306,14 @@ Function: IfWithUnassignedLocalVariableFunction
     Number = temp
 
 Scenario: IfWithUnassignedLocalVariable
-  Function IfWithUnassignedLocalVariableFunction
+  function IfWithUnassignedLocalVariableFunction
   Results
     Number = 0
 
 
 
 
-Function: NestedIf
+function NestedIf
   Parameters
     boolean Evil
     boolean FalseProphet = true
@@ -334,7 +334,7 @@ Function: NestedIf
     Number = temp
 
 Scenario: NestedIfTrueFalse
-  Function NestedIf
+  function NestedIf
   Parameters
     Evil = true
     FalseProphet = false
@@ -342,7 +342,7 @@ Scenario: NestedIfTrueFalse
     Number = 777
 
 Scenario: NestedIfTrueTrue
-  Function NestedIf
+  function NestedIf
   Parameters
     Evil = true
     FalseProphet = true
@@ -350,7 +350,7 @@ Scenario: NestedIfTrueTrue
     Number = 666
 
 Scenario: NestedIfFalseFalse
-  Function NestedIf
+  function NestedIf
   Parameters
     Evil = false
     FalseProphet = false
@@ -358,7 +358,7 @@ Scenario: NestedIfFalseFalse
     Number = 999
 
 Scenario: NestedIfFalseTrue
-  Function NestedIf
+  function NestedIf
   Parameters
     Evil = false
     FalseProphet = true
@@ -368,7 +368,7 @@ Scenario: NestedIfFalseTrue
 
 
 
-Function: IfElseif
+function IfElseif
   Parameters
     boolean Evil
     boolean FalseProphet
@@ -385,7 +385,7 @@ Function: IfElseif
     Number = temp
 
 Scenario: IfElseifTrueTrue
-  Function IfElseif
+  function IfElseif
   Parameters
     Evil = true
     FalseProphet = true
@@ -393,7 +393,7 @@ Scenario: IfElseifTrueTrue
     Number = 555
 
 Scenario: IfElseifTrueFalse
-  Function IfElseif
+  function IfElseif
   Parameters
     Evil = true
     FalseProphet = true
@@ -401,7 +401,7 @@ Scenario: IfElseifTrueFalse
     Number = 555
 
 Scenario: IfElseifFalseTrue
-  Function IfElseif
+  function IfElseif
   Parameters
     Evil = false
     FalseProphet = true
@@ -409,7 +409,7 @@ Scenario: IfElseifFalseTrue
     Number = 666
 
 Scenario: IfElseifFalseFalse
-  Function IfElseif
+  function IfElseif
   Parameters
     Evil = false
     FalseProphet = false

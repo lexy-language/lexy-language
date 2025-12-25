@@ -2,7 +2,7 @@ Enum: SimpleEnum
   First
   Next
 
-Function: SimpleTarget
+function SimpleTarget
   Parameters
     number NumberValue
     string StringValue
@@ -22,7 +22,7 @@ Function: SimpleTarget
     EnumResult = EnumValue
 
 Scenario: ExtractInIfScopeParameters
-  Function:
+  function
     Parameters
       boolean Evil
       number NumberValue

@@ -1,5 +1,5 @@
 Scenario: IndentErrorNextLevel
-  Function:
+  function
       Results
       number Result
   ExpectErrors
@@ -7,7 +7,7 @@ Scenario: IndentErrorNextLevel
     "ERROR - Invalid indent: 3"
 
 Scenario: IndentErrorInvalidSpaces
-  Function:
+  function
      Results
       number Result
   ExpectErrors

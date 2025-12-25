@@ -2,7 +2,7 @@ Enum: SimpleEnum
   First
   Next
 
-Function: SimpleTarget
+function SimpleTarget
   Parameters
     number NumberValue
     string StringValue
@@ -22,7 +22,7 @@ Function: SimpleTarget
     EnumResult = EnumValue
 
 Scenario: ExtractWithTypeReference
-  Function:
+  function
     Parameters
     Results
     Code
@@ -31,7 +31,7 @@ Scenario: ExtractWithTypeReference
     "Invalid variable argument. extract expects 1 argument. extract(variable)"
 
 Scenario: ExtractNoParameters
-  Function:
+  function
     Parameters
     Results
     Code
@@ -41,7 +41,7 @@ Scenario: ExtractNoParameters
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
 Scenario: ExtractSingleParameters
-  Function:
+  function
     Parameters
       number NumberValue
     Results
@@ -57,7 +57,7 @@ Scenario: ExtractSingleParameters
 
 Scenario: ExtractMultipleParameters
 # only corresponding parameters should be mapped
-  Function:
+  function
     Parameters
       number NumberValue
       string StringValue
@@ -95,7 +95,7 @@ Scenario: ExtractMultipleParameters
 
 
 Scenario: ExtractInIfScopeParameters
-  Function:
+  function
     Parameters
       boolean Evil
       number NumberValue
@@ -117,7 +117,7 @@ Scenario: ExtractInIfScopeParameters
 
 
 Scenario: ExtractMultipleParametersInvalidType
-  Function:
+  function
     Parameters
       boolean BooleanValue
     Results

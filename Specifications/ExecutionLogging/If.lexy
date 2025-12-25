@@ -1,4 +1,4 @@
-Function: If
+function If
   Parameters
     boolean Evil
   Results
@@ -12,7 +12,7 @@ Function: If
     Number = temp
 
 Scenario: IfTrue
-  Function If
+  function If
   Parameters
     Evil = true
   Results
@@ -34,7 +34,7 @@ Scenario: IfTrue
         Number = 666
 
 Scenario: IfFalse
-  Function If
+  function If
   Parameters
     Evil = false
   Results

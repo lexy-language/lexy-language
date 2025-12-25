@@ -14,7 +14,7 @@ Lexy has built in automated testing. A scenario describes the parameters and the
 
 DEMO: check 'Test Logging' for the execute scenario result. Modify any code or values to see the effect in the logging.
 ```
-Function: NaiveTaxLaw
+function NaiveTaxLaw
   Parameters
     number Income
   Results
@@ -37,7 +37,7 @@ Function: NaiveTaxLaw
 
 ```
 Scenario: NaiveTaxLaw40k
-  Function NaiveTaxLaw
+  function NaiveTaxLaw
   Parameters
     Income = 40000
   Results
@@ -53,7 +53,7 @@ Scenarios also supports a validation table which allows to validate many scenari
 
 ```
 Scenario: NaiveTaxLawScenarios
-  Function NaiveTaxLaw
+  function NaiveTaxLaw
   ValidationTable
     | Income  | TaxRate  | Tax   |
     | 12000   | 0.2      | 2400  |
@@ -79,7 +79,7 @@ Type: CustomResults
   number NumberResult
   string TextResult
 
-Function: AssignNestedFields
+function AssignNestedFields
   Parameters
     CustomParameters Values
   Results
@@ -93,7 +93,7 @@ Use a point `.` to access the field of variable.
 
 ```
 Scenario: NestedFieldsWithMemberAccessor
-  Function AssignNestedFields
+  function AssignNestedFields
   Parameters
     Values.NumberValue = 777
     Values.TextValue = "abc"
@@ -106,7 +106,7 @@ Use indentation of define the fields of a parent variable.
 
 ```
 Scenario: NestedFieldsWithNesting
-  Function AssignNestedFields
+  function AssignNestedFields
   Parameters
     Values =
       NumberValue = 777
@@ -121,7 +121,7 @@ In a ValidationTable it's also possible to access the fields of a variable:
 
 ```
 Scenario: NestedFieldsWithTable
-  Function AssignNestedFields
+  function AssignNestedFields
   ValidationTable
     | Values.NumberValue | Values.TextValue | Result.NumberResult | Result.TextResult | 
     | 5                  | "abc"            | 5                   | "abc"             |   

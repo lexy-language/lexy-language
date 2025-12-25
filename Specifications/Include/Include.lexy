@@ -1,7 +1,7 @@
 Include "Function"
 
 Scenario: NestedIncludes
-  Function IncludeFunction
+  function IncludeFunction
   Parameters
     NumberValue = 3
     EnumValue = IncludeEnum.Second

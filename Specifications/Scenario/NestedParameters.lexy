@@ -6,7 +6,7 @@ Type: CustomType
   ComplexType Complex
 
 Scenario: NestedParametersShouldBeAssignableAndReadable
-  Function:
+  function
     Parameters
       CustomType Result
     Results

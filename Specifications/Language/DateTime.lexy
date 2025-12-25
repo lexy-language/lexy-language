@@ -1,5 +1,5 @@
 Scenario: NumberStringAsParameterDefault
-  Function:
+  function
     Parameters
       date Value = d"2024-12-23T16:03:00"
     Results
@@ -10,7 +10,7 @@ Scenario: NumberStringAsParameterDefault
     Result = d"2024-12-23T16:03:00"
 
 Scenario: NumberStringAsParameter
-  Function:
+  function
     Parameters
       date Value = d"2000-01-01T12:34:56"
     Results
@@ -23,7 +23,7 @@ Scenario: NumberStringAsParameter
     Result = d"2024-12-23T16:03:00"
 
 Scenario: DateStringInCode
-  Function:
+  function
     Results
       date Result
     Code
@@ -32,7 +32,7 @@ Scenario: DateStringInCode
     Result = d"2024-12-23T16:03:00"
 
 Scenario: DateVariableDeclarationInCode
-  Function:
+  function
     Results
       date Result
     Parameters
@@ -47,7 +47,7 @@ Scenario: DateVariableDeclarationInCode
     Result = d"2024-12-23T16:03:00"
 
 Scenario: DateVariableDeclarationInCodeWithDefault
-  Function:
+  function
     Results
       date Result
     Code
@@ -57,7 +57,7 @@ Scenario: DateVariableDeclarationInCodeWithDefault
     Result = d"2024-12-23T16:03:00"
 
 Scenario: ValidDateWithSpaceAndSlashes
-  Function:
+  function
     Results
       date Result
     Code
@@ -66,7 +66,7 @@ Scenario: ValidDateWithSpaceAndSlashes
     Result = d"2024-12-23T16:03:00"
 
 Scenario: InvalidDateInitializeString
-  Function:
+  function
     Parameters
       date Value = "1"
     Results
@@ -77,7 +77,7 @@ Scenario: InvalidDateInitializeString
     "Invalid default value '1'. (type: 'date')"
 
 Scenario: InvalidDateInitializeNumber
-  Function:
+  function
     Parameters
       date Value = 5
     Results
@@ -88,7 +88,7 @@ Scenario: InvalidDateInitializeNumber
     "Invalid default value '5'. (type: 'date')"
 
 Scenario: InvalidDateInitializeBoolean
-  Function:
+  function
     Parameters
       date Value = true
     Results

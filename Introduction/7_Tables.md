@@ -37,7 +37,7 @@ Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Spec
 Syntax: `LOOKUP(Table, lookUpValue, Table.searchValueColumn, Table.resultColumn)`
 
 ```
-Function: LookupAveragteTax
+function LookupAveragteTax
   Parameters
     string Canton
     number Income
@@ -51,7 +51,7 @@ Function: LookupAveragteTax
 
 ```
 Scenario: LookupAveragteTaxExamples
-  Function LookupAveragteTax
+  function LookupAveragteTax
   ValidationTable
     | Canton        | Income | TaxRate | Tax   |
     | "Basel"       | 100000 | 0.3783  | 37830 |
@@ -64,7 +64,7 @@ Scenario: LookupAveragteTaxExamples
 Syntax: `LOOKUPROW(Table, lookUpValue, Table.searchValueColumn, Table.resultColumn)`
 
 ```
-Function: LookupRowAveragteTax
+function LookupRowAveragteTax
   Parameters
     string Canton
     number Income
@@ -79,7 +79,7 @@ Function: LookupRowAveragteTax
 
 ```
 Scenario: LookupRowAveragteTaxExamples
-  Function LookupRowAveragteTax
+  function LookupRowAveragteTax
   ValidationTable
     | Canton        | Income | TaxRate | Tax   |
     | "Basel"       | 100000 | 0.3783  | 37830 |
@@ -118,7 +118,7 @@ The functions will loop over all rows in a table from the starts and, if the dis
 Syntax: `LOOKUPBY(Table, discriminator, lookUpValue, Table.discriminatorColumn, Table.searchValueColumn, Table.resultColumn)`
 
 ```
-Function: LookupByYearAndMax
+function LookupByYearAndMax
   Parameters
     number Year
     number Income
@@ -132,7 +132,7 @@ Function: LookupByYearAndMax
 
 ``` 
 Scenario: LookupByYearAndMaxExamples
-  Function LookupByYearAndMax
+  function LookupByYearAndMax
   ValidationTable
     | Year | Income | TaxRate | Tax        |
     | 2023 | 10000  | 0.4     | 4000       | 
@@ -149,7 +149,7 @@ Scenario: LookupByYearAndMaxExamples
 Syntax: `LOOKUPROWBY(Table, discriminator, lookUpValue, Table.discriminatorColumn, Table.searchValueColumn)`
 
 ```
-Function: LookupRowByYearAndMax
+function LookupRowByYearAndMax
   Parameters
     number Year
     number Income
@@ -164,7 +164,7 @@ Function: LookupRowByYearAndMax
 
 ```
 Scenario: LookupRowByYearAndMaxExamples
-  Function LookupRowByYearAndMax
+  function LookupRowByYearAndMax
   ValidationTable
     | Year | Income | TaxRate | Tax     |
     | 2024 | 10000  | 0.41    | 4100    | 

@@ -4,14 +4,14 @@ Enum: ValidEnum
   Third
 
 Scenario: EnumDefault
-  Function:
+  function
     Results
       ValidEnum Result
   Results
     Result = ValidEnum.First
 
 Scenario: EnumParameterDefault
-  Function:
+  function
     Parameters
       ValidEnum Value = ValidEnum.Second
     Results
@@ -22,7 +22,7 @@ Scenario: EnumParameterDefault
     Result = ValidEnum.Second
 
 Scenario: EnumParameter
-  Function:
+  function
     Parameters
       ValidEnum Value = ValidEnum.Third
     Results
@@ -35,7 +35,7 @@ Scenario: EnumParameter
     Result = ValidEnum.Second
 
 Scenario: EnumInCode
-  Function:
+  function
     Results
       ValidEnum Result
     Code
@@ -44,7 +44,7 @@ Scenario: EnumInCode
     Result = ValidEnum.Second
 
 Scenario: EnumDeclarationInCode
-  Function:
+  function
     Results
       ValidEnum Result
     Code

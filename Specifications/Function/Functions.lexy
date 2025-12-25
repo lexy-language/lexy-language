@@ -1,8 +1,8 @@
-Function: UnknownFunction
+function UnknownFunction
   Code
     unknown()
 
 Scenario: Unknown
-  Function UnknownFunction
+  function UnknownFunction
   ExpectErrors
     "Invalid function name: 'unknown'"

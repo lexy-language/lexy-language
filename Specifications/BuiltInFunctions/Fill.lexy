@@ -2,7 +2,7 @@ Enum: SimpleEnum
   First
   Next
 
-Function: SimpleTarget
+function SimpleTarget
   Parameters
     number NumberValue
     string StringValue
@@ -22,7 +22,7 @@ Function: SimpleTarget
     EnumResult = EnumValue
 
 Scenario: FillNoParameters
-  Function:
+  function
     Parameters
     Results
     Code
@@ -31,7 +31,7 @@ Scenario: FillNoParameters
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
 Scenario: FillSingleParameters
-  Function:
+  function
     Parameters
       number NumberValue
     Results
@@ -46,7 +46,7 @@ Scenario: FillSingleParameters
 
 Scenario: FillMultipleParameters
 # only corresponding parameters should be mapped
-  Function:
+  function
     Parameters
       number NumberValue
       string StringValue
@@ -81,7 +81,7 @@ Scenario: FillMultipleParameters
 
 
 Scenario: FillInIfScopeParameters
-  Function:
+  function
     Parameters
       boolean Evil
       number NumberValueParent

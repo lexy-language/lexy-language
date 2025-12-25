@@ -1,7 +1,7 @@
 Include "FunctionSimple"
 
 Scenario: Simple
-  Function FunctionSimple
+  function FunctionSimple
   Parameters
     Value = 3
   Results

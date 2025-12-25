@@ -1,4 +1,4 @@
-Function: FunctionSimple
+function FunctionSimple
   Parameters
     number Value
   Results

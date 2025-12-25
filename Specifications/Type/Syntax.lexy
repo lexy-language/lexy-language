@@ -18,7 +18,7 @@ Type: CustomType
   NestedType Complex
 
 Scenario: FieldsShouldHaveDefaultValue
-  Function:
+  function
     Parameters
     Results
       CustomType Result
@@ -35,7 +35,7 @@ Scenario: FieldsShouldHaveDefaultValue
     Result.Complex.InnerEnum = CustomEnum.First
 
 Scenario: NestedFieldsShouldBeAssignableAndReadable
-  Function:
+  function
     Parameters
     Results
       CustomType Result
@@ -54,7 +54,7 @@ Scenario: NestedFieldsShouldBeAssignableAndReadable
 
 
 Scenario: ComplexTypeAsParameter
-  Function:
+  function
     Parameters
       CustomType Value
     Results

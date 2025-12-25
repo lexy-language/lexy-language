@@ -1,4 +1,4 @@
-Function: Function1
+function Function1
   Parameters
     number Value
   Results
@@ -6,7 +6,7 @@ Function: Function1
   Code
     Function2()
 
-Function: Function2
+function Function2
   Parameters
     number Value
   Results
@@ -15,7 +15,7 @@ Function: Function2
     Function1()
 
 Scenario: CallCircularFunction
-  Function Function1
+  function Function1
   ExpectErrors
     "Circular reference detected in: 'Function1'"
     "Circular reference detected in: 'Function2'"

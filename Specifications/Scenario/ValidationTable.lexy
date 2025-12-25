@@ -1,5 +1,5 @@
 Scenario: ValidationTableWithNestedVariables
-  Function:
+  function
     Parameters
       number Value1
       string Value2
@@ -25,7 +25,7 @@ Type: CustomType
   ComplexType Complex
 
 Scenario: ValidationTableWithNestedResults
-  Function:
+  function
     Parameters
       number Value1
       number Value2
@@ -43,7 +43,7 @@ Scenario: ValidationTableWithNestedResults
     | 999    | 555    | 999                | 555                        |
 
 Scenario: ValidationTableWithNestedParameters
-  Function:
+  function
     Parameters
       CustomType Value
     Results

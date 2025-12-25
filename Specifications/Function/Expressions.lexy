@@ -1,5 +1,5 @@
 Scenario: Addition
-  Function:
+  function
     Results
       number Result
     Code

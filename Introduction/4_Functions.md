@@ -21,7 +21,7 @@ Each variable needs a type, this is places before the variable name. Lexy suppor
 - boolean: represents true or false
 
 ```
-Function: IfUsage
+function IfUsage
   Parameters
     boolean Married
     number Income
@@ -43,7 +43,7 @@ On top of this you can define your own Enum, Table and Complex types. They are c
 In a code block you can declare variables by specifying the type or using the `var` statement.
 
 ```
-Function: VariableDeclaration
+function VariableDeclaration
   Code
     boolean ExplicitBooleanVariable = true
     var ImplicitBooleanVariable = false
@@ -56,7 +56,7 @@ Function: VariableDeclaration
 The `if`, `elseif` and `else` statements control the flow based on certain conditions.
 
 ```
-Function: IfElseUsage
+function IfElseUsage
   Parameters
     boolean Married
     boolean TaxExemption
@@ -76,7 +76,7 @@ Function: IfElseUsage
 A `switch` statement controls the flow of the code  based on a cetain value. A `case` statement defines the value, a `default` statement is executed when none of the cases matched.
 
 ```
-Function: SwitchUsage
+function SwitchUsage
   Parameters
     number Children
   Results
@@ -110,7 +110,7 @@ You can use the following operators to compare variables. The result of comparin
 | ( )      | Define the priority of a calculation statement
 
 ```
-Function: CalculationOperators
+function CalculationOperators
   Parameters
     number YearlyIncome
   Results
@@ -143,7 +143,7 @@ You can use the following operators to compare variables. The result of comparin
 | \>=      | Checks whether one variable is greater than or equal another variable
 
 ```
-Function: ComparisonOperators
+function ComparisonOperators
   Parameters
     number YearlyIncome
   Results 

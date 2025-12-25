@@ -3,16 +3,16 @@ Table: SimpleTable
   | 0 | 0 |
   | 1 | 1 |
 
-Function: IncludeSimpleTableFunction
+function IncludeSimpleTableFunction
   Parameters
   Results
     number Result
   Code
 
 Scenario: IncludeSimpleTable
-  Function IncludeSimpleTableFunction
+  function IncludeSimpleTableFunction
 
-Function: GetCountSimpleTableFunction
+function GetCountSimpleTableFunction
   Parameters
   Results
     number Result
@@ -20,7 +20,7 @@ Function: GetCountSimpleTableFunction
     Result = SimpleTable.Count
 
 Scenario: GetCountSimpleTable
-  Function GetCountSimpleTableFunction
+  function GetCountSimpleTableFunction
   Results
     Result = 2
 

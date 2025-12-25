@@ -1,5 +1,5 @@
 Scenario: NestedParametersShouldBeAssignableAndReadable
-  Function:
+  function
     Parameters
       CustomType Result
     Results
@@ -17,7 +17,7 @@ Type: ComplexType
   number Value
 
 Scenario: UnknownNestedField
-  Function:
+  function
   ValidationTable
     | Result.Value |
   ExpectErrors

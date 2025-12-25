@@ -1,5 +1,5 @@
 Scenario: NumberIntAsParameterDefault
-  Function:
+  function
     Parameters
       number Value = 123
     Results
@@ -10,7 +10,7 @@ Scenario: NumberIntAsParameterDefault
     Result = 123
 
 Scenario: NumberIntAsParameter
-  Function:
+  function
     Parameters
       number Value = 123
     Results
@@ -23,7 +23,7 @@ Scenario: NumberIntAsParameter
     Result = 456
 
 Scenario: NumberDecimalAsParameter
-  Function:
+  function
     Parameters
       number Value = 123.45
     Results
@@ -34,7 +34,7 @@ Scenario: NumberDecimalAsParameter
     Result = 123.45
 
 Scenario: NumberIntInCode
-  Function:
+  function
     Results
       number Result
     Code
@@ -43,7 +43,7 @@ Scenario: NumberIntInCode
     Result = 123
 
 Scenario: NumberDecimalInCode
-  Function:
+  function
     Results
       number Result
     Code
@@ -52,7 +52,7 @@ Scenario: NumberDecimalInCode
     Result = 123.45
 
 Scenario: NumberVariableDeclarationInCode
-  Function:
+  function
     Parameters
       number Value
     Results
@@ -67,7 +67,7 @@ Scenario: NumberVariableDeclarationInCode
     Result = 123.45
 
 Scenario: NumberVariableDeclarationInCodeWithDefault
-  Function:
+  function
     Results
       number Result
     Code
@@ -77,7 +77,7 @@ Scenario: NumberVariableDeclarationInCodeWithDefault
     Result = 123.45
 
 Scenario: InvalidNumberEndsWithLetter
-  Function:
+  function
     Results
       number Result
     Code
@@ -86,7 +86,7 @@ Scenario: InvalidNumberEndsWithLetter
     "Invalid number token character: 'A'"
 
 Scenario: InvalidNumberInitializeString
-  Function:
+  function
     Parameters
       number Value = "1"
     Results
@@ -97,7 +97,7 @@ Scenario: InvalidNumberInitializeString
     "Invalid default value '1'. (type: 'number')"
 
 Scenario: InvalidNumberInitializeBoolean
-  Function:
+  function
     Parameters
       number Value = true
     Results
@@ -108,7 +108,7 @@ Scenario: InvalidNumberInitializeBoolean
     "Invalid default value 'true'. (type: 'number')"
 
 Scenario: InvalidNumberInitializeDate
-  Function:
+  function
     Parameters
       number Value = d"2024-12-23T17:51:15"
     Results

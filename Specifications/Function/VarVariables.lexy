@@ -3,7 +3,7 @@ Enum: SimpleEnum
   Next
 
 Scenario: VarVariableDeclarations
-  Function:
+  function
     Results
       number ResultNumber
       string ResultString
@@ -29,7 +29,7 @@ Scenario: VarVariableDeclarations
     ResultEnum = SimpleEnum.Next
 
 Scenario: VarVariableDeclarationNumber
-  Function:
+  function
     Results
       number Result
     Code
@@ -39,7 +39,7 @@ Scenario: VarVariableDeclarationNumber
     Result = 777
 
 Scenario: InvalidVariableName
-  Function:
+  function
     Results
       number Result
     Code
@@ -50,7 +50,7 @@ Scenario: InvalidVariableName
     "Invalid identifier: 'Value'"
 
 Scenario: DuplicatedVariableName
-  Function:
+  function
     Results
       number Result
     Code

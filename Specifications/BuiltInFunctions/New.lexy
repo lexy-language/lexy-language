@@ -6,7 +6,7 @@ Table: StringTable
   | "d"                | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
 Scenario: NewTableRow
-  Function:
+  function
     Results
       string StringResult
     Code
@@ -15,7 +15,7 @@ Scenario: NewTableRow
   Results
     StringResult = ""
 
-Function: SimpleTarget
+function SimpleTarget
   Parameters
     string StringValue = "333"
   Results
@@ -26,7 +26,7 @@ Function: SimpleTarget
     StringResult = StringValue
 
 Scenario: NewFunctionParameters
-  Function:
+  function
     Results
       string StringResult
     Code
@@ -36,7 +36,7 @@ Scenario: NewFunctionParameters
     StringResult = "333"
 
 Scenario: NewFunctionParametersInvalidMember
-  Function:
+  function
     Results
       string StringResult
     Code
@@ -46,7 +46,7 @@ Scenario: NewFunctionParametersInvalidMember
     "Invalid identifier: 'row.ResultNumber'"
 
 Scenario: NewFunctionResults
-  Function:
+  function
     Results
       number NumberResult
     Code
@@ -56,7 +56,7 @@ Scenario: NewFunctionResults
     NumberResult = 0
 
 Scenario: NewFunctionResultsInvalidMember
-  Function:
+  function
     Results
       number NumberResult
     Code

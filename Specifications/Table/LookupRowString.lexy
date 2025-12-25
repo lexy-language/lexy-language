@@ -5,7 +5,7 @@ Table: StringTable
   | "c"                | 444                 | "444"               | false                 | d"2024-12-24T23:44:44"   |
   | "d"                | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
-Function: SimpleLookUpNumberFunction
+function SimpleLookUpNumberFunction
   Parameters
     string Value
   Results
@@ -15,21 +15,21 @@ Function: SimpleLookUpNumberFunction
     Result = row.ResultNumber
 
 Scenario: LookUpNumber
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = "b"
   Results
     Result = 333
 
 Scenario: LookUpNumberWithDecimal
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = "ca"
   Results
     Result = 444
 
 Scenario: LookUpNumberAfterRange
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = "e"
   Results
@@ -37,7 +37,7 @@ Scenario: LookUpNumberAfterRange
 
 
 
-Function: SimpleLookUpStringFunction
+function SimpleLookUpStringFunction
   Parameters
     string Value
   Results
@@ -47,7 +47,7 @@ Function: SimpleLookUpStringFunction
     Result = row.ResultString
 
 Scenario: LookUpString
-  Function SimpleLookUpStringFunction
+  function SimpleLookUpStringFunction
   Parameters
     Value = "b"
   Results
@@ -55,7 +55,7 @@ Scenario: LookUpString
 
 
 
-Function: SimpleLookUpBooleanFunction
+function SimpleLookUpBooleanFunction
   Parameters
     string Value
   Results
@@ -65,7 +65,7 @@ Function: SimpleLookUpBooleanFunction
     Result = row.ResultBoolean
 
 Scenario: LookUpBoolean
-  Function SimpleLookUpBooleanFunction
+  function SimpleLookUpBooleanFunction
   Parameters
     Value = "b"
   Results
@@ -74,7 +74,7 @@ Scenario: LookUpBoolean
 
 
 
-Function: SimpleLookUpDateFunction
+function SimpleLookUpDateFunction
   Parameters
     string Value
   Results
@@ -84,7 +84,7 @@ Function: SimpleLookUpDateFunction
     Result = row.ResultDate
 
 Scenario: LookUpDate
-  Function SimpleLookUpDateFunction
+  function SimpleLookUpDateFunction
   Parameters
     Value = "b"
   Results

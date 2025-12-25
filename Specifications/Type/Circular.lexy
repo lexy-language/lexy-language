@@ -13,7 +13,7 @@ Type: CustomType
   NestedType Nested
 
 Scenario: ScenarioCircularReference
-  Function:
+  function
     Code
       CustomType invalidType
   ExpectComponentErrors

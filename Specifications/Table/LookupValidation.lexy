@@ -13,7 +13,7 @@ Table: OtherTable
   | "d"                | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
 Scenario: InvalidSearchColumn
-  Function:
+  function
     Results
       number Result
     Code
@@ -22,7 +22,7 @@ Scenario: InvalidSearchColumn
     "Invalid argument 2. Should be search column."
 
 Scenario: InvalidResultColumn
-  Function:
+  function
     Results
       number Result
     Code
@@ -31,7 +31,7 @@ Scenario: InvalidResultColumn
     "Invalid argument 3. Should be result column."
 
 Scenario: InvalidSearchColumnDifferentTable
-  Function:
+  function
     Results
       number Result
     Code
@@ -40,7 +40,7 @@ Scenario: InvalidSearchColumnDifferentTable
     "Result column table 'OtherTable' should be table name 'StringTable'"
 
 Scenario: InvalidResultColumnDifferentTable
-  Function:
+  function
     Results
       number Result
     Code
@@ -49,7 +49,7 @@ Scenario: InvalidResultColumnDifferentTable
     "Result column table 'OtherTable' should be table name 'StringTable'"
 
 Scenario: UnknownTable
-  Function:
+  function
     Results
       number Result
     Code

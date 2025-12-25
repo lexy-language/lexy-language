@@ -5,7 +5,7 @@ Table: DateTable
   | d"2024-12-25T11:33:33" | 444                 | "444"               | false                 | d"2024-12-24T23:44:44"   |
   | d"2024-12-25T11:44:44" | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
-Function: SimpleLookUpNumberFunction
+function SimpleLookUpNumberFunction
   Parameters
     date Value
   Results
@@ -15,21 +15,21 @@ Function: SimpleLookUpNumberFunction
     Result = row.ResultNumber
 
 Scenario: LookUpNumber
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = d"2024-12-25T11:22:22"
   Results
     Result = 333
 
 Scenario: LookUpNumberWithDecimal
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = d"2024-12-25T11:36:33"
   Results
     Result = 444
 
 Scenario: LookUpNumberAfterRange
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = d"2024-12-25T11:55:55"
   Results
@@ -37,7 +37,7 @@ Scenario: LookUpNumberAfterRange
 
 
 
-Function: SimpleLookUpStringFunction
+function SimpleLookUpStringFunction
   Parameters
     date Value
   Results
@@ -47,7 +47,7 @@ Function: SimpleLookUpStringFunction
     Result = row.ResultString
 
 Scenario: LookUpString
-  Function SimpleLookUpStringFunction
+  function SimpleLookUpStringFunction
   Parameters
     Value = d"2024-12-25T11:22:22"
   Results
@@ -55,7 +55,7 @@ Scenario: LookUpString
 
 
 
-Function: SimpleLookUpBooleanFunction
+function SimpleLookUpBooleanFunction
   Parameters
     date Value
   Results
@@ -65,7 +65,7 @@ Function: SimpleLookUpBooleanFunction
     Result = row.ResultBoolean
 
 Scenario: LookUpBoolean
-  Function SimpleLookUpBooleanFunction
+  function SimpleLookUpBooleanFunction
   Parameters
     Value = d"2024-12-25T11:22:22"
   Results
@@ -74,7 +74,7 @@ Scenario: LookUpBoolean
 
 
 
-Function: SimpleLookUpDateFunction
+function SimpleLookUpDateFunction
   Parameters
     date Value
   Results
@@ -84,7 +84,7 @@ Function: SimpleLookUpDateFunction
     Result = row.ResultDate
 
 Scenario: LookUpDate
-  Function SimpleLookUpDateFunction
+  function SimpleLookUpDateFunction
   Parameters
     Value = d"2024-12-25T11:22:22"
   Results

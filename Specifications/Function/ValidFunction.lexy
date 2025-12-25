@@ -1,4 +1,4 @@
-Function: ValidFunction
+function ValidFunction
   Parameters
     number Value
   Results

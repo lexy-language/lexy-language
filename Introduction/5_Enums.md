@@ -15,7 +15,7 @@ If used in a function, the input will be limited to these values. Check Execute 
 An If or Switch statement can be used in the code to calculate something different based on the existing values.
 
 ```
-Function: EnumWithIfStatement
+function EnumWithIfStatement
   Parameters
     MaritalStatus MaritalStatus
   Results
@@ -31,7 +31,7 @@ Function: EnumWithIfStatement
 
 ```
 Scenario: EnumWithIfStatementExamples
-  Function EnumWithIfStatement
+  function EnumWithIfStatement
   ValidationTable
     | MaritalStatus            | Tax  |
     | MaritalStatus.Single     | 0.45 |
@@ -40,7 +40,7 @@ Scenario: EnumWithIfStatementExamples
 ```
 
 ```
-Function: EnumWithSwitchStatement
+function EnumWithSwitchStatement
   Parameters
     MaritalStatus MaritalStatus
   Results
@@ -59,7 +59,7 @@ Function: EnumWithSwitchStatement
 
 ```
 Scenario: EnumWithSwitchStatementExamples
-  Function EnumWithSwitchStatement
+  function EnumWithSwitchStatement
   ValidationTable
     | MaritalStatus                  | Tax  |
     | MaritalStatus.Single           | 0.45 |

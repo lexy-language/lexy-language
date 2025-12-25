@@ -1,7 +1,7 @@
 Include "Enum"
 Include "Table"
 
-Function: IncludeFunction
+function IncludeFunction
   Parameters
     number NumberValue
     IncludeEnum EnumValue

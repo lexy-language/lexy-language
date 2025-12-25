@@ -13,7 +13,7 @@ Table: StringTable
   | TableEnum.C           | 444                 | "444"               | false                 | d"2024-12-24T23:44:44"   |
   | TableEnum.D           | 555                 | "555"               | true                  | d"2024-12-24T23:55:55"   |
 
-Function: SimpleLookUpNumberFunction
+function SimpleLookUpNumberFunction
   Parameters
     TableEnum Value
   Results
@@ -22,21 +22,21 @@ Function: SimpleLookUpNumberFunction
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultNumber)
 
 Scenario: LookUpNumber
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = TableEnum.B
   Results
     Result = 333
 
 Scenario: LookUpNumberWithDecimal
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = TableEnum.CA
   Results
     Result = 444
 
 Scenario: LookUpEnumAfterRange
-  Function SimpleLookUpNumberFunction
+  function SimpleLookUpNumberFunction
   Parameters
     Value = TableEnum.E
   Results
@@ -44,7 +44,7 @@ Scenario: LookUpEnumAfterRange
 
 
 
-Function: SimpleLookUpEnumFunction
+function SimpleLookUpEnumFunction
   Parameters
     TableEnum Value
   Results
@@ -53,7 +53,7 @@ Function: SimpleLookUpEnumFunction
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
 
 Scenario: LookUpString
-  Function SimpleLookUpEnumFunction
+  function SimpleLookUpEnumFunction
   Parameters
     Value = TableEnum.B
   Results
@@ -61,7 +61,7 @@ Scenario: LookUpString
 
 
 
-Function: SimpleLookUpBooleanFunction
+function SimpleLookUpBooleanFunction
   Parameters
     TableEnum Value
   Results
@@ -70,7 +70,7 @@ Function: SimpleLookUpBooleanFunction
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultBoolean)
 
 Scenario: LookUpBoolean
-  Function SimpleLookUpBooleanFunction
+  function SimpleLookUpBooleanFunction
   Parameters
     Value = TableEnum.B
   Results
@@ -79,7 +79,7 @@ Scenario: LookUpBoolean
 
 
 
-Function: SimpleLookUpDateFunction
+function SimpleLookUpDateFunction
   Parameters
     TableEnum Value
   Results
@@ -88,7 +88,7 @@ Function: SimpleLookUpDateFunction
     Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultDate)
 
 Scenario: LookUpDate
-  Function SimpleLookUpDateFunction
+  function SimpleLookUpDateFunction
   Parameters
     Value = TableEnum.B
   Results

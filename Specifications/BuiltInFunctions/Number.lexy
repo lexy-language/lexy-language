@@ -1,5 +1,5 @@
 Scenario: Abs
-  Function:
+  function
     Results
       number Result
     Code
@@ -8,7 +8,7 @@ Scenario: Abs
     Result = 2
 
 Scenario: AbsNegative
-  Function:
+  function
     Results
       number Result
     Code
@@ -17,7 +17,7 @@ Scenario: AbsNegative
     Result = 2
 
 Scenario: Int
-  Function:
+  function
     Results
       number Result
     Code
@@ -26,7 +26,7 @@ Scenario: Int
     Result = 8
 
 Scenario: IntNegative
-  Function:
+  function
     Results
       number Result
     Code
@@ -35,7 +35,7 @@ Scenario: IntNegative
     Result = -9
 
 Scenario: Power
-  Function:
+  function
     Results
       number Result
     Code
@@ -44,7 +44,7 @@ Scenario: Power
     Result = 25
 
 Scenario: PowerDecimal
-  Function:
+  function
     Results
       number Result
     Code
@@ -53,7 +53,7 @@ Scenario: PowerDecimal
     Result = 2401077.222
 
 Scenario: PowerDivision
-  Function:
+  function
     Results
       number Result
     Code
@@ -61,7 +61,7 @@ Scenario: PowerDivision
   Results
     Result = 5.656854249
 
-Function: RoundFunction
+function RoundFunction
   Parameters
     number Value
     number Digits
@@ -71,7 +71,7 @@ Function: RoundFunction
     Result = ROUND(Value, Digits)
 
 Scenario: RoundFraction1
-  Function RoundFunction
+  function RoundFunction
   Parameters
     Value = 2.15
     Digits = 1
@@ -79,7 +79,7 @@ Scenario: RoundFraction1
     Result = 2.2
 
 Scenario: RoundFraction2
-  Function RoundFunction
+  function RoundFunction
   Parameters
     Value = 2.149
     Digits = 1
@@ -87,7 +87,7 @@ Scenario: RoundFraction2
     Result = 2.1
 
 Scenario: RoundFraction3
-  Function RoundFunction
+  function RoundFunction
   Parameters
     Value = -1.475
     Digits = 2

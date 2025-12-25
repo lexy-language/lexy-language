@@ -1,5 +1,5 @@
 Scenario: UnknownType
-  Function:
+  function
     Parameters
       int Value
     Results
@@ -8,7 +8,7 @@ Scenario: UnknownType
     "Invalid type: 'int'"
 
 Scenario: InvalidVariableDefaultValue
-  Function:
+  function
     Parameters
       int Value = 5 + 33
     Results

@@ -1,6 +1,6 @@
 Include "CircularInclude"
 
-Function: IncludeFunction
+function IncludeFunction
   Results
     string Result
   Code

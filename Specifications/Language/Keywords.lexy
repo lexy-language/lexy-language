@@ -1,4 +1,4 @@
-Function: FunctionKeywords
+function FunctionKeywords
 # Validate function keywords
   Parameters
   Results
@@ -6,13 +6,13 @@ Function: FunctionKeywords
 
 Scenario: ScenarioKeywords
 # Validate Scenario keywords
-  Function FunctionKeywords
+  function FunctionKeywords
   Parameters
   Results
 
 Scenario: InlineFunctionKeywords
 # Validate Scenario keywords
-  Function:
+  function
   # Validate function keywords
     Parameters
     Results
@@ -22,7 +22,7 @@ Scenario: InlineFunctionKeywords
 
 Scenario: ScenarioWithValidationTableKeywords
 # Validate Scenario with table keywords
-  Function:
+  function
     Parameters
       number a
   ValidationTable
@@ -33,7 +33,7 @@ Enum: ValidateEnumKeyword
   First = 0
   Second = 1
 
-Function: EnumKeywordFunction
+function EnumKeywordFunction
 # Validate enum keywords
   Parameters
     ValidateEnumKeyword Value
@@ -44,13 +44,13 @@ Function: EnumKeywordFunction
 
 Scenario: EnumKeywords
 # Validate enum keywords
-  Function EnumKeywordFunction
+  function EnumKeywordFunction
   Parameters
     Value = ValidateEnumKeyword.Second
   Results
     Result = ValidateEnumKeyword.Second
 
-Function: IntVariableFunction
+function IntVariableFunction
 # Validate number variable type with int
   Parameters
     number InInt
@@ -60,13 +60,13 @@ Function: IntVariableFunction
     OutInt = InInt
 
 Scenario: IntVariable
-  Function IntVariableFunction
+  function IntVariableFunction
   Parameters
     InInt = 777
   Results
     OutInt = 777
 
-Function: NumberVariableFunction
+function NumberVariableFunction
 # Validate number variable type with decimal
   Parameters
     number InNumber
@@ -76,13 +76,13 @@ Function: NumberVariableFunction
     OutNumber = InNumber
 
 Scenario: NumberVariable
-  Function NumberVariableFunction
+  function NumberVariableFunction
   Parameters
     InNumber = 999
   Results
     OutNumber = 999
 
-Function: BooleanVariableFunction
+function BooleanVariableFunction
 # Validate boolean variable type
   Parameters
     boolean InBoolean
@@ -92,13 +92,13 @@ Function: BooleanVariableFunction
     OutBoolean = InBoolean
 
 Scenario: BooleanVariable
-  Function BooleanVariableFunction
+  function BooleanVariableFunction
   Parameters
     InBoolean = true
   Results
     OutBoolean = true
 
-Function: DateVariableFunction
+function DateVariableFunction
 # Validate date variable type
   Parameters
     date InDate
@@ -108,18 +108,18 @@ Function: DateVariableFunction
     OutDate = InDate
 
 Scenario: DateVariable
-  Function DateVariableFunction
+  function DateVariableFunction
   Parameters
     InDate = d"2022-12-16T13:26:55"
   Results
     OutDate = d"2022-12-16T13:26:55"
 
-Function: UnknownFunctionKeywordFunction
+function UnknownFunctionKeywordFunction
 # Validate function keywords
   Paraeters
 
 Scenario: UnknownFunctionKeyword
-  Function UnknownFunctionKeywordFunction
+  function UnknownFunctionKeywordFunction
   ExpectErrors
     "Invalid token 'Paraeters'"
 
@@ -129,7 +129,7 @@ Table: ValidateTableKeyword
   | 0 | 0 |
   | 1 | 1 |
 
-Function: TableKeywordFunction
+function TableKeywordFunction
 # Validate table keywords
   Parameters
   Results
@@ -138,6 +138,6 @@ Function: TableKeywordFunction
     Result = ValidateTableKeyword.Count
 
 Scenario: TableKeywordScenario
-  Function TableKeywordFunction
+  function TableKeywordFunction
   Results
     Result = 2

@@ -1,4 +1,4 @@
-Function: SimpleFunction
+function SimpleFunction
   Parameters
     number Value
   Results
@@ -7,7 +7,7 @@ Function: SimpleFunction
     Result = Value
 
 Scenario: CallSimpleFunctionNewParameters
-  Function:
+  function
     Parameters
       number Value
     Results
@@ -23,7 +23,7 @@ Scenario: CallSimpleFunctionNewParameters
     Result = 3
 
 Scenario: CallSimpleFunctionExplicitParameters
-  Function:
+  function
     Parameters
       number Value
     Results
@@ -38,7 +38,7 @@ Scenario: CallSimpleFunctionExplicitParameters
     Result = 3
 
 Scenario: CallSimpleFunctionImplicitParameters
-  Function:
+  function
     Parameters
       number Value
     Results

@@ -1,4 +1,4 @@
-Function: SimpleFunction
+function SimpleFunction
   Parameters
     number Value
   Results
@@ -6,7 +6,7 @@ Function: SimpleFunction
   Code
     Result = Value + 2
 
-Function: CallSimpleFunctionNewParametersFunction
+function CallSimpleFunctionNewParametersFunction
   Parameters
     number Value
   Results
@@ -18,7 +18,7 @@ Function: CallSimpleFunctionNewParametersFunction
     Result = results.Result
 
 Scenario: CallSimpleFunctionNewParameters
-  Function CallSimpleFunctionNewParametersFunction
+  function CallSimpleFunctionNewParametersFunction
   Parameters
     Value = 3
   ExecutionLogging

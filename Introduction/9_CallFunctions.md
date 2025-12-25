@@ -9,7 +9,7 @@ These functions can then be called from parent functions.
 
 In this example we have 3 different calculations with the similar parameters and the same results.
 ```
-Function: TaxCalculationForIT
+function TaxCalculationForIT
   Parameters
     number Income    
   Results
@@ -19,7 +19,7 @@ Function: TaxCalculationForIT
     TaxRate = 0.5
     Tax = Income * TaxRate
 
-Function: TaxCalculationForGovernment
+function TaxCalculationForGovernment
   Parameters
     number Income
     number Children
@@ -33,7 +33,7 @@ Function: TaxCalculationForGovernment
       TaxRate = 0.4
     Tax = Income * TaxRate
 
-Function: TaxCalculationForDefault
+function TaxCalculationForDefault
   Parameters
     number Income
   Results
@@ -50,7 +50,7 @@ We can then implement a function that calls the 3 functions depending on value o
 the `Industry` parameter.
 
 ```
-Function: TaxCalculationPerIndustry
+function TaxCalculationPerIndustry
   Parameters
     string Industry
     number Income
@@ -77,7 +77,7 @@ Any parameter or result variables that doesn't have a corresponding variable in 
 
 ```
 Scenario: TaxCalculationPerIndustryExamples
-  Function TaxCalculationPerIndustry
+  function TaxCalculationPerIndustry
   ValidationTable
     | Industry     | Income | Children | TaxRate | Tax   | ProvinceTax |
     | "it"         | 100000 | 0        | 0.5     | 50000 | 0           |
@@ -91,7 +91,7 @@ Scenario: TaxCalculationPerIndustryExamples
 The `new` function will declare an empty complex type with default values.
 
 ```
-Function: DeclareNewParameterObject
+function DeclareNewParameterObject
   Parameters
     number Income
     number Children
@@ -103,7 +103,7 @@ Function: DeclareNewParameterObject
     Result = TaxCalculationForIT(parameters)
 
 Scenario: DeclareNewParameterObjectExamples
-  Function DeclareNewParameterObject
+  function DeclareNewParameterObject
   ValidationTable
     | Income | Children | Result.TaxRate | Result.Tax    |
     | 100000 | 0        | 0.5            | 50000         |
@@ -117,7 +117,7 @@ evey variable value that correspond to a field in the complex type,
 to the field of the variable.
 
 ```
-Function: FillParameterObject
+function FillParameterObject
   Parameters
     number Income
     number Children
@@ -129,7 +129,7 @@ Function: FillParameterObject
     Result = TaxCalculationForIT(parameters)
 
 Scenario: FillParameterObjectExamples
-  Function FillParameterObject
+  function FillParameterObject
   ValidationTable
     | Income | Children | Result.TaxRate | Result.Tax    |
     | 100000 | 0        | 0.5            | 50000         |
@@ -143,7 +143,7 @@ to the corresponding variables in the calling function. Field without a
 corresponding variable will be ignored.
 
 ```
-Function: ExtractResultsObject
+function ExtractResultsObject
   Parameters
     number Income
     number Children
@@ -156,7 +156,7 @@ Function: ExtractResultsObject
     extract(results)         # Tax and TaxRate will be set
 
 Scenario: ExtractResultsObjectExamples
-  Function ExtractResultsObject
+  function ExtractResultsObject
   ValidationTable
     | Income | Children | TaxRate | Tax    |
     | 100000 | 0        | 0.5     | 50000  |

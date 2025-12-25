@@ -1,11 +1,11 @@
-Function: DuplicateFunctionName
+function DuplicateFunctionName
 # Validate table keywords
   Results
     number Result
   Code
     Result = 1
 
-Function: DuplicateFunctionName
+function DuplicateFunctionName
 
 Table: DuplicateTableName
 # Validate table keywords
@@ -13,7 +13,7 @@ Table: DuplicateTableName
   | 0 | 0 |
   | 1 | 1 |
 
-Function: DuplicateTableName
+function DuplicateTableName
 
 Enum: DuplicateEnumName
   First = 1
