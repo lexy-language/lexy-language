@@ -160,7 +160,7 @@ function ScopedVariablesOutOfScopeFunction
 
 scenario ScopedVariablesOutOfScope
   function ScopedVariablesOutOfScopeFunction
-  ExpectErrors
+  expectErrors
     "Invalid identifier: 'numberValue'"
 
 
@@ -194,7 +194,7 @@ scenario ResultsShouldNotHaveADefaultValue
     results
       date Value = d"2024-12-25T16:57:45"
     Code
-  ExpectErrors
+  expectErrors
     "Result variable 'Value' should not have a default value."
 
 
@@ -205,7 +205,7 @@ scenario UnknownVariable
       date Value
     Code
       Result = DAY(Value)
-  ExpectErrors
+  expectErrors
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
 
@@ -218,7 +218,7 @@ scenario UnknownVariableInIfScope
       if Evil
         number Result
       Result = DAY(Value)
-  ExpectErrors
+  expectErrors
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
 
@@ -230,7 +230,7 @@ scenario InvalidAssignmentType
       date Result
     Code
       Result = DAY(Value)
-  ExpectErrors
+  expectErrors
     "Variable 'Result' of type 'date' is not assignable from expression of type 'number'."
 
 
@@ -243,6 +243,6 @@ scenario VariableWithIfType
       If Evil
         number Result
       Result = DAY(Value)
-  ExpectErrors
+  expectErrors
     "Invalid type: 'If'"
     "Invalid variable type 'If'"

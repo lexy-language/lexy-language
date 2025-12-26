@@ -62,7 +62,7 @@ scenario InvalidNumberEndsWithLetter
       string Result
     Code
       Result = "and
-  ExpectErrors
+  expectErrors
     "Invalid token at end of line. Closing quote expected."
 
 scenario ConcatenateStringInCode
@@ -82,7 +82,7 @@ scenario InvalidStringInitializeNumber
       string Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value '1'. (type: 'string')"
 
 scenario InvalidStringInitializeBoolean
@@ -93,7 +93,7 @@ scenario InvalidStringInitializeBoolean
       string Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'true'. (type: 'string')"
 
 scenario InvalidStringInitializeDate
@@ -104,5 +104,5 @@ scenario InvalidStringInitializeDate
       string Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value '2024-12-23T17:51:15'. (type: 'string')"

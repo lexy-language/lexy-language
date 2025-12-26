@@ -179,7 +179,7 @@ scenario ElseWithoutIf
         temp = 777
       Number = temp
   parameters
-  ExpectErrors
+  expectErrors
     "'else' should be following an 'if' statement. No 'if' statement found."
 
 scenario ElseifWithoutIf
@@ -193,7 +193,7 @@ scenario ElseifWithoutIf
         temp = 777
       Number = temp
   parameters
-  ExpectErrors
+  expectErrors
     "'elseif' should be following an 'if' statement. No 'if' statement found."
 
 scenario ElseifAfterElse
@@ -209,7 +209,7 @@ scenario ElseifAfterElse
         temp = 777
       Number = temp
   parameters
-  ExpectErrors
+  expectErrors
     "'else' should be following an 'if' statement. No 'if' statement found."
     "'elseif' should be following an 'if' statement. No 'if' statement found."
 
@@ -227,7 +227,7 @@ scenario IfWithNumberCondition
         temp = 777
       Number = temp
   parameters
-  ExpectErrors
+  expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 scenario IfWithNumberCalculationCondition
@@ -242,7 +242,7 @@ scenario IfWithNumberCalculationCondition
         temp = 777
       Number = temp
   parameters
-  ExpectErrors
+  expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
 
 scenario IfWithStringCondition
@@ -257,7 +257,7 @@ scenario IfWithStringCondition
         temp = 777
       Number = temp
   parameters
-  ExpectErrors
+  expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 function IfWithStringCalculationConditionFunction
@@ -274,7 +274,7 @@ function IfWithStringCalculationConditionFunction
 
 scenario IfWithStringCalculationCondition
   function IfWithStringCalculationConditionFunction
-  ExpectErrors
+  expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'string'."
 
 scenario IfWithDateCondition
@@ -289,7 +289,7 @@ scenario IfWithDateCondition
         temp = 777
       Number = temp
   parameters
-  ExpectErrors
+  expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'date'"
 
 

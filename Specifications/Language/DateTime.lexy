@@ -73,7 +73,7 @@ scenario InvalidDateInitializeString
       date Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value '1'. (type: 'date')"
 
 scenario InvalidDateInitializeNumber
@@ -84,7 +84,7 @@ scenario InvalidDateInitializeNumber
       date Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value '5'. (type: 'date')"
 
 scenario InvalidDateInitializeBoolean
@@ -95,5 +95,5 @@ scenario InvalidDateInitializeBoolean
       date Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'true'. (type: 'date')"

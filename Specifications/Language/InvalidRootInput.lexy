@@ -1,5 +1,5 @@
 aaa bbb ccc
 
 scenario InvalidKeyword
-  ExpectComponentErrors
+  expectComponentErrors
     "Invalid token 'aaa'. Keyword and name expected."

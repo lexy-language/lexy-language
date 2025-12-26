@@ -30,7 +30,7 @@ scenario TableVarAsColumnType
     | var Value | number Result |
     | 0 | 0 |
     | 1 | 1 |
-  ExpectErrors
+  expectErrors
     "No table header found."
     "(TableHeader) Invalid token"
 
@@ -40,7 +40,7 @@ scenario TableIncompleteHeader
     | number Value | number
     | 0 | 0 |
     | 1 | 1 |
-  ExpectErrors
+  expectErrors
     "No table header found."
     "Token expected: 'StringLiteralToken'"
     "Token expected: 'TableSeparatorToken'"
@@ -48,7 +48,7 @@ scenario TableIncompleteHeader
 
 scenario TableWithoutHeader
   table SimpleTable
-  ExpectErrors
+  expectErrors
     "No table header found"
 
 
@@ -57,7 +57,7 @@ scenario TableWithWrongValueTypes
     | number Value | string Result |
     | "0" | "0" |
     | 1 | 1 |
-  ExpectErrors
+  expectErrors
     "Invalid value type 'string'. Expected 'number'."
     "Invalid value type 'number'. Expected 'string'."
 
@@ -66,7 +66,7 @@ scenario TableWithInvalidNumberOfValues
   table SimpleTable
     | string Value | string Result |
     | "0" | "0" | "0" |
-  ExpectErrors
+  expectErrors
     "Invalid number of values 3. Expected 2."
 
 
@@ -75,7 +75,7 @@ scenario TableWithInvalidNumberOfValuesLess
   table SimpleTable
     | string Value | string Result |
     | "0" |
-  ExpectErrors
+  expectErrors
     "Invalid number of values 1. Expected 2."
 
 
@@ -85,5 +85,5 @@ scenario TableWithUnclosedRow
   table SimpleTable
     | string Value | string Result |
     | "0" | "a"
-  ExpectErrors
+  expectErrors
     "Token expected: 'TableSeparatorToken'"

@@ -4,7 +4,7 @@ scenario UnknownType
       int Value
     results
     Code
-  ExpectErrors
+  expectErrors
     "Invalid type: 'int'"
 
 scenario InvalidVariableDefaultValue
@@ -13,5 +13,5 @@ scenario InvalidVariableDefaultValue
       int Value = 5 + 33
     results
     Code
-  ExpectErrors
+  expectErrors
     "Invalid variable declaration. Expected literal token."

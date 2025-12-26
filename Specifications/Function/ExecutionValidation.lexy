@@ -82,7 +82,7 @@ scenario ValidationSuccessful
 
 scenario ValidationParametersMissing
   function NoParameterDefaultValues
-  ExpectExecutionErrors
+  expectExecutionErrors
     "Validation failed:"
     "'StringValue' should have a 'string' value"
     "'NumberValue' should have a 'number' value"
@@ -120,7 +120,7 @@ scenario ValidationWrongType
         NestedEnumValue = 123
       ChildEnumValue = 456
     EnumValue = 789
-  ExpectExecutionErrors
+  expectExecutionErrors
     "Validation failed:"
     "'StringValue' should have a 'string' value. Invalid type:"
     "'NumberValue' should have a 'number' value. Invalid type:"
@@ -151,7 +151,7 @@ function NoParameterSomeDefaultValues
 
 scenario ValidateDefaultValuesMissing
   function NoParameterSomeDefaultValues
-  ExpectExecutionErrors
+  expectExecutionErrors
     "Validation failed:"
     "'StringValue' should have a 'string' value"
     "'NumberValue' should have a 'number' value"

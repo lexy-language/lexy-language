@@ -1,5 +1,5 @@
 include "FunctionUnknown"
 
 scenario UnknownInclude
-  ExpectComponentErrors
+  expectComponentErrors
     "Invalid include file name 'FunctionUnknown'"

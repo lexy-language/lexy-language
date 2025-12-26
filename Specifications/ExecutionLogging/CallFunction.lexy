@@ -21,31 +21,31 @@ scenario CallSimpleFunctionNewParameters
   function CallSimpleFunctionNewParametersFunction
   parameters
     Value = 3
-  ExecutionLogging
-    Log "Execute: CallSimpleFunctionNewParametersFunction"
-      Log "Parameters"
+  executionLogging
+    log "Execute: CallSimpleFunctionNewParametersFunction"
+      log "Parameters"
         Value = 3
-      Log "SimpleFunction.Parameters params"
+      log "SimpleFunction.Parameters params"
         params =
           Value = 0
-      Log "params.Value = Value"
+      log "params.Value = Value"
         Value = 3
         params.Value = 3
-      Log "var result = SimpleFunction(params)"
+      log "var result = SimpleFunction(params)"
         params =
           Value = 3
         result =
           Result = 5
-      Log "Execute: SimpleFunction"
-        Log "Parameters"
+      log "Execute: SimpleFunction"
+        log "Parameters"
           Value = 3
-        Log "Result = Value + 2"
+        log "Result = Value + 2"
           Value = 3
           Result = 5
-        Log "Results"
+        log "Results"
           Result = 5
-      Log "Result = result.Result"
+      log "Result = result.Result"
         result.Result = 5
         Result = 5
-      Log "Results"
+      log "Results"
         Result = 5

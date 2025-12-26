@@ -120,7 +120,7 @@ function UnknownFunctionKeywordFunction
 
 scenario UnknownFunctionKeyword
   function UnknownFunctionKeywordFunction
-  ExpectErrors
+  expectErrors
     "Invalid token 'Paraeters'"
 
 table ValidateTableKeyword

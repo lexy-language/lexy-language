@@ -16,6 +16,6 @@ scenario ScenarioCircularReference
   function
     Code
       CustomType invalidType
-  ExpectComponentErrors
+  expectComponentErrors
     "Circular reference detected in: 'NestedType'"
     "Circular reference detected in: 'CustomType'"

@@ -8,7 +8,7 @@ scenario NestedParametersShouldBeAssignableAndReadable
     Code
       Value1 = Result.NumberValue
       Value2 = Result.Complex.InnerNumber
-  ExpectErrors
+  expectErrors
     "Invalid type: 'CustomType'"
     "Invalid identifier: 'Result.NumberValue'"
     "Invalid identifier: 'Result.Complex.InnerNumber'"
@@ -20,5 +20,5 @@ scenario UnknownNestedField
   function
   validationTable
     | Result.Value |
-  ExpectErrors
+  expectErrors
     "Unknown variable: 'Result.Value'"

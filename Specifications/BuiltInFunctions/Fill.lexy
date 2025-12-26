@@ -27,7 +27,7 @@ scenario FillNoParameters
     results
     Code
       var params = fill(SimpleTarget.Parameters)
-  ExpectErrors
+  expectErrors
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
 scenario FillSingleParameters

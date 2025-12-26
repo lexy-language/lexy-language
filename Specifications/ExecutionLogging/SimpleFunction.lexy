@@ -6,12 +6,12 @@ scenario SimpleFunctionCall
       number Result
     Code
       Result = YEAR(Value)
-  ExecutionLogging
-    Log "Execute: SimpleFunctionCallFunction"
-      Log "Parameters"
+  executionLogging
+    log "Execute: SimpleFunctionCallFunction"
+      log "Parameters"
         Value = d"2024-12-25T16:57:45"
-      Log "  Result = YEAR(Value)"
+      log "  Result = YEAR(Value)"
         Value = d"2024-12-25T16:57:45"
         Result = 2024
-      Log "Results"
+      log "Results"
         Result = 2024

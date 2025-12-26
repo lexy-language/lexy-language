@@ -2,7 +2,7 @@ scenario IndentErrorNextLevel
   function
       results
       number Result
-  ExpectErrors
+  expectErrors
     "ERROR - Invalid indent: 3"
     "ERROR - Invalid indent: 3"
 
@@ -10,6 +10,6 @@ scenario IndentErrorInvalidSpaces
   function
      results
       number Result
-  ExpectErrors
+  expectErrors
     "ERROR - Invalid indent: 3"
     "Wrong number of indent spaces 5. Should be multiplication of 2."

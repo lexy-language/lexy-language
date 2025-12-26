@@ -10,7 +10,7 @@ scenario InvalidParameterType
       ValidateEnumKeyword Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid type: 'InvalidValidateEnumKeyword'"
     "Invalid identifier: 'Value'"
 
@@ -19,7 +19,7 @@ scenario DuplicatedParameterName
     parameters
       number Value
       ValidateEnumKeyword Value
-  ExpectErrors
+  expectErrors
     "Duplicated variable name: 'Value'"
 
 scenario DuplicatedResultName
@@ -27,7 +27,7 @@ scenario DuplicatedResultName
     parameters
       number Value
       ValidateEnumKeyword Value
-  ExpectErrors
+  expectErrors
     "Duplicated variable name: 'Value'"
 
 scenario DuplicatedParameterResultName
@@ -36,5 +36,5 @@ scenario DuplicatedParameterResultName
       number Value
     results
       ValidateEnumKeyword Value
-  ExpectErrors
+  expectErrors
     "Duplicated variable name: 'Value'"

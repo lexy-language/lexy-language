@@ -157,7 +157,7 @@ scenario InvalidOperatorCombinationsString
       var s12 = "abc" % "def"
       var s13 = "abc" && "def"
       var s14 = "abc" || "def"
-  ExpectErrors
+  expectErrors
     "Invalid operator 'Equals'. Left type: 'string' and right type 'number' not supported."
     "Invalid operator 'Equals'. Left type: 'string' and right type 'boolean' not supported."
     "Invalid operator 'Equals'. Left type: 'string' and right type 'date' not supported."
@@ -186,7 +186,7 @@ scenario InvalidOperatorCombinationsNumber
       var n8 = 123 != EnumValue.Second
       var n9 = 123 && 123
       var n10 = 123 || 123
-  ExpectErrors
+  expectErrors
     "Invalid operator 'Equals'. Left type: 'number' and right type 'string' not supported."
     "Invalid operator 'Equals'. Left type: 'number' and right type 'boolean' not supported."
     "Invalid operator 'Equals'. Left type: 'number' and right type 'date' not supported."
@@ -213,7 +213,7 @@ scenario InvalidOperatorCombinationsBoolean
       var s10 = true / true
       var s11 = true * true
       var s12 = true % true
-  ExpectErrors
+  expectErrors
     "Invalid operator 'Equals'. Left type: 'boolean' and right type 'string' not supported."
     "Invalid operator 'Equals'. Left type: 'boolean' and right type 'number' not supported."
     "Invalid operator 'Equals'. Left type: 'boolean' and right type 'date' not supported."
@@ -244,7 +244,7 @@ scenario InvalidOperatorCombinationsDate
       var d12 = d"2025-02-08 12:34:56" % d"2025-02-08 12:34:56"
       var d13 = d"2025-02-08 12:34:56" && d"2025-02-08 12:34:56"
       var d14 = d"2025-02-08 12:34:56" || d"2025-02-08 12:34:56"
-  ExpectErrors
+  expectErrors
     "Invalid operator 'Equals'. Left type: 'date' and right type 'string' not supported."
     "Invalid operator 'Equals'. Left type: 'date' and right type 'number' not supported."
     "Invalid operator 'Equals'. Left type: 'date' and right type 'boolean' not supported."
@@ -277,7 +277,7 @@ scenario InvalidOperatorCombinationsEnum
       var s12 = EnumValue.Second % EnumValue.First
       var s13 = EnumValue.Second && EnumValue.First
       var s14 = EnumValue.Second || EnumValue.First
-  ExpectErrors
+  expectErrors
     "Invalid operator 'Equals'. Left type: 'EnumValue' and right type 'string' not supported."
     "Invalid operator 'Equals'. Left type: 'EnumValue' and right type 'number' not supported."
     "Invalid operator 'Equals'. Left type: 'EnumValue' and right type 'date' not supported."

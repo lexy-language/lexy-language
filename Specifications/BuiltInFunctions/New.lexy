@@ -42,7 +42,7 @@ scenario NewFunctionParametersInvalidMember
     Code
       var row = new(SimpleTarget.Parameters)
       StringResult = row.ResultNumber
-  ExpectErrors
+  expectErrors
     "Invalid identifier: 'row.ResultNumber'"
 
 scenario NewFunctionResults
@@ -62,5 +62,5 @@ scenario NewFunctionResultsInvalidMember
     Code
       var row = new(SimpleTarget.Results)
       NumberResult = row.ResultNumber
-  ExpectErrors
+  expectErrors
     "Invalid identifier: 'row.ResultNumber'"

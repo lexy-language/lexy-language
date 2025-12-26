@@ -16,6 +16,6 @@ function Function2
 
 scenario CallCircularFunction
   function Function1
-  ExpectErrors
+  expectErrors
     "Circular reference detected in: 'Function1'"
     "Circular reference detected in: 'Function2'"

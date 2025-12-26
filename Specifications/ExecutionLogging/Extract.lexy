@@ -40,25 +40,25 @@ scenario ExtractInIfScopeParameters
     Evil = true
   results
     NumberResultParent = 5
-  ExecutionLogging
-    Log "Execute: ExtractInIfScopeParametersFunction"
-      Log "Parameters"
+  executionLogging
+    log "Execute: ExtractInIfScopeParametersFunction"
+      log "Parameters"
         NumberValue = 5
         Evil = true
-      Log "  if Evil"
-        Log "    number NumberResult"
+      log "  if Evil"
+        log "    number NumberResult"
           NumberResult = 0
-        Log "    SimpleTarget.Results params"
+        log "    SimpleTarget.Results params"
           params =
             NumberResult = 0
             StringResult = ""
             BooleanResult = false
             DateResult = d"0001-01-01T00:00:00"
             EnumResult = SimpleEnum.First
-        Log "    params.NumberResult = NumberValue"
+        log "    params.NumberResult = NumberValue"
           NumberValue = 5
           params.NumberResult = 5
-        Log "    extract(params)"
+        log "    extract(params)"
           params =
             NumberResult = 5
             StringResult = ""
@@ -66,8 +66,8 @@ scenario ExtractInIfScopeParameters
             DateResult = d"0001-01-01T00:00:00"
             EnumResult = SimpleEnum.First
           NumberResult = 5
-        Log "    NumberResultParent = NumberResult"
+        log "    NumberResultParent = NumberResult"
           NumberResult = 5
           NumberResultParent = 5
-      Log "Results"
+      log "Results"
         NumberResultParent = 5

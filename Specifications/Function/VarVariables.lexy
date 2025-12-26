@@ -46,7 +46,7 @@ scenario InvalidVariableName
       number temp
       temp = Value
       Result = temp
-  ExpectErrors
+  expectErrors
     "Invalid identifier: 'Value'"
 
 scenario DuplicatedVariableName
@@ -57,5 +57,5 @@ scenario DuplicatedVariableName
       number temp
       number temp
       Result = temp
-  ExpectErrors
+  expectErrors
     "Duplicated variable name: 'temp'"

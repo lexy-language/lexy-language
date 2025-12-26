@@ -2,21 +2,21 @@ scenario InvalidEnumNegativeValue
   enum InvalidEnumNegativeValueEnum
     First = 0
     Second = -1
-  ExpectErrors
+  expectErrors
     "Validation.lexy(4, 15): ERROR - Invalid number of tokens: 4. Should be 1 or 3."
 
 scenario InvalidEnumDecimalValue
   enum InvalidEnumDecimalValueEnum
     First = 0
     Second = 1.1
-  ExpectErrors
+  expectErrors
     "Enum member value should not be decimal: 1.1"
 
 scenario InvalidEnumDuplicatedMember
   enum InvalidVEnumDuplicatedMemberEnum
     First = 0
     First = 1
-  ExpectErrors
+  expectErrors
     "Enum member name should be unique. Duplicate name: 'First'"
 
 enum ValidEnum
@@ -32,7 +32,7 @@ scenario InvalidEnumInitializeNumber
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value '1'. (type: 'ValidEnum')"
 
 scenario InvalidEnumInitializeString
@@ -43,7 +43,7 @@ scenario InvalidEnumInitializeString
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'a'. (type: 'ValidEnum')"
 
 scenario InvalidEnumInitializeBoolean
@@ -54,7 +54,7 @@ scenario InvalidEnumInitializeBoolean
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'true'. (type: 'ValidEnum')"
 
 scenario InvalidEnumInitializeDate
@@ -65,7 +65,7 @@ scenario InvalidEnumInitializeDate
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value '2024-12-23T17:51:15'. (type: 'ValidEnum')"
 
 scenario InvalidEnumInitializeNoMember
@@ -76,7 +76,7 @@ scenario InvalidEnumInitializeNoMember
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'ValidEnum'. (type: 'ValidEnum')"
 
 scenario InvalidEnumInitializeUnknownMember
@@ -87,7 +87,7 @@ scenario InvalidEnumInitializeUnknownMember
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'ValidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
     "Invalid identifier: 'ValidEnum.Fourth'"
 
@@ -99,7 +99,7 @@ scenario InvalidEnumInitializeInvalidEnumType
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'InvalidEnum.Fourth'. Invalid enum type. (type: 'ValidEnum')"
     "Invalid default value 'InvalidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
     "Invalid identifier: 'InvalidEnum.Fourth'"
@@ -112,6 +112,6 @@ scenario InvalidEnumInitialize
       ValidEnum Result
     Code
       Result = Value
-  ExpectErrors
+  expectErrors
     "Invalid default value 'ValidEnum.Third.First'. (type: 'ValidEnum')"
     "Invalid identifier: 'ValidEnum.Third.First'"

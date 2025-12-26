@@ -1,5 +1,5 @@
 enum NoMembers
 
 scenario EnumDefault
-  ExpectComponentErrors
+  expectComponentErrors
     "Enum has no members defined"

@@ -17,20 +17,20 @@ scenario IfTrue
     Evil = true
   results
     Number = 666
-  ExecutionLogging
-    Log "Execute: If"
-      Log "Parameters"
+  executionLogging
+    log "Execute: If"
+      log "Parameters"
         Evil = true
-      Log "number temp = 777"
+      log "number temp = 777"
         temp = 777
-      Log "if Evil"
+      log "if Evil"
         Evil = true
-        Log "  temp = 666"
+        log "  temp = 666"
           temp = 666
-      Log "Number = temp"
+      log "Number = temp"
         temp = 666
         Number = 666
-      Log "Results"
+      log "Results"
         Number = 666
 
 scenario IfFalse
@@ -39,19 +39,19 @@ scenario IfFalse
     Evil = false
   results
     Number = 888
-  ExecutionLogging
-    Log "Execute: If"
-      Log "Parameters"
+  executionLogging
+    log "Execute: If"
+      log "Parameters"
         Evil = false
-      Log "number temp = 777"
+      log "number temp = 777"
         temp = 777
-      Log "if Evil"
+      log "if Evil"
         Evil = false
-      Log "else"
-        Log "  temp = 888"
+      log "else"
+        log "  temp = 888"
           temp = 888
-      Log "Number = temp"
+      log "Number = temp"
         temp = 888
         Number = 888
-      Log "Results"
+      log "Results"
         Number = 888

@@ -1,5 +1,5 @@
 include ""
 
 scenario EmptyInclude
-  ExpectComponentErrors
+  expectComponentErrors
     "No include file name specified."
