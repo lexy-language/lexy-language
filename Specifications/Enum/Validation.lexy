@@ -30,8 +30,7 @@ scenario InvalidEnumInitializeNumber
       ValidEnum Value = 1
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '1'. (type: 'ValidEnum')"
 
@@ -41,8 +40,7 @@ scenario InvalidEnumInitializeString
       ValidEnum Value = "a"
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'a'. (type: 'ValidEnum')"
 
@@ -52,8 +50,7 @@ scenario InvalidEnumInitializeBoolean
       ValidEnum Value = true
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'true'. (type: 'ValidEnum')"
 
@@ -63,8 +60,7 @@ scenario InvalidEnumInitializeDate
       ValidEnum Value = d"2024-12-23T17:51:15"
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '2024-12-23T17:51:15'. (type: 'ValidEnum')"
 
@@ -74,8 +70,7 @@ scenario InvalidEnumInitializeNoMember
       ValidEnum Value = ValidEnum
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'ValidEnum'. (type: 'ValidEnum')"
 
@@ -85,8 +80,7 @@ scenario InvalidEnumInitializeUnknownMember
       ValidEnum Value = ValidEnum.Fourth
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'ValidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
     "Invalid identifier: 'ValidEnum.Fourth'"
@@ -97,8 +91,7 @@ scenario InvalidEnumInitializeInvalidEnumType
       ValidEnum Value = InvalidEnum.Fourth
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'InvalidEnum.Fourth'. Invalid enum type. (type: 'ValidEnum')"
     "Invalid default value 'InvalidEnum.Fourth'. Invalid member. (type: 'ValidEnum')"
@@ -110,8 +103,7 @@ scenario InvalidEnumInitialize
       ValidEnum Value = ValidEnum.Third.First
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'ValidEnum.Third.First'. (type: 'ValidEnum')"
     "Invalid identifier: 'ValidEnum.Third.First'"

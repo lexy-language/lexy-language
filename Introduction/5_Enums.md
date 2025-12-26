@@ -20,13 +20,12 @@ function EnumWithIfStatement
     MaritalStatus MaritalStatus
   results
     number Tax
-  Code
-    if MaritalStatus == MaritalStatus.Single
-      Tax = 0.45
-    elseif MaritalStatus == MaritalStatus.Married
-      Tax = 0.40
-    else
-      Tax = 0.42
+  if MaritalStatus == MaritalStatus.Single
+    Tax = 0.45
+  elseif MaritalStatus == MaritalStatus.Married
+    Tax = 0.40
+  else
+    Tax = 0.42
 ```
 
 ```
@@ -45,16 +44,16 @@ function EnumWithSwitchStatement
     MaritalStatus MaritalStatus
   results
     number Tax
-  Code
-    switch MaritalStatus
-      case MaritalStatus.Single
-        Tax = 0.45
-      case MaritalStatus.Married
-        Tax = 0.40
-      case MaritalStatus.CivilPartnership
-        Tax = 0.41
-      case MaritalStatus.Cohabiting
-        Tax = 0.42
+
+  switch MaritalStatus
+    case MaritalStatus.Single
+      Tax = 0.45
+    case MaritalStatus.Married
+      Tax = 0.40
+    case MaritalStatus.CivilPartnership
+      Tax = 0.41
+    case MaritalStatus.Cohabiting
+      Tax = 0.42
 ```
 
 ```

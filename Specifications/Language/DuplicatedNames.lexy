@@ -2,8 +2,7 @@ function DuplicateFunctionName
 // Validate table keywords
   results
     number Result
-  Code
-    Result = 1
+  Result = 1
 
 function DuplicateFunctionName
 

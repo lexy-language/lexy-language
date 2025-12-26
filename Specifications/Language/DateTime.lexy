@@ -4,8 +4,7 @@ scenario NumberStringAsParameterDefault
       date Value = d"2024-12-23T16:03:00"
     results
       date Result
-    Code
-      Result = Value
+    Result = Value
   results
     Result = d"2024-12-23T16:03:00"
 
@@ -15,8 +14,7 @@ scenario NumberStringAsParameter
       date Value = d"2000-01-01T12:34:56"
     results
       date Result
-    Code
-      Result = Value
+    Result = Value
   parameters
     Value = d"2024-12-23T16:03:00"
   results
@@ -26,8 +24,7 @@ scenario DateStringInCode
   function
     results
       date Result
-    Code
-      Result = d"2024-12-23T16:03:00"
+    Result = d"2024-12-23T16:03:00"
   results
     Result = d"2024-12-23T16:03:00"
 
@@ -37,10 +34,9 @@ scenario DateVariableDeclarationInCode
       date Result
     parameters
       date Value
-    Code
-      date temp
-      temp = Value
-      Result = temp
+    date temp
+    temp = Value
+    Result = temp
   parameters
     Value =      d"2024-12-23T16:03:00"
   results
@@ -50,9 +46,8 @@ scenario DateVariableDeclarationInCodeWithDefault
   function
     results
       date Result
-    Code
-      date temp =  d"2024-12-23T16:03:00"
-      Result = temp
+    date temp =  d"2024-12-23T16:03:00"
+    Result = temp
   results
     Result = d"2024-12-23T16:03:00"
 
@@ -60,8 +55,7 @@ scenario ValidDateWithSpaceAndSlashes
   function
     results
       date Result
-    Code
-      Result = d"2024/12/23 16:03:00"
+    Result = d"2024/12/23 16:03:00"
   results
     Result = d"2024-12-23T16:03:00"
 
@@ -71,8 +65,7 @@ scenario InvalidDateInitializeString
       date Value = "1"
     results
       date Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '1'. (type: 'date')"
 
@@ -82,8 +75,7 @@ scenario InvalidDateInitializeNumber
       date Value = 5
     results
       date Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '5'. (type: 'date')"
 
@@ -93,7 +85,6 @@ scenario InvalidDateInitializeBoolean
       date Value = true
     results
       date Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'true'. (type: 'date')"

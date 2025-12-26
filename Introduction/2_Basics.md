@@ -33,9 +33,8 @@ function FirstFunction       // no indentation, start of a function component
   results                    // 2 spaces indentation, Results belongs to the function component declared above
     number Tax               // 4 spaces indentation, the Tax variable belongs to the Results of the defined Function
     number TaxRate           // 4 spaces indentation, the TaxRate variable belongs to the Results of the defined Function
-  Code                       // 2 spaces indentation, Code belongs to the function component declared above
-    TaxRate = 0.5            // 4 spaces indentation, the assignment is part of the Code
-    Tax = Income * TaxRate   // 4 spaces indentation, the assignment is part of the Code
+  TaxRate = 0.5              // 2 spaces indentation, the assignment is part of the function code
+  Tax = Income * TaxRate     // 42spaces indentation, the assignment is part of the function code
                              // empty lines are ignored by the compiler
 function SecondFunction      // no indentation, start of a new function component
 ```

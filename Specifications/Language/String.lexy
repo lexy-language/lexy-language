@@ -4,8 +4,7 @@ scenario StringAsParameterDefault
       string Value = "abc"
     results
       string Result
-    Code
-      Result = Value
+    Result = Value
   results
     Result = "abc"
 
@@ -15,8 +14,7 @@ scenario StringAsParameter
       string Value = "abc"
     results
       string Result
-    Code
-      Result = Value
+    Result = Value
   parameters
     Value = "xyz"
   results
@@ -26,8 +24,7 @@ scenario StringInCode
   function
     results
       string Result
-    Code
-      Result = "abc"
+    Result = "abc"
   results
     Result = "abc"
 
@@ -37,10 +34,9 @@ scenario VariableDeclarationInCode
       string Value
     results
       string Result
-    Code
-      string temp
-      temp = Value
-      Result = temp
+    string temp
+    temp = Value
+    Result = temp
   parameters
     Value = "abs"
   results
@@ -50,9 +46,8 @@ scenario VariableDeclarationInCodeWithDefault
   function
     results
       string Result
-    Code
-      string temp = "abs"
-      Result = temp
+    string temp = "abs"
+    Result = temp
   results
     Result = "abs"
 
@@ -60,8 +55,7 @@ scenario InvalidNumberEndsWithLetter
   function
     results
       string Result
-    Code
-      Result = "and
+    Result = "and
   expectErrors
     "Invalid token at end of line. Closing quote expected."
 
@@ -69,8 +63,7 @@ scenario ConcatenateStringInCode
   function
     results
       string Result
-    Code
-      Result = "abc" + "def"
+    Result = "abc" + "def"
   results
     Result = "abcdef"
 
@@ -80,8 +73,7 @@ scenario InvalidStringInitializeNumber
       string Value = 1
     results
       string Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '1'. (type: 'string')"
 
@@ -91,8 +83,7 @@ scenario InvalidStringInitializeBoolean
       string Value = true
     results
       string Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'true'. (type: 'string')"
 
@@ -102,7 +93,6 @@ scenario InvalidStringInitializeDate
       string Value = d"2024-12-23T17:51:15"
     results
       string Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '2024-12-23T17:51:15'. (type: 'string')"

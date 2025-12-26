@@ -20,19 +20,19 @@ function NaiveTaxLaw
   results
     number TaxRate
     number Tax
-  Code
-    if Income < 15000
-      TaxRate = 0.2
-    elseif Income < 20000
-      TaxRate = 0.3
-    elseif Income < 30000
-      TaxRate = 0.4
-    elseif Income < 40000
-      TaxRate = 0.5
-    else
-      TaxRate = 0.6
 
-    Tax = Income * TaxRate
+  if Income < 15000
+    TaxRate = 0.2
+  elseif Income < 20000
+    TaxRate = 0.3
+  elseif Income < 30000
+    TaxRate = 0.4
+  elseif Income < 40000
+    TaxRate = 0.5
+  else
+    TaxRate = 0.6
+
+  Tax = Income * TaxRate
 ```
 
 ```
@@ -84,9 +84,9 @@ function AssignNestedFields
     CustomParameters Values
   results
     CustomResults Result
-  Code
-    Result.NumberResult = Values.NumberValue
-    Result.TextResult = Values.TextValue
+  
+  Result.NumberResult = Values.NumberValue
+  Result.TextResult = Values.TextValue
 ```
 
 Use a point `.` to access the field of variable.

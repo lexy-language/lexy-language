@@ -10,17 +10,16 @@ scenario VarVariableDeclarations
       boolean ResultBoolean
       date ResultDate
       SimpleEnum ResultEnum
-    Code
-      var numberTemp = 777
-      var stringTemp = "888"
-      var booleanTemp = true
-      var dateTemp = d"2024-12-26T14:10:20"
-      var enumTemp = SimpleEnum.Next
-      ResultNumber = numberTemp
-      ResultString = stringTemp
-      ResultBoolean = booleanTemp
-      ResultDate = dateTemp
-      ResultEnum = enumTemp
+    var numberTemp = 777
+    var stringTemp = "888"
+    var booleanTemp = true
+    var dateTemp = d"2024-12-26T14:10:20"
+    var enumTemp = SimpleEnum.Next
+    ResultNumber = numberTemp
+    ResultString = stringTemp
+    ResultBoolean = booleanTemp
+    ResultDate = dateTemp
+    ResultEnum = enumTemp
   results
     ResultNumber = 777
     ResultString = "888"
@@ -32,9 +31,8 @@ scenario VarVariableDeclarationNumber
   function
     results
       number Result
-    Code
-      var numberTemp = 777
-      Result = numberTemp
+    var numberTemp = 777
+    Result = numberTemp
   results
     Result = 777
 
@@ -42,10 +40,9 @@ scenario InvalidVariableName
   function
     results
       number Result
-    Code
-      number temp
-      temp = Value
-      Result = temp
+    number temp
+    temp = Value
+    Result = temp
   expectErrors
     "Invalid identifier: 'Value'"
 
@@ -53,9 +50,8 @@ scenario DuplicatedVariableName
   function
     results
       number Result
-    Code
-      number temp
-      number temp
-      Result = temp
+    number temp
+    number temp
+    Result = temp
   expectErrors
     "Duplicated variable name: 'temp'"

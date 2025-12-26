@@ -38,8 +38,7 @@ Hello world example
 function HelloWorld
   results
     string Result
-  Code
-    Result = "World Peace ☮️"
+  Result = "World Peace ☮️"
 ```
 
 Execute this simple function by pressing the 'Execute' button on the right.

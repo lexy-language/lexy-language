@@ -3,14 +3,13 @@ function BooleanSwitch
     boolean Evil
   results
     number Number
-  Code
-    number temp = 555
-    switch Evil
-      case true
-        temp = 666
-      case false
-        temp = 777
-    Number = temp
+  number temp = 555
+  switch Evil
+    case true
+      temp = 666
+    case false
+      temp = 777
+  Number = temp
 
 scenario BooleanSwitchTrue
   function BooleanSwitch
@@ -33,16 +32,15 @@ function NumberSwitch
     number Evil
   results
     number Number
-  Code
-    number temp = 555
-    switch Evil
-      case 6
-        temp = 666
-      case 7
-        temp = 777
-      default
-        temp = 888
-    Number = temp
+  number temp = 555
+  switch Evil
+    case 6
+      temp = 666
+    case 7
+      temp = 777
+    default
+      temp = 888
+  Number = temp
 
 scenario NumberSwitchCase
   function NumberSwitch
@@ -66,16 +64,15 @@ function StringSwitch
     string Evil
   results
     string Number
-  Code
-    string temp = "555"
-    switch Evil
-      case "6"
-        temp = "666"
-      case "7"
-        temp = "777"
-      default
-        temp = "888"
-    Number = temp
+  string temp = "555"
+  switch Evil
+    case "6"
+      temp = "666"
+    case "7"
+      temp = "777"
+    default
+      temp = "888"
+  Number = temp
 
 scenario StringSwitchCase
   function StringSwitch
@@ -102,16 +99,15 @@ function EnumSwitch
     SwitchValue Level
   results
     string Number
-  Code
-    string temp = "999"
-    switch Level
-      case SwitchValue.Evil
-        temp = "666"
-      case SwitchValue.Holy
-        temp = "777"
-      default
-        temp = "888"
-    Number = temp
+  string temp = "999"
+  switch Level
+    case SwitchValue.Evil
+      temp = "666"
+    case SwitchValue.Holy
+      temp = "777"
+    default
+      temp = "888"
+  Number = temp
 
 scenario EnumSwitchCaseHoly
   function EnumSwitch
@@ -143,19 +139,18 @@ function EnumNestedSwitch
     SwitchValue Level
   results
     string Number
-  Code
-    string temp = "999"
-    switch Level
-      case SwitchValue.Evil
-        if Evil
-          temp = "666"
-        else
-          temp = "555"
-      case SwitchValue.Holy
-        temp = "777"
-      default
-        temp = "888"
-    Number = temp
+  string temp = "999"
+  switch Level
+    case SwitchValue.Evil
+      if Evil
+        temp = "666"
+      else
+        temp = "555"
+    case SwitchValue.Holy
+      temp = "777"
+    default
+      temp = "888"
+  Number = temp
 
 scenario EnumNestedSwitchIfFalse
   function EnumNestedSwitch

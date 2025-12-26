@@ -33,13 +33,12 @@ function NoParameterDefaultValues
     boolean BooleanResult
     SimpleType TypeResult 
     SimpleEnum EnumResult
-  Code
-    StringResult = StringValue
-    NumberResult = NumberValue
-    DateResult = DateValue
-    BooleanResult = BooleanValue
-    TypeResult = TypeValue
-    EnumResult = EnumValue
+  StringResult = StringValue
+  NumberResult = NumberValue
+  DateResult = DateValue
+  BooleanResult = BooleanValue
+  TypeResult = TypeValue
+  EnumResult = EnumValue
     
 scenario ValidationSuccessful
   function NoParameterDefaultValues
@@ -146,8 +145,7 @@ function NoParameterSomeDefaultValues
     number NumberValue
   results
     string Result
-  Code
-    Result = "success"
+  Result = "success"
 
 scenario ValidateDefaultValuesMissing
   function NoParameterSomeDefaultValues

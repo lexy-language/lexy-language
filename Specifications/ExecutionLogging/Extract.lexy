@@ -15,11 +15,10 @@ function SimpleTarget
     boolean BooleanResult
     date DateResult
     SimpleEnum EnumResult
-  Code
-    NumberResult = NumberValue
-    StringResult = StringValue
-    BooleanResult = BooleanValue
-    EnumResult = EnumValue
+  NumberResult = NumberValue
+  StringResult = StringValue
+  BooleanResult = BooleanValue
+  EnumResult = EnumValue
 
 scenario ExtractInIfScopeParameters
   function
@@ -28,13 +27,12 @@ scenario ExtractInIfScopeParameters
       number NumberValue
     results
       number NumberResultParent
-    Code
-      if Evil
-        number NumberResult
-        SimpleTarget.Results params
-        params.NumberResult = NumberValue
-        extract(params)
-        NumberResultParent = NumberResult
+    if Evil
+      number NumberResult
+      SimpleTarget.Results params
+      params.NumberResult = NumberValue
+      extract(params)
+      NumberResultParent = NumberResult
   parameters
     NumberValue = 5
     Evil = true

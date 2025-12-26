@@ -3,5 +3,4 @@ function FunctionSimple
     number Value
   results
     number Result
-  Code
-    Result = Value
+  Result = Value

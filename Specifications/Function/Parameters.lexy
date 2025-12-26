@@ -8,8 +8,7 @@ scenario InvalidParameterType
       InvalidValidateEnumKeyword Value
     results
       ValidateEnumKeyword Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid type: 'InvalidValidateEnumKeyword'"
     "Invalid identifier: 'Value'"

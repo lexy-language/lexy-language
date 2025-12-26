@@ -6,9 +6,8 @@ scenario ValidationTableWithNestedVariables
     results
       number Result1
       string Result2
-    Code
-      Result1 = Value1
-      Result2 = Value2
+    Result1 = Value1
+    Result2 = Value2
   validationTable
     | Value1  | Value2 | Result1 | Result2 |
     | 0       | "aaa"  | 0       | "aaa"   |
@@ -31,9 +30,8 @@ scenario ValidationTableWithNestedResults
       number Value2
     results
       CustomType Result
-    Code
-      Result.NumberValue = Value1
-      Result.Complex.InnerNumber = Value2
+    Result.NumberValue = Value1
+    Result.Complex.InnerNumber = Value2
   validationTable
     | Value1 | Value2 | Result.NumberValue | Result.Complex.InnerNumber |
     | 0      | 1      | 0                  | 1                          |
@@ -49,9 +47,8 @@ scenario ValidationTableWithNestedParameters
     results
       number Result1
       number Result2
-    Code
-      Result1 = Value.NumberValue
-      Result2 = Value.Complex.InnerNumber
+    Result1 = Value.NumberValue
+    Result2 = Value.Complex.InnerNumber
   validationTable
     | Value.NumberValue  | Value.Complex.InnerNumber  | Result1 | Result2 |
     | 0                  | 1                          | 0       | 1       |

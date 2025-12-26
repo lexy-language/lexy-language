@@ -3,16 +3,14 @@ function Function1
     number Value
   results
     number Result
-  Code
-    Function2()
+  Function2()
 
 function Function2
   parameters
     number Value
   results
     number Result
-  Code
-    Function1()
+  Function1()
 
 scenario CallCircularFunction
   function Function1

@@ -13,21 +13,22 @@ type TaxableIncome
 
 ```
 function TaxableIncomeFederalAndPerCanton
-// A tax calculation for Switzerland returns both federeal taxable income details, and details for the specified canton
-// Example taken from: https://swisstaxcalculator.estv.admin.ch/#/calculator/income-wealth-tax
+  // A tax calculation for Switzerland returns both federeal taxable income details, and details for the specified canton
+  // Example taken from: https://swisstaxcalculator.estv.admin.ch/#/calculator/income-wealth-tax
+
   results
     TaxableIncome Canton
     TaxableIncome Federal
-  Code
-    Federal.NetSalary = 107603
-    Federal.OtherExpenses = -3228
-    Federal.InsurancePremiums = -1800
-    Federal.TaxableIncome = Federal.NetSalary + Federal.OtherExpenses + Federal.InsurancePremiums
+  
+  Federal.NetSalary = 107603
+  Federal.OtherExpenses = -3228
+  Federal.InsurancePremiums = -1800
+  Federal.TaxableIncome = Federal.NetSalary + Federal.OtherExpenses + Federal.InsurancePremiums
 
-    Canton.NetSalary = 107603
-    Canton.OtherExpenses = -3228
-    Canton.InsurancePremiums = -2900
-    Canton.TaxableIncome = Canton.NetSalary + Canton.OtherExpenses + Canton.InsurancePremiums
+  Canton.NetSalary = 107603
+  Canton.OtherExpenses = -3228
+  Canton.InsurancePremiums = -2900
+  Canton.TaxableIncome = Canton.NetSalary + Canton.OtherExpenses + Canton.InsurancePremiums
 ```
 
 🖥️ Execute the function on the right to see the nested result values.

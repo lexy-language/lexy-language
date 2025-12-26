@@ -11,8 +11,7 @@ function SimpleLookUpNumberFunction
     string Value
   results
     number Result
-  Code
-    Result = LOOKUPBY(StringTable, Discriminator, Value, StringTable.Discriminator, StringTable.SearchValue, StringTable.ResultNumber)
+  Result = LOOKUPBY(StringTable, Discriminator, Value, StringTable.Discriminator, StringTable.SearchValue, StringTable.ResultNumber)
 
 scenario LookUpFirstDiscriminator1
   function SimpleLookUpNumberFunction

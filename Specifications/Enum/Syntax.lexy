@@ -16,8 +16,7 @@ scenario EnumParameterDefault
       ValidEnum Value = ValidEnum.Second
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   results
     Result = ValidEnum.Second
 
@@ -27,8 +26,7 @@ scenario EnumParameter
       ValidEnum Value = ValidEnum.Third
     results
       ValidEnum Result
-    Code
-      Result = Value
+    Result = Value
   parameters
     Value = ValidEnum.Second
   results
@@ -38,8 +36,7 @@ scenario EnumInCode
   function
     results
       ValidEnum Result
-    Code
-      Result = ValidEnum.Second
+    Result = ValidEnum.Second
   results
     Result = ValidEnum.Second
 
@@ -47,8 +44,7 @@ scenario EnumDeclarationInCode
   function
     results
       ValidEnum Result
-    Code
-      ValidEnum temp = ValidEnum.Second
-      Result = temp
+    ValidEnum temp = ValidEnum.Second
+    Result = temp
   results
     Result = ValidEnum.Second

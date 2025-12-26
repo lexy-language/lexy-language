@@ -16,8 +16,7 @@ scenario InvalidSearchColumn
   function
     results
       number Result
-    Code
-      Result = LOOKUP(StringTable, "c", SearchValue, StringTable.ResultNumber)
+    Result = LOOKUP(StringTable, "c", SearchValue, StringTable.ResultNumber)
   expectErrors
     "Invalid argument 2. Should be search column."
 
@@ -25,8 +24,7 @@ scenario InvalidResultColumn
   function
     results
       number Result
-    Code
-      Result = LOOKUP(StringTable, "c", StringTable.SearchValue, ResultNumber)
+    Result = LOOKUP(StringTable, "c", StringTable.SearchValue, ResultNumber)
   expectErrors
     "Invalid argument 3. Should be result column."
 
@@ -34,8 +32,7 @@ scenario InvalidSearchColumnDifferentTable
   function
     results
       number Result
-    Code
-      Result = LOOKUP(StringTable, "c", OtherTable.SearchValue, StringTable.ResultNumber)
+    Result = LOOKUP(StringTable, "c", OtherTable.SearchValue, StringTable.ResultNumber)
   expectErrors
     "Result column table 'OtherTable' should be table name 'StringTable'"
 
@@ -43,8 +40,7 @@ scenario InvalidResultColumnDifferentTable
   function
     results
       number Result
-    Code
-      Result = LOOKUP(StringTable, "c", StringTable.SearchValue, OtherTable.ResultNumber)
+    Result = LOOKUP(StringTable, "c", StringTable.SearchValue, OtherTable.ResultNumber)
   expectErrors
     "Result column table 'OtherTable' should be table name 'StringTable'"
 
@@ -52,8 +48,7 @@ scenario UnknownTable
   function
     results
       number Result
-    Code
-      Result = LOOKUP(Unknown, "c", StringTable.StringTable, StringTable.ResultNumber)
+    Result = LOOKUP(Unknown, "c", StringTable.StringTable, StringTable.ResultNumber)
   expectErrors
     "Table name 'Unknown' not found."
 

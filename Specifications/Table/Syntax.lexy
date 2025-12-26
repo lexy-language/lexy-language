@@ -7,7 +7,6 @@ function IncludeSimpleTableFunction
   parameters
   results
     number Result
-  Code
 
 scenario IncludeSimpleTable
   function IncludeSimpleTableFunction
@@ -16,8 +15,7 @@ function GetCountSimpleTableFunction
   parameters
   results
     number Result
-  Code
-    Result = SimpleTable.Count
+  Result = SimpleTable.Count
 
 scenario GetCountSimpleTable
   function GetCountSimpleTableFunction

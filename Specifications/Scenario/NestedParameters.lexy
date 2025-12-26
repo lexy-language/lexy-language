@@ -12,9 +12,8 @@ scenario NestedParametersShouldBeAssignableAndReadable
     results
       number Value1
       number Value2
-    Code
-      Value1 = Result.NumberValue
-      Value2 = Result.Complex.InnerNumber
+    Value1 = Result.NumberValue
+    Value2 = Result.Complex.InnerNumber
   parameters
     Result.NumberValue = 9
     Result.Complex.InnerNumber = 8

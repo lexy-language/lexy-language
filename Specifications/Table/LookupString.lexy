@@ -10,8 +10,7 @@ function SimpleLookUpNumberFunction
     string Value
   results
     number Result
-  Code
-    Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultNumber)
+  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultNumber)
 
 scenario LookUpNumber
   function SimpleLookUpNumberFunction
@@ -41,8 +40,7 @@ function SimpleLookUpStringFunction
     string Value
   results
     string Result
-  Code
-    Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
+  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
 
 scenario LookUpString
   function SimpleLookUpStringFunction
@@ -58,8 +56,7 @@ function SimpleLookUpBooleanFunction
     string Value
   results
     boolean Result
-  Code
-    Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultBoolean)
+  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultBoolean)
 
 scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
@@ -76,8 +73,7 @@ function SimpleLookUpDateFunction
     string Value
   results
     date Result
-  Code
-    Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultDate)
+  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultDate)
 
 scenario LookUpDate
   function SimpleLookUpDateFunction

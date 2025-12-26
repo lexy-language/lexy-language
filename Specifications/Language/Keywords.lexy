@@ -2,7 +2,6 @@ function FunctionKeywords
 // Validate function keywords
   parameters
   results
-  Code
 
 scenario ScenarioKeywords
 // Validate Scenario keywords
@@ -16,7 +15,6 @@ scenario InlineFunctionKeywords
   // Validate function keywords
     parameters
     results
-    Code
   parameters
   results
 
@@ -39,8 +37,7 @@ function EnumKeywordFunction
     ValidateEnumKeyword Value
   results
     ValidateEnumKeyword Result
-  Code
-    Result = Value
+  Result = Value
 
 scenario EnumKeywords
 // Validate enum keywords
@@ -56,8 +53,7 @@ function IntVariableFunction
     number InInt
   results
     number OutInt
-  Code
-    OutInt = InInt
+  OutInt = InInt
 
 scenario IntVariable
   function IntVariableFunction
@@ -72,8 +68,7 @@ function NumberVariableFunction
     number InNumber
   results
     number OutNumber
-  Code
-    OutNumber = InNumber
+  OutNumber = InNumber
 
 scenario NumberVariable
   function NumberVariableFunction
@@ -88,8 +83,7 @@ function BooleanVariableFunction
     boolean InBoolean
   results
     boolean OutBoolean
-  Code
-    OutBoolean = InBoolean
+  OutBoolean = InBoolean
 
 scenario BooleanVariable
   function BooleanVariableFunction
@@ -104,8 +98,7 @@ function DateVariableFunction
     date InDate
   results
     date OutDate
-  Code
-    OutDate = InDate
+  OutDate = InDate
 
 scenario DateVariable
   function DateVariableFunction
@@ -114,14 +107,14 @@ scenario DateVariable
   results
     OutDate = d"2022-12-16T13:26:55"
 
-function UnknownFunctionKeywordFunction
+function UnknownFunctionIdentifierFunction
 // Validate function keywords
   Paraeters
 
 scenario UnknownFunctionKeyword
-  function UnknownFunctionKeywordFunction
+  function UnknownFunctionIdentifierFunction
   expectErrors
-    "Invalid token 'Paraeters'"
+    "Invalid identifier: 'Paraeters"
 
 table ValidateTableKeyword
 // Validate table keywords
@@ -134,8 +127,7 @@ function TableKeywordFunction
   parameters
   results
     number Result
-  Code
-    Result = ValidateTableKeyword.Count
+  Result = ValidateTableKeyword.Count
 
 scenario TableKeywordScenario
   function TableKeywordFunction

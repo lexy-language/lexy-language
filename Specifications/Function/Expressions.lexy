@@ -2,7 +2,6 @@ scenario Addition
   function
     results
       number Result
-    Code
-      Result = 1 + 1
+    Result = 1 + 1
   results
     Result = 2

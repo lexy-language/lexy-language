@@ -3,11 +3,10 @@ function If
     boolean Evil
   results
     number Number
-  Code
-    number temp = 777
-    if Evil
-      temp = 666
-    Number = temp
+  number temp = 777
+  if Evil
+    temp = 666
+  Number = temp
 
 scenario IfTrue
   function If
@@ -29,13 +28,12 @@ function IfElse
     boolean Evil
   results
     number Number
-  Code
-    number temp
-    if Evil
-      temp = 666
-    else
-      temp = 777
-    Number = temp
+  number temp
+  if Evil
+    temp = 666
+  else
+    temp = 777
+  Number = temp
 
 scenario IfElseTrue
   function IfElse
@@ -58,12 +56,11 @@ function IfElseEmptyIf
     boolean Evil
   results
     number Number
-  Code
-    number temp
-    if Evil
-    else
-      temp = 777
-    Number = temp
+  number temp
+  if Evil
+  else
+    temp = 777
+  Number = temp
 
 scenario IfElseEmptyIfTrue
   function IfElseEmptyIf
@@ -86,12 +83,11 @@ function IfElseEmptyElse
     boolean Evil
   results
     number Number
-  Code
-    number temp
-    if Evil
-      temp = 666
-    else
-    Number = temp
+  number temp
+  if Evil
+    temp = 666
+  else
+  Number = temp
 
 scenario IfElseEmptyElseTrue
   function IfElseEmptyElse
@@ -115,13 +111,12 @@ function IfWithAndExpression
     boolean FalseProphet = true
   results
     number Number
-  Code
-    number temp
-    if Evil && FalseProphet
-      temp = 666
-    else
-      temp = 777
-    Number = temp
+  number temp
+  if Evil && FalseProphet
+    temp = 666
+  else
+    temp = 777
+  Number = temp
 
 scenario IfWithAndExpressionTrue
   function IfWithAndExpression
@@ -144,13 +139,12 @@ function IfWithOrExpression
     boolean FalseProphet = true
   results
     number Number
-  Code
-    number temp
-    if Evil || FalseProphet
-      temp = 666
-    else
-      temp = 777
-    Number = temp
+  number temp
+  if Evil || FalseProphet
+    temp = 666
+  else
+    temp = 777
+  Number = temp
 
 scenario IfWithOrExpressionTrue
   function IfWithOrExpression
@@ -173,11 +167,10 @@ scenario ElseWithoutIf
     parameters
     results
       number Number
-    Code
-      number temp
-      else
-        temp = 777
-      Number = temp
+    number temp
+    else
+      temp = 777
+    Number = temp
   parameters
   expectErrors
     "'else' should be following an 'if' statement. No 'if' statement found."
@@ -187,11 +180,10 @@ scenario ElseifWithoutIf
     parameters
     results
       number Number
-    Code
-      number temp
-      elseif true
-        temp = 777
-      Number = temp
+    number temp
+    elseif true
+      temp = 777
+    Number = temp
   parameters
   expectErrors
     "'elseif' should be following an 'if' statement. No 'if' statement found."
@@ -201,13 +193,12 @@ scenario ElseifAfterElse
     parameters
     results
       number Number
-    Code
-      number temp
-      else
-        temp = 888
-      elseif true
-        temp = 777
-      Number = temp
+    number temp
+    else
+      temp = 888
+    elseif true
+      temp = 777
+    Number = temp
   parameters
   expectErrors
     "'else' should be following an 'if' statement. No 'if' statement found."
@@ -220,12 +211,11 @@ scenario IfWithNumberCondition
     parameters
     results
       number Number
-    Code
-      number temp
-      if Number
-      else
-        temp = 777
-      Number = temp
+    number temp
+    if Number
+    else
+      temp = 777
+    Number = temp
   parameters
   expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
@@ -235,12 +225,11 @@ scenario IfWithNumberCalculationCondition
     parameters
     results
       number Number
-    Code
-      number temp
-      if 5 + Number
-      else
-        temp = 777
-      Number = temp
+    number temp
+    if 5 + Number
+    else
+      temp = 777
+    Number = temp
   parameters
   expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'number'."
@@ -250,12 +239,11 @@ scenario IfWithStringCondition
     parameters
     results
       number Number
-    Code
-      number temp
-      if "aaa"
-      else
-        temp = 777
-      Number = temp
+    number temp
+    if "aaa"
+    else
+      temp = 777
+    Number = temp
   parameters
   expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'string'."
@@ -265,12 +253,11 @@ function IfWithStringCalculationConditionFunction
     string Input
   results
     number Number
-  Code
-    number temp
-    if "aaa" + Input
-    else
-      temp = 777
-    Number = temp
+  number temp
+  if "aaa" + Input
+  else
+    temp = 777
+  Number = temp
 
 scenario IfWithStringCalculationCondition
   function IfWithStringCalculationConditionFunction
@@ -282,12 +269,11 @@ scenario IfWithDateCondition
     parameters
     results
       number Number
-    Code
-      number temp
-      if d"2024-12-24T09:05:10"
-      else
-        temp = 777
-      Number = temp
+    number temp
+    if d"2024-12-24T09:05:10"
+    else
+      temp = 777
+    Number = temp
   parameters
   expectErrors
     "'if' condition expression should be 'boolean', is of wrong type 'date'"
@@ -297,13 +283,12 @@ function IfWithUnassignedLocalVariableFunction
   parameters
   results
     number Number
-  Code
-    number temp
-    if true
-      Number = 666
-    else
-      temp = 777
-    Number = temp
+  number temp
+  if true
+    Number = 666
+  else
+    temp = 777
+  Number = temp
 
 scenario IfWithUnassignedLocalVariable
   function IfWithUnassignedLocalVariableFunction
@@ -319,19 +304,18 @@ function NestedIf
     boolean FalseProphet = true
   results
     number Number
-  Code
-    number temp
-    if Evil
-      if FalseProphet
-        temp = 666
-      else
-        temp = 777
+  number temp
+  if Evil
+    if FalseProphet
+      temp = 666
     else
-      if FalseProphet
-        temp = 888
-      else
-        temp = 999
-    Number = temp
+      temp = 777
+  else
+    if FalseProphet
+      temp = 888
+    else
+      temp = 999
+  Number = temp
 
 scenario NestedIfTrueFalse
   function NestedIf
@@ -374,15 +358,14 @@ function IfElseif
     boolean FalseProphet
   results
     number Number
-  Code
-    number temp
-    if Evil
-      temp = 555
-    elseif FalseProphet
-      temp = 666
-    else
-      temp = 777
-    Number = temp
+  number temp
+  if Evil
+    temp = 555
+  elseif FalseProphet
+    temp = 666
+  else
+    temp = 777
+  Number = temp
 
 scenario IfElseifTrueTrue
   function IfElseif

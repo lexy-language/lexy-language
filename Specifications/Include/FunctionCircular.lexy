@@ -3,5 +3,4 @@ include "CircularInclude"
 function IncludeFunction
   results
     string Result
-  Code
-    Result = "should work"
+  Result = "should work"

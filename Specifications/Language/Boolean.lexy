@@ -11,8 +11,7 @@ scenario BooleanAsParameterDefault
       boolean Value = true
     results
       boolean Result
-    Code
-      Result = Value
+    Result = Value
   results
     Result = true
 
@@ -22,8 +21,7 @@ scenario BooleanAsParameter
       boolean Value = true
     results
       boolean Result
-    Code
-      Result = Value
+    Result = Value
   parameters
     Value = false
   results
@@ -33,8 +31,7 @@ scenario BooleanInCode
   function
     results
       boolean Result
-    Code
-      Result = true
+    Result = true
   results
     Result = true
 
@@ -44,10 +41,9 @@ scenario BooleanVariableDeclarationInCode
       boolean Result
     parameters
       boolean Value
-    Code
-      boolean temp
-      temp = Value
-      Result = temp
+    boolean temp
+    temp = Value
+    Result = temp
   parameters
     Value = true
   results
@@ -57,9 +53,8 @@ scenario BooleanVariableDeclarationInCodeWithDefault
   function
     results
       boolean Result
-    Code
-      boolean temp = true
-      Result = temp
+    boolean temp = true
+    Result = temp
   results
     Result = true
 
@@ -69,8 +64,7 @@ scenario InvalidBooleanInitializeString
       boolean Value = "1"
     results
       boolean Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '1'. (type: 'boolean')"
 
@@ -80,8 +74,7 @@ scenario InvalidBooleanInitializeNumber
       boolean Value = 5
     results
       boolean Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '5'. (type: 'boolean')"
 
@@ -91,7 +84,6 @@ scenario InvalidBooleanInitializeDate
       boolean Value = d"2024-12-23T17:51:15"
     results
       boolean Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '2024-12-23T17:51:15'. (type: 'boolean')"

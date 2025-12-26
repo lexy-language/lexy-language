@@ -9,9 +9,8 @@ scenario NewTableRow
   function
     results
       string StringResult
-    Code
-      StringTable.Row row
-      StringResult = row.SearchValue
+    StringTable.Row row
+    StringResult = row.SearchValue
   results
     StringResult = ""
 
@@ -21,17 +20,15 @@ function SimpleTarget
   results
     number NumberResult
     string StringResult
-  Code
-    NumberResult = 666
-    StringResult = StringValue
+  NumberResult = 666
+  StringResult = StringValue
 
 scenario NewFunctionParameters
   function
     results
       string StringResult
-    Code
-      SimpleTarget.Parameters row
-      StringResult = row.StringValue
+    SimpleTarget.Parameters row
+    StringResult = row.StringValue
   results
     StringResult = "333"
 
@@ -44,10 +41,9 @@ scenario NewCustomType
     results
       string StringResult
       number NumberResult
-    Code
-      CustomType value
-      NumberResult = value.NumberValue
-      StringResult = value.StringValue
+    CustomType value
+    NumberResult = value.NumberValue
+    StringResult = value.StringValue
   results
     StringResult = "abc"
     NumberResult = 123
@@ -57,12 +53,11 @@ scenario NewCustomTypeAssign
     results
       string StringResult
       number NumberResult
-    Code
-      CustomType value
-      value.NumberValue = 456
-      value.StringValue = "def"
-      NumberResult = value.NumberValue
-      StringResult = value.StringValue
+    CustomType value
+    value.NumberValue = 456
+    value.StringValue = "def"
+    NumberResult = value.NumberValue
+    StringResult = value.StringValue
   results
     StringResult = "def"
     NumberResult = 456
@@ -71,9 +66,8 @@ scenario NewFunctionParametersInvalidMember
   function
     results
       string StringResult
-    Code
-      SimpleTarget.Parameters row
-      StringResult = row.ResultNumber
+    SimpleTarget.Parameters row
+    StringResult = row.ResultNumber
   expectErrors
     "Invalid identifier: 'row.ResultNumber'"
 
@@ -81,9 +75,8 @@ scenario NewFunctionResults
   function
     results
       number NumberResult
-    Code
-      var row = new(SimpleTarget.Results)
-      NumberResult = row.NumberResult
+    var row = new(SimpleTarget.Results)
+    NumberResult = row.NumberResult
   results
     NumberResult = 0
 
@@ -91,9 +84,8 @@ scenario NewFunctionResultsInvalidMember
   function
     results
       number NumberResult
-    Code
-      SimpleTarget.Results row
-      NumberResult = row.ResultNumber
+    SimpleTarget.Results row
+    NumberResult = row.ResultNumber
   expectErrors
     "Invalid identifier: 'row.ResultNumber'"
 

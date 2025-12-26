@@ -4,8 +4,7 @@ scenario SimpleFunctionCall
       date Value = d"2024-12-25T16:57:45"
     results
       number Result
-    Code
-      Result = YEAR(Value)
+    Result = YEAR(Value)
   executionLogging
     log "Execute: SimpleFunctionCallFunction"
       log "Parameters"

@@ -3,7 +3,6 @@ scenario UnknownType
     parameters
       int Value
     results
-    Code
   expectErrors
     "Invalid type: 'int'"
 
@@ -12,6 +11,5 @@ scenario InvalidVariableDefaultValue
     parameters
       int Value = 5 + 33
     results
-    Code
   expectErrors
     "Invalid variable declaration. Expected literal token."

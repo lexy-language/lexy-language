@@ -2,8 +2,7 @@ scenario Addition
   function
     results
       number Result
-    Code
-      Result = 1 + 1
+    Result = 1 + 1
   results
     Result = 2
 
@@ -11,8 +10,7 @@ scenario Subtraction
   function
     results
       number Result
-    Code
-      Result = 5 - 1
+    Result = 5 - 1
   results
     Result = 4
 
@@ -23,8 +21,7 @@ scenario Multiplication
       number Multiply
     results
       number Result
-    Code
-      Result = Value * Multiply
+    Result = Value * Multiply
   validationTable
     | Value | Multiply | Result |
     | 0     | 1        | 0      |
@@ -35,8 +32,7 @@ scenario Division
   function
     results
       number Result
-    Code
-      Result = 5 / 2
+    Result = 5 / 2
   results
     Result = 2.5
 
@@ -45,8 +41,7 @@ scenario Modulo
   function
     results
       number Result
-    Code
-      Result = 10 % 3
+    Result = 10 % 3
   results
     Result = 1
 
@@ -54,8 +49,7 @@ scenario Parenthesis
   function
     results
       number Result
-    Code
-      Result = 2 * (3 + 4)
+    Result = 2 * (3 + 4)
   results
     Result = 14
 
@@ -65,8 +59,7 @@ scenario AdditionParameters
       number Value
     results
       number Result
-    Code
-      Result = Value + Value
+    Result = Value + Value
   parameters
     Value = 2
   results
@@ -78,8 +71,7 @@ scenario SubtractionParameters
       number Value
     results
       number Result
-    Code
-      Result = 10 - Value
+    Result = 10 - Value
   parameters
     Value = 2
   results
@@ -91,8 +83,7 @@ scenario DivisionParameters
       number Value
     results
       number Result
-    Code
-      Result = 10 / Value
+    Result = 10 / Value
   parameters
     Value = 2
   results
@@ -104,8 +95,7 @@ scenario ModuloParameters
       number Value
     results
       number Result
-    Code
-      Result = 8 % Value
+    Result = 8 % Value
   parameters
     Value = 3
   results
@@ -117,8 +107,7 @@ scenario ParenthesisParameters
       number Value
     results
       number Result
-    Code
-      Result = 2 * (Value + 4)
+    Result = 2 * (Value + 4)
   parameters
     Value = 7
   results
@@ -130,8 +119,7 @@ scenario NoParenthesisParameters
       number Value
     results
       number Result
-    Code
-      Result = 2 * Value + 4
+    Result = 2 * Value + 4
   parameters
     Value = 7
   results
@@ -143,8 +131,7 @@ scenario LogicalAnd
       boolean Value
     results
       boolean Result
-    Code
-      Result = Value && true
+    Result = Value && true
   parameters
     Value = true
   results
@@ -156,8 +143,7 @@ scenario Logical0r
       boolean Value
     results
       boolean Result
-    Code
-      Result = Value || true
+    Result = Value || true
   parameters
     Value = false
   results

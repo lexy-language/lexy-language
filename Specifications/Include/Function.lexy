@@ -9,7 +9,7 @@ function IncludeFunction
     number NumberResult
     IncludeEnum EnumResult
     string StringResult
-  Code
-    NumberResult = NumberValue
-    EnumResult = EnumValue
-    StringResult = LOOKUP(IncludeTable, NumberValue, IncludeTable.SearchValue, IncludeTable.ResultString)
+
+  NumberResult = NumberValue
+  EnumResult = EnumValue
+  StringResult = LOOKUP(IncludeTable, NumberValue, IncludeTable.SearchValue, IncludeTable.ResultString)

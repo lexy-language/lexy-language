@@ -44,9 +44,9 @@ function LookupAveragteTax
   results
     number TaxRate
     number Tax
-  Code
-    TaxRate = LOOKUP(AverageTaxPerCanton, Canton, AverageTaxPerCanton.Canton, AverageTaxPerCanton.AverageTax)
-    Tax = Income * TaxRate
+
+  TaxRate = LOOKUP(AverageTaxPerCanton, Canton, AverageTaxPerCanton.Canton, AverageTaxPerCanton.AverageTax)
+  Tax = Income * TaxRate
 ```
 
 ```
@@ -71,10 +71,10 @@ function LookupRowAveragteTax
   results
     number TaxRate
     number Tax
-  Code
-    var row = LOOKUPROW(AverageTaxPerCanton, Canton, AverageTaxPerCanton.Canton)
-    TaxRate = row.AverageTax
-    Tax = Income * TaxRate
+    
+  var row = LOOKUPROW(AverageTaxPerCanton, Canton, AverageTaxPerCanton.Canton)
+  TaxRate = row.AverageTax
+  Tax = Income * TaxRate
 ```
 
 ```
@@ -125,9 +125,9 @@ function LookupByYearAndMax
   results
     number TaxRate
     number Tax
-  Code
-    TaxRate = LOOKUPBY(YearlyTaxRate, Year, Income, YearlyTaxRate.Year, YearlyTaxRate.Max, YearlyTaxRate.Rate)
-    Tax = Income * TaxRate
+
+  TaxRate = LOOKUPBY(YearlyTaxRate, Year, Income, YearlyTaxRate.Year, YearlyTaxRate.Max, YearlyTaxRate.Rate)
+  Tax = Income * TaxRate
 ```
 
 ``` 
@@ -156,10 +156,10 @@ function LookupRowByYearAndMax
   results
     number TaxRate
     number Tax
-  Code
-    var row = LOOKUPROWBY(YearlyTaxRate, Year, Income, YearlyTaxRate.Year, YearlyTaxRate.Max)
-    TaxRate = row.Rate
-    Tax = Income * TaxRate
+
+  var row = LOOKUPROWBY(YearlyTaxRate, Year, Income, YearlyTaxRate.Year, YearlyTaxRate.Max)
+  TaxRate = row.Rate
+  Tax = Income * TaxRate
 ```
 
 ```

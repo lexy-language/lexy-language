@@ -41,11 +41,10 @@ scenario NestedFieldsShouldBeAssignableAndReadable
       CustomType Result
       number Value1
       number Value2
-    Code
-      Result.NumberValue = 9
-      Result.Complex.InnerNumber = 8
-      Value1 = Result.NumberValue
-      Value2 = Result.Complex.InnerNumber
+    Result.NumberValue = 9
+    Result.Complex.InnerNumber = 8
+    Value1 = Result.NumberValue
+    Value2 = Result.Complex.InnerNumber
   results
     Result.NumberValue = 9
     Result.Complex.InnerNumber = 8
@@ -59,9 +58,8 @@ scenario ComplexTypeAsParameter
       CustomType Value
     results
       CustomType Result
-    Code
-      Result.NumberValue = Value.NumberValue
-      Result.Complex.InnerNumber = Value.Complex.InnerNumber
+    Result.NumberValue = Value.NumberValue
+    Result.Complex.InnerNumber = Value.Complex.InnerNumber
   parameters
     Value.NumberValue = 9
     Value.Complex.InnerNumber = 8

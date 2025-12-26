@@ -3,19 +3,17 @@ function SimpleFunction
     number Value
   results
     number Result
-  Code
-    Result = Value + 2
+  Result = Value + 2
 
 function CallSimpleFunctionNewParametersFunction
   parameters
     number Value
   results
     number Result
-  Code
-    SimpleFunction.Parameters params
-    params.Value = Value
-    var result = SimpleFunction(params)
-    Result = result.Result
+  SimpleFunction.Parameters params
+  params.Value = Value
+  var result = SimpleFunction(params)
+  Result = result.Result
 
 scenario CallSimpleFunctionNewParameters
   function CallSimpleFunctionNewParametersFunction

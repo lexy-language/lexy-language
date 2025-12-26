@@ -13,10 +13,9 @@ function NaiveFlatTaxLaw
     number TaxableIncomeYear
     number TaxRate
     number TotalTax
-  Code
-    TaxRate = 0.40                                   // 40% income tax
-    TaxableIncomeYear = GrossIncomeYear - 12000      // 12000 contribution for demo purposes
-    TotalTax = TaxableIncomeYear * TaxRate
+  TaxRate = 0.40                                   // 40% income tax
+  TaxableIncomeYear = GrossIncomeYear - 12000      // 12000 contribution for demo purposes
+  TotalTax = TaxableIncomeYear * TaxRate
 ```
 
 On the right in the UI you can execute the function, for example enter 45000 and press the Execute button. It will show you the results variables of the function. If you click Execution Logging below, you can see all the execute lines and the variables used on this line. This can be stored for transparency and debugging.

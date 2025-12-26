@@ -1,6 +1,5 @@
 function UnknownFunction
-  Code
-    unknown()
+  unknown()
 
 scenario Unknown
   function UnknownFunction

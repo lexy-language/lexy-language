@@ -9,18 +9,17 @@ function RootDeclarationFunction
     boolean BooleanResult
     date DateResult
     SimpleEnum EnumResult
-  Code
-    number numberValue = 123
-    string stringValue = "abc"
-    boolean booleanValue = true
-    date dateValue = d"2024-12-24T13:49:00"
-    SimpleEnum enumValue = SimpleEnum.Next
+  number numberValue = 123
+  string stringValue = "abc"
+  boolean booleanValue = true
+  date dateValue = d"2024-12-24T13:49:00"
+  SimpleEnum enumValue = SimpleEnum.Next
 
-    NumberResult = numberValue
-    StringResult = stringValue
-    BooleanResult = booleanValue
-    DateResult = dateValue
-    EnumResult = enumValue
+  NumberResult = numberValue
+  StringResult = stringValue
+  BooleanResult = booleanValue
+  DateResult = dateValue
+  EnumResult = enumValue
 
 scenario RootDeclaration
   function RootDeclarationFunction
@@ -59,18 +58,17 @@ scenario InCodeVariablesDefaultValues
       boolean BooleanResult
       date DateResult
       SimpleEnum EnumResult
-    Code
-      number numberValue
-      string stringValue
-      boolean booleanValue
-      date dateValue
-      SimpleEnum enumValue
+    number numberValue
+    string stringValue
+    boolean booleanValue
+    date dateValue
+    SimpleEnum enumValue
 
-      NumberResult = numberValue
-      StringResult = stringValue
-      BooleanResult = booleanValue
-      DateResult = dateValue
-      EnumResult = enumValue
+    NumberResult = numberValue
+    StringResult = stringValue
+    BooleanResult = booleanValue
+    DateResult = dateValue
+    EnumResult = enumValue
 
   results
     NumberResult = 0
@@ -95,12 +93,11 @@ scenario ResultAssignmentWithInitializerAndDefaultValues
       boolean BooleanResult
       date DateResult
       SimpleEnum EnumResult
-    Code
-      NumberResult = NumberParam
-      StringResult = StringParam
-      BooleanResult = BooleanParam
-      DateResult = DateParam
-      EnumResult = EnumParam
+    NumberResult = NumberParam
+    StringResult = StringParam
+    BooleanResult = BooleanParam
+    DateResult = DateParam
+    EnumResult = EnumParam
 
   results
     NumberResult = 1
@@ -120,19 +117,18 @@ function ScopedVariablesFunction
     boolean BooleanResult
     date DateResult
     SimpleEnum EnumResult
-  Code
-    if Evil
-      number numberValue = 123
-      string stringValue = "abc"
-      boolean booleanValue = true
-      date dateValue = d"2024-12-24T13:49:00"
-      SimpleEnum enumValue = SimpleEnum.Next
+  if Evil
+    number numberValue = 123
+    string stringValue = "abc"
+    boolean booleanValue = true
+    date dateValue = d"2024-12-24T13:49:00"
+    SimpleEnum enumValue = SimpleEnum.Next
 
-      NumberResult = numberValue
-      StringResult = stringValue
-      BooleanResult = booleanValue
-      DateResult = dateValue
-      EnumResult = enumValue
+    NumberResult = numberValue
+    StringResult = stringValue
+    BooleanResult = booleanValue
+    DateResult = dateValue
+    EnumResult = enumValue
 
 scenario ScopedVariables
   function ScopedVariablesFunction
@@ -152,11 +148,11 @@ function ScopedVariablesOutOfScopeFunction
     boolean Evil
   results
     number NumberResult
-  Code
-    if Evil
-      number numberValue = 123
 
-    NumberResult = numberValue
+  if Evil
+    number numberValue = 123
+
+  NumberResult = numberValue
 
 scenario ScopedVariablesOutOfScope
   function ScopedVariablesOutOfScopeFunction
@@ -170,17 +166,17 @@ function ScopedVariablesManyScopesFunction
     boolean Evil = false
   results
     number NumberResult
-  Code
-    switch Evil
-      case true
-        if Evil
-          number numberValue = 123
-        else
-          number numberValue = 456
-      default
-        number numberValue = 789
 
-    NumberResult = 777
+  switch Evil
+    case true
+      if Evil
+        number numberValue = 123
+      else
+        number numberValue = 456
+    default
+      number numberValue = 789
+
+  NumberResult = 777
 
 scenario ScopedVariablesManyScopes
   function ScopedVariablesManyScopesFunction
@@ -193,7 +189,6 @@ scenario ResultsShouldNotHaveADefaultValue
   function
     results
       date Value = d"2024-12-25T16:57:45"
-    Code
   expectErrors
     "Result variable 'Value' should not have a default value."
 
@@ -203,8 +198,7 @@ scenario UnknownVariable
   function
     parameters
       date Value
-    Code
-      Result = DAY(Value)
+    Result = DAY(Value)
   expectErrors
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
@@ -214,10 +208,9 @@ scenario UnknownVariableInIfScope
     parameters
       boolean Evil
       date Value
-    Code
-      if Evil
-        number Result
-      Result = DAY(Value)
+    if Evil
+      number Result
+    Result = DAY(Value)
   expectErrors
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
@@ -228,8 +221,7 @@ scenario InvalidAssignmentType
       date Value
     results
       date Result
-    Code
-      Result = DAY(Value)
+    Result = DAY(Value)
   expectErrors
     "Variable 'Result' of type 'date' is not assignable from expression of type 'number'."
 
@@ -239,10 +231,9 @@ scenario VariableWithIfType
   function
     parameters
       date Value
-    Code
-      If Evil
-        number Result
-      Result = DAY(Value)
+    If Evil
+      number Result
+    Result = DAY(Value)
   expectErrors
     "Invalid type: 'If'"
     "Invalid variable type 'If'"

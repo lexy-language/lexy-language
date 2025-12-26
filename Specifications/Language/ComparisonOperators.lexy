@@ -2,9 +2,8 @@ scenario Equals
   function
     results
       boolean Result
-    Code
-      if 5 == 5
-        Result = true
+    if 5 == 5
+      Result = true
   results
     Result = true
 
@@ -12,9 +11,8 @@ scenario NotEqual
   function
     results
       boolean Result
-    Code
-      if 5 != 4
-        Result = true
+    if 5 != 4
+      Result = true
   results
     Result = true
 
@@ -22,9 +20,8 @@ scenario GreaterThan
   function
     results
       boolean Result
-    Code
-      if 5 > 4
-        Result = true
+    if 5 > 4
+      Result = true
   results
     Result = true
 
@@ -32,9 +29,8 @@ scenario GreaterThanOrEqual
   function
     results
       boolean Result
-    Code
-      if 4 >= 4
-        Result = true
+    if 4 >= 4
+      Result = true
   results
     Result = true
 
@@ -42,9 +38,8 @@ scenario LessThan
   function
     results
       boolean Result
-    Code
-      if 4 < 5
-        Result = true
+    if 4 < 5
+      Result = true
   results
     Result = true
 
@@ -52,8 +47,7 @@ scenario LessThanOrEqual
   function
     results
       boolean Result
-    Code
-      if 4 <= 4
-        Result = true
+    if 4 <= 4
+      Result = true
   results
     Result = true

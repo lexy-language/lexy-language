@@ -15,18 +15,16 @@ function SimpleTarget
     boolean BooleanResult
     date DateResult
     SimpleEnum EnumResult
-  Code
-    NumberResult = NumberValue
-    StringResult = StringValue
-    BooleanResult = BooleanValue
-    EnumResult = EnumValue
+  NumberResult = NumberValue
+  StringResult = StringValue
+  BooleanResult = BooleanValue
+  EnumResult = EnumValue
 
 scenario FillNoParameters
   function
     parameters
     results
-    Code
-      var params = fill(SimpleTarget.Parameters)
+    var params = fill(SimpleTarget.Parameters)
   expectErrors
     "Invalid parameter mapping. No parameter could be mapped from variables."
 
@@ -36,9 +34,8 @@ scenario FillSingleParameters
       number NumberValue
     results
       number NumberResult
-    Code
-      var params = fill(SimpleTarget.Parameters)
-      NumberResult = params.NumberValue
+    var params = fill(SimpleTarget.Parameters)
+    NumberResult = params.NumberValue
   parameters
     NumberValue = 5
   results
@@ -59,13 +56,12 @@ scenario FillMultipleParameters
       boolean BooleanResult
       date DateResult
       SimpleEnum EnumResult
-    Code
-      var params = fill(SimpleTarget.Parameters)
-      NumberResult = params.NumberValue
-      StringResult = params.StringValue
-      BooleanResult = params.BooleanValue
-      DateResult = params.DateValue
-      EnumResult = params.EnumValue
+    var params = fill(SimpleTarget.Parameters)
+    NumberResult = params.NumberValue
+    StringResult = params.StringValue
+    BooleanResult = params.BooleanValue
+    DateResult = params.DateValue
+    EnumResult = params.EnumValue
   parameters
     NumberValue = 5
     StringValue = "abc"
@@ -87,11 +83,10 @@ scenario FillInIfScopeParameters
       number NumberValueParent
     results
       number NumberResult
-    Code
-      if Evil
-        number NumberValue = NumberValueParent
-        var params = fill(SimpleTarget.Parameters)
-        NumberResult = params.NumberValue
+    if Evil
+      number NumberValue = NumberValueParent
+      var params = fill(SimpleTarget.Parameters)
+      NumberResult = params.NumberValue
   parameters
     NumberValueParent = 5
     Evil = true

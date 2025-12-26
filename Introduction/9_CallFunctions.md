@@ -15,9 +15,9 @@ function TaxCalculationForIT
   results
     number TaxRate
     number Tax
-  Code
-    TaxRate = 0.5
-    Tax = Income * TaxRate
+
+  TaxRate = 0.5
+  Tax = Income * TaxRate
 
 function TaxCalculationForGovernment
   parameters
@@ -26,12 +26,13 @@ function TaxCalculationForGovernment
   results
     number TaxRate
     number Tax
-  Code
-    if Children > 0
-      TaxRate = 0.35
-    else
-      TaxRate = 0.4
-    Tax = Income * TaxRate
+
+  if Children > 0
+    TaxRate = 0.35
+  else
+    TaxRate = 0.4
+    
+  Tax = Income * TaxRate
 
 function TaxCalculationForDefault
   parameters
@@ -40,10 +41,10 @@ function TaxCalculationForDefault
     number TaxRate
     number ProvinceTax
     number Tax
-  Code
-    ProvinceTax = 0.06
-    TaxRate = 0.4 
-    Tax = Income * (TaxRate + ProvinceTax)
+
+  ProvinceTax = 0.06
+  TaxRate = 0.4 
+  Tax = Income * (TaxRate + ProvinceTax)
 ```
 
 We can then implement a function that calls the 3 functions depending on value of
@@ -59,14 +60,14 @@ function TaxCalculationPerIndustry
     number TaxRate
     number ProvinceTax
     number Tax
-  Code
-    switch Industry
-      case "it"
-        TaxCalculationForIT()
-      case "government"
-        TaxCalculationForGovernment()
-      default
-        TaxCalculationForDefault()
+
+  switch Industry
+    case "it"
+      TaxCalculationForIT()
+    case "government"
+      TaxCalculationForGovernment()
+    default
+      TaxCalculationForDefault()
 ```
 
 When calling a Lexy function without any parameters or results assigment it will automatically:
@@ -97,10 +98,10 @@ function DeclareNewParameterObject
     number Children
   results
     TaxCalculationForIT.Results Result
-  Code    
-    var params = new(TaxCalculationForIT.Parameters)
-    params.Income = Income
-    Result = TaxCalculationForIT(params)
+
+  var params = new(TaxCalculationForIT.Parameters)
+  params.Income = Income
+  Result = TaxCalculationForIT(params)
 
 scenario DeclareNewParameterObjectExamples
   function DeclareNewParameterObject
@@ -123,10 +124,10 @@ function FillParameterObject
     number Children
   results
     TaxCalculationForIT.Results Result
-  Code    
-    var params = fill(TaxCalculationForIT.Parameters) 
-    // params.Income and params.Children are filled by the fill function
-    Result = TaxCalculationForIT(params)
+
+  var params = fill(TaxCalculationForIT.Parameters) 
+  // params.Income and params.Children are filled by the fill function
+  Result = TaxCalculationForIT(params)
 
 scenario FillParameterObjectExamples
   function FillParameterObject
@@ -150,10 +151,10 @@ function ExtractResultsObject
   results
     number TaxRate
     number Tax
-  Code    
-    var params = fill(TaxCalculationForIT.Parameters)
-    var result = TaxCalculationForIT(params)
-    extract(result)         // Tax and TaxRate will be set
+
+  var params = fill(TaxCalculationForIT.Parameters)
+  var result = TaxCalculationForIT(params)
+  extract(result)         // Tax and TaxRate will be set
 
 scenario ExtractResultsObjectExamples
   function ExtractResultsObject

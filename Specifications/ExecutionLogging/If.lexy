@@ -3,13 +3,12 @@ function If
     boolean Evil
   results
     number Number
-  Code
-    number temp = 777
-    if Evil
-      temp = 666
-    else
-      temp = 888
-    Number = temp
+  number temp = 777
+  if Evil
+    temp = 666
+  else
+    temp = 888
+  Number = temp
 
 scenario IfTrue
   function If

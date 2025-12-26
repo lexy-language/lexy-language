@@ -9,16 +9,15 @@ function EnumWithSwitchStatement
     MaritalStatus MaritalStatus
   results
     number Tax
-  Code
-    switch MaritalStatus
-      case MaritalStatus.Single
-        Tax = 0.45
-      case MaritalStatus.Married
-        Tax = 0.40
-      case MaritalStatus.CivilPartnership
-        Tax = 0.41
-      case MaritalStatus.Cohabiting
-        Tax = 0.42
+  switch MaritalStatus
+    case MaritalStatus.Single
+      Tax = 0.45
+    case MaritalStatus.Married
+      Tax = 0.40
+    case MaritalStatus.CivilPartnership
+      Tax = 0.41
+    case MaritalStatus.Cohabiting
+      Tax = 0.42
 
 scenario EnumWithSwitchStatementExamples
   function EnumWithSwitchStatement

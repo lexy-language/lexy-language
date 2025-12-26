@@ -4,8 +4,7 @@ scenario NumberIntAsParameterDefault
       number Value = 123
     results
       number Result
-    Code
-      Result = Value
+    Result = Value
   results
     Result = 123
 
@@ -15,8 +14,7 @@ scenario NumberIntAsParameter
       number Value = 123
     results
       number Result
-    Code
-      Result = Value
+    Result = Value
   parameters
     Value = 456
   results
@@ -28,8 +26,7 @@ scenario NumberDecimalAsParameter
       number Value = 123.45
     results
       number Result
-    Code
-      Result = Value
+    Result = Value
   results
     Result = 123.45
 
@@ -37,8 +34,7 @@ scenario NumberIntInCode
   function
     results
       number Result
-    Code
-      Result = 123
+    Result = 123
   results
     Result = 123
 
@@ -46,8 +42,7 @@ scenario NumberDecimalInCode
   function
     results
       number Result
-    Code
-      Result = 123.45
+    Result = 123.45
   results
     Result = 123.45
 
@@ -57,10 +52,9 @@ scenario NumberVariableDeclarationInCode
       number Value
     results
       number Result
-    Code
-      number temp
-      temp = Value
-      Result = temp
+    number temp
+    temp = Value
+    Result = temp
   parameters
     Value = 123.45
   results
@@ -70,9 +64,8 @@ scenario NumberVariableDeclarationInCodeWithDefault
   function
     results
       number Result
-    Code
-      number temp = 123.45
-      Result = temp
+    number temp = 123.45
+    Result = temp
   results
     Result = 123.45
 
@@ -80,8 +73,7 @@ scenario InvalidNumberEndsWithLetter
   function
     results
       number Result
-    Code
-      Result = 123A
+    Result = 123A
   expectErrors
     "Invalid number token character: 'A'"
 
@@ -91,8 +83,7 @@ scenario InvalidNumberInitializeString
       number Value = "1"
     results
       number Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '1'. (type: 'number')"
 
@@ -102,8 +93,7 @@ scenario InvalidNumberInitializeBoolean
       number Value = true
     results
       number Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value 'true'. (type: 'number')"
 
@@ -113,7 +103,6 @@ scenario InvalidNumberInitializeDate
       number Value = d"2024-12-23T17:51:15"
     results
       number Result
-    Code
-      Result = Value
+    Result = Value
   expectErrors
     "Invalid default value '2024-12-23T17:51:15'. (type: 'number')"

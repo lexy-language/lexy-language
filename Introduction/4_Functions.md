@@ -1,6 +1,6 @@
 # Functions
 
-A function is a callable unit of calculation logic that has a well-defined input (parameters) and output (results). A function has parameter and result variables, these are defined under the Parameters and Results keywords. Parameters define the input variables of the function, Results define the output.
+A function is a callable unit of calculation logic that has a well-defined input (parameters) and output (results). A function has parameter and result variables, these are defined under the *parameters* and *results* keywords. *parameters*  define the input variables of the function, *results* define the output.
 
 DEMO: You can execute the example functions on the right and see the results .
 
@@ -10,7 +10,6 @@ DEMO: You can execute the example functions on the right and see the results .
 | ---------- | -----------
 | Parameters | Declaration of the parameter variables
 | Results    | Declaration of the result variables
-| Code       | Calculation code statements
 
 ## Variable Types
 
@@ -32,8 +31,8 @@ function IfUsage
     number TaxRate
     string TaxCode
     date TaxStatementDate
-  Code
-    # here comes the code
+    
+  // here comes the code (2 spaces indentation)
 ```
 
 On top of this you can define your own Enum, Table and Complex types. They are covered in the next topics.
@@ -44,9 +43,8 @@ In a code block you can declare variables by specifying the type or using the `v
 
 ```
 function VariableDeclaration
-  Code
-    boolean ExplicitBooleanVariable = true
-    var ImplicitBooleanVariable = false
+  boolean ExplicitBooleanVariable = true
+  var ImplicitBooleanVariable = false
 ```
 
 ## Logic flow
@@ -62,13 +60,13 @@ function IfElseUsage
     boolean TaxExemption
   results
     number TaxRate
-  Code
-    if TaxExemption
-      TaxRate = 0
-    elseif Married
-      TaxRate = 0.4
-    else
-      TaxRate = 0.5    
+    
+  if TaxExemption
+    TaxRate = 0
+  elseif Married
+    TaxRate = 0.4
+  else
+    TaxRate = 0.5    
 ```
 
 ### Switch
@@ -81,18 +79,18 @@ function SwitchUsage
     number Children
   results
     number Deduction
-  Code
-    switch Children
-      case 0
-        Deduction = 0
-      case 1
-        Deduction = 6000
-      case 2
-        Deduction = 10000
-      case 3
-        Deduction = 14000
-      default
-        Deduction = 17000
+    
+  switch Children
+    case 0
+      Deduction = 0
+    case 1
+      Deduction = 6000
+    case 2
+      Deduction = 10000
+    case 3
+      Deduction = 14000
+    default
+      Deduction = 17000
 ```
 
 ## Calculation Operators
@@ -120,13 +118,13 @@ function CalculationOperators
     number MultiplyBy40pct
     number Modulus3
     number ByPriority
-  Code
-    Add20k = YearlyIncome + 20000     
-    Subtract20k = YearlyIncome - 20000
-    DiviseBy2 = YearlyIncome / 2
-    MultiplyBy40pct = YearlyIncome * 0.4
-    Modulus3 = YearlyIncome % 200
-    ByPriority = 0.4 * (YearlyIncome -  12000)
+    
+  Add20k = YearlyIncome + 20000     
+  Subtract20k = YearlyIncome - 20000
+  DiviseBy2 = YearlyIncome / 2
+  MultiplyBy40pct = YearlyIncome * 0.4
+  Modulus3 = YearlyIncome % 200
+  ByPriority = 0.4 * (YearlyIncome -  12000)
 ```
 
 ## Comparison Operators
@@ -153,13 +151,13 @@ function ComparisonOperators
     boolean IsLesserThanOrEqual20k
     boolean IsGreaterThan20k
     boolean IsGreaterThanOrEqual20k
-  Code
-    IsEqualTo20k = YearlyIncome == 20000
-    IsNotEqualTo20k = YearlyIncome != 20000
-    IsLesserThan20k = YearlyIncome < 20000
-    IsLesserThanOrEqual20k = YearlyIncome <= 20000
-    IsGreaterThan20k = YearlyIncome > 20000
-    IsGreaterThanOrEqual20k = YearlyIncome >= 20000
+
+  IsEqualTo20k = YearlyIncome == 20000
+  IsNotEqualTo20k = YearlyIncome != 20000
+  IsLesserThan20k = YearlyIncome < 20000
+  IsLesserThanOrEqual20k = YearlyIncome <= 20000
+  IsGreaterThan20k = YearlyIncome > 20000
+  IsGreaterThanOrEqual20k = YearlyIncome >= 20000
 ```
 
 # Next
