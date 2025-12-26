@@ -198,7 +198,7 @@ scenario UnknownVariable
   function
     parameters
       date Value
-    Result = DAY(Value)
+    Result = day(Value)
   expectErrors
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
@@ -210,7 +210,7 @@ scenario UnknownVariableInIfScope
       date Value
     if Evil
       number Result
-    Result = DAY(Value)
+    Result = day(Value)
   expectErrors
     "Invalid identifier: 'Result'"
     "Unknown variable name: 'Result'."
@@ -221,7 +221,7 @@ scenario InvalidAssignmentType
       date Value
     results
       date Result
-    Result = DAY(Value)
+    Result = day(Value)
   expectErrors
     "Variable 'Result' of type 'date' is not assignable from expression of type 'number'."
 
@@ -233,7 +233,7 @@ scenario VariableWithIfType
       date Value
     If Evil
       number Result
-    Result = DAY(Value)
+    Result = day(Value)
   expectErrors
     "Invalid type: 'If'"
     "Invalid variable type 'If'"

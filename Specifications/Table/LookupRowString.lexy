@@ -10,7 +10,7 @@ function SimpleLookUpNumberFunction
     string Value
   results
     number Result
-  var row = LOOKUPROW(StringTable, Value, StringTable.SearchValue)
+  var row = lookUpRow(StringTable, Value, StringTable.SearchValue)
   Result = row.ResultNumber
 
 scenario LookUpNumber
@@ -41,7 +41,7 @@ function SimpleLookUpStringFunction
     string Value
   results
     string Result
-  var row = LOOKUPROW(StringTable, Value, StringTable.SearchValue)
+  var row = lookUpRow(StringTable, Value, StringTable.SearchValue)
   Result = row.ResultString
 
 scenario LookUpString
@@ -58,7 +58,7 @@ function SimpleLookUpBooleanFunction
     string Value
   results
     boolean Result
-  var row = LOOKUPROW(StringTable, Value, StringTable.SearchValue)
+  var row = lookUpRow(StringTable, Value, StringTable.SearchValue)
   Result = row.ResultBoolean
 
 scenario LookUpBoolean
@@ -76,7 +76,7 @@ function SimpleLookUpDateFunction
     string Value
   results
     date Result
-  var row = LOOKUPROW(StringTable, Value, StringTable.SearchValue)
+  var row = lookUpRow(StringTable, Value, StringTable.SearchValue)
   Result = row.ResultDate
 
 scenario LookUpDate

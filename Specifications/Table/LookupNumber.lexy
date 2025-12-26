@@ -10,7 +10,7 @@ function SimpleLookUpNumberFunction
     number Value
   results
     number Result
-  Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultNumber)
+  Result = lookUp(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultNumber)
 
 scenario LookUpNumber
   function SimpleLookUpNumberFunction
@@ -40,7 +40,7 @@ function SimpleLookUpStringFunction
     number Value
   results
     string Result
-  Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultString)
+  Result = lookUp(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultString)
 
 scenario LookUpString
   function SimpleLookUpStringFunction
@@ -56,7 +56,7 @@ function SimpleLookUpBooleanFunction
     number Value
   results
     boolean Result
-  Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultBoolean)
+  Result = lookUp(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultBoolean)
 
 scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
@@ -73,7 +73,7 @@ function SimpleLookUpDateFunction
     number Value
   results
     date Result
-  Result = LOOKUP(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultDate)
+  Result = lookUp(NumberTable, Value, NumberTable.SearchValue, NumberTable.ResultDate)
 
 scenario LookUpDate
   function SimpleLookUpDateFunction

@@ -18,7 +18,7 @@ function SimpleLookUpNumberFunction
     TableEnum Value
   results
     number Result
-  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultNumber)
+  Result = lookUp(StringTable, Value, StringTable.SearchValue, StringTable.ResultNumber)
 
 scenario LookUpNumber
   function SimpleLookUpNumberFunction
@@ -48,7 +48,7 @@ function SimpleLookUpEnumFunction
     TableEnum Value
   results
     string Result
-  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
+  Result = lookUp(StringTable, Value, StringTable.SearchValue, StringTable.ResultString)
 
 scenario LookUpString
   function SimpleLookUpEnumFunction
@@ -64,7 +64,7 @@ function SimpleLookUpBooleanFunction
     TableEnum Value
   results
     boolean Result
-  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultBoolean)
+  Result = lookUp(StringTable, Value, StringTable.SearchValue, StringTable.ResultBoolean)
 
 scenario LookUpBoolean
   function SimpleLookUpBooleanFunction
@@ -81,7 +81,7 @@ function SimpleLookUpDateFunction
     TableEnum Value
   results
     date Result
-  Result = LOOKUP(StringTable, Value, StringTable.SearchValue, StringTable.ResultDate)
+  Result = lookUp(StringTable, Value, StringTable.SearchValue, StringTable.ResultDate)
 
 scenario LookUpDate
   function SimpleLookUpDateFunction

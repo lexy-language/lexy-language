@@ -12,4 +12,4 @@ function IncludeFunction
 
   NumberResult = NumberValue
   EnumResult = EnumValue
-  StringResult = LOOKUP(IncludeTable, NumberValue, IncludeTable.SearchValue, IncludeTable.ResultString)
+  StringResult = lookUp(IncludeTable, NumberValue, IncludeTable.SearchValue, IncludeTable.ResultString)

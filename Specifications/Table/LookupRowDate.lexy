@@ -10,7 +10,7 @@ function SimpleLookUpNumberFunction
     date Value
   results
     number Result
-  var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
+  var row = lookUpRow(DateTable, Value, DateTable.SearchValue)
   Result = row.ResultNumber
 
 scenario LookUpNumber
@@ -41,7 +41,7 @@ function SimpleLookUpStringFunction
     date Value
   results
     string Result
-  var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
+  var row = lookUpRow(DateTable, Value, DateTable.SearchValue)
   Result = row.ResultString
 
 scenario LookUpString
@@ -58,7 +58,7 @@ function SimpleLookUpBooleanFunction
     date Value
   results
     boolean Result
-  var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
+  var row = lookUpRow(DateTable, Value, DateTable.SearchValue)
   Result = row.ResultBoolean
 
 scenario LookUpBoolean
@@ -76,7 +76,7 @@ function SimpleLookUpDateFunction
     date Value
   results
     date Result
-  var row = LOOKUPROW(DateTable, Value, DateTable.SearchValue)
+  var row = lookUpRow(DateTable, Value, DateTable.SearchValue)
   Result = row.ResultDate
 
 scenario LookUpDate

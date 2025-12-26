@@ -7,7 +7,7 @@ function TableRowAsResultsFunction
   parameters
   results
     SimpleTable.Row Result
-  Result = LOOKUPROW(SimpleTable, 2, SimpleTable.Search)
+  Result = lookUpRow(SimpleTable, 2, SimpleTable.Search)
 
 scenario UseTableRowAsResults
   function TableRowAsResultsFunction

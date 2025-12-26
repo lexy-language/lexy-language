@@ -2,7 +2,7 @@ scenario Abs
   function
     results
       number Result
-    Result = ABS(2)
+    Result = abs(2)
   results
     Result = 2
 
@@ -10,7 +10,7 @@ scenario AbsNegative
   function
     results
       number Result
-    Result = ABS(-2)
+    Result = abs(-2)
   results
     Result = 2
 
@@ -18,7 +18,7 @@ scenario Int
   function
     results
       number Result
-    Result = INT(8.9)
+    Result = int(8.9)
   results
     Result = 8
 
@@ -26,7 +26,7 @@ scenario IntNegative
   function
     results
       number Result
-    Result = INT(-8.9)
+    Result = int(-8.9)
   results
     Result = -9
 
@@ -34,7 +34,7 @@ scenario Power
   function
     results
       number Result
-    Result = POWER(5,2)
+    Result = power(5,2)
   results
     Result = 25
 
@@ -42,7 +42,7 @@ scenario PowerDecimal
   function
     results
       number Result
-    Result = ROUND(POWER(98.6,3.2), 3)
+    Result = round(power(98.6,3.2), 3)
   results
     Result = 2401077.222
 
@@ -50,7 +50,7 @@ scenario PowerDivision
   function
     results
       number Result
-    Result = ROUND(POWER(4,5/4), 9)
+    Result = round(power(4,5/4), 9)
   results
     Result = 5.656854249
 
@@ -60,7 +60,7 @@ function RoundFunction
     number Digits
   results
     number Result
-  Result = ROUND(Value, Digits)
+  Result = round(Value, Digits)
 
 scenario RoundFraction1
   function RoundFunction
