@@ -1,6 +1,6 @@
 # Lexy Language v0.1
 
-This introduction is a series of lexy scrips that describe the purpose of Lexy and how to us it. You can navigate through the files of the introduction by using the buttons the menu bar on the right.
+This introduction is a series of Lexy scrips that describe the purpose of Lexy and how to us it. You can navigate through the files of the introduction by using the buttons the menu bar on the right.
 
 Lexy is a DSL (Domain Specific Language) designed by Tim Cools to describe Tax Laws. Currently, official Tax Laws are published and updated with textual descriptions and rulings (Tax Laws), often ambiguous and open for interpretation.
 
@@ -21,15 +21,15 @@ Advantages:
 - Computer language independent: Calculations can be integrated into existing and new applications regardless of the language the application is written in.
 - Real-time execution: The calculations can be changed and executed in real-time, without recompiling the host application.
 - Simple and readable: the goal is to keep the language as simple as possible. It should be readable by advanced (non-developer) spreadsheet users.
-- Transparency: during the execution of a lexy script every decision is logged for future reference
+- Transparency: during the execution of a Lexy script every decision is logged for future reference
 - Versioning: versioning can be accomplished by traditional development tools like git, or managed by the application itself.
 
 Besides describing Tax Laws, the language can also be used to implement all kinds of calculations that benefit from these advantages.
 
-Hosting:
+Use-cases:
 - Public portal/ Local IDE: lexy provides a [demo!](https://lexy-language.github.io/lexy-demo/)
 - Any host programming language: currently dotnet and typescript/javascript
-- Blockchain: Publishing laws on a blockchain, and calculating taxes on a blockchain was the initial idea. The main problem a blockchain solves is the decentralization of trust. While the lack of a central authority can be useful in some cases (a currency), this is only necessary when multiple organizations can't fully trust each other. We believe that governments should be able to trust themselves, and should be trusted by their citizens. So storing and executing tax scripts would be an irresponsible use of computing and storage resources. A blockchain that publicly publishes immutable lexy scripts, executes them, and publishes the results in public might have different use cases though.
+- Blockchain: Publishing laws on a blockchain, and calculating taxes on a blockchain was the initial idea whihc lead me to design the language. The main problem a blockchain solves is the decentralization of trust. While the lack of a central authority can be useful in some cases (a currency), this is only necessary when multiple organizations can't fully trust each other. We believe that governments should be able to trust themselves, and should be trusted by their citizens. Storing and executing tax scripts most existing blockchains is an irresponsible use of computing and storage resources IMHO. A blockchain which allowed government to publicly publish0 immutable Lexy scripts, executes them, publish the results in public which can be verified by their citizens might be a valid use-case.
 - GPU
 
 Hello world example
@@ -66,7 +66,7 @@ to see how the parser react.
 - Execute a function from the current file on the right.
 - After execution, you can view a detailed log of the execution under 'Execution Logging'.
 - You find real-time compilation errors in the 'Logging' below.
-- All scenarios (lexy automated tests) are executed in real time. You find the feedback in 'Test Logging' below.
+- All scenarios (lexy automated tests) are executed in real-time. You find the feedback in 'Test Logging' below.
 
 # Next
 

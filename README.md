@@ -4,11 +4,11 @@
 
 ## Lexy
 
-A simple programming language for implementing various mathematical calculations and tax laws.
+The simplest programming language for implementing mathematical calculations and tax laws.
 
 ## Transparent and consistent Tax Laws
 
-The mission of Lexy is to encourage governments to publish their Tax Laws as executable lexy scripts. It would ensure everyone knows how taxes are calculated, and that everyone adheres to the same rules.
+The mission of Lexy is to encourage governments to publish their Tax Laws as executable Lexy scripts. It would ensure everyone knows how taxes are calculated, and that everyone adheres to the same rules.
 
 View published executable [Tax Laws](https://github.com/lexy-language/lexy-language/blob/main/publications.md) written in Lexy.
 
@@ -36,6 +36,14 @@ Hosting:
 - Public portal/ Local IDE: lexy provides a [demo!](https://lexy-language.github.io/lexy-editor/) so you can learn more about the language.
 - The Lexy script compiler can be implemented in any programming language. Current compilers: [typescript/javascript](https://github.com/lexy-language/lexy-typescript) and [.NET](https://github.com/lexy-language/lexy-dotnet) 
 - Blockchain: Publishing and executing laws on a blockchain was Tim's initial idea. The main problem a blockchain solves is the decentralization of trust. While the lack of a central authority can be useful in some cases (a currency), this is only necessary when multiple organizations can't fully trust each other. We believe that governments should be able to trust themselves, and should be trusted by their citizens. So storing and executing tax scripts would be an irresponsible use of computing and storage resources. A blockchain that publicly publishes immutable lexy scripts, executes them, and publishes the results in public might have different use cases though.
+
+## For developers
+
+Lexy is a simple imperative procedural programming language. It supports functions, external libraries, arithmetic calculation and more advanced mathematical functions (todo).
+
+For experienced programmer is should feel really familiar, THE main difference between most (all?) other procedural programming languages is:
+- Most programming languages have a single return value, a Lexy function supports many result variables ([see doc](https://github.com/lexy-language/lexy-language/blob/main/Introduction/4_Functions.md))
+- Functions can be called without specifying the parameter and result variables. All existing parameters and result variables are mapped automatically. ([see doc](https://github.com/lexy-language/lexy-language/blob/main/Introduction/9_CallFunctions.md)) 
 
 ## Learn More
 
@@ -93,13 +101,14 @@ Please discuss with main maintainers before creating any pull requests!
 
 - [ ] Tables: support of csv, json, ... tables
 - [ ] Syntax: support identifiers with underscore '_' (double underscores should not be allowed as it is reserved for system functions and variables)
-- [ ] Syntax: for and while loop (compiler option to disable (or limit to constants) to simplify discrete optimization if ne)
+- [ ] Syntax: for and while loop (compiler option to disable (or limit to constants) to simplify discrete optimization if neeeed)
 - [ ] Syntax: arrays and lists
+- [ ] Parsing: change circular dependency checker to allow recursion (optional to support discrete optimization)
 - [ ] Versioning: document versioning strategy for lexy scripts in Git (branches) and how to reuse scripts (by using submodules)
-- [ ] Versioning: roadmap to version 1 and document versioning strategy for **lexy-langage** and its dependencies
+- [ ] Versioning: roadmap to version 1 and document versioning strategy for **lexy-language** and its dependencies
 - [ ] Validation: check tables are sorted alphabetically 
 - [ ] Tools: command line tools run, compile, test lexy script
-- [ ] Tools: (batch) tool to process (stream large) data sets with a lexy function
+- [ ] Tools: (batch/ui) tool to process (stream large) data sets with a lexy function. UI to analyse unstructured (cvs) files and to generate fault tolerant processing Lexy code.
 - [ ] Tools: visualizations
 - [ ] Libraries: add string processing, statistics, matrices, processing data from files, json/yaml, call api, dsp, ... (only if you really need it!) 
 - [ ] AI: LLM to extract tax calculations from published tax laws and translate it into Lexy scripts
