@@ -110,6 +110,5 @@ Please discuss with main maintainers before creating any pull requests!
 - [ ] Tools: command line tools run, compile, test lexy script
 - [ ] Tools: (batch/ui) tool to process (stream large) data sets with a lexy function. UI to analyse unstructured (cvs) files and to generate fault tolerant processing Lexy code.
 - [ ] Tools: visualizations
-- [ ] Libraries: add string processing, statistics, matrices, processing data from files, json/yaml, call api, dsp, ... (only if you really need it!) 
-- [ ] AI: LLM to extract tax calculations from published tax laws and translate it into Lexy scripts
+- [ ] Libraries: add string processing, statistics, matrices, processing data from files, json/yaml, call api, dsp, ... (only if you really need it!)
 - [ ] Blockchain: a blockchain running official Lexy Tax Laws by governments verified by it's citizens 
