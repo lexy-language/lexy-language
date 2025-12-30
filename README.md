@@ -101,7 +101,7 @@ Please discuss with main maintainers before creating any pull requests!
 
 - [ ] Tables: support of csv, json, ... tables
 - [ ] Syntax: support identifiers with underscore '_' (double underscores should not be allowed as it is reserved for system functions and variables)
-- [ ] Syntax: for and while loop (compiler option to disable (or limit to constants) to simplify discrete optimization if neeeed)
+- [ ] Syntax: for and while loop
 - [ ] Syntax: arrays and lists
 - [ ] Parsing: change circular dependency checker to allow recursion (optional to support discrete optimization)
 - [ ] Versioning: document versioning strategy for lexy scripts in Git (branches) and how to reuse scripts (by using submodules)
@@ -112,5 +112,4 @@ Please discuss with main maintainers before creating any pull requests!
 - [ ] Tools: visualizations
 - [ ] Libraries: add string processing, statistics, matrices, processing data from files, json/yaml, call api, dsp, ... (only if you really need it!) 
 - [ ] AI: LLM to extract tax calculations from published tax laws and translate it into Lexy scripts
-- [ ] AI: Discrete optimization extension to optimize calculations
 - [ ] Blockchain: a blockchain running official Lexy Tax Laws by governments verified by it's citizens 
