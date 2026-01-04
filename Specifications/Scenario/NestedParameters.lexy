@@ -1,14 +1,14 @@
-type ComplexType
+type GeneratedType
   number InnerNumber
 
-type CustomType
+type DeclaredType
   number NumberValue
-  ComplexType Complex
+  GeneratedType Complex
 
 scenario NestedParametersShouldBeAssignableAndReadable
   function
     parameters
-      CustomType Result
+      DeclaredType Result
     results
       number Value1
       number Value2

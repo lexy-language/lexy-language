@@ -3,7 +3,7 @@
 Lexy defines a list of built-in functions used to manipulate numbers and dates, to retrieve data from a table, and to
 declare fill and extract values from complex types.
 
-## number Functions
+## Number and Math Functions
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/Number.lexy)
 
 | function                   | description  | 
@@ -13,7 +13,7 @@ Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Spec
 | Math.power(number, power)  | Returns the result of a number raised to a power |
 | Math.round(number, digits) | Rounds a number to a specified number of digits  |
 
-##date Functions
+## Date Functions
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/Date.lexy)
 
 | function                           | returns | description
@@ -35,7 +35,7 @@ Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Spec
 | Date.Seconds(date end, date start)      | number  | Returns the number of seconds between two dates
 | Date.Milliseconds(date end, date start) | number  | Returns the number of milliseconds between two dates
 
-## table Functions
+## Table Functions
 Examples: 5_Tables and [github](https://github.com/lexy-language/tree/main/lexy-language/src/Specifications/Table/)
 
 | function                                                                                                                      | description  | 
@@ -45,14 +45,19 @@ Examples: 5_Tables and [github](https://github.com/lexy-language/tree/main/lexy-
 | Table.LookUpRow(lookUpValue, Table.SearchValueColumn)                                                                        | Returns the row of a table with corresponding search value
 | Table.LookUpRowBy(discriminatorValue, lookUpValue, Table.DiscriminatorValueColumn, Table.SearchValueColumn)                  | Returns the row of a table with corresponding discriminator and search value
 
-## complex type Functions
+## Complex type Functions
+
+A complex type can be:
+- Declared types: custom types declared in your Lexy scripts.
+- Generated types: functions and tables generated a few types by details. They can be used in your Lexy script.
+
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/)
 
 | function          | returns | description
 | ----------------- | ------- | -----------------------------------------------------------------------------
-| new(complexType)  | complexType | Initializes a new complex type variable with default values
-| fill(complexType) | complexType | Initializes a new complex type variable and fill the fields with the values of the corresponding variables
-| extract(variable) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
+| new(complexType)  | generatedType | Initializes a new complex type variable with default values
+| fill(complexType) | generatedType | Initializes a new complex type variable and fill the fields with the values of the corresponding variables
+| extract(complexType) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
 
 # Next
 

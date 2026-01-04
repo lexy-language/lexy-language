@@ -9,7 +9,7 @@ type NestedType
   boolean InnerBoolean = false
   CustomEnum InnerEnum = CustomEnum.First
 
-type CustomType
+type DeclaredType
   number NumberValue = 0
   string StringValue = ""
   date DateValue = d"0001-01-01 00:00:00"
@@ -21,7 +21,7 @@ scenario FieldsShouldHaveDefaultValue
   function
     parameters
     results
-      CustomType Result
+      DeclaredType Result
   results
     Result.NumberValue = 0
     Result.StringValue = ""
@@ -38,7 +38,7 @@ scenario NestedFieldsShouldBeAssignableAndReadable
   function
     parameters
     results
-      CustomType Result
+      DeclaredType Result
       number Value1
       number Value2
     Result.NumberValue = 9
@@ -52,12 +52,12 @@ scenario NestedFieldsShouldBeAssignableAndReadable
     Value2 = 8
 
 
-scenario ComplexTypeAsParameter
+scenario GeneratedTypeAsParameter
   function
     parameters
-      CustomType Value
+      DeclaredType Value
     results
-      CustomType Result
+      DeclaredType Result
     Result.NumberValue = Value.NumberValue
     Result.Complex.InnerNumber = Value.Complex.InnerNumber
   parameters

@@ -3,9 +3,9 @@ type NestedType
   string StringValue
   date DateValue
   boolean BooleanValue
-  CustomType Custom
+  DeclaredType Custom
 
-type CustomType
+type DeclaredType
   number NumberValue
   string StringValue
   date DateValue
@@ -14,7 +14,7 @@ type CustomType
 
 scenario ScenarioCircularReference
   function
-    CustomType invalidType
+    DeclaredType invalidType
   expectComponentErrors
     "Circular reference detected in: 'NestedType'"
-    "Circular reference detected in: 'CustomType'"
+    "Circular reference detected in: 'DeclaredType'"

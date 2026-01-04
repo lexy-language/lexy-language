@@ -34,7 +34,7 @@ The functions will loop over all rows in a table from the starts and will compar
 
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/Table/)
 
-Syntax: `Table.lookUp(lookUpValue, Table.searchValueColumn, Table.resultColumn)`
+Syntax: `Table.LookUp(lookUpValue, Table.searchValueColumn, Table.resultColumn)`
 
 ```
 function LookupAveragteTax

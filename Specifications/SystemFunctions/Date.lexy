@@ -126,6 +126,17 @@ scenario Seconds
   results
     Result = 35
 
+scenario Milliseconds
+  function
+    parameters
+      date ValueEnd = d"2024-12-25T16:57:45"
+      date ValueStart = d"2024-12-25T16:57:10"
+    results
+      number Result
+    Result = Date.Milliseconds(ValueEnd, ValueStart)
+  results
+    Result = 35000
+
 scenario HoursFullDay
   function
     parameters
@@ -158,6 +169,17 @@ scenario SecondsFullDay
     Result = Date.Seconds(ValueEnd, ValueStart)
   results
     Result = 86400
+
+scenario MillisecondsFullDay
+  function
+    parameters
+      date ValueEnd = d"2024-12-25T16:57:45"
+      date ValueStart = d"2024-12-24T16:57:45"
+    results
+      number Result
+    Result = Date.Milliseconds(ValueEnd, ValueStart)
+  results
+    Result = 86400000
 
 scenario Today
   function

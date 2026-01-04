@@ -23,7 +23,7 @@ function SimpleTarget
   NumberResult = 666
   StringResult = StringValue
 
-scenario NewFunctionParameters
+scenario NewFunctionExpressionParameters
   function
     results
       string StringResult
@@ -32,7 +32,7 @@ scenario NewFunctionParameters
   results
     StringResult = "333"
 
-scenario NewFunctionParametersInvalidMember
+scenario NewFunctionExpressionParametersInvalidMember
   function
     results
       string StringResult
@@ -41,7 +41,7 @@ scenario NewFunctionParametersInvalidMember
   expectErrors
     "Invalid identifier: 'row.ResultNumber'"
 
-scenario NewFunctionResults
+scenario NewFunctionExpressionResults
   function
     results
       number NumberResult
@@ -50,7 +50,7 @@ scenario NewFunctionResults
   results
     NumberResult = 0
 
-scenario NewFunctionResultsInvalidMember
+scenario NewFunctionExpressionResultsInvalidMember
   function
     results
       number NumberResult

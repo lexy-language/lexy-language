@@ -1,18 +1,18 @@
 scenario NestedParametersShouldBeAssignableAndReadable
   function
     parameters
-      CustomType Result
+      DeclaredType Result
     results
       number Value1
       number Value2
     Value1 = Result.NumberValue
     Value2 = Result.Complex.InnerNumber
   expectErrors
-    "Invalid type: 'CustomType'"
+    "Invalid type: 'DeclaredType'"
     "Invalid identifier: 'Result.NumberValue'"
     "Invalid identifier: 'Result.Complex.InnerNumber'"
 
-type ComplexType
+type GeneratedType
   number Value
 
 scenario UnknownNestedField
