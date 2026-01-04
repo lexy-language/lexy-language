@@ -23,7 +23,7 @@ function SimpleTarget
   NumberResult = 666
   StringResult = StringValue
 
-scenario NewFunctionParameters
+scenario NewFunctionExpressionParameters
   function
     results
       string StringResult
@@ -32,28 +32,28 @@ scenario NewFunctionParameters
   results
     StringResult = "333"
 
-type CustomType
+type DeclaredType
   number NumberValue = 123
   string StringValue = "abc"
 
-scenario NewCustomType
+scenario NewDeclaredType
   function
     results
       string StringResult
       number NumberResult
-    CustomType value
+    DeclaredType value
     NumberResult = value.NumberValue
     StringResult = value.StringValue
   results
     StringResult = "abc"
     NumberResult = 123
 
-scenario NewCustomTypeAssign
+scenario NewDeclaredTypeAssign
   function
     results
       string StringResult
       number NumberResult
-    CustomType value
+    DeclaredType value
     value.NumberValue = 456
     value.StringValue = "def"
     NumberResult = value.NumberValue
@@ -62,7 +62,7 @@ scenario NewCustomTypeAssign
     StringResult = "def"
     NumberResult = 456
 
-scenario NewFunctionParametersInvalidMember
+scenario NewFunctionExpressionParametersInvalidMember
   function
     results
       string StringResult
@@ -71,7 +71,7 @@ scenario NewFunctionParametersInvalidMember
   expectErrors
     "Invalid identifier: 'row.ResultNumber'"
 
-scenario NewFunctionResults
+scenario NewFunctionExpressionResults
   function
     results
       number NumberResult
@@ -80,7 +80,7 @@ scenario NewFunctionResults
   results
     NumberResult = 0
 
-scenario NewFunctionResultsInvalidMember
+scenario NewFunctionExpressionResultsInvalidMember
   function
     results
       number NumberResult

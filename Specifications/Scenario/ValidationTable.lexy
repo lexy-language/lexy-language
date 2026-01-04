@@ -16,12 +16,12 @@ scenario ValidationTableWithNestedVariables
     | 777     | "ddd"  | 777     | "ddd"   |
     | 999     | "eee"  | 999     | "eee"   |
 
-type ComplexType
+type GeneratedType
   number InnerNumber
 
-type CustomType
+type DeclaredType
   number NumberValue
-  ComplexType Complex
+  GeneratedType Complex
 
 scenario ValidationTableWithNestedResults
   function
@@ -29,7 +29,7 @@ scenario ValidationTableWithNestedResults
       number Value1
       number Value2
     results
-      CustomType Result
+      DeclaredType Result
     Result.NumberValue = Value1
     Result.Complex.InnerNumber = Value2
   validationTable
@@ -43,7 +43,7 @@ scenario ValidationTableWithNestedResults
 scenario ValidationTableWithNestedParameters
   function
     parameters
-      CustomType Value
+      DeclaredType Value
     results
       number Result1
       number Result2

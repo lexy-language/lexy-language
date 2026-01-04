@@ -1,4 +1,4 @@
-//comments are defined by '//'' everthing after the '//' is ignored by the compile
+//comments are defined by '//'' everything after the '//' is ignored by the compiler
 
 //New function definition. You can execute it on the right
 function NewFunction
@@ -26,5 +26,9 @@ function SecondFunction
     //input parameters variables are defined here. possible type: number, date, string, boolean
   results
     //output results variables are defined here
+    string Message
     
   // the code starts here
+  var Input = 5
+  var Flog = True
+  NewFunction()
