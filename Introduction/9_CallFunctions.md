@@ -47,7 +47,7 @@ function TaxCalculationForDefault
   Tax = Income * (TaxRate + ProvinceTax)
 ```
 
-We can then implement a function that calls the 3 functions depending on value of
+Then we can implement a function that calls the 3 functions depending on value of
 the `Industry` parameter.
 
 ```
