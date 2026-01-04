@@ -1,12 +1,30 @@
+//comments are defined by '//'' everthing after the '//' is ignored by the compile
+
+//New function definition. You can execute it on the right
 function NewFunction
   parameters
+    //Input parameter variables are defined here. possible type: number, date, string, boolean
     number Input
+    boolean Flag
   results
+    //output results variables are defined here
     number Output
     string Message
+  
+  //The code starts here
+  Output = Input + 7
+  if Flag
+    Message = "World ☮ & ❤️"
+  else 
+    Message = "Universe ☮ & ❤️"
 
-  Output = Input
-  Message = "☮ & ❤️"
 
 
-
+//New function definition. You can execute it on the right
+function SecondFunction
+  parameters
+    //input parameters variables are defined here. possible type: number, date, string, boolean
+  results
+    //output results variables are defined here
+    
+  // the code starts here

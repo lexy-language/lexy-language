@@ -41,8 +41,8 @@ Hosting:
 
 Lexy is a simple imperative procedural programming language. It supports functions, external libraries, arithmetic calculation and more advanced mathematical functions (todo).
 
-For experienced programmer is should feel really familiar, THE main difference between most (all?) other procedural programming languages is:
-- Most programming languages have a single return value, a Lexy function supports many result variables ([see doc](https://github.com/lexy-language/lexy-language/blob/main/Introduction/4_Functions.md))
+For experienced programmer is should feel really familiar, the main difference between most (all?) other procedural programming languages is:
+- The functions of most programming languages have a single return value, a Lexy function supports many result variables ([see doc](https://github.com/lexy-language/lexy-language/blob/main/Introduction/4_Functions.md))
 - Functions can be called without specifying the parameter and result variables. All existing parameters and result variables are mapped automatically. ([see doc](https://github.com/lexy-language/lexy-language/blob/main/Introduction/9_CallFunctions.md)) 
 
 ## Learn More
