@@ -101,7 +101,7 @@ Please discuss with main maintainers before creating any pull requests!
 
 - [ ] Tables: support of csv, json, ... tables
 - [ ] Syntax: function calls: support calling functions with parameters as argument without auto mapping or creating an parameters variable. Example: "var result = Function1(5, Input, "abc")"
-- [ ] Syntax: function calls: I guess we need a specific syntax for auto mapping parameters and results. Maybe the spread syntax '...'. Example "...Function1(...)"
+- [ ] Syntax: function calls: we need a specific syntax for auto mapping parameters and results. Probably the spread syntax '...'. Example "... TaxCalculationForGovernment( ... )" or "... = TaxCalculationForIT( ... )"
 - [ ] Syntax: type functions: shall we add functions to declared types?
 - [ ] Syntax: support identifiers with underscore '_' (double underscores should not be allowed as it is reserved for system functions and variables)
 - [ ] Syntax: for and while loop
