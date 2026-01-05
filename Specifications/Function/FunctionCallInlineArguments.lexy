@@ -1,0 +1,133 @@
+function SimpleFunction
+  parameters
+    number Value
+  results
+    number Result
+  Result = Value
+
+scenario CallSimpleFunction
+  function
+    parameters
+      number Value
+    results
+      number Result
+    var result = SimpleFunction(Value)
+    Result = result.Result
+  parameters
+    Value = 3
+  results
+    Result = 3
+
+
+
+function ThreeArgumentFunction
+  parameters
+    number ValueNumber
+    string ValueString
+    boolean ValueBoolean
+    date ValueDate
+  results
+    number ResultNumber
+    string ResultString
+    boolean ResultBoolean
+    date ResultDate
+  ResultNumber = ValueNumber
+  ResultString = ValueString
+  ResultBoolean = ValueBoolean
+  ResultDate = ValueDate
+
+scenario CallThreeArgumentFunction
+  function
+    parameters
+    results
+      number Result
+    var result = ThreeArgumentFunction(3, "efg", true, d"2025-01-05T09:20:22")
+    Result = result.Result
+  results
+    ResultNumber = 3
+    ResultString = "efg"
+    ResultBoolean = true
+    ResultDate = d"2025-01-05T09:20:22"
+
+
+
+type SimpleType
+  string ValueString
+  boolean ValueBoolean
+  date ValueDate
+
+function TwoArgumentWithTypeFunction
+  parameters
+    number ValueNumber
+    SimpleType Values
+  results
+    number ResultNumber
+    string ResultString
+    boolean ResultBoolean
+    date ResultDate
+  ResultNumber = ValueNumber
+  ResultString = Values.ValueString
+  ResultBoolean = Values.ValueBoolean
+  ResultDate = Values.ValueDate
+
+scenario CallTwoArgumentWithTypeFunction
+  function
+    results
+      number Result
+    SimpleType params
+    params.ValueString = "efg"
+    params.ValueBoolean = true
+    params.ValueDate = d"2025-01-05T09:20:45"
+    var result = ThreeArgumentFunction(3, params)
+    Result = result.Result
+  results
+    ResultNumber = 3
+    ResultString = "efg"
+    ResultBoolean = true
+    ResultDate = d"2025-01-05T09:20:45"
+
+
+
+function SingleTypeArgumentWithTypeFunction
+  parameters
+    SimpleType Values
+  results
+    string ResultString
+    boolean ResultBoolean
+    date ResultDate
+  ResultString = Values.ValueString
+  ResultBoolean = Values.ValueBoolean
+  ResultDate = Values.ValueDate
+
+scenario CallSingleTypeArgumentWithTypeFunction
+// should allow call single declared argument (overload with Function.Parameters type)
+  function
+    results
+      number Result
+    SimpleType params
+    params.ValueString = "efg"
+    params.ValueBoolean = true
+    params.ValueDate = d"2025-01-05T09:20:45"
+    var result = ThreeArgumentFunction(params)
+    Result = result.Result
+  results
+    ResultString = "efg"
+    ResultBoolean = true
+    ResultDate = d"2025-01-05T09:20:45"
+
+scenario CallSingleTypeArgumentParametersTypeFunction
+// should allow call Function.Parameters type (overload with declared type)
+  function
+    results
+      number Result
+    SimpleType params
+    params.ValueString = "efg"
+    params.ValueBoolean = true
+    params.ValueDate = d"2025-01-05T09:20:45"
+    var result = ThreeArgumentFunction(params)
+    Result = result.Result
+  results
+    ResultString = "efg"
+    ResultBoolean = true
+    ResultDate = d"2025-01-05T09:20:45"
+

@@ -17,3 +17,25 @@ scenario CallCircularFunction
   expectErrors
     "Circular reference detected in: 'Function1'"
     "Circular reference detected in: 'Function2'"
+
+
+
+scenario SingleTypeArgumentWithOwnParametersTypeFunction
+  function
+    parameters
+      SingleTypeArgumentWithTypeFunction.Parameters Values
+    results
+      string ResultString
+      boolean ResultBoolean
+      date ResultDate
+  expectErrors
+    "Circular reference detected in: 'SingleTypeArgumentWithOwnParametersTypeFunction'"
+
+scenario SingleTypeArgumentWithOwnResultsTypeFunction
+  function
+    parameters
+      SingleTypeArgumentWithTypeFunction.Parameters Values
+    results
+      SingleTypeArgumentWithTypeFunction.Results Values
+  expectErrors
+    "Circular reference detected in: 'SingleTypeArgumentWithOwnResultsTypeFunction'"
