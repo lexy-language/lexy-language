@@ -5,7 +5,43 @@ They contain many exemptions and differences for different groups of people and 
 To keep large Lexy scripts readable and maintainable, it is possible to split functions into smaller functions with their own responsibility.
 These functions can then be called from parent functions.
 
-## Simple function call
+# Function call
+
+Lexy functions can be call by providing the argument values between ( )s as in most common programming languages.
+
+```
+function CalculateTax
+  parameters
+    number Income
+    boolean Worker
+  results
+    number TaxRate
+    number Tax
+
+  if Worker
+    TaxRate = 0.5
+  else
+    TaxRate = 0.6
+  Tax = Income * TaxRate
+  
+function Main
+  results
+    number Tax
+    number TaxRate
+  var result = CalculateTax(20000, true)
+  Tax = result.Tax
+  TaxRate = result.TaxRate
+  
+scenario TestFunctionCall
+  function Main
+  results
+    TaxRate = 0.5
+    Tax = 10000   
+```
+
+
+
+## Auto mapped function call
 
 In this example we have 3 different calculations with the similar parameters and the same results.
 ```

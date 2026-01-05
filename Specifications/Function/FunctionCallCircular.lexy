@@ -18,24 +18,20 @@ scenario CallCircularFunction
     "Circular reference detected in: 'Function1'"
     "Circular reference detected in: 'Function2'"
 
+function SingleTypeArgumentWithOwnParametersTypeFunction
+  parameters
+    SingleTypeArgumentWithOwnParametersTypeFunction.Parameters Values
 
-
-scenario SingleTypeArgumentWithOwnParametersTypeFunction
-  function
-    parameters
-      SingleTypeArgumentWithTypeFunction.Parameters Values
-    results
-      string ResultString
-      boolean ResultBoolean
-      date ResultDate
+scenario SingleTypeArgumentWithOwnParametersType
+  function SingleTypeArgumentWithOwnParametersTypeFunction
   expectErrors
     "Circular reference detected in: 'SingleTypeArgumentWithOwnParametersTypeFunction'"
 
-scenario SingleTypeArgumentWithOwnResultsTypeFunction
-  function
-    parameters
-      SingleTypeArgumentWithTypeFunction.Parameters Values
-    results
-      SingleTypeArgumentWithTypeFunction.Results Values
+function SingleTypeArgumentWithOwnResultsTypeFunction
+  results
+    SingleTypeArgumentWithOwnResultsTypeFunction.Results Result
+
+scenario SingleTypeArgumentWithOwnResultsType
+  function SingleTypeArgumentWithOwnResultsTypeFunction
   expectErrors
     "Circular reference detected in: 'SingleTypeArgumentWithOwnResultsTypeFunction'"

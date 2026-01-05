@@ -40,14 +40,14 @@ scenario CallThreeArgumentFunction
   function
     parameters
     results
-      number Result
+      ThreeArgumentFunction.Results Result
     var result = ThreeArgumentFunction(3, "efg", true, d"2025-01-05T09:20:22")
-    Result = result.Result
+    Result = result
   results
-    ResultNumber = 3
-    ResultString = "efg"
-    ResultBoolean = true
-    ResultDate = d"2025-01-05T09:20:22"
+    Result.ResultNumber = 3
+    Result.ResultString = "efg"
+    Result.ResultBoolean = true
+    Result.ResultDate = d"2025-01-05T09:20:22"
 
 
 
@@ -73,18 +73,19 @@ function TwoArgumentWithTypeFunction
 scenario CallTwoArgumentWithTypeFunction
   function
     results
-      number Result
+      TwoArgumentWithTypeFunction.Results Result
     SimpleType params
     params.ValueString = "efg"
     params.ValueBoolean = true
     params.ValueDate = d"2025-01-05T09:20:45"
-    var result = ThreeArgumentFunction(3, params)
-    Result = result.Result
+    var result = TwoArgumentWithTypeFunction(3, params)
+    Result = result
   results
-    ResultNumber = 3
-    ResultString = "efg"
-    ResultBoolean = true
-    ResultDate = d"2025-01-05T09:20:45"
+    Result.ResultNumber = 3
+    Result.ResultString = "efg"
+    Result.ResultBoolean = true
+    Result.ResultDate = d"2025-01-05T09:20:45"
+
 
 
 
@@ -103,31 +104,32 @@ scenario CallSingleTypeArgumentWithTypeFunction
 // should allow call single declared argument (overload with Function.Parameters type)
   function
     results
-      number Result
+      SingleTypeArgumentWithTypeFunction.Results Result
     SimpleType params
     params.ValueString = "efg"
     params.ValueBoolean = true
     params.ValueDate = d"2025-01-05T09:20:45"
-    var result = ThreeArgumentFunction(params)
-    Result = result.Result
+    var result = SingleTypeArgumentWithTypeFunction(params)
+    Result = result
   results
-    ResultString = "efg"
-    ResultBoolean = true
-    ResultDate = d"2025-01-05T09:20:45"
+    Result.ResultString = "efg"
+    Result.ResultBoolean = true
+    Result.ResultDate = d"2025-01-05T09:20:45"
 
 scenario CallSingleTypeArgumentParametersTypeFunction
 // should allow call Function.Parameters type (overload with declared type)
   function
     results
-      number Result
-    SimpleType params
-    params.ValueString = "efg"
-    params.ValueBoolean = true
-    params.ValueDate = d"2025-01-05T09:20:45"
-    var result = ThreeArgumentFunction(params)
-    Result = result.Result
+      SingleTypeArgumentWithTypeFunction.Results Result
+    SingleTypeArgumentWithTypeFunction.Parameters params
+    params.Values.ValueString = "efg"
+    params.Values.ValueBoolean = true
+    params.Values.ValueDate = d"2025-01-05T09:20:45"
+    var result = SingleTypeArgumentWithTypeFunction(params)
+    Result = result
   results
-    ResultString = "efg"
-    ResultBoolean = true
-    ResultDate = d"2025-01-05T09:20:45"
+    Result.ResultString = "efg"
+    Result.ResultBoolean = true
+    Result.ResultDate = d"2025-01-05T09:20:45"
+
 
