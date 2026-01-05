@@ -1,0 +1,162 @@
+function TaxCalculationForIT
+  parameters
+    number Income    
+  results
+    number TaxRate
+    number Tax
+
+  TaxRate = 0.5
+  Tax = Income * TaxRate
+
+function TaxCalculationForGovernment
+  parameters
+    number Income
+    number Children
+  results
+    number TaxRate
+    number Tax
+
+  if Children > 0
+    TaxRate = 0.35
+  else
+    TaxRate = 0.4
+    
+  Tax = Income * TaxRate
+
+function TaxCalculationForDefault
+  parameters
+    number Income
+  results
+    number TaxRate
+    number ProvinceTax
+    number Tax
+
+  ProvinceTax = 0.06
+  TaxRate = 0.4 
+  Tax = Income * (TaxRate + ProvinceTax)
+
+function TaxCalculationPerIndustry
+  parameters
+    string Industry
+    number Income
+    number Children
+  results
+    number TaxRate
+    number ProvinceTax
+    number Tax
+
+  switch Industry
+    case "it"
+      ... = TaxCalculationForIT(...)
+    case "government"
+      ... = TaxCalculationForGovernment(...)
+    default
+      ... = TaxCalculationForDefault(...)
+
+  switch Industry
+    case "it"
+      ... = TaxCalculationForIT(...)
+      CustomType result
+      result... = TaxCalculationForIT(...params)
+      < = TaxCalculationForIT(>)
+      <- = TaxCalculationForIT(->)
+      << = TaxCalculationForIT(>>)
+      * = TaxCalculationForIT(*)
+    case "government"
+      <<< TaxCalculationForGovernment( >>> )
+    default
+      ___TaxCalculationForDefault(___)
+
+  //List
+  var values = number[]
+  var values = number[1, 2, 3]
+  var values = string[
+      "abc",
+      "def",
+      "efg"
+    ]
+
+  var values = [
+      {message: "abc", index: 1}
+      {message: "def", index: 2}
+    ]
+  var values = number[5]
+  values.Fill(10)
+  values.Add(5)
+  var last = values.Pop()
+  var lastWithoutRemoving = values.Peek()
+  var removeFirst = values.Dequeue()
+  var first5 = values.Take(5)
+  var returns5and6 = values.FromTake(5, 2)
+  var returns567 = values.FromTo(5, 7)
+  var returns567 = values.Length
+  var returns567 = values.Contains(10)
+
+  //Dictionary
+  var values = (number, string)
+  var value = values[5]
+  values.add(5, "123")
+  var lastWithoutRemoving = values.Peek()
+  var removeFirst = values.Dequeue()
+  var first5 = values.Take(5)
+  var returns5and6 = values.FromTake(5, 2)
+  var returns567 = values.FromTo(5, 7)
+  var whetherItContains5AsKey = values.ContainsKey(5)
+  var whetherItContains123AsValue = values.ContainsValue("123")
+
+  //number functions
+  var value = Number.Parse("123")
+  
+  //string functions
+  var value = "0123456789"
+  var tenSpaces = String.Repeat(" ", 10)
+  var part = value.StartsWith("0123")
+  var part = value.EndsWith("0123")
+  var part = value.FromStart(5)
+  var part = value.FromEnd(5)
+  var part = value.FromTo(5, 7)
+  var part = value.FromTake(5, 3)
+  var part = value.Split("|")
+  var part = value.IsEmpty();
+  var part = value.IsEmptyOrWhitespace();
+  var part = value.IsWhitespace();
+
+  //Assert
+  Assert.True(a > 0, "Error message")
+  Assert.False()
+
+  //Nullables
+  number? nullableValue = 5
+  nullableValue.HasValue
+  nullableValue.Value
+  Box20? optionalValules = {}
+  optionalValules.Value = 
+
+
+//
+YearMonth yearMonths = {Message: "", Year: Date.Now().Year(), Amount: 0}
+(string, YearMonth) yearMonths = (
+    "jan": {Month: 0, Year: Date.Now().Year(), Amount: 0},
+    "feb": {Month: 1, Year: Date.Now().Year(), Amount: 0},
+    "mar": {Month: 2, Year: Date.Now().Year(), Amount: 0},
+  )
+
+type YearMonth
+  number Month = 0
+  number Year
+  number amount
+
+  function (string Message, boolean Success) NextMonth (number Amount)
+    
+    Assert.True(amount > 0, "Amount should be greater as 0 (is {amount})")
+    
+    if Index == 11
+      Year += 1
+      Index = Index + 1
+    else
+      Index = Index + 1
+
+    Amount = Amount + amount
+    
+    Message = "total: " + Amount
+    Success = true
