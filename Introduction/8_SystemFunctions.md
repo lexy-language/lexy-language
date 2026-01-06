@@ -55,9 +55,9 @@ Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Spec
 
 | function          | returns | description
 | ----------------- | ------- | -----------------------------------------------------------------------------
-| new(complexType)  | generatedType | Initializes a new complex type variable with default values
-| fill(complexType) | generatedType | Initializes a new complex type variable and fill the fields with the values of the corresponding variables
-| extract(complexType) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
+| new(objectType)  | generatedType | Initializes a new complex type variable with default values
+| fill(objectType) | generatedType | Initializes a new complex type variable and fill the fields with the values of the corresponding variables
+| extract(objectType) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
 
 # Next
 
