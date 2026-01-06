@@ -1,17 +1,17 @@
 //comments are defined by '//'' everything after the '//' is ignored by the compiler
 
-//New function definition. You can execute it on the right
+//new function definition. You can execute it on the right
 function NewFunction
   parameters
-    //Input parameter variables are defined here. possible type: number, date, string, boolean
+    //function parameters are defined here. possible type: number, date, string, boolean
     number Input
     boolean Flag
   results
-    //output results variables are defined here
+    //function results are defined here
     number Output
     string Message
   
-  //The code starts here
+  //the code starts here
   Output = Input + 7
   if Flag
     Message = "World ☮ & ❤️"
@@ -20,15 +20,16 @@ function NewFunction
 
 
 
-//New function definition. You can execute it on the right
+//new function definition. You can execute it on the right
 function SecondFunction
   parameters
-    //input parameters variables are defined here. possible type: number, date, string, boolean
+    //function parameters variables are defined here. possible type: number, date, string, boolean
   results
-    //output results variables are defined here
+    //function results variables are defined here
+    number Output
     string Message
-    
-  // the code starts here
-  var Input = 5
-  var Flog = True
-  NewFunction()
+
+  //the code starts here
+  var result = NewFunction(7, true)
+  Message = result.Message
+  Output = result.Output
