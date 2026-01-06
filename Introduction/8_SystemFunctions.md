@@ -1,7 +1,7 @@
 # Built-in functions
 
 Lexy defines a list of built-in functions used to manipulate numbers and dates, to retrieve data from a table, and to
-declare fill and extract values from complex types.
+declare fill and extract values from object types.
 
 ## Number and Math Functions
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/Number.lexy)
@@ -10,8 +10,8 @@ Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Spec
 |----------------------------| ------------ |
 | Number.Floor(value)        | Returns the integer part of a decimal number by rounding down to the integer |
 | Number.Abs(value)          | Returns the absolute value of a number |
-| Math.power(number, power)  | Returns the result of a number raised to a power |
-| Math.round(number, digits) | Rounds a number to a specified number of digits  |
+| Math.Power(number, power)  | Returns the result of a number raised to a power |
+| Math.Round(number, digits) | Rounds a number to a specified number of digits  |
 
 ## Date Functions
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/Date.lexy)
@@ -45,9 +45,9 @@ Examples: 5_Tables and [github](https://github.com/lexy-language/tree/main/lexy-
 | Table.LookUpRow(lookUpValue, Table.SearchValueColumn)                                                                        | Returns the row of a table with corresponding search value
 | Table.LookUpRowBy(discriminatorValue, lookUpValue, Table.DiscriminatorValueColumn, Table.SearchValueColumn)                  | Returns the row of a table with corresponding discriminator and search value
 
-## Complex type Functions
+## Object type Functions
 
-A complex type can be:
+A object type can be:
 - Declared types: custom types declared in your Lexy scripts.
 - Generated types: functions and tables generated a few types by details. They can be used in your Lexy script.
 
@@ -55,9 +55,9 @@ Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Spec
 
 | function          | returns | description
 | ----------------- | ------- | -----------------------------------------------------------------------------
-| new(complexType)  | generatedType | Initializes a new complex type variable with default values
-| fill(complexType) | generatedType | Initializes a new complex type variable and fill the fields with the values of the corresponding variables
-| extract(complexType) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
+| new(objectType)  | generatedType | Initializes a new object type variable with default values
+| fill(objectType) | generatedType | Initializes a new object type variable and fill the fields with the values of the corresponding variables
+| extract(objectType) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
 
 # Next
 

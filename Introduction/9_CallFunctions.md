@@ -1,6 +1,6 @@
 # Call Lexy Functions
 
-While we believe a simplified, transparent and consistent tax system, real-world Tax Laws are often still very complex.
+While we believe a simplified, transparent and consistent tax system, real-world Tax Laws are often still very object.
 They contain many exemptions and differences for different groups of people and geographical areas.
 To keep large Lexy scripts readable and maintainable, it is possible to split functions into smaller functions with their own responsibility.
 These functions can then be called from parent functions.
@@ -125,7 +125,7 @@ scenario TaxCalculationPerIndustryExamples
 
 ## Declare new parameters variable
 
-The `new` function will declare an empty complex type with default values.
+The `new` function will declare an empty object type with default values.
 
 ```
 function DeclareNewParameterObject
@@ -149,8 +149,8 @@ scenario DeclareNewParameterObjectExamples
 
 ## Fill parameters variable
 
-The `fill` function will declare a new complex type variable and will map
-evey variable value that correspond to a field in the complex type,
+The `fill` function will declare a new object type variable and will map
+evey variable value that correspond to a field in the object type,
 to the field of the variable.
 
 ```
@@ -175,7 +175,7 @@ scenario FillParameterObjectExamples
 
 ## Extract results variable
 
-The `extract` function will extract all field values from a new complex type variable
+The `extract` function will extract all field values from a new object type variable
 to the corresponding variables in the calling function. Field without a
 corresponding variable will be ignored.
 

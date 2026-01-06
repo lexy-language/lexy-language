@@ -3,7 +3,7 @@ type GeneratedType
 
 type DeclaredType
   number NumberValue
-  GeneratedType Complex
+  GeneratedType Object
 
 scenario NestedParametersShouldBeAssignableAndReadable
   function
@@ -13,10 +13,10 @@ scenario NestedParametersShouldBeAssignableAndReadable
       number Value1
       number Value2
     Value1 = Result.NumberValue
-    Value2 = Result.Complex.InnerNumber
+    Value2 = Result.Object.InnerNumber
   parameters
     Result.NumberValue = 9
-    Result.Complex.InnerNumber = 8
+    Result.Object.InnerNumber = 8
   results
     Value1 = 9
     Value2 = 8
