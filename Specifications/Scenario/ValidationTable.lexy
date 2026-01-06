@@ -21,7 +21,7 @@ type GeneratedType
 
 type DeclaredType
   number NumberValue
-  GeneratedType Complex
+  GeneratedType Object
 
 scenario ValidationTableWithNestedResults
   function
@@ -31,9 +31,9 @@ scenario ValidationTableWithNestedResults
     results
       DeclaredType Result
     Result.NumberValue = Value1
-    Result.Complex.InnerNumber = Value2
+    Result.Object.InnerNumber = Value2
   validationTable
-    | Value1 | Value2 | Result.NumberValue | Result.Complex.InnerNumber |
+    | Value1 | Value2 | Result.NumberValue | Result.Object.InnerNumber |
     | 0      | 1      | 0                  | 1                          |
     | 111    | 222    | 111                | 222                        |
     | 666    | 333    | 666                | 333                        |
@@ -48,9 +48,9 @@ scenario ValidationTableWithNestedParameters
       number Result1
       number Result2
     Result1 = Value.NumberValue
-    Result2 = Value.Complex.InnerNumber
+    Result2 = Value.Object.InnerNumber
   validationTable
-    | Value.NumberValue  | Value.Complex.InnerNumber  | Result1 | Result2 |
+    | Value.NumberValue  | Value.Object.InnerNumber  | Result1 | Result2 |
     | 0                  | 1                          | 0       | 1       |
     | 111                | 222                        | 111     | 222     |
     | 666                | 333                        | 666     | 333     |

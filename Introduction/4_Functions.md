@@ -35,7 +35,7 @@ function IfUsage
   // here comes the code (2 spaces indentation)
 ```
 
-On top of this you can define your own Enum, Table and Complex types. They are covered in the next topics.
+On top of this you can define your own Enum, Table and Object types. They are covered in the next topics.
 
 ## Variable declaration in code
 

@@ -11,7 +11,7 @@ Lexy contains 5 keywords that define the Lexy components.
 | function   | A function is a callable unit of calculation logic that has a well-defined input (parameters) and output (results).
 | enum       | A special data type that enables for a variable to be a set of predefined constants.
 | table      | A data table which can be used to retrieve data
-| type       | A custom complex data type defines multiple fields with their type that can be used throughout calculations
+| type       | An object type defines multiple fields with their type that can be used throughout calculations
 | scenario   | A scenario is an automated test used to validate the logic of a function.
 
 Each of these keywords is covered in details in the following topics.

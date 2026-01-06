@@ -6,11 +6,11 @@ scenario NestedParametersShouldBeAssignableAndReadable
       number Value1
       number Value2
     Value1 = Result.NumberValue
-    Value2 = Result.Complex.InnerNumber
+    Value2 = Result.Object.InnerNumber
   expectErrors
     "Invalid type: 'DeclaredType'"
     "Invalid identifier: 'Result.NumberValue'"
-    "Invalid identifier: 'Result.Complex.InnerNumber'"
+    "Invalid identifier: 'Result.Object.InnerNumber'"
 
 type GeneratedType
   number Value

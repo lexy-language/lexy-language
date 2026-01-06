@@ -1,6 +1,6 @@
-# Complex types
+# Object types
 
-A custom complex data type defines multiple fields with their type that can be used throughout calculations.
+An object type defines multiple variable with their type that can be used throughout calculations.
 It defines a list of variables which are used together.
 
 ```

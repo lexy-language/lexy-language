@@ -15,7 +15,7 @@ type DeclaredType
   date DateValue = d"0001-01-01 00:00:00"
   boolean BooleanValue = false
   CustomEnum EnumValue = CustomEnum.First
-  NestedType Complex
+  NestedType Object
 
 scenario FieldsShouldHaveDefaultValue
   function
@@ -28,11 +28,11 @@ scenario FieldsShouldHaveDefaultValue
     Result.DateValue = d"0001-01-01T00:00:00"
     Result.BooleanValue = false
     Result.EnumValue = CustomEnum.First
-    Result.Complex.InnerNumber = 0
-    Result.Complex.InnerString = ""
-    Result.Complex.InnerDate = d"0001-01-01 00:00:00"
-    Result.Complex.InnerBoolean = false
-    Result.Complex.InnerEnum = CustomEnum.First
+    Result.Object.InnerNumber = 0
+    Result.Object.InnerString = ""
+    Result.Object.InnerDate = d"0001-01-01 00:00:00"
+    Result.Object.InnerBoolean = false
+    Result.Object.InnerEnum = CustomEnum.First
 
 scenario NestedFieldsShouldBeAssignableAndReadable
   function
@@ -42,12 +42,12 @@ scenario NestedFieldsShouldBeAssignableAndReadable
       number Value1
       number Value2
     Result.NumberValue = 9
-    Result.Complex.InnerNumber = 8
+    Result.Object.InnerNumber = 8
     Value1 = Result.NumberValue
-    Value2 = Result.Complex.InnerNumber
+    Value2 = Result.Object.InnerNumber
   results
     Result.NumberValue = 9
-    Result.Complex.InnerNumber = 8
+    Result.Object.InnerNumber = 8
     Value1 = 9
     Value2 = 8
 
@@ -59,10 +59,10 @@ scenario GeneratedTypeAsParameter
     results
       DeclaredType Result
     Result.NumberValue = Value.NumberValue
-    Result.Complex.InnerNumber = Value.Complex.InnerNumber
+    Result.Object.InnerNumber = Value.Object.InnerNumber
   parameters
     Value.NumberValue = 9
-    Value.Complex.InnerNumber = 8
+    Value.Object.InnerNumber = 8
   results
     Result.NumberValue = 9
-    Result.Complex.InnerNumber = 8
+    Result.Object.InnerNumber = 8
