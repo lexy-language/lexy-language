@@ -99,14 +99,19 @@ If you want to work on any of these, please discuss first on **Discord** so that
 
 Please discuss with main maintainers before creating any pull requests!
 
-- [ ] Tables: support of csv, json, ... tables
-- [ ] Syntax: function calls: support calling functions with parameters as argument without auto mapping or creating an parameters variable. Example: "var result = Function1(5, Input, "abc")"
+- [x] Syntax: inline function calls: support calling functions with parameters as argument without auto mapping or creating an parameters variable. Example: "var result = Function1(5, Input, "abc")"
 - [ ] Syntax: function calls: we need a specific syntax for auto mapping parameters and results. Probably the spread syntax '...'. Example "... TaxCalculationForGovernment( ... )" or "... = TaxCalculationForIT( ... )"
-- [ ] Syntax: type functions: shall we add functions to declared types?
+- [ ] Syntax: add logging support
+- [ ] Syntax: expose parameters and results object (allow use of a custom parameters/results type?)
+- [ ] Syntax: inline parameters and results "function (number TaxRate, number Tax) CalculatePersonalTax (number Income, string Department)"
+- [ ] Syntax: type functions: shall we add functions to declared object types?
+- [ ] Syntax: include pre-compiled lexy scripts
 - [ ] Syntax: support identifiers with underscore '_' (double underscores should not be allowed as it is reserved for system functions and variables)
 - [ ] Syntax: for and while loop
 - [ ] Syntax: arrays and lists
-- [ ] Parsing: change circular dependency checker to allow recursion (optional to support discrete optimization)
+- [ ] Tables: support of csv, json, ... tables
+- [ ] Parsing: allow recursive execution of Lexy functions (optional with a compiler directive)
+- [ ] Documentation: add detailed (executable) documentation
 - [ ] Versioning: document versioning strategy for lexy scripts in Git (branches) and how to reuse scripts (by using submodules)
 - [ ] Versioning: roadmap to version 1 and document versioning strategy for **lexy-language** and its dependencies
 - [ ] Validation: check tables are sorted alphabetically 
