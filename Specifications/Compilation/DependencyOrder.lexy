@@ -1,25 +1,19 @@
-scenario ValidateBuiltOrder
-  function
-    parameters
-      TypeExample Example
-    results
-      number Result
-    FunctionWithFunctionDependency()
-    FunctionWithFunctionTypeDependency()
-  parameters
-    Example.EnumValue = EnumExample.Single
-    Example.Nested.EnumValue = EnumExample.Married
-  results
-    Result = 777
+type NestedType
+  EnumExample EnumValue
+  number Result = 888
 
-function FunctionWithFunctionDependency
-  parameters
-    TypeExample Example
-  results
-    number Result
-  FunctionWithTypeDependency()
-  FunctionWithTableDependency()
-  FunctionWithEnumDependency()
+type TypeExample
+  EnumExample EnumValue
+  NestedType Nested
+
+table TableExample
+  | EnumExample Example | number Value |
+  | EnumExample.Single  | 123          |
+
+enum EnumExample
+  Single
+  Married
+  CivilPartnership
 
 function FunctionWithFunctionTypeDependency
   parameters
@@ -27,8 +21,8 @@ function FunctionWithFunctionTypeDependency
   results
     number Result
   var functionParametersFill = fill(FunctionWithTypeDependency.Parameters)
-  var functionParametersNew = new(FunctionWithTypeDependency.Parameters)
-  var tableParameters = new(TableExample.Row)
+  FunctionWithTypeDependency.Parameters functionParametersNew
+  TableExample.Row tableParameters
   Result = 777
 
 function FunctionWithTypeDependency
@@ -53,19 +47,25 @@ function FunctionWithEnumDependency
     number Result
   Result = 666
 
-type NestedType
-  EnumExample EnumValue
-  number Result = 888
+function FunctionWithFunctionDependency
+  parameters
+    TypeExample Example
+  results
+    number Result
+  ... = FunctionWithTypeDependency(...)
+  ... = FunctionWithTableDependency(...)
+  ... = FunctionWithEnumDependency(...)
 
-type TypeExample
-  EnumExample EnumValue
-  NestedType Nested
-
-table TableExample
-  | EnumExample Example | number Value |
-  | EnumExample.Single  | 123          |
-
-enum EnumExample
-  Single
-  Married
-  CivilPartnership
+scenario ValidateBuiltOrder
+  function
+    parameters
+      TypeExample Example
+    results
+      number Result
+    ... = FunctionWithFunctionDependency(...)
+    ... = FunctionWithFunctionTypeDependency(...)
+  parameters
+    Example.EnumValue = EnumExample.Single
+    Example.Nested.EnumValue = EnumExample.Married
+  results
+    Result = 777

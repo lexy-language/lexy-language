@@ -33,16 +33,3 @@ scenario CallSimpleFunctionExplicitParameters
     Value = 3
   results
     Result = 3
-
-scenario CallSimpleFunctionImplicitParameters
-  function
-    parameters
-      number Value
-    results
-      number Result
-    SimpleFunction()
-  parameters
-    Value = 3
-  results
-    Result = 3
-

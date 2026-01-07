@@ -48,16 +48,16 @@ Examples: 5_Tables and [github](https://github.com/lexy-language/tree/main/lexy-
 ## Object type Functions
 
 A object type can be:
-- Declared types: custom types declared in your Lexy scripts.
-- Generated types: functions and tables generated a few types by details. They can be used in your Lexy script.
+- Declared types: custom types declared in your Lexy scripts with the "type" keyword.
+- Generated types: functions and tables generate a few default types. They can be used in your Lexy scripts. (see [types](https://github.com/lexy-language/lexy-language/blob/main/Introduction/6_types.md))
 
 Examples: [github](https://github.com/lexy-language/lexy-language/tree/main/Specifications/BuiltInFunctions/)
 
-| function          | returns | description
-| ----------------- | ------- | -----------------------------------------------------------------------------
-| new(objectType)  | generatedType | Initializes a new object type variable with default values
-| fill(objectType) | generatedType | Initializes a new object type variable and fill the fields with the values of the corresponding variables
-| extract(objectType) | {no return} | Extract all field values from the variable and set the value to the corresponding variables
+| function          | returns           | description
+| ----------------- |-------------------| -----------------------------------------------------------------------------
+| fill(objectType) | generatedType     | Initializes a new object type variable and fill the fields with the values of the corresponding variables
+| extract(objectType) | (no return value) | Extract all field values from the variable and set the value to the corresponding variables
+
 
 # Next
 

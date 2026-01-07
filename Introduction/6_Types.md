@@ -33,6 +33,13 @@ function TaxableIncomeFederalAndPerCanton
 
 🖥️ Execute the function on the right to see the nested result values.
 
+## Generated types:
+
+Functions and tables generate a few default types. They can be used in your Lexy scripts:
+- Function.Parameters: object containing the parameter variables of a declared Lexy function
+- Function.Result: object containing the result variables of a declared Lexy function
+- Table.Row: object containing the variables of a table row
+
 # Next
 
 🖥 ️📄 [Next topic: Tables](https://github.com/lexy-language/lexy-language/blob/main/Introduction/7_Tables.md)

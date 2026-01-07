@@ -99,18 +99,18 @@ function TaxCalculationPerIndustry
 
   switch Industry
     case "it"
-      TaxCalculationForIT()
+      ... = TaxCalculationForIT(...)
     case "government"
-      TaxCalculationForGovernment()
+      ... = TaxCalculationForGovernment(...)
     default
-      TaxCalculationForDefault()
+      ... = TaxCalculationForDefault(...)
 ```
 
-When calling a Lexy function without any parameters or results assigment it will automatically:
-- Map the corresponding variables from the calling function, to the input parameters of the function
-- Map the corresponding result from output of the called function, to variables of the calling function.
+By using the spread operator '...' it will automatically map the variables from the caller function to the calling function and the way around:
+- "(...)": Map the corresponding variables from the calling function, to the input parameters of the caller function. Each parameter of the calling function should have a corresponding variable in the caller function
+- "... =":Map the corresponding results variables from output of the called function, to variables of the calling function. Any parameter or result variables in the caller function that doesn't have a corresponding variable in the calling function will be ignored. There should be at least 1 matching result parameter. 
 
-Any parameter or result variables that doesn't have a corresponding variable in the calling function will be ignored. There should be at least 1 matching parameter and result variable.
+Matching variables should have the same type.
 
 ```
 scenario TaxCalculationPerIndustryExamples

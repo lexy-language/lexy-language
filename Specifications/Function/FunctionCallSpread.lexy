@@ -1,0 +1,40 @@
+function SimpleFunction
+  parameters
+    number Value
+  results
+    number Result
+  Result = Value
+
+scenario CallSimpleFunctionWithSpreadOperator
+  function
+    parameters
+      number Value
+    results
+      number Result
+    ... = SimpleFunction(...)
+  parameters
+    Value = 3
+  results
+    Result = 3
+
+scenario CallSimpleFunctionWithSpreadOperatorWithWrongParametersType
+  function
+    parameters
+      string Value
+    results
+      number Result
+    ... = SimpleFunction(...)
+  expectErrors
+    "Invalid parameter mapping. Variable 'Value' of type 'string' can't be mapped to parameter 'Value' of type 'number'."
+    "Invalid parameter mapping. No parameter could be mapped from variables."
+
+scenario CallSimpleFunctionWithSpreadOperatorWithWrongResultsType
+  function
+    parameters
+      number Value
+    results
+      string Result
+    ... = SimpleFunction(...)
+  expectErrors
+    "Invalid parameter mapping. Variable 'Result' of type 'string' can't be mapped to parameter 'Result' of type 'number'."
+    "Invalid parameter mapping. No parameter could be mapped from variables."
