@@ -101,6 +101,7 @@ Please discuss with main maintainers before creating any pull requests!
 
 - [x] Syntax: inline function calls: support calling functions with parameters as argument without auto mapping or creating an parameters variable. Example: "var result = Function1(5, Input, "abc")"
 - [ ] Syntax: function calls: we need a specific syntax for auto mapping parameters and results. Probably the spread syntax '...'. Example "... TaxCalculationForGovernment( ... )" or "... = TaxCalculationForIT( ... )"
+- [ ] Syntax: remove new() function, use explicit variable declarations instead
 - [ ] Syntax: add logging support
 - [ ] Syntax: expose parameters and results object (allow use of a custom parameters/results type?)
 - [ ] Syntax: inline parameters and results "function (number TaxRate, number Tax) CalculatePersonalTax (number Income, string Department)"
