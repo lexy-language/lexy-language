@@ -38,3 +38,15 @@ scenario CallSimpleFunctionWithSpreadOperatorWithWrongResultsType
   expectErrors
     "Invalid parameter mapping. Variable 'Result' of type 'string' can't be mapped to parameter 'Result' of type 'number'."
     "Invalid parameter mapping. No parameter could be mapped from variables."
+
+
+scenario CallSimpleFunctionWithInvalidSpreadUse
+  function
+    parameters
+      number Value
+    results
+      string Result
+    var result = SimpleFunction(5, ...)
+  expectErrors
+    "Invalid function arguments: 'SimpleFunction'."
+    "Invalid spread operator. The spread operator '...' can only be used in an Lexy function call with as a single argument."
