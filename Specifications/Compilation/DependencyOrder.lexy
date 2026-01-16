@@ -20,6 +20,7 @@ function FunctionWithFunctionTypeDependency
     TypeExample Example
   results
     number Result
+    string Message
   var functionParametersFill = fill(FunctionWithTypeDependency.Parameters)
   FunctionWithTypeDependency.Parameters functionParametersNew
   TableExample.Row tableParameters
@@ -30,6 +31,7 @@ function FunctionWithTypeDependency
     TypeExample Example
   results
     number Result
+    string Message
   Result = Example.Nested.Result
 
 function FunctionWithTableDependency
@@ -37,6 +39,7 @@ function FunctionWithTableDependency
     TypeExample Example
   results
     number Result
+    string Message
   Result = TableExample.LookUp(EnumExample.Single, TableExample.Example, TableExample.Value)
 
 function FunctionWithEnumDependency
@@ -45,6 +48,7 @@ function FunctionWithEnumDependency
     TypeExample Example
   results
     number Result
+    string Message
   Result = 666
 
 function FunctionWithFunctionDependency
@@ -52,16 +56,18 @@ function FunctionWithFunctionDependency
     TypeExample Example
   results
     number Result
+    string Message
   ... = FunctionWithTypeDependency(...)
   ... = FunctionWithTableDependency(...)
   ... = FunctionWithEnumDependency(...)
 
-scenario ValidateBuiltOrder
+scenario ValidateBuildOrder
   function
     parameters
       TypeExample Example
     results
       number Result
+      string Message
     ... = FunctionWithFunctionDependency(...)
     ... = FunctionWithFunctionTypeDependency(...)
   parameters

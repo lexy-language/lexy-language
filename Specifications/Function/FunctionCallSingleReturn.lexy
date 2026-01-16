@@ -1,0 +1,18 @@
+function SimpleFunctionWithSingleResults
+  parameters
+    number Value
+  results
+    number Result
+  Result = Value
+
+scenario CallSimpleFunctionWithSingleResults
+  function
+    parameters
+      number Value
+    results
+      number Result
+    Result = SimpleFunctionWithSingleResults(Value)
+  parameters
+    Value = 3
+  results
+    Result = 3

@@ -24,18 +24,51 @@ function CalculateTax
     TaxRate = 0.6
   Tax = Income * TaxRate
   
-function Main
+function MainCalculateTax
+  parameters
+    number Income
   results
     number Tax
     number TaxRate
-  var result = CalculateTax(20000, true)
+  var result = CalculateTax(Income, true)
   Tax = result.Tax
   TaxRate = result.TaxRate
   
-scenario TestFunctionCall
-  function Main
+scenario MainCalculateTaxTest
+  function MainCalculateTax
+  parameters
+    Income = 10000
   results
     TaxRate = 0.5
+    Tax = 5000   
+```
+
+In case a Lexy function has a single results variables, then the results value is returned itself:
+
+```
+function CalculateTaxSingleReturn
+  parameters
+    number Income
+    boolean Worker
+  results
+    number Tax
+
+  number taxRate
+  if Worker
+    taxRate = 0.5
+  else
+    taxRate = 0.6
+  Tax = Income * taxRate
+  
+function MainCalculateTaxSingleReturn
+  results
+    number Tax
+    number TaxRate
+  Tax = CalculateTaxSingleReturn(20000, true)
+  
+scenario MainCalculateTaxSingleReturnTest
+  function MainCalculateTaxSingleReturn
+  results
     Tax = 10000   
 ```
 

@@ -3,6 +3,7 @@ function SimpleFunction
     number Value
   results
     number Result
+    string Message
   Result = Value
 
 scenario CallSimpleFunctionWithSpreadOperator
