@@ -16,3 +16,25 @@ scenario CallSimpleFunctionWithSingleResults
     Value = 3
   results
     Result = 3
+
+
+
+
+function SimpleFunctionWithSingleResultsAndSpreadOperator
+  parameters
+    number Value
+  results
+    number Result
+  Result = Value
+
+scenario CallSimpleFunctionWithSingleResultsAndSpreadOperator
+  function
+    parameters
+      number Value
+    results
+      number Result
+    ... = SimpleFunctionWithSingleResultsAndSpreadOperator(Value)
+  parameters
+    Value = 3
+  results
+    Result = 3
