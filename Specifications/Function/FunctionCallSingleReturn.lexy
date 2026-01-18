@@ -20,6 +20,7 @@ scenario CallSimpleFunctionWithSingleResults
 
 
 
+
 function SimpleFunctionWithSingleResultsAndSpreadOperator
   parameters
     number Value
@@ -38,3 +39,4 @@ scenario CallSimpleFunctionWithSingleResultsAndSpreadOperator
     Value = 3
   results
     Result = 3
+

@@ -15,7 +15,7 @@ function GetCountSimpleTableFunction
   parameters
   results
     number Result
-  Result = SimpleTable.Count
+  Result = SimpleTable.RowsCount
 
 scenario GetCountSimpleTable
   function GetCountSimpleTableFunction

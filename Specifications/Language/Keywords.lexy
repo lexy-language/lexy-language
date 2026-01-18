@@ -127,7 +127,7 @@ function TableKeywordFunction
   parameters
   results
     number Result
-  Result = ValidateTableKeyword.Count
+  Result = ValidateTableKeyword.RowsCount
 
 scenario TableKeywordScenario
   function TableKeywordFunction
