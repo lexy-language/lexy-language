@@ -13,7 +13,7 @@ DEMO: You can execute the example functions on the right and see the results .
 
 ## Variable Types
 
-Each variable needs a type, this is places before the variable name. Lexy support 4 primitive types:
+Each variable needs a type, this is places before the variable name. Lexy support 4 value types:
 - number: represents any number
 - string: represents a string
 - date: represents a date and time value

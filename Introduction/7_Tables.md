@@ -5,7 +5,7 @@ Tables store rows of values in a specific format. The column names and types are
 # Table Syntax
 
 - A pipe is used to separate columns in a table `|`
-- A table header starts and ends and with a separator, and puts a separator in between each column. Each column definition starts with the type followed by the name of the column.  Only primitive types and enums are supported: boolean, string, number, date and custom defined enums.
+- A table header starts and ends and with a separator, and puts a separator in between each column. Each column definition starts with the type followed by the name of the column. Only value types and enums are supported: boolean, string, number, date and custom defined enums.
 - A table row starts and ends and with a separator, and puts a separator in between each column. Each column contains the specific value.
 
 ```
