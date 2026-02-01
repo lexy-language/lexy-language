@@ -398,3 +398,20 @@ scenario IfElseifFalseFalse
     FalseProphet = false
   results
     Number = 777
+
+
+scenario IfIf
+  function
+    parameters
+      number Input
+    results
+      number Output
+    if Input > 2
+      Output = Output + 2
+    if Input > 5
+      Output = Output + 5
+  validationTable
+    | Input | Output |
+    | 2     | 0      |
+    | 3     | 2      |
+    | 6     | 7      |

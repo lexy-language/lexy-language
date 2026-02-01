@@ -119,4 +119,4 @@ scenario ExtractMultipleParametersInvalidType
     SimpleTarget.Results params
     params.NumberResult = BooleanValue
   expectErrors
-    "Variable 'params.NumberResult' of type 'number' is not assignable from expression of type 'boolean'."
+    "Variable 'variable: number params.NumberResult' of type 'number' is not assignable from expression of type 'boolean'."
