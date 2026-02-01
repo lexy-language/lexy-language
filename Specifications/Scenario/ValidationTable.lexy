@@ -34,11 +34,11 @@ scenario ValidationTableWithNestedResults
     Result.Object.InnerNumber = Value2
   validationTable
     | Value1 | Value2 | Result.NumberValue | Result.Object.InnerNumber |
-    | 0      | 1      | 0                  | 1                          |
-    | 111    | 222    | 111                | 222                        |
-    | 666    | 333    | 666                | 333                        |
-    | 777    | 444    | 777                | 444                        |
-    | 999    | 555    | 999                | 555                        |
+    | 0      | 1      | 0                  | 1                         |
+    | 111    | 222    | 111                | 222                       |
+    | 666    | 333    | 666                | 333                       |
+    | 777    | 444    | 777                | 444                       |
+    | 999    | 555    | 999                | 555                       |
 
 scenario ValidationTableWithNestedParameters
   function

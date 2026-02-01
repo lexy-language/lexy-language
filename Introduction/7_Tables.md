@@ -5,7 +5,7 @@ Tables store rows of values in a specific format. The column names and types are
 # Table Syntax
 
 - A pipe is used to separate columns in a table `|`
-- A table header starts and ends and with a separator, and puts a separator in between each column. Each column definition starts with the type followed by the name of the column.  Only primitive types and enums are supported: boolean, string, number, date and custom defined enums.
+- A table header starts and ends and with a separator, and puts a separator in between each column. Each column definition starts with the type followed by the name of the column.  Only value types and enums are supported: boolean, string, number, date and custom defined enums.
 - A table row starts and ends and with a separator, and puts a separator in between each column. Each column contains the specific value.
 
 ```
@@ -26,7 +26,7 @@ A value or a row can be looked up by using the `Table.LookUp` or the `Table.Look
 - The `LookUp`function returns a specific value from the `resultColumn` column.
 - The `LookUpRow`function returns the whole row.
 
-The functions will loop over all rows in a table from the starts and will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.
+The functions will loop over all rows in a table from the start and will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.
 - If the value in the column equals the `lookUpValue`, the value in the `resultColumn` or row is returned.
 - If the value in the column exceeds the `lookUpValue`, the value `resultColumn` of the previous row or the previous row is returned.
 
@@ -107,7 +107,7 @@ table YearlyTaxRate
   | 2025        | 35000      | 0.52        |
 ```
 
-A value or a row can also be looked up by discriminator. The functions will loop over all rows in a table from the starts and, if the discriminator matched, it will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.
+A value or a row can also be looked up by discriminator. The functions will loop over all rows in a table from the start and, if the discriminator matched, it will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.
 
 Syntax: `Table.LookUp(discriminator, lookUpValue, Table.discriminatorColumn, Table.searchValueColumn, Table.resultColumn)`
 

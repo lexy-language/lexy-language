@@ -223,7 +223,7 @@ scenario InvalidAssignmentType
       date Result
     Result = Date.Day(Value)
   expectErrors
-    "Variable 'Result' of type 'date' is not assignable from expression of type 'number'."
+    "Variable 'result: date Result' of type 'date' is not assignable from expression of type 'number'."
 
 
 
