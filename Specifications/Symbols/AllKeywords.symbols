@@ -1,0 +1,158 @@
+1, 1, "scenario: TestSymbols", SymbolKind.Scenario, "Test scenario"
+1, 10, "scenario: TestSymbols", SymbolKind.Scenario
+1, null, 21, 25, 100, 104
+2, null, 1, 2
+2, 10, "function: TestSymbolsFunction", SymbolKind.Function
+3, 7, "parameters", SymbolKind.Keyword
+4, 8, "type: TypeExample", SymbolKind.Type
+4, 22, "parameter: TypeExample Example", SymbolKind.ParameterVariable
+5, 10, "results", SymbolKind.Keyword
+6, 8, "value type: number", SymbolKind.ValueType
+6, 16, "result: number Result", SymbolKind.ResultVariable
+7, 5, "operator: spread", SymbolKind.Operator
+7, 6, "operator: spread", SymbolKind.Operator
+7, 7, "operator: spread", SymbolKind.Operator
+7, 11, "function: FunctionWithFunctionDependency", SymbolKind.Function
+7, 41, "function: FunctionWithFunctionDependency", SymbolKind.Function
+7, 42, "operator: spread", SymbolKind.Operator
+8, 6, "operator: spread", SymbolKind.Operator
+8, 14, "function: FunctionWithFunctionTypeDependency", SymbolKind.Function
+9, 5, "parameters", SymbolKind.Keyword
+10, 8, "parameter: EnumExample Example.EnumValue", SymbolKind.ParameterVariable
+10, 13, "parameter: EnumExample Example.EnumValue", SymbolKind.ParameterVariable
+10, 18, "parameter: EnumExample Example.EnumValue", SymbolKind.ParameterVariable
+10, 21, "parameter: EnumExample Example.EnumValue", SymbolKind.ParameterVariable
+10, 25, "enum member: EnumExample.Single", SymbolKind.EnumMember
+10, 35, "enum member: EnumExample.Single", SymbolKind.EnumMember
+10, 37, "enum member: EnumExample.Single", SymbolKind.EnumMember
+10, 42, "enum member: EnumExample.Single", SymbolKind.EnumMember
+11, 5, "parameter: EnumExample Example.Nested.EnumValue", SymbolKind.ParameterVariable
+11, 13, "parameter: EnumExample Example.Nested.EnumValue", SymbolKind.ParameterVariable
+11, 20, "parameter: EnumExample Example.Nested.EnumValue", SymbolKind.ParameterVariable
+11, 32, "enum member: EnumExample.Married", SymbolKind.EnumMember
+11, 44, "enum member: EnumExample.Married", SymbolKind.EnumMember
+12, 9, "results", SymbolKind.Keyword
+13, 8, "result: number Result", SymbolKind.ResultVariable
+13, 15, "number: 777", SymbolKind.Constant
+
+15, 6, "function: FunctionWithFunctionDependency", SymbolKind.Function
+15, 21, "function: FunctionWithFunctionDependency", SymbolKind.Function
+16, 8, "parameters", SymbolKind.Keyword
+17, 8, "type: TypeExample", SymbolKind.Type
+17, 20, "parameter: TypeExample Example", SymbolKind.ParameterVariable
+18, 4, "results", SymbolKind.Keyword
+19, 8, "value type: number", SymbolKind.ValueType
+19, 16, "result: number Result", SymbolKind.ResultVariable
+
+20, 5, "operator: spread", SymbolKind.Operator
+20, 22, "function: FunctionWithTypeDependency", SymbolKind.Function
+20, 37, "operator: spread", SymbolKind.Operator
+
+21, 5, "operator: spread", SymbolKind.Operator
+21, 28, "function: FunctionWithTableDependency", SymbolKind.Function
+21, 38, "operator: spread", SymbolKind.Operator
+
+22, 3, "operator: spread", SymbolKind.Operator
+22, 14, "function: FunctionWithEnumDependency", SymbolKind.Function
+22, 36, "operator: spread", SymbolKind.Operator
+
+24, 3, "function: FunctionWithFunctionTypeDependency", SymbolKind.Function
+24, 18, "function: FunctionWithFunctionTypeDependency", SymbolKind.Function
+25, 12, "parameters", SymbolKind.Keyword
+26, 11, "type: TypeExample", SymbolKind.Type
+26, 23, "parameter: TypeExample Example", SymbolKind.ParameterVariable
+27, 8, "results", SymbolKind.Keyword
+28, 7, "value type: number", SymbolKind.ValueType
+28, 14, "result: number Result", SymbolKind.ResultVariable
+
+29, 4, "type: FunctionWithTypeDependency.Parameters", SymbolKind.GeneratedType
+29, 17, "functionParametersFill", SymbolKind.Variable
+29, 34, "fill", SymbolKind.SystemFunction
+29, 53, "type: FunctionWithTypeDependency.Parameters", SymbolKind.GeneratedType
+29, 66, "type: FunctionWithTypeDependency.Parameters", SymbolKind.GeneratedType
+
+30, 5, "type: FunctionWithTypeDependency.Parameters", SymbolKind.GeneratedType
+30, 17, "functionParametersNew", SymbolKind.Variable
+30, 31, "new", SymbolKind.SystemFunction
+30, 44, "type: FunctionWithTypeDependency.Parameters", SymbolKind.GeneratedType
+30, 63, "type: FunctionWithTypeDependency.Parameters", SymbolKind.GeneratedType
+
+31, 5, "type: TableExample.Row", SymbolKind.GeneratedType
+31, 13, "tableParameters", SymbolKind.Variable
+31, 27, "new", SymbolKind.SystemFunction
+31, 30, "type: TableExample.Row", SymbolKind.GeneratedType
+31, 41, "type: TableExample.Row", SymbolKind.GeneratedType
+
+32, 7, "result: number Result", SymbolKind.ResultVariable
+32, 14, "number: 777", SymbolKind.Constant
+
+34, 7, "function: FunctionWithTypeDependency", SymbolKind.Function
+34, 23, "function: FunctionWithTypeDependency", SymbolKind.Function
+35, 12, "parameters", SymbolKind.Keyword
+36, 11, "type: TypeExample", SymbolKind.Type
+36, 23, "parameter: TypeExample Example", SymbolKind.ParameterVariable
+37, 8, "results", SymbolKind.Keyword
+38, 7, "value type: number", SymbolKind.ValueType
+38, 14, "result: number Result", SymbolKind.ResultVariable
+
+41, 7, "function: FunctionWithTableDependency", SymbolKind.Function
+41, 28, "function: FunctionWithTableDependency", SymbolKind.Function
+42, 12, "parameters", SymbolKind.Keyword
+43, 15, "type: TypeExample", SymbolKind.Type
+43, 23, "parameter: TypeExample Example", SymbolKind.ParameterVariable
+44, 6, "results", SymbolKind.Keyword
+
+45, 8, "value type: number", SymbolKind.ValueType
+45, 15, "result: number Result", SymbolKind.ResultVariable
+
+46, 6, "result: number Result", SymbolKind.ResultVariable
+46, 27, "table function: TableExample.LookUp", SymbolKind.TableFunction
+46, 35, "enum member: EnumExample.Single", SymbolKind.EnumMember
+46, 46, "enum member: EnumExample.Single", SymbolKind.EnumMember
+46, 75, "table column: TableExample.Value", SymbolKind.TableColumn
+46, 88, "table column: TableExample.Value", SymbolKind.TableColumn
+
+48, 7, "function: FunctionWithEnumDependency", SymbolKind.Function
+48, 18, "function: FunctionWithEnumDependency", SymbolKind.Function
+49, 8, "parameters", SymbolKind.Keyword
+50, 15, "enum: EnumExample", SymbolKind.Enum
+50, 23, "parameter: EnumExample EnumValue", SymbolKind.ParameterVariable
+51, 13, "type: TypeExample", SymbolKind.Type
+51, 22, "parameter: TypeExample Example", SymbolKind.ParameterVariable
+52, 3, "results", SymbolKind.Keyword
+53, 5, "value type: number", SymbolKind.ValueType
+53, 16, "result: number Result", SymbolKind.ResultVariable
+54, 5, "result: number Result", SymbolKind.ResultVariable
+54, 14, "number: 666", SymbolKind.Constant
+
+56, 3, "type: NestedType", SymbolKind.Type
+56, 14, "type: NestedType", SymbolKind.Type
+57, 18, "parameter: EnumExample EnumValue", SymbolKind.ParameterVariable
+58, 18, "parameter: number Result", SymbolKind.ParameterVariable
+58, 12, "parameter: number Result", SymbolKind.ParameterVariable
+58, 20, "number: 888", SymbolKind.Constant
+
+60, 3, "type: TypeExample", SymbolKind.Type
+60, 15, "type: TypeExample", SymbolKind.Type
+61, 7, "enum: EnumExample", SymbolKind.Enum
+61, 18, "parameter: EnumExample EnumValue", SymbolKind.ParameterVariable
+62, 4, "type: NestedType", SymbolKind.Type
+62, 18, "parameter: NestedType Nested", SymbolKind.ParameterVariable
+
+64, 4, "table: TableExample", SymbolKind.Table
+64, 14, "table: TableExample", SymbolKind.Table
+
+65, 5, "enum: EnumExample", SymbolKind.Enum
+65, 21, "Example", SymbolKind.TableColumn
+65, 28, "value type: number", SymbolKind.ValueType
+65, 35, "Value", SymbolKind.TableColumn
+
+66, 12, "enum member: EnumExample.Single", SymbolKind.EnumMember
+66, 19, "enum member: EnumExample.Single", SymbolKind.EnumMember
+66, 28, "number: 123", SymbolKind.Constant
+
+68, 2, "enum: EnumExample", SymbolKind.Enum
+68, 16, "enum: EnumExample", SymbolKind.Enum
+69, 7, "enum member: EnumExample.Single", SymbolKind.EnumMember
+70, 8, "enum member: EnumExample.Married", SymbolKind.EnumMember
+71, 15, "enum member: EnumExample.CivilPartnership", SymbolKind.EnumMember

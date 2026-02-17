@@ -1,0 +1,265 @@
+Function.lexy (1:1-20)                                                 Function: Assignments
+Function.lexy (2:3-12)                                                   FunctionParameters: 4
+Function.lexy (3:5-22)                                                     VariableDefinition: parameter: number NumberValue
+Function.lexy (3:5-10)                                                       ValueTypeDeclaration: number
+Function.lexy (4:5-22)                                                     VariableDefinition: parameter: string StringValue
+Function.lexy (4:5-10)                                                       ValueTypeDeclaration: string
+Function.lexy (5:5-18)                                                     VariableDefinition: parameter: date DateValue
+Function.lexy (5:5-8)                                                        ValueTypeDeclaration: date
+Function.lexy (6:5-24)                                                     VariableDefinition: parameter: boolean BooleanValue
+Function.lexy (6:5-11)                                                       ValueTypeDeclaration: boolean
+Function.lexy (7:3-9)                                                    FunctionResults: 6
+Function.lexy (8:5-23)                                                     VariableDefinition: result: number NumberResult
+Function.lexy (8:5-10)                                                       ValueTypeDeclaration: number
+Function.lexy (9:5-23)                                                     VariableDefinition: result: string StringResult
+Function.lexy (9:5-10)                                                       ValueTypeDeclaration: string
+Function.lexy (10:5-19)                                                    VariableDefinition: result: date DateResult
+Function.lexy (10:5-8)                                                       ValueTypeDeclaration: date
+Function.lexy (11:5-25)                                                    VariableDefinition: result: boolean BooleanResult
+Function.lexy (11:5-11)                                                      ValueTypeDeclaration: boolean
+Function.lexy (12:5-18)                                                    VariableDefinition: result: string Message
+Function.lexy (12:5-10)                                                      ValueTypeDeclaration: string
+Function.lexy (13:5-24)                                                    VariableDefinition: result: string SwitchMessage
+Function.lexy (13:5-10)                                                      ValueTypeDeclaration: string
+Function.lexy (1:1-20)                                                   FunctionCode: 6
+Function.lexy (14:3-28)                                                    AssignmentExpression: NumberResult = NumberValue
+Function.lexy (14:3-14)                                                      IdentifierExpression: NumberResult
+Function.lexy (14:18-28)                                                     IdentifierExpression: NumberValue
+Function.lexy (15:3-28)                                                    AssignmentExpression: StringResult = StringValue
+Function.lexy (15:3-14)                                                      IdentifierExpression: StringResult
+Function.lexy (15:18-28)                                                     IdentifierExpression: StringValue
+Function.lexy (16:3-24)                                                    AssignmentExpression: DateResult = DateValue
+Function.lexy (16:3-12)                                                      IdentifierExpression: DateResult
+Function.lexy (16:16-24)                                                     IdentifierExpression: DateValue
+Function.lexy (17:3-30)                                                    AssignmentExpression: BooleanResult = BooleanValue
+Function.lexy (17:3-15)                                                      IdentifierExpression: BooleanResult
+Function.lexy (17:19-30)                                                     IdentifierExpression: BooleanValue
+Function.lexy (18:3-17)                                                    IfExpression: if BooleanValue
+Function.lexy (18:6-17)                                                      IdentifierExpression: BooleanValue
+Function.lexy (18:3-17)                                                      ExpressionList: 1
+Function.lexy (19:5-19)                                                        AssignmentExpression: Message = xTrue
+Function.lexy (19:5-11)                                                          IdentifierExpression: Message
+Function.lexy (19:15-19)                                                         LiteralExpression: string: "xTrue"
+Function.lexy (20:3-6)                                                       ElseExpression: else
+Function.lexy (21:5-20)                                                        AssignmentExpression: Message = xFalse
+Function.lexy (21:5-11)                                                          IdentifierExpression: Message
+Function.lexy (21:15-20)                                                         LiteralExpression: string: "xFalse"
+Function.lexy (22:3-20)                                                    SwitchExpression: switch NumberValue
+Function.lexy (22:10-20)                                                     IdentifierExpression: NumberValue
+Function.lexy (23:5-10)                                                      CaseExpression: case 0
+Function.lexy (23:10)                                                          LiteralExpression: number: 0
+Function.lexy (23:5-10)                                                        ExpressionList: 1
+Function.lexy (24:7-24)                                                          AssignmentExpression: SwitchMessage = x0
+Function.lexy (24:7-19)                                                            IdentifierExpression: SwitchMessage
+Function.lexy (24:23-24)                                                           LiteralExpression: string: "x0"
+Function.lexy (25:5-10)                                                      CaseExpression: case 1
+Function.lexy (25:10)                                                          LiteralExpression: number: 1
+Function.lexy (25:5-10)                                                        ExpressionList: 1
+Function.lexy (26:7-24)                                                          AssignmentExpression: SwitchMessage = x1
+Function.lexy (26:7-19)                                                            IdentifierExpression: SwitchMessage
+Function.lexy (26:23-24)                                                           LiteralExpression: string: "x1"
+Function.lexy (27:5-11)                                                      CaseExpression: default
+Function.lexy (27:5-11)                                                        ExpressionList: 1
+Function.lexy (28:7-29)                                                          AssignmentExpression: SwitchMessage = default
+Function.lexy (28:7-19)                                                            IdentifierExpression: SwitchMessage
+Function.lexy (28:23-29)                                                           LiteralExpression: string: "default"
+Function.lexy (30:1-24)                                                Scenario: AssignmentsTest
+Function.lexy (31:3-22)                                                  FunctionName: Assignments
+Function.lexy (32:3-12)                                                  Parameters: 4
+Function.lexy (33:5-19)                                                    AssignmentDefinition: NumberValue = 5
+Function.lexy (33:5-15)                                                      IdentifierExpression: NumberValue
+Function.lexy (33:19)                                                        LiteralExpression: number: 5
+Function.lexy (34:5-20)                                                    AssignmentDefinition: StringValue = ab
+Function.lexy (34:5-15)                                                      IdentifierExpression: StringValue
+Function.lexy (34:19-20)                                                     LiteralExpression: string: "ab"
+Function.lexy (35:5-35)                                                    AssignmentDefinition: DateValue = 2026-02-17T14:18:19
+Function.lexy (35:5-13)                                                      IdentifierExpression: DateValue
+Function.lexy (35:17-35)                                                     LiteralExpression: date: 2026-02-17T14:18:19
+Function.lexy (36:5-23)                                                    AssignmentDefinition: BooleanValue = True
+Function.lexy (36:5-16)                                                      IdentifierExpression: BooleanValue
+Function.lexy (36:20-23)                                                     LiteralExpression: boolean: true
+Function.lexy (37:3-9)                                                   Results: 6
+Function.lexy (38:5-20)                                                    AssignmentDefinition: NumberResult = 5
+Function.lexy (38:5-16)                                                      IdentifierExpression: NumberResult
+Function.lexy (38:20)                                                        LiteralExpression: number: 5
+Function.lexy (39:5-21)                                                    AssignmentDefinition: StringResult = ab
+Function.lexy (39:5-16)                                                      IdentifierExpression: StringResult
+Function.lexy (39:20-21)                                                     LiteralExpression: string: "ab"
+Function.lexy (40:5-36)                                                    AssignmentDefinition: DateResult = 2026-02-17T14:18:19
+Function.lexy (40:5-14)                                                      IdentifierExpression: DateResult
+Function.lexy (40:18-36)                                                     LiteralExpression: date: 2026-02-17T14:18:19
+Function.lexy (41:5-24)                                                    AssignmentDefinition: BooleanResult = True
+Function.lexy (41:5-17)                                                      IdentifierExpression: BooleanResult
+Function.lexy (41:21-24)                                                     LiteralExpression: boolean: true
+Function.lexy (42:5-19)                                                    AssignmentDefinition: Message = xTrue
+Function.lexy (42:5-11)                                                      IdentifierExpression: Message
+Function.lexy (42:15-19)                                                     LiteralExpression: string: "xTrue"
+Function.lexy (43:5-27)                                                    AssignmentDefinition: SwitchMessage = default
+Function.lexy (43:5-17)                                                      IdentifierExpression: SwitchMessage
+Function.lexy (43:21-27)                                                     LiteralExpression: string: "default"
+Function.lexy (45:1-29)                                                Scenario: AssignmentsTableTest
+Function.lexy (46:3-22)                                                  FunctionName: Assignments
+Function.lexy (47:3-17)                                                  ValidationTable: 3
+Function.lexy (48:5-171)                                                   ValidationTableHeader: 10
+Function.lexy (48:7-17)                                                      ValidationColumnHeader: NumberValue
+Function.lexy (48:21-31)                                                     ValidationColumnHeader: StringValue
+Function.lexy (48:35-43)                                                     ValidationColumnHeader: DateValue
+Function.lexy (48:60-71)                                                     ValidationColumnHeader: BooleanValue
+Function.lexy (48:75-86)                                                     ValidationColumnHeader: NumberResult
+Function.lexy (48:90-101)                                                    ValidationColumnHeader: StringResult
+Function.lexy (48:105-114)                                                   ValidationColumnHeader: DateResult
+Function.lexy (48:130-142)                                                   ValidationColumnHeader: BooleanResult
+Function.lexy (48:146-152)                                                   ValidationColumnHeader: Message
+Function.lexy (48:157-169)                                                   ValidationColumnHeader: SwitchMessage
+Function.lexy (49:5-171)                                                   ValidationTableRow: [0]
+Function.lexy (49:7)                                                         ValidationTableValue: [0]
+Function.lexy (49:7)                                                           LiteralExpression: number: 0
+Function.lexy (49:21-23)                                                     ValidationTableValue: [1]
+Function.lexy (49:21-23)                                                       LiteralExpression: string: "abc"
+Function.lexy (49:35-53)                                                     ValidationTableValue: [2]
+Function.lexy (49:35-53)                                                       LiteralExpression: date: 2026-02-17T14:18:19
+Function.lexy (49:60-64)                                                     ValidationTableValue: [3]
+Function.lexy (49:60-64)                                                       LiteralExpression: boolean: false
+Function.lexy (49:75)                                                        ValidationTableValue: [4]
+Function.lexy (49:75)                                                          LiteralExpression: number: 0
+Function.lexy (49:90-92)                                                     ValidationTableValue: [5]
+Function.lexy (49:90-92)                                                       LiteralExpression: string: "abc"
+Function.lexy (49:105-123)                                                   ValidationTableValue: [6]
+Function.lexy (49:105-123)                                                     LiteralExpression: date: 2026-02-17T14:18:19
+Function.lexy (49:130-134)                                                   ValidationTableValue: [7]
+Function.lexy (49:130-134)                                                     LiteralExpression: boolean: false
+Function.lexy (49:146-151)                                                   ValidationTableValue: [8]
+Function.lexy (49:146-151)                                                     LiteralExpression: string: "xFalse"
+Function.lexy (49:157-158)                                                   ValidationTableValue: [9]
+Function.lexy (49:157-158)                                                     LiteralExpression: string: "x0"
+Function.lexy (50:5-171)                                                   ValidationTableRow: [1]
+Function.lexy (50:7)                                                         ValidationTableValue: [0]
+Function.lexy (50:7)                                                           LiteralExpression: number: 1
+Function.lexy (50:21-23)                                                     ValidationTableValue: [1]
+Function.lexy (50:21-23)                                                       LiteralExpression: string: "efg"
+Function.lexy (50:35-53)                                                     ValidationTableValue: [2]
+Function.lexy (50:35-53)                                                       LiteralExpression: date: 2026-01-17T02:22:22
+Function.lexy (50:60-63)                                                     ValidationTableValue: [3]
+Function.lexy (50:60-63)                                                       LiteralExpression: boolean: true
+Function.lexy (50:75)                                                        ValidationTableValue: [4]
+Function.lexy (50:75)                                                          LiteralExpression: number: 1
+Function.lexy (50:90-92)                                                     ValidationTableValue: [5]
+Function.lexy (50:90-92)                                                       LiteralExpression: string: "efg"
+Function.lexy (50:105-123)                                                   ValidationTableValue: [6]
+Function.lexy (50:105-123)                                                     LiteralExpression: date: 2026-01-17T02:22:22
+Function.lexy (50:130-133)                                                   ValidationTableValue: [7]
+Function.lexy (50:130-133)                                                     LiteralExpression: boolean: true
+Function.lexy (50:146-150)                                                   ValidationTableValue: [8]
+Function.lexy (50:146-150)                                                     LiteralExpression: string: "xTrue"
+Function.lexy (50:157-158)                                                   ValidationTableValue: [9]
+Function.lexy (50:157-158)                                                     LiteralExpression: string: "x1"
+Function.lexy (51:5-171)                                                   ValidationTableRow: [2]
+Function.lexy (51:7)                                                         ValidationTableValue: [0]
+Function.lexy (51:7)                                                           LiteralExpression: number: 2
+Function.lexy (51:21-23)                                                     ValidationTableValue: [1]
+Function.lexy (51:21-23)                                                       LiteralExpression: string: "xyz"
+Function.lexy (51:35-53)                                                     ValidationTableValue: [2]
+Function.lexy (51:35-53)                                                       LiteralExpression: date: 2026-01-31T18:44:11
+Function.lexy (51:60-64)                                                     ValidationTableValue: [3]
+Function.lexy (51:60-64)                                                       LiteralExpression: boolean: false
+Function.lexy (51:75)                                                        ValidationTableValue: [4]
+Function.lexy (51:75)                                                          LiteralExpression: number: 2
+Function.lexy (51:90-92)                                                     ValidationTableValue: [5]
+Function.lexy (51:90-92)                                                       LiteralExpression: string: "xyz"
+Function.lexy (51:105-123)                                                   ValidationTableValue: [6]
+Function.lexy (51:105-123)                                                     LiteralExpression: date: 2026-01-31T18:44:11
+Function.lexy (51:130-134)                                                   ValidationTableValue: [7]
+Function.lexy (51:130-134)                                                     LiteralExpression: boolean: false
+Function.lexy (51:146-151)                                                   ValidationTableValue: [8]
+Function.lexy (51:146-151)                                                     LiteralExpression: string: "xFalse"
+Function.lexy (51:157-163)                                                   ValidationTableValue: [9]
+Function.lexy (51:157-163)                                                     LiteralExpression: string: "default"
+Function.lexy (53:1-24)                                                Function: CallAssignments
+Function.lexy (54:3-12)                                                  FunctionParameters: 4
+Function.lexy (55:5-22)                                                    VariableDefinition: parameter: number NumberValue
+Function.lexy (55:5-10)                                                      ValueTypeDeclaration: number
+Function.lexy (56:5-22)                                                    VariableDefinition: parameter: string StringValue
+Function.lexy (56:5-10)                                                      ValueTypeDeclaration: string
+Function.lexy (57:5-18)                                                    VariableDefinition: parameter: date DateValue
+Function.lexy (57:5-8)                                                       ValueTypeDeclaration: date
+Function.lexy (58:5-24)                                                    VariableDefinition: parameter: boolean BooleanValue
+Function.lexy (58:5-11)                                                      ValueTypeDeclaration: boolean
+Function.lexy (59:3-9)                                                   FunctionResults: 4
+Function.lexy (60:5-23)                                                    VariableDefinition: result: number NumberResult
+Function.lexy (60:5-10)                                                      ValueTypeDeclaration: number
+Function.lexy (61:5-23)                                                    VariableDefinition: result: string StringResult
+Function.lexy (61:5-10)                                                      ValueTypeDeclaration: string
+Function.lexy (62:5-19)                                                    VariableDefinition: result: date DateResult
+Function.lexy (62:5-8)                                                       ValueTypeDeclaration: date
+Function.lexy (63:5-25)                                                    VariableDefinition: result: boolean BooleanResult
+Function.lexy (63:5-11)                                                      ValueTypeDeclaration: boolean
+Function.lexy (53:1-24)                                                  FunctionCode: 1
+Function.lexy (64:3-70)                                                    SpreadAssignmentExpression: ... = Assignments ( NumberValue , StringValue , DateValue , BooleanValue )
+Function.lexy (64:9-70)                                                      LexyFunctionCallExpression: Assignments ( NumberValue , StringValue , DateValue , BooleanValue )
+Function.lexy (64:21-31)                                                       IdentifierExpression: NumberValue
+Function.lexy (64:34-44)                                                       IdentifierExpression: StringValue
+Function.lexy (64:47-55)                                                       IdentifierExpression: DateValue
+Function.lexy (64:58-69)                                                       IdentifierExpression: BooleanValue
+Function.lexy (66:1-33)                                                Scenario: CallAssignmentsTableTest
+Function.lexy (67:3-26)                                                  FunctionName: CallAssignments
+Function.lexy (68:3-17)                                                  ValidationTable: 3
+Function.lexy (69:5-144)                                                   ValidationTableHeader: 8
+Function.lexy (69:7-17)                                                      ValidationColumnHeader: NumberValue
+Function.lexy (69:21-31)                                                     ValidationColumnHeader: StringValue
+Function.lexy (69:35-43)                                                     ValidationColumnHeader: DateValue
+Function.lexy (69:60-71)                                                     ValidationColumnHeader: BooleanValue
+Function.lexy (69:75-86)                                                     ValidationColumnHeader: NumberResult
+Function.lexy (69:90-101)                                                    ValidationColumnHeader: StringResult
+Function.lexy (69:105-114)                                                   ValidationColumnHeader: DateResult
+Function.lexy (69:130-142)                                                   ValidationColumnHeader: BooleanResult
+Function.lexy (70:5-144)                                                   ValidationTableRow: [0]
+Function.lexy (70:7)                                                         ValidationTableValue: [0]
+Function.lexy (70:7)                                                           LiteralExpression: number: 0
+Function.lexy (70:21-23)                                                     ValidationTableValue: [1]
+Function.lexy (70:21-23)                                                       LiteralExpression: string: "abc"
+Function.lexy (70:35-53)                                                     ValidationTableValue: [2]
+Function.lexy (70:35-53)                                                       LiteralExpression: date: 2026-02-17T14:18:19
+Function.lexy (70:60-64)                                                     ValidationTableValue: [3]
+Function.lexy (70:60-64)                                                       LiteralExpression: boolean: false
+Function.lexy (70:75)                                                        ValidationTableValue: [4]
+Function.lexy (70:75)                                                          LiteralExpression: number: 0
+Function.lexy (70:90-92)                                                     ValidationTableValue: [5]
+Function.lexy (70:90-92)                                                       LiteralExpression: string: "abc"
+Function.lexy (70:105-123)                                                   ValidationTableValue: [6]
+Function.lexy (70:105-123)                                                     LiteralExpression: date: 2026-02-17T14:18:19
+Function.lexy (70:130-134)                                                   ValidationTableValue: [7]
+Function.lexy (70:130-134)                                                     LiteralExpression: boolean: false
+Function.lexy (71:5-144)                                                   ValidationTableRow: [1]
+Function.lexy (71:7)                                                         ValidationTableValue: [0]
+Function.lexy (71:7)                                                           LiteralExpression: number: 1
+Function.lexy (71:21-23)                                                     ValidationTableValue: [1]
+Function.lexy (71:21-23)                                                       LiteralExpression: string: "efg"
+Function.lexy (71:35-53)                                                     ValidationTableValue: [2]
+Function.lexy (71:35-53)                                                       LiteralExpression: date: 2026-01-17T02:22:22
+Function.lexy (71:60-63)                                                     ValidationTableValue: [3]
+Function.lexy (71:60-63)                                                       LiteralExpression: boolean: true
+Function.lexy (71:75)                                                        ValidationTableValue: [4]
+Function.lexy (71:75)                                                          LiteralExpression: number: 1
+Function.lexy (71:90-92)                                                     ValidationTableValue: [5]
+Function.lexy (71:90-92)                                                       LiteralExpression: string: "efg"
+Function.lexy (71:105-123)                                                   ValidationTableValue: [6]
+Function.lexy (71:105-123)                                                     LiteralExpression: date: 2026-01-17T02:22:22
+Function.lexy (71:130-133)                                                   ValidationTableValue: [7]
+Function.lexy (71:130-133)                                                     LiteralExpression: boolean: true
+Function.lexy (72:5-144)                                                   ValidationTableRow: [2]
+Function.lexy (72:7)                                                         ValidationTableValue: [0]
+Function.lexy (72:7)                                                           LiteralExpression: number: 2
+Function.lexy (72:21-23)                                                     ValidationTableValue: [1]
+Function.lexy (72:21-23)                                                       LiteralExpression: string: "xyz"
+Function.lexy (72:35-53)                                                     ValidationTableValue: [2]
+Function.lexy (72:35-53)                                                       LiteralExpression: date: 2026-01-31T18:44:11
+Function.lexy (72:60-64)                                                     ValidationTableValue: [3]
+Function.lexy (72:60-64)                                                       LiteralExpression: boolean: false
+Function.lexy (72:75)                                                        ValidationTableValue: [4]
+Function.lexy (72:75)                                                          LiteralExpression: number: 2
+Function.lexy (72:90-92)                                                     ValidationTableValue: [5]
+Function.lexy (72:90-92)                                                       LiteralExpression: string: "xyz"
+Function.lexy (72:105-123)                                                   ValidationTableValue: [6]
+Function.lexy (72:105-123)                                                     LiteralExpression: date: 2026-01-31T18:44:11
+Function.lexy (72:130-134)                                                   ValidationTableValue: [7]
+Function.lexy (72:130-134)                                                     LiteralExpression: boolean: false

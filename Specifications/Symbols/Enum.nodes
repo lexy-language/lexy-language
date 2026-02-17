@@ -1,0 +1,140 @@
+Enum.lexy (1:1-9)                                                      EnumDefinition: Enum
+Enum.lexy (2:3-7)                                                        EnumMember: Enum.First
+Enum.lexy (3:3-8)                                                        EnumMember: Enum.Second
+Enum.lexy (4:3-7)                                                        EnumMember: Enum.Third
+Enum.lexy (6:1-20)                                                     EnumDefinition: EnumWithDefault
+Enum.lexy (7:3-11)                                                       EnumMember: EnumWithDefault.First = 1
+Enum.lexy (8:3-12)                                                       EnumMember: EnumWithDefault.Second = 2
+Enum.lexy (9:3-11)                                                       EnumMember: EnumWithDefault.Third = 3
+Enum.lexy (11:1-24)                                                    Function: AssignmentsEnum
+Enum.lexy (12:3-12)                                                      FunctionParameters: 2
+Enum.lexy (13:5-18)                                                        VariableDefinition: parameter: Enum EnumValue
+Enum.lexy (13:5-8)                                                           ObjectTypeDeclaration: Enum
+Enum.lexy (14:5-40)                                                        VariableDefinition: parameter: EnumWithDefault EnumValueWithDefault
+Enum.lexy (14:5-19)                                                          ObjectTypeDeclaration: EnumWithDefault
+Enum.lexy (15:3-9)                                                       FunctionResults: 2
+Enum.lexy (16:5-19)                                                        VariableDefinition: result: Enum EnumResult
+Enum.lexy (16:5-8)                                                           ObjectTypeDeclaration: Enum
+Enum.lexy (17:5-41)                                                        VariableDefinition: result: EnumWithDefault EnumResultWithDefault
+Enum.lexy (17:5-19)                                                          ObjectTypeDeclaration: EnumWithDefault
+Enum.lexy (11:1-24)                                                      FunctionCode: 4
+Enum.lexy (18:3-26)                                                        AssignmentExpression: EnumResult = Enum.Second
+Enum.lexy (18:3-12)                                                          IdentifierExpression: EnumResult
+Enum.lexy (18:16-26)                                                         MemberAccessExpression: Enum.Second
+Enum.lexy (19:3-47)                                                        AssignmentExpression: EnumResultWithDefault = EnumWithDefault.Third
+Enum.lexy (19:3-23)                                                          IdentifierExpression: EnumResultWithDefault
+Enum.lexy (19:27-47)                                                         MemberAccessExpression: EnumWithDefault.Third
+Enum.lexy (20:3-24)                                                        AssignmentExpression: EnumResult = EnumValue
+Enum.lexy (20:3-12)                                                          IdentifierExpression: EnumResult
+Enum.lexy (20:16-24)                                                         IdentifierExpression: EnumValue
+Enum.lexy (21:3-46)                                                        AssignmentExpression: EnumResultWithDefault = EnumValueWithDefault
+Enum.lexy (21:3-23)                                                          IdentifierExpression: EnumResultWithDefault
+Enum.lexy (21:27-46)                                                         IdentifierExpression: EnumValueWithDefault
+Enum.lexy (23:1-28)                                                    Scenario: AssignmentsEnumTest
+Enum.lexy (24:3-26)                                                      FunctionName: AssignmentsEnum
+Enum.lexy (25:3-12)                                                      Parameters: 2
+Enum.lexy (26:5-26)                                                        AssignmentDefinition: EnumValue = Enum.Third
+Enum.lexy (26:5-13)                                                          IdentifierExpression: EnumValue
+Enum.lexy (26:17-26)                                                         MemberAccessExpression: Enum.Third
+Enum.lexy (27:5-48)                                                        AssignmentDefinition: EnumValueWithDefault = EnumWithDefault.Third
+Enum.lexy (27:5-24)                                                          IdentifierExpression: EnumValueWithDefault
+Enum.lexy (27:28-48)                                                         MemberAccessExpression: EnumWithDefault.Third
+Enum.lexy (28:3-9)                                                       Results: 2
+Enum.lexy (29:5-27)                                                        AssignmentDefinition: EnumResult = Enum.Third
+Enum.lexy (29:5-14)                                                          IdentifierExpression: EnumResult
+Enum.lexy (29:18-27)                                                         MemberAccessExpression: Enum.Third
+Enum.lexy (30:5-49)                                                        AssignmentDefinition: EnumResultWithDefault = EnumWithDefault.Third
+Enum.lexy (30:5-25)                                                          IdentifierExpression: EnumResultWithDefault
+Enum.lexy (30:29-49)                                                         MemberAccessExpression: EnumWithDefault.Third
+Enum.lexy (32:1-33)                                                    Scenario: AssignmentsEnumTableTest
+Enum.lexy (33:3-26)                                                      FunctionName: AssignmentsEnum
+Enum.lexy (34:3-17)                                                      ValidationTable: 3
+Enum.lexy (35:5-83)                                                        ValidationTableHeader: 4
+Enum.lexy (35:7-15)                                                          ValidationColumnHeader: EnumValue
+Enum.lexy (35:21-40)                                                         ValidationColumnHeader: EnumValueWithDefault
+Enum.lexy (35:46-55)                                                         ValidationColumnHeader: EnumResult
+Enum.lexy (35:60-80)                                                         ValidationColumnHeader: EnumResultWithDefault
+Enum.lexy (36:5-83)                                                        ValidationTableRow: [0]
+Enum.lexy (36:7-16)                                                          ValidationTableValue: [0]
+Enum.lexy (36:7-16)                                                            MemberAccessExpression: Enum.First
+Enum.lexy (36:21-41)                                                         ValidationTableValue: [1]
+Enum.lexy (36:21-41)                                                           MemberAccessExpression: EnumWithDefault.First
+Enum.lexy (36:46-55)                                                         ValidationTableValue: [2]
+Enum.lexy (36:46-55)                                                           MemberAccessExpression: Enum.First
+Enum.lexy (36:60-80)                                                         ValidationTableValue: [3]
+Enum.lexy (36:60-80)                                                           MemberAccessExpression: EnumWithDefault.First
+Enum.lexy (37:5-83)                                                        ValidationTableRow: [1]
+Enum.lexy (37:7-17)                                                          ValidationTableValue: [0]
+Enum.lexy (37:7-17)                                                            MemberAccessExpression: Enum.Second
+Enum.lexy (37:21-42)                                                         ValidationTableValue: [1]
+Enum.lexy (37:21-42)                                                           MemberAccessExpression: EnumWithDefault.Second
+Enum.lexy (37:46-56)                                                         ValidationTableValue: [2]
+Enum.lexy (37:46-56)                                                           MemberAccessExpression: Enum.Second
+Enum.lexy (37:60-81)                                                         ValidationTableValue: [3]
+Enum.lexy (37:60-81)                                                           MemberAccessExpression: EnumWithDefault.Second
+Enum.lexy (38:5-83)                                                        ValidationTableRow: [2]
+Enum.lexy (38:7-16)                                                          ValidationTableValue: [0]
+Enum.lexy (38:7-16)                                                            MemberAccessExpression: Enum.Third
+Enum.lexy (38:21-41)                                                         ValidationTableValue: [1]
+Enum.lexy (38:21-41)                                                           MemberAccessExpression: EnumWithDefault.Third
+Enum.lexy (38:46-55)                                                         ValidationTableValue: [2]
+Enum.lexy (38:46-55)                                                           MemberAccessExpression: Enum.Third
+Enum.lexy (38:60-80)                                                         ValidationTableValue: [3]
+Enum.lexy (38:60-80)                                                           MemberAccessExpression: EnumWithDefault.Third
+Enum.lexy (40:1-15)                                                    Table: EnumTable
+Enum.lexy (41:3-42)                                                      TableHeader: 2
+Enum.lexy (41:5-15)                                                        ColumnHeader: Search
+Enum.lexy (41:5-8)                                                           ObjectTypeDeclaration: Enum
+Enum.lexy (41:10-15)                                                         VariableNameExpression: Search
+Enum.lexy (41:19-40)                                                       ColumnHeader: Result
+Enum.lexy (41:19-33)                                                         ObjectTypeDeclaration: EnumWithDefault
+Enum.lexy (41:35-40)                                                         VariableNameExpression: Result
+Enum.lexy (42:3-42)                                                      TableRow: 2
+Enum.lexy (42:5-14)                                                        TableValue: [0]
+Enum.lexy (42:5-14)                                                          MemberAccessExpression: Enum.First
+Enum.lexy (42:19-39)                                                       TableValue: [1]
+Enum.lexy (42:19-39)                                                         MemberAccessExpression: EnumWithDefault.First
+Enum.lexy (43:3-42)                                                      TableRow: 2
+Enum.lexy (43:5-15)                                                        TableValue: [0]
+Enum.lexy (43:5-15)                                                          MemberAccessExpression: Enum.Second
+Enum.lexy (43:19-40)                                                       TableValue: [1]
+Enum.lexy (43:19-40)                                                         MemberAccessExpression: EnumWithDefault.Second
+Enum.lexy (44:3-42)                                                      TableRow: 2
+Enum.lexy (44:5-14)                                                        TableValue: [0]
+Enum.lexy (44:5-14)                                                          MemberAccessExpression: Enum.Third
+Enum.lexy (44:19-39)                                                       TableValue: [1]
+Enum.lexy (44:19-39)                                                         MemberAccessExpression: EnumWithDefault.Third
+Enum.lexy (46:1-22)                                                    Function: CallEnumTable
+Enum.lexy (47:3-12)                                                      FunctionParameters: 1
+Enum.lexy (48:5-14)                                                        VariableDefinition: parameter: Enum Value
+Enum.lexy (48:5-8)                                                           ObjectTypeDeclaration: Enum
+Enum.lexy (49:3-9)                                                       FunctionResults: 1
+Enum.lexy (50:5-26)                                                        VariableDefinition: result: EnumWithDefault Result
+Enum.lexy (50:5-19)                                                          ObjectTypeDeclaration: EnumWithDefault
+Enum.lexy (46:1-22)                                                      FunctionCode: 1
+Enum.lexy (52:3-52)                                                        AssignmentExpression: Result = EnumTable.LookUp ( Value , EnumTable.Result )
+Enum.lexy (52:3-8)                                                           IdentifierExpression: Result
+Enum.lexy (52:12-52)                                                         MemberFunctionCallExpression: EnumTable.LookUp ( Value , EnumTable.Result )
+Enum.lexy (52:29-33)                                                           IdentifierExpression: Value
+Enum.lexy (52:36-51)                                                           MemberAccessExpression: EnumTable.Result
+Enum.lexy (54:1-26)                                                    Scenario: CallEnumTableTest
+Enum.lexy (55:3-24)                                                      FunctionName: CallEnumTable
+Enum.lexy (56:3-17)                                                      ValidationTable: 3
+Enum.lexy (57:5-44)                                                        ValidationTableHeader: 2
+Enum.lexy (57:7-11)                                                          ValidationColumnHeader: Value
+Enum.lexy (57:21-26)                                                         ValidationColumnHeader: Result
+Enum.lexy (58:5-44)                                                        ValidationTableRow: [0]
+Enum.lexy (58:7-16)                                                          ValidationTableValue: [0]
+Enum.lexy (58:7-16)                                                            MemberAccessExpression: Enum.First
+Enum.lexy (58:21-41)                                                         ValidationTableValue: [1]
+Enum.lexy (58:21-41)                                                           MemberAccessExpression: EnumWithDefault.First
+Enum.lexy (59:5-44)                                                        ValidationTableRow: [1]
+Enum.lexy (59:7-17)                                                          ValidationTableValue: [0]
+Enum.lexy (59:7-17)                                                            MemberAccessExpression: Enum.Second
+Enum.lexy (59:21-42)                                                         ValidationTableValue: [1]
+Enum.lexy (59:21-42)                                                           MemberAccessExpression: EnumWithDefault.Second
+Enum.lexy (60:5-44)                                                        ValidationTableRow: [2]
+Enum.lexy (60:7-16)                                                          ValidationTableValue: [0]
+Enum.lexy (60:7-16)                                                            MemberAccessExpression: Enum.Third
+Enum.lexy (60:21-41)                                                         ValidationTableValue: [1]
+Enum.lexy (60:21-41)                                                           MemberAccessExpression: EnumWithDefault.Third

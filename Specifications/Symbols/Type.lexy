@@ -1,0 +1,35 @@
+type ExampleType
+  number Number
+  string String
+  date Date
+  boolean Boolean
+
+function Assignment
+  parameters
+    ExampleType Value
+  results
+    ExampleType Result
+  Result = Value
+
+scenario AssignmentTest
+  function Assignment
+  parameters
+    Value =
+      Number = 5
+      String = "ab"
+      Date = d"2026-02-17T14:18:19"
+      Boolean = true
+  results
+    Result =
+      Number = 5
+      String = "ab"
+      Date = d"2026-02-17T14:18:19"
+      Boolean = true
+
+scenario AssignmentsTableTest
+  function Assignment
+  validationTable
+    | Value.Number | Value.String | Value.Date             | Value.Boolean | Result.Number | Result.String | Result.Date            | Result.Boolean |
+    | 0            | "abc"        | d"2026-02-17T14:18:19" | false         | 0             | "abc"         | d"2026-02-17T14:18:19" | false          |
+    | 1            | "efg"        | d"2026-01-17T02:22:22" | true          | 1             | "efg"         | d"2026-01-17T02:22:22" | true           |
+    | 2            | "xyz"        | d"2026-01-31T18:44:11" | false         | 2             | "xyz"         | d"2026-01-31T18:44:11" | false          |

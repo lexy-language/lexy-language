@@ -11,7 +11,7 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
-
+*.actual
 
 node_modules/
 .node_modules/

@@ -1,0 +1,120 @@
+Table.lexy (1:1-17)                                                    Table: SimpleTable
+Table.lexy (2:3-186)                                                     TableHeader: 8
+Table.lexy (2:5-22)                                                        ColumnHeader: NumberValue
+Table.lexy (2:5-10)                                                          ValueTypeDeclaration: number
+Table.lexy (2:12-22)                                                         VariableNameExpression: NumberValue
+Table.lexy (2:26-43)                                                       ColumnHeader: StringValue
+Table.lexy (2:26-31)                                                         ValueTypeDeclaration: string
+Table.lexy (2:33-43)                                                         VariableNameExpression: StringValue
+Table.lexy (2:47-60)                                                       ColumnHeader: DateValue
+Table.lexy (2:47-50)                                                         ValueTypeDeclaration: date
+Table.lexy (2:52-60)                                                         VariableNameExpression: DateValue
+Table.lexy (2:72-91)                                                       ColumnHeader: BooleanValue
+Table.lexy (2:72-78)                                                         ValueTypeDeclaration: boolean
+Table.lexy (2:80-91)                                                         VariableNameExpression: BooleanValue
+Table.lexy (2:95-113)                                                      ColumnHeader: NumberResult
+Table.lexy (2:95-100)                                                        ValueTypeDeclaration: number
+Table.lexy (2:102-113)                                                       VariableNameExpression: NumberResult
+Table.lexy (2:117-135)                                                     ColumnHeader: StringResult
+Table.lexy (2:117-122)                                                       ValueTypeDeclaration: string
+Table.lexy (2:124-135)                                                       VariableNameExpression: StringResult
+Table.lexy (2:139-153)                                                     ColumnHeader: DateResult
+Table.lexy (2:139-142)                                                       ValueTypeDeclaration: date
+Table.lexy (2:144-153)                                                       VariableNameExpression: DateResult
+Table.lexy (2:164-184)                                                     ColumnHeader: BooleanResult
+Table.lexy (2:164-170)                                                       ValueTypeDeclaration: boolean
+Table.lexy (2:172-184)                                                       VariableNameExpression: BooleanResult
+Table.lexy (3:3-186)                                                     TableRow: 8
+Table.lexy (3:5)                                                           TableValue: [0]
+Table.lexy (3:5)                                                             LiteralExpression: number: 0
+Table.lexy (3:26-27)                                                       TableValue: [1]
+Table.lexy (3:26-27)                                                         LiteralExpression: string: "ab"
+Table.lexy (3:47-65)                                                       TableValue: [2]
+Table.lexy (3:47-65)                                                         LiteralExpression: date: 2026-01-01T01:01:01
+Table.lexy (3:72-76)                                                       TableValue: [3]
+Table.lexy (3:72-76)                                                         LiteralExpression: boolean: false
+Table.lexy (3:95-96)                                                       TableValue: [4]
+Table.lexy (3:95-96)                                                         LiteralExpression: number: 10
+Table.lexy (3:117-118)                                                     TableValue: [5]
+Table.lexy (3:117-118)                                                       LiteralExpression: string: "de"
+Table.lexy (3:139-157)                                                     TableValue: [6]
+Table.lexy (3:139-157)                                                       LiteralExpression: date: 2022-02-02T02:02:02
+Table.lexy (3:164-167)                                                     TableValue: [7]
+Table.lexy (3:164-167)                                                       LiteralExpression: boolean: true
+Table.lexy (5:1-20)                                                    Function: TableLookUp
+Table.lexy (6:3-12)                                                      FunctionParameters: 4
+Table.lexy (7:5-22)                                                        VariableDefinition: parameter: number NumberValue
+Table.lexy (7:5-10)                                                          ValueTypeDeclaration: number
+Table.lexy (8:5-22)                                                        VariableDefinition: parameter: string StringValue
+Table.lexy (8:5-10)                                                          ValueTypeDeclaration: string
+Table.lexy (9:5-18)                                                        VariableDefinition: parameter: date DateValue
+Table.lexy (9:5-8)                                                           ValueTypeDeclaration: date
+Table.lexy (10:5-24)                                                       VariableDefinition: parameter: boolean BooleanValue
+Table.lexy (10:5-11)                                                         ValueTypeDeclaration: boolean
+Table.lexy (11:3-9)                                                      FunctionResults: 4
+Table.lexy (12:5-23)                                                       VariableDefinition: result: number NumberResult
+Table.lexy (12:5-10)                                                         ValueTypeDeclaration: number
+Table.lexy (13:5-23)                                                       VariableDefinition: result: string StringResult
+Table.lexy (13:5-10)                                                         ValueTypeDeclaration: string
+Table.lexy (14:5-19)                                                       VariableDefinition: result: date DateResult
+Table.lexy (14:5-8)                                                          ValueTypeDeclaration: date
+Table.lexy (15:5-25)                                                       VariableDefinition: result: boolean BooleanResult
+Table.lexy (15:5-11)                                                         ValueTypeDeclaration: boolean
+Table.lexy (5:1-20)                                                      FunctionCode: 6
+Table.lexy (17:3-74)                                                       AssignmentExpression: NumberResult = SimpleTable.LookUp ( NumberValue , SimpleTable.NumberResult )
+Table.lexy (17:3-14)                                                         IdentifierExpression: NumberResult
+Table.lexy (17:18-74)                                                        MemberFunctionCallExpression: SimpleTable.LookUp ( NumberValue , SimpleTable.NumberResult )
+Table.lexy (17:37-47)                                                          IdentifierExpression: NumberValue
+Table.lexy (17:50-73)                                                          MemberAccessExpression: SimpleTable.NumberResult
+Table.lexy (18:3-99)                                                       AssignmentExpression: StringResult = SimpleTable.LookUp ( StringValue , SimpleTable.StringValue , SimpleTable.StringResult )
+Table.lexy (18:3-14)                                                         IdentifierExpression: StringResult
+Table.lexy (18:18-99)                                                        MemberFunctionCallExpression: SimpleTable.LookUp ( StringValue , SimpleTable.StringValue , SimpleTable.StringResult )
+Table.lexy (18:37-47)                                                          IdentifierExpression: StringValue
+Table.lexy (18:50-72)                                                          MemberAccessExpression: SimpleTable.StringValue
+Table.lexy (18:75-98)                                                          MemberAccessExpression: SimpleTable.StringResult
+Table.lexy (19:3-71)                                                       VariableDeclarationExpression: var dateRow = SimpleTable.LookUpRow ( DateValue , SimpleTable.DateValue )
+Table.lexy (19:3-5)                                                          ImplicitTypeDeclaration: SimpleTable.Row
+Table.lexy (19:7-13)                                                         VariableNameExpression: dateRow
+Table.lexy (19:17-71)                                                        MemberFunctionCallExpression: SimpleTable.LookUpRow ( DateValue , SimpleTable.DateValue )
+Table.lexy (19:39-47)                                                          IdentifierExpression: DateValue
+Table.lexy (19:50-70)                                                          MemberAccessExpression: SimpleTable.DateValue
+Table.lexy (20:3-80)                                                       VariableDeclarationExpression: var booleanRow = SimpleTable.LookUpRow ( BooleanValue , SimpleTable.BooleanValue )
+Table.lexy (20:3-5)                                                          ImplicitTypeDeclaration: SimpleTable.Row
+Table.lexy (20:7-16)                                                         VariableNameExpression: booleanRow
+Table.lexy (20:20-80)                                                        MemberFunctionCallExpression: SimpleTable.LookUpRow ( BooleanValue , SimpleTable.BooleanValue )
+Table.lexy (20:42-53)                                                          IdentifierExpression: BooleanValue
+Table.lexy (20:56-79)                                                          MemberAccessExpression: SimpleTable.BooleanValue
+Table.lexy (21:3-33)                                                       AssignmentExpression: DateResult = dateRow.DateResult
+Table.lexy (21:3-12)                                                         IdentifierExpression: DateResult
+Table.lexy (21:16-33)                                                        MemberAccessExpression: dateRow.DateResult
+Table.lexy (22:3-42)                                                       AssignmentExpression: BooleanResult = booleanRow.BooleanResult
+Table.lexy (22:3-15)                                                         IdentifierExpression: BooleanResult
+Table.lexy (22:19-42)                                                        MemberAccessExpression: booleanRow.BooleanResult
+Table.lexy (24:1-24)                                                   Scenario: TableLookUpTest
+Table.lexy (25:3-22)                                                     FunctionName: TableLookUp
+Table.lexy (26:3-12)                                                     Parameters: 4
+Table.lexy (27:5-19)                                                       AssignmentDefinition: NumberValue = 0
+Table.lexy (27:5-15)                                                         IdentifierExpression: NumberValue
+Table.lexy (27:19)                                                           LiteralExpression: number: 0
+Table.lexy (28:5-20)                                                       AssignmentDefinition: StringValue = ab
+Table.lexy (28:5-15)                                                         IdentifierExpression: StringValue
+Table.lexy (28:19-20)                                                        LiteralExpression: string: "ab"
+Table.lexy (29:5-35)                                                       AssignmentDefinition: DateValue = 2026-01-01T01:01:01
+Table.lexy (29:5-13)                                                         IdentifierExpression: DateValue
+Table.lexy (29:17-35)                                                        LiteralExpression: date: 2026-01-01T01:01:01
+Table.lexy (30:5-24)                                                       AssignmentDefinition: BooleanValue = False
+Table.lexy (30:5-16)                                                         IdentifierExpression: BooleanValue
+Table.lexy (30:20-24)                                                        LiteralExpression: boolean: false
+Table.lexy (31:3-9)                                                      Results: 4
+Table.lexy (32:5-21)                                                       AssignmentDefinition: NumberResult = 10
+Table.lexy (32:5-16)                                                         IdentifierExpression: NumberResult
+Table.lexy (32:20-21)                                                        LiteralExpression: number: 10
+Table.lexy (33:5-21)                                                       AssignmentDefinition: StringResult = de
+Table.lexy (33:5-16)                                                         IdentifierExpression: StringResult
+Table.lexy (33:20-21)                                                        LiteralExpression: string: "de"
+Table.lexy (34:5-36)                                                       AssignmentDefinition: DateResult = 2022-02-02T02:02:02
+Table.lexy (34:5-14)                                                         IdentifierExpression: DateResult
+Table.lexy (34:18-36)                                                        LiteralExpression: date: 2022-02-02T02:02:02
+Table.lexy (35:5-24)                                                       AssignmentDefinition: BooleanResult = True
+Table.lexy (35:5-17)                                                         IdentifierExpression: BooleanResult
+Table.lexy (35:21-24)                                                        LiteralExpression: boolean: true

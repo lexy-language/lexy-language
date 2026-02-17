@@ -1,0 +1,40 @@
+1, 1, "enum: Enum", SymbolKind.Enum
+1, 8, "enum: Enum", SymbolKind.Enum
+3, 6, "enum member: Enum.Second", SymbolKind.EnumMember
+6, 1, "enum: EnumWithDefault", SymbolKind.Enum
+6, 7, "enum: EnumWithDefault", SymbolKind.Enum
+9, 6, "enum member: EnumWithDefault.Third = 3", SymbolKind.EnumMember
+9, 11, "enum member: EnumWithDefault.Third = 3", SymbolKind.EnumMember
+13, 7, "enum: Enum", SymbolKind.Enum
+13, 15, "parameter: Enum EnumValue", SymbolKind.ParameterVariable
+14, 7, "enum: EnumWithDefault", SymbolKind.Enum
+14, 26, "parameter: EnumWithDefault EnumValueWithDefault", SymbolKind.ParameterVariable
+16, 7, "enum: Enum", SymbolKind.Enum
+16, 15, "result: Enum EnumResult", SymbolKind.ResultVariable
+17, 7, "enum: EnumWithDefault", SymbolKind.Enum
+17, 26, "result: EnumWithDefault EnumResultWithDefault", SymbolKind.ResultVariable
+
+26, 10, "parameter: Enum EnumValue", SymbolKind.ParameterVariable
+26, 20, "enum member: Enum.Third", SymbolKind.EnumMember
+27, 10, "parameter: EnumWithDefault EnumValueWithDefault", SymbolKind.ParameterVariable
+27, 39, "enum member: EnumWithDefault.Third", SymbolKind.EnumMember
+
+29, 10, "result: Enum EnumResult", SymbolKind.ResultVariable
+29, 20, "enum member: Enum.Third", SymbolKind.EnumMember
+30, 10, "result: EnumWithDefault EnumResultWithDefault", SymbolKind.ResultVariable
+30, 39, "enum member: EnumWithDefault.Third", SymbolKind.EnumMember
+
+41, 5, "enum: Enum", SymbolKind.Enum
+41, 29, "enum: EnumWithDefault", SymbolKind.Enum
+
+43, 12, "enum member: Enum.Second", SymbolKind.EnumMember
+44, 28, "enum member: EnumWithDefault.Third", SymbolKind.EnumMember
+
+48, 7, "enum: Enum", SymbolKind.Enum
+50, 13, "enum: EnumWithDefault", SymbolKind.Enum
+
+52, 6, "result: EnumWithDefault Result", SymbolKind.ResultVariable
+52, 16, "table function: EnumTable.LookUp", SymbolKind.TableFunction
+52, 26, "table function: EnumTable.LookUp", SymbolKind.TableFunction
+52, 32, "parameter: Enum Value", SymbolKind.ParameterVariable
+52, 40, "table column: EnumTable.Result", SymbolKind.TableColumn

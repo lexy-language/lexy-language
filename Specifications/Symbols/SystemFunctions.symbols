@@ -1,0 +1,101 @@
+1, 6, "function: Today", SymbolKind.Function
+2, 3, "results", SymbolKind.Keyword, "function result variables"
+3, 13, "result: number Diff", SymbolKind.ResultVariable
+3, 8, "value type: number", SymbolKind.ValueType
+4, 4, "value type: date", SymbolKind.ValueType
+4, 8, "first", SymbolKind.Variable
+4, 18, "Lexy.RunTime.Libraries.Date.Today", SymbolKind.LibraryFunction
+5, 4, "value type: date", SymbolKind.ValueType
+5, 11, "second", SymbolKind.Variable
+5, 28, "Lexy.RunTime.Libraries.Date.Today", SymbolKind.LibraryFunction
+6, 6, "result: number Diff", SymbolKind.ResultVariable
+6, 11, "Lexy.RunTime.Libraries.Date.Seconds", SymbolKind.LibraryFunction
+6, 27, "variable: date first", SymbolKind.Variable
+6, 35, "variable: date second", SymbolKind.Variable
+8, 2, "function: NowAndDiff", SymbolKind.Function
+9, 7, "results", SymbolKind.Keyword, "function result variables"
+10, 13, "result: number Diff", SymbolKind.ResultVariable
+10, 9, "value type: number", SymbolKind.ValueType
+11, 3, "value type: date", SymbolKind.ValueType
+11, 11, "first", SymbolKind.Variable
+11, 20, "Lexy.RunTime.Libraries.Date.Now", SymbolKind.LibraryFunction
+12, 4, "value type: date", SymbolKind.ValueType
+12, 8, "second", SymbolKind.Variable
+12, 26, "Lexy.RunTime.Libraries.Date.Now", SymbolKind.LibraryFunction
+13, 6, "result: number Diff", SymbolKind.ResultVariable
+13, 10, "Lexy.RunTime.Libraries.Number.Floor", SymbolKind.LibraryFunction
+13, 31, "Lexy.RunTime.Libraries.Date.Seconds", SymbolKind.LibraryFunction
+13, 40, "variable: date second", SymbolKind.Variable
+13, 46, "variable: date first", SymbolKind.Variable
+15, 10, "function: PowerDivision", SymbolKind.Function
+16, 4, "results", SymbolKind.Keyword, "function result variables"
+17, 17, "result: number Result", SymbolKind.ResultVariable
+17, 7, "value type: number", SymbolKind.ValueType
+18, 7, "result: number Result", SymbolKind.ResultVariable
+18, 12, "Lexy.RunTime.Libraries.Math.Round", SymbolKind.LibraryFunction
+18, 25, "Lexy.RunTime.Libraries.Math.Power", SymbolKind.LibraryFunction
+18, 34, "number: 4", SymbolKind.Constant
+18, 36, "number: 5", SymbolKind.Constant
+18, 38, "number: 4", SymbolKind.Constant
+18, 42, "number: 9", SymbolKind.Constant
+20, 21, "function: SimpleTarget", SymbolKind.Function
+21, 3, "parameters", SymbolKind.Keyword, "function parameter variables"
+22, 18, "parameter: number NumberValue", SymbolKind.ParameterVariable
+22, 10, "value type: number", SymbolKind.ValueType
+23, 5, "results", SymbolKind.Keyword, "function result variables"
+24, 14, "result: number NumberResult", SymbolKind.ResultVariable
+24, 10, "value type: number", SymbolKind.ValueType
+25, 6, "result: number NumberResult", SymbolKind.ResultVariable
+25, 26, "parameter: number NumberValue", SymbolKind.ParameterVariable
+27, 25, "function: ExtractWithTypeReference", SymbolKind.Function
+28, 6, "parameters", SymbolKind.Keyword, "function parameter variables"
+29, 13, "parameter: number NumberValue", SymbolKind.ParameterVariable
+29, 6, "value type: number", SymbolKind.ValueType
+30, 9, "results", SymbolKind.Keyword, "function result variables"
+31, 12, "result: number NumberResult", SymbolKind.ResultVariable
+31, 8, "value type: number", SymbolKind.ValueType
+33, 7, "type: SimpleTarget.Results", SymbolKind.GeneratedType
+33, 26, "params", SymbolKind.Variable
+34, 12, "variable: number params.NumberResult", SymbolKind.Variable
+34, 31, "parameter: number NumberValue", SymbolKind.ParameterVariable
+35, 9, "extract", SymbolKind.SystemFunction, "extract expects 1 argument. extract(variable)"
+35, 15, "variable: SimpleTarget.Results params", SymbolKind.Variable
+37, 12, "function: FillNoParameters", SymbolKind.Function
+38, 9, "parameters", SymbolKind.Keyword, "function parameter variables"
+39, 22, "parameter: number NumberValue", SymbolKind.ParameterVariable
+39, 6, "value type: number", SymbolKind.ValueType
+40, 5, "type: SimpleTarget.Parameters", SymbolKind.GeneratedType
+40, 8, "params", SymbolKind.Variable
+40, 19, "fill", SymbolKind.SystemFunction, "fill expects 1 argument fill(Function.Parameters)"
+40, 42, "type: SimpleTarget.Parameters", SymbolKind.GeneratedType
+42, 14, "table: StringTable", SymbolKind.Table, "- string SearchValue\\n- number ResultNumber\\n- string ResultString\\n- boolean ResultBoolean\\n- date ResultDate\\n"
+43, 11, "string SearchValue", SymbolKind.TableColumn
+43, 8, "value type: string", SymbolKind.ValueType
+43, 16, "SearchValue", SymbolKind.TableColumn
+43, 32, "number ResultNumber", SymbolKind.TableColumn
+43, 30, "value type: number", SymbolKind.ValueType
+43, 35, "ResultNumber", SymbolKind.TableColumn
+43, 54, "string ResultString", SymbolKind.TableColumn
+43, 51, "value type: string", SymbolKind.ValueType
+43, 66, "ResultString", SymbolKind.TableColumn
+43, 77, "boolean ResultBoolean", SymbolKind.TableColumn
+43, 73, "value type: boolean", SymbolKind.ValueType
+43, 82, "ResultBoolean", SymbolKind.TableColumn
+43, 98, "date ResultDate", SymbolKind.TableColumn
+43, 94, "value type: date", SymbolKind.ValueType
+43, 105, "ResultDate", SymbolKind.TableColumn
+44, 5, "string: \"a\"", SymbolKind.Constant
+44, 28, "number: 222", SymbolKind.Constant
+44, 48, "string: \"222\"", SymbolKind.Constant
+44, 72, "boolean: false", SymbolKind.Constant
+44, 100, "date: 2024-12-24T23:22:22", SymbolKind.Constant
+46, 14, "function: NewTableRow", SymbolKind.Function
+47, 7, "results", SymbolKind.Keyword, "function result variables"
+48, 14, "result: string StringResult", SymbolKind.ResultVariable
+48, 7, "value type: string", SymbolKind.ValueType
+49, 4, "type: StringTable.Row", SymbolKind.GeneratedType
+49, 8, "row", SymbolKind.Variable
+49, 15, "new", SymbolKind.SystemFunction, "new expects 1 argument new(Function.Parameters)"
+49, 19, "type: StringTable.Row", SymbolKind.GeneratedType
+50, 3, "result: string StringResult", SymbolKind.ResultVariable
+50, 18, "variable: string row.SearchValue", SymbolKind.Variable

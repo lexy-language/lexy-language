@@ -1,0 +1,62 @@
+1, 3, "type: ExampleType", SymbolKind.Type, "- number Number\\n- string String\\n- date Date\\n- boolean Boolean\\n"
+2, 10, "parameter: number Number", SymbolKind.ParameterVariable
+2, 6, "value type: number", SymbolKind.ValueType
+3, 14, "parameter: string String", SymbolKind.ParameterVariable
+3, 7, "value type: string", SymbolKind.ValueType
+4, 8, "parameter: date Date", SymbolKind.ParameterVariable
+4, 5, "value type: date", SymbolKind.ValueType
+5, 17, "parameter: boolean Boolean", SymbolKind.ParameterVariable
+5, 8, "value type: boolean", SymbolKind.ValueType
+7, 4, "function: Assignment", SymbolKind.Function
+8, 4, "parameters", SymbolKind.Keyword, "function parameter variables"
+9, 19, "parameter: ExampleType Value", SymbolKind.ParameterVariable
+9, 14, "type: ExampleType", SymbolKind.Type
+10, 4, "results", SymbolKind.Keyword, "function result variables"
+11, 16, "result: ExampleType Result", SymbolKind.ResultVariable
+11, 8, "type: ExampleType", SymbolKind.Type
+12, 3, "result: ExampleType Result", SymbolKind.ResultVariable
+12, 15, "parameter: ExampleType Value", SymbolKind.ParameterVariable
+14, 4, "scenario: AssignmentTest", SymbolKind.Scenario, "Test scenario"
+16, 6, "parameters", SymbolKind.Keyword, "Scenario parameter variables used to execute the function"
+18, 12, "parameter: number Value.Number", SymbolKind.ParameterVariable
+18, 16, "number: 5", SymbolKind.Constant
+19, 12, "parameter: string Value.String", SymbolKind.ParameterVariable
+19, 16, "string: \"ab\"", SymbolKind.Constant
+20, 9, "parameter: date Value.Date", SymbolKind.ParameterVariable
+20, 30, "date: 2026-02-17T14:18:19", SymbolKind.Constant
+21, 13, "parameter: boolean Value.Boolean", SymbolKind.ParameterVariable
+21, 20, "boolean: true", SymbolKind.Constant
+22, 4, "results", SymbolKind.Keyword, "Scenario results variables used to validate the function result."
+24, 8, "result: number Result.Number", SymbolKind.ResultVariable
+24, 16, "number: 5", SymbolKind.Constant
+25, 11, "result: string Result.String", SymbolKind.ResultVariable
+25, 16, "string: \"ab\"", SymbolKind.Constant
+26, 9, "result: date Result.Date", SymbolKind.ResultVariable
+26, 31, "date: 2026-02-17T14:18:19", SymbolKind.Constant
+27, 13, "result: boolean Result.Boolean", SymbolKind.ResultVariable
+27, 18, "boolean: true", SymbolKind.Constant
+29, 12, "scenario: AssignmentsTableTest", SymbolKind.Scenario, "Test scenario"
+33, 7, "number: 0", SymbolKind.Constant
+33, 23, "string: \"abc\"", SymbolKind.Constant
+33, 38, "date: 2026-02-17T14:18:19", SymbolKind.Constant
+33, 64, "boolean: false", SymbolKind.Constant
+33, 78, "number: 0", SymbolKind.Constant
+33, 96, "string: \"abc\"", SymbolKind.Constant
+33, 114, "date: 2026-02-17T14:18:19", SymbolKind.Constant
+33, 136, "boolean: false", SymbolKind.Constant
+34, 7, "number: 1", SymbolKind.Constant
+34, 22, "string: \"efg\"", SymbolKind.Constant
+34, 44, "date: 2026-01-17T02:22:22", SymbolKind.Constant
+34, 65, "boolean: true", SymbolKind.Constant
+34, 78, "number: 1", SymbolKind.Constant
+34, 96, "string: \"efg\"", SymbolKind.Constant
+34, 125, "date: 2026-01-17T02:22:22", SymbolKind.Constant
+34, 135, "boolean: true", SymbolKind.Constant
+35, 7, "number: 2", SymbolKind.Constant
+35, 22, "string: \"xyz\"", SymbolKind.Constant
+35, 50, "date: 2026-01-31T18:44:11", SymbolKind.Constant
+35, 65, "boolean: false", SymbolKind.Constant
+35, 78, "number: 2", SymbolKind.Constant
+35, 95, "string: \"xyz\"", SymbolKind.Constant
+35, 120, "date: 2026-01-31T18:44:11", SymbolKind.Constant
+35, 139, "boolean: false", SymbolKind.Constant

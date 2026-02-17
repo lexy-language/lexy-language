@@ -1,0 +1,60 @@
+enum Enum
+  First
+  Second
+  Third
+
+enum EnumWithDefault
+  First = 1
+  Second = 2
+  Third = 3
+
+function AssignmentsEnum
+  parameters
+    Enum EnumValue
+    EnumWithDefault EnumValueWithDefault
+  results
+    Enum EnumResult
+    EnumWithDefault EnumResultWithDefault
+  EnumResult = Enum.Second
+  EnumResultWithDefault = EnumWithDefault.Third
+  EnumResult = EnumValue
+  EnumResultWithDefault = EnumValueWithDefault
+
+scenario AssignmentsEnumTest
+  function AssignmentsEnum
+  parameters
+    EnumValue = Enum.Third
+    EnumValueWithDefault = EnumWithDefault.Third
+  results
+    EnumResult = Enum.Third
+    EnumResultWithDefault = EnumWithDefault.Third
+
+scenario AssignmentsEnumTableTest
+  function AssignmentsEnum
+  validationTable
+    | EnumValue   | EnumValueWithDefault   | EnumResult  | EnumResultWithDefault  |
+    | Enum.First  | EnumWithDefault.First  | Enum.First  | EnumWithDefault.First  |
+    | Enum.Second | EnumWithDefault.Second | Enum.Second | EnumWithDefault.Second |
+    | Enum.Third  | EnumWithDefault.Third  | Enum.Third  | EnumWithDefault.Third  |
+
+table EnumTable
+  | Enum Search | EnumWithDefault Result |
+  | Enum.First  | EnumWithDefault.First  |
+  | Enum.Second | EnumWithDefault.Second |
+  | Enum.Third  | EnumWithDefault.Third  |
+
+function CallEnumTable
+  parameters
+    Enum Value
+  results
+    EnumWithDefault Result
+
+  Result = EnumTable.LookUp(Value, EnumTable.Result)
+
+scenario CallEnumTableTest
+  function CallEnumTable
+  validationTable
+    | Value       | Result                 |
+    | Enum.First  | EnumWithDefault.First  |
+    | Enum.Second | EnumWithDefault.Second |
+    | Enum.Third  | EnumWithDefault.Third  |

@@ -1,0 +1,50 @@
+function Today
+  results
+    number Diff
+  date first = Date.Today()
+  date second = Date.Today()
+  Diff = Date.Seconds(first, second)
+
+function NowAndDiff
+  results
+    number Diff
+  date first = Date.Now()
+  date second = Date.Now()
+  Diff = Number.Floor(Date.Seconds(second, first))
+
+function PowerDivision
+  results
+    number Result
+  Result = Math.Round(Math.Power(4,5/4), 9)
+
+function SimpleTarget
+  parameters
+    number NumberValue
+  results
+    number NumberResult
+  NumberResult = NumberValue
+
+function ExtractWithTypeReference
+  parameters
+    number NumberValue
+  results
+    number NumberResult
+
+  SimpleTarget.Results params
+  params.NumberResult = NumberValue
+  extract(params)
+
+function FillNoParameters
+  parameters
+    number NumberValue
+  var params = fill(SimpleTarget.Parameters)
+
+table StringTable
+  | string SearchValue | number ResultNumber | string ResultString | boolean ResultBoolean | date ResultDate          |
+  | "a"                | 222                 | "222"               | false                 | d"2024-12-24T23:22:22"   |
+
+function NewTableRow
+  results
+    string StringResult
+  var row = new(StringTable.Row)
+  StringResult = row.SearchValue

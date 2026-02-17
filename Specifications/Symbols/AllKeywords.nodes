@@ -1,0 +1,135 @@
+AllKeywords.lexy (1:1-20)                                              Scenario: TestSymbols
+AllKeywords.lexy (2:3-10)                                                Function: TestSymbolsFunction
+AllKeywords.lexy (3:5-14)                                                  FunctionParameters: 1
+AllKeywords.lexy (4:7-25)                                                    VariableDefinition: parameter: TypeExample Example
+AllKeywords.lexy (4:7-17)                                                      ObjectTypeDeclaration: TypeExample
+AllKeywords.lexy (5:5-11)                                                  FunctionResults: 1
+AllKeywords.lexy (6:7-19)                                                    VariableDefinition: result: number Result
+AllKeywords.lexy (6:7-12)                                                      ValueTypeDeclaration: number
+AllKeywords.lexy (2:3-10)                                                  FunctionCode: 2
+AllKeywords.lexy (7:5-45)                                                    SpreadAssignmentExpression: ... = FunctionWithFunctionDependency ( ... )
+AllKeywords.lexy (7:11-45)                                                     LexyFunctionCallExpression: FunctionWithFunctionDependency ( ... )
+AllKeywords.lexy (7:42-44)                                                       SpreadExpression: ...
+AllKeywords.lexy (8:5-49)                                                    SpreadAssignmentExpression: ... = FunctionWithFunctionTypeDependency ( ... )
+AllKeywords.lexy (8:11-49)                                                     LexyFunctionCallExpression: FunctionWithFunctionTypeDependency ( ... )
+AllKeywords.lexy (8:46-48)                                                       SpreadExpression: ...
+AllKeywords.lexy (9:3-12)                                                Parameters: 2
+AllKeywords.lexy (10:5-42)                                                 AssignmentDefinition: Example.EnumValue = EnumExample.Single
+AllKeywords.lexy (10:5-21)                                                   MemberAccessExpression: Example.EnumValue
+AllKeywords.lexy (10:25-42)                                                  MemberAccessExpression: EnumExample.Single
+AllKeywords.lexy (11:5-50)                                                 AssignmentDefinition: Example.Nested.EnumValue = EnumExample.Married
+AllKeywords.lexy (11:5-28)                                                   MemberAccessExpression: Example.Nested.EnumValue
+AllKeywords.lexy (11:32-50)                                                  MemberAccessExpression: EnumExample.Married
+AllKeywords.lexy (12:3-9)                                                Results: 1
+AllKeywords.lexy (13:5-16)                                                 AssignmentDefinition: Result = 777
+AllKeywords.lexy (13:5-10)                                                   IdentifierExpression: Result
+AllKeywords.lexy (13:14-16)                                                  LiteralExpression: number: 777
+AllKeywords.lexy (15:1-39)                                             Function: FunctionWithFunctionDependency
+AllKeywords.lexy (16:3-12)                                               FunctionParameters: 1
+AllKeywords.lexy (17:5-23)                                                 VariableDefinition: parameter: TypeExample Example
+AllKeywords.lexy (17:5-15)                                                   ObjectTypeDeclaration: TypeExample
+AllKeywords.lexy (18:3-9)                                                FunctionResults: 1
+AllKeywords.lexy (19:5-17)                                                 VariableDefinition: result: number Result
+AllKeywords.lexy (19:5-10)                                                   ValueTypeDeclaration: number
+AllKeywords.lexy (15:1-39)                                               FunctionCode: 3
+AllKeywords.lexy (20:3-39)                                                 SpreadAssignmentExpression: ... = FunctionWithTypeDependency ( ... )
+AllKeywords.lexy (20:9-39)                                                   LexyFunctionCallExpression: FunctionWithTypeDependency ( ... )
+AllKeywords.lexy (20:36-38)                                                    SpreadExpression: ...
+AllKeywords.lexy (21:3-40)                                                 SpreadAssignmentExpression: ... = FunctionWithTableDependency ( ... )
+AllKeywords.lexy (21:9-40)                                                   LexyFunctionCallExpression: FunctionWithTableDependency ( ... )
+AllKeywords.lexy (21:37-39)                                                    SpreadExpression: ...
+AllKeywords.lexy (22:3-39)                                                 SpreadAssignmentExpression: ... = FunctionWithEnumDependency ( ... )
+AllKeywords.lexy (22:9-39)                                                   LexyFunctionCallExpression: FunctionWithEnumDependency ( ... )
+AllKeywords.lexy (22:36-38)                                                    SpreadExpression: ...
+AllKeywords.lexy (24:1-43)                                             Function: FunctionWithFunctionTypeDependency
+AllKeywords.lexy (25:3-12)                                               FunctionParameters: 1
+AllKeywords.lexy (26:5-23)                                                 VariableDefinition: parameter: TypeExample Example
+AllKeywords.lexy (26:5-15)                                                   ObjectTypeDeclaration: TypeExample
+AllKeywords.lexy (27:3-9)                                                FunctionResults: 1
+AllKeywords.lexy (28:5-17)                                                 VariableDefinition: result: number Result
+AllKeywords.lexy (28:5-10)                                                   ValueTypeDeclaration: number
+AllKeywords.lexy (24:1-43)                                               FunctionCode: 4
+AllKeywords.lexy (29:3-74)                                                 VariableDeclarationExpression: var functionParametersFill = fill ( FunctionWithTypeDependency.Parameters )
+AllKeywords.lexy (29:3-5)                                                    ImplicitTypeDeclaration: FunctionWithTypeDependency.Parameters
+AllKeywords.lexy (29:7-28)                                                   VariableNameExpression: functionParametersFill
+AllKeywords.lexy (29:32-74)                                                  FillParametersFunctionExpression: fill ( FunctionWithTypeDependency.Parameters )
+AllKeywords.lexy (29:37-73)                                                    MemberAccessExpression: FunctionWithTypeDependency.Parameters
+AllKeywords.lexy (30:3-72)                                                 VariableDeclarationExpression: var functionParametersNew = new ( FunctionWithTypeDependency.Parameters )
+AllKeywords.lexy (30:3-5)                                                    ImplicitTypeDeclaration: FunctionWithTypeDependency.Parameters
+AllKeywords.lexy (30:7-27)                                                   VariableNameExpression: functionParametersNew
+AllKeywords.lexy (30:31-72)                                                  NewFunctionExpression: new ( FunctionWithTypeDependency.Parameters )
+AllKeywords.lexy (30:35-71)                                                    MemberAccessExpression: FunctionWithTypeDependency.Parameters
+AllKeywords.lexy (31:3-45)                                                 VariableDeclarationExpression: var tableParameters = new ( TableExample.Row )
+AllKeywords.lexy (31:3-5)                                                    ImplicitTypeDeclaration: TableExample.Row
+AllKeywords.lexy (31:7-21)                                                   VariableNameExpression: tableParameters
+AllKeywords.lexy (31:25-45)                                                  NewFunctionExpression: new ( TableExample.Row )
+AllKeywords.lexy (31:29-44)                                                    MemberAccessExpression: TableExample.Row
+AllKeywords.lexy (32:3-14)                                                 AssignmentExpression: Result = 777
+AllKeywords.lexy (32:3-8)                                                    IdentifierExpression: Result
+AllKeywords.lexy (32:12-14)                                                  LiteralExpression: number: 777
+AllKeywords.lexy (34:1-35)                                             Function: FunctionWithTypeDependency
+AllKeywords.lexy (35:3-12)                                               FunctionParameters: 1
+AllKeywords.lexy (36:5-23)                                                 VariableDefinition: parameter: TypeExample Example
+AllKeywords.lexy (36:5-15)                                                   ObjectTypeDeclaration: TypeExample
+AllKeywords.lexy (37:3-9)                                                FunctionResults: 1
+AllKeywords.lexy (38:5-17)                                                 VariableDefinition: result: number Result
+AllKeywords.lexy (38:5-10)                                                   ValueTypeDeclaration: number
+AllKeywords.lexy (34:1-35)                                               FunctionCode: 1
+AllKeywords.lexy (39:3-32)                                                 AssignmentExpression: Result = Example.Nested.Result
+AllKeywords.lexy (39:3-8)                                                    IdentifierExpression: Result
+AllKeywords.lexy (39:12-32)                                                  MemberAccessExpression: Example.Nested.Result
+AllKeywords.lexy (41:1-36)                                             Function: FunctionWithTableDependency
+AllKeywords.lexy (42:3-12)                                               FunctionParameters: 1
+AllKeywords.lexy (43:5-23)                                                 VariableDefinition: parameter: TypeExample Example
+AllKeywords.lexy (43:5-15)                                                   ObjectTypeDeclaration: TypeExample
+AllKeywords.lexy (44:3-9)                                                FunctionResults: 1
+AllKeywords.lexy (45:5-17)                                                 VariableDefinition: result: number Result
+AllKeywords.lexy (45:5-10)                                                   ValueTypeDeclaration: number
+AllKeywords.lexy (41:1-36)                                               FunctionCode: 1
+AllKeywords.lexy (46:3-92)                                                 AssignmentExpression: Result = TableExample.LookUp ( EnumExample.Single , TableExample.Example , TableExample.Value )
+AllKeywords.lexy (46:3-8)                                                    IdentifierExpression: Result
+AllKeywords.lexy (46:12-92)                                                  MemberFunctionCallExpression: TableExample.LookUp ( EnumExample.Single , TableExample.Example , TableExample.Value )
+AllKeywords.lexy (46:32-49)                                                    MemberAccessExpression: EnumExample.Single
+AllKeywords.lexy (46:52-71)                                                    MemberAccessExpression: TableExample.Example
+AllKeywords.lexy (46:74-91)                                                    MemberAccessExpression: TableExample.Value
+AllKeywords.lexy (48:1-35)                                             Function: FunctionWithEnumDependency
+AllKeywords.lexy (49:3-12)                                               FunctionParameters: 2
+AllKeywords.lexy (50:5-25)                                                 VariableDefinition: parameter: EnumExample EnumValue
+AllKeywords.lexy (50:5-15)                                                   ObjectTypeDeclaration: EnumExample
+AllKeywords.lexy (51:5-23)                                                 VariableDefinition: parameter: TypeExample Example
+AllKeywords.lexy (51:5-15)                                                   ObjectTypeDeclaration: TypeExample
+AllKeywords.lexy (52:3-9)                                                FunctionResults: 1
+AllKeywords.lexy (53:5-17)                                                 VariableDefinition: result: number Result
+AllKeywords.lexy (53:5-10)                                                   ValueTypeDeclaration: number
+AllKeywords.lexy (48:1-35)                                               FunctionCode: 1
+AllKeywords.lexy (54:3-14)                                                 AssignmentExpression: Result = 666
+AllKeywords.lexy (54:3-8)                                                    IdentifierExpression: Result
+AllKeywords.lexy (54:12-14)                                                  LiteralExpression: number: 666
+AllKeywords.lexy (56:1-15)                                             TypeDefinition: NestedType
+AllKeywords.lexy (57:3-23)                                               VariableDefinition: parameter: EnumExample EnumValue
+AllKeywords.lexy (57:3-13)                                                 ObjectTypeDeclaration: EnumExample
+AllKeywords.lexy (58:3-21)                                               VariableDefinition: parameter: number Result
+AllKeywords.lexy (58:19-21)                                                LiteralExpression: number: 888
+AllKeywords.lexy (58:3-8)                                                  ValueTypeDeclaration: number
+AllKeywords.lexy (60:1-16)                                             TypeDefinition: TypeExample
+AllKeywords.lexy (61:3-23)                                               VariableDefinition: parameter: EnumExample EnumValue
+AllKeywords.lexy (61:3-13)                                                 ObjectTypeDeclaration: EnumExample
+AllKeywords.lexy (62:3-19)                                               VariableDefinition: parameter: NestedType Nested
+AllKeywords.lexy (62:3-12)                                                 ObjectTypeDeclaration: NestedType
+AllKeywords.lexy (64:1-18)                                             Table: TableExample
+AllKeywords.lexy (65:3-40)                                               TableHeader: 2
+AllKeywords.lexy (65:5-23)                                                 ColumnHeader: Example
+AllKeywords.lexy (65:5-15)                                                   ObjectTypeDeclaration: EnumExample
+AllKeywords.lexy (65:17-23)                                                  VariableNameExpression: Example
+AllKeywords.lexy (65:27-38)                                                ColumnHeader: Value
+AllKeywords.lexy (65:27-32)                                                  ValueTypeDeclaration: number
+AllKeywords.lexy (65:34-38)                                                  VariableNameExpression: Value
+AllKeywords.lexy (66:3-40)                                               TableRow: 2
+AllKeywords.lexy (66:5-22)                                                 TableValue: [0]
+AllKeywords.lexy (66:5-22)                                                   MemberAccessExpression: EnumExample.Single
+AllKeywords.lexy (66:27-29)                                                TableValue: [1]
+AllKeywords.lexy (66:27-29)                                                  LiteralExpression: number: 123
+AllKeywords.lexy (68:1-16)                                             EnumDefinition: EnumExample
+AllKeywords.lexy (69:3-8)                                                EnumMember: EnumExample.Single
+AllKeywords.lexy (70:3-9)                                                EnumMember: EnumExample.Married
+AllKeywords.lexy (71:3-18)                                               EnumMember: EnumExample.CivilPartnership
