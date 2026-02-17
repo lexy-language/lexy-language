@@ -1,0 +1,72 @@
+function Assignments
+  parameters
+    number NumberValue
+    string StringValue
+    date DateValue
+    boolean BooleanValue
+  results
+    number NumberResult
+    string StringResult
+    date DateResult
+    boolean BooleanResult
+    string Message
+    string SwitchMessage
+  NumberResult = NumberValue
+  StringResult = StringValue
+  DateResult = DateValue
+  BooleanResult = BooleanValue
+  if BooleanValue
+    Message = "xTrue"
+  else
+    Message = "xFalse"
+  switch NumberValue
+    case 0
+      SwitchMessage = "x0"
+    case 1
+      SwitchMessage = "x1"
+    default
+      SwitchMessage = "default"
+
+scenario AssignmentsTest
+  function Assignments
+  parameters
+    NumberValue = 5
+    StringValue = "ab"
+    DateValue = d"2026-02-17T14:18:19"
+    BooleanValue = true
+  results
+    NumberResult = 5
+    StringResult = "ab"
+    DateResult = d"2026-02-17T14:18:19"
+    BooleanResult = true
+    Message = "xTrue"
+    SwitchMessage = "default"
+
+scenario AssignmentsTableTest
+  function Assignments
+  validationTable
+    | NumberValue | StringValue | DateValue              | BooleanValue | NumberResult | StringResult | DateResult             | BooleanResult | Message  | SwitchMessage |
+    | 0           | "abc"       | d"2026-02-17T14:18:19" | false        | 0            | "abc"        | d"2026-02-17T14:18:19" | false         | "xFalse" | "x0"          |
+    | 1           | "efg"       | d"2026-01-17T02:22:22" | true         | 1            | "efg"        | d"2026-01-17T02:22:22" | true          | "xTrue"  | "x1"          |
+    | 2           | "xyz"       | d"2026-01-31T18:44:11" | false        | 2            | "xyz"        | d"2026-01-31T18:44:11" | false         | "xFalse" | "default"     |
+
+function CallAssignments
+  parameters
+    number NumberValue
+    string StringValue
+    date DateValue
+    boolean BooleanValue
+  results
+    number NumberResult
+    string StringResult
+    date DateResult
+    boolean BooleanResult
+  ... = Assignments(NumberValue, StringValue, DateValue, BooleanValue)
+
+scenario CallAssignmentsTableTest
+  function CallAssignments
+  validationTable
+    | NumberValue | StringValue | DateValue              | BooleanValue | NumberResult | StringResult | DateResult             | BooleanResult |
+    | 0           | "abc"       | d"2026-02-17T14:18:19" | false        | 0            | "abc"        | d"2026-02-17T14:18:19" | false         |
+    | 1           | "efg"       | d"2026-01-17T02:22:22" | true         | 1            | "efg"        | d"2026-01-17T02:22:22" | true          |
+    | 2           | "xyz"       | d"2026-01-31T18:44:11" | false        | 2            | "xyz"        | d"2026-01-31T18:44:11" | false         |

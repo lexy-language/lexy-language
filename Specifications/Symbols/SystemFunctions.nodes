@@ -1,0 +1,129 @@
+SystemFunctions.lexy (1:1-14)                                          Function: Today
+SystemFunctions.lexy (2:3-9)                                             FunctionResults: 1
+SystemFunctions.lexy (3:5-15)                                              VariableDefinition: result: number Diff
+SystemFunctions.lexy (3:5-10)                                                ValueTypeDeclaration: number
+SystemFunctions.lexy (1:1-14)                                            FunctionCode: 3
+SystemFunctions.lexy (4:3-27)                                              VariableDeclarationExpression: date first = Date.Today ( )
+SystemFunctions.lexy (4:3-6)                                                 ValueTypeDeclaration: date
+SystemFunctions.lexy (4:8-12)                                                VariableNameExpression: first
+SystemFunctions.lexy (4:16-27)                                               MemberFunctionCallExpression: Date.Today ( )
+SystemFunctions.lexy (5:3-28)                                              VariableDeclarationExpression: date second = Date.Today ( )
+SystemFunctions.lexy (5:3-6)                                                 ValueTypeDeclaration: date
+SystemFunctions.lexy (5:8-13)                                                VariableNameExpression: second
+SystemFunctions.lexy (5:17-28)                                               MemberFunctionCallExpression: Date.Today ( )
+SystemFunctions.lexy (6:3-36)                                              AssignmentExpression: Diff = Date.Seconds ( first , second )
+SystemFunctions.lexy (6:3-6)                                                 IdentifierExpression: Diff
+SystemFunctions.lexy (6:10-36)                                               MemberFunctionCallExpression: Date.Seconds ( first , second )
+SystemFunctions.lexy (6:23-27)                                                 IdentifierExpression: first
+SystemFunctions.lexy (6:30-35)                                                 IdentifierExpression: second
+SystemFunctions.lexy (8:1-19)                                          Function: NowAndDiff
+SystemFunctions.lexy (9:3-9)                                             FunctionResults: 1
+SystemFunctions.lexy (10:5-15)                                             VariableDefinition: result: number Diff
+SystemFunctions.lexy (10:5-10)                                               ValueTypeDeclaration: number
+SystemFunctions.lexy (8:1-19)                                            FunctionCode: 3
+SystemFunctions.lexy (11:3-25)                                             VariableDeclarationExpression: date first = Date.Now ( )
+SystemFunctions.lexy (11:3-6)                                                ValueTypeDeclaration: date
+SystemFunctions.lexy (11:8-12)                                               VariableNameExpression: first
+SystemFunctions.lexy (11:16-25)                                              MemberFunctionCallExpression: Date.Now ( )
+SystemFunctions.lexy (12:3-26)                                             VariableDeclarationExpression: date second = Date.Now ( )
+SystemFunctions.lexy (12:3-6)                                                ValueTypeDeclaration: date
+SystemFunctions.lexy (12:8-13)                                               VariableNameExpression: second
+SystemFunctions.lexy (12:17-26)                                              MemberFunctionCallExpression: Date.Now ( )
+SystemFunctions.lexy (13:3-50)                                             AssignmentExpression: Diff = Number.Floor ( Date.Seconds ( second , first ) )
+SystemFunctions.lexy (13:3-6)                                                IdentifierExpression: Diff
+SystemFunctions.lexy (13:10-50)                                              MemberFunctionCallExpression: Number.Floor ( Date.Seconds ( second , first ) )
+SystemFunctions.lexy (13:23-49)                                                MemberFunctionCallExpression: Date.Seconds ( second , first )
+SystemFunctions.lexy (13:36-41)                                                  IdentifierExpression: second
+SystemFunctions.lexy (13:44-48)                                                  IdentifierExpression: first
+SystemFunctions.lexy (15:1-22)                                         Function: PowerDivision
+SystemFunctions.lexy (16:3-9)                                            FunctionResults: 1
+SystemFunctions.lexy (17:5-17)                                             VariableDefinition: result: number Result
+SystemFunctions.lexy (17:5-10)                                               ValueTypeDeclaration: number
+SystemFunctions.lexy (15:1-22)                                           FunctionCode: 1
+SystemFunctions.lexy (18:3-43)                                             AssignmentExpression: Result = Math.Round ( Math.Power ( 4 , 5 / 4 ) , 9 )
+SystemFunctions.lexy (18:3-8)                                                IdentifierExpression: Result
+SystemFunctions.lexy (18:12-43)                                              MemberFunctionCallExpression: Math.Round ( Math.Power ( 4 , 5 / 4 ) , 9 )
+SystemFunctions.lexy (18:23-39)                                                MemberFunctionCallExpression: Math.Power ( 4 , 5 / 4 )
+SystemFunctions.lexy (18:34)                                                     LiteralExpression: number: 4
+SystemFunctions.lexy (18:36-38)                                                  BinaryExpression: 5 / 4
+SystemFunctions.lexy (18:36)                                                       LiteralExpression: number: 5
+SystemFunctions.lexy (18:38)                                                       LiteralExpression: number: 4
+SystemFunctions.lexy (18:42)                                                   LiteralExpression: number: 9
+SystemFunctions.lexy (20:1-21)                                         Function: SimpleTarget
+SystemFunctions.lexy (21:3-12)                                           FunctionParameters: 1
+SystemFunctions.lexy (22:5-22)                                             VariableDefinition: parameter: number NumberValue
+SystemFunctions.lexy (22:5-10)                                               ValueTypeDeclaration: number
+SystemFunctions.lexy (23:3-9)                                            FunctionResults: 1
+SystemFunctions.lexy (24:5-23)                                             VariableDefinition: result: number NumberResult
+SystemFunctions.lexy (24:5-10)                                               ValueTypeDeclaration: number
+SystemFunctions.lexy (20:1-21)                                           FunctionCode: 1
+SystemFunctions.lexy (25:3-28)                                             AssignmentExpression: NumberResult = NumberValue
+SystemFunctions.lexy (25:3-14)                                               IdentifierExpression: NumberResult
+SystemFunctions.lexy (25:18-28)                                              IdentifierExpression: NumberValue
+SystemFunctions.lexy (27:1-33)                                         Function: ExtractWithTypeReference
+SystemFunctions.lexy (28:3-12)                                           FunctionParameters: 1
+SystemFunctions.lexy (29:5-22)                                             VariableDefinition: parameter: number NumberValue
+SystemFunctions.lexy (29:5-10)                                               ValueTypeDeclaration: number
+SystemFunctions.lexy (30:3-9)                                            FunctionResults: 1
+SystemFunctions.lexy (31:5-23)                                             VariableDefinition: result: number NumberResult
+SystemFunctions.lexy (31:5-10)                                               ValueTypeDeclaration: number
+SystemFunctions.lexy (27:1-33)                                           FunctionCode: 3
+SystemFunctions.lexy (33:3-29)                                             VariableDeclarationExpression: SimpleTarget.Results params
+SystemFunctions.lexy (33:3-22)                                               ObjectTypeDeclaration: SimpleTarget.Results
+SystemFunctions.lexy (33:24-29)                                              VariableNameExpression: params
+SystemFunctions.lexy (34:3-35)                                             AssignmentExpression: params.NumberResult = NumberValue
+SystemFunctions.lexy (34:3-21)                                               MemberAccessExpression: params.NumberResult
+SystemFunctions.lexy (34:25-35)                                              IdentifierExpression: NumberValue
+SystemFunctions.lexy (35:3-17)                                             ExtractResultsFunctionExpression: extract ( params )
+SystemFunctions.lexy (35:11-16)                                              IdentifierExpression: params
+SystemFunctions.lexy (37:1-25)                                         Function: FillNoParameters
+SystemFunctions.lexy (38:3-12)                                           FunctionParameters: 1
+SystemFunctions.lexy (39:5-22)                                             VariableDefinition: parameter: number NumberValue
+SystemFunctions.lexy (39:5-10)                                               ValueTypeDeclaration: number
+SystemFunctions.lexy (37:1-25)                                           FunctionCode: 1
+SystemFunctions.lexy (40:3-44)                                             VariableDeclarationExpression: var params = fill ( SimpleTarget.Parameters )
+SystemFunctions.lexy (40:3-5)                                                ImplicitTypeDeclaration: SimpleTarget.Parameters
+SystemFunctions.lexy (40:7-12)                                               VariableNameExpression: params
+SystemFunctions.lexy (40:16-44)                                              FillParametersFunctionExpression: fill ( SimpleTarget.Parameters )
+SystemFunctions.lexy (40:21-43)                                                MemberAccessExpression: SimpleTarget.Parameters
+SystemFunctions.lexy (42:1-17)                                         Table: StringTable
+SystemFunctions.lexy (43:3-119)                                          TableHeader: 5
+SystemFunctions.lexy (43:5-22)                                             ColumnHeader: SearchValue
+SystemFunctions.lexy (43:5-10)                                               ValueTypeDeclaration: string
+SystemFunctions.lexy (43:12-22)                                              VariableNameExpression: SearchValue
+SystemFunctions.lexy (43:26-44)                                            ColumnHeader: ResultNumber
+SystemFunctions.lexy (43:26-31)                                              ValueTypeDeclaration: number
+SystemFunctions.lexy (43:33-44)                                              VariableNameExpression: ResultNumber
+SystemFunctions.lexy (43:48-66)                                            ColumnHeader: ResultString
+SystemFunctions.lexy (43:48-53)                                              ValueTypeDeclaration: string
+SystemFunctions.lexy (43:55-66)                                              VariableNameExpression: ResultString
+SystemFunctions.lexy (43:70-90)                                            ColumnHeader: ResultBoolean
+SystemFunctions.lexy (43:70-76)                                              ValueTypeDeclaration: boolean
+SystemFunctions.lexy (43:78-90)                                              VariableNameExpression: ResultBoolean
+SystemFunctions.lexy (43:94-108)                                           ColumnHeader: ResultDate
+SystemFunctions.lexy (43:94-97)                                              ValueTypeDeclaration: date
+SystemFunctions.lexy (43:99-108)                                             VariableNameExpression: ResultDate
+SystemFunctions.lexy (44:3-119)                                          TableRow: 5
+SystemFunctions.lexy (44:5)                                                TableValue: [0]
+SystemFunctions.lexy (44:5)                                                  LiteralExpression: string: "a"
+SystemFunctions.lexy (44:26-28)                                            TableValue: [1]
+SystemFunctions.lexy (44:26-28)                                              LiteralExpression: number: 222
+SystemFunctions.lexy (44:48-50)                                            TableValue: [2]
+SystemFunctions.lexy (44:48-50)                                              LiteralExpression: string: "222"
+SystemFunctions.lexy (44:70-74)                                            TableValue: [3]
+SystemFunctions.lexy (44:70-74)                                              LiteralExpression: boolean: false
+SystemFunctions.lexy (44:94-112)                                           TableValue: [4]
+SystemFunctions.lexy (44:94-112)                                             LiteralExpression: date: 2024-12-24T23:22:22
+SystemFunctions.lexy (46:1-20)                                         Function: NewTableRow
+SystemFunctions.lexy (47:3-9)                                            FunctionResults: 1
+SystemFunctions.lexy (48:5-23)                                             VariableDefinition: result: string StringResult
+SystemFunctions.lexy (48:5-10)                                               ValueTypeDeclaration: string
+SystemFunctions.lexy (46:1-20)                                           FunctionCode: 2
+SystemFunctions.lexy (49:3-32)                                             VariableDeclarationExpression: var row = new ( StringTable.Row )
+SystemFunctions.lexy (49:3-5)                                                ImplicitTypeDeclaration: StringTable.Row
+SystemFunctions.lexy (49:7-9)                                                VariableNameExpression: row
+SystemFunctions.lexy (49:13-32)                                              NewFunctionExpression: new ( StringTable.Row )
+SystemFunctions.lexy (49:17-31)                                                MemberAccessExpression: StringTable.Row
+SystemFunctions.lexy (50:3-32)                                             AssignmentExpression: StringResult = row.SearchValue
+SystemFunctions.lexy (50:3-14)                                               IdentifierExpression: StringResult
+SystemFunctions.lexy (50:18-32)                                              MemberAccessExpression: row.SearchValue

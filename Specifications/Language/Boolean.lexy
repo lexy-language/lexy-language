@@ -66,7 +66,7 @@ scenario InvalidBooleanInitializeString
       boolean Result
     Result = Value
   expectErrors
-    "Invalid default value '1'. (type: 'boolean')"
+    "Invalid default value 'string: \"1\"'. (type: 'boolean')"
 
 scenario InvalidBooleanInitializeNumber
   function
@@ -76,7 +76,7 @@ scenario InvalidBooleanInitializeNumber
       boolean Result
     Result = Value
   expectErrors
-    "Invalid default value '5'. (type: 'boolean')"
+    "Invalid default value 'number: 5'. (type: 'boolean')"
 
 scenario InvalidBooleanInitializeDate
   function
@@ -86,4 +86,4 @@ scenario InvalidBooleanInitializeDate
       boolean Result
     Result = Value
   expectErrors
-    "Invalid default value '2024-12-23T17:51:15'. (type: 'boolean')"
+    "Invalid default value 'date: 2024-12-23T17:51:15'. (type: 'boolean')"

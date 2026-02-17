@@ -1,0 +1,35 @@
+table SimpleTable
+  | number NumberValue | string StringValue | date DateValue         | boolean BooleanValue | number NumberResult | string StringResult | date DateResult        | boolean BooleanResult |
+  | 0                  | "ab"               | d"2026-01-01T01:01:01" | false                | 10                  | "de"                | d"2022-02-02T02:02:02" | true                  |
+
+function TableLookUp
+  parameters
+    number NumberValue
+    string StringValue
+    date DateValue
+    boolean BooleanValue
+  results
+    number NumberResult
+    string StringResult
+    date DateResult
+    boolean BooleanResult
+
+  NumberResult = SimpleTable.LookUp(NumberValue, SimpleTable.NumberResult)
+  StringResult = SimpleTable.LookUp(StringValue, SimpleTable.StringValue, SimpleTable.StringResult)
+  var dateRow = SimpleTable.LookUpRow(DateValue, SimpleTable.DateValue)
+  var booleanRow = SimpleTable.LookUpRow(BooleanValue, SimpleTable.BooleanValue)
+  DateResult = dateRow.DateResult
+  BooleanResult = booleanRow.BooleanResult
+
+scenario TableLookUpTest
+  function TableLookUp
+  parameters
+    NumberValue = 0
+    StringValue = "ab"
+    DateValue = d"2026-01-01T01:01:01"
+    BooleanValue = false
+  results
+    NumberResult = 10
+    StringResult = "de"
+    DateResult = d"2022-02-02T02:02:02"
+    BooleanResult = true

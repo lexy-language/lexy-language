@@ -85,7 +85,7 @@ scenario InvalidNumberInitializeString
       number Result
     Result = Value
   expectErrors
-    "Invalid default value '1'. (type: 'number')"
+    "Invalid default value 'string: \"1\"'. (type: 'number')"
 
 scenario InvalidNumberInitializeBoolean
   function
@@ -95,7 +95,7 @@ scenario InvalidNumberInitializeBoolean
       number Result
     Result = Value
   expectErrors
-    "Invalid default value 'true'. (type: 'number')"
+    "Invalid default value 'boolean: true'. (type: 'number')"
 
 scenario InvalidNumberInitializeDate
   function
@@ -105,4 +105,4 @@ scenario InvalidNumberInitializeDate
       number Result
     Result = Value
   expectErrors
-    "Invalid default value '2024-12-23T17:51:15'. (type: 'number')"
+    "Invalid default value 'date: 2024-12-23T17:51:15'. (type: 'number')"

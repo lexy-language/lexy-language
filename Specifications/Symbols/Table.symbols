@@ -1,0 +1,94 @@
+1, 17, "table: SimpleTable", SymbolKind.Table, "- number NumberValue\\n- string StringValue\\n- date DateValue\\n- boolean BooleanValue\\n- number NumberResult\\n- string StringResult\\n- date DateResult\\n- boolean BooleanResult\\n"
+2, 11, "number NumberValue", SymbolKind.TableColumn
+2, 7, "value type: number", SymbolKind.ValueType
+2, 20, "NumberValue", SymbolKind.TableColumn
+2, 32, "string StringValue", SymbolKind.TableColumn
+2, 30, "value type: string", SymbolKind.ValueType
+2, 34, "StringValue", SymbolKind.TableColumn
+2, 51, "date DateValue", SymbolKind.TableColumn
+2, 49, "value type: date", SymbolKind.ValueType
+2, 58, "DateValue", SymbolKind.TableColumn
+2, 79, "boolean BooleanValue", SymbolKind.TableColumn
+2, 75, "value type: boolean", SymbolKind.ValueType
+2, 90, "BooleanValue", SymbolKind.TableColumn
+2, 101, "number NumberResult", SymbolKind.TableColumn
+2, 97, "value type: number", SymbolKind.ValueType
+2, 102, "NumberResult", SymbolKind.TableColumn
+2, 123, "string StringResult", SymbolKind.TableColumn
+2, 122, "value type: string", SymbolKind.ValueType
+2, 124, "StringResult", SymbolKind.TableColumn
+2, 143, "date DateResult", SymbolKind.TableColumn
+2, 140, "value type: date", SymbolKind.ValueType
+2, 144, "DateResult", SymbolKind.TableColumn
+2, 171, "boolean BooleanResult", SymbolKind.TableColumn
+2, 169, "value type: boolean", SymbolKind.ValueType
+2, 178, "BooleanResult", SymbolKind.TableColumn
+3, 5, "number: 0", SymbolKind.Constant
+3, 26, "string: \"ab\"", SymbolKind.Constant
+3, 59, "date: 2026-01-01T01:01:01", SymbolKind.Constant
+3, 76, "boolean: false", SymbolKind.Constant
+3, 96, "number: 10", SymbolKind.Constant
+3, 118, "string: \"de\"", SymbolKind.Constant
+3, 147, "date: 2022-02-02T02:02:02", SymbolKind.Constant
+3, 165, "boolean: true", SymbolKind.Constant
+5, 6, "function: TableLookUp", SymbolKind.Function
+6, 6, "parameters", SymbolKind.Keyword, "function parameter variables"
+7, 16, "parameter: number NumberValue", SymbolKind.ParameterVariable
+7, 5, "value type: number", SymbolKind.ValueType
+8, 14, "parameter: string StringValue", SymbolKind.ParameterVariable
+8, 7, "value type: string", SymbolKind.ValueType
+9, 14, "parameter: date DateValue", SymbolKind.ParameterVariable
+9, 6, "value type: date", SymbolKind.ValueType
+10, 18, "parameter: boolean BooleanValue", SymbolKind.ParameterVariable
+10, 11, "value type: boolean", SymbolKind.ValueType
+11, 4, "results", SymbolKind.Keyword, "function result variables"
+12, 15, "result: number NumberResult", SymbolKind.ResultVariable
+12, 7, "value type: number", SymbolKind.ValueType
+13, 22, "result: string StringResult", SymbolKind.ResultVariable
+13, 6, "value type: string", SymbolKind.ValueType
+14, 18, "result: date DateResult", SymbolKind.ResultVariable
+14, 5, "value type: date", SymbolKind.ValueType
+15, 13, "result: boolean BooleanResult", SymbolKind.ResultVariable
+15, 6, "value type: boolean", SymbolKind.ValueType
+17, 10, "result: number NumberResult", SymbolKind.ResultVariable
+17, 27, "table function: SimpleTable.LookUp", SymbolKind.TableFunction, "The `LookUp`function returns a specific value from the `resultColumn` column from a table.\\n\\nThe function will loop over all rows in a table from the start and will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.\\n- If the value in the column equals the `lookUpValue`, the value in the `resultColumn` is returned.\\n- If the value in the column exceeds the `lookUpValue`, the value `resultColumn` of the previous row or the previous row is returned.\\n\\nNOTE: table search value columns should be sorted from small to large in order these functions to work correctly. This also applies to string columns, they should be sorted alphabetically."
+17, 37, "parameter: number NumberValue", SymbolKind.ParameterVariable
+17, 54, "table column: SimpleTable.NumberResult", SymbolKind.TableColumn
+18, 4, "result: string StringResult", SymbolKind.ResultVariable
+18, 73, "table function: SimpleTable.LookUp", SymbolKind.TableFunction, "The `LookUp`function returns a specific value from the `resultColumn` column from a table.\\n\\nThe function will loop over all rows in a table from the start and will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.\\n- If the value in the column equals the `lookUpValue`, the value in the `resultColumn` is returned.\\n- If the value in the column exceeds the `lookUpValue`, the value `resultColumn` of the previous row or the previous row is returned.\\n\\nNOTE: table search value columns should be sorted from small to large in order these functions to work correctly. This also applies to string columns, they should be sorted alphabetically."
+18, 47, "parameter: string StringValue", SymbolKind.ParameterVariable
+18, 59, "table column: SimpleTable.StringValue", SymbolKind.TableColumn
+18, 97, "table column: SimpleTable.StringResult", SymbolKind.TableColumn
+19, 4, "type: SimpleTable.Row", SymbolKind.GeneratedType
+19, 7, "dateRow", SymbolKind.Variable
+19, 25, "table function: SimpleTable.LookUpRow", SymbolKind.TableFunction, "The `LookUpRow`function returns a specific row from a table.\\n\\nThe function will loop over all rows in a table from the start and will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.\\n- If the value in the column equals the `lookUpValue`, the row is returned.\\n- If the value in the column exceeds the `lookUpValue`, the value `resultColumn` of the previous row is returned.\\n\\nNOTE: table search value columns should be sorted from small to large in order these functions to work correctly. This also applies to string columns, they should be sorted alphabetically."
+19, 43, "parameter: date DateValue", SymbolKind.ParameterVariable
+19, 66, "table column: SimpleTable.DateValue", SymbolKind.TableColumn
+20, 5, "type: SimpleTable.Row", SymbolKind.GeneratedType
+20, 9, "booleanRow", SymbolKind.Variable
+20, 21, "table function: SimpleTable.LookUpRow", SymbolKind.TableFunction, "The `LookUpRow`function returns a specific row from a table.\\n\\nThe function will loop over all rows in a table from the start and will compare the value of a specific column `searchValueColumn` with the defined `lookUpValue`.\\n- If the value in the column equals the `lookUpValue`, the row is returned.\\n- If the value in the column exceeds the `lookUpValue`, the value `resultColumn` of the previous row is returned.\\n\\nNOTE: table search value columns should be sorted from small to large in order these functions to work correctly. This also applies to string columns, they should be sorted alphabetically."
+20, 49, "parameter: boolean BooleanValue", SymbolKind.ParameterVariable
+20, 78, "table column: SimpleTable.BooleanValue", SymbolKind.TableColumn
+21, 10, "result: date DateResult", SymbolKind.ResultVariable
+21, 19, "variable: date dateRow.DateResult", SymbolKind.Variable
+22, 15, "result: boolean BooleanResult", SymbolKind.ResultVariable
+22, 34, "variable: boolean booleanRow.BooleanResult", SymbolKind.Variable
+24, 17, "scenario: TableLookUpTest", SymbolKind.Scenario, "Test scenario"
+26, 7, "parameters", SymbolKind.Keyword, "Scenario parameter variables used to execute the function"
+27, 5, "parameter: number NumberValue", SymbolKind.ParameterVariable
+27, 19, "number: 0", SymbolKind.Constant
+28, 12, "parameter: string StringValue", SymbolKind.ParameterVariable
+28, 19, "string: \"ab\"", SymbolKind.Constant
+29, 10, "parameter: date DateValue", SymbolKind.ParameterVariable
+29, 31, "date: 2026-01-01T01:01:01", SymbolKind.Constant
+30, 16, "parameter: boolean BooleanValue", SymbolKind.ParameterVariable
+30, 24, "boolean: false", SymbolKind.Constant
+31, 8, "results", SymbolKind.Keyword, "Scenario results variables used to validate the function result."
+32, 10, "result: number NumberResult", SymbolKind.ResultVariable
+32, 20, "number: 10", SymbolKind.Constant
+33, 8, "result: string StringResult", SymbolKind.ResultVariable
+33, 20, "string: \"de\"", SymbolKind.Constant
+34, 8, "result: date DateResult", SymbolKind.ResultVariable
+34, 29, "date: 2022-02-02T02:02:02", SymbolKind.Constant
+35, 13, "result: boolean BooleanResult", SymbolKind.ResultVariable
+35, 21, "boolean: true", SymbolKind.Constant

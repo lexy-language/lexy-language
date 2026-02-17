@@ -1,0 +1,71 @@
+scenario TestSymbols                                                                               //  1
+  function                                                                                         //  2
+    parameters                                                                                     //  3
+      TypeExample Example                                                                          //  4
+    results                                                                                        //  5
+      number Result                                                                                //  6
+    ... = FunctionWithFunctionDependency(...)                                                      //  7
+    ... = FunctionWithFunctionTypeDependency(...)                                                  //  8
+  parameters                                                                                       //  9
+    Example.EnumValue = EnumExample.Single                                                         // 10
+    Example.Nested.EnumValue = EnumExample.Married                                                 // 11
+  results                                                                                          // 12
+    Result = 777                                                                                   // 13
+                                                                                                   // 14
+function FunctionWithFunctionDependency                                                            // 15
+  parameters                                                                                       // 16
+    TypeExample Example                                                                            // 17
+  results                                                                                          // 18
+    number Result                                                                                  // 19
+  ... = FunctionWithTypeDependency(...)                                                            // 20
+  ... = FunctionWithTableDependency(...)                                                           // 21
+  ... = FunctionWithEnumDependency(...)                                                            // 22
+                                                                                                   // 23
+function FunctionWithFunctionTypeDependency                                                        // 24
+  parameters                                                                                       // 25
+    TypeExample Example                                                                            // 26
+  results                                                                                          // 27
+    number Result                                                                                  // 28
+  var functionParametersFill = fill(FunctionWithTypeDependency.Parameters)                         // 29
+  var functionParametersNew = new(FunctionWithTypeDependency.Parameters)                           // 30
+  var tableParameters = new(TableExample.Row)                                                      // 31
+  Result = 777                                                                                     // 32
+                                                                                                   // 33
+function FunctionWithTypeDependency                                                                // 34
+  parameters                                                                                       // 35
+    TypeExample Example                                                                            // 36
+  results                                                                                          // 37
+    number Result                                                                                  // 38
+  Result = Example.Nested.Result                                                                   // 39
+                                                                                                   // 40
+function FunctionWithTableDependency                                                               // 41
+  parameters                                                                                       // 42
+    TypeExample Example                                                                            // 43
+  results                                                                                          // 44
+    number Result                                                                                  // 45
+  Result = TableExample.LookUp(EnumExample.Single, TableExample.Example, TableExample.Value)       // 46
+                                                                                                   // 47
+function FunctionWithEnumDependency                                                                // 48
+  parameters                                                                                       // 49
+    EnumExample EnumValue                                                                          // 50
+    TypeExample Example                                                                            // 51
+  results                                                                                          // 52
+    number Result                                                                                  // 53
+  Result = 666                                                                                     // 54
+                                                                                                   // 55
+type NestedType                                                                                    // 56
+  EnumExample EnumValue                                                                            // 57
+  number Result = 888                                                                              // 58
+                                                                                                   // 59
+type TypeExample                                                                                   // 60
+  EnumExample EnumValue                                                                            // 61
+  NestedType Nested                                                                                // 62
+                                                                                                   // 63
+table TableExample                                                                                 // 64
+  | EnumExample Example | number Value |                                                           // 65
+  | EnumExample.Single  | 123          |                                                           // 66
+                                                                                                   // 67
+enum EnumExample                                                                                   // 68
+  Single                                                                                           // 69
+  Married                                                                                          // 70
+  CivilPartnership                                                                                 // 71
