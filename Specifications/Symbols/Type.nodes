@@ -21,7 +21,7 @@ Type.lexy (12:12-16)                                                         Ide
 Type.lexy (14:1-23)                                                    Scenario: AssignmentTest
 Type.lexy (15:3-21)                                                      FunctionName: Assignment
 Type.lexy (16:3-12)                                                      Parameters: 1
-Type.lexy (17:5-11)                                                        ObjectAssignmentDefinition: Lexy.Compiler.Language.Scenarios.ObjectAssignmentDefinition
+Type.lexy (17:5-11)                                                        ObjectAssignmentDefinition: Value
 Type.lexy (18:7-16)                                                          AssignmentDefinition: Value.Number = 5
 Type.lexy (18:7-12)                                                            MemberAccessExpression: Value.Number
 Type.lexy (18:16)                                                              LiteralExpression: number: 5
@@ -31,11 +31,11 @@ Type.lexy (19:16-17)                                                           L
 Type.lexy (20:7-32)                                                          AssignmentDefinition: Value.Date = 2026-02-17T14:18:19
 Type.lexy (20:7-10)                                                            MemberAccessExpression: Value.Date
 Type.lexy (20:14-32)                                                           LiteralExpression: date: 2026-02-17T14:18:19
-Type.lexy (21:7-20)                                                          AssignmentDefinition: Value.Boolean = True
+Type.lexy (21:7-20)                                                          AssignmentDefinition: Value.Boolean = true
 Type.lexy (21:7-13)                                                            MemberAccessExpression: Value.Boolean
 Type.lexy (21:17-20)                                                           LiteralExpression: boolean: true
 Type.lexy (22:3-9)                                                       Results: 1
-Type.lexy (23:5-12)                                                        ObjectAssignmentDefinition: Lexy.Compiler.Language.Scenarios.ObjectAssignmentDefinition
+Type.lexy (23:5-12)                                                        ObjectAssignmentDefinition: Result
 Type.lexy (24:7-16)                                                          AssignmentDefinition: Result.Number = 5
 Type.lexy (24:7-12)                                                            MemberAccessExpression: Result.Number
 Type.lexy (24:16)                                                              LiteralExpression: number: 5
@@ -45,7 +45,7 @@ Type.lexy (25:16-17)                                                           L
 Type.lexy (26:7-32)                                                          AssignmentDefinition: Result.Date = 2026-02-17T14:18:19
 Type.lexy (26:7-10)                                                            MemberAccessExpression: Result.Date
 Type.lexy (26:14-32)                                                           LiteralExpression: date: 2026-02-17T14:18:19
-Type.lexy (27:7-20)                                                          AssignmentDefinition: Result.Boolean = True
+Type.lexy (27:7-20)                                                          AssignmentDefinition: Result.Boolean = true
 Type.lexy (27:7-13)                                                            MemberAccessExpression: Result.Boolean
 Type.lexy (27:17-20)                                                           LiteralExpression: boolean: true
 Type.lexy (29:1-29)                                                    Scenario: AssignmentsTableTest

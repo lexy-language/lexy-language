@@ -1,4 +1,4 @@
-1, 17, "table: SimpleTable", SymbolKind.Table, "- number NumberValue\\n- string StringValue\\n- date DateValue\\n- boolean BooleanValue\\n- number NumberResult\\n- string StringResult\\n- date DateResult\\n- boolean BooleanResult\\n"
+1, 17, "table: SimpleTable", SymbolKind.Table, "- number NumberValue\\n- string StringValue\\n- date DateValue\\n- boolean BooleanValue\\n- number NumberResult\\n- string StringResult\\n- date DateResult\\n- boolean BooleanResult"
 2, 11, "number NumberValue", SymbolKind.TableColumn
 2, 7, "value type: number", SymbolKind.ValueType
 2, 20, "NumberValue", SymbolKind.TableColumn

@@ -41,9 +41,10 @@ Function.lexy (19:5-19)                                                        A
 Function.lexy (19:5-11)                                                          IdentifierExpression: Message
 Function.lexy (19:15-19)                                                         LiteralExpression: string: "xTrue"
 Function.lexy (20:3-6)                                                       ElseExpression: else
-Function.lexy (21:5-20)                                                        AssignmentExpression: Message = xFalse
-Function.lexy (21:5-11)                                                          IdentifierExpression: Message
-Function.lexy (21:15-20)                                                         LiteralExpression: string: "xFalse"
+Function.lexy (20:3-6)                                                         ExpressionList: 1
+Function.lexy (21:5-20)                                                          AssignmentExpression: Message = xFalse
+Function.lexy (21:5-11)                                                            IdentifierExpression: Message
+Function.lexy (21:15-20)                                                           LiteralExpression: string: "xFalse"
 Function.lexy (22:3-20)                                                    SwitchExpression: switch NumberValue
 Function.lexy (22:10-20)                                                     IdentifierExpression: NumberValue
 Function.lexy (23:5-10)                                                      CaseExpression: case 0
@@ -75,7 +76,7 @@ Function.lexy (34:19-20)                                                     Lit
 Function.lexy (35:5-35)                                                    AssignmentDefinition: DateValue = 2026-02-17T14:18:19
 Function.lexy (35:5-13)                                                      IdentifierExpression: DateValue
 Function.lexy (35:17-35)                                                     LiteralExpression: date: 2026-02-17T14:18:19
-Function.lexy (36:5-23)                                                    AssignmentDefinition: BooleanValue = True
+Function.lexy (36:5-23)                                                    AssignmentDefinition: BooleanValue = true
 Function.lexy (36:5-16)                                                      IdentifierExpression: BooleanValue
 Function.lexy (36:20-23)                                                     LiteralExpression: boolean: true
 Function.lexy (37:3-9)                                                   Results: 6
@@ -88,7 +89,7 @@ Function.lexy (39:20-21)                                                     Lit
 Function.lexy (40:5-36)                                                    AssignmentDefinition: DateResult = 2026-02-17T14:18:19
 Function.lexy (40:5-14)                                                      IdentifierExpression: DateResult
 Function.lexy (40:18-36)                                                     LiteralExpression: date: 2026-02-17T14:18:19
-Function.lexy (41:5-24)                                                    AssignmentDefinition: BooleanResult = True
+Function.lexy (41:5-24)                                                    AssignmentDefinition: BooleanResult = true
 Function.lexy (41:5-17)                                                      IdentifierExpression: BooleanResult
 Function.lexy (41:21-24)                                                     LiteralExpression: boolean: true
 Function.lexy (42:5-19)                                                    AssignmentDefinition: Message = xTrue

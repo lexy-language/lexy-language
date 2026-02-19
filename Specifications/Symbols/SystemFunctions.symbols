@@ -4,12 +4,12 @@
 3, 8, "value type: number", SymbolKind.ValueType
 4, 4, "value type: date", SymbolKind.ValueType
 4, 8, "first", SymbolKind.Variable
-4, 18, "Lexy.RunTime.Libraries.Date.Today", SymbolKind.LibraryFunction
+4, 18, "Date.Today", SymbolKind.LibraryFunction
 5, 4, "value type: date", SymbolKind.ValueType
 5, 11, "second", SymbolKind.Variable
-5, 28, "Lexy.RunTime.Libraries.Date.Today", SymbolKind.LibraryFunction
+5, 28, "Date.Today", SymbolKind.LibraryFunction
 6, 6, "result: number Diff", SymbolKind.ResultVariable
-6, 11, "Lexy.RunTime.Libraries.Date.Seconds", SymbolKind.LibraryFunction
+6, 11, "Date.Seconds", SymbolKind.LibraryFunction
 6, 27, "variable: date first", SymbolKind.Variable
 6, 35, "variable: date second", SymbolKind.Variable
 8, 2, "function: NowAndDiff", SymbolKind.Function
@@ -18,13 +18,13 @@
 10, 9, "value type: number", SymbolKind.ValueType
 11, 3, "value type: date", SymbolKind.ValueType
 11, 11, "first", SymbolKind.Variable
-11, 20, "Lexy.RunTime.Libraries.Date.Now", SymbolKind.LibraryFunction
+11, 20, "Date.Now", SymbolKind.LibraryFunction
 12, 4, "value type: date", SymbolKind.ValueType
 12, 8, "second", SymbolKind.Variable
-12, 26, "Lexy.RunTime.Libraries.Date.Now", SymbolKind.LibraryFunction
+12, 26, "Date.Now", SymbolKind.LibraryFunction
 13, 6, "result: number Diff", SymbolKind.ResultVariable
-13, 10, "Lexy.RunTime.Libraries.Number.Floor", SymbolKind.LibraryFunction
-13, 31, "Lexy.RunTime.Libraries.Date.Seconds", SymbolKind.LibraryFunction
+13, 10, "Number.Floor", SymbolKind.LibraryFunction
+13, 31, "Date.Seconds", SymbolKind.LibraryFunction
 13, 40, "variable: date second", SymbolKind.Variable
 13, 46, "variable: date first", SymbolKind.Variable
 15, 10, "function: PowerDivision", SymbolKind.Function
@@ -32,8 +32,8 @@
 17, 17, "result: number Result", SymbolKind.ResultVariable
 17, 7, "value type: number", SymbolKind.ValueType
 18, 7, "result: number Result", SymbolKind.ResultVariable
-18, 12, "Lexy.RunTime.Libraries.Math.Round", SymbolKind.LibraryFunction
-18, 25, "Lexy.RunTime.Libraries.Math.Power", SymbolKind.LibraryFunction
+18, 12, "Math.Round", SymbolKind.LibraryFunction
+18, 25, "Math.Power", SymbolKind.LibraryFunction
 18, 34, "number: 4", SymbolKind.Constant
 18, 36, "number: 5", SymbolKind.Constant
 18, 38, "number: 4", SymbolKind.Constant
@@ -68,7 +68,7 @@
 40, 8, "params", SymbolKind.Variable
 40, 19, "fill", SymbolKind.SystemFunction, "fill expects 1 argument fill(Function.Parameters)"
 40, 42, "type: SimpleTarget.Parameters", SymbolKind.GeneratedType
-42, 14, "table: StringTable", SymbolKind.Table, "- string SearchValue\\n- number ResultNumber\\n- string ResultString\\n- boolean ResultBoolean\\n- date ResultDate\\n"
+42, 14, "table: StringTable", SymbolKind.Table, "- string SearchValue\\n- number ResultNumber\\n- string ResultString\\n- boolean ResultBoolean\\n- date ResultDate"
 43, 11, "string SearchValue", SymbolKind.TableColumn
 43, 8, "value type: string", SymbolKind.ValueType
 43, 16, "SearchValue", SymbolKind.TableColumn

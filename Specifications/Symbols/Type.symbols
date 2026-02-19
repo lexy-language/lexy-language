@@ -1,4 +1,4 @@
-1, 3, "type: ExampleType", SymbolKind.Type, "- number Number\\n- string String\\n- date Date\\n- boolean Boolean\\n"
+1, 3, "type: ExampleType", SymbolKind.Type, "- number Number\\n- string String\\n- date Date\\n- boolean Boolean"
 2, 10, "parameter: number Number", SymbolKind.ParameterVariable
 2, 6, "value type: number", SymbolKind.ValueType
 3, 14, "parameter: string String", SymbolKind.ParameterVariable
