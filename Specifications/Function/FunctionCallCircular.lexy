@@ -15,8 +15,8 @@ function Function2
 scenario CallCircularFunction
   function Function1
   expectErrors
-    "Circular reference detected in: 'Function1'"
-    "Circular reference detected in: 'Function2'"
+    "Circular reference detected in 'Function1': 'Function2'"
+    "Circular reference detected in 'Function2': 'Function1'"
 
 function SingleTypeArgumentWithOwnParametersTypeFunction
   parameters
@@ -25,7 +25,7 @@ function SingleTypeArgumentWithOwnParametersTypeFunction
 scenario SingleTypeArgumentWithOwnParametersType
   function SingleTypeArgumentWithOwnParametersTypeFunction
   expectErrors
-    "Circular reference detected in: 'SingleTypeArgumentWithOwnParametersTypeFunction'"
+    "Circular reference detected in 'SingleTypeArgumentWithOwnParametersTypeFunction': 'SingleTypeArgumentWithOwnParametersTypeFunction'"
 
 function SingleTypeArgumentWithOwnResultsTypeFunction
   results
@@ -34,4 +34,4 @@ function SingleTypeArgumentWithOwnResultsTypeFunction
 scenario SingleTypeArgumentWithOwnResultsType
   function SingleTypeArgumentWithOwnResultsTypeFunction
   expectErrors
-    "Circular reference detected in: 'SingleTypeArgumentWithOwnResultsTypeFunction'"
+    "Circular reference detected in 'SingleTypeArgumentWithOwnResultsTypeFunction': 'SingleTypeArgumentWithOwnResultsTypeFunction'"

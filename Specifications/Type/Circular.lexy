@@ -16,5 +16,5 @@ scenario ScenarioCircularReference
   function
     DeclaredType invalidType
   expectComponentErrors
-    "Circular reference detected in: 'NestedType'"
-    "Circular reference detected in: 'DeclaredType'"
+    "Circular reference detected in 'NestedType': 'DeclaredType'"
+    "Circular reference detected in 'DeclaredType': 'NestedType'"

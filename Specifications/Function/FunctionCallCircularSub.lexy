@@ -1,0 +1,12 @@
+function NewFunction
+  SecondFunction()
+
+function SecondFunction
+  NewFunction()
+
+scenario ScenarioCircularFunctionReference
+  function
+    NewFunction()
+  expectComponentErrors
+    "Circular reference detected in 'NewFunction': 'SecondFunction'"
+    "Circular reference detected in 'SecondFunction': 'NewFunction'"
